@@ -1,0 +1,134 @@
+// @version=6
+indicator("RSI Cross Bot — Improved + Safe Divergences", shorttitle="RSI Bot", format=format.price, precision=2, overlay=false)
+
+// ----------------------------
+// Настройки
+// ----------------------------
+emaLen = input.int(7, "Сглаживание RSI (EMA)", minval=1)
+
+// ----------------------------
+// 1. Источник: SMA(6)
+// ----------------------------
+ma_source = ta.sma(close,21)
+
+// ----------------------------
+// 2. RSI(27) через RMA
+// ----------------------------
+length = 12
+chg   = ta.change(ma_source)
+gain  = math.max(chg, 0)
+loss  = -math.min(chg, 0)
+
+avg_gain = ta.rma(gain, length)
+avg_loss = ta.rma(loss, length)
+
+rs  = avg_loss == 0 ? 100 : avg_gain / avg_loss
+rsi = avg_loss == 0 ? 100 :
+      avg_gain == 0 ? 0 :
+      (100 - 100 / (1 + rs))
+
+// сигнальная EMA — ТЕПЕРЬ НАСТРАИВАЕМАЯ
+rsi_ema = ta.ema(rsi, emaLen)
+
+// ----------------------------
+// 3. Линии RSI
+// ----------------------------
+rsiPlot     = plot(rsi,     "RSI",     color=color.new(color.green, 0), linewidth=2)
+signalPlot  = plot(rsi_ema, "Signal",  color=color.new(color.red,   0), linewidth=2)
+
+// ----------------------------
+// 4. Уровни
+// ----------------------------
+h30 = hline(30, "30", color=color.new(color.green, 60))
+h50 = hline(50, "50", color=color.new(color.gray, 75))
+h70 = hline(70, "70", color=color.new(color.red,   60))
+
+// ----------------------------
+// 5. Заливка зон
+// ----------------------------
+fill(hline(0),  h30,            color=color.new(color.green, 90))
+fill(h30,       h70,            color=color.new(color.gray, 96))
+fill(h70,       hline(100),     color=color.new(color.red, 90))
+fill(rsiPlot,   signalPlot,     color=color.new(color.gray, 85))
+
+
+// ==========================================
+// 6. ГИСТОГРАММА ДЕЛЬТЫ (симметричная)
+// ==========================================
+showDelta = input.bool(true, "Показывать гистограмму дельты", group="Дельта")
+deltaType = input.string("Симметричная", options=["Обычная", "Симметричная"], title="Тип дельты", group="Дельта")
+
+// Обычная дельта (для сравнения)
+delta_raw = rsi - rsi_ema
+
+// Симметричная дельта (зеркалит верх и низ)
+rsi_mirror = rsi > 50 ? 100 - rsi : rsi
+ema_mirror = rsi_ema > 50 ? 100 - rsi_ema : rsi_ema
+
+// Логарифм от зеркальных значений
+delta_sym = math.log(rsi_mirror / ema_mirror) * 100
+
+// Сохраняем знак: если RSI > EMA, то дельта положительная
+delta_sym_signed = rsi > rsi_ema ? math.abs(delta_sym) : -math.abs(delta_sym)
+
+// Выбираем тип
+delta_value = deltaType == "Симметричная" ? delta_sym_signed : delta_raw
+
+// Динамика изменения дельты (для цвета)
+delta_change = delta_value - delta_value[1]
+
+coef = 1.5
+// ==========================================
+// ОПРЕДЕЛЕНИЕ ЦВЕТА С 4 ГРАДАЦИЯМИ
+// ==========================================
+// Определяем силу сигнала (модуль дельты)
+delta_abs = math.abs(delta_value)
+delta_abs_prev = math.abs(delta_value[1])
+
+// Проверяем направление движения
+is_up = delta_value > delta_value[1]      // растущая дельта (алгебраически)
+is_down = delta_value < delta_value[1]    // падающая дельта (алгебраически)
+
+// Проверяем рост модуля (усиление)
+is_abs_growing = delta_abs > delta_abs_prev  // модуль дельты увеличивается
+is_abs_falling = delta_abs < delta_abs_prev  // модуль дельты уменьшается
+
+// Порог сильной дельты
+threshold = 60
+
+// Переменная для цвета
+color_delta = color.new(color.gray, 100)
+
+if delta_value > 0
+    // ПОЛОЖИТЕЛЬНАЯ ДЕЛЬТА (синяя гамма)
+    if delta_abs > threshold and is_up
+        // 1. ЯРКИЙ СИНИЙ: сильная дельта (>55) И растет алгебраически
+        color_delta := color.new(color.blue, 0)
+    else if delta_abs > threshold and is_down
+        // 2. СРЕДНИЙ СИНИЙ: сильная дельта (>55) И падает алгебраически
+        color_delta := color.new(color.blue, 45)
+    else if delta_abs <= threshold and is_abs_growing
+        // 3. СРЕДНЕ-БЛЕДНЫЙ СИНИЙ: слабая дельта (<=55) НО модуль растет (усиление)
+        color_delta := color.new(color.blue, 55)
+    else if delta_abs <= threshold and is_abs_falling
+        // 4. БЛЕДНЫЙ СИНИЙ: слабая дельта (<=55) И модуль падает (затухание)
+        color_delta := color.new(color.blue, 80)
+
+else if delta_value < 0
+    // ОТРИЦАТЕЛЬНАЯ ДЕЛЬТА (красная гамма)
+    if delta_abs > threshold and is_down
+        // 1. ЯРКИЙ КРАСНЫЙ: сильная дельта (>55) И падает алгебраически (углубляется)
+        color_delta := color.new(color.red, 0)
+    else if delta_abs > threshold and is_up
+        // 2. СРЕДНИЙ КРАСНЫЙ: сильная дельта (>55) И растет алгебраически (поднимается)
+        color_delta := color.new(color.red, 45)
+    else if delta_abs <= threshold and is_abs_growing
+        // 3. СРЕДНЕ-БЛЕДНЫЙ КРАСНЫЙ: слабая дельта (<=55) НО модуль растет (усиление)
+        color_delta := color.new(color.red, 60)
+    else if delta_abs <= threshold and is_abs_falling
+        // 4. БЛЕДНЫЙ КРАСНЫЙ: слабая дельта (<=55) И модуль падает (затухание)
+        color_delta := color.new(color.red, 80)
+
+// Рисуем гистограмму
+plot(delta_value*coef, title="Дельта", style=plot.style_histogram, color=color_delta, linewidth=2)
+hline(0, "Ноль", color=color.new(color.gray, 50), linestyle=hline.style_dashed)
