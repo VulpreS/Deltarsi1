@@ -1,0 +1,769 @@
+{
+  "method": "4H closed-candle medium-to-weak DeltaRSI entry. Conditional exits next 4H open; stop-first conservative, 0.15% roundtrip, no funding. Historical 50/25/25 reused: exploratory, not untouched OOS. Signal exits capped at 10 days; no fixed TP except fixed48 baseline.",
+  "assets": {
+    "BTCUSDT": [
+      {
+        "mode": "fixed48",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 56,
+            "win": 58.9,
+            "mean": 0.635,
+            "pf": 1.716,
+            "compound": 39.08
+          },
+          {
+            "n": 31,
+            "win": 45.2,
+            "mean": -0.17,
+            "pf": 0.86,
+            "compound": -6.19
+          },
+          {
+            "n": 34,
+            "win": 47.1,
+            "mean": -0.202,
+            "pf": 0.79,
+            "compound": -7.36
+          }
+        ]
+      },
+      {
+        "mode": "bright",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 26,
+            "win": 61.5,
+            "mean": 1.663,
+            "pf": 2.164,
+            "compound": 49.02
+          },
+          {
+            "n": 17,
+            "win": 47.1,
+            "mean": -0.643,
+            "pf": 0.674,
+            "compound": -11.29
+          },
+          {
+            "n": 21,
+            "win": 42.9,
+            "mean": -0.926,
+            "pf": 0.295,
+            "compound": -18.01
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 23,
+            "win": 52.2,
+            "mean": 1.489,
+            "pf": 1.963,
+            "compound": 36.29
+          },
+          {
+            "n": 13,
+            "win": 53.8,
+            "mean": 0.862,
+            "pf": 1.478,
+            "compound": 10.1
+          },
+          {
+            "n": 16,
+            "win": 37.5,
+            "mean": -0.727,
+            "pf": 0.549,
+            "compound": -11.69
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 23,
+            "win": 52.2,
+            "mean": 1.269,
+            "pf": 1.821,
+            "compound": 29.75
+          },
+          {
+            "n": 13,
+            "win": 53.8,
+            "mean": 0.79,
+            "pf": 1.438,
+            "compound": 9.18
+          },
+          {
+            "n": 16,
+            "win": 31.2,
+            "mean": -0.915,
+            "pf": 0.487,
+            "compound": -14.34
+          }
+        ]
+      },
+      {
+        "mode": "bright_fade",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 24,
+            "win": 58.3,
+            "mean": 1.281,
+            "pf": 1.841,
+            "compound": 32.13
+          },
+          {
+            "n": 17,
+            "win": 47.1,
+            "mean": -0.539,
+            "pf": 0.727,
+            "compound": -9.77
+          },
+          {
+            "n": 21,
+            "win": 42.9,
+            "mean": -0.373,
+            "pf": 0.687,
+            "compound": -8.08
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 52,
+            "win": 63.5,
+            "mean": 0.527,
+            "pf": 1.439,
+            "compound": 27.24
+          },
+          {
+            "n": 28,
+            "win": 67.9,
+            "mean": 0.247,
+            "pf": 1.273,
+            "compound": 6.1
+          },
+          {
+            "n": 26,
+            "win": 50.0,
+            "mean": -0.123,
+            "pf": 0.874,
+            "compound": -3.85
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 44,
+            "win": 54.5,
+            "mean": 0.032,
+            "pf": 1.023,
+            "compound": -1.27
+          },
+          {
+            "n": 28,
+            "win": 67.9,
+            "mean": 0.183,
+            "pf": 1.176,
+            "compound": 4.12
+          },
+          {
+            "n": 26,
+            "win": 50.0,
+            "mean": -0.27,
+            "pf": 0.763,
+            "compound": -7.49
+          }
+        ]
+      }
+    ],
+    "ETHUSDT": [
+      {
+        "mode": "fixed48",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 57,
+            "win": 50.9,
+            "mean": 0.674,
+            "pf": 1.424,
+            "compound": 37.49
+          },
+          {
+            "n": 32,
+            "win": 56.2,
+            "mean": 0.928,
+            "pf": 1.927,
+            "compound": 31.65
+          },
+          {
+            "n": 35,
+            "win": 45.7,
+            "mean": 0.172,
+            "pf": 1.167,
+            "compound": 4.8
+          }
+        ]
+      },
+      {
+        "mode": "bright",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 30,
+            "win": 63.3,
+            "mean": 2.793,
+            "pf": 2.504,
+            "compound": 113.37
+          },
+          {
+            "n": 19,
+            "win": 47.4,
+            "mean": 0.202,
+            "pf": 1.105,
+            "compound": 1.62
+          },
+          {
+            "n": 16,
+            "win": 50.0,
+            "mean": 0.016,
+            "pf": 1.01,
+            "compound": -0.9
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 21,
+            "win": 47.6,
+            "mean": 1.041,
+            "pf": 1.438,
+            "compound": 18.06
+          },
+          {
+            "n": 16,
+            "win": 43.8,
+            "mean": 1.117,
+            "pf": 1.503,
+            "compound": 15.9
+          },
+          {
+            "n": 14,
+            "win": 42.9,
+            "mean": -0.102,
+            "pf": 0.926,
+            "compound": -2.09
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 19,
+            "win": 47.4,
+            "mean": 1.83,
+            "pf": 1.804,
+            "compound": 33.84
+          },
+          {
+            "n": 14,
+            "win": 50.0,
+            "mean": 3.127,
+            "pf": 2.719,
+            "compound": 47.64
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": 0.771,
+            "pf": 1.635,
+            "compound": 11.11
+          }
+        ]
+      },
+      {
+        "mode": "bright_fade",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 28,
+            "win": 67.9,
+            "mean": 2.792,
+            "pf": 2.542,
+            "compound": 102.09
+          },
+          {
+            "n": 20,
+            "win": 45.0,
+            "mean": 0.077,
+            "pf": 1.039,
+            "compound": -0.79
+          },
+          {
+            "n": 16,
+            "win": 50.0,
+            "mean": 0.831,
+            "pf": 1.542,
+            "compound": 10.88
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 50,
+            "win": 58.0,
+            "mean": -0.15,
+            "pf": 0.916,
+            "compound": -11.22
+          },
+          {
+            "n": 30,
+            "win": 56.7,
+            "mean": 0.621,
+            "pf": 1.579,
+            "compound": 18.35
+          },
+          {
+            "n": 31,
+            "win": 61.3,
+            "mean": 0.987,
+            "pf": 2.751,
+            "compound": 34.17
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 50,
+            "win": 56.0,
+            "mean": -0.151,
+            "pf": 0.919,
+            "compound": -11.43
+          },
+          {
+            "n": 27,
+            "win": 59.3,
+            "mean": 1.167,
+            "pf": 2.432,
+            "compound": 34.73
+          },
+          {
+            "n": 28,
+            "win": 67.9,
+            "mean": 1.265,
+            "pf": 2.981,
+            "compound": 40.61
+          }
+        ]
+      }
+    ],
+    "ICPUSDT": [
+      {
+        "mode": "fixed48",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 57,
+            "win": 57.9,
+            "mean": 0.715,
+            "pf": 1.343,
+            "compound": 33.59
+          },
+          {
+            "n": 33,
+            "win": 54.5,
+            "mean": 0.32,
+            "pf": 1.206,
+            "compound": 7.52
+          },
+          {
+            "n": 33,
+            "win": 51.5,
+            "mean": 0.868,
+            "pf": 1.507,
+            "compound": 27.01
+          }
+        ]
+      },
+      {
+        "mode": "bright",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 29,
+            "win": 44.8,
+            "mean": -0.443,
+            "pf": 0.867,
+            "compound": -18.55
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": -0.413,
+            "pf": 0.861,
+            "compound": -9.3
+          },
+          {
+            "n": 21,
+            "win": 47.6,
+            "mean": 0.849,
+            "pf": 1.278,
+            "compound": 12.09
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 25,
+            "win": 28.0,
+            "mean": -1.552,
+            "pf": 0.66,
+            "compound": -38.39
+          },
+          {
+            "n": 10,
+            "win": 70.0,
+            "mean": 6.327,
+            "pf": 5.121,
+            "compound": 76.15
+          },
+          {
+            "n": 17,
+            "win": 47.1,
+            "mean": 2.326,
+            "pf": 1.772,
+            "compound": 36.78
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 24,
+            "win": 29.2,
+            "mean": -1.373,
+            "pf": 0.699,
+            "compound": -34.62
+          },
+          {
+            "n": 10,
+            "win": 70.0,
+            "mean": 6.606,
+            "pf": 5.303,
+            "compound": 80.76
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": 3.514,
+            "pf": 2.217,
+            "compound": 55.85
+          }
+        ]
+      },
+      {
+        "mode": "bright_fade",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 29,
+            "win": 41.4,
+            "mean": 0.518,
+            "pf": 1.147,
+            "compound": 1.01
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": 0.304,
+            "pf": 1.102,
+            "compound": 0.34
+          },
+          {
+            "n": 21,
+            "win": 47.6,
+            "mean": 0.387,
+            "pf": 1.126,
+            "compound": 2.75
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 44,
+            "win": 52.3,
+            "mean": 0.574,
+            "pf": 1.231,
+            "compound": 11.28
+          },
+          {
+            "n": 25,
+            "win": 72.0,
+            "mean": 1.28,
+            "pf": 1.929,
+            "compound": 32.45
+          },
+          {
+            "n": 33,
+            "win": 57.6,
+            "mean": 0.035,
+            "pf": 1.016,
+            "compound": -3.91
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 40,
+            "win": 50.0,
+            "mean": 0.748,
+            "pf": 1.304,
+            "compound": 19.0
+          },
+          {
+            "n": 25,
+            "win": 68.0,
+            "mean": 2.467,
+            "pf": 3.251,
+            "compound": 74.68
+          },
+          {
+            "n": 29,
+            "win": 44.8,
+            "mean": -1.022,
+            "pf": 0.677,
+            "compound": -29.93
+          }
+        ]
+      }
+    ],
+    "HYPEUSDT": [
+      {
+        "mode": "fixed48",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 22,
+            "win": 45.5,
+            "mean": -0.891,
+            "pf": 0.679,
+            "compound": -20.8
+          },
+          {
+            "n": 18,
+            "win": 44.4,
+            "mean": -0.75,
+            "pf": 0.602,
+            "compound": -13.58
+          },
+          {
+            "n": 19,
+            "win": 42.1,
+            "mean": -0.869,
+            "pf": 0.641,
+            "compound": -16.7
+          }
+        ]
+      },
+      {
+        "mode": "bright",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 16,
+            "win": 50.0,
+            "mean": 0.243,
+            "pf": 1.058,
+            "compound": -4.74
+          },
+          {
+            "n": 9,
+            "win": 44.4,
+            "mean": 1.047,
+            "pf": 1.488,
+            "compound": 8.04
+          },
+          {
+            "n": 11,
+            "win": 54.5,
+            "mean": 0.555,
+            "pf": 1.199,
+            "compound": 3.61
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 10,
+            "win": 60.0,
+            "mean": 4.399,
+            "pf": 2.291,
+            "compound": 37.5
+          },
+          {
+            "n": 8,
+            "win": 12.5,
+            "mean": -4.229,
+            "pf": 0.084,
+            "compound": -29.68
+          },
+          {
+            "n": 7,
+            "win": 71.4,
+            "mean": 2.77,
+            "pf": 2.534,
+            "compound": 19.14
+          }
+        ]
+      },
+      {
+        "mode": "bright_wick",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 10,
+            "win": 60.0,
+            "mean": 4.399,
+            "pf": 2.291,
+            "compound": 37.5
+          },
+          {
+            "n": 8,
+            "win": 12.5,
+            "mean": -4.229,
+            "pf": 0.084,
+            "compound": -29.68
+          },
+          {
+            "n": 7,
+            "win": 71.4,
+            "mean": 2.77,
+            "pf": 2.534,
+            "compound": 19.14
+          }
+        ]
+      },
+      {
+        "mode": "bright_fade",
+        "wick_ratio": null,
+        "segments": [
+          {
+            "n": 15,
+            "win": 46.7,
+            "mean": 0.241,
+            "pf": 1.052,
+            "compound": -4.92
+          },
+          {
+            "n": 9,
+            "win": 44.4,
+            "mean": 0.445,
+            "pf": 1.206,
+            "compound": 2.58
+          },
+          {
+            "n": 10,
+            "win": 60.0,
+            "mean": 0.956,
+            "pf": 1.384,
+            "compound": 7.53
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.35,
+        "segments": [
+          {
+            "n": 16,
+            "win": 43.8,
+            "mean": -1.001,
+            "pf": 0.734,
+            "compound": -18.57
+          },
+          {
+            "n": 17,
+            "win": 64.7,
+            "mean": 1.083,
+            "pf": 1.826,
+            "compound": 18.47
+          },
+          {
+            "n": 15,
+            "win": 46.7,
+            "mean": -1.626,
+            "pf": 0.477,
+            "compound": -23.12
+          }
+        ]
+      },
+      {
+        "mode": "wick_only",
+        "wick_ratio": 0.5,
+        "segments": [
+          {
+            "n": 16,
+            "win": 43.8,
+            "mean": -0.454,
+            "pf": 0.889,
+            "compound": -12.5
+          },
+          {
+            "n": 16,
+            "win": 62.5,
+            "mean": 0.622,
+            "pf": 1.446,
+            "compound": 9.14
+          },
+          {
+            "n": 15,
+            "win": 46.7,
+            "mean": -1.553,
+            "pf": 0.478,
+            "compound": -22.17
+          }
+        ]
+      }
+    ]
+  }
+}
