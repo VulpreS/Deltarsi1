@@ -7,11 +7,13 @@ import datetime as dt
 import hashlib
 import json
 import math
+import os
 import random
 import statistics
 from pathlib import Path
 
 from execution_core import resolve_bar
+from funding_timing import exposure_bounds, net_return, HOUR_MS
 from feature_walkforward import data
 from pattern_confluence import flags
 from p0_gap_audit import simulate as frozen_cohort_simulate
@@ -52,10 +54,21 @@ def exit_one(rows,raw,trade,sl,tp,mode,segment_hi):
             # Defensive clamp for validity in canonical fill engine.
             if side==1:stop=min(stop,math.nextafter(target,0))
             else:stop=max(stop,math.nextafter(target,math.inf))
+    # OHLC stop/target timestamps are unknown within the touched 4H bar.
+    # Time exits are filled at the FINAL bar close, not its open.
+    entry_ms=rows[i][0]
+    if why=="time":
+        earliest_ms=latest_ms=rows[end][0]+4*HOUR_MS
+    elif why in ("stop","target"):
+        earliest_ms=rows[end][0]
+        latest_ms=rows[end][0]+4*HOUR_MS
+    else:  # reverse/structure execute at following bar OPEN
+        earliest_ms=latest_ms=rows[end][0]
+    timing=exposure_bounds(entry_ms,earliest_ms,latest_ms)
     return {"signal_index":signal,"entry_index":i,"exit_index":end,"side":side,
             "signal_utc":dt.datetime.fromtimestamp(rows[signal][0]/1000,dt.timezone.utc).isoformat(),
-            "gross":side*(out/entry-1),"hours":(rows[end][0]-rows[i][0])/3600000,
-            "reason":why,"entry_price":entry,"exit_price":out}
+            "gross":side*(out/entry-1),"hours":timing["hours_max"],
+            "reason":why,"entry_price":entry,"exit_price":out,**timing}
 
 def metric(returns):
     if not returns:return {"n":0}
@@ -69,19 +82,19 @@ def metric(returns):
             "pseudo_compound_pct":round(100*(eq-1),3),
             "pseudo_max_dd_pct":round(100*dd,3)}
 
-def net(t,cost,funding):
-    # Use elapsed UTC hours rather than bars; 8h events approximated conservatively.
-    return t["gross"]-cost-math.ceil(t["hours"]/8)*funding
+def net(t,cost,funding,bound="max"):
+    # Funding events counted at UTC 00/08/16, with intrabar uncertainty bounds.
+    return net_return(t,cost,funding,bound)
 
-def bootstrap_delta(base,challenger,rows,seed=SEED):
-    """30-calendar-day cluster bootstrap on *paired* return deltas, no iid trade CI."""
+def bootstrap_delta(base,challenger,rows,seed=SEED,cost=.0015,funding=0.,bound="max"):
+    """30-calendar-day cluster bootstrap on *paired NET* deltas, not iid CI."""
     assert len(base)==len(challenger)
     if not base:return None
     groups={}
     for b,c in zip(base,challenger):
         assert b["signal_index"]==c["signal_index"]
         bucket=rows[b["signal_index"]][0]//BLOCK_MS
-        groups.setdefault(bucket,[]).append(c["gross"]-b["gross"])
+        groups.setdefault(bucket,[]).append(net(c,cost,funding,bound)-net(b,cost,funding,bound))
     blocks=list(groups.values())
     if len(blocks)<4:return {"ci95_mean_delta_pct":None,"calendar_blocks":len(blocks),"reason":"<4 time blocks"}
     rng=random.Random(seed);draws=[]
@@ -91,18 +104,23 @@ def bootstrap_delta(base,challenger,rows,seed=SEED):
         draws.append(statistics.mean(vals))
     draws.sort()
     return {"calendar_blocks":len(blocks),"bootstrap_reps":BOOTSTRAPS,
-            "mean_delta_pct":round(100*statistics.mean(c["gross"]-b["gross"] for b,c in zip(base,challenger)),4),
+            "mean_delta_pct":round(100*statistics.mean(net(c,cost,funding,bound)-net(b,cost,funding,bound) for b,c in zip(base,challenger)),4),
+            "comparison":"paired NET return", "cost_bp":round(cost*10000,2),
+            "funding_bp_per_8h":round(funding*10000,2), "funding_event_bound":bound,
             "ci95_mean_delta_pct":[round(100*draws[int(.025*(BOOTSTRAPS-1))],4),
                                    round(100*draws[int(.975*(BOOTSTRAPS-1))],4)]}
 
 def run():
     out={"generated_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
-         "freeze_utc":FREEZE_UTC,
+         "freeze_utc":FREEZE_UTC, "producer_code_sha":os.environ.get("GITHUB_SHA","UNKNOWN_LOCAL"),
+         "ci_run_id":os.environ.get("GITHUB_RUN_ID","UNKNOWN_LOCAL"),
+         "bootstrap_seed":SEED,"bootstrap_draws":BOOTSTRAPS,
+         "aggregation":"strict_completed_4h",
          "hypothesis":"Raw opposite-DeltaRSI exit increases ETH OB-proxy fixed-cohort net expectancy over fixed 48h exit.",
          "predeclared_primary":"ETHUSDT selected OHLC OB proxy; 2.5ATR stop, 6ATR TP, 12x4H maximum; raw reverse versus fixed, same baseline-scheduled entry IDs.",
          "exploratory_secondary":"Frozen 2.5ATR/3ATR/12x4H baseline on all four assets, same-cohort raw reverse, structure and 3ATR trail as diagnostics only.",
          "warning":"ALL history reused/previously examined; NOT independent OOS. Paired pseudo-equity/DD assumes sequential trades although challenger exits may overlap other cohort trades. No production recommendation.",
-         "costs":"0.15/0.25/0.40% total assumed round-trip fees+slippage; funding 0/0.01/0.03% adverse per 8h stress, NOT venue funding. No mark price, spread, liquidation, impact, correlated risk.",
+         "costs":"0.15/0.25/0.40% total assumed round-trip fees+slippage; funding 0/0.01/0.03% adverse per UTC 00/08/16 event stress, NOT venue funding. Exact exit-at-boundary ordering unknown; max bound is conservative. No mark price, spread, liquidation, impact, correlated risk.",
          "assets":{}}
     for sym in SYMS:
         source=Path("data")/(sym+"_1h.csv")
@@ -130,7 +148,8 @@ def run():
                                    "25bp":metric([net(t,.0025,0) for t in ts]),
                                    "40bp":metric([net(t,.004,0) for t in ts]),
                                    "15bp_funding_1bp_8h":metric([net(t,.0015,.0001) for t in ts]),
-                                   "15bp_funding_3bp_8h":metric([net(t,.0015,.0003) for t in ts])}
+                                   "15bp_funding_3bp_8h":metric([net(t,.0015,.0003) for t in ts]),
+                                   "15bp_funding_3bp_8h_min":metric([net(t,.0015,.0003,"min") for t in ts])}
                              for mode,ts in bymode.items()},
                     "paired_vs_fixed":{mode:bootstrap_delta(bymode["fixed"],bymode[mode],rows,SEED+k)
                                         for mode in ("reverse","structure","trail3")}})
@@ -140,10 +159,16 @@ def run():
                        "25bp":metric([net(t,.0025,0) for t in ts]),
                        "40bp":metric([net(t,.004,0) for t in ts]),
                        "15bp_funding_1bp_8h":metric([net(t,.0015,.0001) for t in ts]),
-                       "15bp_funding_3bp_8h":metric([net(t,.0015,.0003) for t in ts])}
+                       "15bp_funding_3bp_8h":metric([net(t,.0015,.0003) for t in ts]),
+                       "15bp_funding_3bp_8h_min":metric([net(t,.0015,.0003,"min") for t in ts])}
                  for mode,ts in all_by_mode.items()},
                 "paired_vs_fixed":{mode:bootstrap_delta(all_by_mode["fixed"],all_by_mode[mode],rows)
-                     for mode in ("reverse","structure","trail3")}}}
+                     for mode in ("reverse","structure","trail3")},
+                 "eth_primary_net_paired_sensitivity":({
+                     str(int(cost*10000))+"bp_fee_"+str(int(funding*10000))+"bp_funding_"+bound:
+                         bootstrap_delta(all_by_mode["fixed"],all_by_mode["reverse"],rows,SEED,cost,funding,bound)
+                     for cost in COSTS for funding in FUNDING_STRESS for bound in ("min","max")
+                 } if sym=="ETHUSDT" and name=="selected_eth_ob" else {})}}}
         out["assets"][sym]={"source_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
                             "four_hour_bars":len(rows),"configs":configs}
     path=Path("reports/matched_exit_audit.json");path.parent.mkdir(exist_ok=True)
