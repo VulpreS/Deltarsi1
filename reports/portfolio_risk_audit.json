@@ -1,8 +1,8 @@
 {
   "title": "P1 executable chronological 4H portfolio; previously inspected history",
-  "generated_utc": "2026-10-26T21:57:12.653187+00:00",
-  "producer_commit_sha": "bc56680f98fda540a6e55d55979077810451ffdc",
-  "ci_run_id": "40408596419",
+  "generated_utc": "2026-10-26T21:57:58.735397+00:00",
+  "producer_commit_sha": "bb0dc5578bbff45e4636f88c15e7eabf47b1edb4",
+  "ci_run_id": "40408693880",
   "source_hashes": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
