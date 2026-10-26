@@ -7,6 +7,9 @@ on:
       - test_portfolio_open_order.py
       - .github/workflows/p1-portfolio-risk.yml
   workflow_dispatch:
+concurrency:
+  group: p1-portfolio-risk-${{ github.ref }}
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
