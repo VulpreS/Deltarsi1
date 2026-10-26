@@ -102,7 +102,7 @@ def main():
                 "adverse_stop_gaps":sum(x["adverse_gap"] for x in all_new),
                 "legacy_15bp":metrics(all_old,.0015,0.),
                 "corrected_by_cost":{str(int(c*10000))+"bp":metrics(all_new,c,0.) for c in COSTS},
-                "funding_stress_at_15bp":{str(int(f*10000))+"bp_per_8h":metrics(all_new,.0015,f) for f in FUNDING_STRESS}
+                "funding_stress_at_15bp":{str(round(f*10000))+"bp_per_8h":metrics(all_new,.0015,f) for f in FUNDING_STRESS}
             }
             asset["configs"][config_name]=cfg
         result["assets"][sym]=asset
