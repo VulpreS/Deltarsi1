@@ -6,11 +6,26 @@ from analyze_mtf_5y import indicator,aggregate
 from research_multiasset import atr,ema
 from execution_core import resolve_bar
 SYMS=["ETHUSDT","BTCUSDT","ICPUSDT","HYPEUSDT"];FEE=.0015
-def data(sym):
+def legacy_aggregate(rows,h):
+ """Original permissive implementation, retained only for historical before/after audit."""
+ groups={}
+ for t,o,hi,lo,c in rows:
+  b=t//(h*3600000)
+  if b not in groups:groups[b]=[b*h*3600000,o,hi,lo,c]
+  else:
+   g=groups[b];g[2]=max(g[2],hi);g[3]=min(g[3],lo);g[4]=c
+ return [tuple(groups[k]) for k in sorted(groups)][:-1]
+
+def data(sym,aggregation="strict"):
  p=Path("data")/(sym+"_1h.csv")
  with p.open() as f: raw=list(csv.DictReader(f))
  r=[(int(dt.datetime.fromisoformat(x["timestamp_utc"]).timestamp()*1000),*[float(x[k]) for k in ("open","high","low","close")]) for x in raw]
- rows=aggregate(r,4);ind=indicator(rows);a=atr(rows);cl=[x[4] for x in rows];e20=ema(cl,20);e50=ema(cl,50);e200=ema(cl,200)
+ rows=aggregate(r,4) if aggregation=="strict" else legacy_aggregate(r,4)
+ if aggregation not in ("strict","legacy"):raise ValueError("unknown aggregation")
+ return rows,features_for_rows(rows)
+
+def features_for_rows(rows):
+ ind=indicator(rows);a=atr(rows);cl=[x[4] for x in rows];e20=ema(cl,20);e50=ema(cl,50);e200=ema(cl,200)
  # Wilder ADX
  plus=minus=tr=0.;adx=20.;adxs=[]
  for i,x in enumerate(rows):
@@ -37,7 +52,7 @@ def data(sym):
   mean=statistics.mean(cl[i-19:i+1]);std=statistics.pstdev(cl[i-19:i+1])
   z=(cl[i]-mean)/std if std else 0
   features.append(dict(side=side,turn=turn,late=late,early=early,trend50=side*(cl[i]-e50[i])>0,trend200=side*(cl[i]-e200[i])>0,trend20=side*(e20[i]-e50[i])>0,adx=adxs[i],vp=vp,z=z,rsi=ind["rsi"][i],atr=a[i]))
- return rows,features
+ return features
 def sim(rows,feats,cfg,lo,hi):
  mode,trend,regime,sl,tp,hold,direction=cfg
  eq=1.;peak=1.;dd=0.;trades=[];k=max(210,lo)
