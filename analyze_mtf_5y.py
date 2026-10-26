@@ -2,6 +2,7 @@
 import csv,datetime as dt,json,math,statistics,time,urllib.parse,urllib.request
 from pathlib import Path
 from collections import Counter
+from bisect import bisect_right
 START=dt.datetime.now(dt.timezone.utc)-dt.timedelta(days=365)
 HOUR=3600000
 OUT=Path("reports");OUT.mkdir(exist_ok=True)
@@ -39,6 +40,12 @@ def aggregate(rows,h,asof_ms=None):
     from completed_candles import aggregate_completed
     return aggregate_completed(rows,h,asof_ms)
 
+def last_closed_htf_index(series, signal_bar_open_ms, higher_hours, signal_hours=1):
+    """As-of lookup by actual UTC close times, safe when HTF buckets are missing."""
+    signal_close=signal_bar_open_ms+signal_hours*HOUR
+    close_times=[bar[0]+higher_hours*HOUR for bar in series]
+    return bisect_right(close_times,signal_close)-1
+
 def indicator(rows):
     n=len(rows);s=[math.nan]*n;r=[math.nan]*n;d=[math.nan]*n;color=[""]*n
     rolling=0;ag=al=0;ema=math.nan
@@ -69,12 +76,9 @@ def main():
     i1=indicator(rows);i4=indicator(r4);id=indicator(rd)
     # Map hourly close to last fully closed 4H/1D candle: their close timestamp must be <= signal close.
     def lookup(t,h,series):
-        # signal hourly bar opens at t; its close at t+1h; HTF bar closes at bucket_start+h hours
-        idx=(t//(h*HOUR))-1
-        if (t+HOUR)%(h*HOUR)==0:idx+=1
-        base=series[0][0]//(h*HOUR)
-        j=idx-base
-        return j if 0<=j<len(series) else -1
+        # Actual completed-bar UTC close timestamps, not arithmetic array offsets:
+        # missing intermediate buckets must never shift a later candle into the past.
+        return last_closed_htf_index(series,t,h)
     events=[]
     for k in range(200,len(rows)-122):
         prev,cur=i1["color"][k-1],i1["color"][k]
