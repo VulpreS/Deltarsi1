@@ -1,7 +1,7 @@
 {
   "title": "P0 #12 standalone vs portfolio UTC trade-ID parity",
-  "producer_commit_sha": "1148f6febcdff757cc3308f1c01830d495498812",
-  "ci_run_id": "40415779542",
+  "producer_commit_sha": "f1f2604df04f0912519df0d8f61d24270153ef87",
+  "ci_run_id": "40415961503",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
@@ -24,35 +24,23 @@
             "standalone_only_n": 5,
             "portfolio_only_n": 12,
             "standalone_only_reasons": {
-              "portfolio_existing_position": 4,
-              "portfolio_cap_or_other": 1
+              "portfolio_existing_position": 5
             },
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 12
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2183,
-                  "entry_index": 2184,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.0027295463533646425,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 80416.01,
-                  "gross_return": -0.0027295463533646425
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -152,35 +140,23 @@
             "standalone_only_n": 5,
             "portfolio_only_n": 12,
             "standalone_only_reasons": {
-              "portfolio_existing_position": 4,
-              "portfolio_cap_or_other": 1
+              "portfolio_existing_position": 5
             },
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 12
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2183,
-                  "entry_index": 2184,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.0027295463533646425,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 80416.01,
-                  "gross_return": -0.0027295463533646425
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -287,29 +263,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 15
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2184,
-                  "entry_index": 2185,
-                  "exit_index": 2189,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004436008445477424,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2334.05,
-                  "gross_return": -0.004436008445477424
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -422,29 +387,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 15
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2184,
-                  "entry_index": 2185,
-                  "exit_index": 2189,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004436008445477424,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2334.05,
-                  "gross_return": -0.004436008445477424
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -559,29 +513,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 26
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T08:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2182,
-                  "entry_index": 2183,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004961832061068705,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2.607,
-                  "gross_return": -0.004961832061068705
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -698,29 +641,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 26
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T08:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2182,
-                  "entry_index": 2183,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004961832061068705,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2.607,
-                  "gross_return": -0.004961832061068705
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -846,29 +778,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 1
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-01-05T20:00:00+00:00",
                   "SHORT"
                 ],
-                "standalone": {
-                  "signal_index": 427,
-                  "entry_index": 428,
-                  "exit_index": 436,
-                  "entry_utc": "2026-01-06T00:00:00+00:00",
-                  "exit_utc": "2026-01-07T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.018884567190757373,
-                  "side": -1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-01-06T00:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 92087.21,
-                  "gross_return": 0.018884567190757373
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -929,29 +850,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 1
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-01-05T20:00:00+00:00",
                   "SHORT"
                 ],
-                "standalone": {
-                  "signal_index": 427,
-                  "entry_index": 428,
-                  "exit_index": 436,
-                  "entry_utc": "2026-01-06T00:00:00+00:00",
-                  "exit_utc": "2026-01-07T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.018884567190757373,
-                  "side": -1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-01-06T00:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 92087.21,
-                  "gross_return": 0.018884567190757373
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -1014,8 +924,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 2
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2025-12-27T12:00:00+00:00",
@@ -1082,8 +994,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 2
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2025-12-27T12:00:00+00:00",
@@ -1152,29 +1066,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 3
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-01-06T04:00:00+00:00",
                   "SHORT"
                 ],
-                "standalone": {
-                  "signal_index": 429,
-                  "entry_index": 430,
-                  "exit_index": 436,
-                  "entry_utc": "2026-01-06T08:00:00+00:00",
-                  "exit_utc": "2026-01-07T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.018845700824499434,
-                  "side": -1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-01-06T08:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 3.332,
-                  "gross_return": 0.018845700824499434
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -1247,29 +1150,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 3
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-01-06T04:00:00+00:00",
                   "SHORT"
                 ],
-                "standalone": {
-                  "signal_index": 429,
-                  "entry_index": 430,
-                  "exit_index": 436,
-                  "entry_utc": "2026-01-06T08:00:00+00:00",
-                  "exit_utc": "2026-01-07T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.018845700824499434,
-                  "side": -1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-01-06T08:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 3.332,
-                  "gross_return": 0.018845700824499434
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -1351,8 +1243,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 5
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2026-01-20T00:00:00+00:00",
@@ -1431,8 +1325,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 5
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2026-01-20T00:00:00+00:00",
@@ -1513,29 +1409,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 4
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-03-19T16:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 865,
-                  "entry_index": 866,
-                  "exit_index": 875,
-                  "entry_utc": "2026-03-19T20:00:00+00:00",
-                  "exit_utc": "2026-03-21T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.007561251272662828,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-03-19T20:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2157.37,
-                  "gross_return": 0.007561251272662828
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -1612,29 +1497,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 4
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-03-19T16:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 865,
-                  "entry_index": 866,
-                  "exit_index": 875,
-                  "entry_utc": "2026-03-19T20:00:00+00:00",
-                  "exit_utc": "2026-03-21T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.007561251272662828,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-03-19T20:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2157.37,
-                  "gross_return": 0.007561251272662828
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -1713,8 +1587,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 8
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2026-01-11T00:00:00+00:00",
@@ -1829,8 +1705,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 8
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2026-01-11T00:00:00+00:00",
@@ -1949,13 +1827,15 @@
             "standalone_only_n": 1,
             "portfolio_only_n": 2,
             "standalone_only_reasons": {
-              "portfolio_cap_or_other": 1
+              "portfolio_existing_position": 1
             },
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 2
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2026-05-14T12:00:00+00:00",
@@ -2013,13 +1893,15 @@
             "standalone_only_n": 1,
             "portfolio_only_n": 2,
             "standalone_only_reasons": {
-              "portfolio_cap_or_other": 1
+              "portfolio_existing_position": 1
             },
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 2
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [
               [
                 "2026-05-14T12:00:00+00:00",
@@ -2084,29 +1966,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 3
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-05-31T16:00:00+00:00",
                   "SHORT"
                 ],
-                "standalone": {
-                  "signal_index": 1303,
-                  "entry_index": 1304,
-                  "exit_index": 1313,
-                  "entry_utc": "2026-05-31T20:00:00+00:00",
-                  "exit_utc": "2026-06-02T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.010527210714250002,
-                  "side": -1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-05-31T20:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 1978.53,
-                  "gross_return": 0.010527210714250002
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -2175,29 +2046,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 3
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-05-31T16:00:00+00:00",
                   "SHORT"
                 ],
-                "standalone": {
-                  "signal_index": 1303,
-                  "entry_index": 1304,
-                  "exit_index": 1313,
-                  "entry_utc": "2026-05-31T20:00:00+00:00",
-                  "exit_utc": "2026-06-02T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.010527210714250002,
-                  "side": -1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-05-31T20:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 1978.53,
-                  "gross_return": 0.010527210714250002
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -2266,8 +2126,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 1
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [],
             "portfolio_only_examples": [
               [
@@ -2319,8 +2181,10 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 1
             },
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [],
             "portfolio_only_examples": [
               [
@@ -2379,8 +2243,10 @@
             "portfolio_only_n": 0,
             "standalone_only_reasons": {},
             "portfolio_only_reasons": {},
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [],
             "portfolio_only_examples": [],
             "portfolio_metrics": {
@@ -2425,8 +2291,10 @@
             "portfolio_only_n": 0,
             "standalone_only_reasons": {},
             "portfolio_only_reasons": {},
-            "matched_exit_discrepancy_n": 0,
-            "matched_exit_discrepancy_examples": [],
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 0,
+            "exit_reason_label_discrepancy_examples": [],
             "standalone_only_examples": [],
             "portfolio_only_examples": [],
             "portfolio_metrics": {
@@ -2477,29 +2345,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 2
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-08-13T04:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 1744,
-                  "entry_index": 1745,
-                  "exit_index": 1751,
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_utc": "2026-08-14T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.009163470618336333,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 1878.2,
-                  "gross_return": -0.009163470618336333
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -2564,29 +2421,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 2
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-08-13T04:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 1744,
-                  "entry_index": 1745,
-                  "exit_index": 1751,
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_utc": "2026-08-14T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.009163470618336333,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 1878.2,
-                  "gross_return": -0.009163470618336333
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -2653,29 +2499,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 10
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-08-13T04:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 1743,
-                  "entry_index": 1744,
-                  "exit_index": 1750,
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_utc": "2026-08-14T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.01741521539871682,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2.22,
-                  "gross_return": 0.01741521539871682
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -2788,29 +2623,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 10
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-08-13T04:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 1743,
-                  "entry_index": 1744,
-                  "exit_index": 1750,
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_utc": "2026-08-14T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": 0.01741521539871682,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-08-13T08:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2.22,
-                  "gross_return": 0.01741521539871682
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -2932,29 +2756,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 4
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2183,
-                  "entry_index": 2184,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.0027295463533646425,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 80416.01,
-                  "gross_return": -0.0027295463533646425
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -3027,29 +2840,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 4
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2183,
-                  "entry_index": 2184,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.0027295463533646425,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 80416.01,
-                  "gross_return": -0.0027295463533646425
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -3124,29 +2926,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 3
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2184,
-                  "entry_index": 2185,
-                  "exit_index": 2189,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004436008445477424,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2334.05,
-                  "gross_return": -0.004436008445477424
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -3215,29 +3006,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 3
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T12:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2184,
-                  "entry_index": 2185,
-                  "exit_index": 2189,
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004436008445477424,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T16:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2334.05,
-                  "gross_return": -0.004436008445477424
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -3308,29 +3088,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 4
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T08:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2182,
-                  "entry_index": 2183,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004961832061068705,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2.607,
-                  "gross_return": -0.004961832061068705
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -3411,29 +3180,18 @@
             "portfolio_only_reasons": {
               "standalone_position_or_exit_bar_cooldown": 4
             },
-            "matched_exit_discrepancy_n": 1,
-            "matched_exit_discrepancy_examples": [
+            "matched_economic_discrepancy_n": 0,
+            "matched_economic_discrepancy_examples": [],
+            "exit_reason_label_discrepancy_n": 1,
+            "exit_reason_label_discrepancy_examples": [
               {
                 "key": [
                   "2026-10-25T08:00:00+00:00",
                   "LONG"
                 ],
-                "standalone": {
-                  "signal_index": 2182,
-                  "entry_index": 2183,
-                  "exit_index": 2188,
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_utc": "2026-10-26T08:00:00+00:00",
-                  "exit_reason": "time",
-                  "gross_return": -0.004961832061068705,
-                  "side": 1
-                },
-                "portfolio": {
-                  "entry_utc": "2026-10-25T12:00:00+00:00",
-                  "exit_reason": "terminal",
-                  "exit": 2.607,
-                  "gross_return": -0.004961832061068705
-                }
+                "standalone": "time",
+                "portfolio": "terminal",
+                "same_economic_fill": true
               }
             ],
             "standalone_only_examples": [
@@ -3550,6 +3308,233 @@
         "pf": 0.8143,
         "mean_net_R": -0.0585
       }
+    }
+  },
+  "cross_asset_competition": {
+    "BTCUSDT": {
+      "isolated_n": 137,
+      "multi_n": 104,
+      "matched_n": 95,
+      "isolated_only_n": 42,
+      "multi_only_n": 9,
+      "isolated_only_examples": [
+        [
+          "2025-12-01T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-12T12:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-14T12:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-16T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-24T12:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-26T16:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-01-05T04:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-01-05T20:00:00+00:00",
+          "SHORT"
+        ]
+      ],
+      "multi_only_examples": [
+        [
+          "2025-12-14T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-15T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-01-28T12:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-02-27T08:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-03-12T00:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-04-23T16:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-04-26T04:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-09-18T08:00:00+00:00",
+          "LONG"
+        ]
+      ]
+    },
+    "ETHUSDT": {
+      "isolated_n": 136,
+      "multi_n": 93,
+      "matched_n": 80,
+      "isolated_only_n": 56,
+      "multi_only_n": 13,
+      "isolated_only_examples": [
+        [
+          "2025-12-04T00:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-07T16:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-10T20:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-13T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-18T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-21T08:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-24T16:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-31T12:00:00+00:00",
+          "SHORT"
+        ]
+      ],
+      "multi_only_examples": [
+        [
+          "2025-12-12T04:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-19T20:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-22T12:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-01-01T20:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-02-19T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-03-09T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-03-21T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-04-22T20:00:00+00:00",
+          "SHORT"
+        ]
+      ]
+    },
+    "ICPUSDT": {
+      "isolated_n": 138,
+      "multi_n": 88,
+      "matched_n": 72,
+      "isolated_only_n": 66,
+      "multi_only_n": 16,
+      "isolated_only_examples": [
+        [
+          "2025-12-01T12:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-16T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2025-12-21T00:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2025-12-28T12:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-01-06T04:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-01-15T04:00:00+00:00",
+          "SHORT"
+        ],
+        [
+          "2026-01-18T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-01-19T16:00:00+00:00",
+          "LONG"
+        ]
+      ],
+      "multi_only_examples": [
+        [
+          "2026-01-20T16:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-01-23T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-01-26T00:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-01-28T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-02-08T08:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-02-18T04:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-03-02T20:00:00+00:00",
+          "LONG"
+        ],
+        [
+          "2026-03-07T00:00:00+00:00",
+          "SHORT"
+        ]
+      ]
     }
   }
 }
