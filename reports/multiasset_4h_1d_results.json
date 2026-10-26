@@ -1,5 +1,5 @@
 {
-  "method": "1H downloaded once; 4H and 1D resampled; first 70% optimization, last 30% held out; 0.15% round-trip costs; entry next open; stop prioritized when stop and target touch same bar; one position per symbol; no leverage/funding; unadjusted price series; pivot confirmed after 2 bars",
+  "method": "1H downloaded once; 4H and 1D resampled; first 70% optimization (embargo last hold bars), last 30% simulated independently; 0.15% round-trip costs; entry next open; stop prioritized when stop and target touch same bar; one position per symbol; no leverage/funding; unadjusted price series; pivot confirmed after 2 bars",
   "data": {
     "ETHUSDT": {
       "hours": 8760,
@@ -42,26 +42,26 @@
             "both"
           ],
           "train": {
-            "n": 120,
-            "win": 52.5,
-            "avg": 0.741,
-            "pf": 1.558,
-            "net": 115.34
+            "n": 118,
+            "win": 51.7,
+            "avg": 0.705,
+            "pf": 1.522,
+            "net": 103.55
           },
           "test": {
-            "n": 66,
-            "win": 42.4,
-            "avg": -0.158,
-            "pf": 0.892,
-            "net": -13.25
+            "n": 67,
+            "win": 43.3,
+            "avg": -0.118,
+            "pf": 0.918,
+            "net": -11.07
           },
           "by_asset": {
             "ETHUSDT": {
-              "n": 21,
-              "win": 38.1,
-              "avg": -0.055,
-              "pf": 0.958,
-              "net": -2.1
+              "n": 22,
+              "win": 40.9,
+              "avg": 0.062,
+              "pf": 1.051,
+              "net": 0.37
             },
             "BTCUSDT": {
               "n": 19,
@@ -97,26 +97,26 @@
             "both"
           ],
           "train": {
-            "n": 117,
-            "win": 53.8,
-            "avg": 0.704,
-            "pf": 1.497,
-            "net": 99.38
+            "n": 115,
+            "win": 53.0,
+            "avg": 0.684,
+            "pf": 1.475,
+            "net": 92.26
           },
           "test": {
-            "n": 62,
-            "win": 41.9,
-            "avg": -0.268,
-            "pf": 0.834,
-            "net": -18.55
+            "n": 63,
+            "win": 42.9,
+            "avg": -0.224,
+            "pf": 0.859,
+            "net": -16.5
           },
           "by_asset": {
             "ETHUSDT": {
-              "n": 20,
-              "win": 40.0,
-              "avg": -0.069,
-              "pf": 0.951,
-              "net": -2.32
+              "n": 21,
+              "win": 42.9,
+              "avg": 0.054,
+              "pf": 1.041,
+              "net": 0.14
             },
             "BTCUSDT": {
               "n": 17,
@@ -145,6 +145,61 @@
           "config": [
             "late",
             0,
+            "none",
+            2.5,
+            4.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 317,
+            "win": 52.4,
+            "avg": 0.298,
+            "pf": 1.174,
+            "net": 79.48
+          },
+          "test": {
+            "n": 150,
+            "win": 50.0,
+            "avg": 0.268,
+            "pf": 1.211,
+            "net": 35.25
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 42,
+              "win": 57.1,
+              "avg": 0.797,
+              "pf": 2.115,
+              "net": 37.62
+            },
+            "BTCUSDT": {
+              "n": 44,
+              "win": 50.0,
+              "avg": 0.072,
+              "pf": 1.079,
+              "net": 2.11
+            },
+            "ICPUSDT": {
+              "n": 40,
+              "win": 52.5,
+              "avg": 0.727,
+              "pf": 1.457,
+              "net": 26.88
+            },
+            "HYPEUSDT": {
+              "n": 24,
+              "win": 33.3,
+              "avg": -1.063,
+              "pf": 0.554,
+              "net": -24.14
+            }
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
             "slow",
             2.5,
             2.0,
@@ -152,26 +207,26 @@
             "both"
           ],
           "train": {
-            "n": 123,
-            "win": 56.1,
-            "avg": 0.433,
-            "pf": 1.323,
-            "net": 55.75
+            "n": 121,
+            "win": 55.4,
+            "avg": 0.375,
+            "pf": 1.275,
+            "net": 44.19
           },
           "test": {
-            "n": 66,
-            "win": 45.5,
-            "avg": -0.185,
-            "pf": 0.872,
-            "net": -14.51
+            "n": 67,
+            "win": 46.3,
+            "avg": -0.145,
+            "pf": 0.898,
+            "net": -12.36
           },
           "by_asset": {
             "ETHUSDT": {
-              "n": 21,
-              "win": 47.6,
-              "avg": -0.046,
-              "pf": 0.963,
-              "net": -1.71
+              "n": 22,
+              "win": 50.0,
+              "avg": 0.07,
+              "pf": 1.059,
+              "net": 0.76
             },
             "BTCUSDT": {
               "n": 19,
@@ -207,26 +262,26 @@
             "both"
           ],
           "train": {
-            "n": 131,
+            "n": 129,
             "win": 47.3,
-            "avg": 0.33,
-            "pf": 1.296,
-            "net": 41.75
+            "avg": 0.297,
+            "pf": 1.263,
+            "net": 35.18
           },
           "test": {
-            "n": 70,
-            "win": 32.9,
-            "avg": -0.492,
-            "pf": 0.632,
-            "net": -31.26
+            "n": 71,
+            "win": 33.8,
+            "avg": -0.472,
+            "pf": 0.643,
+            "net": -30.59
           },
           "by_asset": {
             "ETHUSDT": {
-              "n": 23,
-              "win": 30.4,
-              "avg": -0.438,
-              "pf": 0.61,
-              "net": -10.13
+              "n": 24,
+              "win": 33.3,
+              "avg": -0.379,
+              "pf": 0.648,
+              "net": -9.25
             },
             "BTCUSDT": {
               "n": 17,
@@ -250,61 +305,6 @@
               "net": -0.04
             }
           }
-        },
-        {
-          "config": [
-            "turn",
-            0,
-            "slow",
-            1.5,
-            4.0,
-            6,
-            "both"
-          ],
-          "train": {
-            "n": 138,
-            "win": 46.4,
-            "avg": 0.32,
-            "pf": 1.284,
-            "net": 43.22
-          },
-          "test": {
-            "n": 73,
-            "win": 32.9,
-            "avg": -0.394,
-            "pf": 0.676,
-            "net": -26.77
-          },
-          "by_asset": {
-            "ETHUSDT": {
-              "n": 25,
-              "win": 32.0,
-              "avg": -0.439,
-              "pf": 0.593,
-              "net": -10.88
-            },
-            "BTCUSDT": {
-              "n": 18,
-              "win": 33.3,
-              "avg": -0.033,
-              "pf": 0.956,
-              "net": -0.87
-            },
-            "ICPUSDT": {
-              "n": 17,
-              "win": 23.5,
-              "avg": -1.163,
-              "pf": 0.322,
-              "net": -18.55
-            },
-            "HYPEUSDT": {
-              "n": 13,
-              "win": 46.2,
-              "avg": 0.197,
-              "pf": 1.132,
-              "net": 1.77
-            }
-          }
         }
       ],
       "baselines": [
@@ -319,11 +319,11 @@
             "both"
           ],
           "train": {
-            "n": 99,
-            "win": 54.5,
-            "avg": 0.345,
-            "pf": 1.171,
-            "net": 21.91
+            "n": 98,
+            "win": 54.1,
+            "avg": 0.341,
+            "pf": 1.167,
+            "net": 20.95
           },
           "test": {
             "n": 47,
@@ -363,10 +363,10 @@
             }
           },
           "test_max_drawdown_by_asset": {
-            "ETHUSDT": 15.13,
-            "BTCUSDT": 9.41,
-            "ICPUSDT": 24.29,
-            "HYPEUSDT": 28.96
+            "ETHUSDT": 8.65,
+            "BTCUSDT": 7.8,
+            "ICPUSDT": 12.35,
+            "HYPEUSDT": 4.49
           }
         },
         {
@@ -380,26 +380,26 @@
             "both"
           ],
           "train": {
-            "n": 329,
-            "win": 51.4,
-            "avg": 0.217,
-            "pf": 1.126,
-            "net": 44.08
+            "n": 326,
+            "win": 51.2,
+            "avg": 0.2,
+            "pf": 1.116,
+            "net": 36.13
           },
           "test": {
             "n": 158,
-            "win": 50.0,
-            "avg": 0.153,
-            "pf": 1.115,
-            "net": 15.2
+            "win": 49.4,
+            "avg": 0.118,
+            "pf": 1.087,
+            "net": 9.01
           },
           "test_by_asset": {
             "ETHUSDT": {
               "n": 47,
-              "win": 55.3,
-              "avg": 0.662,
-              "pf": 1.813,
-              "net": 34.22
+              "win": 53.2,
+              "avg": 0.545,
+              "pf": 1.616,
+              "net": 27.02
             },
             "BTCUSDT": {
               "n": 46,
@@ -424,10 +424,10 @@
             }
           },
           "test_max_drawdown_by_asset": {
-            "ETHUSDT": 35.11,
+            "ETHUSDT": 14.91,
             "BTCUSDT": 17.0,
-            "ICPUSDT": 40.73,
-            "HYPEUSDT": 46.04
+            "ICPUSDT": 24.29,
+            "HYPEUSDT": 28.64
           }
         },
         {
@@ -441,33 +441,33 @@
             "both"
           ],
           "train": {
-            "n": 342,
-            "win": 53.5,
-            "avg": 0.258,
-            "pf": 1.146,
-            "net": 58.54
+            "n": 339,
+            "win": 53.1,
+            "avg": 0.249,
+            "pf": 1.139,
+            "net": 52.69
           },
           "test": {
-            "n": 152,
-            "win": 50.7,
-            "avg": 0.309,
-            "pf": 1.241,
-            "net": 45.02
+            "n": 154,
+            "win": 51.3,
+            "avg": 0.337,
+            "pf": 1.266,
+            "net": 52.25
           },
           "test_by_asset": {
             "ETHUSDT": {
-              "n": 42,
-              "win": 50.0,
-              "avg": 0.52,
-              "pf": 1.561,
-              "net": 22.4
+              "n": 43,
+              "win": 51.2,
+              "avg": 0.566,
+              "pf": 1.625,
+              "net": 25.48
             },
             "BTCUSDT": {
-              "n": 42,
-              "win": 59.5,
-              "avg": 0.422,
-              "pf": 1.576,
-              "net": 18.24
+              "n": 43,
+              "win": 60.5,
+              "avg": 0.468,
+              "pf": 1.655,
+              "net": 21.09
             },
             "ICPUSDT": {
               "n": 44,
@@ -485,10 +485,10 @@
             }
           },
           "test_max_drawdown_by_asset": {
-            "ETHUSDT": 24.5,
-            "BTCUSDT": 22.83,
-            "ICPUSDT": 35.51,
-            "HYPEUSDT": 43.71
+            "ETHUSDT": 15.53,
+            "BTCUSDT": 10.54,
+            "ICPUSDT": 22.07,
+            "HYPEUSDT": 15.52
           }
         }
       ],
@@ -665,11 +665,11 @@
             "both"
           ],
           "train": {
-            "n": 32,
-            "win": 59.4,
-            "avg": 1.876,
-            "pf": 1.995,
-            "net": 69.31
+            "n": 31,
+            "win": 61.3,
+            "avg": 1.944,
+            "pf": 2.003,
+            "net": 69.72
           },
           "test": {
             "n": 22,
@@ -720,11 +720,11 @@
             "both"
           ],
           "train": {
-            "n": 32,
-            "win": 59.4,
-            "avg": 1.682,
-            "pf": 1.891,
-            "net": 60.36
+            "n": 31,
+            "win": 61.3,
+            "avg": 1.743,
+            "pf": 1.899,
+            "net": 60.74
           },
           "test": {
             "n": 22,
@@ -775,11 +775,11 @@
             "both"
           ],
           "train": {
-            "n": 28,
-            "win": 57.1,
-            "avg": 1.555,
-            "pf": 1.918,
-            "net": 45.92
+            "n": 27,
+            "win": 59.3,
+            "avg": 1.621,
+            "pf": 1.928,
+            "net": 46.27
           },
           "test": {
             "n": 22,
@@ -830,11 +830,11 @@
             "both"
           ],
           "train": {
-            "n": 32,
-            "win": 59.4,
-            "avg": 1.603,
-            "pf": 1.743,
-            "net": 52.8
+            "n": 31,
+            "win": 61.3,
+            "avg": 1.663,
+            "pf": 1.749,
+            "net": 53.16
           },
           "test": {
             "n": 20,
@@ -876,56 +876,56 @@
         },
         {
           "config": [
-            "late",
+            "turn",
             0,
             "extreme",
-            2.5,
+            1.5,
             2.0,
-            12,
+            6,
             "both"
           ],
           "train": {
             "n": 27,
             "win": 59.3,
-            "avg": 2.105,
-            "pf": 1.76,
-            "net": 57.23
+            "avg": 1.389,
+            "pf": 1.795,
+            "net": 38.28
           },
           "test": {
-            "n": 17,
-            "win": 70.6,
-            "avg": 0.516,
-            "pf": 1.2,
-            "net": 3.69
+            "n": 22,
+            "win": 63.6,
+            "avg": 0.373,
+            "pf": 1.172,
+            "net": 4.53
           },
           "by_asset": {
             "ETHUSDT": {
-              "n": 4,
-              "win": 75.0,
-              "avg": 0.829,
-              "pf": 1.66,
-              "net": 3.0
+              "n": 5,
+              "win": 40.0,
+              "avg": -0.745,
+              "pf": 0.733,
+              "net": -4.29
             },
             "BTCUSDT": {
-              "n": 4,
-              "win": 75.0,
-              "avg": 0.956,
-              "pf": 2.34,
-              "net": 3.76
+              "n": 5,
+              "win": 100.0,
+              "avg": 1.454,
+              "pf": null,
+              "net": 7.43
             },
             "ICPUSDT": {
-              "n": 5,
-              "win": 60.0,
-              "avg": -1.282,
-              "pf": 0.801,
-              "net": -9.96
+              "n": 8,
+              "win": 62.5,
+              "avg": 0.054,
+              "pf": 1.015,
+              "net": -2.19
             },
             "HYPEUSDT": {
               "n": 4,
-              "win": 75.0,
-              "avg": 2.012,
-              "pf": 3.078,
-              "net": 7.76
+              "win": 50.0,
+              "avg": 1.057,
+              "pf": 1.927,
+              "net": 3.94
             }
           }
         }
@@ -942,11 +942,11 @@
             "both"
           ],
           "train": {
-            "n": 12,
-            "win": 41.7,
-            "avg": -0.704,
-            "pf": 0.824,
-            "net": -12.67
+            "n": 10,
+            "win": 50.0,
+            "avg": 0.903,
+            "pf": 1.295,
+            "net": 5.04
           },
           "test": {
             "n": 12,
@@ -986,10 +986,10 @@
             }
           },
           "test_max_drawdown_by_asset": {
-            "ETHUSDT": 10.35,
-            "BTCUSDT": 13.33,
+            "ETHUSDT": 8.44,
+            "BTCUSDT": 3.78,
             "ICPUSDT": 27.22,
-            "HYPEUSDT": 23.89
+            "HYPEUSDT": 12.91
           }
         },
         {
@@ -1003,33 +1003,33 @@
             "both"
           ],
           "train": {
-            "n": 38,
-            "win": 42.1,
-            "avg": 0.016,
-            "pf": 1.004,
-            "net": -18.51
+            "n": 35,
+            "win": 40.0,
+            "avg": -0.067,
+            "pf": 0.984,
+            "net": -19.62
           },
           "test": {
             "n": 23,
-            "win": 60.9,
-            "avg": -0.253,
-            "pf": 0.92,
-            "net": -12.02
+            "win": 56.5,
+            "avg": -0.476,
+            "pf": 0.857,
+            "net": -16.49
           },
           "test_by_asset": {
             "ETHUSDT": {
               "n": 7,
-              "win": 71.4,
-              "avg": 2.346,
-              "pf": 3.694,
-              "net": 16.78
+              "win": 57.1,
+              "avg": 1.433,
+              "pf": 1.887,
+              "net": 9.41
             },
             "BTCUSDT": {
               "n": 5,
               "win": 60.0,
-              "avg": 0.654,
-              "pf": 1.521,
-              "net": 2.99
+              "avg": 0.907,
+              "pf": 1.906,
+              "net": 4.34
             },
             "ICPUSDT": {
               "n": 8,
@@ -1047,10 +1047,10 @@
             }
           },
           "test_max_drawdown_by_asset": {
-            "ETHUSDT": 41.71,
-            "BTCUSDT": 12.52,
-            "ICPUSDT": 50.09,
-            "HYPEUSDT": 21.05
+            "ETHUSDT": 6.24,
+            "BTCUSDT": 2.85,
+            "ICPUSDT": 44.75,
+            "HYPEUSDT": 0.0
           }
         },
         {
@@ -1064,26 +1064,26 @@
             "both"
           ],
           "train": {
-            "n": 38,
-            "win": 42.1,
-            "avg": -0.983,
-            "pf": 0.79,
-            "net": -45.8
+            "n": 36,
+            "win": 44.4,
+            "avg": -0.553,
+            "pf": 0.876,
+            "net": -34.81
           },
           "test": {
-            "n": 24,
-            "win": 62.5,
-            "avg": 1.143,
-            "pf": 1.396,
-            "net": 20.53
+            "n": 25,
+            "win": 56.0,
+            "avg": 0.833,
+            "pf": 1.276,
+            "net": 12.67
           },
           "test_by_asset": {
             "ETHUSDT": {
-              "n": 6,
-              "win": 83.3,
-              "avg": 4.17,
-              "pf": 5.982,
-              "net": 26.52
+              "n": 7,
+              "win": 57.1,
+              "avg": 2.631,
+              "pf": 2.628,
+              "net": 18.26
             },
             "BTCUSDT": {
               "n": 6,
@@ -1108,10 +1108,10 @@
             }
           },
           "test_max_drawdown_by_asset": {
-            "ETHUSDT": 35.96,
-            "BTCUSDT": 27.97,
-            "ICPUSDT": 59.41,
-            "HYPEUSDT": 23.55
+            "ETHUSDT": 6.24,
+            "BTCUSDT": 2.16,
+            "ICPUSDT": 43.48,
+            "HYPEUSDT": 3.65
           }
         }
       ],
@@ -1267,7 +1267,7 @@
           }
         }
       ],
-      "candidate_count": 43
+      "candidate_count": 41
     }
   }
 }
