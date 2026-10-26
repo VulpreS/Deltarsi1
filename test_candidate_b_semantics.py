@@ -25,8 +25,8 @@ def test_stop_wins_same_bar():
 def test_4h_boundary():
     r=[(i*HOUR,100.,101.,99.,100.) for i in range(12)]
     a=aggregate(r,4)
-    assert len(a)==2, a # conservative aggregate() drops final bucket
-    assert [x[0] for x in a]==[0,4*HOUR],a
+    assert len(a)==3, a # all three fully closed buckets are included
+    assert [x[0] for x in a]==[0,4*HOUR,8*HOUR],a
 def test_split_entry_boundary():
     r=bars();f=feats()
     t,_=sim(r,f,CFG,0,212)
