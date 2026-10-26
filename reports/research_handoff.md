@@ -1,3 +1,39 @@
+# DeltaRSI researcher handoff — cycle 5, 2026-10-26 (P0 #6 funding timing + NET paired CI)
+
+**Decision: P0 #6 FUNDING TIMING / NET PAIRED AUDIT DONE for synthetic cached scope; #6 PORTFOLIO and #5 VENUE/FORWARD still OPEN. NO STRATEGY PROMOTION, NO LIVE ORDERS.** CI [40390672109](https://github.com/VulpreS/Deltarsi1/actions/runs/40390672109) **SUCCESS**, producer SHA `8bc3b8e67e68935f52f8eb9ebdb225f96a2acf00`, deterministic seed `20261026`, 2,500 bootstrap draws. Report: [reports/matched_exit_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/matched_exit_audit.json).
+
+## Hypothesis / priority
+Read manager directives and current issues #7, #6, #5, #4 plus previous handoff before implementing. Priority #6: fixing last-bar-close exposure duration and using actual UTC 00/08/16 funding-event **bounds** (rather than `ceil(hours/8)`) may alter matched ETH fixed-vs-raw-reverse NET attribution. Predeclared ETH OHLC OB proxy 2.5 ATR stop / 6 ATR target / 12×4H max; same fixed-scheduled 43 entry IDs. Historical data already inspected and OB chosen retrospectively — **NOT independent OOS**.
+
+## Changes / reproducibility
+- Added `funding_timing.py`: exact UTC 00/08/16 event counting on (entry,exit), (entry,exit], lower/upper bounds for OHLC-intrabar stop/TP and funding-boundary ordering. Excludes funding at entry timestamp; assumes entry just after same-timestamp settlement. Actual exchange settlement ordering UNKNOWN.
+- Corrected `matched_exit_audit.exit_one` time exit to final 4H candle **close**, not candle open; intrabar stop/TP exposure interval = [bar open, bar close]; raw reverse/structure next-open exit remains exact. Emits `hours_min/max`, `funding_events_min/max`, UTC entry and exit bounds per trade.
+- `net` uses event counts, not `ceil(hours/8)`. `bootstrap_delta` now resamples **paired net return deltas** in 30-day calendar blocks. Explicit 15/25/40bp total fee+slippage × 0/1/3bp adverse *synthetic* funding × min/max timing grid for primary ETH; matched fees cancel algebraically for identical-entry cohorts with equal per-trade cost.
+- Expanded `test_matched_exit_audit.py`: 1/2/3/12-bar time exits (old 0h/44h bug fails), UTC 00/08/16 boundaries, boundary uncertainty, LONG/SHORT intrabar stop, next-open reverse, stop-first, four-block NET bootstrap. CI workflow now also runs `test_p0_execution.py` and `test_completed_candles.py` and triggers when `funding_timing.py` changes.
+- Uses **only** committed `data/*_1h.csv` caches; no downloads, no orders. Source ETH CSV SHA256 `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`; strict completed-4H aggregation, report contains all four source hashes, producer SHA, CI run, UTC freeze cutoff, seed, cost assumptions and per-asset chronological slices.
+
+## Results — historical matched cohort, NOT independent
+ETH selected OB same **N=43** entry IDs; 15bp assumed total round-trip fee+slippage, **0bp** funding: fixed net mean **+0.8666%/trade**, PF **1.8212**, win **58.14%**; raw opposite DeltaRSI net mean **+1.0453%**, PF **2.0988**, win **60.47%**. Paired NET delta **+0.1787 percentage points**, 30-day block-bootstrap 95% CI **[-0.0202,+0.4321] pp** across **12 calendar blocks**. CI **includes zero**.
+
+At 15bp total fee+slippage **plus 3bp adverse funding per 8h UTC event** using **conservative max exposure bound**: fixed net mean **+0.7110%**, PF **1.6386**, win **53.49%**; raw reverse **+0.9064%**, PF **1.9073**, win **55.81%**. Paired NET delta **+0.1955 pp**, 95% block CI **[-0.0078,+0.4572] pp**, **still includes zero**. Conservative min timing-bound ETH mean net fixed +0.7284%, reverse +0.9267% at 3bp stress. The reverse's lower assumed funding exposure explains why stressed paired delta is larger, not evidence of a reliable advantage. At 40bp fixed cost, zero funding: fixed PF **1.5284**, reverse PF **1.7521**, but paired CI remains unchanged because equal per-trade costs cancel.
+
+Strict aggregation baseline at 15bp/0 funding, frozen 2.5/3/12 config: BTC N130 PF1.3377; ETH N129 PF1.3230; ICP N132 PF1.1465; HYPE N69 PF0.7889. All frozen raw-reverse historical paired bootstrap CIs include zero. No strategy upgrade is statistically established. Selected-cohort pseudo-equity/DD are **not executable portfolio DD**.
+
+## Limitations / blockers
+1. Real funding rates, settlement timestamps, exchange and market-type provenance, spreads, mark-price trigger, direct same-venue 4H OHLCV, BTC/ICP/HYPE 1H volumes: **UNKNOWN/BLOCKED**. Funding assumptions are synthetic adverse cost; do not claim they equal exchange funding.
+2. `p0_gap_audit.metrics` still uses `ceil(bars/2)` as a coarse stress proxy; this **is not equivalent** to the new exact UTC event-count bounds. Never compare its stressed PF numerically with this matched audit without reconciling definitions. Baseline gross and 0-funding costs are unaffected.
+3. ETH OB cohort was selected on previously inspected data, and cohort is determined by fixed-exit scheduling. The paired bootstrap is descriptive; cannot correct selection bias, 12 blocks are few, and reverse's earlier re-entry opportunities are deliberately excluded. The five chronological non-overlapping slices are NOT sealed independent holdouts.
+4. No separately executable cross-asset portfolio, 0.25% equity stop-risk, max two simultaneous positions/0.50% aggregate risk, mark-to-market DD, worst month or realized funding. No post-cutoff immutable forward receipts.
+
+## Conclusion / concrete manager questions for next cycle
+1. **#6 P0 synthetic timing + NET CI DONE.** Review code/report and confirm UTC settlement-event convention; request venue-specific funding/mark prices before replacing stress with realized economics. Do not promote ETH reverse: both primary CIs include zero.
+2. **#6 P1 NEXT:** implement independent executable chronological portfolio with re-entries and 0.25% initial-stop equity risk per position, max two concurrent, <=0.50% aggregate stop-risk, 15/25/40bp cost stress, mark-to-market DD and worst monthly loss. Compare frozen baseline with one preregistered challenger, without selecting on final quarter.
+3. **#6 accounting NEXT:** replace/reconcile `p0_gap_audit.metrics` coarse `ceil(bars/2)` funding proxy using shared UTC event-count bounds, retaining explicit legacy-vs-new report. Test 00/08/16 starts, stop/TP uncertainty, long/short.
+4. **#5 BLOCKED:** signed venue/market provenance, same-venue direct 4H parity and real funding unavailable. Pre-register immutable forward shadow receipts and minimum >=90 days / >=50 independent executable trades per candidate; no backfill labeled forward.
+5. **No orders, no production, no claim of independent reproducible edge.**
+
+---
+
 # DeltaRSI researcher handoff — cycle 4, 2026-10-26 (P0 #7 completed 4H bars)
 
 **Decision: P0 #7 CODE + SYNTHETIC TESTS DONE; historical comparison DONE; NO PROMOTION / RESEARCH ONLY.** Workflow [40382846181](https://github.com/VulpreS/Deltarsi1/actions/runs/40382846181) SUCCESS, producer commit `6323a539b9d50c1b2ac9f4cdcf331bb4419da8c4`; deterministic seed 20261026; cached CSV only, no downloads, no live orders. All chronological slices are **previously inspected historical data, NOT independent OOS**.
