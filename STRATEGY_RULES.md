@@ -3,7 +3,7 @@
 Status: **PAPER TRADING ONLY**. This is not a validated profitable live system.
 
 ## Instruments and timeframe
-- Trade ETHUSDT, BTCUSDT, ICPUSDT on 4-hour bars. HYPEUSDT is excluded: held-out results were negative for the selected logic and only ~5003 hours were available.
+- Paper trade ETHUSDT, BTCUSDT, ICPUSDT on 4-hour bars. Monitor HYPEUSDT in research-only mode: only ~5003 hours were available and holdout result is slightly negative.
 - Evaluate signals only on a fully closed 4-hour bar (UTC-aligned exchange candle).
 - Only one position per instrument. LONG and SHORT are allowed. No averaging, martingale, or pyramiding.
 
@@ -13,8 +13,8 @@ Status: **PAPER TRADING ONLY**. This is not a validated profitable live system.
 3. EMA7 of RSI12.
 4. Mirror RSI around 50: `rsi_mirror=min(rsi,100-rsi)`; same for EMA.
 5. `delta=sign(rsi-ema)*abs(100*ln(rsi_mirror/ema_mirror))`.
-6. Delta color classification as in `Delta` Pine file, threshold 60. Red = negative, blue = positive.
-7. Signal LONG: **previous 4H bar mediumR, current closed 4H bar weakR**. Signal SHORT: **mediumB -> weakB**. No separate RSI threshold or divergence filter.
+6. The **chosen revised signal** does not depend on color threshold 60. It uses histogram magnitude: `abs(delta[k]) < abs(delta[k-1])`, `abs(delta[k-1]) >= abs(delta[k-2])`, and `abs(delta[k-1]) >= 15`.
+7. Delta at k and k-1 must have the same sign. LONG when delta[k] is negative; SHORT when positive. This catches the first weakening after a local impulse peak. No separate RSI threshold, divergence, or trend filter. The previous medium->weak color transition is retained as a comparator, not the primary rule.
 
 ## Execution
 - Entry: **next 4H bar open**, not on the signal bar.
@@ -28,11 +28,13 @@ Status: **PAPER TRADING ONLY**. This is not a validated profitable live system.
 - Risk for paper trading: **0.25% of account equity per stop**. `quantity=(equity*0.0025)/(2.5*ATR)`, then cap notional exposure to 1x equity per instrument and comply with exchange quantity/precision/minimums. Never size positions using leveraged buying power alone.
 - Portfolio cap: max 0.75% of equity risk across simultaneous stops; daily realized loss cap 1% and equity drawdown circuit breaker 5% from peak, both are **untested operational safeguards**, not backtested improvements.
 
-## Backtest evidence (2026-10-26)
-One-year ETH/BTC/ICP 1H data resampled to 4H. First 70% train, last 30% untouched. No overlap on same instrument. Holdout on ETH/BTC/ICP combined: 125 trades, 51.2% profitable, +0.422% mean return/trade, PF 1.374. By asset: ETH 44 trades PF 1.50; BTC 44 PF 1.19; ICP 37 PF 1.41. Full four-asset holdout including HYPE: 148 trades, PF 1.187, +0.246% mean; HYPE alone 23 trades, PF 0.695, -0.713% mean.
-Training on three assets (earlier run): 276 trades, 54.7% wins, +0.452% mean, PF 1.271.
-Daily alternatives: too few trades, unstable. Strict wave divergence detection: no qualifying signals under current implementation, NOT validated.
-Caveats: 0.15% friction estimate, no funding, no partial fills, no mark-price liquidations, no exchange outage handling; selected instruments after observing holdout introduces selection bias. Need a fresh forward paper period and broader out-of-sample years before deploying capital. The reported mean returns are not account returns. Max drawdowns are material and the naive full-notional backtest is not safe for leveraged deployment.
+## Backtest evidence (2026-10-26, corrected 12-bar exit)
+One-year ETH/BTC/ICP 1H data resampled to 4H. HYPE covers ~5003 hours, April–October 2026. First 70% train per instrument, last 30% held out. One position at a time per instrument, 0.15% round-trip costs.
+**Chosen 4H local-peak weakening rule (turn):** training on four assets 342 trades, win 53.5%, mean +0.258%/trade, PF 1.146; holdout 152 trades, win 50.7%, mean +0.309%, PF 1.241. Held-out by asset: ETH 42 trades +0.520% PF 1.561; BTC 42 trades +0.422% PF 1.576; ICP 44 trades +0.216% PF 1.110; HYPE 24 trades -0.088% PF 0.946.
+**Color medium->weak comparator:** training 329 trades +0.217% PF 1.126; holdout 158 trades +0.153% PF 1.115. ETH/BTC/ICP positive; HYPE negative.
+**Optimized trend-filter variants:** failed on holdout (best training config 4H holdout PF 0.892). This is evidence against selecting the highest training backtest.
+**1D:** results too inconsistent/sparse; not approved. **Divergence:** strict wave detector found zero qualifying signals; not validated.
+Limitations: funding, mark-price stops, exchange outages and variable slippage not modeled; selection of the chosen rule after reviewing holdout means the holdout is now partially used for model selection. No future untouched test yet. Mean returns are not equity returns. Drawdowns with full notional were large. Do not use leverage without separate validation.
 
 ## Operational deployment gates
 1. Verify indicator outputs bar-for-bar against TradingView on at least 30 sampled bars per symbol.
