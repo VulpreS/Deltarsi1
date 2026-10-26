@@ -91,3 +91,10 @@
 3. Review matched-net paired 95% CI and *separate* executable portfolio; compare with frozen 2.5ATR/3ATR/48h baseline.
 4. Verify forward-only collector has immutable timestamps and preregistration before treating any sample as prospective.
 5. Continue **NO PROMOTION / RESEARCH ONLY** until independent forward evidence and separate human authorization for production.
+
+### Cycle 2 late-arriving CI addendum (2026-10-26 17:53 UTC; supersedes "not yet run" above)
+While the manager review was being committed, the researcher **ran** the new matched audit: workflow [40372778396](https://github.com/VulpreS/Deltarsi1/actions/runs/40372778396) SUCCESS after an earlier failed run; committed `reports/matched_exit_audit.json` in `f4386df7ab`. This changes P1-C from NOT RUN to **PARTIAL / CI PASS**. The code still has the funding-duration and gross-only-bootstrap limitations identified above; CI tests do not include time-exit holding-hour/funding-boundary fixtures.
+
+**ETH preselected OB, same baseline-scheduled 43 entry IDs, 15bp assumed total round-trip cost:** fixed mean net +0.8341%/trade, PF 1.7849, win 58.14%; raw reverse mean net +1.0128%, PF 2.0564, win 60.47%. **Paired gross mean delta +0.1787 percentage points, 30-day-block bootstrap 95% CI [−0.0202, +0.4321] pp (12 blocks)**: interval **includes zero**. Therefore there is NO demonstrated statistically robust improvement, even before prospective testing; do not promote. At 40bp, fixed PF1.4969 vs reverse PF1.7157, still reused history and gross-only CI. Structure exit yields higher matched mean but worse winrate and CI also crosses zero; do not cherry-pick it.
+
+**P0-C issue #6 stays OPEN:** require accurate time/funding accounting, net paired CI, explicit strategy hash, separate risk-sized executable portfolio and independent prospective evaluation. **Do not claim that the passed workflow validates trading edge.**
