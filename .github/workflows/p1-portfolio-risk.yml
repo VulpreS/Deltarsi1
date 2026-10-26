@@ -1,0 +1,30 @@
+name: P1 Portfolio Risk Audit
+on:
+  push:
+    paths:
+      - portfolio_risk_audit.py
+      - test_portfolio_risk_audit.py
+      - .github/workflows/p1-portfolio-risk.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  portfolio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regression tests
+        run: |
+          python -m unittest -v test_portfolio_risk_audit test_completed_candles test_p0_execution test_matched_exit_audit
+      - name: Cached-only portfolio audit
+        run: python portfolio_risk_audit.py
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/portfolio_risk_audit.json
+          git diff --cached --quiet || (git commit -m "Record risk-sized portfolio audit" && git pull --rebase origin main && git push)
