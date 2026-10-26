@@ -1,0 +1,38 @@
+name: P0 Standalone Portfolio Parity
+on:
+  push:
+    paths:
+      - standalone_parity_audit.py
+      - test_standalone_parity_audit.py
+      - .github/workflows/p0-standalone-parity.yml
+  workflow_dispatch:
+concurrency:
+  group: p0-standalone-parity-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regression and reconciliation fixtures
+        run: python -m unittest -v test_standalone_parity_audit test_portfolio_risk_audit test_portfolio_open_order test_p0_execution
+      - name: Reconcile cached-only standalone and portfolio
+        run: python -u standalone_parity_audit.py
+      - name: Commit audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git diff --quiet HEAD origin/main -- standalone_parity_audit.py portfolio_risk_audit.py p0_gap_audit.py feature_walkforward.py; then
+            echo "Producer changed during run; refusing stale report"
+            exit 1
+          fi
+          git reset --mixed origin/main
+          git add reports/standalone_parity_audit.json
+          git diff --cached --quiet || (git commit -m "Publish cached-only P0 standalone portfolio parity audit" && git push origin HEAD:main)
