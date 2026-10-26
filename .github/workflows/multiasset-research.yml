@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validate chronological split boundaries
+        run: python -m unittest -v test_research_boundaries.py
       - name: Download missing hourly candles once and research
         run: python research_multiasset.py
       - name: Persist candle cache and results
