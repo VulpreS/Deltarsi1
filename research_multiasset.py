@@ -134,13 +134,15 @@ def prepare(sym,tf,raw):
         if not (early or late or turn):continue
         signals.append((k,side,early,late,turn,w[k][0 if side==1 else 1],(close[k]>slow[k] if side==1 else close[k]<slow[k]),(fast[k]>slow[k] if side==1 else fast[k]<slow[k]),ind["rsi"][k],av[k]))
     return rows,signals
-def simulate(data,config,cut):
+def simulate(data,config,cut,start=0):
     rows,sigs=data
     mode,div,trend,stop,target,hold,side_mode=config
     equity=1.;peak=1.;dd=0.;trades=[];until=-1
     for k,side,early,late,turn,w,t1,t2,rsi,a in sigs:
-        if k<=until or k<70:continue
-        if cut>0 and k>=cut:continue
+        if k<=until or k<70 or k<start:continue
+        # Embargo the last 'hold' signal bars in train: no test-period
+        # prices may influence a training trade's realized PnL.
+        if cut>0 and k+hold>=cut:continue
         if side_mode=="long" and side!=1:continue
         if side_mode=="short" and side!=-1:continue
         if mode=="early" and not early:continue
@@ -202,10 +204,8 @@ def main():
             tests=[];by={}
             for sym,d in ds.items():
                 # Test only signals at/after 70% split.
-                trades,dd=simulate(d,cfg,0)
-                trades=[x for x in trades if x[0]>=cuts[sym]]
-                # Re-simulate separately from test boundary, to avoid earlier trades blocking test entries.
-                # Above simulation has no pre-test filter, but next line is only used as a coarse independent check.
+                trades,dd=simulate(d,cfg,0,start=cuts[sym])
+                # The test engine starts at the held-out boundary and uses no training trades.
                 by[sym]=metric(trades);tests.extend(trades)
             choices.append({"config":cfg,"train":train,"test":metric(tests),"by_asset":by})
         # Baseline unfiltered early and late
@@ -215,8 +215,8 @@ def main():
             tr=[];te=[]
             for sym,d in ds.items():
                 tr.extend(simulate(d,cfg,cuts[sym])[0])
-                te.extend(x for x in simulate(d,cfg,0)[0] if x[0]>=cuts[sym])
-            baselines.append({"config":cfg,"train":metric(tr),"test":metric(te),"test_by_asset":{sym:metric([x for x in simulate(d,cfg,0)[0] if x[0]>=cuts[sym]]) for sym,d in ds.items()},"test_max_drawdown_by_asset":{sym:round(100*simulate(d,cfg,0)[1],2) for sym,d in ds.items()}})
+                te.extend(simulate(d,cfg,0,start=cuts[sym])[0])
+            baselines.append({"config":cfg,"train":metric(tr),"test":metric(te),"test_by_asset":{sym:metric(simulate(d,cfg,0,start=cuts[sym])[0]) for sym,d in ds.items()},"test_max_drawdown_by_asset":{sym:round(100*simulate(d,cfg,0,start=cuts[sym])[1],2) for sym,d in ds.items()}})
         divergences=[]
         for mode in ("early","late","turn"):
             for divergence in (2,3):
@@ -224,10 +224,10 @@ def main():
                 tr=[];te=[]
                 for sym,d in ds.items():
                     tr.extend(simulate(d,cfg,cuts[sym])[0])
-                    te.extend(x for x in simulate(d,cfg,0)[0] if x[0]>=cuts[sym])
+                    te.extend(simulate(d,cfg,0,start=cuts[sym])[0])
                 divergences.append({"config":cfg,"train":metric(tr),"test":metric(te)})
         results[str(tf)+"h"]={"assets":list(ds),"top_train_configs":choices,"baselines":baselines,"divergence_ablation":divergences,"candidate_count":len(ranks)}
-    output={"method":"1H downloaded once; 4H and 1D resampled; first 70% optimization, last 30% held out; 0.15% round-trip costs; entry next open; stop prioritized when stop and target touch same bar; one position per symbol; no leverage/funding; unadjusted price series; pivot confirmed after 2 bars","data":status,"results":results}
+    output={"method":"1H downloaded once; 4H and 1D resampled; first 70% optimization (embargo last hold bars), last 30% simulated independently; 0.15% round-trip costs; entry next open; stop prioritized when stop and target touch same bar; one position per symbol; no leverage/funding; unadjusted price series; pivot confirmed after 2 bars","data":status,"results":results}
     (OUT/"multiasset_4h_1d_results.json").write_text(json.dumps(output,indent=2,ensure_ascii=False))
     print(json.dumps(output,indent=2,ensure_ascii=False),flush=True)
 if __name__=="__main__":main()
