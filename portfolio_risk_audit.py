@@ -72,7 +72,7 @@ def cash_at_open(cash,active,series,t,rate):
 
 def settle(s,p,price,why,earliest,latest,cash,ledger,cost,rate,series):
     b=exposure_bounds(p["entry_ms"],earliest,latest)
-    fee_exit=p["notional"]*cost/2
+    fee_exit=p["qty"]*price*cost/2
     funding=p["notional"]*rate*b["funding_events_max"]
     gross=p["side"]*p["qty"]*(price-p["entry"])
     cash+=gross-fee_exit-funding
@@ -81,13 +81,30 @@ def settle(s,p,price,why,earliest,latest,cash,ledger,cost,rate,series):
       "signal_utc":iso(p["signal_ms"]),"entry_utc":iso(p["entry_ms"]),
       "exit_utc_earliest":iso(earliest),"exit_utc_latest":iso(latest),
       "exit_reason":why,"entry":p["entry"],"exit":price,"stop":p["stop"],"target":p["target"],
-      "quantity":p["qty"],"notional":p["notional"],"stop_risk":p["risk"],
+      "quantity":p["qty"],"notional":p["notional"],"exit_notional":p["qty"]*price,"stop_risk":p["risk"],
       "gross_pnl":gross,"fees":p["fee_entry"]+fee_exit,"funding_max":funding,
       "funding_events_min":b["funding_events_min"],"funding_events_max":b["funding_events_max"],
       "net_pnl":net,"net_pct_initial_equity":100*net/p["equity_before"],
       "net_R":net/p["risk"],"equity_before":p["equity_before"],"cash_after":cash,
       "strategy_hash":CONFIG_HASH})
     return cash
+
+def resolve_open_gap(open_price, side, stop, target):
+    """Only information available at this open: no current-bar high/low/close.
+
+    Adverse stop gaps fill at open. Favorable target gaps fill at the target,
+    deliberately forfeiting price improvement. Returns (fill, reason).
+    """
+    if side not in (1, -1) or not all(math.isfinite(v) and v > 0 for v in (open_price, stop, target)):
+        raise ValueError("Invalid open/side/stop/target")
+    if side * (target - stop) <= 0:
+        raise ValueError("Invalid stop/target ordering")
+    if side * (open_price - stop) <= 0:
+        return open_price, "stop"
+    if side * (open_price - target) >= 0:
+        return target, "target"
+    return None, None
+
 
 def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
     """Sequential bar-close equity marks, new entries at next open; no shared future data."""
@@ -101,7 +118,19 @@ def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
             if p.get("reverse_pending"):
                 op=series[s]["rows"][series[s]["map"][t]][1]
                 cash=settle(s,p,op,"raw_reverse_next_open",t,t,cash,ledger,cost,rate,series)
-                turnover+=p["notional"];del active[s]
+                turnover+=p["qty"]*op;del active[s]
+        # P0 chronology: settle OLD positions already through stop/target
+        # at this open BEFORE admitting any new signals. Do not inspect the
+        # new bar's high/low/close here. The gap loss and exit fee must affect
+        # available slots, same-symbol lock, cash and risk sizing immediately.
+        for s in tuple(active):
+            p=active[s]
+            op=series[s]["rows"][series[s]["map"][t]][1]
+            fill,why=resolve_open_gap(op,p["side"],p["stop"],p["target"])
+            if why:
+                cash=settle(s,p,fill,why,t,t,cash,ledger,cost,rate,series)
+                turnover+=p["qty"]*fill
+                del active[s]
         # Entries use only signal bar whose close is <= this open.
         if step>0:
             for s in SYMS:  # deterministic priority for competing signals
@@ -146,11 +175,11 @@ def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
             fill,why=resolve_bar(bar,p["side"],p["stop"],p["target"])
             if why:
                 cash=settle(s,p,fill,why,t,t+4*HOUR_MS,cash,ledger,cost,rate,series)
-                turnover+=p["notional"];del active[s];continue
+                turnover+=p["qty"]*fill;del active[s];continue
             if i-p["entry_index"]>=HOLD-1 or step==len(times)-1:
                 reason="time" if i-p["entry_index"]>=HOLD-1 else "terminal"
                 cash=settle(s,p,bar[4],reason,t+4*HOUR_MS,t+4*HOUR_MS,cash,ledger,cost,rate,series)
-                turnover+=p["notional"];del active[s];continue
+                turnover+=p["qty"]*bar[4];del active[s];continue
             if variant=="challenger" and s=="ETHUSDT":
                 f=x["feat"][i]
                 if f and f["turn"] and f["side"]==-p["side"]:
@@ -216,7 +245,7 @@ def main():
       "ci_run_id":os.environ.get("GITHUB_RUN_ID","local"),
       "source_hashes":hashes,"config":CONFIG,"strategy_hash":CONFIG_HASH,
       "freeze_utc":FREEZE_UTC,"data_warning":"Historical cache previously inspected; no independent OOS. No real orders.",
-      "accounting":"Starting equity=1 per window. Cash plus close-mark unrealized less conservative accrued synthetic funding. Risk size=0.25% equity / stop distance, max 2 simultaneous, 0.5% aggregate initial stop risk, max 2x gross notional. Fixed priority BTC/ETH/ICP; same-symbol lockout. Half round-trip fee at entry, half at exit. Stop-first, adverse opening gaps. Synthetic adverse funding max UTC 8h bound; no venue rates. Exit fills intrabar have unknown timing. Monthly mark-to-market at last bar close. No market impact or mark-price liquidation.",
+      "accounting":"Starting equity=1 per window. Cash plus close-mark unrealized less conservative accrued synthetic funding. Risk size=0.25% equity / stop distance, max 2 simultaneous, 0.5% aggregate initial stop risk, max 2x gross notional. Fixed priority BTC/ETH/ICP; same-symbol lockout. Half round-trip fee at entry and half on EXIT execution notional. Pre-existing open-time gaps settle before signal admission; adverse stop gaps at open, favorable target gaps conservatively at target. Intrabar stop-first after admission. Synthetic adverse funding max UTC 8h bound; no venue rates. Exit fills intrabar have unknown timing. Monthly mark-to-market at last bar close. No market impact or mark-price liquidation.",
       "boundary_warning":"Independent portfolio schedules within each nonoverlapping window; equity reset and terminal close at window end. No selection based on any window. Different cohort and scheduling from prior pseudo-equity reports.",
       "windows":[],"full_common_history":{}}
     for j in range(5):
