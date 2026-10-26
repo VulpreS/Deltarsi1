@@ -1,0 +1,502 @@
+{
+  "notes": "OHLC only; volume is NOT present for all symbols and not used. Four-hour candles aggregated from cached 1h. Indicators on completed bars. Stop wins when both touched. 0.15% round-trip fees+slippage, funding excluded. Separate 50/25/25 chronological per-symbol split; HYPE shorter. Best candidates frozen using train+validation before final holdout. Selection of model after seeing final results invalidates its independence.",
+  "candidates_searched": 3240,
+  "training_qualified": 980,
+  "validation_qualified": 951,
+  "evaluations": [
+    {
+      "config": [
+        "turn",
+        "follow50",
+        "none",
+        1.5,
+        3.0,
+        6,
+        "short"
+      ],
+      "train": {
+        "n": 47,
+        "win": 53.2,
+        "mean": 0.863,
+        "pf": 2.107,
+        "compound": 46.29
+      },
+      "validation": {
+        "n": 28,
+        "win": 64.3,
+        "mean": 0.846,
+        "pf": 2.621,
+        "compound": 25.82
+      },
+      "final_holdout": {
+        "n": 26,
+        "win": 30.8,
+        "mean": -0.426,
+        "pf": 0.658,
+        "compound": -11.36
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 10,
+            "win": 20.0,
+            "mean": -0.782,
+            "pf": 0.283,
+            "compound": -7.67
+          },
+          "max_drawdown_full_notional_pct": 7.67
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 25.0,
+            "mean": -0.455,
+            "pf": 0.337,
+            "compound": -1.82
+          },
+          "max_drawdown_full_notional_pct": 1.84
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 8,
+            "win": 37.5,
+            "mean": -0.532,
+            "pf": 0.667,
+            "compound": -4.66
+          },
+          "max_drawdown_full_notional_pct": 12.28
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 50.0,
+            "mean": 0.703,
+            "pf": 1.47,
+            "compound": 2.56
+          },
+          "max_drawdown_full_notional_pct": 3.17
+        }
+      }
+    },
+    {
+      "config": [
+        "turn",
+        "follow50",
+        "none",
+        1.5,
+        4.0,
+        6,
+        "short"
+      ],
+      "train": {
+        "n": 47,
+        "win": 53.2,
+        "mean": 0.851,
+        "pf": 2.091,
+        "compound": 45.49
+      },
+      "validation": {
+        "n": 28,
+        "win": 64.3,
+        "mean": 0.813,
+        "pf": 2.558,
+        "compound": 24.73
+      },
+      "final_holdout": {
+        "n": 26,
+        "win": 30.8,
+        "mean": -0.326,
+        "pf": 0.739,
+        "compound": -9.12
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 10,
+            "win": 20.0,
+            "mean": -0.683,
+            "pf": 0.374,
+            "compound": -6.77
+          },
+          "max_drawdown_full_notional_pct": 7.58
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 25.0,
+            "mean": -0.455,
+            "pf": 0.337,
+            "compound": -1.82
+          },
+          "max_drawdown_full_notional_pct": 1.84
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 8,
+            "win": 37.5,
+            "mean": -0.532,
+            "pf": 0.667,
+            "compound": -4.66
+          },
+          "max_drawdown_full_notional_pct": 12.28
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 50.0,
+            "mean": 1.106,
+            "pf": 1.739,
+            "compound": 4.14
+          },
+          "max_drawdown_full_notional_pct": 3.17
+        }
+      }
+    },
+    {
+      "config": [
+        "turn",
+        "follow50",
+        "none",
+        1.5,
+        4.0,
+        12,
+        "short"
+      ],
+      "train": {
+        "n": 44,
+        "win": 56.8,
+        "mean": 0.993,
+        "pf": 1.98,
+        "compound": 49.46
+      },
+      "validation": {
+        "n": 26,
+        "win": 65.4,
+        "mean": 0.976,
+        "pf": 2.023,
+        "compound": 27.15
+      },
+      "final_holdout": {
+        "n": 25,
+        "win": 40.0,
+        "mean": 0.173,
+        "pf": 1.121,
+        "compound": 2.8
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 10,
+            "win": 30.0,
+            "mean": -0.158,
+            "pf": 0.873,
+            "compound": -1.92
+          },
+          "max_drawdown_full_notional_pct": 8.58
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 50.0,
+            "mean": 0.189,
+            "pf": 1.241,
+            "compound": 0.69
+          },
+          "max_drawdown_full_notional_pct": 1.57
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 7,
+            "win": 42.9,
+            "mean": 0.471,
+            "pf": 1.247,
+            "compound": 2.53
+          },
+          "max_drawdown_full_notional_pct": 12.79
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 50.0,
+            "mean": 0.463,
+            "pf": 1.268,
+            "compound": 1.52
+          },
+          "max_drawdown_full_notional_pct": 3.74
+        }
+      }
+    },
+    {
+      "config": [
+        "turn",
+        "follow50",
+        "none",
+        1.5,
+        2.0,
+        6,
+        "short"
+      ],
+      "train": {
+        "n": 47,
+        "win": 53.2,
+        "mean": 0.73,
+        "pf": 1.936,
+        "compound": 37.85
+      },
+      "validation": {
+        "n": 28,
+        "win": 64.3,
+        "mean": 0.793,
+        "pf": 2.519,
+        "compound": 24.02
+      },
+      "final_holdout": {
+        "n": 26,
+        "win": 30.8,
+        "mean": -0.511,
+        "pf": 0.59,
+        "compound": -13.18
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 10,
+            "win": 20.0,
+            "mean": -0.882,
+            "pf": 0.191,
+            "compound": -8.56
+          },
+          "max_drawdown_full_notional_pct": 8.56
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 25.0,
+            "mean": -0.455,
+            "pf": 0.337,
+            "compound": -1.82
+          },
+          "max_drawdown_full_notional_pct": 1.84
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 8,
+            "win": 37.5,
+            "mean": -0.513,
+            "pf": 0.679,
+            "compound": -4.47
+          },
+          "max_drawdown_full_notional_pct": 12.28
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 4,
+            "win": 50.0,
+            "mean": 0.365,
+            "pf": 1.244,
+            "compound": 1.24
+          },
+          "max_drawdown_full_notional_pct": 3.17
+        }
+      }
+    },
+    {
+      "config": [
+        "turn",
+        "follow50",
+        "lowvol",
+        2.5,
+        4.0,
+        6,
+        "both"
+      ],
+      "train": {
+        "n": 50,
+        "win": 52.0,
+        "mean": 0.661,
+        "pf": 1.845,
+        "compound": 36.09
+      },
+      "validation": {
+        "n": 39,
+        "win": 56.4,
+        "mean": 1.052,
+        "pf": 2.902,
+        "compound": 48.65
+      },
+      "final_holdout": {
+        "n": 26,
+        "win": 23.1,
+        "mean": -0.233,
+        "pf": 0.786,
+        "compound": -6.66
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 11,
+            "win": 18.2,
+            "mean": -0.901,
+            "pf": 0.315,
+            "compound": -9.65
+          },
+          "max_drawdown_full_notional_pct": 12.99
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 7,
+            "win": 28.6,
+            "mean": -0.128,
+            "pf": 0.851,
+            "compound": -1.03
+          },
+          "max_drawdown_full_notional_pct": 5.44
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 5,
+            "win": 20.0,
+            "mean": 0.31,
+            "pf": 1.327,
+            "compound": 1.33
+          },
+          "max_drawdown_full_notional_pct": 4.66
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 3,
+            "win": 33.3,
+            "mean": 1.063,
+            "pf": 2.025,
+            "compound": 3.02
+          },
+          "max_drawdown_full_notional_pct": 3.09
+        }
+      }
+    },
+    {
+      "config": [
+        "turn",
+        "none",
+        "none",
+        2.5,
+        3.0,
+        12,
+        "both"
+      ],
+      "train": null,
+      "validation": null,
+      "final_holdout": {
+        "n": 129,
+        "win": 48.1,
+        "mean": 0.209,
+        "pf": 1.151,
+        "compound": 19.79
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 37,
+            "win": 45.9,
+            "mean": 0.376,
+            "pf": 1.39,
+            "compound": 13.35
+          },
+          "max_drawdown_full_notional_pct": 15.53
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 36,
+            "win": 55.6,
+            "mean": 0.27,
+            "pf": 1.343,
+            "compound": 9.33
+          },
+          "max_drawdown_full_notional_pct": 10.54
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 37,
+            "win": 40.5,
+            "mean": 0.196,
+            "pf": 1.089,
+            "compound": 1.93
+          },
+          "max_drawdown_full_notional_pct": 22.07
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 19,
+            "win": 52.6,
+            "mean": -0.202,
+            "pf": 0.886,
+            "compound": -5.16
+          },
+          "max_drawdown_full_notional_pct": 15.52
+        }
+      }
+    },
+    {
+      "config": [
+        "late",
+        "none",
+        "none",
+        2.5,
+        3.0,
+        12,
+        "both"
+      ],
+      "train": null,
+      "validation": null,
+      "final_holdout": {
+        "n": 132,
+        "win": 48.5,
+        "mean": 0.178,
+        "pf": 1.128,
+        "compound": 15.27
+      },
+      "by_asset": {
+        "ETHUSDT": {
+          "stats": {
+            "n": 41,
+            "win": 48.8,
+            "mean": 0.381,
+            "pf": 1.408,
+            "compound": 15.22
+          },
+          "max_drawdown_full_notional_pct": 14.91
+        },
+        "BTCUSDT": {
+          "stats": {
+            "n": 38,
+            "win": 50.0,
+            "mean": 0.023,
+            "pf": 1.025,
+            "compound": 0.04
+          },
+          "max_drawdown_full_notional_pct": 13.58
+        },
+        "ICPUSDT": {
+          "stats": {
+            "n": 34,
+            "win": 50.0,
+            "mean": 0.606,
+            "pf": 1.316,
+            "compound": 16.81
+          },
+          "max_drawdown_full_notional_pct": 20.88
+        },
+        "HYPEUSDT": {
+          "stats": {
+            "n": 19,
+            "win": 42.1,
+            "mean": -0.718,
+            "pf": 0.703,
+            "compound": -14.39
+          },
+          "max_drawdown_full_notional_pct": 24.04
+        }
+      }
+    }
+  ]
+}
