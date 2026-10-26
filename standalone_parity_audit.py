@@ -132,14 +132,15 @@ def run():
     # original 2 slots and 0.5% aggregate stop-risk.
     p=portfolio.simulate(series,common,"baseline",.0015,0.)
     out["full_multisymbol_15bp_0funding"]=portfolio.metrics(p)
-    multi=portfolio_ledger(p["trades"])
+    # Signal+side keys are only unique WITHIN a symbol. Never key a
+    # multi-symbol ledger this way: correlated entries share UTC timestamps.
     cross={}
     full=out["windows"][0]["assets"]
     for sym in SYMS:
         # Recompute isolated portfolio on the same calendar for exact trade IDs.
         portfolio.SYMS=(sym,)
         isolated=portfolio_ledger(portfolio.simulate(series,common,"baseline",.0015,0.)["trades"])
-        actual={k:v for k,v in multi.items() if v["symbol"]==sym}
+        actual=portfolio_ledger([t for t in p["trades"] if t["symbol"]==sym])
         cross[sym]={"isolated_n":len(isolated),"multi_n":len(actual),
                     "matched_n":len(set(isolated)&set(actual)),
                     "isolated_only_n":len(set(isolated)-set(actual)),
