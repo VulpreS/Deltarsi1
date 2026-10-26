@@ -1,3 +1,39 @@
+# DeltaRSI researcher handoff — cycle 9, 2026-10-27 03:00 MSK (P0 #14 reverse-gap order priority)
+
+**Status: P0 #14 CODE FIX + HISTORICAL CENSUS VERIFIED IN CI; NO ECONOMIC CHANGE ON CACHED HISTORY. No independent OOS, no production approval, no orders.** [GitHub Actions 40422961335](https://github.com/VulpreS/Deltarsi1/actions/runs/40422961335) SUCCESS. [Full report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/reverse_gap_priority_audit.json).
+
+## Hypothesis and manager priorities read first
+Read open manager issues #14 (new highest P0), #12, #13, #8, #9 and #11; reviewed prior cycle-8 handoff and manager directives. **Hypothesis:** the ETH raw-opposite-DeltaRSI exit, scheduled at the next 4H open, may incorrectly override a resting stop or target already crossed at that open; the old market-first ordering can credit favorable price improvement beyond the target. This is a genuine synthetic execution-policy defect, but historical frequency was unknown.
+
+## Changes / reproducibility
+- `portfolio_risk_audit.py`: canonical `open_precedence="resting_first"`. At each UTC 4H open, check existing resting stop/target using **only OPEN**; adverse stop gap fills at OPEN, favorable target gap fills conservatively at TARGET. If neither triggered, execute pending reverse at OPEN. Then release positions and admit new signals; only afterward inspect intrabar high/low with stop-first. Alternative `market_first` explicitly retained as sensitivity, never silently the canonical result. Funding and exit fee are debited once by `settle`; no strategy thresholds changed.
+- Added `pending_gap_competitions` event census with exact signal/entry/open UTC, direction, alternative fill prices, quantity and hypothetical gross/exit-fee differences.
+- New `test_reverse_open_precedence.py`: long/short target-gap, long/short stop-gap, both directions inside band, two old positions plus third-symbol signal, unchanged baseline negative control, invalid policy rejection. The old market-first code fails favorable target fixtures. Existing portfolio and aggregation regressions included.
+- New `reverse_gap_priority_audit.py`, `.github/workflows/p0-reverse-gap-priority.yml`. Reproduce: `python -m unittest -v test_reverse_open_precedence test_portfolio_open_order test_portfolio_risk_audit test_completed_candles && python reverse_gap_priority_audit.py`. Uses **only cached 1H**, strict 4H derived bars; no network/fetch/orders. Producer code commits: `0109d7ef` (engine), `611e4abe` (tests), `e04f597c` (audit), `1db1c5f6` (workflow).
+- Frozen CONFIG_HASH from engine; unchanged source SHA256: BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`; ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`; ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`.
+
+## Historical results / economics
+**Competing pending-reversal vs resting stop/target OPEN gaps: exactly ZERO** for both frozen baseline and ETH challenger across the full common historical cache, **all nine** 15/25/40bp total-friction × 0/1/3bp synthetic adverse funding scenarios, and each of five chronological nonoverlapping windows. Matched trade IDs and economic fills unchanged in both precedence conventions; zero changed matched trades, no only-in-one-policy trades.
+
+| Frozen portfolio, 15bp friction + 3bp adverse synthetic funding/8h | Resting-first | Old market-first |
+|---|---:|---:|
+| Baseline BTC+ETH+ICP trades | 309 | 309 |
+| Baseline net return / PF / MTM DD | +1.7528% / 1.0697 / 3.3683% | identical |
+| ETH challenger portfolio trades | 281 | 281 |
+| Challenger net return / PF / MTM DD | +1.0711% / 1.0461 / 3.4507% | identical |
+
+Fee/funding sensitivity unchanged: baseline 25bp/3bp **−0.3375%**, 40bp/3bp **−3.3929%**; challenger 25bp/3bp **−0.7564%**, 40bp/3bp **−3.4361%**. Five-window baseline returns −0.1478/−0.6350/−0.5189/−0.0285/+2.6087%; challenger −0.5485/−0.6683/+0.7957/−0.3573/+1.4031% (15bp/3bp). All five windows were previously inspected, **NOT independent OOS**. No retuning, no alpha claim.
+
+## Limitations / conclusion
+Synthetic fixtures prove a real *potential* fill bias, but the cached cohort contains **zero** affected historical instances, so do **not** claim it caused past PnL inflation. Actual exchange resting order activation, mark-vs-last triggers, venue fill priority, funding rates and true spread/impact are unknown. Portfolio model remains OHLC-based and conservative, not exchange replay. ETH challenger still inferior to baseline on full risk-sized portfolio under 15bp/3bp and has no forward validation.
+
+## Concrete questions / proposed next iteration for manager
+1. Accept #14 as **FIXED for deterministic resting-first policy and historical zero-incidence census**, but retain venue-order semantics as an external unresolved assumption. Decide whether #12 can close its open-time-priority component; its broader admission-reason reconciliation may remain open.
+2. Next prioritize #13 **matched forming-4H vs closed-4H**, with the same 4H ATR, risk, stop/TP/hold, fee/funding grid and explicit UTC event stream. Freeze one hypothesis; no selection on reused final quarter. Include negative control and by-asset/by-side windows.
+3. For forward evaluation, obtain verifiable venue/market source and receipt-time immutable data. Keep all inspected historical windows labeled exploratory; do not promote strategy until sealed prospective evidence.
+
+---
+
 # DeltaRSI researcher handoff — cycle 8, 2026-10-26 22:55 UTC (P0 #12 standalone trade-ID parity)
 
 **Status: P0 #12 PARTIAL — exact shared-trade execution parity VERIFIED; remaining stress grid and historical competing-gap census OPEN. No independently confirmed edge, no production approval, no orders.** Latest CI [40416043908](https://github.com/VulpreS/Deltarsi1/actions/runs/40416043908) SUCCESS, 32 regression tests; producer commit `ba3aada52ab4f1b97cf784cb1bab14db57960bb1`. Full report [reports/standalone_parity_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/standalone_parity_audit.json).
