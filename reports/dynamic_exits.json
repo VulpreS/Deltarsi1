@@ -1,0 +1,1309 @@
+{
+  "notes": "Exploratory historical reuse, not independent OOS. Same fixed entries for exit comparison. Stops evaluated before targets; trailing updated only after close. Conservative gap-through-stop fill. 0.15% fixed costs; no funding.",
+  "assets": {
+    "BTCUSDT": [
+      {
+        "method": "fixed",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 24,
+            "win": 58.3,
+            "mean": 0.746,
+            "pf": 1.726,
+            "compound": 18.03
+          },
+          {
+            "n": 19,
+            "win": 73.7,
+            "mean": 0.697,
+            "pf": 1.964,
+            "compound": 13.53
+          },
+          {
+            "n": 12,
+            "win": 50.0,
+            "mean": 0.412,
+            "pf": 1.518,
+            "compound": 4.68
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 23,
+            "win": 60.9,
+            "mean": 0.731,
+            "pf": 1.621,
+            "compound": 16.59
+          },
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": -0.293,
+            "pf": 0.745,
+            "compound": -5.0
+          },
+          {
+            "n": 11,
+            "win": 54.5,
+            "mean": 0.62,
+            "pf": 1.709,
+            "compound": 6.62
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 16,
+            "win": 62.5,
+            "mean": -0.01,
+            "pf": 0.992,
+            "compound": -0.85
+          },
+          {
+            "n": 14,
+            "win": 28.6,
+            "mean": -1.049,
+            "pf": 0.451,
+            "compound": -14.19
+          },
+          {
+            "n": 11,
+            "win": 45.5,
+            "mean": 0.599,
+            "pf": 1.587,
+            "compound": 6.31
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 26,
+            "win": 46.2,
+            "mean": 0.244,
+            "pf": 1.249,
+            "compound": 5.48
+          },
+          {
+            "n": 19,
+            "win": 68.4,
+            "mean": 0.678,
+            "pf": 1.929,
+            "compound": 13.14
+          },
+          {
+            "n": 12,
+            "win": 33.3,
+            "mean": 0.282,
+            "pf": 1.344,
+            "compound": 3.07
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 25,
+            "win": 28.0,
+            "mean": -0.289,
+            "pf": 0.78,
+            "compound": -8.04
+          },
+          {
+            "n": 16,
+            "win": 43.8,
+            "mean": -0.193,
+            "pf": 0.811,
+            "compound": -3.44
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": 0.41,
+            "pf": 1.455,
+            "compound": 4.2
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 20,
+            "win": 25.0,
+            "mean": -0.71,
+            "pf": 0.447,
+            "compound": -13.81
+          },
+          {
+            "n": 14,
+            "win": 21.4,
+            "mean": -0.557,
+            "pf": 0.529,
+            "compound": -7.87
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": 0.366,
+            "pf": 1.357,
+            "compound": 3.65
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 25,
+            "win": 52.0,
+            "mean": 0.284,
+            "pf": 1.277,
+            "compound": 6.28
+          },
+          {
+            "n": 19,
+            "win": 73.7,
+            "mean": 0.687,
+            "pf": 1.95,
+            "compound": 13.32
+          },
+          {
+            "n": 12,
+            "win": 33.3,
+            "mean": 0.195,
+            "pf": 1.215,
+            "compound": 1.99
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 23,
+            "win": 52.2,
+            "mean": 0.063,
+            "pf": 1.048,
+            "compound": 0.3
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": -0.036,
+            "pf": 0.964,
+            "compound": -1.06
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": 0.315,
+            "pf": 1.316,
+            "compound": 3.1
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": 0.051,
+            "pf": 1.051,
+            "compound": 0.28
+          },
+          {
+            "n": 14,
+            "win": 35.7,
+            "mean": -0.536,
+            "pf": 0.557,
+            "compound": -7.61
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": 0.271,
+            "pf": 1.242,
+            "compound": 2.56
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 24,
+            "win": 58.3,
+            "mean": 0.746,
+            "pf": 1.726,
+            "compound": 18.03
+          },
+          {
+            "n": 19,
+            "win": 73.7,
+            "mean": 0.697,
+            "pf": 1.964,
+            "compound": 13.53
+          },
+          {
+            "n": 12,
+            "win": 50.0,
+            "mean": 0.412,
+            "pf": 1.518,
+            "compound": 4.68
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 23,
+            "win": 56.5,
+            "mean": 0.621,
+            "pf": 1.521,
+            "compound": 13.69
+          },
+          {
+            "n": 16,
+            "win": 50.0,
+            "mean": -0.37,
+            "pf": 0.692,
+            "compound": -6.17
+          },
+          {
+            "n": 11,
+            "win": 54.5,
+            "mean": 0.62,
+            "pf": 1.709,
+            "compound": 6.62
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 17,
+            "win": 64.7,
+            "mean": 0.556,
+            "pf": 1.517,
+            "compound": 8.84
+          },
+          {
+            "n": 14,
+            "win": 21.4,
+            "mean": -1.176,
+            "pf": 0.347,
+            "compound": -15.62
+          },
+          {
+            "n": 11,
+            "win": 54.5,
+            "mean": 0.643,
+            "pf": 1.644,
+            "compound": 6.82
+          }
+        ]
+      }
+    ],
+    "ETHUSDT": [
+      {
+        "method": "fixed",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 1.18,
+            "pf": 1.911,
+            "compound": 24.2
+          },
+          {
+            "n": 13,
+            "win": 61.5,
+            "mean": 0.755,
+            "pf": 1.815,
+            "compound": 9.34
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.659,
+            "pf": 1.851,
+            "compound": 6.24
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 19,
+            "win": 63.2,
+            "mean": 1.108,
+            "pf": 1.831,
+            "compound": 21.25
+          },
+          {
+            "n": 12,
+            "win": 41.7,
+            "mean": -0.661,
+            "pf": 0.649,
+            "compound": -8.34
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.783,
+            "pf": 1.696,
+            "compound": 7.27
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": 0.062,
+            "pf": 1.028,
+            "compound": -1.16
+          },
+          {
+            "n": 11,
+            "win": 27.3,
+            "mean": -1.142,
+            "pf": 0.555,
+            "compound": -12.73
+          },
+          {
+            "n": 8,
+            "win": 37.5,
+            "mean": 0.875,
+            "pf": 1.706,
+            "compound": 6.4
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 20,
+            "win": 50.0,
+            "mean": 1.097,
+            "pf": 1.871,
+            "compound": 22.17
+          },
+          {
+            "n": 14,
+            "win": 64.3,
+            "mean": 1.003,
+            "pf": 2.248,
+            "compound": 13.99
+          },
+          {
+            "n": 10,
+            "win": 40.0,
+            "mean": 0.62,
+            "pf": 1.945,
+            "compound": 5.84
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 19,
+            "win": 42.1,
+            "mean": 1.057,
+            "pf": 2.01,
+            "compound": 20.31
+          },
+          {
+            "n": 13,
+            "win": 38.5,
+            "mean": -0.41,
+            "pf": 0.736,
+            "compound": -5.89
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 1.303,
+            "pf": 3.157,
+            "compound": 13.11
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 16,
+            "win": 25.0,
+            "mean": -0.076,
+            "pf": 0.942,
+            "compound": -2.43
+          },
+          {
+            "n": 11,
+            "win": 18.2,
+            "mean": -1.049,
+            "pf": 0.56,
+            "compound": -11.81
+          },
+          {
+            "n": 8,
+            "win": 37.5,
+            "mean": 1.36,
+            "pf": 2.801,
+            "compound": 10.71
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 1.039,
+            "pf": 1.808,
+            "compound": 20.87
+          },
+          {
+            "n": 14,
+            "win": 64.3,
+            "mean": 0.795,
+            "pf": 1.953,
+            "compound": 10.77
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.554,
+            "pf": 1.632,
+            "compound": 5.11
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 19,
+            "win": 63.2,
+            "mean": 1.333,
+            "pf": 2.214,
+            "compound": 26.71
+          },
+          {
+            "n": 13,
+            "win": 46.2,
+            "mean": -0.317,
+            "pf": 0.798,
+            "compound": -4.76
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.759,
+            "pf": 1.805,
+            "compound": 7.15
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": 0.524,
+            "pf": 1.391,
+            "compound": 7.34
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": -1.474,
+            "pf": 0.375,
+            "compound": -15.66
+          },
+          {
+            "n": 9,
+            "win": 33.3,
+            "mean": 0.495,
+            "pf": 1.517,
+            "compound": 3.89
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 20,
+            "win": 65.0,
+            "mean": 1.187,
+            "pf": 1.92,
+            "compound": 24.36
+          },
+          {
+            "n": 13,
+            "win": 61.5,
+            "mean": 0.755,
+            "pf": 1.815,
+            "compound": 9.34
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.659,
+            "pf": 1.851,
+            "compound": 6.24
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 19,
+            "win": 68.4,
+            "mean": 1.448,
+            "pf": 2.362,
+            "compound": 29.44
+          },
+          {
+            "n": 12,
+            "win": 41.7,
+            "mean": -0.707,
+            "pf": 0.624,
+            "compound": -8.84
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.783,
+            "pf": 1.696,
+            "compound": 7.27
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": -0.276,
+            "pf": 0.866,
+            "compound": -6.0
+          },
+          {
+            "n": 11,
+            "win": 18.2,
+            "mean": -1.723,
+            "pf": 0.32,
+            "compound": -17.95
+          },
+          {
+            "n": 8,
+            "win": 37.5,
+            "mean": 0.875,
+            "pf": 1.706,
+            "compound": 6.4
+          }
+        ]
+      }
+    ],
+    "ICPUSDT": [
+      {
+        "method": "fixed",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 25,
+            "win": 64.0,
+            "mean": 0.824,
+            "pf": 1.402,
+            "compound": 17.73
+          },
+          {
+            "n": 17,
+            "win": 58.8,
+            "mean": 0.691,
+            "pf": 1.523,
+            "compound": 10.53
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 2.097,
+            "pf": 2.514,
+            "compound": 38.88
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 23,
+            "win": 43.5,
+            "mean": 0.255,
+            "pf": 1.085,
+            "compound": 0.07
+          },
+          {
+            "n": 13,
+            "win": 61.5,
+            "mean": -0.547,
+            "pf": 0.765,
+            "compound": -8.64
+          },
+          {
+            "n": 15,
+            "win": 60.0,
+            "mean": 2.901,
+            "pf": 2.812,
+            "compound": 48.63
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 21,
+            "win": 47.6,
+            "mean": 0.094,
+            "pf": 1.028,
+            "compound": -4.42
+          },
+          {
+            "n": 12,
+            "win": 33.3,
+            "mean": -3.128,
+            "pf": 0.301,
+            "compound": -33.32
+          },
+          {
+            "n": 13,
+            "win": 61.5,
+            "mean": 3.777,
+            "pf": 3.09,
+            "compound": 56.4
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 26,
+            "win": 57.7,
+            "mean": 0.722,
+            "pf": 1.382,
+            "compound": 15.62
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": -0.069,
+            "pf": 0.942,
+            "compound": -2.0
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 2.307,
+            "pf": 2.964,
+            "compound": 44.04
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 25,
+            "win": 32.0,
+            "mean": 0.043,
+            "pf": 1.017,
+            "compound": -4.3
+          },
+          {
+            "n": 14,
+            "win": 42.9,
+            "mean": -1.376,
+            "pf": 0.389,
+            "compound": -18.87
+          },
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": 2.795,
+            "pf": 2.85,
+            "compound": 50.38
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 23,
+            "win": 34.8,
+            "mean": 0.329,
+            "pf": 1.126,
+            "compound": 1.5
+          },
+          {
+            "n": 14,
+            "win": 14.3,
+            "mean": -1.572,
+            "pf": 0.351,
+            "compound": -21.26
+          },
+          {
+            "n": 14,
+            "win": 50.0,
+            "mean": 2.617,
+            "pf": 2.387,
+            "compound": 38.4
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 26,
+            "win": 61.5,
+            "mean": 0.623,
+            "pf": 1.302,
+            "compound": 12.62
+          },
+          {
+            "n": 18,
+            "win": 55.6,
+            "mean": 0.083,
+            "pf": 1.059,
+            "compound": 0.39
+          },
+          {
+            "n": 17,
+            "win": 58.8,
+            "mean": 2.262,
+            "pf": 2.94,
+            "compound": 43.01
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 25,
+            "win": 36.0,
+            "mean": -0.16,
+            "pf": 0.944,
+            "compound": -9.13
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": -1.029,
+            "pf": 0.583,
+            "compound": -16.1
+          },
+          {
+            "n": 16,
+            "win": 62.5,
+            "mean": 2.774,
+            "pf": 2.848,
+            "compound": 49.9
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 23,
+            "win": 43.5,
+            "mean": 0.115,
+            "pf": 1.038,
+            "compound": -3.54
+          },
+          {
+            "n": 15,
+            "win": 33.3,
+            "mean": -2.258,
+            "pf": 0.336,
+            "compound": -30.48
+          },
+          {
+            "n": 14,
+            "win": 64.3,
+            "mean": 2.694,
+            "pf": 2.423,
+            "compound": 39.89
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 25,
+            "win": 64.0,
+            "mean": 0.824,
+            "pf": 1.402,
+            "compound": 17.73
+          },
+          {
+            "n": 17,
+            "win": 58.8,
+            "mean": 0.691,
+            "pf": 1.523,
+            "compound": 10.53
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 2.206,
+            "pf": 2.728,
+            "compound": 41.55
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 23,
+            "win": 43.5,
+            "mean": 0.255,
+            "pf": 1.085,
+            "compound": 0.07
+          },
+          {
+            "n": 13,
+            "win": 53.8,
+            "mean": -1.001,
+            "pf": 0.587,
+            "compound": -13.8
+          },
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": 2.798,
+            "pf": 2.856,
+            "compound": 50.45
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 21,
+            "win": 47.6,
+            "mean": 0.074,
+            "pf": 1.022,
+            "compound": -4.84
+          },
+          {
+            "n": 12,
+            "win": 25.0,
+            "mean": -2.445,
+            "pf": 0.302,
+            "compound": -27.23
+          },
+          {
+            "n": 14,
+            "win": 50.0,
+            "mean": 2.384,
+            "pf": 2.125,
+            "compound": 33.92
+          }
+        ]
+      }
+    ],
+    "HYPEUSDT": [
+      {
+        "method": "fixed",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 26,
+            "win": 42.3,
+            "mean": -0.829,
+            "pf": 0.701,
+            "compound": -22.91
+          },
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": -0.167,
+            "pf": 0.89,
+            "compound": -4.2
+          },
+          {
+            "n": 19,
+            "win": 52.6,
+            "mean": -0.353,
+            "pf": 0.8,
+            "compound": -7.73
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 22,
+            "win": 45.5,
+            "mean": -0.645,
+            "pf": 0.801,
+            "compound": -17.68
+          },
+          {
+            "n": 15,
+            "win": 46.7,
+            "mean": -0.717,
+            "pf": 0.719,
+            "compound": -11.78
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": -0.116,
+            "pf": 0.944,
+            "compound": -3.25
+          }
+        ]
+      },
+      {
+        "method": "fixed",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 16,
+            "win": 43.8,
+            "mean": 0.926,
+            "pf": 1.235,
+            "compound": 7.14
+          },
+          {
+            "n": 12,
+            "win": 16.7,
+            "mean": -3.162,
+            "pf": 0.173,
+            "compound": -32.52
+          },
+          {
+            "n": 11,
+            "win": 54.5,
+            "mean": 1.326,
+            "pf": 1.657,
+            "compound": 13.47
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 27,
+            "win": 25.9,
+            "mean": -1.284,
+            "pf": 0.547,
+            "compound": -32.35
+          },
+          {
+            "n": 19,
+            "win": 42.1,
+            "mean": -0.151,
+            "pf": 0.869,
+            "compound": -3.65
+          },
+          {
+            "n": 19,
+            "win": 47.4,
+            "mean": -0.581,
+            "pf": 0.69,
+            "compound": -11.71
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 26,
+            "win": 19.2,
+            "mean": -1.578,
+            "pf": 0.461,
+            "compound": -36.78
+          },
+          {
+            "n": 17,
+            "win": 23.5,
+            "mean": -0.252,
+            "pf": 0.791,
+            "compound": -5.08
+          },
+          {
+            "n": 17,
+            "win": 35.3,
+            "mean": -0.256,
+            "pf": 0.854,
+            "compound": -5.76
+          }
+        ]
+      },
+      {
+        "method": "breakeven1",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 22,
+            "win": 13.6,
+            "mean": -1.437,
+            "pf": 0.579,
+            "compound": -32.13
+          },
+          {
+            "n": 13,
+            "win": 7.7,
+            "mean": -1.387,
+            "pf": 0.246,
+            "compound": -17.18
+          },
+          {
+            "n": 13,
+            "win": 30.8,
+            "mean": -0.023,
+            "pf": 0.987,
+            "compound": -1.87
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 26,
+            "win": 34.6,
+            "mean": -1.412,
+            "pf": 0.539,
+            "compound": -33.7
+          },
+          {
+            "n": 19,
+            "win": 47.4,
+            "mean": -0.416,
+            "pf": 0.711,
+            "compound": -8.45
+          },
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": -0.431,
+            "pf": 0.753,
+            "compound": -9.02
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 25,
+            "win": 24.0,
+            "mean": -1.321,
+            "pf": 0.567,
+            "compound": -31.37
+          },
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": -0.012,
+            "pf": 0.992,
+            "compound": -1.31
+          },
+          {
+            "n": 18,
+            "win": 44.4,
+            "mean": -0.506,
+            "pf": 0.717,
+            "compound": -10.01
+          }
+        ]
+      },
+      {
+        "method": "trail2",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 21,
+            "win": 19.0,
+            "mean": -1.256,
+            "pf": 0.657,
+            "compound": -28.34
+          },
+          {
+            "n": 13,
+            "win": 23.1,
+            "mean": -1.604,
+            "pf": 0.3,
+            "compound": -19.53
+          },
+          {
+            "n": 16,
+            "win": 37.5,
+            "mean": -1.42,
+            "pf": 0.383,
+            "compound": -21.51
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 48,
+        "segments": [
+          {
+            "n": 26,
+            "win": 42.3,
+            "mean": -0.829,
+            "pf": 0.701,
+            "compound": -22.91
+          },
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": -0.167,
+            "pf": 0.89,
+            "compound": -4.2
+          },
+          {
+            "n": 19,
+            "win": 52.6,
+            "mean": -0.353,
+            "pf": 0.8,
+            "compound": -7.73
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 72,
+        "segments": [
+          {
+            "n": 23,
+            "win": 43.5,
+            "mean": -0.925,
+            "pf": 0.734,
+            "compound": -23.66
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": -0.162,
+            "pf": 0.923,
+            "compound": -3.98
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": 0.132,
+            "pf": 1.073,
+            "compound": 0.51
+          }
+        ]
+      },
+      {
+        "method": "trail3",
+        "hours": 120,
+        "segments": [
+          {
+            "n": 17,
+            "win": 47.1,
+            "mean": 1.207,
+            "pf": 1.332,
+            "compound": 13.26
+          },
+          {
+            "n": 12,
+            "win": 25.0,
+            "mean": -2.514,
+            "pf": 0.217,
+            "compound": -26.9
+          },
+          {
+            "n": 11,
+            "win": 54.5,
+            "mean": 1.396,
+            "pf": 1.83,
+            "compound": 14.66
+          }
+        ]
+      }
+    ]
+  }
+}
