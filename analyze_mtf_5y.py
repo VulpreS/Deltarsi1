@@ -1,8 +1,8 @@
-"""Five-year ETH 1H/4H/1D DeltaRSI multi-timeframe research; read-only exchange data."""
+"""One-year ETH 1H/4H/1D DeltaRSI multi-timeframe research; read-only exchange data."""
 import csv,datetime as dt,json,math,statistics,time,urllib.parse,urllib.request
 from pathlib import Path
 from collections import Counter
-START=dt.datetime(2021,1,1,tzinfo=dt.timezone.utc)
+START=dt.datetime.now(dt.timezone.utc)-dt.timedelta(days=365)
 HOUR=3600000
 OUT=Path("reports");OUT.mkdir(exist_ok=True)
 def get(url):
@@ -24,12 +24,12 @@ def candles():
                 cursor=last+HOUR
                 time.sleep(.08)
             ordered=[rows[k] for k in sorted(rows) if k<=end]
-            if len(ordered)<20000:raise RuntimeError("History unexpectedly short")
+            if len(ordered)<8000:raise RuntimeError("History unexpectedly short")
             if any(b[0]-a[0]!=HOUR for a,b in zip(ordered,ordered[1:])):raise RuntimeError("Gaps in history")
             print("Fetched",len(ordered),"hours from",host,flush=True)
             return ordered,host
         except Exception as e:print("Source failed",host,str(e),flush=True)
-    raise RuntimeError("No continuous 5+ year ETH 1H history available")
+    raise RuntimeError("No continuous 1 year ETH 1H history available")
 def aggregate(rows,h):
     groups={}
     for t,o,hi,lo,c in rows:
