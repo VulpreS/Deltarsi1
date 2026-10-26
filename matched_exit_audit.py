@@ -114,12 +114,14 @@ def run():
             specs.append(("selected_eth_ob",filt,2.5,6.0))
         configs={}
         for name,features,sl,tp in specs:
+            all_by_mode={mode:[] for mode in ("fixed","reverse","structure","trail3")}
             per=[]
             for k in range(5):
                 lo,hi=cuts[k],cuts[k+1]
                 cohort=selected_entries(rows,features,lo,hi,sl,tp)
                 bymode={mode:[exit_one(rows,raw,t,sl,tp,mode,hi) for t in cohort]
                         for mode in ("fixed","reverse","structure","trail3")}
+                for mode in all_by_mode:all_by_mode[mode].extend(bymode[mode])
                 assert all([t["signal_index"] for t in bymode["fixed"]]==
                            [t["signal_index"] for t in bymode[mode]] for mode in bymode)
                 assert all(x["gross"]==t["gross"] for x,t in zip(bymode["fixed"],cohort))
@@ -132,7 +134,16 @@ def run():
                              for mode,ts in bymode.items()},
                     "paired_vs_fixed":{mode:bootstrap_delta(bymode["fixed"],bymode[mode],rows,SEED+k)
                                         for mode in ("reverse","structure","trail3")}})
-            configs[name]={"stop_atr":sl,"target_atr":tp,"hold_bars":12,"slices":per}
+            configs[name]={"stop_atr":sl,"target_atr":tp,"hold_bars":12,"slices":per,
+              "all_reused_history":{"modes":{
+                 mode:{"15bp":metric([net(t,.0015,0) for t in ts]),
+                       "25bp":metric([net(t,.0025,0) for t in ts]),
+                       "40bp":metric([net(t,.004,0) for t in ts]),
+                       "15bp_funding_1bp_8h":metric([net(t,.0015,.0001) for t in ts]),
+                       "15bp_funding_3bp_8h":metric([net(t,.0015,.0003) for t in ts])}
+                 for mode,ts in all_by_mode.items()},
+                "paired_vs_fixed":{mode:bootstrap_delta(all_by_mode["fixed"],all_by_mode[mode],rows)
+                     for mode in ("reverse","structure","trail3")}}}
         out["assets"][sym]={"source_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
                             "four_hour_bars":len(rows),"configs":configs}
     path=Path("reports/matched_exit_audit.json");path.parent.mkdir(exist_ok=True)
