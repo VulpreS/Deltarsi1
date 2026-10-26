@@ -165,10 +165,10 @@ def run():
                 "paired_vs_fixed":{mode:bootstrap_delta(all_by_mode["fixed"],all_by_mode[mode],rows)
                      for mode in ("reverse","structure","trail3")},
                  "eth_primary_net_paired_sensitivity":({
-                     str(int(cost*10000))+"bp_fee_"+str(int(funding*10000))+"bp_funding_"+bound:
+                     str(round(cost*10000))+"bp_fee_"+str(round(funding*10000))+"bp_funding_"+bound:
                          bootstrap_delta(all_by_mode["fixed"],all_by_mode["reverse"],rows,SEED,cost,funding,bound)
                      for cost in COSTS for funding in FUNDING_STRESS for bound in ("min","max")
-                 } if sym=="ETHUSDT" and name=="selected_eth_ob" else {})}}}
+                 } if sym=="ETHUSDT" and name=="selected_eth_ob" else {})}}
         out["assets"][sym]={"source_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
                             "four_hour_bars":len(rows),"configs":configs}
     path=Path("reports/matched_exit_audit.json");path.parent.mkdir(exist_ok=True)
