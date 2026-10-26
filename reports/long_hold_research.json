@@ -1,0 +1,1494 @@
+{
+  "method": "Cached 4H OHLC+volume; chronological 50/25/25 per asset, 0.15% round-trip cost; time exits 2,3,5,7,10 days; one position per asset; stop prioritized; no funding. This is exploratory selection on all three windows, NOT untouched OOS.",
+  "configurations_per_asset": 540,
+  "survivors": 66,
+  "top_20": [
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 10.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 105,
+          "weighted_mean_pct": 0.852,
+          "positive_assets": 3
+        },
+        {
+          "n": 56,
+          "weighted_mean_pct": 0.71,
+          "positive_assets": 3
+        },
+        {
+          "n": 61,
+          "weighted_mean_pct": 1.052,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 13,
+          "win": 46.2,
+          "mean": -0.217,
+          "pf": 0.922,
+          "compound": -5.49
+        },
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": 0.453,
+          "pf": 1.228,
+          "compound": 4.01
+        },
+        {
+          "n": 10,
+          "win": 70.0,
+          "mean": 1.257,
+          "pf": 2.354,
+          "compound": 12.66
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 6.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 105,
+          "weighted_mean_pct": 0.918,
+          "positive_assets": 3
+        },
+        {
+          "n": 56,
+          "weighted_mean_pct": 0.708,
+          "positive_assets": 3
+        },
+        {
+          "n": 62,
+          "weighted_mean_pct": 1.195,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 13,
+          "win": 46.2,
+          "mean": -0.217,
+          "pf": 0.922,
+          "compound": -5.49
+        },
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": 0.572,
+          "pf": 1.288,
+          "compound": 5.36
+        },
+        {
+          "n": 10,
+          "win": 70.0,
+          "mean": 1.257,
+          "pf": 2.354,
+          "compound": 12.66
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 3,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 6.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 89,
+          "weighted_mean_pct": 0.686,
+          "positive_assets": 3
+        },
+        {
+          "n": 48,
+          "weighted_mean_pct": 0.724,
+          "positive_assets": 2
+        },
+        {
+          "n": 57,
+          "weighted_mean_pct": 1.414,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": -0.42,
+          "pf": 0.889,
+          "compound": -9.25
+        },
+        {
+          "n": 10,
+          "win": 50.0,
+          "mean": 0.623,
+          "pf": 1.289,
+          "compound": 4.75
+        },
+        {
+          "n": 8,
+          "win": 62.5,
+          "mean": 1.365,
+          "pf": 1.778,
+          "compound": 10.21
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 3,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 3.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 99,
+          "weighted_mean_pct": 0.738,
+          "positive_assets": 3
+        },
+        {
+          "n": 52,
+          "weighted_mean_pct": 0.568,
+          "positive_assets": 2
+        },
+        {
+          "n": 63,
+          "weighted_mean_pct": 0.825,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 14,
+          "win": 42.9,
+          "mean": -1.81,
+          "pf": 0.599,
+          "compound": -26.0
+        },
+        {
+          "n": 12,
+          "win": 41.7,
+          "mean": -0.302,
+          "pf": 0.872,
+          "compound": -4.87
+        },
+        {
+          "n": 9,
+          "win": 66.7,
+          "mean": 0.982,
+          "pf": 1.729,
+          "compound": 8.51
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "late",
+        "stop_atr": 2.5,
+        "target_atr": 6.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 104,
+          "weighted_mean_pct": 0.483,
+          "positive_assets": 2
+        },
+        {
+          "n": 53,
+          "weighted_mean_pct": 0.742,
+          "positive_assets": 2
+        },
+        {
+          "n": 53,
+          "weighted_mean_pct": 0.747,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 10,
+          "win": 40.0,
+          "mean": 0.232,
+          "pf": 1.107,
+          "compound": 0.41
+        },
+        {
+          "n": 11,
+          "win": 45.5,
+          "mean": 1.02,
+          "pf": 1.638,
+          "compound": 10.37
+        },
+        {
+          "n": 12,
+          "win": 66.7,
+          "mean": 0.431,
+          "pf": 1.256,
+          "compound": 4.22
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "long",
+        "hold_days": 3,
+        "signal": "late",
+        "stop_atr": 4.0,
+        "target_atr": 6.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 79,
+          "weighted_mean_pct": 0.482,
+          "positive_assets": 3
+        },
+        {
+          "n": 45,
+          "weighted_mean_pct": 0.661,
+          "positive_assets": 3
+        },
+        {
+          "n": 48,
+          "weighted_mean_pct": 0.666,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 8,
+          "win": 62.5,
+          "mean": 2.61,
+          "pf": 2.895,
+          "compound": 20.46
+        },
+        {
+          "n": 9,
+          "win": 66.7,
+          "mean": 0.678,
+          "pf": 1.42,
+          "compound": 5.22
+        },
+        {
+          "n": 10,
+          "win": 40.0,
+          "mean": -0.458,
+          "pf": 0.83,
+          "compound": -6.17
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 3.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 98,
+          "weighted_mean_pct": 1.095,
+          "positive_assets": 3
+        },
+        {
+          "n": 56,
+          "weighted_mean_pct": 0.691,
+          "positive_assets": 3
+        },
+        {
+          "n": 63,
+          "weighted_mean_pct": 0.467,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 17,
+          "win": 35.3,
+          "mean": -1.333,
+          "pf": 0.583,
+          "compound": -22.85
+        },
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": -0.528,
+          "pf": 0.75,
+          "compound": -7.21
+        },
+        {
+          "n": 10,
+          "win": 50.0,
+          "mean": 0.04,
+          "pf": 1.021,
+          "compound": -0.48
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 1.5,
+        "target_atr": 3.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 64,
+          "weighted_mean_pct": 0.667,
+          "positive_assets": 3
+        },
+        {
+          "n": 34,
+          "weighted_mean_pct": 0.46,
+          "positive_assets": 3
+        },
+        {
+          "n": 43,
+          "weighted_mean_pct": 0.406,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 8,
+          "win": 25.0,
+          "mean": -2.551,
+          "pf": 0.297,
+          "compound": -19.34
+        },
+        {
+          "n": 9,
+          "win": 44.4,
+          "mean": 0.484,
+          "pf": 1.319,
+          "compound": 3.75
+        },
+        {
+          "n": 6,
+          "win": 66.7,
+          "mean": 1.684,
+          "pf": 3.675,
+          "compound": 10.26
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 7,
+        "signal": "turn",
+        "stop_atr": 1.5,
+        "target_atr": 3.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 61,
+          "weighted_mean_pct": 0.439,
+          "positive_assets": 3
+        },
+        {
+          "n": 33,
+          "weighted_mean_pct": 0.409,
+          "positive_assets": 3
+        },
+        {
+          "n": 41,
+          "weighted_mean_pct": 0.396,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 8,
+          "win": 25.0,
+          "mean": -2.272,
+          "pf": 0.425,
+          "compound": -17.7
+        },
+        {
+          "n": 8,
+          "win": 37.5,
+          "mean": -0.419,
+          "pf": 0.831,
+          "compound": -4.17
+        },
+        {
+          "n": 5,
+          "win": 60.0,
+          "mean": 1.666,
+          "pf": 2.159,
+          "compound": 8.12
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 3,
+        "signal": "turn",
+        "stop_atr": 1.5,
+        "target_atr": 3.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 114,
+          "weighted_mean_pct": 0.429,
+          "positive_assets": 2
+        },
+        {
+          "n": 57,
+          "weighted_mean_pct": 0.39,
+          "positive_assets": 2
+        },
+        {
+          "n": 70,
+          "weighted_mean_pct": 0.855,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 15,
+          "win": 40.0,
+          "mean": -0.707,
+          "pf": 0.769,
+          "compound": -12.72
+        },
+        {
+          "n": 12,
+          "win": 41.7,
+          "mean": 0.204,
+          "pf": 1.11,
+          "compound": 1.45
+        },
+        {
+          "n": 10,
+          "win": 60.0,
+          "mean": 0.674,
+          "pf": 1.474,
+          "compound": 6.28
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 1.5,
+        "target_atr": 3.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 108,
+          "weighted_mean_pct": 1.061,
+          "positive_assets": 3
+        },
+        {
+          "n": 63,
+          "weighted_mean_pct": 0.552,
+          "positive_assets": 2
+        },
+        {
+          "n": 70,
+          "weighted_mean_pct": 0.387,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 17,
+          "win": 35.3,
+          "mean": -1.499,
+          "pf": 0.519,
+          "compound": -24.46
+        },
+        {
+          "n": 12,
+          "win": 41.7,
+          "mean": 0.062,
+          "pf": 1.037,
+          "compound": -0.08
+        },
+        {
+          "n": 11,
+          "win": 54.5,
+          "mean": 1.101,
+          "pf": 1.921,
+          "compound": 11.97
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 3,
+        "signal": "turn",
+        "stop_atr": 4.0,
+        "target_atr": 6.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 86,
+          "weighted_mean_pct": 0.379,
+          "positive_assets": 2
+        },
+        {
+          "n": 46,
+          "weighted_mean_pct": 0.574,
+          "positive_assets": 2
+        },
+        {
+          "n": 56,
+          "weighted_mean_pct": 0.965,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 11,
+          "win": 54.5,
+          "mean": -0.193,
+          "pf": 0.95,
+          "compound": -6.65
+        },
+        {
+          "n": 10,
+          "win": 50.0,
+          "mean": 0.134,
+          "pf": 1.051,
+          "compound": -0.83
+        },
+        {
+          "n": 8,
+          "win": 62.5,
+          "mean": 1.326,
+          "pf": 1.739,
+          "compound": 9.85
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 1.5,
+        "target_atr": 6.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 116,
+          "weighted_mean_pct": 0.35,
+          "positive_assets": 2
+        },
+        {
+          "n": 60,
+          "weighted_mean_pct": 0.639,
+          "positive_assets": 3
+        },
+        {
+          "n": 66,
+          "weighted_mean_pct": 1.255,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 14,
+          "win": 35.7,
+          "mean": -0.772,
+          "pf": 0.718,
+          "compound": -12.2
+        },
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": 1.101,
+          "pf": 1.754,
+          "compound": 12.62
+        },
+        {
+          "n": 11,
+          "win": 63.6,
+          "mean": 1.003,
+          "pf": 2.021,
+          "compound": 11.0
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "late",
+        "stop_atr": 4.0,
+        "target_atr": 3.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 167,
+          "weighted_mean_pct": 0.359,
+          "positive_assets": 2
+        },
+        {
+          "n": 96,
+          "weighted_mean_pct": 0.418,
+          "positive_assets": 3
+        },
+        {
+          "n": 108,
+          "weighted_mean_pct": 0.341,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 24,
+          "win": 50.0,
+          "mean": -1.11,
+          "pf": 0.661,
+          "compound": -27.69
+        },
+        {
+          "n": 19,
+          "win": 42.1,
+          "mean": -0.961,
+          "pf": 0.566,
+          "compound": -17.97
+        },
+        {
+          "n": 16,
+          "win": 43.8,
+          "mean": 0.054,
+          "pf": 1.035,
+          "compound": -0.26
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 6.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 97,
+          "weighted_mean_pct": 1.092,
+          "positive_assets": 3
+        },
+        {
+          "n": 55,
+          "weighted_mean_pct": 0.695,
+          "positive_assets": 3
+        },
+        {
+          "n": 60,
+          "weighted_mean_pct": 0.335,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 16,
+          "win": 37.5,
+          "mean": -1.134,
+          "pf": 0.599,
+          "compound": -18.58
+        },
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": -0.177,
+          "pf": 0.916,
+          "compound": -3.61
+        },
+        {
+          "n": 10,
+          "win": 50.0,
+          "mean": -0.033,
+          "pf": 0.983,
+          "compound": -1.18
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "late",
+        "stop_atr": 2.5,
+        "target_atr": 3.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 178,
+          "weighted_mean_pct": 0.379,
+          "positive_assets": 3
+        },
+        {
+          "n": 100,
+          "weighted_mean_pct": 0.47,
+          "positive_assets": 3
+        },
+        {
+          "n": 113,
+          "weighted_mean_pct": 0.328,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 24,
+          "win": 50.0,
+          "mean": -0.58,
+          "pf": 0.789,
+          "compound": -16.44
+        },
+        {
+          "n": 19,
+          "win": 47.4,
+          "mean": -0.368,
+          "pf": 0.794,
+          "compound": -7.91
+        },
+        {
+          "n": 19,
+          "win": 42.1,
+          "mean": -0.718,
+          "pf": 0.703,
+          "compound": -14.39
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "both",
+        "hold_days": 2,
+        "signal": "late",
+        "stop_atr": 2.5,
+        "target_atr": 10.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 167,
+          "weighted_mean_pct": 0.486,
+          "positive_assets": 3
+        },
+        {
+          "n": 95,
+          "weighted_mean_pct": 0.331,
+          "positive_assets": 2
+        },
+        {
+          "n": 102,
+          "weighted_mean_pct": 0.321,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 22,
+          "win": 45.5,
+          "mean": -0.891,
+          "pf": 0.679,
+          "compound": -20.8
+        },
+        {
+          "n": 18,
+          "win": 44.4,
+          "mean": -0.75,
+          "pf": 0.602,
+          "compound": -13.58
+        },
+        {
+          "n": 19,
+          "win": 42.1,
+          "mean": -0.869,
+          "pf": 0.641,
+          "compound": -16.7
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 7,
+        "signal": "turn",
+        "stop_atr": 1.5,
+        "target_atr": 6.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 57,
+          "weighted_mean_pct": 0.317,
+          "positive_assets": 2
+        },
+        {
+          "n": 31,
+          "weighted_mean_pct": 0.584,
+          "positive_assets": 2
+        },
+        {
+          "n": 38,
+          "weighted_mean_pct": 0.493,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 6,
+          "win": 16.7,
+          "mean": -2.402,
+          "pf": 0.423,
+          "compound": -14.44
+        },
+        {
+          "n": 7,
+          "win": 28.6,
+          "mean": -0.083,
+          "pf": 0.971,
+          "compound": -1.94
+        },
+        {
+          "n": 5,
+          "win": 60.0,
+          "mean": 4.252,
+          "pf": 3.956,
+          "compound": 21.96
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 4.0,
+        "target_atr": 3.0,
+        "volume": "none"
+      },
+      "segments": [
+        {
+          "n": 91,
+          "weighted_mean_pct": 1.235,
+          "positive_assets": 3
+        },
+        {
+          "n": 54,
+          "weighted_mean_pct": 0.61,
+          "positive_assets": 3
+        },
+        {
+          "n": 61,
+          "weighted_mean_pct": 0.31,
+          "positive_assets": 3
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 14,
+          "win": 50.0,
+          "mean": -0.327,
+          "pf": 0.885,
+          "compound": -7.59
+        },
+        {
+          "n": 12,
+          "win": 50.0,
+          "mean": -1.257,
+          "pf": 0.556,
+          "compound": -15.62
+        },
+        {
+          "n": 9,
+          "win": 44.4,
+          "mean": -0.034,
+          "pf": 0.979,
+          "compound": -1.14
+        }
+      ]
+    },
+    {
+      "rule": {
+        "direction": "short",
+        "hold_days": 2,
+        "signal": "turn",
+        "stop_atr": 2.5,
+        "target_atr": 3.0,
+        "volume": "above_ma20"
+      },
+      "segments": [
+        {
+          "n": 58,
+          "weighted_mean_pct": 0.63,
+          "positive_assets": 3
+        },
+        {
+          "n": 33,
+          "weighted_mean_pct": 0.396,
+          "positive_assets": 3
+        },
+        {
+          "n": 39,
+          "weighted_mean_pct": 0.31,
+          "positive_assets": 2
+        }
+      ],
+      "hype_segments": [
+        {
+          "n": 8,
+          "win": 37.5,
+          "mean": -1.261,
+          "pf": 0.588,
+          "compound": -10.82
+        },
+        {
+          "n": 9,
+          "win": 55.6,
+          "mean": 0.144,
+          "pf": 1.077,
+          "compound": 0.35
+        },
+        {
+          "n": 6,
+          "win": 66.7,
+          "mean": 1.297,
+          "pf": 2.275,
+          "compound": 7.6
+        }
+      ]
+    }
+  ],
+  "baseline_long_holds": [
+    {
+      "days": 2,
+      "assets": {
+        "ETHUSDT": [
+          {
+            "n": 58,
+            "win": 56.9,
+            "mean": 0.857,
+            "pf": 1.629,
+            "compound": 56.6
+          },
+          {
+            "n": 33,
+            "win": 57.6,
+            "mean": -0.007,
+            "pf": 0.995,
+            "compound": -1.97
+          },
+          {
+            "n": 37,
+            "win": 45.9,
+            "mean": 0.376,
+            "pf": 1.39,
+            "compound": 13.35
+          }
+        ],
+        "BTCUSDT": [
+          {
+            "n": 60,
+            "win": 53.3,
+            "mean": 0.399,
+            "pf": 1.359,
+            "compound": 23.33
+          },
+          {
+            "n": 34,
+            "win": 64.7,
+            "mean": 0.284,
+            "pf": 1.279,
+            "compound": 8.88
+          },
+          {
+            "n": 36,
+            "win": 55.6,
+            "mean": 0.27,
+            "pf": 1.343,
+            "compound": 9.33
+          }
+        ],
+        "ICPUSDT": [
+          {
+            "n": 61,
+            "win": 52.5,
+            "mean": 0.138,
+            "pf": 1.063,
+            "compound": -0.42
+          },
+          {
+            "n": 35,
+            "win": 60.0,
+            "mean": 0.636,
+            "pf": 1.416,
+            "compound": 19.67
+          },
+          {
+            "n": 37,
+            "win": 40.5,
+            "mean": 0.196,
+            "pf": 1.089,
+            "compound": 1.93
+          }
+        ],
+        "HYPEUSDT": [
+          {
+            "n": 28,
+            "win": 39.3,
+            "mean": -1.271,
+            "pf": 0.604,
+            "compound": -33.67
+          },
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 0.404,
+            "pf": 1.28,
+            "compound": 6.76
+          },
+          {
+            "n": 19,
+            "win": 52.6,
+            "mean": -0.202,
+            "pf": 0.886,
+            "compound": -5.16
+          }
+        ]
+      }
+    },
+    {
+      "days": 3,
+      "assets": {
+        "ETHUSDT": [
+          {
+            "n": 51,
+            "win": 51.0,
+            "mean": 0.441,
+            "pf": 1.264,
+            "compound": 19.34
+          },
+          {
+            "n": 28,
+            "win": 50.0,
+            "mean": 0.034,
+            "pf": 1.021,
+            "compound": -0.94
+          },
+          {
+            "n": 31,
+            "win": 38.7,
+            "mean": -0.065,
+            "pf": 0.95,
+            "compound": -3.36
+          }
+        ],
+        "BTCUSDT": [
+          {
+            "n": 53,
+            "win": 54.7,
+            "mean": 0.21,
+            "pf": 1.138,
+            "compound": 8.04
+          },
+          {
+            "n": 30,
+            "win": 56.7,
+            "mean": -0.059,
+            "pf": 0.949,
+            "compound": -2.73
+          },
+          {
+            "n": 33,
+            "win": 48.5,
+            "mean": 0.04,
+            "pf": 1.037,
+            "compound": 0.41
+          }
+        ],
+        "ICPUSDT": [
+          {
+            "n": 52,
+            "win": 48.1,
+            "mean": 0.327,
+            "pf": 1.128,
+            "compound": 7.02
+          },
+          {
+            "n": 29,
+            "win": 51.7,
+            "mean": 0.726,
+            "pf": 1.338,
+            "compound": 16.65
+          },
+          {
+            "n": 31,
+            "win": 45.2,
+            "mean": -0.26,
+            "pf": 0.909,
+            "compound": -12.73
+          }
+        ],
+        "HYPEUSDT": [
+          {
+            "n": 24,
+            "win": 41.7,
+            "mean": -1.193,
+            "pf": 0.679,
+            "compound": -29.34
+          },
+          {
+            "n": 18,
+            "win": 55.6,
+            "mean": 0.306,
+            "pf": 1.156,
+            "compound": 3.65
+          },
+          {
+            "n": 16,
+            "win": 62.5,
+            "mean": 0.541,
+            "pf": 1.332,
+            "compound": 7.57
+          }
+        ]
+      }
+    },
+    {
+      "days": 5,
+      "assets": {
+        "ETHUSDT": [
+          {
+            "n": 38,
+            "win": 50.0,
+            "mean": 0.052,
+            "pf": 1.025,
+            "compound": -2.09
+          },
+          {
+            "n": 24,
+            "win": 41.7,
+            "mean": -0.811,
+            "pf": 0.631,
+            "compound": -19.14
+          },
+          {
+            "n": 22,
+            "win": 50.0,
+            "mean": -0.054,
+            "pf": 0.956,
+            "compound": -2.16
+          }
+        ],
+        "BTCUSDT": [
+          {
+            "n": 47,
+            "win": 48.9,
+            "mean": 0.165,
+            "pf": 1.1,
+            "compound": 4.49
+          },
+          {
+            "n": 25,
+            "win": 32.0,
+            "mean": -0.893,
+            "pf": 0.5,
+            "compound": -20.85
+          },
+          {
+            "n": 27,
+            "win": 55.6,
+            "mean": 0.248,
+            "pf": 1.232,
+            "compound": 6.0
+          }
+        ],
+        "ICPUSDT": [
+          {
+            "n": 39,
+            "win": 41.0,
+            "mean": -0.784,
+            "pf": 0.783,
+            "compound": -33.68
+          },
+          {
+            "n": 21,
+            "win": 52.4,
+            "mean": 0.397,
+            "pf": 1.125,
+            "compound": 2.05
+          },
+          {
+            "n": 29,
+            "win": 51.7,
+            "mean": 0.023,
+            "pf": 1.008,
+            "compound": -5.02
+          }
+        ],
+        "HYPEUSDT": [
+          {
+            "n": 20,
+            "win": 45.0,
+            "mean": -0.98,
+            "pf": 0.783,
+            "compound": -23.41
+          },
+          {
+            "n": 14,
+            "win": 28.6,
+            "mean": -1.895,
+            "pf": 0.412,
+            "compound": -24.58
+          },
+          {
+            "n": 14,
+            "win": 35.7,
+            "mean": -1.21,
+            "pf": 0.579,
+            "compound": -17.0
+          }
+        ]
+      }
+    },
+    {
+      "days": 7,
+      "assets": {
+        "ETHUSDT": [
+          {
+            "n": 35,
+            "win": 54.3,
+            "mean": 0.012,
+            "pf": 1.005,
+            "compound": -3.85
+          },
+          {
+            "n": 21,
+            "win": 42.9,
+            "mean": -0.336,
+            "pf": 0.859,
+            "compound": -8.83
+          },
+          {
+            "n": 20,
+            "win": 50.0,
+            "mean": 0.074,
+            "pf": 1.05,
+            "compound": 0.34
+          }
+        ],
+        "BTCUSDT": [
+          {
+            "n": 45,
+            "win": 55.6,
+            "mean": 0.494,
+            "pf": 1.308,
+            "compound": 20.58
+          },
+          {
+            "n": 22,
+            "win": 45.5,
+            "mean": -0.752,
+            "pf": 0.6,
+            "compound": -16.2
+          },
+          {
+            "n": 25,
+            "win": 48.0,
+            "mean": 0.162,
+            "pf": 1.134,
+            "compound": 3.19
+          }
+        ],
+        "ICPUSDT": [
+          {
+            "n": 35,
+            "win": 34.3,
+            "mean": -1.538,
+            "pf": 0.642,
+            "compound": -47.37
+          },
+          {
+            "n": 18,
+            "win": 38.9,
+            "mean": -0.894,
+            "pf": 0.779,
+            "compound": -19.91
+          },
+          {
+            "n": 25,
+            "win": 44.0,
+            "mean": -0.708,
+            "pf": 0.794,
+            "compound": -20.7
+          }
+        ],
+        "HYPEUSDT": [
+          {
+            "n": 18,
+            "win": 44.4,
+            "mean": -0.812,
+            "pf": 0.816,
+            "compound": -19.0
+          },
+          {
+            "n": 12,
+            "win": 33.3,
+            "mean": -0.673,
+            "pf": 0.76,
+            "compound": -9.32
+          },
+          {
+            "n": 13,
+            "win": 46.2,
+            "mean": -0.715,
+            "pf": 0.766,
+            "compound": -10.72
+          }
+        ]
+      }
+    },
+    {
+      "days": 10,
+      "assets": {
+        "ETHUSDT": [
+          {
+            "n": 31,
+            "win": 48.4,
+            "mean": 0.005,
+            "pf": 1.002,
+            "compound": -3.74
+          },
+          {
+            "n": 20,
+            "win": 45.0,
+            "mean": 0.1,
+            "pf": 1.043,
+            "compound": -0.5
+          },
+          {
+            "n": 18,
+            "win": 22.2,
+            "mean": -1.322,
+            "pf": 0.391,
+            "compound": -22.0
+          }
+        ],
+        "BTCUSDT": [
+          {
+            "n": 42,
+            "win": 54.8,
+            "mean": 0.757,
+            "pf": 1.482,
+            "compound": 32.71
+          },
+          {
+            "n": 19,
+            "win": 31.6,
+            "mean": -1.39,
+            "pf": 0.387,
+            "compound": -24.03
+          },
+          {
+            "n": 23,
+            "win": 47.8,
+            "mean": -0.056,
+            "pf": 0.957,
+            "compound": -2.1
+          }
+        ],
+        "ICPUSDT": [
+          {
+            "n": 32,
+            "win": 40.6,
+            "mean": -1.009,
+            "pf": 0.76,
+            "compound": -34.57
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 0.817,
+            "pf": 1.257,
+            "compound": 8.34
+          },
+          {
+            "n": 23,
+            "win": 47.8,
+            "mean": 0.468,
+            "pf": 1.151,
+            "compound": 5.08
+          }
+        ],
+        "HYPEUSDT": [
+          {
+            "n": 16,
+            "win": 56.2,
+            "mean": 1.485,
+            "pf": 1.391,
+            "compound": 18.04
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": -0.823,
+            "pf": 0.711,
+            "compound": -10.05
+          },
+          {
+            "n": 13,
+            "win": 46.2,
+            "mean": -0.715,
+            "pf": 0.766,
+            "compound": -10.72
+          }
+        ]
+      }
+    }
+  ]
+}
