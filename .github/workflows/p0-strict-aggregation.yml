@@ -3,6 +3,9 @@ on:
   push:
     paths:
       - .github/workflows/p0-strict-aggregation.yml
+      - test_completed_candles.py
+      - completed_candles.py
+      - aggregation_impact_audit.py
   workflow_dispatch:
 permissions:
   contents: write
