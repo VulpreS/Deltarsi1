@@ -1,0 +1,32 @@
+name: ETH 5-Year MTF DeltaRSI Backtest
+
+on:
+  push:
+    paths:
+      - "analyze_mtf_5y.py"
+      - ".github/workflows/eth-mtf-5y.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch five years of ETH candles and analyze 1H 4H 1D
+        run: python analyze_mtf_5y.py
+      - name: Upload report and all signal events
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eth-mtf-five-year-report
+          path: |
+            reports/eth_mtf_5y.md
+            reports/eth_mtf_events.csv
+          if-no-files-found: warn
