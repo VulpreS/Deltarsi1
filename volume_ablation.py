@@ -28,7 +28,7 @@ def main():
       vf["turn"]=vf["turn"] and allowed
     ff.append(vf)
    t,dd=sim(rows,ff,CONFIG,start,len(rows))
-   records[name]={"stats":stats(t),"max_drawdown_full_notional_pct":round(100*dd,2)}
+   records[name]={"stats":stats(t),"max_drawdown_full_notional_pct":round(100*dd,2),"train":stats(sim(rows,ff,CONFIG,0,int(len(rows)*.5))[0]),"validation":stats(sim(rows,ff,CONFIG,int(len(rows)*.5),int(len(rows)*.75))[0])}
   out[sym]={"volume_bars":len(vmap),"last_quarter":records}
  Path("reports/volume_ablation.json").write_text(json.dumps(out,ensure_ascii=False,indent=2))
  print(json.dumps(out,ensure_ascii=False,indent=2))
