@@ -1,0 +1,429 @@
+{
+  "caution": "Exploratory reused historical data, not independent OOS; no funding; exit signal confirmed at close and executed next open. One trade per asset. No real orders.",
+  "assets": {
+    "BTCUSDT": [
+      {
+        "exit": "fixed",
+        "segments": [
+          {
+            "n": 24,
+            "win": 58.3,
+            "mean": 0.746,
+            "pf": 1.726,
+            "compound": 18.03
+          },
+          {
+            "n": 19,
+            "win": 73.7,
+            "mean": 0.697,
+            "pf": 1.964,
+            "compound": 13.53
+          },
+          {
+            "n": 12,
+            "win": 50.0,
+            "mean": 0.412,
+            "pf": 1.518,
+            "compound": 4.68
+          }
+        ]
+      },
+      {
+        "exit": "reverse",
+        "segments": [
+          {
+            "n": 24,
+            "win": 58.3,
+            "mean": 0.737,
+            "pf": 1.717,
+            "compound": 17.79
+          },
+          {
+            "n": 19,
+            "win": 73.7,
+            "mean": 0.735,
+            "pf": 2.077,
+            "compound": 14.37
+          },
+          {
+            "n": 12,
+            "win": 50.0,
+            "mean": 0.412,
+            "pf": 1.518,
+            "compound": 4.68
+          }
+        ]
+      },
+      {
+        "exit": "structure",
+        "segments": [
+          {
+            "n": 26,
+            "win": 42.3,
+            "mean": 0.4,
+            "pf": 1.463,
+            "compound": 9.98
+          },
+          {
+            "n": 20,
+            "win": 70.0,
+            "mean": 0.868,
+            "pf": 2.499,
+            "compound": 18.34
+          },
+          {
+            "n": 12,
+            "win": 25.0,
+            "mean": 0.174,
+            "pf": 1.195,
+            "compound": 1.75
+          }
+        ]
+      },
+      {
+        "exit": "both",
+        "segments": [
+          {
+            "n": 26,
+            "win": 42.3,
+            "mean": 0.4,
+            "pf": 1.463,
+            "compound": 9.98
+          },
+          {
+            "n": 20,
+            "win": 70.0,
+            "mean": 0.866,
+            "pf": 2.496,
+            "compound": 18.29
+          },
+          {
+            "n": 12,
+            "win": 25.0,
+            "mean": 0.174,
+            "pf": 1.195,
+            "compound": 1.75
+          }
+        ]
+      }
+    ],
+    "ETHUSDT": [
+      {
+        "exit": "fixed",
+        "segments": [
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 1.18,
+            "pf": 1.911,
+            "compound": 24.2
+          },
+          {
+            "n": 13,
+            "win": 61.5,
+            "mean": 0.755,
+            "pf": 1.815,
+            "compound": 9.34
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.659,
+            "pf": 1.851,
+            "compound": 6.24
+          }
+        ]
+      },
+      {
+        "exit": "reverse",
+        "segments": [
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 1.22,
+            "pf": 1.942,
+            "compound": 25.18
+          },
+          {
+            "n": 13,
+            "win": 69.2,
+            "mean": 1.085,
+            "pf": 2.73,
+            "compound": 14.19
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 0.531,
+            "pf": 1.685,
+            "compound": 4.89
+          }
+        ]
+      },
+      {
+        "exit": "structure",
+        "segments": [
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 1.708,
+            "pf": 3.256,
+            "compound": 38.56
+          },
+          {
+            "n": 15,
+            "win": 46.7,
+            "mean": 1.12,
+            "pf": 2.49,
+            "compound": 17.16
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": 0.354,
+            "pf": 1.437,
+            "compound": 3.45
+          }
+        ]
+      },
+      {
+        "exit": "both",
+        "segments": [
+          {
+            "n": 20,
+            "win": 60.0,
+            "mean": 1.748,
+            "pf": 3.309,
+            "compound": 39.65
+          },
+          {
+            "n": 15,
+            "win": 53.3,
+            "mean": 1.209,
+            "pf": 2.755,
+            "compound": 18.74
+          },
+          {
+            "n": 11,
+            "win": 36.4,
+            "mean": 0.354,
+            "pf": 1.437,
+            "compound": 3.45
+          }
+        ]
+      }
+    ],
+    "ICPUSDT": [
+      {
+        "exit": "fixed",
+        "segments": [
+          {
+            "n": 25,
+            "win": 64.0,
+            "mean": 0.824,
+            "pf": 1.402,
+            "compound": 17.73
+          },
+          {
+            "n": 17,
+            "win": 58.8,
+            "mean": 0.691,
+            "pf": 1.523,
+            "compound": 10.53
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 2.097,
+            "pf": 2.514,
+            "compound": 38.88
+          }
+        ]
+      },
+      {
+        "exit": "reverse",
+        "segments": [
+          {
+            "n": 25,
+            "win": 64.0,
+            "mean": 0.824,
+            "pf": 1.402,
+            "compound": 17.73
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 0.588,
+            "pf": 1.42,
+            "compound": 8.6
+          },
+          {
+            "n": 17,
+            "win": 52.9,
+            "mean": 2.097,
+            "pf": 2.514,
+            "compound": 38.88
+          }
+        ]
+      },
+      {
+        "exit": "structure",
+        "segments": [
+          {
+            "n": 29,
+            "win": 48.3,
+            "mean": 0.947,
+            "pf": 1.617,
+            "compound": 27.26
+          },
+          {
+            "n": 22,
+            "win": 45.5,
+            "mean": 0.184,
+            "pf": 1.16,
+            "compound": 2.65
+          },
+          {
+            "n": 20,
+            "win": 50.0,
+            "mean": 1.537,
+            "pf": 2.462,
+            "compound": 32.88
+          }
+        ]
+      },
+      {
+        "exit": "both",
+        "segments": [
+          {
+            "n": 29,
+            "win": 48.3,
+            "mean": 0.947,
+            "pf": 1.617,
+            "compound": 27.26
+          },
+          {
+            "n": 22,
+            "win": 40.9,
+            "mean": 0.104,
+            "pf": 1.086,
+            "compound": 0.86
+          },
+          {
+            "n": 20,
+            "win": 50.0,
+            "mean": 1.537,
+            "pf": 2.462,
+            "compound": 32.88
+          }
+        ]
+      }
+    ],
+    "HYPEUSDT": [
+      {
+        "exit": "fixed",
+        "segments": [
+          {
+            "n": 26,
+            "win": 42.3,
+            "mean": -0.829,
+            "pf": 0.701,
+            "compound": -22.91
+          },
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": -0.167,
+            "pf": 0.89,
+            "compound": -4.2
+          },
+          {
+            "n": 19,
+            "win": 52.6,
+            "mean": -0.353,
+            "pf": 0.8,
+            "compound": -7.73
+          }
+        ]
+      },
+      {
+        "exit": "reverse",
+        "segments": [
+          {
+            "n": 26,
+            "win": 46.2,
+            "mean": -0.486,
+            "pf": 0.819,
+            "compound": -15.9
+          },
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": 0.317,
+            "pf": 1.245,
+            "compound": 4.96
+          },
+          {
+            "n": 19,
+            "win": 57.9,
+            "mean": -0.122,
+            "pf": 0.914,
+            "compound": -3.31
+          }
+        ]
+      },
+      {
+        "exit": "structure",
+        "segments": [
+          {
+            "n": 34,
+            "win": 29.4,
+            "mean": -0.737,
+            "pf": 0.66,
+            "compound": -24.75
+          },
+          {
+            "n": 24,
+            "win": 33.3,
+            "mean": -0.539,
+            "pf": 0.671,
+            "compound": -13.17
+          },
+          {
+            "n": 25,
+            "win": 40.0,
+            "mean": -0.478,
+            "pf": 0.654,
+            "compound": -12.07
+          }
+        ]
+      },
+      {
+        "exit": "both",
+        "segments": [
+          {
+            "n": 34,
+            "win": 32.4,
+            "mean": -0.471,
+            "pf": 0.773,
+            "compound": -17.78
+          },
+          {
+            "n": 24,
+            "win": 33.3,
+            "mean": -0.378,
+            "pf": 0.767,
+            "compound": -9.87
+          },
+          {
+            "n": 27,
+            "win": 37.0,
+            "mean": -0.599,
+            "pf": 0.561,
+            "compound": -15.68
+          }
+        ]
+      }
+    ]
+  }
+}
