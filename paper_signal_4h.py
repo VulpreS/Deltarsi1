@@ -3,29 +3,17 @@ No live prices, orders, credentials, or execution. Only report the latest comple
 """
 import csv,datetime as dt,json,math,sys
 from pathlib import Path
-from analyze_mtf_5y import indicator,aggregate
+from analyze_mtf_5y import indicator
+from completed_candles import aggregate_completed_4h as _strict_completed_4h
 from research_multiasset import atr
 SYMS=("ETHUSDT","BTCUSDT","ICPUSDT","HYPEUSDT")
 HOUR_MS=3_600_000
 
 def aggregate_completed_4h(raw, now_ms=None):
-    """Use only complete UTC-aligned 4H candles; never discard a complete tail.
-
-    The shared aggregate() unconditionally removes the last bucket, even when
-    all four hourly candles are present. That delays/misses paper alerts.
-    """
-    if not raw:
-        return []
-    rows=aggregate(raw,4)
-    start=(raw[-1][0]//(4*HOUR_MS))*(4*HOUR_MS)
-    tail=[x for x in raw if x[0]>=start]
-    expected=[start+j*HOUR_MS for j in range(4)]
+    """Paper alerts only use fully closed UTC 4H bars as of wall-clock time."""
     if now_ms is None:
         now_ms=int(dt.datetime.now(dt.timezone.utc).timestamp()*1000)
-    if [x[0] for x in tail]==expected and now_ms>=start+4*HOUR_MS:
-        rows.append((start,tail[0][1],max(x[2] for x in tail),
-                     min(x[3] for x in tail),tail[-1][4]))
-    return rows
+    return _strict_completed_4h(raw, asof_ms=now_ms)
 
 def main():
     alerts=[]
