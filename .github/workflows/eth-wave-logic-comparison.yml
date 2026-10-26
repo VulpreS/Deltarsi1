@@ -1,0 +1,25 @@
+name: ETH Wave Logic Comparison
+on:
+  push:
+    paths:
+      - analyze_wave_logic_comparison.py
+      - .github/workflows/eth-wave-logic-comparison.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare logic on saved one-year candles
+        run: python analyze_wave_logic_comparison.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-wave-logic-comparison
+          path: reports/eth_wave_logic_comparison.md
