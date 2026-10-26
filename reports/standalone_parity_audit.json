@@ -1,7 +1,7 @@
 {
   "title": "P0 #12 standalone vs portfolio UTC trade-ID parity",
-  "producer_commit_sha": "fe32c337eb15a2355931010f24e2cf563d01bcf3",
-  "ci_run_id": "40416033410",
+  "producer_commit_sha": "ba3aada52ab4f1b97cf784cb1bab14db57960bb1",
+  "ci_run_id": "40416043908",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
