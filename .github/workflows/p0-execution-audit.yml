@@ -8,6 +8,8 @@ on:
       - 'dynamic_exit_research.py'
       - 'structural_exit_research.py'
       - 'p0_gap_audit.py'
+      - 'cache_integrity_audit.py'
+      - 'test_cache_integrity.py'
       - 'test_p0_execution.py'
       - '.github/workflows/p0-execution-audit.yml'
   workflow_dispatch:
@@ -27,12 +29,14 @@ jobs:
           python -m unittest discover -v -p 'test_*.py'
           python test_candidate_b_semantics.py
       - name: Cached historical parity and cost stress
-        run: python p0_gap_audit.py
+        run: |
+          python p0_gap_audit.py
+          python cache_integrity_audit.py
       - name: Persist report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/p0_gap_audit.json
+          git add reports/p0_gap_audit.json reports/p0_cache_integrity.json
           git diff --cached --quiet || (git commit -m "Persist P0 gap execution audit" && git pull --rebase origin main && git push)
       - uses: actions/upload-artifact@v4
         if: always()
