@@ -1,3 +1,41 @@
+# DeltaRSI researcher handoff — cycle 4, 2026-10-26 (P0 #7 completed 4H bars)
+
+**Decision: P0 #7 CODE + SYNTHETIC TESTS DONE; historical comparison DONE; NO PROMOTION / RESEARCH ONLY.** Workflow [40382846181](https://github.com/VulpreS/Deltarsi1/actions/runs/40382846181) SUCCESS, producer commit `6323a539b9d50c1b2ac9f4cdcf331bb4419da8c4`; deterministic seed 20261026; cached CSV only, no downloads, no live orders. All chronological slices are **previously inspected historical data, NOT independent OOS**.
+
+## Hypothesis and manager priorities
+Read manager directives (latest 18:51 UTC), issues #7 (P0 strict aggregation), #6 (funding/net paired CI), #5 (venue/portfolio/forward), and prior handoff. Hypothesis: legacy permissive 4H bucketing admits incomplete first 4H bar and drops a fully closed final bar, affecting signals or trades. Prioritize #7 before any parameter search.
+
+## Changes and reproducibility
+- Added `completed_candles.py` with one UTC-aligned, as-of-gated strict engine: all 4 constituent 1H open times must be present, in order, and fully closed by as-of; rejects duplicate, non-monotonic, invalid OHLC. Research `analyze_mtf_5y.aggregate` and `paper_signal_4h.aggregate_completed_4h` now use this shared engine. Historical default as-of is inferred from the final cached 1H bar close; paper requires actual wall-clock as-of.
+- `feature_walkforward.data(sym,aggregation='legacy'|'strict')` preserves the legacy engine **audit-only** for exact before/after comparisons; same feature formulas and execution. Added `test_completed_candles.py` with partial first (1/2/3/4 source hours), interior gap, duplicate/out-of-order, complete/incomplete final, as-of at/just before close, UTC boundaries, invalid OHLC, research/paper parity. Updated older `test_candidate_b_semantics.py` expectation to retain a fully closed final bar.
+- Added `aggregation_impact_audit.py` and workflow `.github/workflows/p0-strict-aggregation.yml`. GitHub Actions SUCCESS (all new and prior execution regression tests, frozen cache audit). The earlier P0 execution workflow 40382669548 failed only because a *new synthetic parity fixture* used monotonic prices with undefined RSI/Delta NaN; fixture replaced by oscillating prices; successful 40382846181 supersedes that fixture failure.
+- Machine-readable `reports/aggregation_impact.json`: source hashes, exact producer SHA, CI run ID, five UTC non-overlapping window boundaries, UTC-mapped signal/entry/side keys, before/after metrics at 15/25/40 bp assumed round-trip fees+slippage, baseline and retrospectively selected filters. No actual funding available in this **aggregation-only** audit.
+
+## Cached-data results (fixed 2.5 ATR stop / 3 ATR target / 12×4H)
+| Asset | Legacy → strict 4H bars | Legacy → strict trades | Legacy → strict 15bp PF | Key changes |
+|---|---|---|---|---|
+| BTC | 2190 → 2189 | 130 → 130 | 1.3377 → 1.3377 | none; partial first 12:00 removed |
+| ETH | 2189 → 2190 | 129 → 129 | 1.3178 → 1.3230 | none; completed 08:00 tail included, time-exit price changes |
+| ICP | 2190 → 2189 | **133 → 132** | **1.1158 → 1.1465** | **one LONG entry removed:** signal 2025-11-30 12:00 UTC, entry 16:00 UTC |
+| HYPE | 1251 → 1250 | 69 → 69 | 0.7889 → 0.7889 | none; invalid first 00:00 bucket removed |
+
+ICP removed entry is near 210-bar feature warm-up after the discarded partial first bucket. It is **not evidence of better strategy**; it changes reported trade count and PF mechanically. ETH 15bp mean net changed +0.4055% → +0.4106% on identical 129 entry keys; old 4H tail was discarded. BTC and HYPE trade returns unchanged. Selected BTC OB (55), ETH OB (43), ICP EMA200 (59), HYPE (65) entry counts/keys unchanged; selected ETH matched fixed/raw-reverse same **43** entries in both aggregations. Under common UTC-window cuts, ETH selected raw-reverse PF 2.0988 at 15bp before/after (different window boundaries from prior 2.0564 report, so **do not interpret as improvement**). HYPE still rejected. The JSON includes 15/25/40bp win/mean/PF/pseudo-DD and entry diffs for all assets.
+
+**CSV SHA256:** BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`; ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`; ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`; HYPE `7b1e66fbf6aee1f1407e877c7e1e4aaaeb8489009925438eadc53cf1b6c35bae`.
+
+## Limitations / risk
+- Historical cache last-hour close inference is **not proof of original data receipt/venue**; paper explicit as-of is safe, but actual live candle-close provenance remains UNKNOWN. Direct same-venue 4H OHLCV, 1H volume for BTC/ICP/HYPE, observed funding, spreads/mark price unavailable. This is a data-integrity correction, **not a new edge**.
+- PF and pseudo-equity/DD use sequential per-symbol full-notional simulation, not an executable cross-asset risk-sized portfolio. Five UTC windows are non-overlapping, but historically contaminated by prior selection. The changed ETH time-exit result may also reflect changed last-window availability.
+- Other cached reports from earlier commits must be tagged legacy; do not silently compare mismatched aggregation versions. New 4H historical tail is treated complete only when source last 1H row is assumed closed.
+
+## Conclusion and concrete next manager decisions
+1. **#7 DONE for synthetic/cached scope:** Review the one ICP dropped entry and ETH tail effect; confirm paper/research strict aggregation should become canonical. Keep issue open only if external venue parity is considered mandatory under #7.
+2. **#6 P0 NEXT:** implement bounded UTC 00/08/16 funding-event counts (intrabar stop/TP uncertain), time-exit final-close duration, 0/1/3bp adverse synthetic stress and **net** paired 30-day-block CI on same ETH 43 entry IDs; embed producer SHA and tests. Do not claim the gross CI is net.
+3. **#5 PARTIAL/BLOCKED:** risk-sized executable cross-asset portfolio, source/market manifest and same-venue 4H OHLC parity; no fabricated provenance. Pre-register prospective forward stream with immutable receipts, >=90 days and >=50 trades/candidate before assessment.
+4. **No promotion, no orders.** User notification is warranted for corrected **ICP historical count (133→132)** and confirmed partial-candle bug, not for an unvalidated new strategy.
+
+---
+
 # DeltaRSI researcher handoff — cycle 3, 2026-10-26 (matched exit cohort)
 
 **Decision: NO PROMOTION / PAPER ONLY.** Completed P1-C matched-entry component; no independent OOS. GitHub Actions [matched exit audit run 40372778396](https://github.com/VulpreS/Deltarsi1/actions/runs/40372778396) passed, after fixing an initially incorrect synthetic fixture. No candle downloads, no real orders.
