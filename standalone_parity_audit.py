@@ -55,24 +55,28 @@ def classify_standalone_only(trade, portfolio_trades):
     for p in portfolio_trades.values():
         # Existing position must have entered earlier; open-time exits at t
         # are already settled and must NOT count as occupied.
-        if millis(p["entry_utc"]) < t < millis(p["exit_utc_earliest"]):
+        if millis(p["entry_utc"]) < t and (t < millis(p["exit_utc_earliest"]) or
+            (t == millis(p["exit_utc_earliest"]) and
+             millis(p["exit_utc_latest"]) > t)):
             return "portfolio_existing_position"
-    return "portfolio_cap_or_other"
+    return "portfolio_other_or_cap"
 
 def reconcile(rows, st, pt):
     common=set(st)&set(pt);only_s=set(st)-set(pt);only_p=set(pt)-set(st)
-    exit_diffs=[]
+    economic_diffs=[];reason_diffs=[]
     for k in sorted(common):
         a,b=st[k],pt[k]
         # Same entry key should have exactly same execution prices and reason
         # unless one of the engines violates its frozen execution semantics.
         actual_gross=(1 if b["side"]=="LONG" else -1)*(b["exit"]/b["entry"]-1)
         if (abs(actual_gross-a["gross_return"])>1e-10 or
-            b["exit_reason"]!=a["exit_reason"] or
             b["entry_utc"]!=a["entry_utc"]):
-            exit_diffs.append({"key":k,"standalone":a,"portfolio":{
+            economic_diffs.append({"key":k,"standalone":a,"portfolio":{
                 "entry_utc":b["entry_utc"],"exit_reason":b["exit_reason"],
                 "exit":b["exit"],"gross_return":actual_gross}})
+        if b["exit_reason"]!=a["exit_reason"]:
+            reason_diffs.append({"key":k,"standalone":a["exit_reason"],
+                "portfolio":b["exit_reason"],"same_economic_fill":abs(actual_gross-a["gross_return"])<=1e-10})
     # Expose compact deterministic examples and full category counts.
     from collections import Counter
     p_classes=Counter(classify_portfolio_only(
@@ -82,8 +86,10 @@ def reconcile(rows, st, pt):
             "standalone_only_n":len(only_s),"portfolio_only_n":len(only_p),
             "standalone_only_reasons":dict(s_classes),
             "portfolio_only_reasons":dict(p_classes),
-            "matched_exit_discrepancy_n":len(exit_diffs),
-            "matched_exit_discrepancy_examples":exit_diffs[:8],
+            "matched_economic_discrepancy_n":len(economic_diffs),
+            "matched_economic_discrepancy_examples":economic_diffs[:8],
+            "exit_reason_label_discrepancy_n":len(reason_diffs),
+            "exit_reason_label_discrepancy_examples":reason_diffs[:8],
             "standalone_only_examples":[list(k) for k in sorted(only_s)[:8]],
             "portfolio_only_examples":[list(k) for k in sorted(only_p)[:8]]}
 
@@ -126,13 +132,29 @@ def run():
     # original 2 slots and 0.5% aggregate stop-risk.
     p=portfolio.simulate(series,common,"baseline",.0015,0.)
     out["full_multisymbol_15bp_0funding"]=portfolio.metrics(p)
+    multi=portfolio_ledger(p["trades"])
+    cross={}
+    full=out["windows"][0]["assets"]
+    for sym in SYMS:
+        # Recompute isolated portfolio on the same calendar for exact trade IDs.
+        portfolio.SYMS=(sym,)
+        isolated=portfolio_ledger(portfolio.simulate(series,common,"baseline",.0015,0.)["trades"])
+        actual={k:v for k,v in multi.items() if v["symbol"]==sym}
+        cross[sym]={"isolated_n":len(isolated),"multi_n":len(actual),
+                    "matched_n":len(set(isolated)&set(actual)),
+                    "isolated_only_n":len(set(isolated)-set(actual)),
+                    "multi_only_n":len(set(actual)-set(isolated)),
+                    "isolated_only_examples":[list(k) for k in sorted(set(isolated)-set(actual))[:8]],
+                    "multi_only_examples":[list(k) for k in sorted(set(actual)-set(isolated))[:8]]}
+    portfolio.SYMS=SYMS
+    out["cross_asset_competition"]=cross
     Path(SOURCE).write_text(json.dumps(out,ensure_ascii=False,indent=2))
     for w in out["windows"]:
         print("WINDOW",w["window"])
         for sym,modes in w["assets"].items():
             for mode,z in modes.items():
                 print(sym,mode,"standalone",z["standalone_n"],"portfolio",z["portfolio_n"],
-                      "matched",z["matched_n"],"exit_diffs",z["matched_exit_discrepancy_n"],
+                      "matched",z["matched_n"],"economic_diffs",z["matched_economic_discrepancy_n"],
                       "standalone_only",z["standalone_only_reasons"],
                       "portfolio_only",z["portfolio_only_reasons"])
     return out
