@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - .github/workflows/fade-bright-wick.yml
+      - fade_bright_wick_4h.py
   workflow_dispatch:
 permissions:
   contents: write
