@@ -28,13 +28,16 @@ Status: **PAPER TRADING ONLY**. This is not a validated profitable live system.
 - Risk for paper trading: **0.25% of account equity per stop**. `quantity=(equity*0.0025)/(2.5*ATR)`, then cap notional exposure to 1x equity per instrument and comply with exchange quantity/precision/minimums. Never size positions using leveraged buying power alone.
 - Portfolio cap: max 0.75% of equity risk across simultaneous stops; daily realized loss cap 1% and equity drawdown circuit breaker 5% from peak, both are **untested operational safeguards**, not backtested improvements.
 
-## Backtest evidence (2026-10-26, corrected 12-bar exit)
-One-year ETH/BTC/ICP 1H data resampled to 4H. HYPE covers ~5003 hours, April–October 2026. First 70% train per instrument, last 30% held out. One position at a time per instrument, 0.15% round-trip costs.
-**Chosen 4H local-peak weakening rule (turn):** training on four assets 342 trades, win 53.5%, mean +0.258%/trade, PF 1.146; holdout 152 trades, win 50.7%, mean +0.309%, PF 1.241. Held-out by asset: ETH 42 trades +0.520% PF 1.561; BTC 42 trades +0.422% PF 1.576; ICP 44 trades +0.216% PF 1.110; HYPE 24 trades -0.088% PF 0.946.
-**Color medium->weak comparator:** training 329 trades +0.217% PF 1.126; holdout 158 trades +0.153% PF 1.115. ETH/BTC/ICP positive; HYPE negative.
-**Optimized trend-filter variants:** failed on holdout (best training config 4H holdout PF 0.892). This is evidence against selecting the highest training backtest.
-**1D:** results too inconsistent/sparse; not approved. **Divergence:** strict wave detector found zero qualifying signals; not validated.
-Limitations: funding, mark-price stops, exchange outages and variable slippage not modeled; selection of the chosen rule after reviewing holdout means the holdout is now partially used for model selection. No future untouched test yet. Mean returns are not equity returns. Drawdowns with full notional were large. Do not use leverage without separate validation.
+## Backtest evidence (2026-10-26, corrected split isolation and 12-bar exit)
+One-year ETH/BTC/ICP 1H cached data resampled to 4H. HYPE covers ~5,003 hours, April–October 2026. First 70% train per instrument, last 30% evaluated independently; training has a hold-length embargo before the boundary. One position at a time per instrument; 0.15% round-trip fees and slippage.
+
+**Chosen 4H local-peak weakening rule (turn):** train 339 trades, win 53.1%, mean +0.249%/trade, PF 1.139; held-out 154 trades, win 51.3%, mean +0.337%, PF 1.266. Held-out by asset: ETH 43 trades PF 1.625; BTC 43 PF 1.655; ICP 44 PF 1.110; HYPE 24 PF 0.946. Held-out full-notional drawdowns: ETH 15.53%, BTC 10.54%, ICP 22.07%, HYPE 15.52%.
+**Color medium→weak comparator:** train 326 trades PF 1.116; held-out 158 trades PF 1.087.
+**Optimized trend-filter variants:** failed on held-out data (best training config previously had 4H holdout PF 0.892). Feature walkforward tested 3,240 combinations and the best train/validation variants mostly failed the final quarter.
+**Five sequential non-overlapping 4H slices:** baseline PF ETH 2.61/1.64/0.75/0.82/1.74; BTC 1.28/1.37/1.33/1.01/1.73; ICP 0.89/1.11/1.11/2.08/0.90; HYPE 0.17/0.67/1.91/0.58/0.87. At 0.40% round-trip costs, full-sample PF falls to ETH 1.19, BTC 1.08, ICP 1.01, HYPE 0.70. These are **reused historical data, not new independent confirmation**.
+**1D:** inconsistent/sparse; not approved. **Divergence:** strict wave detector found zero qualifying signals; not validated.
+
+Limitations: funding, mark-price stops, exchange outages, variable slippage and liquidation risk not modeled; model selection has already used the historical holdout, so an untouched future period is still required. Mean returns are not equity returns. Full-notional drawdowns were large. Never infer safe leverage from these results. See `reports/audit_2026-10-26.md` for cached-volume ablations, cost stress and corrected code defects.
 
 ## Operational deployment gates
 1. Verify indicator outputs bar-for-bar against TradingView on at least 30 sampled bars per symbol.
