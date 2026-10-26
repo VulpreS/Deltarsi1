@@ -30,15 +30,15 @@ def candles():
             return ordered,host
         except Exception as e:print("Source failed",host,str(e),flush=True)
     raise RuntimeError("No continuous 1 year ETH 1H history available")
-def aggregate(rows,h):
-    groups={}
-    for t,o,hi,lo,c in rows:
-        bucket=t//(h*HOUR)
-        if bucket not in groups:groups[bucket]=[bucket*h*HOUR,o,hi,lo,c]
-        else:
-            g=groups[bucket];g[2]=max(g[2],hi);g[3]=min(g[3],lo);g[4]=c
-    result=[tuple(groups[k]) for k in sorted(groups)]
-    return result[:-1] # discard possibly incomplete final higher-timeframe candle
+def aggregate(rows,h,asof_ms=None):
+    """UTC-aligned, fully closed higher-timeframe bars (strict shared engine).
+
+    Historical cached callers infer asof from last cached hourly bar close.
+    For live/paper consumers, supply explicit asof_ms to avoid partial bars.
+    """
+    from completed_candles import aggregate_completed
+    return aggregate_completed(rows,h,asof_ms)
+
 def indicator(rows):
     n=len(rows);s=[math.nan]*n;r=[math.nan]*n;d=[math.nan]*n;color=[""]*n
     rolling=0;ag=al=0;ema=math.nan
