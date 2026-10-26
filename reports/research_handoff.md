@@ -1,3 +1,42 @@
+# DeltaRSI researcher handoff — cycle 8, 2026-10-26 22:55 UTC (P0 #12 standalone trade-ID parity)
+
+**Status: P0 #12 PARTIAL — exact shared-trade execution parity VERIFIED; remaining stress grid and historical competing-gap census OPEN. No independently confirmed edge, no production approval, no orders.** Latest CI [40416043908](https://github.com/VulpreS/Deltarsi1/actions/runs/40416043908) SUCCESS, 32 regression tests; producer commit `ba3aada52ab4f1b97cf784cb1bab14db57960bb1`. Full report [reports/standalone_parity_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/standalone_parity_audit.json).
+
+## Hypothesis / leader priorities read before execution
+Reviewed open manager issues [#12](https://github.com/VulpreS/Deltarsi1/issues/12), [#13](https://github.com/VulpreS/Deltarsi1/issues/13), [#9](https://github.com/VulpreS/Deltarsi1/issues/9), [#8](https://github.com/VulpreS/Deltarsi1/issues/8), [#11](https://github.com/VulpreS/Deltarsi1/issues/11) and prior `reports/research_handoff.md`, `reports/manager_directives.md`, `reports/portfolio_risk_audit.json`, `reports/matched_exit_audit.json`. **P0 hypothesis:** standalone frozen 4H baseline and chronological risk-sized portfolio should agree on entry and gross exit for identical signal UTC+direction; aggregate N differences arise from different re-entry scheduling and cross-symbol risk competition, not silently inconsistent fill rules.
+
+## Changes / reproducibility
+- Added `standalone_parity_audit.py`: frozen 2.5×4H ATR stop, 3×4H ATR target, max 12 completed 4H bars; exact UTC signal/entry key comparison between `p0_gap_audit.simulate` and `portfolio_risk_audit.simulate` for each symbol alone. Five chronological **nonoverlapping** windows plus one full continuous run, with separate per-window resets. No retuning, no network access or candle fetch. Runs at 15bp assumed round-trip friction and **zero synthetic funding for fill-parity isolation**.
+- Isolated portfolio checked both with production notional/leverage caps and with caps relaxed *for diagnostic only*; results were identical in all full-history standalone runs. All same-signal exit prices and gross percentage returns compared to numerical tolerance 1e-10. One per-symbol last-trade exit reason differs only in label `time` vs `terminal` at the common-data boundary; **same economic fill**.
+- Added cross-asset exact-key comparison between isolated-symbol portfolio and 3-symbol portfolio with 2-position / 0.5% aggregate initial stop-risk cap. Fixed an **audit-only** bug where dictionary keys omitted symbol and silently collapsed simultaneous cross-asset signal IDs; added fail-closed duplicate-key regression. This was NOT a defect in the portfolio trading engine.
+- Added `test_standalone_parity_audit.py` fixtures for same-signal price/side parity, exit-bar cooldown, open-time release, intrabar occupancy and duplicate cross-symbol keys. 32 tests PASS in CI. No changes to frozen strategy parameters or the portfolio execution engine.
+
+## Data / exact results
+Committed unchanged cached 1H SHA256: BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`; ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`; ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`. Same contiguous common calendar (ETH standalone N128 vs historical full-cache N129 because this audit restricts to common calendar; do not treat as missing fill).
+
+| Asset | Frozen standalone N | Isolated portfolio N | Exact matching signal IDs | Matched economic fill mismatches | Standalone-only | Portfolio-only |
+|---|---:|---:|---:|---:|---:|---:|
+| BTC | 130 | 137 | 125 | **0** | 5 | 12 |
+| ETH | 128 | 136 | 121 | **0** | 7 | 15 |
+| ICP | 132 | 138 | 112 | **0** | 20 | 26 |
+
+Every standalone-only entry occurred while the isolated portfolio already held a position; every portfolio-only entry falls inside the standalone's prior position or its exit-bar cooldown. The standalone loop resumes signal inspection at exit_index+1; the event-driven portfolio may act on the signal formed at the exit-bar close and enter at the following open. These are **different valid scheduling policies**, so naive N/PF comparisons are not same-cohort comparisons. All five separate historical windows also show **zero matched economic fill discrepancies**.
+
+Cross-asset competition, **isolated portfolio → multi-symbol portfolio** at 15bp/0 funding: BTC N137→123 (114 exact shared signals), ETH N136→97 (84 shared), ICP N138→89 (73 shared). There are both isolated-only and multi-only signals due to changed subsequent re-entry opportunities, not simply a one-way filter. Combined multi-symbol baseline N309; the portfolio report has already shown that at 15bp/3bp adverse synthetic funding its edge is marginal. These results are NOT fresh independent OOS.
+
+## Limitations / decision
+- **P0 #12 partial**: parity verified for matched 15bp/0-funding trades and inspected five windows; no exhaustive historical *gap-at-open with competing signal* count, no per-signal admission-reason trace for multi-symbol skipped IDs, and no before/after **15/25/40bp × 0/1/3bp funding** ledger reconciliation. Current category labels are causal diagnostics, not exact venue fill evidence.
+- Standalone and portfolio differ by entry scheduling; do not compare their PFs as if trades were paired. The report contains exact IDs and bounded examples; per-symbol isolated risk-sized returns are not equivalent to full-notional standalone returns.
+- Venue/market provenance, direct 4H same-venue parity, actual funding, spread/impact and immutable forward receipt data still missing. All five historical windows were previously examined; chronological non-overlap does **not** make them independent holdouts.
+- No candidate is promoted. No real orders or API trades.
+
+## Concrete questions / proposed next researcher iteration for manager
+1. Should the canonical benchmark adopt **event-driven next-open scheduling** (portfolio policy), while retaining standalone cooldown as a separate named legacy baseline? The current two definitions are not directly comparable even with identical stop/TP.
+2. Finish #12 by instrumenting per-signal admission decisions and historical gap-open competing-signal census; reconcile full 15/25/40bp × 0/1/3bp synthetic funding grids and exact trade IDs with the frozen portfolio report. Keep assumptions explicit.
+3. Then prioritize #13 matched forming-4H vs closed-4H event streams with **4H ATR** for both, identical risk/exits/costs and fixed ratio<=0.7 *exploratory* filter. Do not reuse inspected final-quarter as independent test. No strategy promotion without new sealed forward receipts.
+
+---
+
 # DeltaRSI researcher handoff — cycle 7, 2026-10-27 MSK (P0 #12 gap-open chronology + fee notional; passive benchmark)
 
 **Decision: P0 #12 PARTIAL, CHRONOLOGY FIX VERIFIED; NO STRATEGY PROMOTION / NO REAL ORDERS.** Latest CI [40408693880](https://github.com/VulpreS/Deltarsi1/actions/runs/40408693880) **SUCCESS (43 regression tests)**, producer commit `bb0dc5578bbff45e4636f88c15e7eabf47b1edb4`, code with passive summary `48e4ff8396a009755c22de7d3cc1781108e16d71`, report commit `806eecb`. Cached-only `reports/portfolio_risk_audit.json`; no candle downloads or live orders.
