@@ -1,0 +1,29 @@
+name: ETH Price-Wave Divergence 1Y
+on:
+  push:
+    paths:
+      - "analyze_price_waves.py"
+      - ".github/workflows/eth-price-waves.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Analyze saved one-year ETH candles (no API download)
+        run: python analyze_price_waves.py
+      - name: Upload wave divergence results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eth-price-wave-divergence-1y
+          path: |
+            reports/eth_price_wave_divergence.md
+            reports/eth_price_wave_divergence_events.csv
+          if-no-files-found: warn
