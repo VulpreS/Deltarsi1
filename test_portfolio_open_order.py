@@ -1,6 +1,6 @@
 """P0 chronology and fee-notional regression fixtures; cached-only, no orders."""
 import unittest
-from portfolio_risk_audit import simulate, resolve_open_gap, SYMS, HOUR_MS
+from portfolio_risk_audit import simulate, resolve_open_gap, passive_benchmarks, SYMS, HOUR_MS
 from test_portfolio_risk_audit import sample
 
 
@@ -67,6 +67,19 @@ class TestPortfolioOpenOrdering(unittest.TestCase):
         self.assertNotIn(SYMS[2],[x["symbol"] for x in out["trades"]])
         self.assertEqual(out["skips"].get("max_two_positions"),1)
         self.assertTrue(all(x["exit_reason"]=="stop" for x in out["trades"]))
+
+    def test_cash_and_buyhold_same_calendar(self):
+        data,times=sample(n=3)
+        b=passive_benchmarks(data,times,cost=.0015)
+        self.assertEqual(b["cash_0pct_return_pct"],0.)
+        self.assertAlmostEqual(b["equal_weight_price_only_buyhold_net_return_pct"],
+                               round(100*((1-.0015/2)**2-1),4))
+        self.assertTrue(all(x["net_return_pct"]<0 for x in
+                            b["individual_price_only_buyhold"].values()))
+        data[SYMS[0]]["rows"][-1]=(times[-1],100.,111.,99.,110.)
+        b2=passive_benchmarks(data,times,cost=.0015)
+        self.assertGreater(b2["equal_weight_price_only_buyhold_net_return_pct"],
+                           b["equal_weight_price_only_buyhold_net_return_pct"])
 
     def test_open_gap_classifier_does_not_read_intrabar(self):
         self.assertEqual(resolve_open_gap(94.,1,95.,106.),(94.,"stop"))
