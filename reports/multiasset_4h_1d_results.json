@@ -1,0 +1,679 @@
+{
+  "method": "1H downloaded once; 4H and 1D resampled; first 70% optimization, last 30% held out; 0.15% round-trip costs; entry next open; stop prioritized when stop and target touch same bar; one position per symbol; no leverage/funding; unadjusted price series; pivot confirmed after 2 bars",
+  "data": {
+    "ETHUSDT": {
+      "hours": 8760,
+      "first": "2025-10-26",
+      "last": "2026-10-26"
+    },
+    "BTCUSDT": {
+      "hours": 8761,
+      "first": "2025-10-26",
+      "last": "2026-10-26"
+    },
+    "ICPUSDT": {
+      "hours": 8761,
+      "first": "2025-10-26",
+      "last": "2026-10-26"
+    },
+    "HYPEUSDT": {
+      "error": "HYPEUSDT ['https://data-api.binance.vision:Too few candles 771', 'https://api.binance.com:HTTP Error 451: ', 'https://api.binance.us:Gap', 'Bybit:HTTP Error 403: Forbidden']"
+    }
+  },
+  "results": {
+    "4h": {
+      "assets": [
+        "ETHUSDT",
+        "BTCUSDT",
+        "ICPUSDT"
+      ],
+      "top_train_configs": [
+        {
+          "config": [
+            "early",
+            0,
+            "none",
+            1.5,
+            4.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 82,
+            "win": 53.7,
+            "avg": 0.966,
+            "pf": 1.64,
+            "net": 101.36
+          },
+          "test": {
+            "n": 39,
+            "win": 43.6,
+            "avg": 0.643,
+            "pf": 1.555,
+            "net": 24.24
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 9,
+              "win": 55.6,
+              "avg": 0.055,
+              "pf": 1.056,
+              "net": 0.25
+            },
+            "BTCUSDT": {
+              "n": 13,
+              "win": 38.5,
+              "avg": 0.143,
+              "pf": 1.199,
+              "net": 1.64
+            },
+            "ICPUSDT": {
+              "n": 17,
+              "win": 41.2,
+              "avg": 1.337,
+              "pf": 1.843,
+              "net": 21.93
+            }
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "slow",
+            2.5,
+            4.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 102,
+            "win": 52.0,
+            "avg": 0.734,
+            "pf": 1.581,
+            "net": 92.41
+          },
+          "test": {
+            "n": 52,
+            "win": 44.2,
+            "avg": 0.044,
+            "pf": 1.033,
+            "net": -0.82
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 21,
+              "win": 47.6,
+              "avg": 0.112,
+              "pf": 1.09,
+              "net": 1.34
+            },
+            "BTCUSDT": {
+              "n": 17,
+              "win": 41.2,
+              "avg": -0.364,
+              "pf": 0.729,
+              "net": -6.54
+            },
+            "ICPUSDT": {
+              "n": 14,
+              "win": 42.9,
+              "avg": 0.44,
+              "pf": 1.284,
+              "net": 4.71
+            }
+          }
+        },
+        {
+          "config": [
+            "early",
+            0,
+            "none",
+            2.5,
+            4.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 79,
+            "win": 59.5,
+            "avg": 0.933,
+            "pf": 1.53,
+            "net": 86.07
+          },
+          "test": {
+            "n": 38,
+            "win": 44.7,
+            "avg": 0.316,
+            "pf": 1.225,
+            "net": 8.72
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 9,
+              "win": 55.6,
+              "avg": -0.218,
+              "pf": 0.826,
+              "net": -2.29
+            },
+            "BTCUSDT": {
+              "n": 13,
+              "win": 38.5,
+              "avg": 0.032,
+              "pf": 1.039,
+              "net": 0.13
+            },
+            "ICPUSDT": {
+              "n": 16,
+              "win": 43.8,
+              "avg": 0.848,
+              "pf": 1.433,
+              "net": 11.14
+            }
+          }
+        },
+        {
+          "config": [
+            "early",
+            0,
+            "slow",
+            1.5,
+            4.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 27,
+            "win": 59.3,
+            "avg": 1.067,
+            "pf": 1.712,
+            "net": 29.3
+          },
+          "test": {
+            "n": 9,
+            "win": 44.4,
+            "avg": 0.247,
+            "pf": 1.354,
+            "net": 2.04
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 5,
+              "win": 80.0,
+              "avg": 1.49,
+              "pf": 8.134,
+              "net": 7.6
+            },
+            "BTCUSDT": {
+              "n": 3,
+              "win": 0.0,
+              "avg": -0.626,
+              "pf": 0.0,
+              "net": -1.87
+            },
+            "ICPUSDT": {
+              "n": 1,
+              "win": 0.0,
+              "avg": -3.351,
+              "pf": 0.0,
+              "net": -3.35
+            }
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "slow",
+            2.5,
+            2.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 106,
+            "win": 55.7,
+            "avg": 0.48,
+            "pf": 1.379,
+            "net": 54.66
+          },
+          "test": {
+            "n": 52,
+            "win": 46.2,
+            "avg": -0.089,
+            "pf": 0.934,
+            "net": -6.98
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 21,
+              "win": 52.4,
+              "avg": 0.064,
+              "pf": 1.053,
+              "net": 0.57
+            },
+            "BTCUSDT": {
+              "n": 17,
+              "win": 41.2,
+              "avg": -0.717,
+              "pf": 0.467,
+              "net": -11.81
+            },
+            "ICPUSDT": {
+              "n": 14,
+              "win": 42.9,
+              "avg": 0.443,
+              "pf": 1.286,
+              "net": 4.88
+            }
+          }
+        }
+      ],
+      "baselines": [
+        {
+          "config": [
+            "early",
+            0,
+            "none",
+            2.5,
+            3.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 79,
+            "win": 59.5,
+            "avg": 0.761,
+            "pf": 1.433,
+            "net": 64.32
+          },
+          "test": {
+            "n": 39,
+            "win": 46.2,
+            "avg": 0.232,
+            "pf": 1.169,
+            "net": 6.13
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "none",
+            2.5,
+            3.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 276,
+            "win": 54.7,
+            "avg": 0.452,
+            "pf": 1.271,
+            "net": 150.58
+          },
+          "test": {
+            "n": 125,
+            "win": 51.2,
+            "avg": 0.422,
+            "pf": 1.374,
+            "net": 57.58
+          }
+        },
+        {
+          "config": [
+            "turn",
+            0,
+            "none",
+            2.5,
+            3.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 283,
+            "win": 54.4,
+            "avg": 0.244,
+            "pf": 1.139,
+            "net": 43.32
+          },
+          "test": {
+            "n": 124,
+            "win": 50.8,
+            "avg": 0.429,
+            "pf": 1.331,
+            "net": 55.77
+          }
+        }
+      ],
+      "candidate_count": 128
+    },
+    "24h": {
+      "assets": [
+        "ETHUSDT",
+        "BTCUSDT",
+        "ICPUSDT"
+      ],
+      "top_train_configs": [
+        {
+          "config": [
+            "turn",
+            0,
+            "extreme",
+            1.5,
+            4.0,
+            6,
+            "both"
+          ],
+          "train": {
+            "n": 25,
+            "win": 52.0,
+            "avg": 1.733,
+            "pf": 1.874,
+            "net": 43.31
+          },
+          "test": {
+            "n": 17,
+            "win": 64.7,
+            "avg": 0.63,
+            "pf": 1.245,
+            "net": 7.15
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 5,
+              "win": 40.0,
+              "avg": -0.684,
+              "pf": 0.764,
+              "net": -4.03
+            },
+            "BTCUSDT": {
+              "n": 4,
+              "win": 100.0,
+              "avg": 2.967,
+              "pf": null,
+              "net": 12.24
+            },
+            "ICPUSDT": {
+              "n": 8,
+              "win": 62.5,
+              "avg": 0.282,
+              "pf": 1.077,
+              "net": -0.52
+            }
+          }
+        },
+        {
+          "config": [
+            "turn",
+            0,
+            "extreme",
+            1.5,
+            2.0,
+            6,
+            "both"
+          ],
+          "train": {
+            "n": 25,
+            "win": 52.0,
+            "avg": 1.095,
+            "pf": 1.552,
+            "net": 24.41
+          },
+          "test": {
+            "n": 17,
+            "win": 64.7,
+            "avg": 0.636,
+            "pf": 1.247,
+            "net": 7.24
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 5,
+              "win": 40.0,
+              "avg": -0.641,
+              "pf": 0.779,
+              "net": -3.84
+            },
+            "BTCUSDT": {
+              "n": 4,
+              "win": 100.0,
+              "avg": 1.982,
+              "pf": null,
+              "net": 8.14
+            },
+            "ICPUSDT": {
+              "n": 8,
+              "win": 62.5,
+              "avg": 0.761,
+              "pf": 1.208,
+              "net": 3.13
+            }
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "extreme",
+            1.5,
+            4.0,
+            6,
+            "both"
+          ],
+          "train": {
+            "n": 28,
+            "win": 50.0,
+            "avg": 1.082,
+            "pf": 1.456,
+            "net": 26.33
+          },
+          "test": {
+            "n": 17,
+            "win": 52.9,
+            "avg": -0.688,
+            "pf": 0.802,
+            "net": -14.74
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 5,
+              "win": 20.0,
+              "avg": -2.775,
+              "pf": 0.323,
+              "net": -13.64
+            },
+            "BTCUSDT": {
+              "n": 4,
+              "win": 100.0,
+              "avg": 2.726,
+              "pf": null,
+              "net": 11.18
+            },
+            "ICPUSDT": {
+              "n": 8,
+              "win": 50.0,
+              "avg": -1.091,
+              "pf": 0.773,
+              "net": -11.2
+            }
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "extreme",
+            1.5,
+            2.0,
+            6,
+            "both"
+          ],
+          "train": {
+            "n": 28,
+            "win": 50.0,
+            "avg": 0.935,
+            "pf": 1.394,
+            "net": 21.61
+          },
+          "test": {
+            "n": 17,
+            "win": 52.9,
+            "avg": -0.31,
+            "pf": 0.911,
+            "net": -9.58
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 5,
+              "win": 20.0,
+              "avg": -2.732,
+              "pf": 0.334,
+              "net": -13.47
+            },
+            "BTCUSDT": {
+              "n": 4,
+              "win": 100.0,
+              "avg": 1.741,
+              "pf": null,
+              "net": 7.11
+            },
+            "ICPUSDT": {
+              "n": 8,
+              "win": 50.0,
+              "avg": 0.179,
+              "pf": 1.037,
+              "net": -2.45
+            }
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "extreme",
+            1.5,
+            4.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 25,
+            "win": 52.0,
+            "avg": 1.129,
+            "pf": 1.358,
+            "net": 18.98
+          },
+          "test": {
+            "n": 15,
+            "win": 40.0,
+            "avg": -1.91,
+            "pf": 0.519,
+            "net": -27.57
+          },
+          "by_asset": {
+            "ETHUSDT": {
+              "n": 5,
+              "win": 20.0,
+              "avg": -2.132,
+              "pf": 0.439,
+              "net": -10.9
+            },
+            "BTCUSDT": {
+              "n": 4,
+              "win": 75.0,
+              "avg": 1.422,
+              "pf": 3.06,
+              "net": 5.51
+            },
+            "ICPUSDT": {
+              "n": 6,
+              "win": 33.3,
+              "avg": -3.946,
+              "pf": 0.375,
+              "net": -22.95
+            }
+          }
+        }
+      ],
+      "baselines": [
+        {
+          "config": [
+            "early",
+            0,
+            "none",
+            2.5,
+            3.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 9,
+            "win": 33.3,
+            "avg": -0.633,
+            "pf": 0.828,
+            "net": -8.78
+          },
+          "test": {
+            "n": 10,
+            "win": 40.0,
+            "avg": -2.518,
+            "pf": 0.458,
+            "net": -25.0
+          }
+        },
+        {
+          "config": [
+            "late",
+            0,
+            "none",
+            2.5,
+            3.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 32,
+            "win": 40.6,
+            "avg": -0.904,
+            "pf": 0.81,
+            "net": -37.75
+          },
+          "test": {
+            "n": 18,
+            "win": 50.0,
+            "avg": 0.644,
+            "pf": 1.23,
+            "net": 6.39
+          }
+        },
+        {
+          "config": [
+            "turn",
+            0,
+            "none",
+            2.5,
+            3.0,
+            12,
+            "both"
+          ],
+          "train": {
+            "n": 33,
+            "win": 42.4,
+            "avg": -1.494,
+            "pf": 0.687,
+            "net": -49.32
+          },
+          "test": {
+            "n": 20,
+            "win": 60.0,
+            "avg": 0.122,
+            "pf": 1.035,
+            "net": -5.04
+          }
+        }
+      ],
+      "candidate_count": 30
+    }
+  }
+}
