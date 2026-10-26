@@ -33,7 +33,8 @@ class MatchedExitTests(unittest.TestCase):
         rev=exit_one(rows,self.raw(),trade,2.5,6.0,"reverse",20)
         self.assertEqual(rev["exit_price"],95)
         self.assertEqual(rev["reason"],"stop")
-        rows[4]=(rows[4][0],94,96,93,95)
+        rows[4]=(rows[4][0],100,101,99,100)
+        rows[5]=(rows[5][0],94,96,93,95)
         rev=exit_one(rows,self.raw(),trade,2.5,6.0,"reverse",20)
         self.assertEqual(rev["exit_price"],94)
 
