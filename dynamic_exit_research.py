@@ -3,6 +3,7 @@ import json,statistics
 from pathlib import Path
 from feature_walkforward import data,stats
 from pattern_confluence import flags
+from execution_core import resolve_bar
 
 SETUPS={"BTCUSDT":("ob_proxy",2.5,4.),"ETHUSDT":("ob_proxy",2.5,6.),"ICPUSDT":("ema200",2.5,4.),"HYPEUSDT":("baseline",2.5,6.)}
 FEE=.0015
@@ -20,11 +21,9 @@ def simulate(rows,features,lo,hi,sl,tp,method,hold=12):
         for j in range(entryi,end+1):
             _,op,high,low,close=rows[j]
             # Stop/target checks use levels fixed before this bar; stop first.
-            if (low<=stop if side==1 else high>=stop):
-                exitprice=min(op,stop) if side==1 else max(op,stop)
-                end=j;break
-            if (high>=target if side==1 else low<=target):
-                exitprice=target;end=j;break
+            fill,reason=resolve_bar(rows[j],side,stop,target)
+            if reason:
+                exitprice=fill;end=j;break
             # Trailing and break-even updates only after bar close, for next bar.
             favorable=side*(close-entry)
             if method=="breakeven1" and favorable>=atr:
