@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T16:58:34.222901+00:00",
+  "generated_utc": "2026-10-26T16:59:22.137842+00:00",
   "hypothesis": "Stop gaps filled at trigger overstate net performance; compare identical entry cohorts.",
   "caution": "All historical slices previously inspected; no independent OOS, no new candles downloaded, no real orders.",
   "execution": "Next-open entry; stop-first ambiguous 4H; adverse stop gap at worse(open,stop); 4H time exit at close; no cross-asset risk netting.",
@@ -174,7 +174,7 @@
                 "max_dd_pct": 24.207,
                 "net_compounded_pct": 38.279
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 130,
                 "win_pct": 55.38,
                 "mean_pct": 0.1916,
@@ -340,7 +340,7 @@
                 "max_dd_pct": 16.655,
                 "net_compounded_pct": 38.574
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 55,
                 "win_pct": 58.18,
                 "mean_pct": 0.5338,
@@ -521,7 +521,7 @@
                 "max_dd_pct": 30.653,
                 "net_compounded_pct": 43.998
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 129,
                 "win_pct": 51.16,
                 "mean_pct": 0.251,
@@ -687,7 +687,7 @@
                 "max_dd_pct": 17.563,
                 "net_compounded_pct": 35.481
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 43,
                 "win_pct": 53.49,
                 "mean_pct": 0.6771,
@@ -868,7 +868,7 @@
                 "max_dd_pct": 36.262,
                 "net_compounded_pct": 6.538
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 133,
                 "win_pct": 51.13,
                 "mean_pct": 0.0832,
@@ -1034,7 +1034,7 @@
                 "max_dd_pct": 25.999,
                 "net_compounded_pct": 64.969
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 59,
                 "win_pct": 57.63,
                 "mean_pct": 0.8888,
@@ -1215,7 +1215,7 @@
                 "max_dd_pct": 39.724,
                 "net_compounded_pct": -35.548
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 69,
                 "win_pct": 44.93,
                 "mean_pct": -0.6105,
@@ -1381,7 +1381,7 @@
                 "max_dd_pct": 43.042,
                 "net_compounded_pct": -36.065
               },
-              "2bp_per_8h": {
+              "3bp_per_8h": {
                 "n": 65,
                 "win_pct": 46.15,
                 "mean_pct": -0.6882,
