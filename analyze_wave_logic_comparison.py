@@ -65,7 +65,7 @@ def fmt(v):
     wins=sum(x[0]>0 for x in v)/len(v)*100
     profit=sum(max(0,x[0]) for x in v);loss=-sum(min(0,x[0]) for x in v)
     pf=profit/loss if loss else float('inf')
-    return f"{len(v)} | {wins:.1f} | {statistics.mean(x[0]):+.3f} | {pf:.2f} | {statistics.mean(x[1] for x in v):.2f} | {statistics.mean(x[2] for x in v):.2f} | {statistics.median(x[3] for x in v):.0f}"
+    return f"{len(v)} | {wins:.1f} | {statistics.mean(x[0] for x in v):+.3f} | {pf:.2f} | {statistics.mean(x[1] for x in v):.2f} | {statistics.mean(x[2] for x in v):.2f} | {statistics.median(x[3] for x in v):.0f}"
 lines=['# ETH DeltaRSI wave logic comparison','',f'Hourly candles: {len(r)}. Early = strong to medium; late = medium to weak. Two-wave: price extends and histogram weakens. Three-wave: third price extreme beyond first two; third histogram peak below first (second may be smaller). Price pivots confirmed after 3 candles; signal within 18h. 4H/1D filter RSI <=40 for LONG or >=60 for SHORT on either HTF.','', '**One open position at a time.** Entry and exit at next hourly open. Round-trip fee 0.11% (two 0.055% taker fills), no slippage/funding/stops. All figures in-sample; wave segmentation approximates visual analysis. MFE and MAE use held-bar extremes.','']
 for label,hold,op in [('24h',24,False),('48h',48,False),('Opposite signal or 120h',120,True)]:
     lines+=['## '+label,'','| Variant | Trades | Win % | Mean net % | Profit factor | Mean MFE % | Mean MAE % | Median hours |','|---|---:|---:|---:|---:|---:|---:|---:|']
