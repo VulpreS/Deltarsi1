@@ -94,6 +94,7 @@ def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
     cash=start_cash;active={};ledger=[];curve=[];skips={};counts=[0,0,0];turnover=0.
     def skip(why):skips[why]=skips.get(why,0)+1
     for step,t in enumerate(times):
+        closed_before=len(ledger)
         # Prior close's reverse exit is executed at THIS open, before new entries.
         for s in tuple(active):
             p=active[s]
@@ -157,6 +158,8 @@ def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
         eq=mark_equity(cash,active,series,t,rate)
         if eq<=0:raise AssertionError("Non-positive equity")
         counts[len(active)]+=1
+        for closed in ledger[closed_before:]:
+            closed["equity_after_bar_close_mtm"]=eq
         curve.append({"utc":iso(t+4*HOUR_MS),"equity":eq,"active":len(active)})
     assert not active
     return {"trades":ledger,"curve":curve,"skips":skips,"concurrent_bars":counts,"turnover_notional":turnover,
@@ -232,7 +235,13 @@ def main():
         report["windows"].append(w)
     for variant in ("baseline","challenger"):
         res=simulate(series,times,variant,.0015,.0003)
-        report["full_common_history"][variant]={"metrics":metrics(res),"trades":res["trades"],"equity_curve":res["curve"]}
+        full_stress={}
+        for c in COSTS:
+            for f in FUNDING:
+                key=f"{round(c*10000)}bp_fee_{round(f*10000)}bp_funding"
+                full_stress[key]=metrics(simulate(series,times,variant,c,f))
+        report["full_common_history"][variant]={"metrics":metrics(res),"stress_grid":full_stress,
+            "trades":res["trades"],"equity_curve":res["curve"]}
     path=Path("reports/portfolio_risk_audit.json");path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(report,indent=2,ensure_ascii=False))
     print(json.dumps({"source_hashes":hashes,"windows":[{"window":w["window"],
