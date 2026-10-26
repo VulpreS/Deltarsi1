@@ -106,31 +106,40 @@ def resolve_open_gap(open_price, side, stop, target):
     return None, None
 
 
-def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
+def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.,open_precedence="resting_first"):
     """Sequential bar-close equity marks, new entries at next open; no shared future data."""
+    if open_precedence not in ("resting_first", "market_first"):
+        raise ValueError("Unknown open precedence")
     cash=start_cash;active={};ledger=[];curve=[];skips={};counts=[0,0,0];turnover=0.
+    pending_gap_competitions=[]
     def skip(why):skips[why]=skips.get(why,0)+1
     for step,t in enumerate(times):
         closed_before=len(ledger)
-        # Prior close's reverse exit is executed at THIS open, before new entries.
-        for s in tuple(active):
-            p=active[s]
-            if p.get("reverse_pending"):
-                op=series[s]["rows"][series[s]["map"][t]][1]
-                cash=settle(s,p,op,"raw_reverse_next_open",t,t,cash,ledger,cost,rate,series)
-                turnover+=p["qty"]*op;del active[s]
-        # P0 chronology: settle OLD positions already through stop/target
-        # at this open BEFORE admitting any new signals. Do not inspect the
-        # new bar's high/low/close here. The gap loss and exit fee must affect
-        # available slots, same-symbol lock, cash and risk sizing immediately.
+        # P0 #14: competing pending reverse market exit vs old resting orders.
+        # At the new bar OPEN, no current high/low/close is yet available.
         for s in tuple(active):
             p=active[s]
             op=series[s]["rows"][series[s]["map"][t]][1]
             fill,why=resolve_open_gap(op,p["side"],p["stop"],p["target"])
-            if why:
+            if p.get("reverse_pending") and why:
+                pending_gap_competitions.append({
+                    "symbol":s,"signal_utc":iso(p["signal_ms"]),
+                    "entry_utc":iso(p["entry_ms"]),"exit_open_utc":iso(t),
+                    "side":"LONG" if p["side"]==1 else "SHORT",
+                    "resting_reason":why,"resting_price":fill,
+                    "market_first_price":op,
+                    "resting_minus_market_gross_pnl":p["side"]*p["qty"]*(fill-op),
+                    "resting_minus_market_exit_fee":p["qty"]*(fill-op)*cost/2,
+                    "quantity":p["qty"],"entry_notional":p["notional"]})
+            if open_precedence=="market_first" and p.get("reverse_pending"):
+                cash=settle(s,p,op,"raw_reverse_next_open",t,t,cash,ledger,cost,rate,series)
+                turnover+=p["qty"]*op;del active[s]
+            elif why:
                 cash=settle(s,p,fill,why,t,t,cash,ledger,cost,rate,series)
-                turnover+=p["qty"]*fill
-                del active[s]
+                turnover+=p["qty"]*fill;del active[s]
+            elif p.get("reverse_pending"):
+                cash=settle(s,p,op,"raw_reverse_next_open",t,t,cash,ledger,cost,rate,series)
+                turnover+=p["qty"]*op;del active[s]
         # Entries use only signal bar whose close is <= this open.
         if step>0:
             for s in SYMS:  # deterministic priority for competing signals
@@ -192,7 +201,8 @@ def simulate(series,times,variant="baseline",cost=.0015,rate=0.,start_cash=1.):
         curve.append({"utc":iso(t+4*HOUR_MS),"equity":eq,"active":len(active)})
     assert not active
     return {"trades":ledger,"curve":curve,"skips":skips,"concurrent_bars":counts,"turnover_notional":turnover,
-            "start_cash":start_cash,"final_cash":cash}
+            "start_cash":start_cash,"final_cash":cash,"open_precedence":open_precedence,
+            "pending_gap_competitions":pending_gap_competitions}
 
 def metrics(res):
     ledger=res["trades"];curve=res["curve"];n=len(ledger)
