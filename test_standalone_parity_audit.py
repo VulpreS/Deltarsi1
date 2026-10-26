@@ -23,6 +23,12 @@ class ParityFixtures(unittest.TestCase):
         pt={"x":{"entry_utc":"2026-01-01T00:00:00+00:00",
                  "exit_utc_earliest":"2026-01-01T04:00:00+00:00"}}
         self.assertEqual(classify_standalone_only(st,pt),"portfolio_cap_or_other")
+    def test_intrabar_exit_cannot_free_slot_at_open(self):
+        st={"entry_utc":"2026-01-01T04:00:00+00:00"}
+        pt={"x":{"entry_utc":"2026-01-01T00:00:00+00:00",
+                 "exit_utc_earliest":"2026-01-01T04:00:00+00:00",
+                 "exit_utc_latest":"2026-01-01T08:00:00+00:00"}}
+        self.assertEqual(classify_standalone_only(st,pt),"portfolio_existing_position")
     def test_existing_position_blocks(self):
         st={"entry_utc":"2026-01-01T04:00:00+00:00"}
         pt={"x":{"entry_utc":"2026-01-01T00:00:00+00:00",
@@ -36,8 +42,8 @@ class ParityFixtures(unittest.TestCase):
               "gross_return":-.01,"side":1}}
         pt={(a,"LONG"):{"signal_utc":a,"entry_utc":b,"exit_utc_earliest":b,
               "side":"LONG","entry":100,"exit":99,"exit_reason":"stop"}}
-        self.assertEqual(reconcile(rows,st,pt)["matched_exit_discrepancy_n"],0)
+        self.assertEqual(reconcile(rows,st,pt)["matched_economic_discrepancy_n"],0)
         pt[(a,"LONG")]["exit"]=98
-        self.assertEqual(reconcile(rows,st,pt)["matched_exit_discrepancy_n"],1)
+        self.assertEqual(reconcile(rows,st,pt)["matched_economic_discrepancy_n"],1)
 
 if __name__=="__main__":unittest.main()
