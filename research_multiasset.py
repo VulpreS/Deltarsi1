@@ -130,6 +130,7 @@ def prepare(sym,tf,raw):
         early=(colors[k-1]=="strongR" and colors[k]=="mediumR") if side==1 else (colors[k-1]=="strongB" and colors[k]=="mediumB")
         late=(colors[k-1]=="mediumR" and colors[k]=="weakR") if side==1 else (colors[k-1]=="mediumB" and colors[k]=="weakB")
         turn=abs(d[k])<abs(d[k-1]) and abs(d[k-1])>=abs(d[k-2]) and abs(d[k-1])>=15
+        early=early and abs(d[k])<abs(d[k-1])
         if not (early or late or turn):continue
         signals.append((k,side,early,late,turn,w[k][0 if side==1 else 1],(close[k]>slow[k] if side==1 else close[k]<slow[k]),(fast[k]>slow[k] if side==1 else fast[k]<slow[k]),ind["rsi"][k],av[k]))
     return rows,signals
@@ -215,8 +216,17 @@ def main():
             for sym,d in ds.items():
                 tr.extend(simulate(d,cfg,cuts[sym])[0])
                 te.extend(x for x in simulate(d,cfg,0)[0] if x[0]>=cuts[sym])
-            baselines.append({"config":cfg,"train":metric(tr),"test":metric(te)})
-        results[str(tf)+"h"]={"assets":list(ds),"top_train_configs":choices,"baselines":baselines,"candidate_count":len(ranks)}
+            baselines.append({"config":cfg,"train":metric(tr),"test":metric(te),"test_by_asset":{sym:metric([x for x in simulate(d,cfg,0)[0] if x[0]>=cuts[sym]]) for sym,d in ds.items()},"test_max_drawdown_by_asset":{sym:round(100*simulate(d,cfg,0)[1],2) for sym,d in ds.items()}})
+        divergences=[]
+        for mode in ("early","late","turn"):
+            for divergence in (2,3):
+                cfg=(mode,divergence,"none",2.5,3.,12,"both")
+                tr=[];te=[]
+                for sym,d in ds.items():
+                    tr.extend(simulate(d,cfg,cuts[sym])[0])
+                    te.extend(x for x in simulate(d,cfg,0)[0] if x[0]>=cuts[sym])
+                divergences.append({"config":cfg,"train":metric(tr),"test":metric(te)})
+        results[str(tf)+"h"]={"assets":list(ds),"top_train_configs":choices,"baselines":baselines,"divergence_ablation":divergences,"candidate_count":len(ranks)}
     output={"method":"1H downloaded once; 4H and 1D resampled; first 70% optimization, last 30% held out; 0.15% round-trip costs; entry next open; stop prioritized when stop and target touch same bar; one position per symbol; no leverage/funding; unadjusted price series; pivot confirmed after 2 bars","data":status,"results":results}
     (OUT/"multiasset_4h_1d_results.json").write_text(json.dumps(output,indent=2,ensure_ascii=False))
     print(json.dumps(output,indent=2,ensure_ascii=False),flush=True)
