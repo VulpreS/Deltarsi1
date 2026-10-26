@@ -4,6 +4,7 @@ from pathlib import Path
 from itertools import product
 from analyze_mtf_5y import indicator,aggregate
 from research_multiasset import atr,ema
+from execution_core import resolve_bar
 SYMS=["ETHUSDT","BTCUSDT","ICPUSDT","HYPEUSDT"];FEE=.0015
 def data(sym):
  p=Path("data")/(sym+"_1h.csv")
@@ -57,9 +58,9 @@ def sim(rows,feats,cfg,lo,hi):
   entry=rows[entryi][1];side=f["side"];stop=entry-side*sl*f["atr"];target=entry+side*tp*f["atr"]
   end=min(entryi+hold-1,hi-1,len(rows)-1);out=rows[end][4]
   for j in range(entryi,end+1):
-   x=rows[j];hitstop=(x[3]<=stop if side==1 else x[2]>=stop);hittp=(x[2]>=target if side==1 else x[3]<=target)
-   if hitstop or hittp:
-    out=stop if hitstop else target;end=j;break
+   fill,reason=resolve_bar(rows[j],side,stop,target)
+   if reason:
+    out=fill;end=j;break
   ret=side*(out/entry-1)-FEE
   trades.append((k,ret,side));eq*=max(.001,1+ret);peak=max(peak,eq);dd=max(dd,1-eq/peak)
   k=end+1
