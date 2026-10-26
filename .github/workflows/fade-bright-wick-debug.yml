@@ -1,0 +1,22 @@
+name: Fade Bright Wick Debug
+on:
+  push:
+    paths:
+      - .github/workflows/fade-bright-wick-debug.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python fade_bright_wick_4h.py > reports/fade_bright_debug.txt 2>&1 || true
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/fade_bright_debug.txt reports/fade_bright_wick_4h.json 2>/dev/null || git add reports/fade_bright_debug.txt
+          git diff --cached --quiet || (git commit -m "Record fade-bright run diagnostics" && git pull --rebase origin main && git push)
