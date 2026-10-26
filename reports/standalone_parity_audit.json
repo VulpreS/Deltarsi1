@@ -1,0 +1,3555 @@
+{
+  "title": "P0 #12 standalone vs portfolio UTC trade-ID parity",
+  "producer_commit_sha": "1148f6febcdff757cc3308f1c01830d495498812",
+  "ci_run_id": "40415779542",
+  "source_sha256": {
+    "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
+    "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b"
+  },
+  "hypothesis": "Trade-count discrepancies are due to independent scheduling, risk caps and cross-asset competition, not mismatched fill semantics.",
+  "freeze": "Frozen 2.5x4H ATR stop / 3x4H ATR target / 12x4H bars; turn signal, next open.",
+  "caution": "Previously inspected history; not independent OOS. Diagnostic relaxed-cap standalone is NOT a tradeable strategy. Costs 15bp assumed; funding zero for exact execution parity. Actual venue funding absent.",
+  "windows": [
+    {
+      "window": "full",
+      "start_utc": "2025-10-26T16:00:00+00:00",
+      "end_close_utc": "2026-10-26T12:00:00+00:00",
+      "assets": {
+        "BTCUSDT": {
+          "capped": {
+            "standalone_n": 130,
+            "portfolio_n": 137,
+            "matched_n": 125,
+            "standalone_only_n": 5,
+            "portfolio_only_n": 12,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 4,
+              "portfolio_cap_or_other": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 12
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2183,
+                  "entry_index": 2184,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.0027295463533646425,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 80416.01,
+                  "gross_return": -0.0027295463533646425
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-20T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-20T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-05-14T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-08-30T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-14T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-13T08:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-01-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-21T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-04-13T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-05-14T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 137,
+              "win_pct": 59.12,
+              "net_pf": 1.3938,
+              "mean_net_R": 0.1256,
+              "net_return_pct": 4.3631,
+              "gross_trade_pnl": 0.0620159,
+              "fees": 0.0183851,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 2.2442,
+              "return_over_max_dd": 1.9441,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -1.4224,
+              "exposure_pct": 50.57,
+              "concurrent_bar_counts": [
+                1082,
+                1107,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 118
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 24.5134,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 137,
+                  "net_pnl": 0.0436309,
+                  "pf": 1.3938,
+                  "mean_net_R": 0.1256
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 130,
+            "portfolio_n": 137,
+            "matched_n": 125,
+            "standalone_only_n": 5,
+            "portfolio_only_n": 12,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 4,
+              "portfolio_cap_or_other": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 12
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2183,
+                  "entry_index": 2184,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.0027295463533646425,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 80416.01,
+                  "gross_return": -0.0027295463533646425
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-20T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-20T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-05-14T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-08-30T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-14T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-13T08:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-01-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-21T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-04-13T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-05-14T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 137,
+              "win_pct": 59.12,
+              "net_pf": 1.3938,
+              "mean_net_R": 0.1256,
+              "net_return_pct": 4.3631,
+              "gross_trade_pnl": 0.0620159,
+              "fees": 0.0183851,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 2.2442,
+              "return_over_max_dd": 1.9441,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -1.4224,
+              "exposure_pct": 50.57,
+              "concurrent_bar_counts": [
+                1082,
+                1107,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 118
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 24.5134,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 137,
+                  "net_pnl": 0.0436309,
+                  "pf": 1.3938,
+                  "mean_net_R": 0.1256
+                }
+              }
+            }
+          }
+        },
+        "ETHUSDT": {
+          "capped": {
+            "standalone_n": 128,
+            "portfolio_n": 136,
+            "matched_n": 121,
+            "standalone_only_n": 7,
+            "portfolio_only_n": 15,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 7
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 15
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2184,
+                  "entry_index": 2185,
+                  "exit_index": 2189,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004436008445477424,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2334.05,
+                  "gross_return": -0.004436008445477424
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-27T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-07T00:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-02-17T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-13T04:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-04-06T20:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-07-24T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-09-11T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-26T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-05T20:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-01-10T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-15T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-02-18T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-21T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-04-06T08:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 136,
+              "win_pct": 52.21,
+              "net_pf": 1.2128,
+              "mean_net_R": 0.0683,
+              "net_return_pct": 2.3201,
+              "gross_trade_pnl": 0.0365614,
+              "fees": 0.0133604,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 2.0213,
+              "return_over_max_dd": 1.1478,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.8465,
+              "exposure_pct": 51.8,
+              "concurrent_bar_counts": [
+                1055,
+                1134,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 97
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 17.8138,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 136,
+                  "net_pnl": 0.023201,
+                  "pf": 1.2128,
+                  "mean_net_R": 0.0683
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 128,
+            "portfolio_n": 136,
+            "matched_n": 121,
+            "standalone_only_n": 7,
+            "portfolio_only_n": 15,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 7
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 15
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2184,
+                  "entry_index": 2185,
+                  "exit_index": 2189,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004436008445477424,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2334.05,
+                  "gross_return": -0.004436008445477424
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-27T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-07T00:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-02-17T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-13T04:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-04-06T20:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-07-24T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-09-11T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-26T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-05T20:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-01-10T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-15T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-02-18T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-21T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-04-06T08:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 136,
+              "win_pct": 52.21,
+              "net_pf": 1.2128,
+              "mean_net_R": 0.0683,
+              "net_return_pct": 2.3201,
+              "gross_trade_pnl": 0.0365614,
+              "fees": 0.0133604,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 2.0213,
+              "return_over_max_dd": 1.1478,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.8465,
+              "exposure_pct": 51.8,
+              "concurrent_bar_counts": [
+                1055,
+                1134,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 97
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 17.8138,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 136,
+                  "net_pnl": 0.023201,
+                  "pf": 1.2128,
+                  "mean_net_R": 0.0683
+                }
+              }
+            }
+          }
+        },
+        "ICPUSDT": {
+          "capped": {
+            "standalone_n": 132,
+            "portfolio_n": 138,
+            "matched_n": 112,
+            "standalone_only_n": 20,
+            "portfolio_only_n": 26,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 20
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 26
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T08:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2182,
+                  "entry_index": 2183,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004961832061068705,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2.607,
+                  "gross_return": -0.004961832061068705
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-13T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-11T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-22T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-26T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-28T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-30T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T16:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-12T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-14T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-16T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-10T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-21T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-24T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-27T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-29T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 138,
+              "win_pct": 48.55,
+              "net_pf": 1.012,
+              "mean_net_R": 0.0044,
+              "net_return_pct": 0.1278,
+              "gross_trade_pnl": 0.0094442,
+              "fees": 0.0081659,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.8245,
+              "return_over_max_dd": 0.0701,
+              "worst_calendar_month": "2026-07",
+              "worst_month_pct": -0.651,
+              "exposure_pct": 57.2,
+              "concurrent_bar_counts": [
+                937,
+                1252,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 136
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 10.8879,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 138,
+                  "net_pnl": 0.0012782,
+                  "pf": 1.012,
+                  "mean_net_R": 0.0044
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 132,
+            "portfolio_n": 138,
+            "matched_n": 112,
+            "standalone_only_n": 20,
+            "portfolio_only_n": 26,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 20
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 26
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T08:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2182,
+                  "entry_index": 2183,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004961832061068705,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2.607,
+                  "gross_return": -0.004961832061068705
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-13T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-11T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-22T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-26T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-28T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-30T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T16:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-12T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-14T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-16T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-10T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-21T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-24T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-27T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-29T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 138,
+              "win_pct": 48.55,
+              "net_pf": 1.012,
+              "mean_net_R": 0.0044,
+              "net_return_pct": 0.1278,
+              "gross_trade_pnl": 0.0094442,
+              "fees": 0.0081659,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.8245,
+              "return_over_max_dd": 0.0701,
+              "worst_calendar_month": "2026-07",
+              "worst_month_pct": -0.651,
+              "exposure_pct": 57.2,
+              "concurrent_bar_counts": [
+                937,
+                1252,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 136
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 10.8879,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 138,
+                  "net_pnl": 0.0012782,
+                  "pf": 1.012,
+                  "mean_net_R": 0.0044
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "window": 1,
+      "start_utc": "2025-10-26T16:00:00+00:00",
+      "end_close_utc": "2026-01-07T12:00:00+00:00",
+      "assets": {
+        "BTCUSDT": {
+          "capped": {
+            "standalone_n": 16,
+            "portfolio_n": 16,
+            "matched_n": 15,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 1,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 1
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-01-05T20:00:00+00:00",
+                  "SHORT"
+                ],
+                "standalone": {
+                  "signal_index": 427,
+                  "entry_index": 428,
+                  "exit_index": 436,
+                  "entry_utc": "2026-01-06T00:00:00+00:00",
+                  "exit_utc": "2026-01-07T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.018884567190757373,
+                  "side": -1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-01-06T00:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 92087.21,
+                  "gross_return": 0.018884567190757373
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-14T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 16,
+              "win_pct": 50.0,
+              "net_pf": 1.001,
+              "mean_net_R": 0.0011,
+              "net_return_pct": 0.0013,
+              "gross_trade_pnl": 0.0020693,
+              "fees": 0.0020566,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.1646,
+              "return_over_max_dd": 0.0011,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.6547,
+              "exposure_pct": 34.32,
+              "concurrent_bar_counts": [
+                287,
+                150,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 19
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 2.7421,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 16,
+                  "net_pnl": 1.27e-05,
+                  "pf": 1.001,
+                  "mean_net_R": 0.0011
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 16,
+            "portfolio_n": 16,
+            "matched_n": 15,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 1,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 1
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-01-05T20:00:00+00:00",
+                  "SHORT"
+                ],
+                "standalone": {
+                  "signal_index": 427,
+                  "entry_index": 428,
+                  "exit_index": 436,
+                  "entry_utc": "2026-01-06T00:00:00+00:00",
+                  "exit_utc": "2026-01-07T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.018884567190757373,
+                  "side": -1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-01-06T00:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 92087.21,
+                  "gross_return": 0.018884567190757373
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-14T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 16,
+              "win_pct": 50.0,
+              "net_pf": 1.001,
+              "mean_net_R": 0.0011,
+              "net_return_pct": 0.0013,
+              "gross_trade_pnl": 0.0020693,
+              "fees": 0.0020566,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.1646,
+              "return_over_max_dd": 0.0011,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.6547,
+              "exposure_pct": 34.32,
+              "concurrent_bar_counts": [
+                287,
+                150,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 19
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 2.7421,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 16,
+                  "net_pnl": 1.27e-05,
+                  "pf": 1.001,
+                  "mean_net_R": 0.0011
+                }
+              }
+            }
+          }
+        },
+        "ETHUSDT": {
+          "capped": {
+            "standalone_n": 15,
+            "portfolio_n": 15,
+            "matched_n": 13,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 2,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 2
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2025-12-27T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-07T00:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-26T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-05T20:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 15,
+              "win_pct": 60.0,
+              "net_pf": 1.7453,
+              "mean_net_R": 0.2027,
+              "net_return_pct": 0.7594,
+              "gross_trade_pnl": 0.0090251,
+              "fees": 0.0014316,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.9978,
+              "return_over_max_dd": 0.761,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.8188,
+              "exposure_pct": 30.66,
+              "concurrent_bar_counts": [
+                303,
+                134,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 13
+              },
+              "longest_loss_streak": 4,
+              "turnover_notional_per_initial_equity": 1.9087,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 15,
+                  "net_pnl": 0.0075935,
+                  "pf": 1.7453,
+                  "mean_net_R": 0.2027
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 15,
+            "portfolio_n": 15,
+            "matched_n": 13,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 2,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 2
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2025-12-27T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-07T00:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-26T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-05T20:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 15,
+              "win_pct": 60.0,
+              "net_pf": 1.7453,
+              "mean_net_R": 0.2027,
+              "net_return_pct": 0.7594,
+              "gross_trade_pnl": 0.0090251,
+              "fees": 0.0014316,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.9978,
+              "return_over_max_dd": 0.761,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.8188,
+              "exposure_pct": 30.66,
+              "concurrent_bar_counts": [
+                303,
+                134,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 13
+              },
+              "longest_loss_streak": 4,
+              "turnover_notional_per_initial_equity": 1.9087,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 15,
+                  "net_pnl": 0.0075935,
+                  "pf": 1.7453,
+                  "mean_net_R": 0.2027
+                }
+              }
+            }
+          }
+        },
+        "ICPUSDT": {
+          "capped": {
+            "standalone_n": 15,
+            "portfolio_n": 16,
+            "matched_n": 13,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 3,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 3
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-01-06T04:00:00+00:00",
+                  "SHORT"
+                ],
+                "standalone": {
+                  "signal_index": 429,
+                  "entry_index": 430,
+                  "exit_index": 436,
+                  "entry_utc": "2026-01-06T08:00:00+00:00",
+                  "exit_utc": "2026-01-07T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.018845700824499434,
+                  "side": -1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-01-06T08:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 3.332,
+                  "gross_return": 0.018845700824499434
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-13T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-12T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-14T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-16T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 16,
+              "win_pct": 50.0,
+              "net_pf": 1.0192,
+              "mean_net_R": 0.0072,
+              "net_return_pct": 0.0259,
+              "gross_trade_pnl": 0.0011105,
+              "fees": 0.0008519,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.099,
+              "return_over_max_dd": 0.0235,
+              "worst_calendar_month": "2025-12",
+              "worst_month_pct": -0.1919,
+              "exposure_pct": 33.18,
+              "concurrent_bar_counts": [
+                292,
+                145,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 10
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 1.1358,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 16,
+                  "net_pnl": 0.0002586,
+                  "pf": 1.0192,
+                  "mean_net_R": 0.0072
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 15,
+            "portfolio_n": 16,
+            "matched_n": 13,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 3,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 3
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-01-06T04:00:00+00:00",
+                  "SHORT"
+                ],
+                "standalone": {
+                  "signal_index": 429,
+                  "entry_index": 430,
+                  "exit_index": 436,
+                  "entry_utc": "2026-01-06T08:00:00+00:00",
+                  "exit_utc": "2026-01-07T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.018845700824499434,
+                  "side": -1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-01-06T08:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 3.332,
+                  "gross_return": 0.018845700824499434
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2025-12-13T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-15T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2025-12-12T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-14T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2025-12-16T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 16,
+              "win_pct": 50.0,
+              "net_pf": 1.0192,
+              "mean_net_R": 0.0072,
+              "net_return_pct": 0.0259,
+              "gross_trade_pnl": 0.0011105,
+              "fees": 0.0008519,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.099,
+              "return_over_max_dd": 0.0235,
+              "worst_calendar_month": "2025-12",
+              "worst_month_pct": -0.1919,
+              "exposure_pct": 33.18,
+              "concurrent_bar_counts": [
+                292,
+                145,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 10
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 1.1358,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 16,
+                  "net_pnl": 0.0002586,
+                  "pf": 1.0192,
+                  "mean_net_R": 0.0072
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "window": 2,
+      "start_utc": "2026-01-07T12:00:00+00:00",
+      "end_close_utc": "2026-03-21T12:00:00+00:00",
+      "assets": {
+        "BTCUSDT": {
+          "capped": {
+            "standalone_n": 30,
+            "portfolio_n": 33,
+            "matched_n": 28,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 5,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 5
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2026-01-20T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-20T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-01-13T08:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-01-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-21T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 33,
+              "win_pct": 57.58,
+              "net_pf": 1.0615,
+              "mean_net_R": 0.0236,
+              "net_return_pct": 0.1873,
+              "gross_trade_pnl": 0.0052616,
+              "fees": 0.0033887,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.401,
+              "return_over_max_dd": 0.1337,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.8705,
+              "exposure_pct": 55.48,
+              "concurrent_bar_counts": [
+                195,
+                243,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 30
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 4.5183,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 33,
+                  "net_pnl": 0.0018729,
+                  "pf": 1.0615,
+                  "mean_net_R": 0.0236
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 30,
+            "portfolio_n": 33,
+            "matched_n": 28,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 5,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 5
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2026-01-20T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-20T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-01-13T08:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-01-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-21T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 33,
+              "win_pct": 57.58,
+              "net_pf": 1.0615,
+              "mean_net_R": 0.0236,
+              "net_return_pct": 0.1873,
+              "gross_trade_pnl": 0.0052616,
+              "fees": 0.0033887,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.401,
+              "return_over_max_dd": 0.1337,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.8705,
+              "exposure_pct": 55.48,
+              "concurrent_bar_counts": [
+                195,
+                243,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 30
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 4.5183,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 33,
+                  "net_pnl": 0.0018729,
+                  "pf": 1.0615,
+                  "mean_net_R": 0.0236
+                }
+              }
+            }
+          }
+        },
+        "ETHUSDT": {
+          "capped": {
+            "standalone_n": 27,
+            "portfolio_n": 29,
+            "matched_n": 25,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 4,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 4
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-03-19T16:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 865,
+                  "entry_index": 866,
+                  "exit_index": 875,
+                  "entry_utc": "2026-03-19T20:00:00+00:00",
+                  "exit_utc": "2026-03-21T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.007561251272662828,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-03-19T20:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2157.37,
+                  "gross_return": 0.007561251272662828
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-02-17T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-13T04:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-01-10T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-15T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-02-18T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 29,
+              "win_pct": 55.17,
+              "net_pf": 1.5231,
+              "mean_net_R": 0.1528,
+              "net_return_pct": 1.1074,
+              "gross_trade_pnl": 0.0132599,
+              "fees": 0.0021858,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.8801,
+              "return_over_max_dd": 1.2583,
+              "worst_calendar_month": "2026-03",
+              "worst_month_pct": -0.0423,
+              "exposure_pct": 54.11,
+              "concurrent_bar_counts": [
+                201,
+                237,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 15
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 2.9144,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 29,
+                  "net_pnl": 0.0110741,
+                  "pf": 1.5231,
+                  "mean_net_R": 0.1528
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 27,
+            "portfolio_n": 29,
+            "matched_n": 25,
+            "standalone_only_n": 2,
+            "portfolio_only_n": 4,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 2
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 4
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-03-19T16:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 865,
+                  "entry_index": 866,
+                  "exit_index": 875,
+                  "entry_utc": "2026-03-19T20:00:00+00:00",
+                  "exit_utc": "2026-03-21T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.007561251272662828,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-03-19T20:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2157.37,
+                  "gross_return": 0.007561251272662828
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-02-17T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-13T04:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-01-10T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-15T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-02-18T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-12T16:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 29,
+              "win_pct": 55.17,
+              "net_pf": 1.5231,
+              "mean_net_R": 0.1528,
+              "net_return_pct": 1.1074,
+              "gross_trade_pnl": 0.0132599,
+              "fees": 0.0021858,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.8801,
+              "return_over_max_dd": 1.2583,
+              "worst_calendar_month": "2026-03",
+              "worst_month_pct": -0.0423,
+              "exposure_pct": 54.11,
+              "concurrent_bar_counts": [
+                201,
+                237,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 15
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 2.9144,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 29,
+                  "net_pnl": 0.0110741,
+                  "pf": 1.5231,
+                  "mean_net_R": 0.1528
+                }
+              }
+            }
+          }
+        },
+        "ICPUSDT": {
+          "capped": {
+            "standalone_n": 30,
+            "portfolio_n": 30,
+            "matched_n": 22,
+            "standalone_only_n": 8,
+            "portfolio_only_n": 8,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 8
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 8
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2026-01-11T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-22T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-26T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-28T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-30T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-17T20:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-20T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-01-10T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-21T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-24T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-27T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-29T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-16T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-18T20:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 30,
+              "win_pct": 43.33,
+              "net_pf": 0.8113,
+              "mean_net_R": -0.0663,
+              "net_return_pct": -0.5014,
+              "gross_trade_pnl": -0.0036129,
+              "fees": 0.0014008,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.311,
+              "return_over_max_dd": -0.3824,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.9315,
+              "exposure_pct": 63.93,
+              "concurrent_bar_counts": [
+                158,
+                280,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 33
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 1.8677,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 30,
+                  "net_pnl": -0.0050137,
+                  "pf": 0.8113,
+                  "mean_net_R": -0.0663
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 30,
+            "portfolio_n": 30,
+            "matched_n": 22,
+            "standalone_only_n": 8,
+            "portfolio_only_n": 8,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 8
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 8
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2026-01-11T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-22T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-26T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-28T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-30T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-17T20:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-03-20T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-01-10T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-21T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-24T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-27T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-01-29T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-02-19T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-16T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-03-18T20:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 30,
+              "win_pct": 43.33,
+              "net_pf": 0.8113,
+              "mean_net_R": -0.0663,
+              "net_return_pct": -0.5014,
+              "gross_trade_pnl": -0.0036129,
+              "fees": 0.0014008,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.311,
+              "return_over_max_dd": -0.3824,
+              "worst_calendar_month": "2026-01",
+              "worst_month_pct": -0.9315,
+              "exposure_pct": 63.93,
+              "concurrent_bar_counts": [
+                158,
+                280,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 33
+              },
+              "longest_loss_streak": 7,
+              "turnover_notional_per_initial_equity": 1.8677,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 30,
+                  "net_pnl": -0.0050137,
+                  "pf": 0.8113,
+                  "mean_net_R": -0.0663
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "window": 3,
+      "start_utc": "2026-03-21T12:00:00+00:00",
+      "end_close_utc": "2026-06-02T12:00:00+00:00",
+      "assets": {
+        "BTCUSDT": {
+          "capped": {
+            "standalone_n": 29,
+            "portfolio_n": 30,
+            "matched_n": 28,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 2,
+            "standalone_only_reasons": {
+              "portfolio_cap_or_other": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 2
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2026-05-14T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-04-13T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-05-14T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 30,
+              "win_pct": 63.33,
+              "net_pf": 1.8139,
+              "mean_net_R": 0.2242,
+              "net_return_pct": 1.6886,
+              "gross_trade_pnl": 0.0209174,
+              "fees": 0.0040315,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.7483,
+              "return_over_max_dd": 2.2566,
+              "worst_calendar_month": "2026-03",
+              "worst_month_pct": 0.1477,
+              "exposure_pct": 56.85,
+              "concurrent_bar_counts": [
+                189,
+                249,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 25
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 5.3753,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 30,
+                  "net_pnl": 0.016886,
+                  "pf": 1.8139,
+                  "mean_net_R": 0.2242
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 29,
+            "portfolio_n": 30,
+            "matched_n": 28,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 2,
+            "standalone_only_reasons": {
+              "portfolio_cap_or_other": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 2
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [
+              [
+                "2026-05-14T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-04-13T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-05-14T00:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 30,
+              "win_pct": 63.33,
+              "net_pf": 1.8139,
+              "mean_net_R": 0.2242,
+              "net_return_pct": 1.6886,
+              "gross_trade_pnl": 0.0209174,
+              "fees": 0.0040315,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.7483,
+              "return_over_max_dd": 2.2566,
+              "worst_calendar_month": "2026-03",
+              "worst_month_pct": 0.1477,
+              "exposure_pct": 56.85,
+              "concurrent_bar_counts": [
+                189,
+                249,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 25
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 5.3753,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 30,
+                  "net_pnl": 0.016886,
+                  "pf": 1.8139,
+                  "mean_net_R": 0.2242
+                }
+              }
+            }
+          }
+        },
+        "ETHUSDT": {
+          "capped": {
+            "standalone_n": 31,
+            "portfolio_n": 33,
+            "matched_n": 30,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 3,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 3
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-05-31T16:00:00+00:00",
+                  "SHORT"
+                ],
+                "standalone": {
+                  "signal_index": 1303,
+                  "entry_index": 1304,
+                  "exit_index": 1313,
+                  "entry_utc": "2026-05-31T20:00:00+00:00",
+                  "exit_utc": "2026-06-02T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.010527210714250002,
+                  "side": -1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-05-31T20:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 1978.53,
+                  "gross_return": 0.010527210714250002
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-04-06T20:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-03-22T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-04-06T08:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-04-17T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 33,
+              "win_pct": 48.48,
+              "net_pf": 0.7767,
+              "mean_net_R": -0.082,
+              "net_return_pct": -0.6801,
+              "gross_trade_pnl": -0.0034869,
+              "fees": 0.003314,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.5427,
+              "return_over_max_dd": -0.4409,
+              "worst_calendar_month": "2026-04",
+              "worst_month_pct": -0.5951,
+              "exposure_pct": 63.7,
+              "concurrent_bar_counts": [
+                159,
+                279,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 24
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 4.4187,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 33,
+                  "net_pnl": -0.0068009,
+                  "pf": 0.7767,
+                  "mean_net_R": -0.082
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 31,
+            "portfolio_n": 33,
+            "matched_n": 30,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 3,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 3
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-05-31T16:00:00+00:00",
+                  "SHORT"
+                ],
+                "standalone": {
+                  "signal_index": 1303,
+                  "entry_index": 1304,
+                  "exit_index": 1313,
+                  "entry_utc": "2026-05-31T20:00:00+00:00",
+                  "exit_utc": "2026-06-02T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.010527210714250002,
+                  "side": -1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-05-31T20:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 1978.53,
+                  "gross_return": 0.010527210714250002
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-04-06T20:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-03-22T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-04-06T08:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-04-17T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 33,
+              "win_pct": 48.48,
+              "net_pf": 0.7767,
+              "mean_net_R": -0.082,
+              "net_return_pct": -0.6801,
+              "gross_trade_pnl": -0.0034869,
+              "fees": 0.003314,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.5427,
+              "return_over_max_dd": -0.4409,
+              "worst_calendar_month": "2026-04",
+              "worst_month_pct": -0.5951,
+              "exposure_pct": 63.7,
+              "concurrent_bar_counts": [
+                159,
+                279,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 24
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 4.4187,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 33,
+                  "net_pnl": -0.0068009,
+                  "pf": 0.7767,
+                  "mean_net_R": -0.082
+                }
+              }
+            }
+          }
+        },
+        "ICPUSDT": {
+          "capped": {
+            "standalone_n": 29,
+            "portfolio_n": 30,
+            "matched_n": 29,
+            "standalone_only_n": 0,
+            "portfolio_only_n": 1,
+            "standalone_only_reasons": {},
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 1
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [],
+            "portfolio_only_examples": [
+              [
+                "2026-05-14T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 30,
+              "win_pct": 53.33,
+              "net_pf": 0.9032,
+              "mean_net_R": -0.0319,
+              "net_return_pct": -0.244,
+              "gross_trade_pnl": -0.0004303,
+              "fees": 0.0020101,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.373,
+              "return_over_max_dd": -0.1777,
+              "worst_calendar_month": "2026-05",
+              "worst_month_pct": -0.3388,
+              "exposure_pct": 59.36,
+              "concurrent_bar_counts": [
+                178,
+                260,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 26
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 2.6802,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 30,
+                  "net_pnl": -0.0024405,
+                  "pf": 0.9032,
+                  "mean_net_R": -0.0319
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 29,
+            "portfolio_n": 30,
+            "matched_n": 29,
+            "standalone_only_n": 0,
+            "portfolio_only_n": 1,
+            "standalone_only_reasons": {},
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 1
+            },
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [],
+            "portfolio_only_examples": [
+              [
+                "2026-05-14T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 30,
+              "win_pct": 53.33,
+              "net_pf": 0.9032,
+              "mean_net_R": -0.0319,
+              "net_return_pct": -0.244,
+              "gross_trade_pnl": -0.0004303,
+              "fees": 0.0020101,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.373,
+              "return_over_max_dd": -0.1777,
+              "worst_calendar_month": "2026-05",
+              "worst_month_pct": -0.3388,
+              "exposure_pct": 59.36,
+              "concurrent_bar_counts": [
+                178,
+                260,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 26
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 2.6802,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 30,
+                  "net_pnl": -0.0024405,
+                  "pf": 0.9032,
+                  "mean_net_R": -0.0319
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "window": 4,
+      "start_utc": "2026-06-02T12:00:00+00:00",
+      "end_close_utc": "2026-08-14T12:00:00+00:00",
+      "assets": {
+        "BTCUSDT": {
+          "capped": {
+            "standalone_n": 27,
+            "portfolio_n": 27,
+            "matched_n": 27,
+            "standalone_only_n": 0,
+            "portfolio_only_n": 0,
+            "standalone_only_reasons": {},
+            "portfolio_only_reasons": {},
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [],
+            "portfolio_only_examples": [],
+            "portfolio_metrics": {
+              "n": 27,
+              "win_pct": 55.56,
+              "net_pf": 1.0592,
+              "mean_net_R": 0.0235,
+              "net_return_pct": 0.1525,
+              "gross_trade_pnl": 0.0053295,
+              "fees": 0.0038044,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.6958,
+              "return_over_max_dd": 0.2192,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.3864,
+              "exposure_pct": 52.51,
+              "concurrent_bar_counts": [
+                208,
+                230,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 24
+              },
+              "longest_loss_streak": 2,
+              "turnover_notional_per_initial_equity": 5.0726,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 27,
+                  "net_pnl": 0.0015251,
+                  "pf": 1.0592,
+                  "mean_net_R": 0.0235
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 27,
+            "portfolio_n": 27,
+            "matched_n": 27,
+            "standalone_only_n": 0,
+            "portfolio_only_n": 0,
+            "standalone_only_reasons": {},
+            "portfolio_only_reasons": {},
+            "matched_exit_discrepancy_n": 0,
+            "matched_exit_discrepancy_examples": [],
+            "standalone_only_examples": [],
+            "portfolio_only_examples": [],
+            "portfolio_metrics": {
+              "n": 27,
+              "win_pct": 55.56,
+              "net_pf": 1.0592,
+              "mean_net_R": 0.0235,
+              "net_return_pct": 0.1525,
+              "gross_trade_pnl": 0.0053295,
+              "fees": 0.0038044,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.6958,
+              "return_over_max_dd": 0.2192,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.3864,
+              "exposure_pct": 52.51,
+              "concurrent_bar_counts": [
+                208,
+                230,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 24
+              },
+              "longest_loss_streak": 2,
+              "turnover_notional_per_initial_equity": 5.0726,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 27,
+                  "net_pnl": 0.0015251,
+                  "pf": 1.0592,
+                  "mean_net_R": 0.0235
+                }
+              }
+            }
+          }
+        },
+        "ETHUSDT": {
+          "capped": {
+            "standalone_n": 27,
+            "portfolio_n": 28,
+            "matched_n": 26,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 2,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 2
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-08-13T04:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 1744,
+                  "entry_index": 1745,
+                  "exit_index": 1751,
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_utc": "2026-08-14T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.009163470618336333,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 1878.2,
+                  "gross_return": -0.009163470618336333
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-07-24T20:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-07-24T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-26T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 28,
+              "win_pct": 50.0,
+              "net_pf": 0.8425,
+              "mean_net_R": -0.0565,
+              "net_return_pct": -0.3999,
+              "gross_trade_pnl": -0.0011073,
+              "fees": 0.0028921,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.9949,
+              "return_over_max_dd": -0.402,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.3378,
+              "exposure_pct": 52.74,
+              "concurrent_bar_counts": [
+                207,
+                231,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 25
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 3.8561,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 28,
+                  "net_pnl": -0.0039993,
+                  "pf": 0.8425,
+                  "mean_net_R": -0.0565
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 27,
+            "portfolio_n": 28,
+            "matched_n": 26,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 2,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 2
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-08-13T04:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 1744,
+                  "entry_index": 1745,
+                  "exit_index": 1751,
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_utc": "2026-08-14T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.009163470618336333,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 1878.2,
+                  "gross_return": -0.009163470618336333
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-07-24T20:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-07-24T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-26T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 28,
+              "win_pct": 50.0,
+              "net_pf": 0.8425,
+              "mean_net_R": -0.0565,
+              "net_return_pct": -0.3999,
+              "gross_trade_pnl": -0.0011073,
+              "fees": 0.0028921,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.9949,
+              "return_over_max_dd": -0.402,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.3378,
+              "exposure_pct": 52.74,
+              "concurrent_bar_counts": [
+                207,
+                231,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 25
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 3.8561,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 28,
+                  "net_pnl": -0.0039993,
+                  "pf": 0.8425,
+                  "mean_net_R": -0.0565
+                }
+              }
+            }
+          }
+        },
+        "ICPUSDT": {
+          "capped": {
+            "standalone_n": 28,
+            "portfolio_n": 31,
+            "matched_n": 21,
+            "standalone_only_n": 7,
+            "portfolio_only_n": 10,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 7
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 10
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-08-13T04:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 1743,
+                  "entry_index": 1744,
+                  "exit_index": 1750,
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_utc": "2026-08-14T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.01741521539871682,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2.22,
+                  "gross_return": 0.01741521539871682
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-06-14T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-06-17T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-06-19T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-06-22T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-07-13T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-27T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-08-05T12:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-06-13T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-06-15T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-06-17T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-06-20T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-12T04:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-07-14T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-26T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-28T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 54.84,
+              "net_pf": 0.9976,
+              "mean_net_R": -0.0001,
+              "net_return_pct": -0.0046,
+              "gross_trade_pnl": 0.0022438,
+              "fees": 0.0022897,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.9848,
+              "return_over_max_dd": -0.0047,
+              "worst_calendar_month": "2026-07",
+              "worst_month_pct": -0.651,
+              "exposure_pct": 68.95,
+              "concurrent_bar_counts": [
+                136,
+                302,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 36
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 3.053,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 31,
+                  "net_pnl": -4.6e-05,
+                  "pf": 0.9976,
+                  "mean_net_R": -0.0001
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 28,
+            "portfolio_n": 31,
+            "matched_n": 21,
+            "standalone_only_n": 7,
+            "portfolio_only_n": 10,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 7
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 10
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-08-13T04:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 1743,
+                  "entry_index": 1744,
+                  "exit_index": 1750,
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_utc": "2026-08-14T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": 0.01741521539871682,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-08-13T08:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2.22,
+                  "gross_return": 0.01741521539871682
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-06-14T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-06-17T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-06-19T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-06-22T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-07-13T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-27T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-08-05T12:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-06-13T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-06-15T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-06-17T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-06-20T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-12T04:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-07-14T04:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-26T20:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-07-28T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 54.84,
+              "net_pf": 0.9976,
+              "mean_net_R": -0.0001,
+              "net_return_pct": -0.0046,
+              "gross_trade_pnl": 0.0022438,
+              "fees": 0.0022897,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.9848,
+              "return_over_max_dd": -0.0047,
+              "worst_calendar_month": "2026-07",
+              "worst_month_pct": -0.651,
+              "exposure_pct": 68.95,
+              "concurrent_bar_counts": [
+                136,
+                302,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 36
+              },
+              "longest_loss_streak": 3,
+              "turnover_notional_per_initial_equity": 3.053,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 31,
+                  "net_pnl": -4.6e-05,
+                  "pf": 0.9976,
+                  "mean_net_R": -0.0001
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "window": 5,
+      "start_utc": "2026-08-14T12:00:00+00:00",
+      "end_close_utc": "2026-10-26T12:00:00+00:00",
+      "assets": {
+        "BTCUSDT": {
+          "capped": {
+            "standalone_n": 28,
+            "portfolio_n": 31,
+            "matched_n": 27,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 4,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 4
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2183,
+                  "entry_index": 2184,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.0027295463533646425,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 80416.01,
+                  "gross_return": -0.0027295463533646425
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-08-30T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-08-17T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-08-28T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-08-31T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-09-14T16:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 64.52,
+              "net_pf": 2.0958,
+              "mean_net_R": 0.2793,
+              "net_return_pct": 2.1801,
+              "gross_trade_pnl": 0.0267108,
+              "fees": 0.0049094,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.6143,
+              "return_over_max_dd": 3.5487,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": 0.323,
+              "exposure_pct": 53.42,
+              "concurrent_bar_counts": [
+                204,
+                234,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 20
+              },
+              "longest_loss_streak": 2,
+              "turnover_notional_per_initial_equity": 6.5459,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 31,
+                  "net_pnl": 0.0218014,
+                  "pf": 2.0958,
+                  "mean_net_R": 0.2793
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 28,
+            "portfolio_n": 31,
+            "matched_n": 27,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 4,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 4
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2183,
+                  "entry_index": 2184,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.0027295463533646425,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 80416.01,
+                  "gross_return": -0.0027295463533646425
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-08-30T12:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-08-17T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-08-28T16:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-08-31T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-09-14T16:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 64.52,
+              "net_pf": 2.0958,
+              "mean_net_R": 0.2793,
+              "net_return_pct": 2.1801,
+              "gross_trade_pnl": 0.0267108,
+              "fees": 0.0049094,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.6143,
+              "return_over_max_dd": 3.5487,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": 0.323,
+              "exposure_pct": 53.42,
+              "concurrent_bar_counts": [
+                204,
+                234,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 20
+              },
+              "longest_loss_streak": 2,
+              "turnover_notional_per_initial_equity": 6.5459,
+              "per_asset": {
+                "BTCUSDT": {
+                  "n": 31,
+                  "net_pnl": 0.0218014,
+                  "pf": 2.0958,
+                  "mean_net_R": 0.2793
+                }
+              }
+            }
+          }
+        },
+        "ETHUSDT": {
+          "capped": {
+            "standalone_n": 29,
+            "portfolio_n": 31,
+            "matched_n": 28,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 3,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 3
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2184,
+                  "entry_index": 2185,
+                  "exit_index": 2189,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004436008445477424,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2334.05,
+                  "gross_return": -0.004436008445477424
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-09-11T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-09-10T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-18T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-10-22T08:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 48.39,
+              "net_pf": 1.5813,
+              "mean_net_R": 0.154,
+              "net_return_pct": 1.1945,
+              "gross_trade_pnl": 0.0153183,
+              "fees": 0.0033729,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.7839,
+              "return_over_max_dd": 1.5238,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.5222,
+              "exposure_pct": 55.25,
+              "concurrent_bar_counts": [
+                196,
+                242,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 19
+              },
+              "longest_loss_streak": 4,
+              "turnover_notional_per_initial_equity": 4.4972,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 31,
+                  "net_pnl": 0.0119454,
+                  "pf": 1.5813,
+                  "mean_net_R": 0.154
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 29,
+            "portfolio_n": 31,
+            "matched_n": 28,
+            "standalone_only_n": 1,
+            "portfolio_only_n": 3,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 1
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 3
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T12:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2184,
+                  "entry_index": 2185,
+                  "exit_index": 2189,
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004436008445477424,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T16:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2334.05,
+                  "gross_return": -0.004436008445477424
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-09-11T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-09-10T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-18T16:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-10-22T08:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 48.39,
+              "net_pf": 1.5813,
+              "mean_net_R": 0.154,
+              "net_return_pct": 1.1945,
+              "gross_trade_pnl": 0.0153183,
+              "fees": 0.0033729,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 0.7839,
+              "return_over_max_dd": 1.5238,
+              "worst_calendar_month": "2026-08",
+              "worst_month_pct": -0.5222,
+              "exposure_pct": 55.25,
+              "concurrent_bar_counts": [
+                196,
+                242,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 19
+              },
+              "longest_loss_streak": 4,
+              "turnover_notional_per_initial_equity": 4.4972,
+              "per_asset": {
+                "ETHUSDT": {
+                  "n": 31,
+                  "net_pnl": 0.0119454,
+                  "pf": 1.5813,
+                  "mean_net_R": 0.154
+                }
+              }
+            }
+          }
+        },
+        "ICPUSDT": {
+          "capped": {
+            "standalone_n": 30,
+            "portfolio_n": 31,
+            "matched_n": 27,
+            "standalone_only_n": 3,
+            "portfolio_only_n": 4,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 3
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 4
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T08:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2182,
+                  "entry_index": 2183,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004961832061068705,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2.607,
+                  "gross_return": -0.004961832061068705
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-09-23T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-10-20T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-23T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-09-23T04:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-09-28T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-20T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-22T08:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 41.94,
+              "net_pf": 1.2213,
+              "mean_net_R": 0.0632,
+              "net_return_pct": 0.4854,
+              "gross_trade_pnl": 0.0064897,
+              "fees": 0.0016359,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.0983,
+              "return_over_max_dd": 0.4419,
+              "worst_calendar_month": "2026-09",
+              "worst_month_pct": -0.218,
+              "exposure_pct": 58.45,
+              "concurrent_bar_counts": [
+                182,
+                256,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 30
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 2.1812,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 31,
+                  "net_pnl": 0.0048538,
+                  "pf": 1.2213,
+                  "mean_net_R": 0.0632
+                }
+              }
+            }
+          },
+          "relaxed_cap": {
+            "standalone_n": 30,
+            "portfolio_n": 31,
+            "matched_n": 27,
+            "standalone_only_n": 3,
+            "portfolio_only_n": 4,
+            "standalone_only_reasons": {
+              "portfolio_existing_position": 3
+            },
+            "portfolio_only_reasons": {
+              "standalone_position_or_exit_bar_cooldown": 4
+            },
+            "matched_exit_discrepancy_n": 1,
+            "matched_exit_discrepancy_examples": [
+              {
+                "key": [
+                  "2026-10-25T08:00:00+00:00",
+                  "LONG"
+                ],
+                "standalone": {
+                  "signal_index": 2182,
+                  "entry_index": 2183,
+                  "exit_index": 2188,
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_utc": "2026-10-26T08:00:00+00:00",
+                  "exit_reason": "time",
+                  "gross_return": -0.004961832061068705,
+                  "side": 1
+                },
+                "portfolio": {
+                  "entry_utc": "2026-10-25T12:00:00+00:00",
+                  "exit_reason": "terminal",
+                  "exit": 2.607,
+                  "gross_return": -0.004961832061068705
+                }
+              }
+            ],
+            "standalone_only_examples": [
+              [
+                "2026-09-23T12:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-10-20T12:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-23T04:00:00+00:00",
+                "LONG"
+              ]
+            ],
+            "portfolio_only_examples": [
+              [
+                "2026-09-23T04:00:00+00:00",
+                "SHORT"
+              ],
+              [
+                "2026-09-28T08:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-20T00:00:00+00:00",
+                "LONG"
+              ],
+              [
+                "2026-10-22T08:00:00+00:00",
+                "SHORT"
+              ]
+            ],
+            "portfolio_metrics": {
+              "n": 31,
+              "win_pct": 41.94,
+              "net_pf": 1.2213,
+              "mean_net_R": 0.0632,
+              "net_return_pct": 0.4854,
+              "gross_trade_pnl": 0.0064897,
+              "fees": 0.0016359,
+              "funding": 0.0,
+              "max_close_to_close_mtm_dd_pct": 1.0983,
+              "return_over_max_dd": 0.4419,
+              "worst_calendar_month": "2026-09",
+              "worst_month_pct": -0.218,
+              "exposure_pct": 58.45,
+              "concurrent_bar_counts": [
+                182,
+                256,
+                0
+              ],
+              "skipped_signals": {
+                "same_symbol_open": 30
+              },
+              "longest_loss_streak": 5,
+              "turnover_notional_per_initial_equity": 2.1812,
+              "per_asset": {
+                "ICPUSDT": {
+                  "n": 31,
+                  "net_pnl": 0.0048538,
+                  "pf": 1.2213,
+                  "mean_net_R": 0.0632
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "full_multisymbol_15bp_0funding": {
+    "n": 309,
+    "win_pct": 52.43,
+    "net_pf": 1.1959,
+    "mean_net_R": 0.0606,
+    "net_return_pct": 4.7203,
+    "gross_trade_pnl": 0.0786512,
+    "fees": 0.0314487,
+    "funding": 0.0,
+    "max_close_to_close_mtm_dd_pct": 2.837,
+    "return_over_max_dd": 1.6638,
+    "worst_calendar_month": "2026-01",
+    "worst_month_pct": -1.6102,
+    "exposure_pct": 75.51,
+    "concurrent_bar_counts": [
+      536,
+      664,
+      989
+    ],
+    "skipped_signals": {
+      "max_two_positions": 194,
+      "same_symbol_open": 259
+    },
+    "longest_loss_streak": 7,
+    "turnover_notional_per_initial_equity": 41.9316,
+    "per_asset": {
+      "BTCUSDT": {
+        "n": 123,
+        "net_pnl": 0.0267716,
+        "pf": 1.255,
+        "mean_net_R": 0.0866
+      },
+      "ETHUSDT": {
+        "n": 97,
+        "net_pnl": 0.033439,
+        "pf": 1.507,
+        "mean_net_R": 0.137
+      },
+      "ICPUSDT": {
+        "n": 89,
+        "net_pnl": -0.0130081,
+        "pf": 0.8143,
+        "mean_net_R": -0.0585
+      }
+    }
+  }
+}
