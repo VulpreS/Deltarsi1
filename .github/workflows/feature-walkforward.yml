@@ -1,0 +1,32 @@
+name: Feature Walkforward
+on:
+  push:
+    paths:
+      - feature_walkforward.py
+      - .github/workflows/feature-walkforward.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python feature_walkforward.py
+      - name: Save research
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/feature_walkforward.json
+          git commit -m "Store walkforward research results" || true
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: feature-walkforward
+          path: reports/feature_walkforward.json
