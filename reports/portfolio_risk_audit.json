@@ -1,8 +1,8 @@
 {
   "title": "P1 executable chronological 4H portfolio; previously inspected history",
-  "generated_utc": "2026-10-26T21:55:36.950727+00:00",
-  "producer_commit_sha": "2ab497102f35daa038f338d6783dd1ead350f7ae",
-  "ci_run_id": "40408381788",
+  "generated_utc": "2026-10-26T21:56:18.951940+00:00",
+  "producer_commit_sha": "41e4ab0093fd4921994dd8654088743c55e492fd",
+  "ci_run_id": "40408478112",
   "source_hashes": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
@@ -7378,6 +7378,26 @@
             }
           }
         }
+      },
+      "passive_benchmarks_15bp": {
+        "cash_0pct_return_pct": 0.0,
+        "equal_weight_price_only_buyhold_net_return_pct": -12.8795,
+        "equal_weight_buyhold_max_close_mtm_dd_pct": 50.123,
+        "individual_price_only_buyhold": {
+          "BTCUSDT": {
+            "net_return_pct": -19.1265,
+            "max_close_mtm_dd_pct": 28.7699
+          },
+          "ETHUSDT": {
+            "net_return_pct": -21.0998,
+            "max_close_mtm_dd_pct": 36.0673
+          },
+          "ICPUSDT": {
+            "net_return_pct": 1.5879,
+            "max_close_mtm_dd_pct": 70.7166
+          }
+        },
+        "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
       }
     },
     {
@@ -16598,6 +16618,26 @@
             }
           }
         }
+      },
+      "passive_benchmarks_15bp": {
+        "cash_0pct_return_pct": 0.0,
+        "equal_weight_price_only_buyhold_net_return_pct": -27.1136,
+        "equal_weight_buyhold_max_close_mtm_dd_pct": 46.1339,
+        "individual_price_only_buyhold": {
+          "BTCUSDT": {
+            "net_return_pct": -23.3913,
+            "max_close_mtm_dd_pct": 35.3228
+          },
+          "ETHUSDT": {
+            "net_return_pct": -33.1066,
+            "max_close_mtm_dd_pct": 45.7834
+          },
+          "ICPUSDT": {
+            "net_return_pct": -24.8428,
+            "max_close_mtm_dd_pct": 55.2962
+          }
+        },
+        "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
       }
     },
     {
@@ -25673,6 +25713,26 @@
             }
           }
         }
+      },
+      "passive_benchmarks_15bp": {
+        "cash_0pct_return_pct": 0.0,
+        "equal_weight_price_only_buyhold_net_return_pct": 4.3496,
+        "equal_weight_buyhold_max_close_mtm_dd_pct": 20.491,
+        "individual_price_only_buyhold": {
+          "BTCUSDT": {
+            "net_return_pct": -1.8331,
+            "max_close_mtm_dd_pct": 15.8273
+          },
+          "ETHUSDT": {
+            "net_return_pct": -8.4272,
+            "max_close_mtm_dd_pct": 19.3906
+          },
+          "ICPUSDT": {
+            "net_return_pct": 23.309,
+            "max_close_mtm_dd_pct": 36.1657
+          }
+        },
+        "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
       }
     },
     {
@@ -34603,6 +34663,26 @@
             }
           }
         }
+      },
+      "passive_benchmarks_15bp": {
+        "cash_0pct_return_pct": 0.0,
+        "equal_weight_price_only_buyhold_net_return_pct": -14.3987,
+        "equal_weight_buyhold_max_close_mtm_dd_pct": 22.9937,
+        "individual_price_only_buyhold": {
+          "BTCUSDT": {
+            "net_return_pct": -9.6271,
+            "max_close_mtm_dd_pct": 16.0139
+          },
+          "ETHUSDT": {
+            "net_return_pct": -5.2133,
+            "max_close_mtm_dd_pct": 21.9632
+          },
+          "ICPUSDT": {
+            "net_return_pct": -28.3558,
+            "max_close_mtm_dd_pct": 35.0979
+          }
+        },
+        "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
       }
     },
     {
@@ -43823,6 +43903,26 @@
             }
           }
         }
+      },
+      "passive_benchmarks_15bp": {
+        "cash_0pct_return_pct": 0.0,
+        "equal_weight_price_only_buyhold_net_return_pct": 23.0199,
+        "equal_weight_buyhold_max_close_mtm_dd_pct": 17.3163,
+        "individual_price_only_buyhold": {
+          "BTCUSDT": {
+            "net_return_pct": 27.719,
+            "max_close_mtm_dd_pct": 8.196
+          },
+          "ETHUSDT": {
+            "net_return_pct": 24.0842,
+            "max_close_mtm_dd_pct": 17.041
+          },
+          "ICPUSDT": {
+            "net_return_pct": 17.2563,
+            "max_close_mtm_dd_pct": 28.2451
+          }
+        },
+        "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
       }
     }
   ],
@@ -83772,6 +83872,68 @@
           "active": 0
         }
       ]
+    }
+  },
+  "passive_benchmarks": {
+    "15bp": {
+      "cash_0pct_return_pct": 0.0,
+      "equal_weight_price_only_buyhold_net_return_pct": -30.9018,
+      "equal_weight_buyhold_max_close_mtm_dd_pct": 66.2102,
+      "individual_price_only_buyhold": {
+        "BTCUSDT": {
+          "net_return_pct": -29.3764,
+          "max_close_mtm_dd_pct": 49.4767
+        },
+        "ETHUSDT": {
+          "net_return_pct": -42.8127,
+          "max_close_mtm_dd_pct": 63.2554
+        },
+        "ICPUSDT": {
+          "net_return_pct": -20.5163,
+          "max_close_mtm_dd_pct": 78.0347
+        }
+      },
+      "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
+    },
+    "25bp": {
+      "cash_0pct_return_pct": 0.0,
+      "equal_weight_price_only_buyhold_net_return_pct": -30.9709,
+      "equal_weight_buyhold_max_close_mtm_dd_pct": 66.2102,
+      "individual_price_only_buyhold": {
+        "BTCUSDT": {
+          "net_return_pct": -29.4471,
+          "max_close_mtm_dd_pct": 49.4767
+        },
+        "ETHUSDT": {
+          "net_return_pct": -42.8699,
+          "max_close_mtm_dd_pct": 63.2554
+        },
+        "ICPUSDT": {
+          "net_return_pct": -20.5958,
+          "max_close_mtm_dd_pct": 78.0347
+        }
+      },
+      "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
+    },
+    "40bp": {
+      "cash_0pct_return_pct": 0.0,
+      "equal_weight_price_only_buyhold_net_return_pct": -31.0746,
+      "equal_weight_buyhold_max_close_mtm_dd_pct": 66.2102,
+      "individual_price_only_buyhold": {
+        "BTCUSDT": {
+          "net_return_pct": -29.553,
+          "max_close_mtm_dd_pct": 49.4767
+        },
+        "ETHUSDT": {
+          "net_return_pct": -42.9556,
+          "max_close_mtm_dd_pct": 63.2554
+        },
+        "ICPUSDT": {
+          "net_return_pct": -20.715,
+          "max_close_mtm_dd_pct": 78.0347
+        }
+      },
+      "assumptions": "One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."
     }
   }
 }
