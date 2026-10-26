@@ -1,7 +1,7 @@
 """P0 standalone/portfolio parity fixtures: classification and exact fill checks."""
 import unittest
 from standalone_parity_audit import (
-    key, classify_portfolio_only, classify_standalone_only, reconcile
+    key, portfolio_ledger, classify_portfolio_only, classify_standalone_only, reconcile
 )
 import datetime as dt
 
@@ -9,6 +9,11 @@ def ts(h):
     return int(dt.datetime(2026,1,1,h,tzinfo=dt.timezone.utc).timestamp()*1000)
 
 class ParityFixtures(unittest.TestCase):
+    def test_cross_asset_key_collision_fails_closed(self):
+        rows=[{"symbol":"BTCUSDT","signal_utc":"x","side":"LONG"},
+              {"symbol":"ETHUSDT","signal_utc":"x","side":"LONG"}]
+        with self.assertRaisesRegex(ValueError,"partition by symbol"):
+            portfolio_ledger(rows)
     def test_key(self):
         self.assertEqual(key("2026-01-01T00:00:00+00:00",1),
                          ("2026-01-01T00:00:00+00:00","LONG"))
