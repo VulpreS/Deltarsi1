@@ -1,8 +1,8 @@
 {
   "title": "P0 #7 UTC completed-bar impact audit",
   "historical_warning": "ALL windows reused after prior selection, NOT independent OOS; no tuning.",
-  "producer_git_sha": "6323a539b9d50c1b2ac9f4cdcf331bb4419da8c4",
-  "ci_run_id": "40382846181",
+  "producer_git_sha": "a58fc86b46214862b5b88e66c822c2a482eb5239",
+  "ci_run_id": "40383121465",
   "seed": 20261026,
   "costs_round_trip": [
     0.0015,
