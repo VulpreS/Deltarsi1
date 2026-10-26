@@ -1,0 +1,35 @@
+name: Multiasset 4H 1D Research
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download missing hourly candles once and research
+        run: python research_multiasset.py
+      - name: Persist candle cache and results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/*_1h.csv reports/multiasset_4h_1d_results.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Cache multiasset candles and research results"
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: multiasset-research
+          path: |
+            reports/multiasset_4h_1d_results.json
+            data/*_1h.csv
