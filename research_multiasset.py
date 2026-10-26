@@ -121,7 +121,7 @@ def simulate(data,config,cut):
     equity=1.;peak=1.;dd=0.;trades=[];until=-1
     for k,side,early,late,turn,w,t1,t2,rsi,a in sigs:
         if k<=until or k<70:continue
-        if (k<cut) != (cut>0):continue
+        if cut>0 and k>=cut:continue
         if side_mode=="long" and side!=1:continue
         if side_mode=="short" and side!=-1:continue
         if mode=="early" and not early:continue
@@ -162,7 +162,7 @@ def main():
         except Exception as e:status[sym]={"error":str(e)}
     if len(datasets)<4:raise RuntimeError("Insufficient market data "+str(status))
     from itertools import product
-    configs=list(product(("early","late","turn"),(0,2,3),("none","slow","both","extreme"),(1.5,2.5),(1.5,3.,4.5),(6,12,24),("both","long","short")))
+    configs=list(product(("early","late","turn"),(0,2,3),("none","slow","extreme"),(1.5,2.5),(2.,4.),(6,12),("both","long")))
     # Two-stage selection: optimize on first 70%, report untouched last 30%.
     results={}
     for tf in (4,24):
