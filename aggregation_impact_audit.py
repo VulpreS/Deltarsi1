@@ -104,7 +104,7 @@ def main():
     p.write_text(json.dumps(result,indent=2,ensure_ascii=False))
     print(json.dumps({s:{"bars":[v["legacy_bars"],v["strict_bars"]],
          "baseline_N":[v["configs"]["baseline"][x]["by_cost"]["15bp"]["n"] for x in ("legacy","strict")],
-         "baseline_key_diffs":[v["configs"]["baseline"]["legacy_only_count"],v["configs"]["baseline"]["strict_only_count")]}
+         "baseline_key_diffs":[v["configs"]["baseline"]["legacy_only_count"],v["configs"]["baseline"]["strict_only_count"]]}
          for s,v in result["assets"].items()}))
 if __name__=="__main__":
     main()
