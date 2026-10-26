@@ -1,6 +1,7 @@
 """Reproducible multi-asset DeltaRSI research. No exchange orders."""
 import csv,datetime as dt,json,math,statistics,time,urllib.parse,urllib.request
 from pathlib import Path
+from execution_core import resolve_bar
 from analyze_mtf_5y import indicator,aggregate
 ROOT=Path("data");ROOT.mkdir(exist_ok=True);OUT=Path("reports");OUT.mkdir(exist_ok=True)
 H=3600000; FEE=0.0015 # round trip taker 0.11% + 0.04% total slippage
@@ -157,10 +158,9 @@ def simulate(data,config,cut,start=0):
         entry=rows[entry_i][1];sl=entry-side*stop*a;tp=entry+side*target*a
         end=min(entry_i+hold-1,len(rows)-1);exit_price=rows[end][4];reason="time"
         for j in range(entry_i,end+1):
-            bar=rows[j];hit_sl=(bar[3]<=sl if side==1 else bar[2]>=sl)
-            hit_tp=(bar[2]>=tp if side==1 else bar[3]<=tp)
-            if hit_sl or hit_tp:
-                exit_price=sl if hit_sl else tp;reason="stop" if hit_sl else "target"
+            fill,fill_reason=resolve_bar(rows[j],side,sl,tp)
+            if fill_reason:
+                exit_price=fill;reason=fill_reason
                 end=j;break
         ret=side*(exit_price/entry-1)-FEE
         trades.append((k,ret,reason,side))
