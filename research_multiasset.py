@@ -153,7 +153,7 @@ def simulate(data,config,cut):
         entry_i=k+1
         if entry_i>=len(rows):continue
         entry=rows[entry_i][1];sl=entry-side*stop*a;tp=entry+side*target*a
-        end=min(entry_i+hold,len(rows)-1);exit_price=rows[end][4];reason="time"
+        end=min(entry_i+hold-1,len(rows)-1);exit_price=rows[end][4];reason="time"
         for j in range(entry_i,end+1):
             bar=rows[j];hit_sl=(bar[3]<=sl if side==1 else bar[2]>=sl)
             hit_tp=(bar[2]>=tp if side==1 else bar[3]<=tp)
