@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-26T16:57:35.939221+00:00",
+  "generated_utc": "2026-10-26T16:58:34.222901+00:00",
   "hypothesis": "Stop gaps filled at trigger overstate net performance; compare identical entry cohorts.",
   "caution": "All historical slices previously inspected; no independent OOS, no new candles downloaded, no real orders.",
   "execution": "Next-open entry; stop-first ambiguous 4H; adverse stop gap at worse(open,stop); 4H time exit at close; no cross-asset risk netting.",

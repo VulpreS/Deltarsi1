@@ -1,0 +1,152 @@
+{
+  "status": "P0 CACHED OHLCV PROVENANCE AUDIT",
+  "caution": "No downloads, no direct 4H OHLC cache, no signed venue manifest. Quantitative volume agreement is not proof of identical venue.",
+  "symbols": {
+    "BTCUSDT": {
+      "one_hour_path": "data/BTCUSDT_1h.csv",
+      "sha256": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+      "one_hour_fields": [
+        "timestamp_utc",
+        "open",
+        "high",
+        "low",
+        "close"
+      ],
+      "one_hour_count": 8761,
+      "first_utc": "2025-10-26T13:00:00+00:00",
+      "last_utc": "2026-10-26T13:00:00+00:00",
+      "duplicate_hours": 0,
+      "missing_hours": 0,
+      "non_hourly_steps": 0,
+      "invalid_ohlc_bars": 0,
+      "four_hour_volume_path": "data/BTCUSDT_4h_volume.csv",
+      "four_hour_volume_sha256": "7502834adcd36c3942e169ab041c51d9a8d85a42b9f993ebe75fabcd25ebdb36",
+      "four_hour_volume_count": 2190,
+      "four_hour_volume_utc_aligned": true,
+      "four_hour_volume_missing_buckets": 0,
+      "one_hour_venue": "UNKNOWN: no per-file source manifest",
+      "four_hour_volume_venue": "UNKNOWN: source script has fallbacks, file does not record chosen host",
+      "direct_four_hour_ohlc_parity": "NOT_TESTABLE: no direct 4H OHLC CSV in cache",
+      "volume_parity": {
+        "status": "BLOCKED: 1H source has no volume field; cannot compare direct 4H volume with sum of 1H volume"
+      }
+    },
+    "ETHUSDT": {
+      "one_hour_path": "data/ETHUSDT_1h.csv",
+      "sha256": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
+      "one_hour_fields": [
+        "timestamp_utc",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "turnover"
+      ],
+      "one_hour_count": 8760,
+      "first_utc": "2025-10-26T12:00:00+00:00",
+      "last_utc": "2026-10-26T11:00:00+00:00",
+      "duplicate_hours": 0,
+      "missing_hours": 0,
+      "non_hourly_steps": 0,
+      "invalid_ohlc_bars": 0,
+      "four_hour_volume_path": "data/ETHUSDT_4h_volume.csv",
+      "four_hour_volume_sha256": "715273158f6d703fb04751ff0cb8e5cf7f474c16848fe511ea54e96fad685e49",
+      "four_hour_volume_count": 2190,
+      "four_hour_volume_utc_aligned": true,
+      "four_hour_volume_missing_buckets": 0,
+      "one_hour_venue": "UNKNOWN: no per-file source manifest",
+      "four_hour_volume_venue": "UNKNOWN: source script has fallbacks, file does not record chosen host",
+      "direct_four_hour_ohlc_parity": "NOT_TESTABLE: no direct 4H OHLC CSV in cache",
+      "volume_parity": {
+        "status": "QUANTITATIVE_ONLY: does not prove matching venue without source manifest",
+        "complete_4h_overlap_count": 2190,
+        "precommitted_random_seed": 20261026,
+        "sample_size": 30,
+        "sample_max_relative_error_pct": 0.0,
+        "all_median_relative_error_pct": 0.0,
+        "all_max_relative_error_pct": 0.0,
+        "sample_within_0_1_pct": 30,
+        "sample_within_1_pct": 30,
+        "first_3_samples": [
+          {
+            "utc": "2026-01-11T20:00:00+00:00",
+            "sum_1h": 44091.8776,
+            "direct_4h": 44091.8776,
+            "relative_error_pct": 0.0
+          },
+          {
+            "utc": "2026-03-30T20:00:00+00:00",
+            "sum_1h": 34952.8774,
+            "direct_4h": 34952.8774,
+            "relative_error_pct": 0.0
+          },
+          {
+            "utc": "2026-01-25T04:00:00+00:00",
+            "sum_1h": 15127.5126,
+            "direct_4h": 15127.5126,
+            "relative_error_pct": 0.0
+          }
+        ]
+      }
+    },
+    "ICPUSDT": {
+      "one_hour_path": "data/ICPUSDT_1h.csv",
+      "sha256": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b",
+      "one_hour_fields": [
+        "timestamp_utc",
+        "open",
+        "high",
+        "low",
+        "close"
+      ],
+      "one_hour_count": 8761,
+      "first_utc": "2025-10-26T13:00:00+00:00",
+      "last_utc": "2026-10-26T13:00:00+00:00",
+      "duplicate_hours": 0,
+      "missing_hours": 0,
+      "non_hourly_steps": 0,
+      "invalid_ohlc_bars": 0,
+      "four_hour_volume_path": "data/ICPUSDT_4h_volume.csv",
+      "four_hour_volume_sha256": "ed10cbe36a42ee7106f522a8521a3881cc7a129e65f6a0b88403309fcc8de013",
+      "four_hour_volume_count": 2190,
+      "four_hour_volume_utc_aligned": true,
+      "four_hour_volume_missing_buckets": 0,
+      "one_hour_venue": "UNKNOWN: no per-file source manifest",
+      "four_hour_volume_venue": "UNKNOWN: source script has fallbacks, file does not record chosen host",
+      "direct_four_hour_ohlc_parity": "NOT_TESTABLE: no direct 4H OHLC CSV in cache",
+      "volume_parity": {
+        "status": "BLOCKED: 1H source has no volume field; cannot compare direct 4H volume with sum of 1H volume"
+      }
+    },
+    "HYPEUSDT": {
+      "one_hour_path": "data/HYPEUSDT_1h.csv",
+      "sha256": "7b1e66fbf6aee1f1407e877c7e1e4aaaeb8489009925438eadc53cf1b6c35bae",
+      "one_hour_fields": [
+        "timestamp_utc",
+        "open",
+        "high",
+        "low",
+        "close"
+      ],
+      "one_hour_count": 5003,
+      "first_utc": "2026-04-01T03:00:00+00:00",
+      "last_utc": "2026-10-26T13:00:00+00:00",
+      "duplicate_hours": 0,
+      "missing_hours": 0,
+      "non_hourly_steps": 0,
+      "invalid_ohlc_bars": 0,
+      "four_hour_volume_path": "data/HYPEUSDT_4h_volume.csv",
+      "four_hour_volume_sha256": "e601deb2a0c017ec47c41130b4dcef38d66a186335aeb4f5f1b0b9fb348cdaf9",
+      "four_hour_volume_count": 1252,
+      "four_hour_volume_utc_aligned": true,
+      "four_hour_volume_missing_buckets": 0,
+      "one_hour_venue": "UNKNOWN: no per-file source manifest",
+      "four_hour_volume_venue": "UNKNOWN: source script has fallbacks, file does not record chosen host",
+      "direct_four_hour_ohlc_parity": "NOT_TESTABLE: no direct 4H OHLC CSV in cache",
+      "volume_parity": {
+        "status": "BLOCKED: 1H source has no volume field; cannot compare direct 4H volume with sum of 1H volume"
+      }
+    }
+  }
+}
