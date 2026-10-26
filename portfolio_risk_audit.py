@@ -317,5 +317,6 @@ def main():
       "challenger":w["variants"]["challenger"]["primary_metrics"]["net_return_pct"],
       "baseline_dd":w["variants"]["baseline"]["primary_metrics"]["max_close_to_close_mtm_dd_pct"],
       "challenger_dd":w["variants"]["challenger"]["primary_metrics"]["max_close_to_close_mtm_dd_pct"]} for w in report["windows"]],
-      "full":{k:v["metrics"] for k,v in report["full_common_history"].items()}},ensure_ascii=False))
+      "full":{k:v["metrics"] for k,v in report["full_common_history"].items()},
+      "passive_15bp":report["passive_benchmarks"]["15bp"]},ensure_ascii=False))
 if __name__=="__main__":main()
