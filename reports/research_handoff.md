@@ -2,6 +2,10 @@
 
 **Decision: P0 #7 CODE + SYNTHETIC TESTS DONE; historical comparison DONE; NO PROMOTION / RESEARCH ONLY.** Workflow [40382846181](https://github.com/VulpreS/Deltarsi1/actions/runs/40382846181) SUCCESS, producer commit `6323a539b9d50c1b2ac9f4cdcf331bb4419da8c4`; deterministic seed 20261026; cached CSV only, no downloads, no live orders. All chronological slices are **previously inspected historical data, NOT independent OOS**.
 
+## Cycle 4 addendum — missing-interior HTF look-ahead guard (2026-10-26)
+
+During review of strict aggregation, found **a second latent data-timing defect** in `analyze_mtf_5y.main.lookup`: it indexed HTF bars arithmetically, assuming no skipped intermediate 4H/1D bucket. After strict aggregation drops an incomplete interior bucket, this could select a **future** HTF bar at an earlier 1H signal timestamp. Fixed `last_closed_htf_index` using actual UTC close timestamps and `bisect_right`; new regression covers a missing 04:00–08:00 bucket, ensuring the 08:00 bar is not visible at the 07:00 1H signal. **This is a real potential look-ahead defect in gappy datasets; cached BTC/ETH/ICP/HYPE 1H data have zero missing hours, so no demonstrated historical effect.** New CI [40383121465](https://github.com/VulpreS/Deltarsi1/actions/runs/40383121465) verifies updated fixtures and reruns cached audit; original cycle-4 metrics unchanged. No orders or downloads. For newly arriving datasets with missing HTF buckets, future work should also make time-based hold/ATR semantics explicit across gaps.
+
 ## Hypothesis and manager priorities
 Read manager directives (latest 18:51 UTC), issues #7 (P0 strict aggregation), #6 (funding/net paired CI), #5 (venue/portfolio/forward), and prior handoff. Hypothesis: legacy permissive 4H bucketing admits incomplete first 4H bar and drops a fully closed final bar, affecting signals or trades. Prioritize #7 before any parameter search.
 
