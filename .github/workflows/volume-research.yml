@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - .github/workflows/volume-research.yml
+      - volume_ablation.py
   workflow_dispatch:
 permissions:
   contents: write
