@@ -2,6 +2,11 @@ name: ETH DeltaRSI Research
 
 on:
   workflow_dispatch:
+    inputs:
+      update_data:
+        description: "Download missing candles (off = analyze saved CSV only)"
+        type: boolean
+        default: false
   schedule:
     - cron: "20 2 * * *"
 
@@ -17,7 +22,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Fetch hourly ETH candles
+      - name: Fetch only missing hourly ETH candles
+        if: github.event_name == 'schedule' || inputs.update_data == true
         run: python fetch_eth.py
       - name: Analyze DeltaRSI waves
         run: python analyze_delta.py
