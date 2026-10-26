@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - paper_signal_4h.py
+      - test_paper_signal_4h.py
       - .github/workflows/validate-paper-signals.yml
   workflow_dispatch:
 permissions:
@@ -16,5 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Run completed-bar regression tests
+        run: python -m unittest -v test_paper_signal_4h.py
       - name: Run cached 4H signal generator
         run: python paper_signal_4h.py
