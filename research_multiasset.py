@@ -54,6 +54,24 @@ def fetch(sym):
         save(path,rows);print("DOWNLOADED",sym,len(rows),"Bybit",flush=True)
         return rows
     except Exception as e:errors.append("Bybit:"+str(e)[:120])
+    if sym=="HYPEUSDT":
+        try:
+            found={}
+            for lo in range(start,end+1,3000*H):
+                hi=min(end,lo+3000*H-H)
+                payload=json.dumps({"type":"candleSnapshot","req":{"coin":"HYPE","interval":"1h","startTime":lo,"endTime":hi}}).encode()
+                req=urllib.request.Request("https://api.hyperliquid.xyz/info",data=payload,headers={"Content-Type":"application/json","User-Agent":"Research/1.0"})
+                with urllib.request.urlopen(req,timeout=45) as res:batch=json.load(res)
+                for x in batch:
+                    t=int(x["t"])
+                    if start<=t<=end:found[t]=(t,float(x["o"]),float(x["h"]),float(x["l"]),float(x["c"]))
+                time.sleep(.1)
+            rows=[found[k] for k in sorted(found)]
+            if len(rows)<5000:raise ValueError("Too few Hyperliquid candles "+str(len(rows)))
+            if any(b[0]-a[0]!=H for a,b in zip(rows,rows[1:])):raise ValueError("Hyperliquid gap")
+            save(path,rows);print("DOWNLOADED",sym,len(rows),"Hyperliquid",flush=True)
+            return rows
+        except Exception as e:errors.append("Hyperliquid:"+str(e)[:150])
     raise RuntimeError(sym+" "+repr(errors))
 def save(path,rows):
     with path.open("w",newline="") as f:
