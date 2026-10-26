@@ -46,3 +46,48 @@
 2. Reconcile `reports/audit_2026-10-26.md` gap claim with current Python simulators; demand erratum if different engines.
 3. Check P0-B venue/timestamp evidence, then P1-C matched cohort, then P1-D immutable forward stream.
 4. Classify each task DONE / PARTIAL / BLOCKED with commit SHA, tests and numbers. Do not promote a strategy without a clean forward sample and separate explicit user approval for production.
+
+---
+
+# Manager review — cycle 2, 2026-10-26 17:52 UTC
+
+## Sources reviewed and evidence boundary
+- Latest researcher handoff: `reports/research_handoff.md` cycle 2 (commit `47441d0f8b39`).
+- CI: P0 execution parity `40364350718` SUCCESS; structural exit rerun `40364310889` SUCCESS.
+- Reports: `reports/p0_gap_audit.json`, `reports/p0_cache_integrity.json`, regenerated `reports/structural_exits.json`.
+- Newest research code: `matched_exit_audit.py` commit `8f71534e1f965ee91a67828b219d4b84cbe5a417`, **not yet run/committed as a report** at this review.
+- These are previously inspected historical data; **NO independent OOS**. This manager review did not reproduce the tests in a separate environment; it inspected code, committed reports and GitHub Actions conclusions.
+
+## Decision register — confirmed / rejected / pending
+| Item | Decision | Basis |
+|---|---|---|
+| P0-A shared adverse-gap execution and raw reverse semantics | **DONE for four covered engines / fixture scope; still no venue fill verification** | `execution_core.resolve_bar` wired into feature, multiasset, dynamic and structural simulations; synthetic tests passed; 0 adverse stop gaps observed in frozen cached baseline/selected cohorts, so historical returns unchanged. Do not claim PnL improved. |
+| P0-B cached OHLCV continuity | **PARTIAL** | BTC 8,761 / ETH 8,760 / ICP 8,761 / HYPE 5,003 hourly rows, no duplicate/missing hour or invalid OHLC. ETH 2,190/2,190 1H-volume sums match cached 4H volume. But no per-file exchange/market provenance, no direct 4H OHLC, and no 1H volume for BTC/ICP/HYPE. ETH match is quantitative, not independent venue proof. |
+| 5-slice frozen baseline | **DESCRIPTIVE, NOT VALIDATED** | At 15bp total assumed round-trip costs: BTC N130 PF1.338 DD23.53%; ETH N129 PF1.305 DD28.16%; ICP N133 PF1.116 DD35.51%; HYPE N69 PF0.789 DD38.01%. DD is full-notional per-symbol pseudo-equity, NOT risk-sized portfolio DD. At 40bp ICP PF0.992. Funding stress is synthetic, not actual. |
+| BTC/ETH OHLC OB proxy and ICP EMA200 | **EXPLORATORY ONLY** | Retrospective winner selection; no order-book depth and no independent forward sample. |
+| Raw opposite DeltaRSI ETH exit | **CANDIDATE TO TEST, NOT PROMOTED** | Corrected sequential 3-slice ETH mean returns +1.307/+1.076/+0.783% vs fixed +1.180/+0.755/+0.659%; different scheduling and repeated historical inspection invalidate causal/forward claims. |
+| HYPE existing strategy | **REJECT for deployment** | Frozen baseline PF <1 and unknown venue provenance. |
+| Forward-only shadow | **NOT STARTED / BLOCKED** | No verified venue/market source, immutable receipt-time data log or frozen version manifest. |
+
+## Newly identified blocker in latest matched-cohort code
+`matched_exit_audit.py` (commit `8f71534e1f96`) implements matched-entry comparisons and 30-day block bootstrap, but no CI/report was available at review. `exit_one()` calculates holding hours from entry bar **open** to exit bar **open** even for time exits filled at the last bar **close**; this may undercount elapsed funding intervals. Stops/targets fill intrabar at unknown timestamps, so exact 8h funding charges cannot be inferred from OHLC alone. `bootstrap_delta()` uses **gross** differences, not funding-adjusted net deltas. Its entry cohort is selected by frozen fixed-exit scheduling, so paired results are descriptive and potentially conditioned on baseline exit outcomes; separate executable scheduling is mandatory. Do not claim these are proven performance improvements.
+
+## Concrete next tasks and acceptance, priority order
+### P0-C — matched audit execution and funding-timing correction — [issue #6](https://github.com/VulpreS/Deltarsi1/issues/6)
+**Hypothesis:** after time-accurate adverse funding stress and a fixed matched cohort, the ETH raw-reverse exit retains positive net paired advantage over fixed exit.
+**Acceptance:** deterministic 1/2/3/12-bar duration and 00/08/16 UTC funding boundary tests; bounded intrabar timing; aligned funding conventions across `p0_gap_audit` and `matched_exit_audit`; CI + committed JSON with hashes/seed/commit; 30-day block bootstrap **net** paired 95% CI, N, effective blocks, 15/25/40bp costs and 0/1/3bp funding stress; baseline cohort vs separate non-overlap executable portfolio with 0.25% equity stop-risk, correlated exposure caps, worst month, max DD, return/DD. Historical confidence interval is NOT independent OOS. **No parameter search on independent sample.**
+
+### P0-B continuation — provenance and 4H completion — [issue #5](https://github.com/VulpreS/Deltarsi1/issues/5)
+**Hypothesis:** mixed venue or incomplete 4H buckets can invalidate volume and pattern filters.
+**Acceptance:** per-CSV venue/market/symbol/endpoint/fetch-UTC manifest and checksums, direct 4H OHLCV from same venue for ≥30 fully closed random buckets per asset; 1H→4H OHLCV parity within predeclared tolerance; explicit intermediate complete-bucket predicate, first/last bucket tests, SMA20 lag test; missing volume reported as UNKNOWN rather than filled with other-venue data. **Do not download redundant candles; append only missing validation data.**
+
+### P1-D — preregistered forward-only shadow — [issue #5](https://github.com/VulpreS/Deltarsi1/issues/5)
+**Hypothesis:** a frozen strategy maintains positive net expectancy on strictly new, timestamped candles.
+**Acceptance:** pre-register frozen baseline and at most one ETH challenger, code/data/parameter hashes, venue, UTC cutoff, minimum duration/sample size and pass/fail risk metrics before observing forward outcomes; append-only receipts with wall-clock arrival times, sealed evaluation log and no backfill counted as forward; simulated fills only; no exchange orders or trading permissions. **No tuning on sealed forward data.**
+
+## Next manager checkpoint
+1. Verify issue #6 implementation/CI/report and specifically correct duration/funding bootstrap semantics.
+2. Check #5 venue manifest and fully closed 4H parity; mark blocked if missing.
+3. Review matched-net paired 95% CI and *separate* executable portfolio; compare with frozen 2.5ATR/3ATR/48h baseline.
+4. Verify forward-only collector has immutable timestamps and preregistration before treating any sample as prospective.
+5. Continue **NO PROMOTION / RESEARCH ONLY** until independent forward evidence and separate human authorization for production.
