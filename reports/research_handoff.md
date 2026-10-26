@@ -1,3 +1,59 @@
+# DeltaRSI researcher handoff — cycle 6, 2026-10-26 (P1 #8 chronological risk-sized portfolio)
+
+**Decision: #8 PARTIAL IMPLEMENTATION + HISTORICAL STRESS VERIFIED; NO NEW STRATEGY PROMOTION.** CI [40400104053](https://github.com/VulpreS/Deltarsi1/actions/runs/40400104053) SUCCESS; producer SHA `9923788c9b892e766271ba6b2154a7001ea95afd`; deterministic seed 20261026; strategy/config hash `6922fb45e5dc090035e7ba90fcf335886f7d278567bae52368e810dcfcb2f0e1`. Report [reports/portfolio_risk_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/portfolio_risk_audit.json). **All data were previously inspected, no independent OOS. No real orders, no new candle downloads.**
+
+## Hypothesis and manager priorities read
+Read open issues #8 (P1 chronological portfolio), #6 (paired ETH exit and funding), #5 (venue/forward), #4 (execution) and `reports/manager_directives.md`, `reports/research_handoff.md`, `reports/matched_exit_audit.json`, `reports/p0_gap_audit.json` BEFORE implementing. Hypothesis: historically positive full-notional pseudo-PF is overstated once simultaneous signals, stop-risk sizing, synthetic adverse funding and realistic fees are applied; ETH OB-proxy/raw-reverse challenger may not improve *executable* portfolio results. Frozen benchmark is 2.5 ATR stop / 3 ATR target / 12 completed 4H bars BTC+ETH+ICP. Single retrospective challenger changes ETH to OB proxy 2.5/6/12 and raw opposite DeltaRSI exit at next open. HYPE excluded as directed.
+
+## Changes and reproducibility
+- Added `portfolio_risk_audit.py`: independent chronological event-driven scheduling (not fixed-cohort pseudo-compound), strict completed UTC 4H cached 1H bars; each entry at following open, max 2 positions, no same-symbol overlap, deterministic priority BTC→ETH→ICP, initial stop risk <=0.25% current marked equity per entry and aggregate <=0.50%, stop-distance sizing, <=2x gross notional and <=1x per symbol, fee-affordability guard, invalid ATR/price rejection. Stop-first same-bar, adverse stop-gap open fills, reverse at next open, max-12-bar time exit, terminal liquidation, mark-to-market equity snapshots. Strict contiguous common 4H grid; fail closed on missing interior bucket.
+- Stress grids **15/25/40 bp total round-trip fee+slippage** × **0/1/3 bp adverse synthetic funding per UTC 8h event**, with conservative *upper* exposure bound for intrabar stops/targets. Funding is NOT observed venue funding. Cash debits half fee at entry, half at exit; realized gross PnL/funding at exit, unrealized close-to-close marked with conservative accrued funding. The report contains per-trade timestamps, exit-time bounds, quantity, price, stop, target, fees, funding bounds, stop-risk, initial and bar-close-marked equity, config hash, plus 5 contiguous nonoverlapping windows and a full-history sequential run.
+- Added `test_portfolio_risk_audit.py` with deterministic 3 competing signals, 2-position/0.5% cap, long/short gap beyond stop, simultaneous correlated stops, 8h boundary, fees, early exit/reentry, leverage cap, terminal liquidation/cash accounting, missing 4H bucket; CI also runs prior execution, aggregation and matched-audit tests. Workflow `.github/workflows/p1-portfolio-risk.yml` uses only committed `data/*_1h.csv` and commits the JSON.
+- SHA256 input caches: BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`; ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`; ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`. No new download.
+
+## Results: historical descriptive, no independent validation
+One continuous common 4H period, approximately 2025-10-26 through 2026-10-26, at **15bp fees + 3bp adverse funding/8h**:
+| Metric | Frozen baseline | ETH OB + raw reverse challenger |
+|---|---:|---:|
+| Executable trades | 309 | 281 |
+| Net portfolio return | **+1.7492%** | +1.0682% |
+| Net profit factor | **1.0696** | 1.0460 |
+| Win rate | 50.49% | 51.60% |
+| Mean net R/trade | +0.0233 | +0.0159 |
+| Max close-to-close MTM drawdown | 3.3687% | 3.4519% |
+| Worst calendar month | Jan 2026: −1.8877% | Jan 2026: −2.2945% |
+| Active-bar exposure | 75.51% | 71.81% |
+| Missed max-2 signals | 194 | 57 |
+| Missed same-symbol signals | 259 | 244 |
+| Filtered ETH OB signals | n/a | 180 |
+
+Full continuous baseline stress: **15bp/0 funding +4.7167%, PF1.1957; 15bp/3bp funding +1.7492%, PF1.0696; 25bp/3bp funding −0.3432%, PF0.9868; 40bp/3bp funding −3.4018%, PF0.8745.** Challenger corresponding returns **+3.6754%, +1.0682%, −0.7611%, −3.4436%**. Funding assumption dominates the marginal apparent edge. Fee and funding stresses are synthetic, not realized market costs.
+
+Five disjoint chronological windows at 15bp/3bp (baseline vs challenger net portfolio return):
+1. 2025-10-26→2026-01-07: **−0.1475% vs −0.5484%** (N 37/32).
+2. 2026-01-07→2026-03-21: **−0.6367% vs −0.6702%** (N 69/65).
+3. 2026-03-21→2026-06-02: **−0.5194% vs +0.7951%** (N 67/62).
+4. 2026-06-02→2026-08-14: **−0.0294% vs −0.3587%** (N 65/59).
+5. 2026-08-14→2026-10-26: **+2.6085% vs +1.4041%** (N 71/63).
+Only the final window is positive for the baseline under conservative stress. All five windows were already inspected during previous optimization: **they are NOT sealed OOS despite chronological non-overlap.**
+
+By asset, continuous baseline N/PF: BTC **123/1.1083**, ETH **97/1.3453**, ICP **89/0.7474**; challenger BTC **136/1.2258**, ETH **19/1.9549**, ICP **126/0.7760**. Changes to BTC/ICP cohorts under ETH challenger arise from cross-asset competition and re-entry scheduling, not BTC/ICP parameter changes.
+
+## Reconciliation to previous audits and limitations
+- Previous strict standalone baseline reported BTC N130 PF1.3377, ETH N129 PF1.3230, ICP N132 PF1.1465 (15bp/0 funding, sequential single-symbol full-notional). **Not comparable numerically** with 309 combined trades at 15bp/3bp risk-sized capped portfolio. This run applies concurrency priority and risk sizing, and includes funding. Differences in N are expected because a trade can be skipped when two other symbols occupy slots. For precise parity, compare per-trade UTC signal/entry keys under identical zero-funding, unconstrained single-symbol assumptions before claiming an engine discrepancy.
+- Earlier ETH matched selected-OB cohort N43, reverse vs fixed paired net +0.1787 pp with 95% CI including zero. Current challenger **19 ETH trades** due to ETH OB filter, common-period/cross-asset scheduling, two-position cap and different re-entry opportunity; cannot infer causal exit improvement by comparing N43 with N19.
+- Max DD is **4H close-to-close marked**, not intrabar worst-case; actual adverse gaps, mark-trigger liquidation, correlated stress, financing and execution impact can exceed the modeled initial stop risk. Simultaneous synthetic adverse gaps demonstrate realized losses can exceed 0.5% aggregate intended stop risk.
+- Costs and UTC 8h funding events are assumed, no actual venue funding/mark prices, exchange provenance, same-venue direct 4H parity or BTC/ICP/HYPE 1H volume. Common-bar boundary reset in five-window studies forces terminal liquidation and loses cross-window entry opportunity. Full continuous run is primary portfolio view.
+- There is no independent forward sample, no statistical significance claim, and no strategy approval. HYPE remains excluded.
+
+## Conclusion / concrete manager questions and next iteration
+1. **#8 P1 PARTIAL/DONE for cached synthetic portfolio engine, NOT venue-realistic validation.** Review report and verify entry/exit key parity versus #7 and #6; independently challenge accounting and concurrency ordering before considering this code canonical.
+2. **#8 NEXT:** add a deterministic same-cohort/single-symbol parity adapter to reconcile all BTC/ETH/ICP trades exactly with strict #7 at 15bp/0 funding, then compare portfolio return/DD to a buy-and-hold or cash baseline on the identical calendar range. Add explicit intrabar adverse MFE/MAE/DD bounds, correlated gap sensitivity, venue-specific notional/margin/mark-price checks.
+3. **#5 BLOCKED:** source venue/perpetual provenance, actual funding timestamps/rates and same-venue 4H OHLCV remain unavailable. Request signed source manifest, then register an append-only forward shadow ledger with strict receipt times after freeze, >=90 days and >=50 independent executable trades before an inference. Do not backfill forward data.
+4. **Decision:** challenger does **not** outperform frozen baseline as an executable portfolio in the examined history; do not promote or deploy. No real orders.
+
+---
+
 # DeltaRSI researcher handoff — cycle 5, 2026-10-26 (P0 #6 funding timing + NET paired CI)
 
 **Decision: P0 #6 FUNDING TIMING / NET PAIRED AUDIT DONE for synthetic cached scope; #6 PORTFOLIO and #5 VENUE/FORWARD still OPEN. NO STRATEGY PROMOTION, NO LIVE ORDERS.** CI [40390672109](https://github.com/VulpreS/Deltarsi1/actions/runs/40390672109) **SUCCESS**, producer SHA `8bc3b8e67e68935f52f8eb9ebdb225f96a2acf00`, deterministic seed `20261026`, 2,500 bootstrap draws. Report: [reports/matched_exit_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/matched_exit_audit.json).
