@@ -1,8 +1,8 @@
 {
   "notes": "OHLC only; volume is NOT present for all symbols and not used. Four-hour candles aggregated from cached 1h. Indicators on completed bars. Stop wins when both touched. 0.15% round-trip fees+slippage, funding excluded. Separate 50/25/25 chronological per-symbol split; HYPE shorter. Best candidates frozen using train+validation before final holdout. Selection of model after seeing final results invalidates its independence.",
   "candidates_searched": 3240,
-  "training_qualified": 980,
-  "validation_qualified": 951,
+  "training_qualified": 1038,
+  "validation_qualified": 1009,
   "evaluations": [
     {
       "config": [
@@ -313,9 +313,9 @@
       "train": {
         "n": 50,
         "win": 52.0,
-        "mean": 0.661,
-        "pf": 1.845,
-        "compound": 36.09
+        "mean": 0.662,
+        "pf": 1.847,
+        "compound": 36.21
       },
       "validation": {
         "n": 39,
@@ -389,18 +389,18 @@
       "final_holdout": {
         "n": 129,
         "win": 48.1,
-        "mean": 0.209,
-        "pf": 1.151,
-        "compound": 19.79
+        "mean": 0.215,
+        "pf": 1.156,
+        "compound": 20.58
       },
       "by_asset": {
         "ETHUSDT": {
           "stats": {
             "n": 37,
             "win": 45.9,
-            "mean": 0.376,
-            "pf": 1.39,
-            "compound": 13.35
+            "mean": 0.393,
+            "pf": 1.417,
+            "compound": 14.1
           },
           "max_drawdown_full_notional_pct": 15.53
         },
@@ -450,19 +450,19 @@
       "validation": null,
       "final_holdout": {
         "n": 132,
-        "win": 48.5,
-        "mean": 0.178,
-        "pf": 1.128,
-        "compound": 15.27
+        "win": 49.2,
+        "mean": 0.183,
+        "pf": 1.132,
+        "compound": 16.03
       },
       "by_asset": {
         "ETHUSDT": {
           "stats": {
             "n": 41,
-            "win": 48.8,
-            "mean": 0.381,
-            "pf": 1.408,
-            "compound": 15.22
+            "win": 51.2,
+            "mean": 0.397,
+            "pf": 1.432,
+            "compound": 15.98
           },
           "max_drawdown_full_notional_pct": 14.91
         },
