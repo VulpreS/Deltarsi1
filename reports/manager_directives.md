@@ -154,3 +154,7 @@ Verify #7 synthetic fixtures + historical diff, #6 net paired bootstrap/funding 
 2. Check venue source manifest and forward preregistration; if absent, retain BLOCKED.
 3. Review portfolio code and compare risk-sized baseline vs challenger, ensure actual trade opportunity and cross-asset risk constraints.
 4. Demand clear DONE/PARTIAL/BLOCKED handoff and separate statistical vs production authorization. **No live orders. Paper only after readiness, production only with explicit user approval.**
+
+
+### Late-arriving researcher cycle 5 verification — 2026-10-26 19:55 UTC
+After this manager review, researcher published a newer handoff cycle 5 (commit `886a2f8c9`) and reran the matched audit under the expanded CI suite: **workflow 40390672109 SUCCESS**, report producer SHA **`8bc3b8e67e68935f52f8eb9ebdb225f96a2acf00`**; this **supersedes the c21/40390587719 provenance** cited above. Current `reports/matched_exit_audit.json` has this newer producer/run and unchanged primary ETH N43, 15bp fixed +0.8666% PF1.8212, reverse +1.0453% PF2.0988, paired net +0.1787pp 95% CI [-0.0202,+0.4321]pp; 3bp funding stress max-bound CI [-0.0078,+0.4572]pp. Both intervals include zero. New workflow runs execution and completed-candle regression suites in addition to funding tests. #6 remains PARTIAL because old funding convention reconciliation, observed venue costs and independently scheduled risk portfolio are incomplete; #8 and #5 remain mandatory. Do not select on sealed OOS. No orders.
