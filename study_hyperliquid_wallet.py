@@ -36,7 +36,7 @@ def main():
         last=max(int(x["time"]) for x in page)
         if last<start:break
         start=last+1
-        if len(page)<1900 or len(fills)>=10000:break
+        if len(fills)>=10000 or last>=int(time.time()*1000)-60000:break
         time.sleep(.2)
     if not fills:
         fills={str(i):x for i,x in enumerate(recent)}
