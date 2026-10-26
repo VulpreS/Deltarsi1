@@ -41,8 +41,8 @@ class MatchedExitTests(unittest.TestCase):
 
     def test_30d_bootstrap_requires_enough_time_blocks(self):
         rows=self.rows()
-        a=[{"signal_index":3,"gross":.01}]
-        b=[{"signal_index":3,"gross":.02}]
+        a=[{"signal_index":3,"gross":.01,"funding_events_min":0,"funding_events_max":0}]
+        b=[{"signal_index":3,"gross":.02,"funding_events_min":0,"funding_events_max":0}]
         result=bootstrap_delta(a,b,rows)
         self.assertIsNone(result["ci95_mean_delta_pct"])
 
