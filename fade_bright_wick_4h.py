@@ -28,7 +28,7 @@ def simulate(rows,feats,ind,lo,hi,mode,ratio,maxhold):
         entry=rows[ei][1];atr=f["atr"]
         stop=entry-side*2.5*atr
         # Hard catastrophe stop, no fixed target for signal exit variants.
-        target=entry+side*6*atr if mode=="fixed48" else entry+side*100*atr
+        target=entry+side*6*atr if mode=="fixed48" else (1e12 if side==1 else 0.000001)
         end=min(ei+(12 if mode=="fixed48" else maxhold)-1,hi-1,len(rows)-2)
         out=rows[end][4];reason="time";ex=end
         for j in range(ei,end+1):
