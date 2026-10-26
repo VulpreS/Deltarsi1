@@ -1,6 +1,10 @@
 name: Multiasset 4H 1D Research
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - research_multiasset.py
+      - .github/workflows/multiasset-research.yml
 permissions:
   contents: write
 jobs:
