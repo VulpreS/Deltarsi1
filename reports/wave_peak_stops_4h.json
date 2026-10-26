@@ -1,0 +1,1949 @@
+{
+  "notes": "Exploratory historical 4H tests, not untouched OOS. Medium-to-weak DeltaRSI entries at next bar open. Peak-bar stop versus full same-sign wave high/low through signal bar; 0.05 ATR stop buffer, reject risk >12% or <0.05%. Stop-first, 0.15% friction, funding omitted. 48h fixed TP=6 ATR or 10-day bright+50% rejection wick exit.",
+  "assets": {
+    "BTCUSDT": [
+      {
+        "stop": "peak_bar",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 59,
+            "win": 37.3,
+            "mean": 0.366,
+            "pf": 1.523,
+            "compound": 22.07
+          },
+          {
+            "n": 28,
+            "win": 46.4,
+            "mean": 0.526,
+            "pf": 1.804,
+            "compound": 14.98
+          },
+          {
+            "n": 30,
+            "win": 20.0,
+            "mean": -0.233,
+            "pf": 0.668,
+            "compound": -7.12
+          }
+        ],
+        "avg_risk_pct": [
+          1.42,
+          1.386,
+          1.056
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 221,
+              "exit_bar": 232,
+              "peak_bar": 213,
+              "wave_start": 211,
+              "risk_pct": 2.093,
+              "return_pct": 6.236,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 239,
+              "exit_bar": 250,
+              "peak_bar": 237,
+              "wave_start": 225,
+              "risk_pct": 1.328,
+              "return_pct": 2.261,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 254,
+              "exit_bar": 265,
+              "peak_bar": 247,
+              "wave_start": 243,
+              "risk_pct": 1.717,
+              "return_pct": 2.376,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1125,
+              "exit_bar": 1127,
+              "peak_bar": 1123,
+              "wave_start": 1121,
+              "risk_pct": 0.077,
+              "return_pct": -0.227,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1139,
+              "exit_bar": 1140,
+              "peak_bar": 1137,
+              "wave_start": 1121,
+              "risk_pct": 2.389,
+              "return_pct": -2.539,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1163,
+              "exit_bar": 1174,
+              "peak_bar": 1161,
+              "wave_start": 1157,
+              "risk_pct": 1.28,
+              "return_pct": 0.585,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1650,
+              "exit_bar": 1650,
+              "peak_bar": 1625,
+              "wave_start": 1622,
+              "risk_pct": 0.344,
+              "return_pct": -0.494,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1663,
+              "exit_bar": 1664,
+              "peak_bar": 1661,
+              "wave_start": 1655,
+              "risk_pct": 0.347,
+              "return_pct": -0.497,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1677,
+              "exit_bar": 1684,
+              "peak_bar": 1675,
+              "wave_start": 1655,
+              "risk_pct": 1.586,
+              "return_pct": -1.736,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 64,
+            "win": 42.2,
+            "mean": 0.238,
+            "pf": 1.226,
+            "compound": 13.16
+          },
+          {
+            "n": 37,
+            "win": 37.8,
+            "mean": -0.077,
+            "pf": 0.92,
+            "compound": -3.79
+          },
+          {
+            "n": 39,
+            "win": 38.5,
+            "mean": -0.327,
+            "pf": 0.628,
+            "compound": -12.58
+          }
+        ],
+        "avg_risk_pct": [
+          2.187,
+          1.812,
+          1.62
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 216,
+              "exit_bar": 224,
+              "peak_bar": 213,
+              "wave_start": 211,
+              "risk_pct": 1.085,
+              "return_pct": 8.911,
+              "reason": "target"
+            },
+            {
+              "entry_bar": 230,
+              "exit_bar": 241,
+              "peak_bar": 228,
+              "wave_start": 225,
+              "risk_pct": 0.852,
+              "return_pct": 4.238,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 249,
+              "exit_bar": 251,
+              "peak_bar": 247,
+              "wave_start": 243,
+              "risk_pct": 0.969,
+              "return_pct": -1.119,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1102,
+              "exit_bar": 1102,
+              "peak_bar": 1088,
+              "wave_start": 1086,
+              "risk_pct": 0.643,
+              "return_pct": -0.793,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1107,
+              "exit_bar": 1110,
+              "peak_bar": 1088,
+              "wave_start": 1086,
+              "risk_pct": 1.774,
+              "return_pct": -1.924,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1117,
+              "exit_bar": 1128,
+              "peak_bar": 1088,
+              "wave_start": 1086,
+              "risk_pct": 1.982,
+              "return_pct": 2.563,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1650,
+              "exit_bar": 1661,
+              "peak_bar": 1625,
+              "wave_start": 1622,
+              "risk_pct": 1.904,
+              "return_pct": 1.104,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1663,
+              "exit_bar": 1667,
+              "peak_bar": 1661,
+              "wave_start": 1655,
+              "risk_pct": 2.415,
+              "return_pct": -2.565,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1677,
+              "exit_bar": 1688,
+              "peak_bar": 1675,
+              "wave_start": 1655,
+              "risk_pct": 1.914,
+              "return_pct": 0.383,
+              "reason": "time"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "peak_bar",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 33,
+            "win": 27.3,
+            "mean": 0.84,
+            "pf": 1.807,
+            "compound": 26.89
+          },
+          {
+            "n": 18,
+            "win": 27.8,
+            "mean": 0.263,
+            "pf": 1.284,
+            "compound": 4.15
+          },
+          {
+            "n": 20,
+            "win": 10.0,
+            "mean": -0.681,
+            "pf": 0.267,
+            "compound": -12.91
+          }
+        ],
+        "avg_risk_pct": [
+          1.39,
+          1.409,
+          1.063
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 221,
+              "exit_bar": 280,
+              "peak_bar": 213,
+              "wave_start": 211,
+              "risk_pct": 2.093,
+              "return_pct": 5.629,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 282,
+              "exit_bar": 341,
+              "peak_bar": 280,
+              "wave_start": 278,
+              "risk_pct": 3.101,
+              "return_pct": 0.082,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 343,
+              "exit_bar": 343,
+              "peak_bar": 322,
+              "wave_start": 321,
+              "risk_pct": 0.441,
+              "return_pct": -0.591,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1125,
+              "exit_bar": 1127,
+              "peak_bar": 1123,
+              "wave_start": 1121,
+              "risk_pct": 0.077,
+              "return_pct": -0.227,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1139,
+              "exit_bar": 1140,
+              "peak_bar": 1137,
+              "wave_start": 1121,
+              "risk_pct": 2.389,
+              "return_pct": -2.539,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1163,
+              "exit_bar": 1193,
+              "peak_bar": 1161,
+              "wave_start": 1157,
+              "risk_pct": 1.28,
+              "return_pct": -1.43,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1650,
+              "exit_bar": 1650,
+              "peak_bar": 1625,
+              "wave_start": 1622,
+              "risk_pct": 0.344,
+              "return_pct": -0.494,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1663,
+              "exit_bar": 1664,
+              "peak_bar": 1661,
+              "wave_start": 1655,
+              "risk_pct": 0.347,
+              "return_pct": -0.497,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1677,
+              "exit_bar": 1684,
+              "peak_bar": 1675,
+              "wave_start": 1655,
+              "risk_pct": 1.586,
+              "return_pct": -1.736,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 33,
+            "win": 27.3,
+            "mean": 0.562,
+            "pf": 1.393,
+            "compound": 15.33
+          },
+          {
+            "n": 17,
+            "win": 47.1,
+            "mean": 1.513,
+            "pf": 2.737,
+            "compound": 27.6
+          },
+          {
+            "n": 17,
+            "win": 17.6,
+            "mean": -1.138,
+            "pf": 0.355,
+            "compound": -18.3
+          }
+        ],
+        "avg_risk_pct": [
+          2.028,
+          1.543,
+          1.956
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 216,
+              "exit_bar": 275,
+              "peak_bar": 213,
+              "wave_start": 211,
+              "risk_pct": 1.085,
+              "return_pct": 5.985,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 278,
+              "exit_bar": 292,
+              "peak_bar": 276,
+              "wave_start": 275,
+              "risk_pct": 3.598,
+              "return_pct": -3.748,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 294,
+              "exit_bar": 294,
+              "peak_bar": 292,
+              "wave_start": 284,
+              "risk_pct": 0.431,
+              "return_pct": -0.581,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1102,
+              "exit_bar": 1102,
+              "peak_bar": 1088,
+              "wave_start": 1086,
+              "risk_pct": 0.643,
+              "return_pct": -0.793,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1107,
+              "exit_bar": 1110,
+              "peak_bar": 1088,
+              "wave_start": 1086,
+              "risk_pct": 1.774,
+              "return_pct": -1.924,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1117,
+              "exit_bar": 1176,
+              "peak_bar": 1088,
+              "wave_start": 1086,
+              "risk_pct": 1.982,
+              "return_pct": 6.426,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1650,
+              "exit_bar": 1667,
+              "peak_bar": 1625,
+              "wave_start": 1622,
+              "risk_pct": 1.904,
+              "return_pct": -2.054,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1677,
+              "exit_bar": 1736,
+              "peak_bar": 1675,
+              "wave_start": 1655,
+              "risk_pct": 1.914,
+              "return_pct": 0.439,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1739,
+              "exit_bar": 1746,
+              "peak_bar": 1729,
+              "wave_start": 1728,
+              "risk_pct": 1.593,
+              "return_pct": -1.743,
+              "reason": "stop"
+            }
+          ]
+        ]
+      }
+    ],
+    "ETHUSDT": [
+      {
+        "stop": "peak_bar",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 58,
+            "win": 25.9,
+            "mean": 0.449,
+            "pf": 1.375,
+            "compound": 23.71
+          },
+          {
+            "n": 33,
+            "win": 36.4,
+            "mean": 0.574,
+            "pf": 1.792,
+            "compound": 19.26
+          },
+          {
+            "n": 36,
+            "win": 33.3,
+            "mean": 0.035,
+            "pf": 1.041,
+            "compound": 0.33
+          }
+        ],
+        "avg_risk_pct": [
+          2.272,
+          1.733,
+          1.45
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 211,
+              "exit_bar": 212,
+              "peak_bar": 209,
+              "wave_start": 208,
+              "risk_pct": 1.022,
+              "return_pct": -1.172,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 216,
+              "exit_bar": 216,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 1.204,
+              "return_pct": -1.354,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 222,
+              "exit_bar": 228,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 0.782,
+              "return_pct": 11.008,
+              "reason": "target"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1097,
+              "exit_bar": 1108,
+              "peak_bar": 1095,
+              "wave_start": 1094,
+              "risk_pct": 3.881,
+              "return_pct": -0.484,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1127,
+              "exit_bar": 1128,
+              "peak_bar": 1125,
+              "wave_start": 1122,
+              "risk_pct": 0.377,
+              "return_pct": -0.527,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1140,
+              "exit_bar": 1151,
+              "peak_bar": 1138,
+              "wave_start": 1122,
+              "risk_pct": 2.69,
+              "return_pct": -2.84,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1655,
+              "peak_bar": 1642,
+              "wave_start": 1641,
+              "risk_pct": 1.155,
+              "return_pct": 2.116,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1675,
+              "exit_bar": 1675,
+              "peak_bar": 1673,
+              "wave_start": 1660,
+              "risk_pct": 0.432,
+              "return_pct": -0.582,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1678,
+              "exit_bar": 1685,
+              "peak_bar": 1676,
+              "wave_start": 1660,
+              "risk_pct": 2.429,
+              "return_pct": -2.579,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 68,
+            "win": 36.8,
+            "mean": 0.471,
+            "pf": 1.337,
+            "compound": 29.23
+          },
+          {
+            "n": 37,
+            "win": 43.2,
+            "mean": 0.627,
+            "pf": 1.626,
+            "compound": 23.41
+          },
+          {
+            "n": 37,
+            "win": 37.8,
+            "mean": 0.31,
+            "pf": 1.446,
+            "compound": 11.15
+          }
+        ],
+        "avg_risk_pct": [
+          3.032,
+          2.313,
+          2.245
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 211,
+              "exit_bar": 213,
+              "peak_bar": 209,
+              "wave_start": 208,
+              "risk_pct": 1.492,
+              "return_pct": -1.642,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 216,
+              "exit_bar": 216,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 1.204,
+              "return_pct": -1.354,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 222,
+              "exit_bar": 228,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 3.99,
+              "return_pct": 11.008,
+              "reason": "target"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1097,
+              "exit_bar": 1108,
+              "peak_bar": 1095,
+              "wave_start": 1094,
+              "risk_pct": 3.881,
+              "return_pct": -0.484,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1127,
+              "exit_bar": 1130,
+              "peak_bar": 1125,
+              "wave_start": 1122,
+              "risk_pct": 1.113,
+              "return_pct": -1.263,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1134,
+              "exit_bar": 1136,
+              "peak_bar": 1132,
+              "wave_start": 1122,
+              "risk_pct": 1.083,
+              "return_pct": -1.233,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1655,
+              "peak_bar": 1642,
+              "wave_start": 1641,
+              "risk_pct": 1.155,
+              "return_pct": 2.116,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1666,
+              "exit_bar": 1666,
+              "peak_bar": 1664,
+              "wave_start": 1660,
+              "risk_pct": 0.588,
+              "return_pct": -0.738,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1671,
+              "exit_bar": 1675,
+              "peak_bar": 1664,
+              "wave_start": 1660,
+              "risk_pct": 0.817,
+              "return_pct": -0.967,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "peak_bar",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 30,
+            "win": 33.3,
+            "mean": 2.051,
+            "pf": 3.004,
+            "compound": 72.72
+          },
+          {
+            "n": 15,
+            "win": 40.0,
+            "mean": 3.128,
+            "pf": 4.499,
+            "compound": 53.45
+          },
+          {
+            "n": 27,
+            "win": 14.8,
+            "mean": -0.343,
+            "pf": 0.668,
+            "compound": -9.56
+          }
+        ],
+        "avg_risk_pct": [
+          1.852,
+          1.828,
+          1.186
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 211,
+              "exit_bar": 212,
+              "peak_bar": 209,
+              "wave_start": 208,
+              "risk_pct": 1.022,
+              "return_pct": -1.172,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 216,
+              "exit_bar": 216,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 1.204,
+              "return_pct": -1.354,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 222,
+              "exit_bar": 281,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 0.782,
+              "return_pct": 14.584,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1097,
+              "exit_bar": 1151,
+              "peak_bar": 1095,
+              "wave_start": 1094,
+              "risk_pct": 3.881,
+              "return_pct": -4.031,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1153,
+              "exit_bar": 1212,
+              "peak_bar": 1138,
+              "wave_start": 1122,
+              "risk_pct": 1.761,
+              "return_pct": 7.442,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1257,
+              "exit_bar": 1271,
+              "peak_bar": 1255,
+              "wave_start": 1251,
+              "risk_pct": 2.932,
+              "return_pct": -1.193,
+              "reason": "signal"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1703,
+              "peak_bar": 1642,
+              "wave_start": 1641,
+              "risk_pct": 1.155,
+              "return_pct": 2.498,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1739,
+              "exit_bar": 1747,
+              "peak_bar": 1730,
+              "wave_start": 1728,
+              "risk_pct": 1.186,
+              "return_pct": -1.336,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1750,
+              "exit_bar": 1752,
+              "peak_bar": 1730,
+              "wave_start": 1728,
+              "risk_pct": 0.732,
+              "return_pct": -0.882,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 33,
+            "win": 27.3,
+            "mean": -0.021,
+            "pf": 0.991,
+            "compound": -6.33
+          },
+          {
+            "n": 14,
+            "win": 50.0,
+            "mean": 3.907,
+            "pf": 4.411,
+            "compound": 65.07
+          },
+          {
+            "n": 15,
+            "win": 33.3,
+            "mean": -0.231,
+            "pf": 0.824,
+            "compound": -4.07
+          }
+        ],
+        "avg_risk_pct": [
+          2.905,
+          2.854,
+          2.315
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 211,
+              "exit_bar": 213,
+              "peak_bar": 209,
+              "wave_start": 208,
+              "risk_pct": 1.492,
+              "return_pct": -1.642,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 216,
+              "exit_bar": 216,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 1.204,
+              "return_pct": -1.354,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 222,
+              "exit_bar": 281,
+              "peak_bar": 214,
+              "wave_start": 208,
+              "risk_pct": 3.99,
+              "return_pct": 14.584,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1097,
+              "exit_bar": 1151,
+              "peak_bar": 1095,
+              "wave_start": 1094,
+              "risk_pct": 3.881,
+              "return_pct": -4.031,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1153,
+              "exit_bar": 1212,
+              "peak_bar": 1138,
+              "wave_start": 1122,
+              "risk_pct": 2.813,
+              "return_pct": 7.442,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1216,
+              "exit_bar": 1220,
+              "peak_bar": 1199,
+              "wave_start": 1188,
+              "risk_pct": 0.935,
+              "return_pct": -1.085,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1703,
+              "peak_bar": 1642,
+              "wave_start": 1641,
+              "risk_pct": 1.155,
+              "return_pct": 2.498,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1708,
+              "exit_bar": 1710,
+              "peak_bar": 1696,
+              "wave_start": 1691,
+              "risk_pct": 1.668,
+              "return_pct": -1.818,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1713,
+              "exit_bar": 1772,
+              "peak_bar": 1696,
+              "wave_start": 1691,
+              "risk_pct": 1.56,
+              "return_pct": -0.119,
+              "reason": "time"
+            }
+          ]
+        ]
+      }
+    ],
+    "ICPUSDT": [
+      {
+        "stop": "peak_bar",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 49,
+            "win": 36.7,
+            "mean": 0.238,
+            "pf": 1.154,
+            "compound": 5.88
+          },
+          {
+            "n": 29,
+            "win": 37.9,
+            "mean": 0.981,
+            "pf": 1.921,
+            "compound": 28.44
+          },
+          {
+            "n": 32,
+            "win": 34.4,
+            "mean": 1.39,
+            "pf": 2.532,
+            "compound": 50.77
+          }
+        ],
+        "avg_risk_pct": [
+          3.111,
+          2.319,
+          2.433
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 216,
+              "exit_bar": 227,
+              "peak_bar": 214,
+              "wave_start": 195,
+              "risk_pct": 4.587,
+              "return_pct": -1.756,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 229,
+              "exit_bar": 238,
+              "peak_bar": 214,
+              "wave_start": 195,
+              "risk_pct": 5.471,
+              "return_pct": -5.621,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 248,
+              "exit_bar": 248,
+              "peak_bar": 246,
+              "wave_start": 240,
+              "risk_pct": 0.342,
+              "return_pct": -0.492,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1101,
+              "exit_bar": 1101,
+              "peak_bar": 1089,
+              "wave_start": 1085,
+              "risk_pct": 0.199,
+              "return_pct": -0.349,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1110,
+              "exit_bar": 1121,
+              "peak_bar": 1108,
+              "wave_start": 1107,
+              "risk_pct": 4.305,
+              "return_pct": -0.994,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1139,
+              "exit_bar": 1143,
+              "peak_bar": 1137,
+              "wave_start": 1136,
+              "risk_pct": 2.628,
+              "return_pct": -2.778,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1655,
+              "peak_bar": 1642,
+              "wave_start": 1640,
+              "risk_pct": 1.982,
+              "return_pct": 4.131,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1679,
+              "exit_bar": 1679,
+              "peak_bar": 1677,
+              "wave_start": 1677,
+              "risk_pct": 0.656,
+              "return_pct": -0.806,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1682,
+              "exit_bar": 1685,
+              "peak_bar": 1680,
+              "wave_start": 1677,
+              "risk_pct": 0.937,
+              "return_pct": -1.087,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 63,
+            "win": 44.4,
+            "mean": 0.775,
+            "pf": 1.485,
+            "compound": 46.86
+          },
+          {
+            "n": 37,
+            "win": 40.5,
+            "mean": 0.213,
+            "pf": 1.142,
+            "compound": 4.07
+          },
+          {
+            "n": 37,
+            "win": 43.2,
+            "mean": 0.572,
+            "pf": 1.322,
+            "compound": 17.93
+          }
+        ],
+        "avg_risk_pct": [
+          3.857,
+          3.195,
+          4.423
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 216,
+              "exit_bar": 227,
+              "peak_bar": 214,
+              "wave_start": 195,
+              "risk_pct": 5.309,
+              "return_pct": -1.756,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 229,
+              "exit_bar": 238,
+              "peak_bar": 214,
+              "wave_start": 195,
+              "risk_pct": 6.187,
+              "return_pct": -6.337,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 248,
+              "exit_bar": 251,
+              "peak_bar": 246,
+              "wave_start": 240,
+              "risk_pct": 3.658,
+              "return_pct": -3.808,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1101,
+              "exit_bar": 1109,
+              "peak_bar": 1089,
+              "wave_start": 1085,
+              "risk_pct": 2.58,
+              "return_pct": -2.73,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1117,
+              "exit_bar": 1125,
+              "peak_bar": 1115,
+              "wave_start": 1110,
+              "risk_pct": 2.81,
+              "return_pct": -2.96,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1131,
+              "exit_bar": 1142,
+              "peak_bar": 1129,
+              "wave_start": 1110,
+              "risk_pct": 1.181,
+              "return_pct": 1.686,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1655,
+              "peak_bar": 1642,
+              "wave_start": 1640,
+              "risk_pct": 2.773,
+              "return_pct": 4.131,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1677,
+              "exit_bar": 1688,
+              "peak_bar": 1661,
+              "wave_start": 1645,
+              "risk_pct": 2.618,
+              "return_pct": 3.418,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1690,
+              "exit_bar": 1701,
+              "peak_bar": 1687,
+              "wave_start": 1677,
+              "risk_pct": 1.212,
+              "return_pct": -0.007,
+              "reason": "time"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "peak_bar",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 29,
+            "win": 24.1,
+            "mean": 0.963,
+            "pf": 1.512,
+            "compound": 21.46
+          },
+          {
+            "n": 20,
+            "win": 15.0,
+            "mean": -0.455,
+            "pf": 0.711,
+            "compound": -10.02
+          },
+          {
+            "n": 19,
+            "win": 31.6,
+            "mean": 2.978,
+            "pf": 2.576,
+            "compound": 60.84
+          }
+        ],
+        "avg_risk_pct": [
+          2.602,
+          1.692,
+          2.824
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 216,
+              "exit_bar": 238,
+              "peak_bar": 214,
+              "wave_start": 195,
+              "risk_pct": 4.587,
+              "return_pct": -4.737,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 248,
+              "exit_bar": 248,
+              "peak_bar": 246,
+              "wave_start": 240,
+              "risk_pct": 0.342,
+              "return_pct": -0.492,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 255,
+              "exit_bar": 261,
+              "peak_bar": 253,
+              "wave_start": 240,
+              "risk_pct": 4.277,
+              "return_pct": -4.427,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1101,
+              "exit_bar": 1101,
+              "peak_bar": 1089,
+              "wave_start": 1085,
+              "risk_pct": 0.199,
+              "return_pct": -0.349,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1110,
+              "exit_bar": 1144,
+              "peak_bar": 1108,
+              "wave_start": 1107,
+              "risk_pct": 4.305,
+              "return_pct": -4.455,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1247,
+              "exit_bar": 1247,
+              "peak_bar": 1244,
+              "wave_start": 1242,
+              "risk_pct": 1.126,
+              "return_pct": -1.276,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1658,
+              "peak_bar": 1642,
+              "wave_start": 1640,
+              "risk_pct": 1.982,
+              "return_pct": 3.852,
+              "reason": "signal"
+            },
+            {
+              "entry_bar": 1679,
+              "exit_bar": 1679,
+              "peak_bar": 1677,
+              "wave_start": 1677,
+              "risk_pct": 0.656,
+              "return_pct": -0.806,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1682,
+              "exit_bar": 1685,
+              "peak_bar": 1680,
+              "wave_start": 1677,
+              "risk_pct": 0.937,
+              "return_pct": -1.087,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 32,
+            "win": 25.0,
+            "mean": 0.876,
+            "pf": 1.328,
+            "compound": 17.26
+          },
+          {
+            "n": 19,
+            "win": 21.1,
+            "mean": -0.567,
+            "pf": 0.759,
+            "compound": -12.65
+          },
+          {
+            "n": 15,
+            "win": 46.7,
+            "mean": 3.024,
+            "pf": 2.313,
+            "compound": 48.04
+          }
+        ],
+        "avg_risk_pct": [
+          4.007,
+          2.969,
+          4.588
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 216,
+              "exit_bar": 238,
+              "peak_bar": 214,
+              "wave_start": 195,
+              "risk_pct": 5.309,
+              "return_pct": -5.459,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 248,
+              "exit_bar": 251,
+              "peak_bar": 246,
+              "wave_start": 240,
+              "risk_pct": 3.658,
+              "return_pct": -3.808,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 255,
+              "exit_bar": 272,
+              "peak_bar": 253,
+              "wave_start": 240,
+              "risk_pct": 5.052,
+              "return_pct": -5.202,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1101,
+              "exit_bar": 1109,
+              "peak_bar": 1089,
+              "wave_start": 1085,
+              "risk_pct": 2.58,
+              "return_pct": -2.73,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1117,
+              "exit_bar": 1125,
+              "peak_bar": 1115,
+              "wave_start": 1110,
+              "risk_pct": 2.81,
+              "return_pct": -2.96,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1131,
+              "exit_bar": 1148,
+              "peak_bar": 1129,
+              "wave_start": 1110,
+              "risk_pct": 1.181,
+              "return_pct": 12.958,
+              "reason": "signal"
+            }
+          ],
+          [
+            {
+              "entry_bar": 1644,
+              "exit_bar": 1658,
+              "peak_bar": 1642,
+              "wave_start": 1640,
+              "risk_pct": 2.773,
+              "return_pct": 3.852,
+              "reason": "signal"
+            },
+            {
+              "entry_bar": 1677,
+              "exit_bar": 1727,
+              "peak_bar": 1661,
+              "wave_start": 1645,
+              "risk_pct": 2.618,
+              "return_pct": 8.208,
+              "reason": "signal"
+            },
+            {
+              "entry_bar": 1737,
+              "exit_bar": 1787,
+              "peak_bar": 1730,
+              "wave_start": 1715,
+              "risk_pct": 7.369,
+              "return_pct": -7.519,
+              "reason": "stop"
+            }
+          ]
+        ]
+      }
+    ],
+    "HYPEUSDT": [
+      {
+        "stop": "peak_bar",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 16,
+            "win": 31.2,
+            "mean": -0.753,
+            "pf": 0.648,
+            "compound": -12.54
+          },
+          {
+            "n": 19,
+            "win": 31.6,
+            "mean": -0.031,
+            "pf": 0.974,
+            "compound": -1.35
+          },
+          {
+            "n": 17,
+            "win": 35.3,
+            "mean": -0.518,
+            "pf": 0.695,
+            "compound": -9.22
+          }
+        ],
+        "avg_risk_pct": [
+          3.475,
+          1.759,
+          2.577
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 228,
+              "exit_bar": 230,
+              "peak_bar": 226,
+              "wave_start": 225,
+              "risk_pct": 2.476,
+              "return_pct": -2.626,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 261,
+              "exit_bar": 272,
+              "peak_bar": 250,
+              "wave_start": 225,
+              "risk_pct": 6.036,
+              "return_pct": -4.252,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 282,
+              "exit_bar": 286,
+              "peak_bar": 263,
+              "wave_start": 261,
+              "risk_pct": 3.581,
+              "return_pct": -3.731,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 626,
+              "exit_bar": 637,
+              "peak_bar": 624,
+              "wave_start": 617,
+              "risk_pct": 1.348,
+              "return_pct": 3.041,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 644,
+              "exit_bar": 650,
+              "peak_bar": 642,
+              "wave_start": 637,
+              "risk_pct": 3.214,
+              "return_pct": -3.364,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 656,
+              "exit_bar": 667,
+              "peak_bar": 652,
+              "wave_start": 637,
+              "risk_pct": 2.16,
+              "return_pct": 2.783,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 952,
+              "exit_bar": 963,
+              "peak_bar": 950,
+              "wave_start": 932,
+              "risk_pct": 2.75,
+              "return_pct": 3.497,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 981,
+              "exit_bar": 991,
+              "peak_bar": 976,
+              "wave_start": 956,
+              "risk_pct": 4.772,
+              "return_pct": -4.922,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1001,
+              "exit_bar": 1012,
+              "peak_bar": 999,
+              "wave_start": 997,
+              "risk_pct": 2.254,
+              "return_pct": 2.46,
+              "reason": "time"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "fixed48",
+        "segments": [
+          {
+            "n": 26,
+            "win": 23.1,
+            "mean": -1.445,
+            "pf": 0.433,
+            "compound": -32.83
+          },
+          {
+            "n": 22,
+            "win": 40.9,
+            "mean": -0.303,
+            "pf": 0.819,
+            "compound": -7.66
+          },
+          {
+            "n": 22,
+            "win": 36.4,
+            "mean": -0.23,
+            "pf": 0.846,
+            "compound": -5.94
+          }
+        ],
+        "avg_risk_pct": [
+          4.325,
+          2.986,
+          2.509
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 213,
+              "exit_bar": 224,
+              "peak_bar": 186,
+              "wave_start": 184,
+              "risk_pct": 2.907,
+              "return_pct": 0.808,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 228,
+              "exit_bar": 233,
+              "peak_bar": 226,
+              "wave_start": 225,
+              "risk_pct": 3.218,
+              "return_pct": -3.368,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 243,
+              "exit_bar": 247,
+              "peak_bar": 231,
+              "wave_start": 225,
+              "risk_pct": 2.126,
+              "return_pct": -2.276,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 626,
+              "exit_bar": 637,
+              "peak_bar": 624,
+              "wave_start": 617,
+              "risk_pct": 2.121,
+              "return_pct": 3.041,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 644,
+              "exit_bar": 650,
+              "peak_bar": 642,
+              "wave_start": 637,
+              "risk_pct": 3.214,
+              "return_pct": -3.364,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 656,
+              "exit_bar": 667,
+              "peak_bar": 652,
+              "wave_start": 637,
+              "risk_pct": 4.698,
+              "return_pct": 2.783,
+              "reason": "time"
+            }
+          ],
+          [
+            {
+              "entry_bar": 952,
+              "exit_bar": 963,
+              "peak_bar": 950,
+              "wave_start": 932,
+              "risk_pct": 2.75,
+              "return_pct": 3.497,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 972,
+              "exit_bar": 974,
+              "peak_bar": 958,
+              "wave_start": 956,
+              "risk_pct": 3.09,
+              "return_pct": -3.24,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 981,
+              "exit_bar": 991,
+              "peak_bar": 976,
+              "wave_start": 956,
+              "risk_pct": 4.812,
+              "return_pct": -4.962,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "peak_bar",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 12,
+            "win": 25.0,
+            "mean": 2.69,
+            "pf": 2.387,
+            "compound": 25.34
+          },
+          {
+            "n": 12,
+            "win": 16.7,
+            "mean": -0.653,
+            "pf": 0.604,
+            "compound": -8.08
+          },
+          {
+            "n": 12,
+            "win": 25.0,
+            "mean": -0.533,
+            "pf": 0.732,
+            "compound": -7.25
+          }
+        ],
+        "avg_risk_pct": [
+          3.181,
+          2.089,
+          2.485
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 228,
+              "exit_bar": 230,
+              "peak_bar": 226,
+              "wave_start": 225,
+              "risk_pct": 2.476,
+              "return_pct": -2.626,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 261,
+              "exit_bar": 320,
+              "peak_bar": 250,
+              "wave_start": 225,
+              "risk_pct": 6.036,
+              "return_pct": 49.124,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 328,
+              "exit_bar": 332,
+              "peak_bar": 302,
+              "wave_start": 286,
+              "risk_pct": 1.092,
+              "return_pct": -1.242,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 626,
+              "exit_bar": 639,
+              "peak_bar": 624,
+              "wave_start": 617,
+              "risk_pct": 1.348,
+              "return_pct": -1.498,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 644,
+              "exit_bar": 650,
+              "peak_bar": 642,
+              "wave_start": 637,
+              "risk_pct": 3.214,
+              "return_pct": -3.364,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 656,
+              "exit_bar": 672,
+              "peak_bar": 652,
+              "wave_start": 637,
+              "risk_pct": 2.16,
+              "return_pct": -2.31,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 952,
+              "exit_bar": 1011,
+              "peak_bar": 950,
+              "wave_start": 932,
+              "risk_pct": 2.75,
+              "return_pct": 9.769,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1037,
+              "exit_bar": 1037,
+              "peak_bar": 1026,
+              "wave_start": 1012,
+              "risk_pct": 0.304,
+              "return_pct": -0.454,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1060,
+              "exit_bar": 1079,
+              "peak_bar": 1057,
+              "wave_start": 1055,
+              "risk_pct": 5.108,
+              "return_pct": -5.258,
+              "reason": "stop"
+            }
+          ]
+        ]
+      },
+      {
+        "stop": "wave",
+        "exit": "bright_wick",
+        "segments": [
+          {
+            "n": 12,
+            "win": 33.3,
+            "mean": 5.498,
+            "pf": 3.97,
+            "compound": 70.76
+          },
+          {
+            "n": 14,
+            "win": 14.3,
+            "mean": -2.009,
+            "pf": 0.302,
+            "compound": -25.4
+          },
+          {
+            "n": 10,
+            "win": 50.0,
+            "mean": 2.889,
+            "pf": 4.129,
+            "compound": 31.12
+          }
+        ],
+        "avg_risk_pct": [
+          4.848,
+          3.266,
+          2.061
+        ],
+        "sample_trade_records": [
+          [
+            {
+              "entry_bar": 213,
+              "exit_bar": 250,
+              "peak_bar": 186,
+              "wave_start": 184,
+              "risk_pct": 2.907,
+              "return_pct": 6.989,
+              "reason": "signal"
+            },
+            {
+              "entry_bar": 261,
+              "exit_bar": 320,
+              "peak_bar": 250,
+              "wave_start": 225,
+              "risk_pct": 10.607,
+              "return_pct": 49.124,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 326,
+              "exit_bar": 332,
+              "peak_bar": 302,
+              "wave_start": 286,
+              "risk_pct": 1.957,
+              "return_pct": -2.107,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 626,
+              "exit_bar": 639,
+              "peak_bar": 624,
+              "wave_start": 617,
+              "risk_pct": 2.121,
+              "return_pct": -2.271,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 644,
+              "exit_bar": 650,
+              "peak_bar": 642,
+              "wave_start": 637,
+              "risk_pct": 3.214,
+              "return_pct": -3.364,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 656,
+              "exit_bar": 672,
+              "peak_bar": 652,
+              "wave_start": 637,
+              "risk_pct": 4.698,
+              "return_pct": -4.848,
+              "reason": "stop"
+            }
+          ],
+          [
+            {
+              "entry_bar": 952,
+              "exit_bar": 1011,
+              "peak_bar": 950,
+              "wave_start": 932,
+              "risk_pct": 2.75,
+              "return_pct": 9.769,
+              "reason": "time"
+            },
+            {
+              "entry_bar": 1017,
+              "exit_bar": 1018,
+              "peak_bar": 1015,
+              "wave_start": 1012,
+              "risk_pct": 1.052,
+              "return_pct": -1.202,
+              "reason": "stop"
+            },
+            {
+              "entry_bar": 1037,
+              "exit_bar": 1039,
+              "peak_bar": 1026,
+              "wave_start": 1012,
+              "risk_pct": 1.012,
+              "return_pct": -1.162,
+              "reason": "stop"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}
