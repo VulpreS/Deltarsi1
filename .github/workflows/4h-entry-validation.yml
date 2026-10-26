@@ -1,0 +1,24 @@
+name: 4H Entry Validation
+on:
+  push:
+    paths:
+      - .github/workflows/4h-entry-validation.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python validate_4h_entries.py
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/4h_entry_validation.json
+          git diff --cached --quiet || (git commit -m "Save 4H entry validation" && git pull --rebase origin main && git push)
