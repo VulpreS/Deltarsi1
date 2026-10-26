@@ -41,6 +41,9 @@ def main():
     if not fills:
         fills={str(i):x for i,x in enumerate(recent)}
     fills=sorted(fills.values(),key=lambda x:int(x["time"]))
+    cutoff=int((dt.datetime.now(dt.timezone.utc)-dt.timedelta(days=60)).timestamp()*1000)
+    fills=[x for x in fills if int(x["time"])>=cutoff]
+    if not fills:raise RuntimeError("No fills in last 60 days")
     (ROOT/"fills_raw.json").write_text(json.dumps(fills,ensure_ascii=False,indent=2))
     flat=[]
     bycoin=defaultdict(list)
@@ -50,9 +53,9 @@ def main():
         flat.append({k:x.get(k,"") for k in ("coin","time","side","dir","px","sz","startPosition","closedPnl","fee","feeToken","crossed","oid","tid","hash")})
     save_csv(ROOT/"fills.csv",flat)
     summary=["# Hyperliquid wallet: factual trade history","","Wallet: "+WALLET,
-             f"Retrieved fills: {len(fills)}; coins: {len(bycoin)}.",
+             f"Retrieved fills (last 60 days): {len(fills)}; coins: {len(bycoin)}.",
              "Fills are executions, not independent trades. Closed PnL is realized PnL per execution.",
-             "Recent history is limited by Hyperliquid API to 10,000 fills.","",
+             "Only the most recent 60 days are included. Hyperliquid API may cap fills at 10,000.","",
              "| Coin | Fills | First UTC | Last UTC | Sum closed PnL (USDC) | Fees |",
              "|---|---:|---|---|---:|---:|"]
     for coin,items in sorted(bycoin.items(),key=lambda t:len(t[1]),reverse=True):
@@ -67,7 +70,7 @@ def main():
             continue
         for interval,ms in (("1h",3600000),("4h",14400000),("1d",86400000)):
             # 100 bars before first execution, 30 after last. Max 4500 per request.
-            cursor=start_t-100*ms
+            cursor=max(cutoff,start_t-100*ms)
             end=min(int(time.time()*1000),end_t+30*ms)
             candles={}
             while cursor<end:
