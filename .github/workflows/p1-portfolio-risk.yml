@@ -4,6 +4,7 @@ on:
     paths:
       - portfolio_risk_audit.py
       - test_portfolio_risk_audit.py
+      - test_portfolio_open_order.py
       - .github/workflows/p1-portfolio-risk.yml
   workflow_dispatch:
 permissions:
@@ -19,7 +20,7 @@ jobs:
           python-version: '3.12'
       - name: Regression tests
         run: |
-          python -m unittest -v test_portfolio_risk_audit test_completed_candles test_p0_execution test_matched_exit_audit
+          python -m unittest -v test_portfolio_risk_audit test_portfolio_open_order test_completed_candles test_p0_execution test_matched_exit_audit
       - name: Cached-only portfolio audit
         run: python portfolio_risk_audit.py
       - name: Commit report
