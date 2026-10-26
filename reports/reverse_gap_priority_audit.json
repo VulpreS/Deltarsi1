@@ -1,0 +1,2943 @@
+{
+  "title": "P0 #14 pending-reverse vs resting-gap precedence, frozen portfolio",
+  "generated_utc": "2026-10-26T23:55:06.443309+00:00",
+  "code_sha": "1db1c5f683d5cb3bec5fd301676a7cfbc5124241",
+  "ci_run": "40422961335",
+  "source_hashes": {
+    "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
+    "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b"
+  },
+  "config_hash": "6922fb45e5dc090035e7ba90fcf335886f7d278567bae52368e810dcfcb2f0e1",
+  "assumptions": "resting_first canonical: old stop gap fills adverse open, target gap fills target, then pending reverse market at open; market_first alternative sensitivity. Only open OHLC used before admission. 15/25/40bp total friction, 0/1/3bp adverse synthetic UTC 8h funding. Venue priority unverified; no actual funding, no orders.",
+  "warning": "Previously inspected cache; chronological windows are not untouched OOS. No strategy promotion.",
+  "full": {
+    "baseline": {
+      "15bp_fee_0bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 52.43,
+          "net_pf": 1.1959,
+          "mean_net_R": 0.0606,
+          "net_return_pct": 4.7203,
+          "gross_trade_pnl": 0.0786512,
+          "fees": 0.0314487,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 2.837,
+          "return_over_max_dd": 1.6638,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.6102,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 7,
+          "turnover_notional_per_initial_equity": 41.9316,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0267716,
+              "pf": 1.255,
+              "mean_net_R": 0.0866
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.033439,
+              "pf": 1.507,
+              "mean_net_R": 0.137
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0130081,
+              "pf": 0.8143,
+              "mean_net_R": -0.0585
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 52.43,
+          "net_pf": 1.1959,
+          "mean_net_R": 0.0606,
+          "net_return_pct": 4.7203,
+          "gross_trade_pnl": 0.0786512,
+          "fees": 0.0314487,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 2.837,
+          "return_over_max_dd": 1.6638,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.6102,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 7,
+          "turnover_notional_per_initial_equity": 41.9316,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0267716,
+              "pf": 1.255,
+              "mean_net_R": 0.0866
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.033439,
+              "pf": 1.507,
+              "mean_net_R": 0.137
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0130081,
+              "pf": 0.8143,
+              "mean_net_R": -0.0585
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "15bp_fee_1bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 52.1,
+          "net_pf": 1.1523,
+          "mean_net_R": 0.0482,
+          "net_return_pct": 3.7217,
+          "gross_trade_pnl": 0.0781472,
+          "fees": 0.0312983,
+          "funding": 0.0096324,
+          "max_close_to_close_mtm_dd_pct": 2.8997,
+          "return_over_max_dd": 1.2835,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.7027,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 7,
+          "turnover_notional_per_initial_equity": 41.7311,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0217673,
+              "pf": 1.2044,
+              "mean_net_R": 0.0711
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0302307,
+              "pf": 1.451,
+              "mean_net_R": 0.1244
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0147815,
+              "pf": 0.7913,
+              "mean_net_R": -0.0665
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 52.1,
+          "net_pf": 1.1523,
+          "mean_net_R": 0.0482,
+          "net_return_pct": 3.7217,
+          "gross_trade_pnl": 0.0781472,
+          "fees": 0.0312983,
+          "funding": 0.0096324,
+          "max_close_to_close_mtm_dd_pct": 2.8997,
+          "return_over_max_dd": 1.2835,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.7027,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 7,
+          "turnover_notional_per_initial_equity": 41.7311,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0217673,
+              "pf": 1.2044,
+              "mean_net_R": 0.0711
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0302307,
+              "pf": 1.451,
+              "mean_net_R": 0.1244
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0147815,
+              "pf": 0.7913,
+              "mean_net_R": -0.0665
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "15bp_fee_3bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 50.49,
+          "net_pf": 1.0697,
+          "mean_net_R": 0.0234,
+          "net_return_pct": 1.7528,
+          "gross_trade_pnl": 0.0771501,
+          "fees": 0.0310004,
+          "funding": 0.0286222,
+          "max_close_to_close_mtm_dd_pct": 3.3683,
+          "return_over_max_dd": 0.5204,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.8873,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 41.3338,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0118942,
+              "pf": 1.1084,
+              "mean_net_R": 0.0402
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0239111,
+              "pf": 1.3453,
+              "mean_net_R": 0.0991
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0182778,
+              "pf": 0.7475,
+              "mean_net_R": -0.0824
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 50.49,
+          "net_pf": 1.0697,
+          "mean_net_R": 0.0234,
+          "net_return_pct": 1.7528,
+          "gross_trade_pnl": 0.0771501,
+          "fees": 0.0310004,
+          "funding": 0.0286222,
+          "max_close_to_close_mtm_dd_pct": 3.3683,
+          "return_over_max_dd": 0.5204,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.8873,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 41.3338,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0118942,
+              "pf": 1.1084,
+              "mean_net_R": 0.0402
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0239111,
+              "pf": 1.3453,
+              "mean_net_R": 0.0991
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0182778,
+              "pf": 0.7475,
+              "mean_net_R": -0.0824
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0,
+        "competing_gap_ledger": []
+      },
+      "25bp_fee_0bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 51.46,
+          "net_pf": 1.1034,
+          "mean_net_R": 0.0337,
+          "net_return_pct": 2.5694,
+          "gross_trade_pnl": 0.0775667,
+          "fees": 0.051873,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.074,
+          "return_over_max_dd": 0.8358,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.8569,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 41.4984,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0155448,
+              "pf": 1.1429,
+              "mean_net_R": 0.0516
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0266005,
+              "pf": 1.39,
+              "mean_net_R": 0.11
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0164516,
+              "pf": 0.7701,
+              "mean_net_R": -0.0741
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 51.46,
+          "net_pf": 1.1034,
+          "mean_net_R": 0.0337,
+          "net_return_pct": 2.5694,
+          "gross_trade_pnl": 0.0775667,
+          "fees": 0.051873,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.074,
+          "return_over_max_dd": 0.8358,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.8569,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 41.4984,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0155448,
+              "pf": 1.1429,
+              "mean_net_R": 0.0516
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0266005,
+              "pf": 1.39,
+              "mean_net_R": 0.11
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0164516,
+              "pf": 0.7701,
+              "mean_net_R": -0.0741
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "25bp_fee_1bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 50.81,
+          "net_pf": 1.0631,
+          "mean_net_R": 0.0213,
+          "net_return_pct": 1.5912,
+          "gross_trade_pnl": 0.0770706,
+          "fees": 0.0516258,
+          "funding": 0.009533,
+          "max_close_to_close_mtm_dd_pct": 3.4554,
+          "return_over_max_dd": 0.4605,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.9492,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 41.3006,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0106412,
+              "pf": 1.0964,
+              "mean_net_R": 0.0362
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0234612,
+              "pf": 1.3384,
+              "mean_net_R": 0.0974
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0181905,
+              "pf": 0.7485,
+              "mean_net_R": -0.0821
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 50.81,
+          "net_pf": 1.0631,
+          "mean_net_R": 0.0213,
+          "net_return_pct": 1.5912,
+          "gross_trade_pnl": 0.0770706,
+          "fees": 0.0516258,
+          "funding": 0.009533,
+          "max_close_to_close_mtm_dd_pct": 3.4554,
+          "return_over_max_dd": 0.4605,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -1.9492,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 41.3006,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0106412,
+              "pf": 1.0964,
+              "mean_net_R": 0.0362
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0234612,
+              "pf": 1.3384,
+              "mean_net_R": 0.0974
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0181905,
+              "pf": 0.7485,
+              "mean_net_R": -0.0821
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "25bp_fee_3bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 49.51,
+          "net_pf": 0.987,
+          "mean_net_R": -0.0035,
+          "net_return_pct": -0.3375,
+          "gross_trade_pnl": 0.0760889,
+          "fees": 0.051136,
+          "funding": 0.0283277,
+          "max_close_to_close_mtm_dd_pct": 4.3387,
+          "return_over_max_dd": -0.0778,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.1334,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.9088,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0009664,
+              "pf": 1.0085,
+              "mean_net_R": 0.0053
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0172775,
+              "pf": 1.2409,
+              "mean_net_R": 0.0721
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0216188,
+              "pf": 0.7073,
+              "mean_net_R": -0.098
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 49.51,
+          "net_pf": 0.987,
+          "mean_net_R": -0.0035,
+          "net_return_pct": -0.3375,
+          "gross_trade_pnl": 0.0760889,
+          "fees": 0.051136,
+          "funding": 0.0283277,
+          "max_close_to_close_mtm_dd_pct": 4.3387,
+          "return_over_max_dd": -0.0778,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.1334,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.9088,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.0009664,
+              "pf": 1.0085,
+              "mean_net_R": 0.0053
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0172775,
+              "pf": 1.2409,
+              "mean_net_R": 0.0721
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0216188,
+              "pf": 0.7073,
+              "mean_net_R": -0.098
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "40bp_fee_0bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 49.84,
+          "net_pf": 0.9779,
+          "mean_net_R": -0.0066,
+          "net_return_pct": -0.5748,
+          "gross_trade_pnl": 0.0759717,
+          "fees": 0.0817192,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 4.4917,
+          "return_over_max_dd": -0.128,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.2259,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.8596,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.0008788,
+              "pf": 0.9923,
+              "mean_net_R": -0.0007
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0166169,
+              "pf": 1.2314,
+              "mean_net_R": 0.0695
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0214856,
+              "pf": 0.7087,
+              "mean_net_R": -0.0975
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 49.84,
+          "net_pf": 0.9779,
+          "mean_net_R": -0.0066,
+          "net_return_pct": -0.5748,
+          "gross_trade_pnl": 0.0759717,
+          "fees": 0.0817192,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 4.4917,
+          "return_over_max_dd": -0.128,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.2259,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.8596,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.0008788,
+              "pf": 0.9923,
+              "mean_net_R": -0.0007
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0166169,
+              "pf": 1.2314,
+              "mean_net_R": 0.0695
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0214856,
+              "pf": 0.7087,
+              "mean_net_R": -0.0975
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "40bp_fee_1bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 49.51,
+          "net_pf": 0.9422,
+          "mean_net_R": -0.019,
+          "net_return_pct": -1.5231,
+          "gross_trade_pnl": 0.075487,
+          "fees": 0.0813317,
+          "funding": 0.0093864,
+          "max_close_to_close_mtm_dd_pct": 5.2087,
+          "return_over_max_dd": -0.2924,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.3178,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.6659,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.0056355,
+              "pf": 0.9515,
+              "mean_net_R": -0.0162
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0135784,
+              "pf": 1.186,
+              "mean_net_R": 0.0569
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.023174,
+              "pf": 0.689,
+              "mean_net_R": -0.1055
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 49.51,
+          "net_pf": 0.9422,
+          "mean_net_R": -0.019,
+          "net_return_pct": -1.5231,
+          "gross_trade_pnl": 0.075487,
+          "fees": 0.0813317,
+          "funding": 0.0093864,
+          "max_close_to_close_mtm_dd_pct": 5.2087,
+          "return_over_max_dd": -0.2924,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.3178,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.6659,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.0056355,
+              "pf": 0.9515,
+              "mean_net_R": -0.0162
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0135784,
+              "pf": 1.186,
+              "mean_net_R": 0.0569
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.023174,
+              "pf": 0.689,
+              "mean_net_R": -0.1055
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "40bp_fee_3bp_funding": {
+        "resting_first": {
+          "n": 309,
+          "win_pct": 47.9,
+          "net_pf": 0.8748,
+          "mean_net_R": -0.0438,
+          "net_return_pct": -3.3929,
+          "gross_trade_pnl": 0.0745283,
+          "fees": 0.0805642,
+          "funding": 0.0278934,
+          "max_close_to_close_mtm_dd_pct": 6.6266,
+          "return_over_max_dd": -0.512,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.5013,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.2821,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.0150202,
+              "pf": 0.8745,
+              "mean_net_R": -0.0471
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0075936,
+              "pf": 1.1008,
+              "mean_net_R": 0.0316
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0265028,
+              "pf": 0.6513,
+              "mean_net_R": -0.1214
+            }
+          }
+        },
+        "market_first": {
+          "n": 309,
+          "win_pct": 47.9,
+          "net_pf": 0.8748,
+          "mean_net_R": -0.0438,
+          "net_return_pct": -3.3929,
+          "gross_trade_pnl": 0.0745283,
+          "fees": 0.0805642,
+          "funding": 0.0278934,
+          "max_close_to_close_mtm_dd_pct": 6.6266,
+          "return_over_max_dd": -0.512,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.5013,
+          "exposure_pct": 75.51,
+          "concurrent_bar_counts": [
+            536,
+            664,
+            989
+          ],
+          "skipped_signals": {
+            "max_two_positions": 194,
+            "same_symbol_open": 259
+          },
+          "longest_loss_streak": 8,
+          "turnover_notional_per_initial_equity": 40.2821,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.0150202,
+              "pf": 0.8745,
+              "mean_net_R": -0.0471
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0075936,
+              "pf": 1.1008,
+              "mean_net_R": 0.0316
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.0265028,
+              "pf": 0.6513,
+              "mean_net_R": -0.1214
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 309,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      }
+    },
+    "challenger": {
+      "15bp_fee_0bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 53.38,
+          "net_pf": 1.1644,
+          "mean_net_R": 0.0522,
+          "net_return_pct": 3.6784,
+          "gross_trade_pnl": 0.064373,
+          "fees": 0.0275889,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.1456,
+          "return_over_max_dd": 1.1694,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.0556,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.7851,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0426241,
+              "pf": 1.3874,
+              "mean_net_R": 0.1249
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0107696,
+              "pf": 2.2208,
+              "mean_net_R": 0.2256
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0166095,
+              "pf": 0.8417,
+              "mean_net_R": -0.0523
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 53.38,
+          "net_pf": 1.1644,
+          "mean_net_R": 0.0522,
+          "net_return_pct": 3.6784,
+          "gross_trade_pnl": 0.064373,
+          "fees": 0.0275889,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.1456,
+          "return_over_max_dd": 1.1694,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.0556,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.7851,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0426241,
+              "pf": 1.3874,
+              "mean_net_R": 0.1249
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0107696,
+              "pf": 2.2208,
+              "mean_net_R": 0.2256
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0166095,
+              "pf": 0.8417,
+              "mean_net_R": -0.0523
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "15bp_fee_1bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 53.02,
+          "net_pf": 1.1237,
+          "mean_net_R": 0.0401,
+          "net_return_pct": 2.802,
+          "gross_trade_pnl": 0.0640134,
+          "fees": 0.0274705,
+          "funding": 0.008523,
+          "max_close_to_close_mtm_dd_pct": 3.247,
+          "return_over_max_dd": 0.8629,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.135,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.6273,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0370658,
+              "pf": 1.3315,
+              "mean_net_R": 0.1093
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0100945,
+              "pf": 2.1339,
+              "mean_net_R": 0.2125
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0191404,
+              "pf": 0.8192,
+              "mean_net_R": -0.0605
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 53.02,
+          "net_pf": 1.1237,
+          "mean_net_R": 0.0401,
+          "net_return_pct": 2.802,
+          "gross_trade_pnl": 0.0640134,
+          "fees": 0.0274705,
+          "funding": 0.008523,
+          "max_close_to_close_mtm_dd_pct": 3.247,
+          "return_over_max_dd": 0.8629,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.135,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.6273,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0370658,
+              "pf": 1.3315,
+              "mean_net_R": 0.1093
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0100945,
+              "pf": 2.1339,
+              "mean_net_R": 0.2125
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0191404,
+              "pf": 0.8192,
+              "mean_net_R": -0.0605
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "15bp_fee_3bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 51.6,
+          "net_pf": 1.0461,
+          "mean_net_R": 0.0159,
+          "net_return_pct": 1.0711,
+          "gross_trade_pnl": 0.0633006,
+          "fees": 0.0272358,
+          "funding": 0.0253534,
+          "max_close_to_close_mtm_dd_pct": 3.4507,
+          "return_over_max_dd": 0.3104,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.2937,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.3144,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0260892,
+              "pf": 1.2259,
+              "mean_net_R": 0.0781
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0087605,
+              "pf": 1.9554,
+              "mean_net_R": 0.1864
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0241383,
+              "pf": 0.776,
+              "mean_net_R": -0.0768
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 51.6,
+          "net_pf": 1.0461,
+          "mean_net_R": 0.0159,
+          "net_return_pct": 1.0711,
+          "gross_trade_pnl": 0.0633006,
+          "fees": 0.0272358,
+          "funding": 0.0253534,
+          "max_close_to_close_mtm_dd_pct": 3.4507,
+          "return_over_max_dd": 0.3104,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.2937,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.3144,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0260892,
+              "pf": 1.2259,
+              "mean_net_R": 0.0781
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0087605,
+              "pf": 1.9554,
+              "mean_net_R": 0.1864
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0241383,
+              "pf": 0.776,
+              "mean_net_R": -0.0768
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0,
+        "competing_gap_ledger": []
+      },
+      "25bp_fee_0bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 52.31,
+          "net_pf": 1.0784,
+          "mean_net_R": 0.0262,
+          "net_return_pct": 1.804,
+          "gross_trade_pnl": 0.0636037,
+          "fees": 0.0455636,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.3895,
+          "return_over_max_dd": 0.5322,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.2508,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.4509,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0301572,
+              "pf": 1.2639,
+              "mean_net_R": 0.0896
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0094779,
+              "pf": 2.0471,
+              "mean_net_R": 0.2007
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0215949,
+              "pf": 0.7979,
+              "mean_net_R": -0.0685
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 52.31,
+          "net_pf": 1.0784,
+          "mean_net_R": 0.0262,
+          "net_return_pct": 1.804,
+          "gross_trade_pnl": 0.0636037,
+          "fees": 0.0455636,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.3895,
+          "return_over_max_dd": 0.5322,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.2508,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.4509,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0301572,
+              "pf": 1.2639,
+              "mean_net_R": 0.0896
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0094779,
+              "pf": 2.0471,
+              "mean_net_R": 0.2007
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0215949,
+              "pf": 0.7979,
+              "mean_net_R": -0.0685
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "25bp_fee_1bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 51.96,
+          "net_pf": 1.0405,
+          "mean_net_R": 0.0141,
+          "net_return_pct": 0.9433,
+          "gross_trade_pnl": 0.0632487,
+          "fees": 0.0453687,
+          "funding": 0.0084466,
+          "max_close_to_close_mtm_dd_pct": 3.4907,
+          "return_over_max_dd": 0.2702,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.3301,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.295,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0247016,
+              "pf": 1.2127,
+              "mean_net_R": 0.074
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0088137,
+              "pf": 1.9581,
+              "mean_net_R": 0.1876
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0240819,
+              "pf": 0.7766,
+              "mean_net_R": -0.0766
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 51.96,
+          "net_pf": 1.0405,
+          "mean_net_R": 0.0141,
+          "net_return_pct": 0.9433,
+          "gross_trade_pnl": 0.0632487,
+          "fees": 0.0453687,
+          "funding": 0.0084466,
+          "max_close_to_close_mtm_dd_pct": 3.4907,
+          "return_over_max_dd": 0.2702,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.3301,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 36.295,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0247016,
+              "pf": 1.2127,
+              "mean_net_R": 0.074
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0088137,
+              "pf": 1.9581,
+              "mean_net_R": 0.1876
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0240819,
+              "pf": 0.7766,
+              "mean_net_R": -0.0766
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "25bp_fee_3bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 50.89,
+          "net_pf": 0.9684,
+          "mean_net_R": -0.01,
+          "net_return_pct": -0.7564,
+          "gross_trade_pnl": 0.0625454,
+          "fees": 0.0449822,
+          "funding": 0.0251268,
+          "max_close_to_close_mtm_dd_pct": 3.7489,
+          "return_over_max_dd": -0.2018,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.4885,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.9858,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.013928,
+              "pf": 1.1163,
+              "mean_net_R": 0.0428
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0075013,
+              "pf": 1.7842,
+              "mean_net_R": 0.1615
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0289929,
+              "pf": 0.7357,
+              "mean_net_R": -0.093
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 50.89,
+          "net_pf": 0.9684,
+          "mean_net_R": -0.01,
+          "net_return_pct": -0.7564,
+          "gross_trade_pnl": 0.0625454,
+          "fees": 0.0449822,
+          "funding": 0.0251268,
+          "max_close_to_close_mtm_dd_pct": 3.7489,
+          "return_over_max_dd": -0.2018,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.4885,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.9858,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.013928,
+              "pf": 1.1163,
+              "mean_net_R": 0.0428
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0075013,
+              "pf": 1.7842,
+              "mean_net_R": 0.1615
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0289929,
+              "pf": 0.7357,
+              "mean_net_R": -0.093
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "40bp_fee_0bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 51.25,
+          "net_pf": 0.9606,
+          "mean_net_R": -0.0127,
+          "net_return_pct": -0.9446,
+          "gross_trade_pnl": 0.0624683,
+          "fees": 0.0719139,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.8406,
+          "return_over_max_dd": -0.2459,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.543,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.9569,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0118775,
+              "pf": 1.0984,
+              "mean_net_R": 0.0368
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0075813,
+              "pf": 1.7896,
+              "mean_net_R": 0.1634
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0289044,
+              "pf": 0.7365,
+              "mean_net_R": -0.0927
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 51.25,
+          "net_pf": 0.9606,
+          "mean_net_R": -0.0127,
+          "net_return_pct": -0.9446,
+          "gross_trade_pnl": 0.0624683,
+          "fees": 0.0719139,
+          "funding": 0.0,
+          "max_close_to_close_mtm_dd_pct": 3.8406,
+          "return_over_max_dd": -0.2459,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.543,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.9569,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0118775,
+              "pf": 1.0984,
+              "mean_net_R": 0.0368
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0075813,
+              "pf": 1.7896,
+              "mean_net_R": 0.1634
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0289044,
+              "pf": 0.7365,
+              "mean_net_R": -0.0927
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "40bp_fee_1bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 50.89,
+          "net_pf": 0.9266,
+          "mean_net_R": -0.0248,
+          "net_return_pct": -1.7821,
+          "gross_trade_pnl": 0.0621201,
+          "fees": 0.0716077,
+          "funding": 0.0083337,
+          "max_close_to_close_mtm_dd_pct": 4.1785,
+          "return_over_max_dd": -0.4265,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.6221,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.8038,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0065725,
+              "pf": 1.0536,
+              "mean_net_R": 0.0212
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0069331,
+              "pf": 1.7086,
+              "mean_net_R": 0.1503
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0313269,
+              "pf": 0.7169,
+              "mean_net_R": -0.1009
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 50.89,
+          "net_pf": 0.9266,
+          "mean_net_R": -0.0248,
+          "net_return_pct": -1.7821,
+          "gross_trade_pnl": 0.0621201,
+          "fees": 0.0716077,
+          "funding": 0.0083337,
+          "max_close_to_close_mtm_dd_pct": 4.1785,
+          "return_over_max_dd": -0.4265,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.6221,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.8038,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": 0.0065725,
+              "pf": 1.0536,
+              "mean_net_R": 0.0212
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0069331,
+              "pf": 1.7086,
+              "mean_net_R": 0.1503
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0313269,
+              "pf": 0.7169,
+              "mean_net_R": -0.1009
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      },
+      "40bp_fee_3bp_funding": {
+        "resting_first": {
+          "n": 281,
+          "win_pct": 49.47,
+          "net_pf": 0.862,
+          "mean_net_R": -0.049,
+          "net_return_pct": -3.4361,
+          "gross_trade_pnl": 0.0614309,
+          "fees": 0.0710003,
+          "funding": 0.024792,
+          "max_close_to_close_mtm_dd_pct": 5.0425,
+          "return_over_max_dd": -0.6814,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.78,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.5002,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": -0.0039036,
+              "pf": 0.9691,
+              "mean_net_R": -0.01
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0056525,
+              "pf": 1.5571,
+              "mean_net_R": 0.1242
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0361103,
+              "pf": 0.679,
+              "mean_net_R": -0.1172
+            }
+          }
+        },
+        "market_first": {
+          "n": 281,
+          "win_pct": 49.47,
+          "net_pf": 0.862,
+          "mean_net_R": -0.049,
+          "net_return_pct": -3.4361,
+          "gross_trade_pnl": 0.0614309,
+          "fees": 0.0710003,
+          "funding": 0.024792,
+          "max_close_to_close_mtm_dd_pct": 5.0425,
+          "return_over_max_dd": -0.6814,
+          "worst_calendar_month": "2026-01",
+          "worst_month_pct": -2.78,
+          "exposure_pct": 71.81,
+          "concurrent_bar_counts": [
+            617,
+            722,
+            850
+          ],
+          "skipped_signals": {
+            "ETH_OB_filter": 180,
+            "same_symbol_open": 244,
+            "max_two_positions": 57
+          },
+          "longest_loss_streak": 6,
+          "turnover_notional_per_initial_equity": 35.5002,
+          "per_asset": {
+            "BTCUSDT": {
+              "n": 136,
+              "net_pnl": -0.0039036,
+              "pf": 0.9691,
+              "mean_net_R": -0.01
+            },
+            "ETHUSDT": {
+              "n": 19,
+              "net_pnl": 0.0056525,
+              "pf": 1.5571,
+              "mean_net_R": 0.1242
+            },
+            "ICPUSDT": {
+              "n": 126,
+              "net_pnl": -0.0361103,
+              "pf": 0.679,
+              "mean_net_R": -0.1172
+            }
+          }
+        },
+        "trade_reconciliation": {
+          "shared": 281,
+          "changed_shared": 0,
+          "resting_only": 0,
+          "market_only": 0,
+          "changed_examples": []
+        },
+        "competing_gap_count": 0
+      }
+    }
+  },
+  "windows": [
+    {
+      "window": 1,
+      "start_utc": "2025-10-26T16:00:00+00:00",
+      "end_close_utc": "2026-01-07T12:00:00+00:00",
+      "variants": {
+        "baseline": {
+          "resting_first": {
+            "n": 37,
+            "win_pct": 43.24,
+            "net_pf": 0.9564,
+            "mean_net_R": -0.0151,
+            "net_return_pct": -0.1478,
+            "gross_trade_pnl": 0.0054958,
+            "fees": 0.003686,
+            "funding": 0.0032874,
+            "max_close_to_close_mtm_dd_pct": 1.4121,
+            "return_over_max_dd": -0.1046,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -0.5643,
+            "exposure_pct": 40.27,
+            "concurrent_bar_counts": [
+              261,
+              44,
+              132
+            ],
+            "skipped_signals": {
+              "max_two_positions": 22,
+              "same_symbol_open": 30
+            },
+            "longest_loss_streak": 4,
+            "turnover_notional_per_initial_equity": 4.9146,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 16,
+                "net_pnl": -0.0051439,
+                "pf": 0.6938,
+                "mean_net_R": -0.1271
+              },
+              "ETHUSDT": {
+                "n": 10,
+                "net_pnl": 0.0079966,
+                "pf": 2.586,
+                "mean_net_R": 0.3184
+              },
+              "ICPUSDT": {
+                "n": 11,
+                "net_pnl": -0.0043302,
+                "pf": 0.6417,
+                "mean_net_R": -0.1555
+              }
+            }
+          },
+          "market_first": {
+            "n": 37,
+            "win_pct": 43.24,
+            "net_pf": 0.9564,
+            "mean_net_R": -0.0151,
+            "net_return_pct": -0.1478,
+            "gross_trade_pnl": 0.0054958,
+            "fees": 0.003686,
+            "funding": 0.0032874,
+            "max_close_to_close_mtm_dd_pct": 1.4121,
+            "return_over_max_dd": -0.1046,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -0.5643,
+            "exposure_pct": 40.27,
+            "concurrent_bar_counts": [
+              261,
+              44,
+              132
+            ],
+            "skipped_signals": {
+              "max_two_positions": 22,
+              "same_symbol_open": 30
+            },
+            "longest_loss_streak": 4,
+            "turnover_notional_per_initial_equity": 4.9146,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 16,
+                "net_pnl": -0.0051439,
+                "pf": 0.6938,
+                "mean_net_R": -0.1271
+              },
+              "ETHUSDT": {
+                "n": 10,
+                "net_pnl": 0.0079966,
+                "pf": 2.586,
+                "mean_net_R": 0.3184
+              },
+              "ICPUSDT": {
+                "n": 11,
+                "net_pnl": -0.0043302,
+                "pf": 0.6417,
+                "mean_net_R": -0.1555
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 37,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        },
+        "challenger": {
+          "resting_first": {
+            "n": 32,
+            "win_pct": 43.75,
+            "net_pf": 0.8047,
+            "mean_net_R": -0.0683,
+            "net_return_pct": -0.5485,
+            "gross_trade_pnl": 0.0003745,
+            "fees": 0.0029229,
+            "funding": 0.0029367,
+            "max_close_to_close_mtm_dd_pct": 1.4306,
+            "return_over_max_dd": -0.3834,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -0.5034,
+            "exposure_pct": 39.59,
+            "concurrent_bar_counts": [
+              264,
+              47,
+              126
+            ],
+            "skipped_signals": {
+              "ETH_OB_filter": 23,
+              "same_symbol_open": 29,
+              "max_two_positions": 5
+            },
+            "longest_loss_streak": 4,
+            "turnover_notional_per_initial_equity": 3.8972,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 16,
+                "net_pnl": -0.0019982,
+                "pf": 0.8577,
+                "mean_net_R": -0.0499
+              },
+              "ETHUSDT": {
+                "n": 1,
+                "net_pnl": -4.43e-05,
+                "pf": 0.0,
+                "mean_net_R": -0.0176
+              },
+              "ICPUSDT": {
+                "n": 15,
+                "net_pnl": -0.0034426,
+                "pf": 0.754,
+                "mean_net_R": -0.0913
+              }
+            }
+          },
+          "market_first": {
+            "n": 32,
+            "win_pct": 43.75,
+            "net_pf": 0.8047,
+            "mean_net_R": -0.0683,
+            "net_return_pct": -0.5485,
+            "gross_trade_pnl": 0.0003745,
+            "fees": 0.0029229,
+            "funding": 0.0029367,
+            "max_close_to_close_mtm_dd_pct": 1.4306,
+            "return_over_max_dd": -0.3834,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -0.5034,
+            "exposure_pct": 39.59,
+            "concurrent_bar_counts": [
+              264,
+              47,
+              126
+            ],
+            "skipped_signals": {
+              "ETH_OB_filter": 23,
+              "same_symbol_open": 29,
+              "max_two_positions": 5
+            },
+            "longest_loss_streak": 4,
+            "turnover_notional_per_initial_equity": 3.8972,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 16,
+                "net_pnl": -0.0019982,
+                "pf": 0.8577,
+                "mean_net_R": -0.0499
+              },
+              "ETHUSDT": {
+                "n": 1,
+                "net_pnl": -4.43e-05,
+                "pf": 0.0,
+                "mean_net_R": -0.0176
+              },
+              "ICPUSDT": {
+                "n": 15,
+                "net_pnl": -0.0034426,
+                "pf": 0.754,
+                "mean_net_R": -0.0913
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 32,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        }
+      }
+    },
+    {
+      "window": 2,
+      "start_utc": "2026-01-07T12:00:00+00:00",
+      "end_close_utc": "2026-03-21T12:00:00+00:00",
+      "variants": {
+        "baseline": {
+          "resting_first": {
+            "n": 69,
+            "win_pct": 47.83,
+            "net_pf": 0.9012,
+            "mean_net_R": -0.036,
+            "net_return_pct": -0.635,
+            "gross_trade_pnl": 0.0036568,
+            "fees": 0.0054212,
+            "funding": 0.0045852,
+            "max_close_to_close_mtm_dd_pct": 2.3176,
+            "return_over_max_dd": -0.274,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -1.5432,
+            "exposure_pct": 80.37,
+            "concurrent_bar_counts": [
+              86,
+              146,
+              206
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 56,
+              "max_two_positions": 45
+            },
+            "longest_loss_streak": 7,
+            "turnover_notional_per_initial_equity": 7.2282,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 29,
+                "net_pnl": -0.0104978,
+                "pf": 0.6645,
+                "mean_net_R": -0.1445
+              },
+              "ETHUSDT": {
+                "n": 18,
+                "net_pnl": 0.0118765,
+                "pf": 2.0377,
+                "mean_net_R": 0.2686
+              },
+              "ICPUSDT": {
+                "n": 22,
+                "net_pnl": -0.0077283,
+                "pf": 0.6406,
+                "mean_net_R": -0.1423
+              }
+            }
+          },
+          "market_first": {
+            "n": 69,
+            "win_pct": 47.83,
+            "net_pf": 0.9012,
+            "mean_net_R": -0.036,
+            "net_return_pct": -0.635,
+            "gross_trade_pnl": 0.0036568,
+            "fees": 0.0054212,
+            "funding": 0.0045852,
+            "max_close_to_close_mtm_dd_pct": 2.3176,
+            "return_over_max_dd": -0.274,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -1.5432,
+            "exposure_pct": 80.37,
+            "concurrent_bar_counts": [
+              86,
+              146,
+              206
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 56,
+              "max_two_positions": 45
+            },
+            "longest_loss_streak": 7,
+            "turnover_notional_per_initial_equity": 7.2282,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 29,
+                "net_pnl": -0.0104978,
+                "pf": 0.6645,
+                "mean_net_R": -0.1445
+              },
+              "ETHUSDT": {
+                "n": 18,
+                "net_pnl": 0.0118765,
+                "pf": 2.0377,
+                "mean_net_R": 0.2686
+              },
+              "ICPUSDT": {
+                "n": 22,
+                "net_pnl": -0.0077283,
+                "pf": 0.6406,
+                "mean_net_R": -0.1423
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 69,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        },
+        "challenger": {
+          "resting_first": {
+            "n": 65,
+            "win_pct": 49.23,
+            "net_pf": 0.8874,
+            "mean_net_R": -0.0406,
+            "net_return_pct": -0.6683,
+            "gross_trade_pnl": 0.0026262,
+            "fees": 0.0049619,
+            "funding": 0.0043472,
+            "max_close_to_close_mtm_dd_pct": 2.5855,
+            "return_over_max_dd": -0.2585,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -2.036,
+            "exposure_pct": 81.51,
+            "concurrent_bar_counts": [
+              81,
+              175,
+              182
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 59,
+              "ETH_OB_filter": 31,
+              "max_two_positions": 15
+            },
+            "longest_loss_streak": 6,
+            "turnover_notional_per_initial_equity": 6.6159,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 33,
+                "net_pnl": -0.0008887,
+                "pf": 0.9716,
+                "mean_net_R": -0.0095
+              },
+              "ETHUSDT": {
+                "n": 4,
+                "net_pnl": 0.0031406,
+                "pf": 6.8457,
+                "mean_net_R": 0.3156
+              },
+              "ICPUSDT": {
+                "n": 28,
+                "net_pnl": -0.0089349,
+                "pf": 0.6754,
+                "mean_net_R": -0.1282
+              }
+            }
+          },
+          "market_first": {
+            "n": 65,
+            "win_pct": 49.23,
+            "net_pf": 0.8874,
+            "mean_net_R": -0.0406,
+            "net_return_pct": -0.6683,
+            "gross_trade_pnl": 0.0026262,
+            "fees": 0.0049619,
+            "funding": 0.0043472,
+            "max_close_to_close_mtm_dd_pct": 2.5855,
+            "return_over_max_dd": -0.2585,
+            "worst_calendar_month": "2026-01",
+            "worst_month_pct": -2.036,
+            "exposure_pct": 81.51,
+            "concurrent_bar_counts": [
+              81,
+              175,
+              182
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 59,
+              "ETH_OB_filter": 31,
+              "max_two_positions": 15
+            },
+            "longest_loss_streak": 6,
+            "turnover_notional_per_initial_equity": 6.6159,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 33,
+                "net_pnl": -0.0008887,
+                "pf": 0.9716,
+                "mean_net_R": -0.0095
+              },
+              "ETHUSDT": {
+                "n": 4,
+                "net_pnl": 0.0031406,
+                "pf": 6.8457,
+                "mean_net_R": 0.3156
+              },
+              "ICPUSDT": {
+                "n": 28,
+                "net_pnl": -0.0089349,
+                "pf": 0.6754,
+                "mean_net_R": -0.1282
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 65,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        }
+      }
+    },
+    {
+      "window": 3,
+      "start_utc": "2026-03-21T12:00:00+00:00",
+      "end_close_utc": "2026-06-02T12:00:00+00:00",
+      "variants": {
+        "baseline": {
+          "resting_first": {
+            "n": 67,
+            "win_pct": 53.73,
+            "net_pf": 0.9124,
+            "mean_net_R": -0.0301,
+            "net_return_pct": -0.5189,
+            "gross_trade_pnl": 0.0092165,
+            "fees": 0.0072972,
+            "funding": 0.0071083,
+            "max_close_to_close_mtm_dd_pct": 2.3509,
+            "return_over_max_dd": -0.2207,
+            "worst_calendar_month": "2026-04",
+            "worst_month_pct": -0.3783,
+            "exposure_pct": 85.62,
+            "concurrent_bar_counts": [
+              63,
+              153,
+              222
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 57,
+              "max_two_positions": 44
+            },
+            "longest_loss_streak": 5,
+            "turnover_notional_per_initial_equity": 9.7296,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 28,
+                "net_pnl": 0.0084791,
+                "pf": 1.3625,
+                "mean_net_R": 0.1242
+              },
+              "ETHUSDT": {
+                "n": 27,
+                "net_pnl": -0.0070986,
+                "pf": 0.7175,
+                "mean_net_R": -0.1051
+              },
+              "ICPUSDT": {
+                "n": 12,
+                "net_pnl": -0.0065696,
+                "pf": 0.3872,
+                "mean_net_R": -0.2215
+              }
+            }
+          },
+          "market_first": {
+            "n": 67,
+            "win_pct": 53.73,
+            "net_pf": 0.9124,
+            "mean_net_R": -0.0301,
+            "net_return_pct": -0.5189,
+            "gross_trade_pnl": 0.0092165,
+            "fees": 0.0072972,
+            "funding": 0.0071083,
+            "max_close_to_close_mtm_dd_pct": 2.3509,
+            "return_over_max_dd": -0.2207,
+            "worst_calendar_month": "2026-04",
+            "worst_month_pct": -0.3783,
+            "exposure_pct": 85.62,
+            "concurrent_bar_counts": [
+              63,
+              153,
+              222
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 57,
+              "max_two_positions": 44
+            },
+            "longest_loss_streak": 5,
+            "turnover_notional_per_initial_equity": 9.7296,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 28,
+                "net_pnl": 0.0084791,
+                "pf": 1.3625,
+                "mean_net_R": 0.1242
+              },
+              "ETHUSDT": {
+                "n": 27,
+                "net_pnl": -0.0070986,
+                "pf": 0.7175,
+                "mean_net_R": -0.1051
+              },
+              "ICPUSDT": {
+                "n": 12,
+                "net_pnl": -0.0065696,
+                "pf": 0.3872,
+                "mean_net_R": -0.2215
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 67,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        },
+        "challenger": {
+          "resting_first": {
+            "n": 62,
+            "win_pct": 58.06,
+            "net_pf": 1.161,
+            "mean_net_R": 0.0521,
+            "net_return_pct": 0.7957,
+            "gross_trade_pnl": 0.0205952,
+            "fees": 0.0065235,
+            "funding": 0.0061144,
+            "max_close_to_close_mtm_dd_pct": 1.5803,
+            "return_over_max_dd": 0.5035,
+            "worst_calendar_month": "2026-03",
+            "worst_month_pct": -0.4722,
+            "exposure_pct": 76.03,
+            "concurrent_bar_counts": [
+              105,
+              141,
+              192
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 47,
+              "ETH_OB_filter": 40,
+              "max_two_positions": 19
+            },
+            "longest_loss_streak": 5,
+            "turnover_notional_per_initial_equity": 8.698,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 29,
+                "net_pnl": 0.012626,
+                "pf": 1.5743,
+                "mean_net_R": 0.1755
+              },
+              "ETHUSDT": {
+                "n": 9,
+                "net_pnl": 0.0024509,
+                "pf": 1.4178,
+                "mean_net_R": 0.111
+              },
+              "ICPUSDT": {
+                "n": 24,
+                "net_pnl": -0.0071195,
+                "pf": 0.6698,
+                "mean_net_R": -0.1192
+              }
+            }
+          },
+          "market_first": {
+            "n": 62,
+            "win_pct": 58.06,
+            "net_pf": 1.161,
+            "mean_net_R": 0.0521,
+            "net_return_pct": 0.7957,
+            "gross_trade_pnl": 0.0205952,
+            "fees": 0.0065235,
+            "funding": 0.0061144,
+            "max_close_to_close_mtm_dd_pct": 1.5803,
+            "return_over_max_dd": 0.5035,
+            "worst_calendar_month": "2026-03",
+            "worst_month_pct": -0.4722,
+            "exposure_pct": 76.03,
+            "concurrent_bar_counts": [
+              105,
+              141,
+              192
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 47,
+              "ETH_OB_filter": 40,
+              "max_two_positions": 19
+            },
+            "longest_loss_streak": 5,
+            "turnover_notional_per_initial_equity": 8.698,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 29,
+                "net_pnl": 0.012626,
+                "pf": 1.5743,
+                "mean_net_R": 0.1755
+              },
+              "ETHUSDT": {
+                "n": 9,
+                "net_pnl": 0.0024509,
+                "pf": 1.4178,
+                "mean_net_R": 0.111
+              },
+              "ICPUSDT": {
+                "n": 24,
+                "net_pnl": -0.0071195,
+                "pf": 0.6698,
+                "mean_net_R": -0.1192
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 62,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        }
+      }
+    },
+    {
+      "window": 4,
+      "start_utc": "2026-06-02T12:00:00+00:00",
+      "end_close_utc": "2026-08-14T12:00:00+00:00",
+      "variants": {
+        "baseline": {
+          "resting_first": {
+            "n": 65,
+            "win_pct": 50.77,
+            "net_pf": 0.9941,
+            "mean_net_R": -0.0011,
+            "net_return_pct": -0.0285,
+            "gross_trade_pnl": 0.0138348,
+            "fees": 0.0071221,
+            "funding": 0.0069976,
+            "max_close_to_close_mtm_dd_pct": 1.1443,
+            "return_over_max_dd": -0.0249,
+            "worst_calendar_month": "2026-08",
+            "worst_month_pct": -0.7195,
+            "exposure_pct": 87.9,
+            "concurrent_bar_counts": [
+              53,
+              175,
+              210
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 66,
+              "max_two_positions": 40
+            },
+            "longest_loss_streak": 5,
+            "turnover_notional_per_initial_equity": 9.4962,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 26,
+                "net_pnl": 0.0007552,
+                "pf": 1.0308,
+                "mean_net_R": 0.0122
+              },
+              "ETHUSDT": {
+                "n": 18,
+                "net_pnl": 0.0026376,
+                "pf": 1.2528,
+                "mean_net_R": 0.0586
+              },
+              "ICPUSDT": {
+                "n": 21,
+                "net_pnl": -0.0036778,
+                "pf": 0.7211,
+                "mean_net_R": -0.0688
+              }
+            }
+          },
+          "market_first": {
+            "n": 65,
+            "win_pct": 50.77,
+            "net_pf": 0.9941,
+            "mean_net_R": -0.0011,
+            "net_return_pct": -0.0285,
+            "gross_trade_pnl": 0.0138348,
+            "fees": 0.0071221,
+            "funding": 0.0069976,
+            "max_close_to_close_mtm_dd_pct": 1.1443,
+            "return_over_max_dd": -0.0249,
+            "worst_calendar_month": "2026-08",
+            "worst_month_pct": -0.7195,
+            "exposure_pct": 87.9,
+            "concurrent_bar_counts": [
+              53,
+              175,
+              210
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 66,
+              "max_two_positions": 40
+            },
+            "longest_loss_streak": 5,
+            "turnover_notional_per_initial_equity": 9.4962,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 26,
+                "net_pnl": 0.0007552,
+                "pf": 1.0308,
+                "mean_net_R": 0.0122
+              },
+              "ETHUSDT": {
+                "n": 18,
+                "net_pnl": 0.0026376,
+                "pf": 1.2528,
+                "mean_net_R": 0.0586
+              },
+              "ICPUSDT": {
+                "n": 21,
+                "net_pnl": -0.0036778,
+                "pf": 0.7211,
+                "mean_net_R": -0.0688
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 65,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        },
+        "challenger": {
+          "resting_first": {
+            "n": 59,
+            "win_pct": 54.24,
+            "net_pf": 0.9237,
+            "mean_net_R": -0.0237,
+            "net_return_pct": -0.3573,
+            "gross_trade_pnl": 0.0088147,
+            "fees": 0.0062095,
+            "funding": 0.006178,
+            "max_close_to_close_mtm_dd_pct": 1.3928,
+            "return_over_max_dd": -0.2565,
+            "worst_calendar_month": "2026-08",
+            "worst_month_pct": -0.4156,
+            "exposure_pct": 81.28,
+            "concurrent_bar_counts": [
+              82,
+              169,
+              187
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 59,
+              "ETH_OB_filter": 45,
+              "max_two_positions": 8
+            },
+            "longest_loss_streak": 3,
+            "turnover_notional_per_initial_equity": 8.2793,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 27,
+                "net_pnl": -0.0020537,
+                "pf": 0.9248,
+                "mean_net_R": -0.0303
+              },
+              "ETHUSDT": {
+                "n": 2,
+                "net_pnl": -6.42e-05,
+                "pf": 0.0,
+                "mean_net_R": -0.0128
+              },
+              "ICPUSDT": {
+                "n": 30,
+                "net_pnl": -0.0014549,
+                "pf": 0.9252,
+                "mean_net_R": -0.0185
+              }
+            }
+          },
+          "market_first": {
+            "n": 59,
+            "win_pct": 54.24,
+            "net_pf": 0.9237,
+            "mean_net_R": -0.0237,
+            "net_return_pct": -0.3573,
+            "gross_trade_pnl": 0.0088147,
+            "fees": 0.0062095,
+            "funding": 0.006178,
+            "max_close_to_close_mtm_dd_pct": 1.3928,
+            "return_over_max_dd": -0.2565,
+            "worst_calendar_month": "2026-08",
+            "worst_month_pct": -0.4156,
+            "exposure_pct": 81.28,
+            "concurrent_bar_counts": [
+              82,
+              169,
+              187
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 59,
+              "ETH_OB_filter": 45,
+              "max_two_positions": 8
+            },
+            "longest_loss_streak": 3,
+            "turnover_notional_per_initial_equity": 8.2793,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 27,
+                "net_pnl": -0.0020537,
+                "pf": 0.9248,
+                "mean_net_R": -0.0303
+              },
+              "ETHUSDT": {
+                "n": 2,
+                "net_pnl": -6.42e-05,
+                "pf": 0.0,
+                "mean_net_R": -0.0128
+              },
+              "ICPUSDT": {
+                "n": 30,
+                "net_pnl": -0.0014549,
+                "pf": 0.9252,
+                "mean_net_R": -0.0185
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 59,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        }
+      }
+    },
+    {
+      "window": 5,
+      "start_utc": "2026-08-14T12:00:00+00:00",
+      "end_close_utc": "2026-10-26T12:00:00+00:00",
+      "variants": {
+        "baseline": {
+          "resting_first": {
+            "n": 71,
+            "win_pct": 52.11,
+            "net_pf": 1.5546,
+            "mean_net_R": 0.1461,
+            "net_return_pct": 2.6087,
+            "gross_trade_pnl": 0.0406409,
+            "fees": 0.0077939,
+            "funding": 0.0067598,
+            "max_close_to_close_mtm_dd_pct": 1.2808,
+            "return_over_max_dd": 2.0368,
+            "worst_calendar_month": "2026-08",
+            "worst_month_pct": -0.0631,
+            "exposure_pct": 80.82,
+            "concurrent_bar_counts": [
+              84,
+              136,
+              218
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 50,
+              "max_two_positions": 41
+            },
+            "longest_loss_streak": 8,
+            "turnover_notional_per_initial_equity": 10.3918,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 25,
+                "net_pnl": 0.0179578,
+                "pf": 2.2669,
+                "mean_net_R": 0.2862
+              },
+              "ETHUSDT": {
+                "n": 24,
+                "net_pnl": 0.0053078,
+                "pf": 1.3002,
+                "mean_net_R": 0.0867
+              },
+              "ICPUSDT": {
+                "n": 22,
+                "net_pnl": 0.0028216,
+                "pf": 1.1859,
+                "mean_net_R": 0.0516
+              }
+            }
+          },
+          "market_first": {
+            "n": 71,
+            "win_pct": 52.11,
+            "net_pf": 1.5546,
+            "mean_net_R": 0.1461,
+            "net_return_pct": 2.6087,
+            "gross_trade_pnl": 0.0406409,
+            "fees": 0.0077939,
+            "funding": 0.0067598,
+            "max_close_to_close_mtm_dd_pct": 1.2808,
+            "return_over_max_dd": 2.0368,
+            "worst_calendar_month": "2026-08",
+            "worst_month_pct": -0.0631,
+            "exposure_pct": 80.82,
+            "concurrent_bar_counts": [
+              84,
+              136,
+              218
+            ],
+            "skipped_signals": {
+              "same_symbol_open": 50,
+              "max_two_positions": 41
+            },
+            "longest_loss_streak": 8,
+            "turnover_notional_per_initial_equity": 10.3918,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 25,
+                "net_pnl": 0.0179578,
+                "pf": 2.2669,
+                "mean_net_R": 0.2862
+              },
+              "ETHUSDT": {
+                "n": 24,
+                "net_pnl": 0.0053078,
+                "pf": 1.3002,
+                "mean_net_R": 0.0867
+              },
+              "ICPUSDT": {
+                "n": 22,
+                "net_pnl": 0.0028216,
+                "pf": 1.1859,
+                "mean_net_R": 0.0516
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 71,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        },
+        "challenger": {
+          "resting_first": {
+            "n": 63,
+            "win_pct": 49.21,
+            "net_pf": 1.2823,
+            "mean_net_R": 0.0895,
+            "net_return_pct": 1.4031,
+            "gross_trade_pnl": 0.0265413,
+            "fees": 0.0067375,
+            "funding": 0.0057731,
+            "max_close_to_close_mtm_dd_pct": 1.0905,
+            "return_over_max_dd": 1.2866,
+            "worst_calendar_month": "2026-09",
+            "worst_month_pct": 0.2873,
+            "exposure_pct": 78.31,
+            "concurrent_bar_counts": [
+              95,
+              182,
+              161
+            ],
+            "skipped_signals": {
+              "ETH_OB_filter": 41,
+              "same_symbol_open": 48,
+              "max_two_positions": 10
+            },
+            "longest_loss_streak": 6,
+            "turnover_notional_per_initial_equity": 8.9833,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 31,
+                "net_pnl": 0.017628,
+                "pf": 1.8269,
+                "mean_net_R": 0.2281
+              },
+              "ETHUSDT": {
+                "n": 3,
+                "net_pnl": 0.003331,
+                "pf": 2.2265,
+                "mean_net_R": 0.4423
+              },
+              "ICPUSDT": {
+                "n": 29,
+                "net_pnl": -0.0069283,
+                "pf": 0.73,
+                "mean_net_R": -0.0951
+              }
+            }
+          },
+          "market_first": {
+            "n": 63,
+            "win_pct": 49.21,
+            "net_pf": 1.2823,
+            "mean_net_R": 0.0895,
+            "net_return_pct": 1.4031,
+            "gross_trade_pnl": 0.0265413,
+            "fees": 0.0067375,
+            "funding": 0.0057731,
+            "max_close_to_close_mtm_dd_pct": 1.0905,
+            "return_over_max_dd": 1.2866,
+            "worst_calendar_month": "2026-09",
+            "worst_month_pct": 0.2873,
+            "exposure_pct": 78.31,
+            "concurrent_bar_counts": [
+              95,
+              182,
+              161
+            ],
+            "skipped_signals": {
+              "ETH_OB_filter": 41,
+              "same_symbol_open": 48,
+              "max_two_positions": 10
+            },
+            "longest_loss_streak": 6,
+            "turnover_notional_per_initial_equity": 8.9833,
+            "per_asset": {
+              "BTCUSDT": {
+                "n": 31,
+                "net_pnl": 0.017628,
+                "pf": 1.8269,
+                "mean_net_R": 0.2281
+              },
+              "ETHUSDT": {
+                "n": 3,
+                "net_pnl": 0.003331,
+                "pf": 2.2265,
+                "mean_net_R": 0.4423
+              },
+              "ICPUSDT": {
+                "n": 29,
+                "net_pnl": -0.0069283,
+                "pf": 0.73,
+                "mean_net_R": -0.0951
+              }
+            }
+          },
+          "competing_gap_count": 0,
+          "trade_reconciliation": {
+            "shared": 63,
+            "changed_shared": 0,
+            "resting_only": 0,
+            "market_only": 0,
+            "changed_examples": []
+          }
+        }
+      }
+    }
+  ]
+}
