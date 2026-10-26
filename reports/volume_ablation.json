@@ -1,0 +1,262 @@
+{
+  "ETHUSDT": {
+    "volume_bars": 2190,
+    "last_quarter": {
+      "base": {
+        "stats": {
+          "n": 37,
+          "win": 45.9,
+          "mean": 0.376,
+          "pf": 1.39,
+          "compound": 13.35
+        },
+        "max_drawdown_full_notional_pct": 15.53
+      },
+      "vol_above_ma20": {
+        "stats": {
+          "n": 20,
+          "win": 45.0,
+          "mean": 0.006,
+          "pf": 1.004,
+          "compound": -0.76
+        },
+        "max_drawdown_full_notional_pct": 11.25
+      },
+      "vol_below_ma20": {
+        "stats": {
+          "n": 23,
+          "win": 39.1,
+          "mean": -0.102,
+          "pf": 0.893,
+          "compound": -2.87
+        },
+        "max_drawdown_full_notional_pct": 6.5
+      },
+      "vol_above_1_5x": {
+        "stats": {
+          "n": 14,
+          "win": 50.0,
+          "mean": 0.289,
+          "pf": 1.235,
+          "compound": 3.4
+        },
+        "max_drawdown_full_notional_pct": 11.77
+      },
+      "vol_rising": {
+        "stats": {
+          "n": 23,
+          "win": 39.1,
+          "mean": -0.144,
+          "pf": 0.874,
+          "compound": -3.97
+        },
+        "max_drawdown_full_notional_pct": 10.75
+      },
+      "vol_declining": {
+        "stats": {
+          "n": 25,
+          "win": 40.0,
+          "mean": -0.196,
+          "pf": 0.841,
+          "compound": -5.65
+        },
+        "max_drawdown_full_notional_pct": 13.04
+      }
+    }
+  },
+  "BTCUSDT": {
+    "volume_bars": 2190,
+    "last_quarter": {
+      "base": {
+        "stats": {
+          "n": 36,
+          "win": 55.6,
+          "mean": 0.27,
+          "pf": 1.343,
+          "compound": 9.33
+        },
+        "max_drawdown_full_notional_pct": 10.54
+      },
+      "vol_above_ma20": {
+        "stats": {
+          "n": 20,
+          "win": 70.0,
+          "mean": 0.962,
+          "pf": 3.75,
+          "compound": 20.79
+        },
+        "max_drawdown_full_notional_pct": 4.44
+      },
+      "vol_below_ma20": {
+        "stats": {
+          "n": 26,
+          "win": 50.0,
+          "mean": -0.032,
+          "pf": 0.968,
+          "compound": -1.5
+        },
+        "max_drawdown_full_notional_pct": 9.63
+      },
+      "vol_above_1_5x": {
+        "stats": {
+          "n": 12,
+          "win": 58.3,
+          "mean": 0.374,
+          "pf": 1.663,
+          "compound": 4.42
+        },
+        "max_drawdown_full_notional_pct": 2.83
+      },
+      "vol_rising": {
+        "stats": {
+          "n": 25,
+          "win": 56.0,
+          "mean": 0.066,
+          "pf": 1.082,
+          "compound": 1.19
+        },
+        "max_drawdown_full_notional_pct": 6.4
+      },
+      "vol_declining": {
+        "stats": {
+          "n": 23,
+          "win": 39.1,
+          "mean": -0.071,
+          "pf": 0.938,
+          "compound": -2.27
+        },
+        "max_drawdown_full_notional_pct": 10.44
+      }
+    }
+  },
+  "ICPUSDT": {
+    "volume_bars": 2190,
+    "last_quarter": {
+      "base": {
+        "stats": {
+          "n": 37,
+          "win": 40.5,
+          "mean": 0.196,
+          "pf": 1.089,
+          "compound": 1.93
+        },
+        "max_drawdown_full_notional_pct": 22.07
+      },
+      "vol_above_ma20": {
+        "stats": {
+          "n": 26,
+          "win": 69.2,
+          "mean": 1.874,
+          "pf": 2.241,
+          "compound": 56.08
+        },
+        "max_drawdown_full_notional_pct": 16.06
+      },
+      "vol_below_ma20": {
+        "stats": {
+          "n": 24,
+          "win": 37.5,
+          "mean": 0.15,
+          "pf": 1.07,
+          "compound": 0.45
+        },
+        "max_drawdown_full_notional_pct": 13.04
+      },
+      "vol_above_1_5x": {
+        "stats": {
+          "n": 10,
+          "win": 80.0,
+          "mean": 1.385,
+          "pf": 1.802,
+          "compound": 13.02
+        },
+        "max_drawdown_full_notional_pct": 15.72
+      },
+      "vol_rising": {
+        "stats": {
+          "n": 23,
+          "win": 52.2,
+          "mean": 1.313,
+          "pf": 1.838,
+          "compound": 31.23
+        },
+        "max_drawdown_full_notional_pct": 15.0
+      },
+      "vol_declining": {
+        "stats": {
+          "n": 25,
+          "win": 48.0,
+          "mean": 0.488,
+          "pf": 1.236,
+          "compound": 9.09
+        },
+        "max_drawdown_full_notional_pct": 13.65
+      }
+    }
+  },
+  "HYPEUSDT": {
+    "volume_bars": 1252,
+    "last_quarter": {
+      "base": {
+        "stats": {
+          "n": 19,
+          "win": 52.6,
+          "mean": -0.202,
+          "pf": 0.886,
+          "compound": -5.16
+        },
+        "max_drawdown_full_notional_pct": 15.52
+      },
+      "vol_above_ma20": {
+        "stats": {
+          "n": 10,
+          "win": 70.0,
+          "mean": 1.147,
+          "pf": 2.235,
+          "compound": 11.5
+        },
+        "max_drawdown_full_notional_pct": 5.96
+      },
+      "vol_below_ma20": {
+        "stats": {
+          "n": 12,
+          "win": 58.3,
+          "mean": -0.533,
+          "pf": 0.743,
+          "compound": -7.21
+        },
+        "max_drawdown_full_notional_pct": 12.64
+      },
+      "vol_above_1_5x": {
+        "stats": {
+          "n": 6,
+          "win": 50.0,
+          "mean": 0.411,
+          "pf": 1.24,
+          "compound": 1.97
+        },
+        "max_drawdown_full_notional_pct": 7.01
+      },
+      "vol_rising": {
+        "stats": {
+          "n": 13,
+          "win": 53.8,
+          "mean": -0.351,
+          "pf": 0.766,
+          "compound": -5.14
+        },
+        "max_drawdown_full_notional_pct": 11.29
+      },
+      "vol_declining": {
+        "stats": {
+          "n": 14,
+          "win": 50.0,
+          "mean": -0.526,
+          "pf": 0.747,
+          "compound": -8.2
+        },
+        "max_drawdown_full_notional_pct": 17.01
+      }
+    }
+  }
+}
