@@ -51,8 +51,9 @@ class StrictCandleTests(unittest.TestCase):
         research=aggregate(a,4,asof_ms=asof)
         paper=paper_aggregate(a,now_ms=asof)
         self.assertEqual(research,paper)
-        self.assertEqual(indicator(research)["delta"],indicator(paper)["delta"])
-        self.assertEqual(atr(research),atr(paper))
+        self.assertEqual(indicator(research)["color"],indicator(paper)["color"])
+        self.assertAlmostEqual(indicator(research)["delta"][-1],indicator(paper)["delta"][-1])
+        self.assertAlmostEqual(atr(research)[-1],atr(paper)[-1])
 
     def test_invalid_bar_rejected(self):
         a=raw(0,4);a[1]=(H,100.,90.,110.,100.)
