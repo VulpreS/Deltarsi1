@@ -234,6 +234,43 @@ def metrics(res):
       "longest_loss_streak":longest,"turnover_notional_per_initial_equity":round(res["turnover_notional"]/res["start_cash"],4),
       "per_asset":by}
 
+def passive_benchmarks(series,times,cost=.0015):
+    """Same-calendar cash and price-only buy-and-hold diagnostics.
+
+    Equal-weight long-only buys at first common open and sells at last common
+    close; pays half total assumed friction per leg, no funding or leverage.
+    These are NOT matched-risk strategies or proof of excess risk-adjusted alpha.
+    """
+    if not times:
+        raise ValueError("Empty calendar for passive benchmark")
+    starts={s:series[s]["rows"][series[s]["map"][times[0]]][1] for s in SYMS}
+    units={s:(1-cost/2)/len(SYMS)/starts[s] for s in SYMS}
+    indiv={s:[] for s in SYMS}
+    curve=[]
+    for t in times:
+        prices={s:series[s]["rows"][series[s]["map"][t]][4] for s in SYMS}
+        curve.append(sum(units[s]*prices[s] for s in SYMS))
+        for s in SYMS:
+            indiv[s].append((1-cost/2)*prices[s]/starts[s])
+    def maxdd(values):
+        peak=1.;dd=0.
+        for v in values:
+            peak=max(peak,v);dd=max(dd,1-v/peak)
+        return 100*dd
+    # Exit fees charged on final marked exit notional.
+    end=sum(units[s]*series[s]["rows"][series[s]["map"][times[-1]]][4]*(1-cost/2) for s in SYMS)
+    each={}
+    for s in SYMS:
+        final=indiv[s][-1]*(1-cost/2)
+        each[s]={"net_return_pct":round(100*(final-1),4),
+                 "max_close_mtm_dd_pct":round(maxdd(indiv[s]),4)}
+    return {"cash_0pct_return_pct":0.,
+            "equal_weight_price_only_buyhold_net_return_pct":round(100*(end-1),4),
+            "equal_weight_buyhold_max_close_mtm_dd_pct":round(maxdd(curve),4),
+            "individual_price_only_buyhold":each,
+            "assumptions":"One initial buy/terminal sale, 15bp default round trip friction, no funding; venue/spot-perp provenance unknown. Long-only buy-and-hold carries very different gross exposure and risk from 0.25%-stop-risk portfolio."}
+
+
 def main():
     series,times,hashes=prepare()
     # Common UTC nonoverlapping chronological windows, independent equity resets;
@@ -247,10 +284,11 @@ def main():
       "freeze_utc":FREEZE_UTC,"data_warning":"Historical cache previously inspected; no independent OOS. No real orders.",
       "accounting":"Starting equity=1 per window. Cash plus close-mark unrealized less conservative accrued synthetic funding. Risk size=0.25% equity / stop distance, max 2 simultaneous, 0.5% aggregate initial stop risk, max 2x gross notional. Fixed priority BTC/ETH/ICP; same-symbol lockout. Half round-trip fee at entry and half on EXIT execution notional. Pre-existing open-time gaps settle before signal admission; adverse stop gaps at open, favorable target gaps conservatively at target. Intrabar stop-first after admission. Synthetic adverse funding max UTC 8h bound; no venue rates. Exit fills intrabar have unknown timing. Monthly mark-to-market at last bar close. No market impact or mark-price liquidation.",
       "boundary_warning":"Independent portfolio schedules within each nonoverlapping window; equity reset and terminal close at window end. No selection based on any window. Different cohort and scheduling from prior pseudo-equity reports.",
-      "windows":[],"full_common_history":{}}
+      "windows":[],"full_common_history":{},"passive_benchmarks":{}}
     for j in range(5):
         chunk=times[cuts[j]:cuts[j+1]]
-        w={"window":j+1,"start_utc":iso(chunk[0]),"end_close_utc":iso(chunk[-1]+4*HOUR_MS),"bars":len(chunk),"variants":{}}
+        w={"window":j+1,"start_utc":iso(chunk[0]),"end_close_utc":iso(chunk[-1]+4*HOUR_MS),"bars":len(chunk),"variants":{},
+           "passive_benchmarks_15bp":passive_benchmarks(series,chunk,.0015)}
         for variant in ("baseline","challenger"):
             grid={}
             for c in COSTS:
@@ -262,6 +300,7 @@ def main():
                         w["variants"][variant]={"primary_metrics":metrics(res),"trades":res["trades"],"equity_curve":res["curve"]}
             w["variants"][variant]["stress_grid"]=grid
         report["windows"].append(w)
+    report["passive_benchmarks"]={f"{round(c*10000)}bp":passive_benchmarks(series,times,c) for c in COSTS}
     for variant in ("baseline","challenger"):
         res=simulate(series,times,variant,.0015,.0003)
         full_stress={}
