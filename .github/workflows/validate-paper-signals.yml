@@ -1,0 +1,20 @@
+name: Validate Paper Signal Engine
+on:
+  push:
+    paths:
+      - paper_signal_4h.py
+      - .github/workflows/validate-paper-signals.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run cached 4H signal generator
+        run: python paper_signal_4h.py
