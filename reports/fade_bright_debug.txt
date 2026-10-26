@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Deltarsi1/Deltarsi1/fade_bright_wick_4h.py", line 67, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/home/runner/work/Deltarsi1/Deltarsi1/fade_bright_wick_4h.py", line 62, in main
+    seg=[stats(simulate(rows,feats,ind,cuts[i],cuts[i+1],mode,ratio,60)) for i in range(3)]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Deltarsi1/Deltarsi1/fade_bright_wick_4h.py", line 35, in simulate
+    fill,why=resolve_bar(rows[j],side,stop,target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Deltarsi1/Deltarsi1/execution_core.py", line 20, in resolve_bar
+    raise ValueError("Non-finite/nonpositive OHLC or stop/target")
+ValueError: Non-finite/nonpositive OHLC or stop/target
