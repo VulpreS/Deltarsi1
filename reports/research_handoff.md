@@ -1,3 +1,51 @@
+# DeltaRSI researcher handoff — cycle 7, 2026-10-27 MSK (P0 #12 gap-open chronology + fee notional; passive benchmark)
+
+**Decision: P0 #12 PARTIAL, CHRONOLOGY FIX VERIFIED; NO STRATEGY PROMOTION / NO REAL ORDERS.** Latest CI [40408693880](https://github.com/VulpreS/Deltarsi1/actions/runs/40408693880) **SUCCESS (43 regression tests)**, producer commit `bb0dc5578bbff45e4636f88c15e7eabf47b1edb4`, code with passive summary `48e4ff8396a009755c22de7d3cc1781108e16d71`, report commit `806eecb`. Cached-only `reports/portfolio_risk_audit.json`; no candle downloads or live orders.
+
+## Hypothesis and manager tasks read first
+Reviewed current manager issues [#12](https://github.com/VulpreS/Deltarsi1/issues/12) (P0), [#13](https://github.com/VulpreS/Deltarsi1/issues/13) (P1), [#9](https://github.com/VulpreS/Deltarsi1/issues/9), [#8](https://github.com/VulpreS/Deltarsi1/issues/8), previous handoff cycle 6 and manager directives. **P0 hypothesis:** prior `portfolio_risk_audit.simulate` processed opening gap-through-stop only after admitting new trades, incorrectly occupying a position slot and stop-risk budget; its exit fee also used ENTRY notional rather than execution notional. A second predeclared diagnostic compares same-calendar 0%-cash and equal-weight buy-and-hold to the frozen portfolio (NOT risk-matched).
+
+## Changes / reproducibility
+- `portfolio_risk_audit.py`: added `resolve_open_gap` with no high/low/close access. At each UTC 4H open, settle existing `reverse_pending` exits, then existing adverse stop gaps **at open** and favorable target gaps conservatively **at target**; release positions and debit PnL/fees/funding before new signal admission. Only then size new entries with post-gap equity and existing stop risk. Intrabar high/low stop-first remains AFTER entries. This prevents using future OHLC to decide whether to admit a competing signal.
+- Exit fee = `abs(quantity * exit_execution_price) * cost/2`, entry fee = entry notional * cost/2. Added per-trade `exit_notional`, corrected turnover to executed exit notional; funding still **synthetic adverse per UTC 8h event** on entry notional, not observed venue funding. No new strategy thresholds.
+- Added `test_portfolio_open_order.py`: correlated simultaneous long stops and third-symbol admission, LONG+SHORT correlated gap, same-symbol immediate re-entry, opening target price-improvement convention, no intrabar-lookahead admission, cash/fee conservation, passive benchmark. Existing suites included. 43 tests pass.
+- Added `passive_benchmarks` with 0% cash, 15/25/40bp price-only equal-weight long BTC/ETH/ICP buy-hold and per-symbol buy-hold over the **same calendar** and five disjoint windows. Benchmark is intentionally NOT matched to stop-risk/exposure of DeltaRSI. Added workflow serialization and race-safe report commit: report-only upstream updates no longer cause huge JSON rebase conflicts; if producer code changed, CI refuses stale publication.
+- Inputs unchanged, committed 1H CSV SHA256: BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`, ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`, ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`. Frozen baseline 2.5ATR stop / 3ATR target / max 12×4H, 0.25% equity stop risk/trade, max 2 positions, 0.5% aggregate risk; ETH challenger remains retrospectively selected OB-proxy/6ATR/opposite-unfiltered-turn.
+
+## Results: chronological but previously inspected history, NOT independent OOS
+Full common year at **15bp round-trip friction + synthetic 3bp adverse funding per 8h event**:
+
+| Metric | Prior engine cycle 6 | Corrected engine cycle 7 |
+|---|---:|---:|
+| Baseline trades | 309 | 309 |
+| Baseline net portfolio return | +1.7492% | **+1.7528%** |
+| Baseline PF | 1.0696 | **1.0697** |
+| Baseline close-to-close MTM max DD | 3.3687% | **3.3683%** |
+| Challenger trades | 281 | 281 |
+| Challenger net return | +1.0682% | **+1.0711%** |
+| Challenger PF | 1.0460 | **1.0461** |
+| Challenger max DD | 3.4519% | **3.4507%** |
+
+No changes in full-history executed N, asset N or skipped-signal counts at printed precision; **do not claim exact trade-ID parity yet**. The tiny change in historical returns is primarily consistent with exit-notional fee correction and consequent position sizing. The opening-gap admission bug is demonstrated by deterministic fixtures, but a historical competing-gap opportunity count has NOT yet been independently reconciled. No claim of improved trading edge.
+
+Corrected baseline per asset at 15bp/3bp: BTC N123 PF1.1084, ETH N97 PF1.3453, ICP N89 PF0.7475. Challenger BTC N136 PF1.2259, ETH N19 PF1.9554, ICP N126 PF0.7760; different cohorts under portfolio competition. Five disjoint windows baseline return: **−0.1478%, −0.6350%, −0.5189%, −0.0285%, +2.6087%**; challenger **−0.5485%, −0.6683%, +0.7957%, −0.3573%, +1.4031%**. Four of five baseline windows negative under conservative funding stress; all windows previously inspected.
+
+Same-calendar 15bp **price-only buy-and-hold** (0 funding, 100% long exposure): equal-weight BTC/ETH/ICP **−30.9018%**, close-to-close max DD **66.2102%**; BTC −29.3764%, ETH −42.8127%, ICP −20.5163%; cash 0%. The very different exposure, risk budget and no-funding assumptions make this **context, not matched-risk evidence of alpha**.
+
+## Limitations / critical blockers
+- **P0 #12 still PARTIAL:** same-symbol standalone parity adapter and exact entry/exit trade-ID diff versus frozen #6/#7 remain undone; open-gap historical event count not yet enumerated. Synthetic target-gap fill assumes target price despite better open, which is conservative. Real exchange mark-price, liquidation, funding and slippage unknown.
+- **P1 #13 NOT DONE:** forming-vs-closed 4H benchmark currently uses 1H ATR and mismatched scheduling/funding versus frozen 4H baseline; its historical best cells cannot be compared as if matched. Do not optimize on inspected final quarter.
+- 5 chronological nonoverlapping windows were previously seen during selection, so NOT independent out-of-sample. No prospective immutable receipts; exchange/spot-perp provenance and direct same-venue 4H OHLCV absent. Funding rates and 15/25/40bp fees are scenario assumptions, not observed venue economics.
+- Two overlapping CI report writers caused transient rebase conflicts (runs 40408498707 and 40408611884) **after tests and calculation succeeded**; workflow commit logic corrected, latest CI 40408693880 SUCCESS. Do not mistake those earlier CI failures for model/test failures.
+
+## Conclusion and concrete next manager decisions
+1. Accept #12 opening-gap-before-admission and exit-notional fee changes as **verified by fixtures and CI**, but keep #12 OPEN until exact historical trade-ID parity and gap-cohort audit, and 15/25/40bp × 0/1/3bp before/after ledger reconciliation are published.
+2. Next researcher cycle: implement per-symbol **standalone parity adapter** with canonical `feature_walkforward.sim` / `p0_gap_audit` at 15bp/0 funding, classify every missing entry (capital/notional cap, competing symbols, terminal, warmup), report entry and exit key diffs. Add explicit historical count of openings that crossed stop/target and competed with new signals. Do not retune.
+3. Then #13: reconstruct matched forming-vs-closed 4H opportunities with explicit 4H ATR, matched risk and funding; publish negative controls, three inspected regimes and block CIs. No strategy promotion without prospective sealed data.
+4. Keep #5 venue/forward provenance **BLOCKED**; actual exchange/market, direct 4H parity, actual funding and append-only receipt-time forward data remain prerequisites. **No live orders.**
+
+---
+
 # DeltaRSI researcher handoff — cycle 6, 2026-10-26 (P1 #8 chronological risk-sized portfolio)
 
 **Decision: #8 PARTIAL IMPLEMENTATION + HISTORICAL STRESS VERIFIED; NO NEW STRATEGY PROMOTION.** CI [40400104053](https://github.com/VulpreS/Deltarsi1/actions/runs/40400104053) SUCCESS; producer SHA `9923788c9b892e766271ba6b2154a7001ea95afd`; deterministic seed 20261026; strategy/config hash `6922fb45e5dc090035e7ba90fcf335886f7d278567bae52368e810dcfcb2f0e1`. Report [reports/portfolio_risk_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/portfolio_risk_audit.json). **All data were previously inspected, no independent OOS. No real orders, no new candle downloads.**
