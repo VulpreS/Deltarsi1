@@ -1,4 +1,4 @@
-"""Fetch up to 365 days of closed ETHUSDT 1h spot candles with provider fallback."""
+"""Incrementally append completed ETHUSDT hourly candles; retain historical CSV."""
 import csv
 import datetime as dt
 import json
@@ -45,21 +45,43 @@ def fetch_history(source, start_ms, end_ms):
         raise RuntimeError("Hourly gaps detected")
     return rows
 
+def read_existing():
+    if not OUT.exists(): return {}
+    with OUT.open(newline="",encoding="utf-8") as f:
+        rows=list(csv.DictReader(f))
+    saved={}
+    for r in rows:
+        ts=int(dt.datetime.fromisoformat(r["timestamp_utc"]).timestamp()*1000)
+        saved[ts]=(ts,*[float(r[k]) for k in ("open","high","low","close","volume","turnover")])
+    return saved
+
 def main():
+    import os
     now=dt.datetime.now(dt.timezone.utc)
     end_ms=int(now.replace(minute=0,second=0,microsecond=0).timestamp()*1000)-HOUR
-    start_ms=end_ms-(365*24-1)*HOUR
+    existing=read_existing()
+    if os.getenv("FULL_REFRESH")=="1":
+        existing={}
+    # Keep the complete existing dataset; fetch only missing candles.
+    start_ms=max(existing)+HOUR if existing else end_ms-(365*24-1)*HOUR
+    if start_ms>end_ms:
+        print(f"Already up to date: {len(existing)} candles; no API calls",flush=True)
+        return
     errors=[]
     for source in ("Binance Data API","Binance US","Bybit"):
         try:
-            print(f"Trying {source} for 365 days...",flush=True)
+            print(f"Trying {source} for {(end_ms-start_ms)//HOUR+1} new candles...",flush=True)
             rows=fetch_history(source,start_ms,end_ms)
+            existing.update({r[0]:r for r in rows})
+            rows=sorted(existing.values())
+            if any(b[0]-a[0]!=HOUR for a,b in zip(rows,rows[1:])):
+                raise RuntimeError("Gap in merged hourly dataset")
             OUT.parent.mkdir(parents=True,exist_ok=True)
             with OUT.open("w",newline="",encoding="utf-8") as f:
                 w=csv.writer(f);w.writerow(["timestamp_utc","open","high","low","close","volume","turnover"])
                 for ts,op,hi,lo,cl,vol,turnover in rows:
                     w.writerow([dt.datetime.fromtimestamp(ts/1000,dt.timezone.utc).isoformat(),op,hi,lo,cl,vol,turnover])
-            print(f"Saved {len(rows)} candles from {source}",flush=True)
+            print(f"Saved {len(rows)} total candles; added new candles from {source}",flush=True)
             return
         except (urllib.error.URLError,ValueError,KeyError,TypeError,RuntimeError) as exc:
             errors.append(f"{source}: {exc}")
