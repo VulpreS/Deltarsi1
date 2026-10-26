@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - .github/workflows/structural-exits.yml
+      - structural_exit_research.py
+      - execution_core.py
   workflow_dispatch:
 permissions:
   contents: write
