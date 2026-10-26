@@ -21,7 +21,8 @@ class ParityFixtures(unittest.TestCase):
     def test_open_exit_releases_slot(self):
         st={"entry_utc":"2026-01-01T04:00:00+00:00"}
         pt={"x":{"entry_utc":"2026-01-01T00:00:00+00:00",
-                 "exit_utc_earliest":"2026-01-01T04:00:00+00:00"}}
+                 "exit_utc_earliest":"2026-01-01T04:00:00+00:00",
+                 "exit_utc_latest":"2026-01-01T04:00:00+00:00"}}
         self.assertEqual(classify_standalone_only(st,pt),"portfolio_cap_or_other")
     def test_intrabar_exit_cannot_free_slot_at_open(self):
         st={"entry_utc":"2026-01-01T04:00:00+00:00"}
