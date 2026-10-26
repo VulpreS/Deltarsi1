@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'matched_exit_audit.py'
+      - 'funding_timing.py'
       - 'test_matched_exit_audit.py'
       - '.github/workflows/matched-exit-audit.yml'
   workflow_dispatch:
@@ -18,7 +19,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Matched-cohort regression tests
-        run: python -m unittest -v test_matched_exit_audit.py
+        run: python -m unittest -v test_matched_exit_audit.py test_p0_execution.py test_completed_candles.py
       - name: Reproducible cached-data audit
         run: python matched_exit_audit.py
       - name: Persist results
