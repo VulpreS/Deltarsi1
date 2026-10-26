@@ -39,7 +39,10 @@ def standalone_ledger(rows, feat, lo, hi):
             for t in result}
 
 def portfolio_ledger(trades):
-    return {(t["signal_utc"], t["side"]): t for t in trades}
+    result={(t["signal_utc"], t["side"]): t for t in trades}
+    if len(result)!=len(trades):
+        raise ValueError("Duplicate signal+side keys: partition by symbol first")
+    return result
 
 def classify_portfolio_only(entry, standalone_trades):
     # Standalone skips signals while holding and the exit bar itself:
