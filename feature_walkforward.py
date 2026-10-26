@@ -40,7 +40,7 @@ def data(sym):
 def sim(rows,feats,cfg,lo,hi):
  mode,trend,regime,sl,tp,hold,direction=cfg
  eq=1.;peak=1.;dd=0.;trades=[];k=max(210,lo)
- while k<min(hi,len(rows)-2):
+ while k<min(hi-1,len(rows)-2):
   f=feats[k]
   if not f or not f[mode] or (direction=="long" and f["side"]<0) or (direction=="short" and f["side"]>0):k+=1;continue
   if trend=="follow50" and not f["trend50"]:k+=1;continue
@@ -52,7 +52,9 @@ def sim(rows,feats,cfg,lo,hi):
   if regime=="lowvol" and f["vp"]>=.5:k+=1;continue
   if regime=="highvol" and f["vp"]<.5:k+=1;continue
   if regime=="bbextreme" and not (f["z"]< -1 if f["side"]==1 else f["z"]>1):k+=1;continue
-  entryi=k+1;entry=rows[entryi][1];side=f["side"];stop=entry-side*sl*f["atr"];target=entry+side*tp*f["atr"]
+  entryi=k+1
+  if entryi>=hi:break  # Entry must be inside the non-overlapping split.
+  entry=rows[entryi][1];side=f["side"];stop=entry-side*sl*f["atr"];target=entry+side*tp*f["atr"]
   end=min(entryi+hold-1,hi-1,len(rows)-1);out=rows[end][4]
   for j in range(entryi,end+1):
    x=rows[j];hitstop=(x[3]<=stop if side==1 else x[2]>=stop);hittp=(x[2]>=target if side==1 else x[3]<=target)
