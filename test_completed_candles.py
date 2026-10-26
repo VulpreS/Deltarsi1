@@ -2,7 +2,7 @@
 import unittest
 import math
 from completed_candles import HOUR_MS, aggregate_completed_4h, aggregate_completed
-from analyze_mtf_5y import aggregate, indicator
+from analyze_mtf_5y import aggregate, indicator, last_closed_htf_index
 from paper_signal_4h import aggregate_completed_4h as paper_aggregate
 from research_multiasset import atr
 
@@ -58,6 +58,16 @@ class StrictCandleTests(unittest.TestCase):
         self.assertEqual(indicator(research)["color"],indicator(paper)["color"])
         self.assertAlmostEqual(indicator(research)["delta"][-1],indicator(paper)["delta"][-1])
         self.assertAlmostEqual(atr(research)[-1],atr(paper)[-1])
+
+    def test_missing_intermediate_htf_does_not_look_ahead(self):
+        a=[x for x in raw(0,16) if x[0]!=5*H]
+        series=aggregate_completed_4h(a,16*H)
+        self.assertEqual([x[0]//H for x in series],[0,8,12])
+        self.assertEqual(last_closed_htf_index(series,7*H,4),0)
+        self.assertEqual(last_closed_htf_index(series,8*H,4),0)
+        self.assertEqual(last_closed_htf_index(series,11*H,4),1)
+        self.assertEqual(last_closed_htf_index(series,15*H,4),2)
+        self.assertEqual(last_closed_htf_index(series,2*H,4),-1)
 
     def test_invalid_bar_rejected(self):
         a=raw(0,4);a[1]=(H,100.,90.,110.,100.)
