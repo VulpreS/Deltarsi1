@@ -1,0 +1,39 @@
+name: P0 Reverse Gap Priority Audit
+on:
+  push:
+    paths:
+      - reverse_gap_priority_audit.py
+      - test_reverse_open_precedence.py
+      - .github/workflows/p0-reverse-gap-priority.yml
+  workflow_dispatch:
+concurrency:
+  group: p0-reverse-gap-priority-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regression tests
+        run: |
+          python -m unittest -v test_reverse_open_precedence test_portfolio_open_order test_portfolio_risk_audit test_completed_candles
+      - name: Cached-only historical precedence stress
+        run: python -u reverse_gap_priority_audit.py
+      - name: Commit report with producer guard
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git diff --quiet HEAD origin/main -- portfolio_risk_audit.py reverse_gap_priority_audit.py test_reverse_open_precedence.py feature_walkforward.py; then
+            echo "Producer changed; refusing stale report"
+            exit 1
+          fi
+          git reset --mixed origin/main
+          git add reports/reverse_gap_priority_audit.json
+          git diff --cached --quiet || (git commit -m "Record P0 reverse-gap priority audit" && git push origin HEAD:main)
