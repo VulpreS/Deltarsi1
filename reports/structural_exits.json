@@ -1,5 +1,5 @@
 {
-  "caution": "Exploratory reused historical data, not independent OOS; no funding; exit signal confirmed at close and executed next open. One trade per asset. No real orders.",
+  "caution": "Exploratory reused historical data, not independent OOS; no funding; raw opposite DeltaRSI signal confirmed at close and executed next open. One trade per asset. No real orders.",
   "assets": {
     "BTCUSDT": [
       {
@@ -33,24 +33,24 @@
         "segments": [
           {
             "n": 24,
-            "win": 58.3,
-            "mean": 0.737,
-            "pf": 1.717,
-            "compound": 17.79
+            "win": 62.5,
+            "mean": 0.492,
+            "pf": 1.479,
+            "compound": 11.36
           },
           {
             "n": 19,
             "win": 73.7,
-            "mean": 0.735,
-            "pf": 2.077,
-            "compound": 14.37
+            "mean": 0.698,
+            "pf": 2.024,
+            "compound": 13.6
           },
           {
             "n": 12,
             "win": 50.0,
-            "mean": 0.412,
-            "pf": 1.518,
-            "compound": 4.68
+            "mean": 0.195,
+            "pf": 1.245,
+            "compound": 2.05
           }
         ]
       },
@@ -85,24 +85,24 @@
         "segments": [
           {
             "n": 26,
-            "win": 42.3,
-            "mean": 0.4,
-            "pf": 1.463,
-            "compound": 9.98
+            "win": 50.0,
+            "mean": 0.45,
+            "pf": 1.523,
+            "compound": 11.39
           },
           {
             "n": 20,
             "win": 70.0,
-            "mean": 0.866,
-            "pf": 2.496,
-            "compound": 18.29
+            "mean": 0.832,
+            "pf": 2.436,
+            "compound": 17.5
           },
           {
             "n": 12,
-            "win": 25.0,
-            "mean": 0.174,
-            "pf": 1.195,
-            "compound": 1.75
+            "win": 33.3,
+            "mean": 0.04,
+            "pf": 1.047,
+            "compound": 0.19
           }
         ]
       }
@@ -139,24 +139,24 @@
         "segments": [
           {
             "n": 20,
-            "win": 60.0,
-            "mean": 1.22,
-            "pf": 1.942,
-            "compound": 25.18
+            "win": 65.0,
+            "mean": 1.307,
+            "pf": 2.013,
+            "compound": 27.33
           },
           {
             "n": 13,
             "win": 69.2,
-            "mean": 1.085,
-            "pf": 2.73,
-            "compound": 14.19
+            "mean": 1.076,
+            "pf": 2.715,
+            "compound": 14.06
           },
           {
             "n": 10,
-            "win": 50.0,
-            "mean": 0.531,
-            "pf": 1.685,
-            "compound": 4.89
+            "win": 40.0,
+            "mean": 0.783,
+            "pf": 2.077,
+            "compound": 7.51
           }
         ]
       },
@@ -191,24 +191,24 @@
         "segments": [
           {
             "n": 20,
-            "win": 60.0,
-            "mean": 1.748,
-            "pf": 3.309,
-            "compound": 39.65
+            "win": 65.0,
+            "mean": 1.835,
+            "pf": 3.439,
+            "compound": 42.05
           },
           {
             "n": 15,
             "win": 53.3,
-            "mean": 1.209,
-            "pf": 2.755,
-            "compound": 18.74
+            "mean": 1.201,
+            "pf": 2.743,
+            "compound": 18.61
           },
           {
             "n": 11,
-            "win": 36.4,
-            "mean": 0.354,
-            "pf": 1.437,
-            "compound": 3.45
+            "win": 27.3,
+            "mean": 0.637,
+            "pf": 1.885,
+            "compound": 6.66
           }
         ]
       }
@@ -246,23 +246,23 @@
           {
             "n": 25,
             "win": 64.0,
-            "mean": 0.824,
-            "pf": 1.402,
-            "compound": 17.73
+            "mean": 0.975,
+            "pf": 1.529,
+            "compound": 22.6
           },
           {
             "n": 17,
             "win": 52.9,
-            "mean": 0.588,
-            "pf": 1.42,
-            "compound": 8.6
+            "mean": 0.589,
+            "pf": 1.465,
+            "compound": 8.74
           },
           {
             "n": 17,
             "win": 52.9,
-            "mean": 2.097,
-            "pf": 2.514,
-            "compound": 38.88
+            "mean": 1.527,
+            "pf": 2.103,
+            "compound": 26.53
           }
         ]
       },
@@ -298,23 +298,23 @@
           {
             "n": 29,
             "win": 48.3,
-            "mean": 0.947,
-            "pf": 1.617,
-            "compound": 27.26
+            "mean": 0.864,
+            "pf": 1.587,
+            "compound": 24.57
           },
           {
             "n": 22,
-            "win": 40.9,
-            "mean": 0.104,
-            "pf": 1.086,
-            "compound": 0.86
+            "win": 45.5,
+            "mean": 0.178,
+            "pf": 1.16,
+            "compound": 2.58
           },
           {
             "n": 20,
             "win": 50.0,
-            "mean": 1.537,
-            "pf": 2.462,
-            "compound": 32.88
+            "mean": 1.286,
+            "pf": 2.224,
+            "compound": 26.69
           }
         ]
       }
