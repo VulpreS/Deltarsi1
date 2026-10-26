@@ -1,6 +1,7 @@
 """Synthetic matched-exit audit invariants; no external data."""
 import unittest
 from matched_exit_audit import exit_one,bootstrap_delta,metric,net
+from funding_timing import funding_event_count, exposure_bounds, HOUR_MS
 
 class MatchedExitTests(unittest.TestCase):
     def rows(self):
@@ -46,8 +47,66 @@ class MatchedExitTests(unittest.TestCase):
         self.assertIsNone(result["ci95_mean_delta_pct"])
 
     def test_fee_and_funding_adverse(self):
-        trade={"gross":.03,"hours":12}
+        trade={"gross":.03,"funding_events_min":1,"funding_events_max":2}
         self.assertAlmostEqual(net(trade,.0025,.0001),.0273)
+        self.assertAlmostEqual(net(trade,.0025,.0001,"min"),.0274)
         self.assertEqual(metric([.01,-.01])["n"],2)
+
+    def test_time_exit_duration_1_2_3_12_bars(self):
+        rows=self.rows()
+        trade={"signal_index":3,"entry_index":4,"side":1}
+        for bars in (1,2,3,12):
+            with self.subTest(bars=bars):
+                t=exit_one(rows,self.raw(),trade,2.5,6.0,"fixed",4+bars)
+                self.assertEqual(t["reason"],"time")
+                self.assertEqual(t["hours_min"],4*bars)
+                self.assertEqual(t["hours_max"],4*bars)
+                self.assertEqual(t["exit_earliest_ms"],rows[4+bars-1][0]+4*HOUR_MS)
+                self.assertEqual(t["funding_events_max"],bars//2)
+        # Old bug returned 0h for 1-bar and 44h for 12-bar time exits.
+
+    def test_funding_utc_boundaries_00_08_16(self):
+        h=HOUR_MS
+        for start in (0,8*h,16*h,24*h):
+            with self.subTest(start=start):
+                self.assertEqual(funding_event_count(start,start+8*h,True),1)
+                self.assertEqual(funding_event_count(start,start+8*h,False),0)
+                self.assertEqual(funding_event_count(start,start+8*h-1,True),0)
+                self.assertEqual(funding_event_count(start,start+8*h+1,False),1)
+                self.assertEqual(funding_event_count(start,start,True),0)
+        self.assertEqual(exposure_bounds(0,7*h,9*h)["funding_events_min"],0)
+        self.assertEqual(exposure_bounds(0,7*h,9*h)["funding_events_max"],1)
+        with self.assertRaises(ValueError):
+            exposure_bounds(9*h,8*h,10*h)
+
+    def test_intrabar_funding_stop_bounds_both_sides(self):
+        rows=self.rows()
+        # Entry 16:00 UTC; touched stop on bar 20:00-24:00;
+        # 24:00 is a funding boundary, unknown intrabar fill ordering.
+        for side in (1,-1):
+            with self.subTest(side=side):
+                rr=list(rows)
+                rr[5]=(rr[5][0],100,106 if side==-1 else 101,
+                       94 if side==1 else 99,100)
+                trade={"signal_index":3,"entry_index":4,"side":side}
+                result=exit_one(rr,self.raw(),trade,2.5,6.0,"fixed",20)
+                self.assertEqual(result["reason"],"stop")
+                self.assertEqual(result["hours_min"],4)
+                self.assertEqual(result["hours_max"],8)
+                self.assertEqual(result["funding_events_min"],0)
+                self.assertEqual(result["funding_events_max"],1)
+
+    def test_paired_net_bootstrap_includes_funding_duration(self):
+        block=30*24*HOUR_MS
+        rows=[(i*block,100,101,99,100) for i in range(4)]
+        fixed=[{"signal_index":i,"gross":.01,
+                "funding_events_min":0,"funding_events_max":0} for i in range(4)]
+        reverse=[{"signal_index":i,"gross":.02,
+                  "funding_events_min":1,"funding_events_max":1} for i in range(4)]
+        result=bootstrap_delta(fixed,reverse,rows,seed=42,cost=.0015,funding=.0003)
+        self.assertEqual(result["calendar_blocks"],4)
+        self.assertEqual(result["comparison"],"paired NET return")
+        self.assertAlmostEqual(result["mean_delta_pct"],.97)
+        self.assertEqual(result["ci95_mean_delta_pct"],[.97,.97])
 
 if __name__=="__main__":unittest.main()
