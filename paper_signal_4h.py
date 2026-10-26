@@ -6,6 +6,27 @@ from pathlib import Path
 from analyze_mtf_5y import indicator,aggregate
 from research_multiasset import atr
 SYMS=("ETHUSDT","BTCUSDT","ICPUSDT","HYPEUSDT")
+HOUR_MS=3_600_000
+
+def aggregate_completed_4h(raw, now_ms=None):
+    """Use only complete UTC-aligned 4H candles; never discard a complete tail.
+
+    The shared aggregate() unconditionally removes the last bucket, even when
+    all four hourly candles are present. That delays/misses paper alerts.
+    """
+    if not raw:
+        return []
+    rows=aggregate(raw,4)
+    start=(raw[-1][0]//(4*HOUR_MS))*(4*HOUR_MS)
+    tail=[x for x in raw if x[0]>=start]
+    expected=[start+j*HOUR_MS for j in range(4)]
+    if now_ms is None:
+        now_ms=int(dt.datetime.now(dt.timezone.utc).timestamp()*1000)
+    if [x[0] for x in tail]==expected and now_ms>=start+4*HOUR_MS:
+        rows.append((start,tail[0][1],max(x[2] for x in tail),
+                     min(x[3] for x in tail),tail[-1][4]))
+    return rows
+
 def main():
     alerts=[]
     for sym in SYMS:
@@ -13,7 +34,7 @@ def main():
         if not path.exists():continue
         with path.open() as f:xs=list(csv.DictReader(f))
         raw=[(int(dt.datetime.fromisoformat(x["timestamp_utc"]).timestamp()*1000),*[float(x[k]) for k in ("open","high","low","close")]) for x in xs]
-        rows=aggregate(raw,4);i=len(rows)-1
+        rows=aggregate_completed_4h(raw);i=len(rows)-1
         if i<70:continue
         d=indicator(rows)["delta"];v=atr(rows)[i]
         side=1 if d[i]<0 else -1
