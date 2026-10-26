@@ -55,6 +55,22 @@ class TestPortfolio(unittest.TestCase):
         self.assertEqual(len(res["trades"]),2)
         self.assertEqual(res["trades"][0]["exit_reason"],"target")
         self.assertEqual(res["trades"][1]["entry_utc"],"1970-01-01T12:00:00+00:00")
+    def test_correlated_simultaneous_stops(self):
+        sig={(SYMS[0],0):1,(SYMS[1],0):1}
+        bad={(SYMS[0],2):(94.,95.,93.,94.),(SYMS[1],2):(94.,95.,93.,94.)}
+        data,times=sample(n=4,signals=sig,overrides=bad)
+        res=simulate(data,times,cost=0,rate=0)
+        self.assertEqual(len(res["trades"]),2)
+        self.assertTrue(all(x["exit_reason"]=="stop" for x in res["trades"]))
+        self.assertAlmostEqual(res["trades"][0]["stop_risk"]+res["trades"][1]["stop_risk"],.005,places=5)
+        # Both open through stops at 94 vs 95, exceeding the planned 0.5% cap.
+        self.assertLess(res["final_cash"],.995)
+    def test_notional_cap_blocks_tiny_atr(self):
+        data,times=sample(n=3,signals={(SYMS[0],0):1})
+        data[SYMS[0]]["feat"][0]["atr"]=.01
+        res=simulate(data,times,cost=0,rate=0)
+        self.assertEqual(len(res["trades"]),0)
+        self.assertEqual(res["skips"]["notional_leverage_cap"],1)
     def test_terminal_and_mark_to_market(self):
         data,times=sample(n=3,signals={(SYMS[0],0):1})
         res=simulate(data,times,cost=.0015,rate=0)
