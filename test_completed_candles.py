@@ -1,5 +1,6 @@
 """P0 #7 synthetic regression fixtures: complete as-of aggregation, no network."""
 import unittest
+import math
 from completed_candles import HOUR_MS, aggregate_completed_4h, aggregate_completed
 from analyze_mtf_5y import aggregate, indicator
 from paper_signal_4h import aggregate_completed_4h as paper_aggregate
@@ -46,7 +47,10 @@ class StrictCandleTests(unittest.TestCase):
         self.assertEqual([x[0]//H for x in aggregate_completed(a,24,24*H)],[0])
 
     def test_paper_historical_parity_at_same_asof(self):
-        a=raw(0,4*230)
+        a=[]
+        for i in range(4*230):
+            close=100+8*math.sin(i/9)
+            a.append((i*H,close,close+1,close-1,close))
         asof=4*230*H
         research=aggregate(a,4,asof_ms=asof)
         paper=paper_aggregate(a,now_ms=asof)
