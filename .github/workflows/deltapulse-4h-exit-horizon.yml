@@ -1,0 +1,38 @@
+name: DeltaPulse 4H Manual vs Autonomous Exit Horizon
+on:
+  push:
+    paths:
+      - deltapulse_4h_exit_horizon_diagnostic.py
+      - .github/workflows/deltapulse-4h-exit-horizon.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy scikit-learn
+      - name: Compare user BTC manual exits with same-entry DeltaRSI counterfactuals
+        run: |
+          if ! python deltapulse_4h_exit_horizon_diagnostic.py > /tmp/exit_horizon.txt 2>&1; then
+            cp /tmp/exit_horizon.txt reports/deltapulse_4h_exit_horizon_error.txt
+            exit 1
+          fi
+      - name: Commit reports and trade detail
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_exit_horizon_diagnostic.json reports/deltapulse_4h_manual_exit_counterfactual.csv
+          git diff --cached --quiet || (git commit -m "Report manual BTC vs DeltaPulse 4H exit horizon discrepancies" && git pull --rebase origin main && git push)
+      - name: Save diagnostic traceback
+        if: failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_exit_horizon_error.txt
+          git diff --cached --quiet || (git commit -m "Save four-hour exit-diagnostic traceback" && git pull --rebase origin main && git push)
