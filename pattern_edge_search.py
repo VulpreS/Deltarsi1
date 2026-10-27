@@ -16,7 +16,7 @@ SYMS = ("BTCUSDT","ETHUSDT","ICPUSDT","HYPEUSDT")
 MODES = ("forming","closed","turn")
 FILTERS = ("all","follow_ema50","counter_ema50","follow_ema200","wick_reject","sweep20")
 STOPS = ("atr2.5","prior_peak4h","prior_wave6x4h")
-TPS = (1.5,3.0)
+TPS = (1.2,1.5,3.0)
 HOLDS = (12,24,48)
 CONFIGS = list(product(MODES,FILTERS,STOPS,TPS,HOLDS))
 SEED = 20261027
@@ -154,7 +154,7 @@ def main():
             score=score,by_asset=byasset))
     # Ranking uses TRAIN+VALIDATION only. Diagnostic test is NEVER part of score.
     eligible=sorted((x for x in results if x["gate_pass"]),key=lambda x:(-x["score"],-x["validation"]["n"],str(x["config"])))
-    baseline=next(x for x in results if x["config"]==dict(mode="turn",filter="all",stop="atr2.5",tp_R=3.,hold_h=48))
+    baseline=next(x for x in results if x["config"]==dict(mode="turn",filter="all",stop="atr2.5",tp_R=1.2,hold_h=48))
     top=eligible[:10]
     for x in top:
         cfg=x["config"];side={}
@@ -184,6 +184,7 @@ def main():
         "Stops known at entry; adverse gap and same-bar stop-first via execution_core.resolve_bar.",
         "0.15% round-trip fixed, exit notional included; funding excluded per latest manager issue.",
         "Per-symbol non-overlap, no shared-capital competition; pseudo DD from ordered 0.25%-risk R series is NOT executable portfolio MTM DD.",
+        "Baseline turn + ATR2.5 stop + TP1.2R (=3 ATR target) + 48h is closest to frozen 4H baseline; engine and split conventions may differ.",
         "Entry modes are separate causal signal families; differing trade counts and schedules prevent paired inference.",
         "All configurations and failures included; selecting winners after seeing diagnostic_test would invalidate any test claim.",
         "Top-10 mean_R CIs are exploratory 30-day calendar-block bootstrap (1200 seeded draws), not selection-adjusted."],
