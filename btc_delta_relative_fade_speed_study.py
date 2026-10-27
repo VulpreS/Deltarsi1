@@ -39,6 +39,8 @@ OUT = Path("reports/btc_delta_relative_fade_speed_study.json")
 # Small, predeclared nested models; no post-hoc threshold optimization.
 MODELS = {
     "magnitude_only": ["delta_prev_abs"],
+    "historical_percentile_only": ["prior_delta_pctile"],
+    "magnitude_plus_percentile": ["delta_prev_abs", "prior_delta_pctile"],
     "original_delta": ["delta_prev_abs", "delta_current_abs"],
     "speed_only": ["fade_fraction", "fade_vs_growth", "fade_acceleration_frac"],
     "magnitude_plus_relative_speed": [
@@ -277,6 +279,29 @@ def main():
         for t,q in zip(correlations,bh([x["p"] for x in correlations])):t["q_bh"]=q
     if forward:
         for t,q in zip(forward,bh([x["p_exploratory"] for x in forward])):t["q_bh_exploratory"]=q
+    # Prespecified strength strata: native Pine color cutoff at |Delta|=60
+    # and 45 as an intermediate diagnostic, not a fitted optimization.
+    strength_strata={}
+    for side in ("LONG","SHORT"):
+        side_events=[x for x in main if x["side"]==side]
+        for name,selector in (
+                ("at_or_above_60",lambda d:d>=60),
+                ("from_45_to_under_60",lambda d:45<=d<60),
+                ("under_45",lambda d:d<45),
+                ("at_or_above_45",lambda d:d>=45)):
+            sub=[x for x in side_events if selector(x["features"]["delta_prev_abs"])]
+            a=[x for x in sub if x["selected"]]
+            b=[x for x in sub if not x["selected"]]
+            row={"n":len(sub),"selected":len(a),"skipped":len(b),
+                 "selection_rate":rnd(len(a)/len(sub)) if sub else None}
+            for feat in ("fade_fraction","fade_vs_growth","fade_acceleration_frac"):
+                if len(a)>=4 and len(b)>=8:
+                    _,p=mannwhitneyu([x["features"][feat] for x in a],
+                                     [x["features"][feat] for x in b])
+                    row[feat]={"selected_median":med([x["features"][feat] for x in a]),
+                               "skipped_median":med([x["features"][feat] for x in b]),
+                               "p_exploratory":rnd(p,6)}
+            strength_strata[side+"_"+name]=row
     # Robustness: include signals during open manual positions as skipped
     # (previous studies' more permissive universe) but NOT post-journal events.
     sensitivity={}
@@ -329,6 +354,7 @@ def main():
       "realized_return_correlations":sorted(correlations,key=lambda x:x["p"]),
       "forward_return_correlations_exploratory":sorted(forward,key=lambda x:x["p_exploratory"]),
       "position_eligibility_sensitivity":sensitivity,
+      "delta_strength_strata":strength_strata,
       "selected_trajectories":[x for x in main if x["selected"]],
       "all_event_rows":main
     }
@@ -344,7 +370,8 @@ def main():
                   for k,v in models.items()},
         "realized":output["realized_return_correlations"],
         "top_forward":output["forward_return_correlations_exploratory"][:8],
-        "sensitivity":sensitivity
+        "sensitivity":sensitivity,
+        "strength_strata":strength_strata
     },indent=2,ensure_ascii=False))
 
 if __name__=="__main__":
