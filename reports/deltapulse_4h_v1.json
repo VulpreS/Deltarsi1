@@ -36,12 +36,11 @@
     "BTCUSDT": {
       "provenance": {
         "provider": "Binance USD-M perpetual OHLC, not Bybit",
-        "source": "data.binance.vision monthly/daily ZIP OHLC",
-        "cached": false,
+        "source": "previously cached ZIP archives",
+        "cached": true,
         "n": 14946,
         "first": "2020-01-01 00:00 UTC",
-        "last": "2026-10-26 20:00 UTC",
-        "archive_errors": []
+        "last": "2026-10-26 20:00 UTC"
       },
       "bars": 14946,
       "first": "2020-01-01T00:00:00Z",
@@ -10329,12 +10328,11 @@
     "ETHUSDT": {
       "provenance": {
         "provider": "Binance USD-M perpetual OHLC, not Bybit",
-        "source": "data.binance.vision monthly/daily ZIP OHLC",
-        "cached": false,
+        "source": "previously cached ZIP archives",
+        "cached": true,
         "n": 14946,
         "first": "2020-01-01 00:00 UTC",
-        "last": "2026-10-26 20:00 UTC",
-        "archive_errors": []
+        "last": "2026-10-26 20:00 UTC"
       },
       "bars": 14946,
       "first": "2020-01-01T00:00:00Z",
@@ -20969,12 +20967,11 @@
     "SOLUSDT": {
       "provenance": {
         "provider": "Binance USD-M perpetual OHLC, not Bybit",
-        "source": "data.binance.vision monthly/daily ZIP OHLC",
-        "cached": false,
+        "source": "previously cached ZIP archives",
+        "cached": true,
         "n": 8370,
         "first": "2023-01-01 00:00 UTC",
-        "last": "2026-10-26 20:00 UTC",
-        "archive_errors": []
+        "last": "2026-10-26 20:00 UTC"
       },
       "bars": 8370,
       "first": "2023-01-01T00:00:00Z",
@@ -31720,12 +31717,11 @@
     "BNBUSDT": {
       "provenance": {
         "provider": "Binance USD-M perpetual OHLC, not Bybit",
-        "source": "data.binance.vision monthly/daily ZIP OHLC",
-        "cached": false,
+        "source": "previously cached ZIP archives",
+        "cached": true,
         "n": 8370,
         "first": "2023-01-01 00:00 UTC",
-        "last": "2026-10-26 20:00 UTC",
-        "archive_errors": []
+        "last": "2026-10-26 20:00 UTC"
       },
       "bars": 8370,
       "first": "2023-01-01T00:00:00Z",
@@ -42076,12 +42072,11 @@
     "XRPUSDT": {
       "provenance": {
         "provider": "Binance USD-M perpetual OHLC, not Bybit",
-        "source": "data.binance.vision monthly/daily ZIP OHLC",
-        "cached": false,
+        "source": "previously cached ZIP archives",
+        "cached": true,
         "n": 8370,
         "first": "2023-01-01 00:00 UTC",
-        "last": "2026-10-26 20:00 UTC",
-        "archive_errors": []
+        "last": "2026-10-26 20:00 UTC"
       },
       "bars": 8370,
       "first": "2023-01-01T00:00:00Z",
