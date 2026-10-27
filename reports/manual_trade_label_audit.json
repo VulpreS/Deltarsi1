@@ -1,0 +1,553 @@
+{
+  "title": "42 manually annotated BTC trades: descriptive label and as-of 1H audit",
+  "generated_utc": "2026-10-27T10:00:31.487609+00:00",
+  "source_files": {
+    "manual_labels": "data/manual_btc_trades_2025_2026.csv",
+    "cached_btc_1h": "data/BTCUSDT_1h.csv"
+  },
+  "source_sha256": {
+    "manual_labels": "d7fff047091bc231ce828a3c1cb31630db71a053034c7f3422aac7802bd520ac",
+    "cached_btc_1h": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea"
+  },
+  "fee_roundtrip": 0.0015,
+  "funding": "excluded per owner instruction",
+  "cache_utc": {
+    "first": "2025-10-26T13:00:00+00:00",
+    "last_hour_open": "2026-10-26T13:00:00+00:00",
+    "n_hours": 8761
+  },
+  "n_labels": 42,
+  "quality_flags": {
+    "exit2_time_missing": 1,
+    "missing_second_exit_time": 1,
+    "exit1_price_suspect_842300": 1,
+    "exit_before_entry_suspect_month": 1,
+    "exit_before_entry": 1,
+    "entry_date_suspect_month": 1
+  },
+  "n_clean_labels": 38,
+  "annotated_all_including_suspect": {
+    "n": 42,
+    "win_pct": 80.95,
+    "mean_net_pct": -6.69586,
+    "median_net_pct": 3.21297,
+    "mean_net_R": -3.65167,
+    "profit_factor": 0.3428,
+    "avg_win_pct": 4.31418,
+    "avg_loss_pct": -53.48853,
+    "median_holding_hours": 68.0,
+    "hypothetical_sequential_risk_sized_return_pct": -47.654,
+    "hypothetical_closed_trade_dd_pct": 56.1533,
+    "max_consecutive_losses": 2
+  },
+  "annotated_clean_only": {
+    "n": 38,
+    "win_pct": 81.58,
+    "mean_net_pct": 3.06722,
+    "median_net_pct": 3.16777,
+    "mean_net_R": 1.67488,
+    "profit_factor": 10.0425,
+    "avg_win_pct": 4.17562,
+    "avg_loss_pct": -1.84138,
+    "median_holding_hours": 68.0,
+    "hypothetical_sequential_risk_sized_return_pct": 17.1466,
+    "hypothetical_closed_trade_dd_pct": 0.5732,
+    "max_consecutive_losses": 2
+  },
+  "annotated_clean_in_cached_period": {
+    "n": 31,
+    "win_pct": 77.42,
+    "mean_net_pct": 3.08358,
+    "median_net_pct": 3.25602,
+    "mean_net_R": 1.47464,
+    "profit_factor": 8.4161,
+    "avg_win_pct": 4.52003,
+    "avg_loss_pct": -1.84138,
+    "median_holding_hours": 68.0,
+    "hypothetical_sequential_risk_sized_return_pct": 12.04,
+    "hypothetical_closed_trade_dd_pct": 0.5732,
+    "max_consecutive_losses": 2
+  },
+  "clean_by_side": {
+    "LONG": {
+      "n": 21,
+      "win_pct": 76.19,
+      "mean_net_pct": 2.31474,
+      "median_net_pct": 2.90115,
+      "mean_net_R": 1.451,
+      "profit_factor": 5.3414,
+      "avg_win_pct": 3.73788,
+      "avg_loss_pct": -2.23934,
+      "median_holding_hours": 68.0,
+      "hypothetical_sequential_risk_sized_return_pct": 7.8648,
+      "hypothetical_closed_trade_dd_pct": 0.2788,
+      "max_consecutive_losses": 1
+    },
+    "SHORT": {
+      "n": 17,
+      "win_pct": 88.24,
+      "mean_net_pct": 3.99677,
+      "median_net_pct": 3.27092,
+      "mean_net_R": 1.95145,
+      "profit_factor": 41.1328,
+      "avg_win_pct": 4.64253,
+      "avg_loss_pct": -0.8465,
+      "median_holding_hours": 64.0,
+      "hypothetical_sequential_risk_sized_return_pct": 8.6051,
+      "hypothetical_closed_trade_dd_pct": 0.311,
+      "max_consecutive_losses": 1
+    }
+  },
+  "clean_by_entry_reason": {
+    "bright_to_medium_plus_buybacks": {
+      "n": 1,
+      "win_pct": 100.0,
+      "mean_net_pct": 1.19997,
+      "median_net_pct": 1.19997,
+      "mean_net_R": 0.64766,
+      "profit_factor": null,
+      "avg_win_pct": 1.19997,
+      "avg_loss_pct": null,
+      "median_holding_hours": 64.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.1619,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    },
+    "red_medium_to_weak": {
+      "n": 20,
+      "win_pct": 75.0,
+      "mean_net_pct": 2.37047,
+      "median_net_pct": 3.03338,
+      "mean_net_R": 1.49116,
+      "profit_factor": 5.2342,
+      "avg_win_pct": 3.90708,
+      "avg_loss_pct": -2.23934,
+      "median_holding_hours": 74.0,
+      "hypothetical_sequential_risk_sized_return_pct": 7.6904,
+      "hypothetical_closed_trade_dd_pct": 0.2788,
+      "max_consecutive_losses": 1
+    },
+    "weak_blue": {
+      "n": 17,
+      "win_pct": 88.24,
+      "mean_net_pct": 3.99677,
+      "median_net_pct": 3.27092,
+      "mean_net_R": 1.95145,
+      "profit_factor": 41.1328,
+      "avg_win_pct": 4.64253,
+      "avg_loss_pct": -0.8465,
+      "median_holding_hours": 64.0,
+      "hypothetical_sequential_risk_sized_return_pct": 8.6051,
+      "hypothetical_closed_trade_dd_pct": 0.311,
+      "max_consecutive_losses": 1
+    }
+  },
+  "clean_by_exit_reason": {
+    "SL": {
+      "n": 6,
+      "win_pct": 0.0,
+      "mean_net_pct": -1.97365,
+      "median_net_pct": -1.52718,
+      "mean_net_R": -1.12583,
+      "profit_factor": 0.0,
+      "avg_win_pct": null,
+      "avg_loss_pct": -1.97365,
+      "median_holding_hours": 16.0,
+      "hypothetical_sequential_risk_sized_return_pct": -1.6769,
+      "hypothetical_closed_trade_dd_pct": 1.6769,
+      "max_consecutive_losses": 6
+    },
+    "red_medium_to_weak": {
+      "n": 15,
+      "win_pct": 100.0,
+      "mean_net_pct": 4.64253,
+      "median_net_pct": 3.794,
+      "mean_net_R": 2.37419,
+      "profit_factor": null,
+      "avg_win_pct": 4.64253,
+      "avg_loss_pct": null,
+      "median_holding_hours": 68.0,
+      "hypothetical_sequential_risk_sized_return_pct": 9.2701,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    },
+    "weak_blue": {
+      "n": 17,
+      "win_pct": 94.12,
+      "mean_net_pct": 3.45637,
+      "median_net_pct": 3.16992,
+      "mean_net_R": 2.04634,
+      "profit_factor": 57.0792,
+      "avg_win_pct": 3.73788,
+      "avg_loss_pct": -1.04777,
+      "median_holding_hours": 80.0,
+      "hypothetical_sequential_risk_sized_return_pct": 9.0367,
+      "hypothetical_closed_trade_dd_pct": 0.1734,
+      "max_consecutive_losses": 1
+    }
+  },
+  "clean_by_month": {
+    "2025-09": {
+      "n": 4,
+      "win_pct": 100.0,
+      "mean_net_pct": 3.06105,
+      "median_net_pct": 2.48761,
+      "mean_net_R": 3.37666,
+      "profit_factor": null,
+      "avg_win_pct": 3.06105,
+      "avg_loss_pct": null,
+      "median_holding_hours": 77.0,
+      "hypothetical_sequential_risk_sized_return_pct": 3.4105,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    },
+    "2025-10": {
+      "n": 4,
+      "win_pct": 100.0,
+      "mean_net_pct": 3.81223,
+      "median_net_pct": 3.75959,
+      "mean_net_R": 2.63734,
+      "profit_factor": null,
+      "avg_win_pct": 3.81223,
+      "avg_loss_pct": null,
+      "median_holding_hours": 70.0,
+      "hypothetical_sequential_risk_sized_return_pct": 2.6575,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    },
+    "2025-11": {
+      "n": 5,
+      "win_pct": 60.0,
+      "mean_net_pct": 3.11223,
+      "median_net_pct": 3.30223,
+      "mean_net_R": 0.97142,
+      "profit_factor": 6.0264,
+      "avg_win_pct": 6.21901,
+      "avg_loss_pct": -1.54794,
+      "median_holding_hours": 68.0,
+      "hypothetical_sequential_risk_sized_return_pct": 1.2142,
+      "hypothetical_closed_trade_dd_pct": 0.311,
+      "max_consecutive_losses": 1
+    },
+    "2025-12": {
+      "n": 2,
+      "win_pct": 50.0,
+      "mean_net_pct": 2.95043,
+      "median_net_pct": 2.95043,
+      "mean_net_R": 2.59539,
+      "profit_factor": 4.6583,
+      "avg_win_pct": 7.51386,
+      "avg_loss_pct": -1.613,
+      "median_holding_hours": 76.0,
+      "hypothetical_sequential_risk_sized_return_pct": 1.2934,
+      "hypothetical_closed_trade_dd_pct": 0.2754,
+      "max_consecutive_losses": 1
+    },
+    "2026-01": {
+      "n": 4,
+      "win_pct": 75.0,
+      "mean_net_pct": 2.2285,
+      "median_net_pct": 2.52681,
+      "mean_net_R": 0.89294,
+      "profit_factor": 10.6314,
+      "avg_win_pct": 3.27985,
+      "avg_loss_pct": -0.92552,
+      "median_holding_hours": 82.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.8938,
+      "hypothetical_closed_trade_dd_pct": 0.2986,
+      "max_consecutive_losses": 1
+    },
+    "2026-02": {
+      "n": 2,
+      "win_pct": 100.0,
+      "mean_net_pct": 4.83683,
+      "median_net_pct": 4.83683,
+      "mean_net_R": 1.15714,
+      "profit_factor": null,
+      "avg_win_pct": 4.83683,
+      "avg_loss_pct": null,
+      "median_holding_hours": 60.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.5792,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    },
+    "2026-03": {
+      "n": 3,
+      "win_pct": 66.67,
+      "mean_net_pct": 2.56047,
+      "median_net_pct": 3.92372,
+      "mean_net_R": 0.67733,
+      "profit_factor": 6.3293,
+      "avg_win_pct": 4.56139,
+      "avg_loss_pct": -1.44137,
+      "median_holding_hours": 40.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.5073,
+      "hypothetical_closed_trade_dd_pct": 0.2788,
+      "max_consecutive_losses": 1
+    },
+    "2026-04": {
+      "n": 2,
+      "win_pct": 100.0,
+      "mean_net_pct": 2.9783,
+      "median_net_pct": 2.9783,
+      "mean_net_R": 1.43526,
+      "profit_factor": null,
+      "avg_win_pct": 2.9783,
+      "avg_loss_pct": null,
+      "median_holding_hours": 60.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.7189,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    },
+    "2026-05": {
+      "n": 6,
+      "win_pct": 83.33,
+      "mean_net_pct": 1.37278,
+      "median_net_pct": 1.11133,
+      "mean_net_R": 0.62103,
+      "profit_factor": 8.8611,
+      "avg_win_pct": 1.85689,
+      "avg_loss_pct": -1.04777,
+      "median_holding_hours": 62.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.9343,
+      "hypothetical_closed_trade_dd_pct": 0.1734,
+      "max_consecutive_losses": 1
+    },
+    "2026-06": {
+      "n": 5,
+      "win_pct": 80.0,
+      "mean_net_pct": 4.06031,
+      "median_net_pct": 3.794,
+      "mean_net_R": 2.24178,
+      "profit_factor": 5.2595,
+      "avg_win_pct": 6.26693,
+      "avg_loss_pct": -4.76614,
+      "median_holding_hours": 76.0,
+      "hypothetical_sequential_risk_sized_return_pct": 2.8267,
+      "hypothetical_closed_trade_dd_pct": 0.2579,
+      "max_consecutive_losses": 1
+    },
+    "2026-07": {
+      "n": 1,
+      "win_pct": 100.0,
+      "mean_net_pct": 6.83538,
+      "median_net_pct": 6.83538,
+      "mean_net_R": 3.81805,
+      "profit_factor": null,
+      "avg_win_pct": 6.83538,
+      "avg_loss_pct": null,
+      "median_holding_hours": 88.0,
+      "hypothetical_sequential_risk_sized_return_pct": 0.9545,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    }
+  },
+  "clean_by_stages": {
+    "1": {
+      "n": 35,
+      "win_pct": 80.0,
+      "mean_net_pct": 3.01818,
+      "median_net_pct": 3.16992,
+      "mean_net_R": 1.51844,
+      "profit_factor": 9.1954,
+      "avg_win_pct": 4.23307,
+      "avg_loss_pct": -1.84138,
+      "median_holding_hours": 68.0,
+      "hypothetical_sequential_risk_sized_return_pct": 14.1334,
+      "hypothetical_closed_trade_dd_pct": 0.5732,
+      "max_consecutive_losses": 2
+    },
+    "2": {
+      "n": 3,
+      "win_pct": 100.0,
+      "mean_net_pct": 3.63939,
+      "median_net_pct": 2.86481,
+      "mean_net_R": 3.50004,
+      "profit_factor": null,
+      "avg_win_pct": 3.63939,
+      "avg_loss_pct": null,
+      "median_holding_hours": 90.0,
+      "hypothetical_sequential_risk_sized_return_pct": 2.6401,
+      "hypothetical_closed_trade_dd_pct": 0.0,
+      "max_consecutive_losses": 0
+    }
+  },
+  "cached_clean_by_previously_inspected_calendar": {
+    "earlier_inspected_train": {
+      "n": 18,
+      "win_pct": 72.22,
+      "mean_net_pct": 3.21757,
+      "median_net_pct": 3.47879,
+      "mean_net_R": 1.42966,
+      "profit_factor": 9.1852,
+      "avg_win_pct": 4.99938,
+      "avg_loss_pct": -1.41515,
+      "median_holding_hours": 68.0,
+      "hypothetical_sequential_risk_sized_return_pct": 6.6038,
+      "hypothetical_closed_trade_dd_pct": 0.5732,
+      "max_consecutive_losses": 2
+    },
+    "earlier_inspected_validation": {
+      "n": 13,
+      "win_pct": 84.62,
+      "mean_net_pct": 2.89807,
+      "median_net_pct": 2.47542,
+      "mean_net_R": 1.53691,
+      "profit_factor": 7.4801,
+      "avg_win_pct": 3.95353,
+      "avg_loss_pct": -2.90696,
+      "median_holding_hours": 68.0,
+      "hypothetical_sequential_risk_sized_return_pct": 5.0994,
+      "hypothetical_closed_trade_dd_pct": 0.2579,
+      "max_consecutive_losses": 1
+    }
+  },
+  "asof_join_funnel": {
+    "outside_cache": 8,
+    "inside_cache": 34,
+    "entry_price_inside_marked_hour": 29,
+    "entry_price_inside_prior_hour": 27,
+    "clean_label_inside_cache": 31,
+    "clean_exit1_price_outside_marked_and_prior_hour": 8,
+    "clean_static_stop_touched_before_first_exit": 1,
+    "entry_price_outside_both_hours": 5,
+    "quality_flagged_inside_cache": 3
+  },
+  "candidate_signal_counts": {
+    "forming": 32,
+    "closed": 35,
+    "frozen_turn": 255
+  },
+  "same_side_signal_matches": {
+    "forming": {
+      "within_4h_same_side": 1
+    },
+    "closed": {
+      "exact_entry_time_and_side": 1,
+      "within_4h_same_side": 1
+    },
+    "frozen_turn": {
+      "within_4h_same_side": 20,
+      "exact_entry_time_and_side": 15
+    }
+  },
+  "frozen_2p5ATR_3ATR_48h_btc_backtest_by_mode_and_calendar": {
+    "forming": {
+      "earlier_inspected_train": {
+        "n": 14,
+        "net_return_pct": 1.0354,
+        "pf": 2.1706,
+        "win_pct": 64.29,
+        "mean_R": 0.2953,
+        "closed_trade_dd_pct": 0.5243,
+        "skips": {
+          "occupied_or_exit_bar": 1
+        }
+      },
+      "earlier_inspected_validation": {
+        "n": 5,
+        "net_return_pct": 0.7447,
+        "pf": 495.7113,
+        "win_pct": 80.0,
+        "mean_R": 0.5943,
+        "closed_trade_dd_pct": 0.0015,
+        "skips": {}
+      },
+      "earlier_inspected_diagnostic": {
+        "n": 10,
+        "net_return_pct": -0.306,
+        "pf": 0.71,
+        "win_pct": 30.0,
+        "mean_R": -0.1217,
+        "closed_trade_dd_pct": 0.4911,
+        "skips": {
+          "occupied_or_exit_bar": 2
+        }
+      }
+    },
+    "closed": {
+      "earlier_inspected_train": {
+        "n": 16,
+        "net_return_pct": 1.1196,
+        "pf": 2.2146,
+        "win_pct": 68.75,
+        "mean_R": 0.2793,
+        "closed_trade_dd_pct": 0.6124,
+        "skips": {
+          "occupied_or_exit_bar": 3
+        }
+      },
+      "earlier_inspected_validation": {
+        "n": 5,
+        "net_return_pct": 0.5586,
+        "pf": 4.2746,
+        "win_pct": 80.0,
+        "mean_R": 0.4465,
+        "closed_trade_dd_pct": 0.1694,
+        "skips": {
+          "occupied_or_exit_bar": 1
+        }
+      },
+      "earlier_inspected_diagnostic": {
+        "n": 10,
+        "net_return_pct": -0.1054,
+        "pf": 0.8758,
+        "win_pct": 40.0,
+        "mean_R": -0.0415,
+        "closed_trade_dd_pct": 0.6702,
+        "skips": {}
+      }
+    },
+    "frozen_turn": {
+      "earlier_inspected_train": {
+        "n": 64,
+        "net_return_pct": 0.8177,
+        "pf": 1.1457,
+        "win_pct": 54.69,
+        "mean_R": 0.0518,
+        "closed_trade_dd_pct": 2.102,
+        "skips": {
+          "occupied_or_exit_bar": 61
+        }
+      },
+      "earlier_inspected_validation": {
+        "n": 34,
+        "net_return_pct": 1.7529,
+        "pf": 1.695,
+        "win_pct": 67.65,
+        "mean_R": 0.2054,
+        "closed_trade_dd_pct": 0.6694,
+        "skips": {
+          "occupied_or_exit_bar": 28
+        }
+      },
+      "earlier_inspected_diagnostic": {
+        "n": 39,
+        "net_return_pct": 1.53,
+        "pf": 1.5023,
+        "win_pct": 58.97,
+        "mean_R": 0.1567,
+        "closed_trade_dd_pct": 0.8495,
+        "skips": {
+          "occupied_or_exit_bar": 29
+        }
+      }
+    }
+  },
+  "notes": [
+    "User annotations are selected winners/losers, not independently observed executable fills; statistics are descriptive only.",
+    "All four non-ok quality labels are excluded from clean results without silently repairing price/date/time.",
+    "The 15bp fee is a fixed assumed round-trip cost charged half on entry notional and half on weighted exit notional.",
+    "The 50+50 two-stage exits are already normalized shares of original notional, NOT 50+100.",
+    "No funding by owner instruction; no real orders, exchange access, or new candle downloads.",
+    "OHLC containment in the marked/prior hour is only a plausibility check; not proof of actual fill or execution.",
+    "Hourly OHLC cannot establish intrabar chronology or stop hit before annotated exits; no executable trade-PnL claim.",
+    "Static-stop breach test ignores entry and first-exit hours; a breach is a conflict only if the annotated initial SL remained active.",
+    "Hypothetical sequential risk-sized DD/return assume no overlapping trades, perfect annotated fills and fixed 0.25% initial stop risk; NOT executable portfolio DD.",
+    "All historical train/validation/diagnostic windows have been previously inspected and cannot support independent OOS claims.",
+    "Exact candidate matches are an overlap census, NOT proof that the annotated discretionary rule is the automated DeltaRSI rule.",
+    "Full negative/control candidate event streams are from existing causal_4h_parity_audit.events; no filter fitted to 42 labels.",
+    "BTC frozen baseline and forming/closed signal families are independently scheduled, not paired and not comparable to selected manual annotation fills.",
+    "Backtests use next-hour-open entries, 2.5 ATR stop, 3 ATR target, 48h timeout, fixed 15bp fee, zero funding, and sequential per-symbol risk sizing; closed-trade DD is not hourly MTM DD."
+  ]
+}
