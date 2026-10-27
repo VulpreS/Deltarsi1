@@ -1,0 +1,4098 @@
+{
+  "notes": "4H fully closed DeltaRSI entry, next open. Daily context computed ONLY from completed UTC days, 50-day SMA warmup. Structural confirmed pivot stop; original impulse rebrightening exits; opposite fade exits. 0.15% roundtrip, no funding. Fixed four daily filters motivated by journal, no optimization on test. Each asset's last 25% is evaluation; hypotheses were informed by BTC manual journal, so BTC is not pristine unseen OOS. Split positions forced closed at boundary. Daily filter is evaluated at entry signal time. Results are descriptive.",
+  "assets": {
+    "BTCUSDT": {
+      "none": {
+        "stats": {
+          "n": 47,
+          "wr_pct": 23.4,
+          "mean_net_pct": -0.383,
+          "pf": 0.423,
+          "mdd_pct": 16.8
+        },
+        "long": {
+          "n": 29,
+          "wr_pct": 27.6,
+          "mean_net_pct": -0.223,
+          "pf": 0.639,
+          "mdd_pct": 6.87
+        },
+        "short": {
+          "n": 18,
+          "wr_pct": 16.7,
+          "mean_net_pct": -0.641,
+          "pf": 0.131,
+          "mdd_pct": 10.98
+        },
+        "trades": [
+          {
+            "entry_i": 1650,
+            "exit_i": 1653,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0042440047828463095
+          },
+          {
+            "entry_i": 1663,
+            "exit_i": 1666,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014617129629629631
+          },
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008275083337338339
+          },
+          {
+            "entry_i": 1681,
+            "exit_i": 1682,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.00029667801311156336
+          },
+          {
+            "entry_i": 1686,
+            "exit_i": 1693,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.006953581055940074
+          },
+          {
+            "entry_i": 1703,
+            "exit_i": 1704,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0016516509527392796
+          },
+          {
+            "entry_i": 1707,
+            "exit_i": 1708,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.013539339250169423
+          },
+          {
+            "entry_i": 1710,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0038306529645734653
+          },
+          {
+            "entry_i": 1712,
+            "exit_i": 1722,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006205251743598593
+          },
+          {
+            "entry_i": 1728,
+            "exit_i": 1733,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.002893312813890102
+          },
+          {
+            "entry_i": 1739,
+            "exit_i": 1740,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.013930876444037064
+          },
+          {
+            "entry_i": 1744,
+            "exit_i": 1746,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008480727099181627
+          },
+          {
+            "entry_i": 1748,
+            "exit_i": 1749,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.005340400649794406
+          },
+          {
+            "entry_i": 1755,
+            "exit_i": 1760,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0009487024444400625
+          },
+          {
+            "entry_i": 1767,
+            "exit_i": 1773,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.010415488148126041
+          },
+          {
+            "entry_i": 1779,
+            "exit_i": 1781,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0138295535413106
+          },
+          {
+            "entry_i": 1804,
+            "exit_i": 1805,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.022792583642164244
+          },
+          {
+            "entry_i": 1822,
+            "exit_i": 1825,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004202587893885336
+          },
+          {
+            "entry_i": 1840,
+            "exit_i": 1847,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.005456173581509795
+          },
+          {
+            "entry_i": 1854,
+            "exit_i": 1860,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.022592147243276683
+          },
+          {
+            "entry_i": 1871,
+            "exit_i": 1873,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.04734026469308744
+          },
+          {
+            "entry_i": 1878,
+            "exit_i": 1882,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005033077768627768
+          },
+          {
+            "entry_i": 1888,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007458547794440161
+          },
+          {
+            "entry_i": 1895,
+            "exit_i": 1895,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.00485422391493545
+          },
+          {
+            "entry_i": 1906,
+            "exit_i": 1908,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.01008680603208184
+          },
+          {
+            "entry_i": 1929,
+            "exit_i": 1930,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.00421154718105504
+          },
+          {
+            "entry_i": 1932,
+            "exit_i": 1933,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.003472257794858545
+          },
+          {
+            "entry_i": 1952,
+            "exit_i": 1954,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.0018694197307299056
+          },
+          {
+            "entry_i": 1961,
+            "exit_i": 1964,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.03464882578606426
+          },
+          {
+            "entry_i": 1975,
+            "exit_i": 1976,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.012040271593099781
+          },
+          {
+            "entry_i": 2005,
+            "exit_i": 2019,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.016115029562600747
+          },
+          {
+            "entry_i": 2026,
+            "exit_i": 2028,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.012371153310089143
+          },
+          {
+            "entry_i": 2033,
+            "exit_i": 2035,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005218159660523801
+          },
+          {
+            "entry_i": 2037,
+            "exit_i": 2038,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.00536942666983947
+          },
+          {
+            "entry_i": 2043,
+            "exit_i": 2043,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.004104402096572755
+          },
+          {
+            "entry_i": 2050,
+            "exit_i": 2052,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005133751182592348
+          },
+          {
+            "entry_i": 2054,
+            "exit_i": 2056,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005658408902421362
+          },
+          {
+            "entry_i": 2067,
+            "exit_i": 2072,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.008858038534655553
+          },
+          {
+            "entry_i": 2087,
+            "exit_i": 2104,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.007445687054472407
+          },
+          {
+            "entry_i": 2111,
+            "exit_i": 2114,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.0007912665197617476
+          },
+          {
+            "entry_i": 2116,
+            "exit_i": 2124,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.012429746831505386
+          },
+          {
+            "entry_i": 2139,
+            "exit_i": 2143,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": -0.014677157982289133
+          },
+          {
+            "entry_i": 2152,
+            "exit_i": 2153,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.022020188339995694
+          },
+          {
+            "entry_i": 2157,
+            "exit_i": 2158,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0065760378283027925
+          },
+          {
+            "entry_i": 2169,
+            "exit_i": 2172,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.003909471711329547
+          },
+          {
+            "entry_i": 2176,
+            "exit_i": 2177,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0031424711833632477
+          },
+          {
+            "entry_i": 2185,
+            "exit_i": 2185,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.008448929884480814
+          }
+        ]
+      },
+      "trend": {
+        "stats": {
+          "n": 19,
+          "wr_pct": 15.8,
+          "mean_net_pct": -0.556,
+          "pf": 0.124,
+          "mdd_pct": 10.08
+        },
+        "long": {
+          "n": 7,
+          "wr_pct": 28.6,
+          "mean_net_pct": -0.2,
+          "pf": 0.433,
+          "mdd_pct": 1.54
+        },
+        "short": {
+          "n": 12,
+          "wr_pct": 8.3,
+          "mean_net_pct": -0.763,
+          "pf": 0.044,
+          "mdd_pct": 8.8
+        },
+        "trades": [
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008275083337338339
+          },
+          {
+            "entry_i": 1681,
+            "exit_i": 1682,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.00029667801311156336
+          },
+          {
+            "entry_i": 1707,
+            "exit_i": 1708,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.013539339250169423
+          },
+          {
+            "entry_i": 1710,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0038306529645734653
+          },
+          {
+            "entry_i": 1712,
+            "exit_i": 1722,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006205251743598593
+          },
+          {
+            "entry_i": 1728,
+            "exit_i": 1733,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.002893312813890102
+          },
+          {
+            "entry_i": 1755,
+            "exit_i": 1760,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0009487024444400625
+          },
+          {
+            "entry_i": 1767,
+            "exit_i": 1773,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.010415488148126041
+          },
+          {
+            "entry_i": 1804,
+            "exit_i": 1805,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.022792583642164244
+          },
+          {
+            "entry_i": 1822,
+            "exit_i": 1825,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004202587893885336
+          },
+          {
+            "entry_i": 1861,
+            "exit_i": 1871,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.009731451779801224
+          },
+          {
+            "entry_i": 1878,
+            "exit_i": 1882,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005033077768627768
+          },
+          {
+            "entry_i": 1888,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007458547794440161
+          },
+          {
+            "entry_i": 1975,
+            "exit_i": 1976,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.012040271593099781
+          },
+          {
+            "entry_i": 2054,
+            "exit_i": 2056,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005658408902421362
+          },
+          {
+            "entry_i": 2157,
+            "exit_i": 2158,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0065760378283027925
+          },
+          {
+            "entry_i": 2169,
+            "exit_i": 2172,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.003909471711329547
+          },
+          {
+            "entry_i": 2176,
+            "exit_i": 2177,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0031424711833632477
+          },
+          {
+            "entry_i": 2185,
+            "exit_i": 2185,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.008448929884480814
+          }
+        ]
+      },
+      "stretch": {
+        "stats": {
+          "n": 4,
+          "wr_pct": 25.0,
+          "mean_net_pct": -0.892,
+          "pf": 0.105,
+          "mdd_pct": 3.54
+        },
+        "long": {
+          "n": 0
+        },
+        "short": {
+          "n": 4,
+          "wr_pct": 25.0,
+          "mean_net_pct": -0.892,
+          "pf": 0.105,
+          "mdd_pct": 3.54
+        },
+        "trades": [
+          {
+            "entry_i": 1804,
+            "exit_i": 1805,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.022792583642164244
+          },
+          {
+            "entry_i": 1822,
+            "exit_i": 1825,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004202587893885336
+          },
+          {
+            "entry_i": 1878,
+            "exit_i": 1882,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005033077768627768
+          },
+          {
+            "entry_i": 1975,
+            "exit_i": 1976,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.012040271593099781
+          }
+        ]
+      },
+      "candles": {
+        "stats": {
+          "n": 27,
+          "wr_pct": 22.2,
+          "mean_net_pct": -0.385,
+          "pf": 0.42,
+          "mdd_pct": 10.07
+        },
+        "long": {
+          "n": 19,
+          "wr_pct": 26.3,
+          "mean_net_pct": -0.315,
+          "pf": 0.542,
+          "mdd_pct": 6.33
+        },
+        "short": {
+          "n": 8,
+          "wr_pct": 12.5,
+          "mean_net_pct": -0.549,
+          "pf": 0.087,
+          "mdd_pct": 4.32
+        },
+        "trades": [
+          {
+            "entry_i": 1650,
+            "exit_i": 1653,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0042440047828463095
+          },
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008275083337338339
+          },
+          {
+            "entry_i": 1681,
+            "exit_i": 1682,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.00029667801311156336
+          },
+          {
+            "entry_i": 1707,
+            "exit_i": 1708,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.013539339250169423
+          },
+          {
+            "entry_i": 1710,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0038306529645734653
+          },
+          {
+            "entry_i": 1723,
+            "exit_i": 1723,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0026824449154087535
+          },
+          {
+            "entry_i": 1728,
+            "exit_i": 1733,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.002893312813890102
+          },
+          {
+            "entry_i": 1739,
+            "exit_i": 1740,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.013930876444037064
+          },
+          {
+            "entry_i": 1744,
+            "exit_i": 1746,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008480727099181627
+          },
+          {
+            "entry_i": 1755,
+            "exit_i": 1760,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0009487024444400625
+          },
+          {
+            "entry_i": 1767,
+            "exit_i": 1773,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.010415488148126041
+          },
+          {
+            "entry_i": 1822,
+            "exit_i": 1825,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004202587893885336
+          },
+          {
+            "entry_i": 1840,
+            "exit_i": 1847,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.005456173581509795
+          },
+          {
+            "entry_i": 1854,
+            "exit_i": 1860,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.022592147243276683
+          },
+          {
+            "entry_i": 1871,
+            "exit_i": 1873,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.04734026469308744
+          },
+          {
+            "entry_i": 1888,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007458547794440161
+          },
+          {
+            "entry_i": 1906,
+            "exit_i": 1908,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.01008680603208184
+          },
+          {
+            "entry_i": 1975,
+            "exit_i": 1976,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.012040271593099781
+          },
+          {
+            "entry_i": 2026,
+            "exit_i": 2028,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.012371153310089143
+          },
+          {
+            "entry_i": 2037,
+            "exit_i": 2038,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.00536942666983947
+          },
+          {
+            "entry_i": 2054,
+            "exit_i": 2056,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005658408902421362
+          },
+          {
+            "entry_i": 2087,
+            "exit_i": 2104,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.007445687054472407
+          },
+          {
+            "entry_i": 2124,
+            "exit_i": 2130,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014420114538086391
+          },
+          {
+            "entry_i": 2139,
+            "exit_i": 2143,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": -0.014677157982289133
+          },
+          {
+            "entry_i": 2169,
+            "exit_i": 2172,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.003909471711329547
+          },
+          {
+            "entry_i": 2176,
+            "exit_i": 2177,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0031424711833632477
+          },
+          {
+            "entry_i": 2185,
+            "exit_i": 2185,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.008448929884480814
+          }
+        ]
+      },
+      "daily_or": {
+        "stats": {
+          "n": 22,
+          "wr_pct": 13.6,
+          "mean_net_pct": -0.721,
+          "pf": 0.226,
+          "mdd_pct": 14.84
+        },
+        "long": {
+          "n": 10,
+          "wr_pct": 20.0,
+          "mean_net_pct": -0.597,
+          "pf": 0.414,
+          "mdd_pct": 5.92
+        },
+        "short": {
+          "n": 12,
+          "wr_pct": 8.3,
+          "mean_net_pct": -0.824,
+          "pf": 0.041,
+          "mdd_pct": 9.48
+        },
+        "trades": [
+          {
+            "entry_i": 1663,
+            "exit_i": 1666,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014617129629629631
+          },
+          {
+            "entry_i": 1707,
+            "exit_i": 1708,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.013539339250169423
+          },
+          {
+            "entry_i": 1710,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0038306529645734653
+          },
+          {
+            "entry_i": 1723,
+            "exit_i": 1723,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0026824449154087535
+          },
+          {
+            "entry_i": 1728,
+            "exit_i": 1733,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.002893312813890102
+          },
+          {
+            "entry_i": 1739,
+            "exit_i": 1740,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.013930876444037064
+          },
+          {
+            "entry_i": 1744,
+            "exit_i": 1746,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008480727099181627
+          },
+          {
+            "entry_i": 1804,
+            "exit_i": 1805,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.022792583642164244
+          },
+          {
+            "entry_i": 1822,
+            "exit_i": 1825,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004202587893885336
+          },
+          {
+            "entry_i": 1854,
+            "exit_i": 1860,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.022592147243276683
+          },
+          {
+            "entry_i": 1878,
+            "exit_i": 1882,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005033077768627768
+          },
+          {
+            "entry_i": 1888,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007458547794440161
+          },
+          {
+            "entry_i": 1961,
+            "exit_i": 1964,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.03464882578606426
+          },
+          {
+            "entry_i": 1975,
+            "exit_i": 1976,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.012040271593099781
+          },
+          {
+            "entry_i": 2005,
+            "exit_i": 2019,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.016115029562600747
+          },
+          {
+            "entry_i": 2050,
+            "exit_i": 2052,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005133751182592348
+          },
+          {
+            "entry_i": 2054,
+            "exit_i": 2056,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005658408902421362
+          },
+          {
+            "entry_i": 2087,
+            "exit_i": 2104,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.007445687054472407
+          },
+          {
+            "entry_i": 2124,
+            "exit_i": 2130,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014420114538086391
+          },
+          {
+            "entry_i": 2152,
+            "exit_i": 2153,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.022020188339995694
+          },
+          {
+            "entry_i": 2176,
+            "exit_i": 2177,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0031424711833632477
+          },
+          {
+            "entry_i": 2185,
+            "exit_i": 2185,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.008448929884480814
+          }
+        ]
+      }
+    },
+    "ETHUSDT": {
+      "none": {
+        "stats": {
+          "n": 58,
+          "wr_pct": 20.7,
+          "mean_net_pct": -0.564,
+          "pf": 0.374,
+          "mdd_pct": 28.49
+        },
+        "long": {
+          "n": 33,
+          "wr_pct": 27.3,
+          "mean_net_pct": -0.417,
+          "pf": 0.542,
+          "mdd_pct": 13.38
+        },
+        "short": {
+          "n": 25,
+          "wr_pct": 12.0,
+          "mean_net_pct": -0.757,
+          "pf": 0.146,
+          "mdd_pct": 17.44
+        },
+        "trades": [
+          {
+            "entry_i": 1648,
+            "exit_i": 1651,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0220435400798355
+          },
+          {
+            "entry_i": 1654,
+            "exit_i": 1655,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0184123474401649
+          },
+          {
+            "entry_i": 1666,
+            "exit_i": 1668,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02181117397454041
+          },
+          {
+            "entry_i": 1671,
+            "exit_i": 1672,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.002408514979061639
+          },
+          {
+            "entry_i": 1675,
+            "exit_i": 1675,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013931795091171538
+          },
+          {
+            "entry_i": 1678,
+            "exit_i": 1680,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014704150332367437
+          },
+          {
+            "entry_i": 1682,
+            "exit_i": 1684,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014777016257570939
+          },
+          {
+            "entry_i": 1687,
+            "exit_i": 1695,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.0019346925413504259
+          },
+          {
+            "entry_i": 1698,
+            "exit_i": 1698,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.00974135864563491
+          },
+          {
+            "entry_i": 1702,
+            "exit_i": 1704,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006097059566939121
+          },
+          {
+            "entry_i": 1708,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011460841770183748
+          },
+          {
+            "entry_i": 1713,
+            "exit_i": 1716,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005052416426791493
+          },
+          {
+            "entry_i": 1718,
+            "exit_i": 1727,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0040255023666821415
+          },
+          {
+            "entry_i": 1739,
+            "exit_i": 1742,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008017946820320474
+          },
+          {
+            "entry_i": 1745,
+            "exit_i": 1747,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.009708612712798713
+          },
+          {
+            "entry_i": 1750,
+            "exit_i": 1757,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": -0.0028807753584704763
+          },
+          {
+            "entry_i": 1763,
+            "exit_i": 1765,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.00016067157753746212
+          },
+          {
+            "entry_i": 1775,
+            "exit_i": 1776,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.012980074572236542
+          },
+          {
+            "entry_i": 1780,
+            "exit_i": 1781,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.00832125879245854
+          },
+          {
+            "entry_i": 1806,
+            "exit_i": 1806,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007040895026852288
+          },
+          {
+            "entry_i": 1821,
+            "exit_i": 1833,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.02645734141199113
+          },
+          {
+            "entry_i": 1841,
+            "exit_i": 1847,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.006249138072566053
+          },
+          {
+            "entry_i": 1849,
+            "exit_i": 1850,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.032754547359851116
+          },
+          {
+            "entry_i": 1855,
+            "exit_i": 1861,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.035048628671464466
+          },
+          {
+            "entry_i": 1872,
+            "exit_i": 1875,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.04016666666666674
+          },
+          {
+            "entry_i": 1891,
+            "exit_i": 1892,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005790703207542545
+          },
+          {
+            "entry_i": 1894,
+            "exit_i": 1898,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0009194031464346262
+          },
+          {
+            "entry_i": 1900,
+            "exit_i": 1900,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01055693771243543
+          },
+          {
+            "entry_i": 1908,
+            "exit_i": 1908,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.005113556123325922
+          },
+          {
+            "entry_i": 1912,
+            "exit_i": 1913,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0024856992809242904
+          },
+          {
+            "entry_i": 1915,
+            "exit_i": 1915,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.002131748814272859
+          },
+          {
+            "entry_i": 1919,
+            "exit_i": 1920,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005252740594845982
+          },
+          {
+            "entry_i": 1923,
+            "exit_i": 1924,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0002482316288088802
+          },
+          {
+            "entry_i": 1928,
+            "exit_i": 1930,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0019722934410745783
+          },
+          {
+            "entry_i": 1932,
+            "exit_i": 1934,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011564246733251236
+          },
+          {
+            "entry_i": 1950,
+            "exit_i": 1951,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.013817345001238266
+          },
+          {
+            "entry_i": 1959,
+            "exit_i": 1965,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.06586458435487558
+          },
+          {
+            "entry_i": 1972,
+            "exit_i": 1977,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03343085087885361
+          },
+          {
+            "entry_i": 1996,
+            "exit_i": 2005,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0052918976673290135
+          },
+          {
+            "entry_i": 2016,
+            "exit_i": 2019,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.019097097213457703
+          },
+          {
+            "entry_i": 2024,
+            "exit_i": 2025,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.004192933207156248
+          },
+          {
+            "entry_i": 2027,
+            "exit_i": 2029,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": -0.015580041292606093
+          },
+          {
+            "entry_i": 2034,
+            "exit_i": 2035,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.00671167325848193
+          },
+          {
+            "entry_i": 2038,
+            "exit_i": 2039,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.008402614165751774
+          },
+          {
+            "entry_i": 2042,
+            "exit_i": 2043,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.010394730995667732
+          },
+          {
+            "entry_i": 2047,
+            "exit_i": 2050,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.004179627487617634
+          },
+          {
+            "entry_i": 2052,
+            "exit_i": 2059,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.0038789476036862904
+          },
+          {
+            "entry_i": 2064,
+            "exit_i": 2068,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.0055115031323687575
+          },
+          {
+            "entry_i": 2072,
+            "exit_i": 2073,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0035728776222087575
+          },
+          {
+            "entry_i": 2094,
+            "exit_i": 2107,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.011697567098977681
+          },
+          {
+            "entry_i": 2112,
+            "exit_i": 2125,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02257581422316418
+          },
+          {
+            "entry_i": 2136,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011211609563716972
+          },
+          {
+            "entry_i": 2140,
+            "exit_i": 2142,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.015704457564088836
+          },
+          {
+            "entry_i": 2144,
+            "exit_i": 2145,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0323179193841549
+          },
+          {
+            "entry_i": 2152,
+            "exit_i": 2153,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011317764729752709
+          },
+          {
+            "entry_i": 2166,
+            "exit_i": 2170,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.005836903675744574
+          },
+          {
+            "entry_i": 2174,
+            "exit_i": 2174,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.016768329352020495
+          },
+          {
+            "entry_i": 2187,
+            "exit_i": 2187,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.007585344183770824
+          }
+        ]
+      },
+      "trend": {
+        "stats": {
+          "n": 25,
+          "wr_pct": 12.0,
+          "mean_net_pct": -0.738,
+          "pf": 0.104,
+          "mdd_pct": 17.0
+        },
+        "long": {
+          "n": 7,
+          "wr_pct": 14.3,
+          "mean_net_pct": -0.602,
+          "pf": 0.217,
+          "mdd_pct": 5.27
+        },
+        "short": {
+          "n": 18,
+          "wr_pct": 11.1,
+          "mean_net_pct": -0.791,
+          "pf": 0.064,
+          "mdd_pct": 13.56
+        },
+        "trades": [
+          {
+            "entry_i": 1648,
+            "exit_i": 1651,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0220435400798355
+          },
+          {
+            "entry_i": 1654,
+            "exit_i": 1655,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0184123474401649
+          },
+          {
+            "entry_i": 1708,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011460841770183748
+          },
+          {
+            "entry_i": 1757,
+            "exit_i": 1763,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0021062539885129948
+          },
+          {
+            "entry_i": 1780,
+            "exit_i": 1781,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.00832125879245854
+          },
+          {
+            "entry_i": 1806,
+            "exit_i": 1806,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007040895026852288
+          },
+          {
+            "entry_i": 1833,
+            "exit_i": 1835,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004262782065680705
+          },
+          {
+            "entry_i": 1894,
+            "exit_i": 1898,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0009194031464346262
+          },
+          {
+            "entry_i": 1908,
+            "exit_i": 1908,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.005113556123325922
+          },
+          {
+            "entry_i": 1923,
+            "exit_i": 1924,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0002482316288088802
+          },
+          {
+            "entry_i": 1928,
+            "exit_i": 1930,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0019722934410745783
+          },
+          {
+            "entry_i": 1932,
+            "exit_i": 1934,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011564246733251236
+          },
+          {
+            "entry_i": 1972,
+            "exit_i": 1977,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03343085087885361
+          },
+          {
+            "entry_i": 1996,
+            "exit_i": 2005,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0052918976673290135
+          },
+          {
+            "entry_i": 2029,
+            "exit_i": 2034,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.010336419660753325
+          },
+          {
+            "entry_i": 2042,
+            "exit_i": 2043,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.010394730995667732
+          },
+          {
+            "entry_i": 2064,
+            "exit_i": 2068,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.0055115031323687575
+          },
+          {
+            "entry_i": 2072,
+            "exit_i": 2073,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0035728776222087575
+          },
+          {
+            "entry_i": 2094,
+            "exit_i": 2107,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.011697567098977681
+          },
+          {
+            "entry_i": 2125,
+            "exit_i": 2131,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005322767798610127
+          },
+          {
+            "entry_i": 2136,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011211609563716972
+          },
+          {
+            "entry_i": 2140,
+            "exit_i": 2142,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.015704457564088836
+          },
+          {
+            "entry_i": 2152,
+            "exit_i": 2153,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011317764729752709
+          },
+          {
+            "entry_i": 2170,
+            "exit_i": 2173,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0026946539236913356
+          },
+          {
+            "entry_i": 2187,
+            "exit_i": 2187,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.007585344183770824
+          }
+        ]
+      },
+      "stretch": {
+        "stats": {
+          "n": 13,
+          "wr_pct": 7.7,
+          "mean_net_pct": -1.002,
+          "pf": 0.032,
+          "mdd_pct": 12.32
+        },
+        "long": {
+          "n": 3,
+          "wr_pct": 0.0,
+          "mean_net_pct": -0.804,
+          "pf": 0.0,
+          "mdd_pct": 2.39
+        },
+        "short": {
+          "n": 10,
+          "wr_pct": 10.0,
+          "mean_net_pct": -1.061,
+          "pf": 0.039,
+          "mdd_pct": 10.17
+        },
+        "trades": [
+          {
+            "entry_i": 1648,
+            "exit_i": 1651,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0220435400798355
+          },
+          {
+            "entry_i": 1654,
+            "exit_i": 1655,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0184123474401649
+          },
+          {
+            "entry_i": 1806,
+            "exit_i": 1806,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007040895026852288
+          },
+          {
+            "entry_i": 1833,
+            "exit_i": 1835,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004262782065680705
+          },
+          {
+            "entry_i": 1923,
+            "exit_i": 1924,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0002482316288088802
+          },
+          {
+            "entry_i": 1928,
+            "exit_i": 1930,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0019722934410745783
+          },
+          {
+            "entry_i": 1932,
+            "exit_i": 1934,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011564246733251236
+          },
+          {
+            "entry_i": 1972,
+            "exit_i": 1977,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03343085087885361
+          },
+          {
+            "entry_i": 1996,
+            "exit_i": 2005,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0052918976673290135
+          },
+          {
+            "entry_i": 2029,
+            "exit_i": 2034,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.010336419660753325
+          },
+          {
+            "entry_i": 2125,
+            "exit_i": 2131,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005322767798610127
+          },
+          {
+            "entry_i": 2136,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011211609563716972
+          },
+          {
+            "entry_i": 2187,
+            "exit_i": 2187,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.007585344183770824
+          }
+        ]
+      },
+      "candles": {
+        "stats": {
+          "n": 26,
+          "wr_pct": 11.5,
+          "mean_net_pct": -0.755,
+          "pf": 0.193,
+          "mdd_pct": 18.27
+        },
+        "long": {
+          "n": 19,
+          "wr_pct": 10.5,
+          "mean_net_pct": -0.692,
+          "pf": 0.245,
+          "mdd_pct": 12.73
+        },
+        "short": {
+          "n": 7,
+          "wr_pct": 14.3,
+          "mean_net_pct": -0.926,
+          "pf": 0.062,
+          "mdd_pct": 6.35
+        },
+        "trades": [
+          {
+            "entry_i": 1671,
+            "exit_i": 1672,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.002408514979061639
+          },
+          {
+            "entry_i": 1675,
+            "exit_i": 1675,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013931795091171538
+          },
+          {
+            "entry_i": 1678,
+            "exit_i": 1680,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014704150332367437
+          },
+          {
+            "entry_i": 1682,
+            "exit_i": 1684,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014777016257570939
+          },
+          {
+            "entry_i": 1708,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011460841770183748
+          },
+          {
+            "entry_i": 1745,
+            "exit_i": 1747,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.009708612712798713
+          },
+          {
+            "entry_i": 1833,
+            "exit_i": 1835,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004262782065680705
+          },
+          {
+            "entry_i": 1855,
+            "exit_i": 1861,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.035048628671464466
+          },
+          {
+            "entry_i": 1872,
+            "exit_i": 1875,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.04016666666666674
+          },
+          {
+            "entry_i": 1912,
+            "exit_i": 1913,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0024856992809242904
+          },
+          {
+            "entry_i": 1915,
+            "exit_i": 1915,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.002131748814272859
+          },
+          {
+            "entry_i": 1919,
+            "exit_i": 1920,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005252740594845982
+          },
+          {
+            "entry_i": 1923,
+            "exit_i": 1924,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0002482316288088802
+          },
+          {
+            "entry_i": 1928,
+            "exit_i": 1930,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0019722934410745783
+          },
+          {
+            "entry_i": 1932,
+            "exit_i": 1934,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011564246733251236
+          },
+          {
+            "entry_i": 1950,
+            "exit_i": 1951,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.013817345001238266
+          },
+          {
+            "entry_i": 1972,
+            "exit_i": 1977,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03343085087885361
+          },
+          {
+            "entry_i": 2034,
+            "exit_i": 2035,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.00671167325848193
+          },
+          {
+            "entry_i": 2042,
+            "exit_i": 2043,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.010394730995667732
+          },
+          {
+            "entry_i": 2050,
+            "exit_i": 2051,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.001697610773888468
+          },
+          {
+            "entry_i": 2125,
+            "exit_i": 2131,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005322767798610127
+          },
+          {
+            "entry_i": 2136,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011211609563716972
+          },
+          {
+            "entry_i": 2140,
+            "exit_i": 2142,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.015704457564088836
+          },
+          {
+            "entry_i": 2152,
+            "exit_i": 2153,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011317764729752709
+          },
+          {
+            "entry_i": 2170,
+            "exit_i": 2173,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0026946539236913356
+          },
+          {
+            "entry_i": 2187,
+            "exit_i": 2187,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.007585344183770824
+          }
+        ]
+      },
+      "daily_or": {
+        "stats": {
+          "n": 30,
+          "wr_pct": 13.3,
+          "mean_net_pct": -0.761,
+          "pf": 0.27,
+          "mdd_pct": 20.81
+        },
+        "long": {
+          "n": 15,
+          "wr_pct": 20.0,
+          "mean_net_pct": -0.57,
+          "pf": 0.483,
+          "mdd_pct": 9.39
+        },
+        "short": {
+          "n": 15,
+          "wr_pct": 6.7,
+          "mean_net_pct": -0.952,
+          "pf": 0.029,
+          "mdd_pct": 13.43
+        },
+        "trades": [
+          {
+            "entry_i": 1648,
+            "exit_i": 1651,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0220435400798355
+          },
+          {
+            "entry_i": 1654,
+            "exit_i": 1655,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0184123474401649
+          },
+          {
+            "entry_i": 1671,
+            "exit_i": 1672,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.002408514979061639
+          },
+          {
+            "entry_i": 1675,
+            "exit_i": 1675,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013931795091171538
+          },
+          {
+            "entry_i": 1678,
+            "exit_i": 1680,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014704150332367437
+          },
+          {
+            "entry_i": 1682,
+            "exit_i": 1684,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.014777016257570939
+          },
+          {
+            "entry_i": 1708,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011460841770183748
+          },
+          {
+            "entry_i": 1713,
+            "exit_i": 1716,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.005052416426791493
+          },
+          {
+            "entry_i": 1718,
+            "exit_i": 1727,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0040255023666821415
+          },
+          {
+            "entry_i": 1806,
+            "exit_i": 1806,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.007040895026852288
+          },
+          {
+            "entry_i": 1833,
+            "exit_i": 1835,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.004262782065680705
+          },
+          {
+            "entry_i": 1855,
+            "exit_i": 1861,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.035048628671464466
+          },
+          {
+            "entry_i": 1919,
+            "exit_i": 1920,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005252740594845982
+          },
+          {
+            "entry_i": 1923,
+            "exit_i": 1924,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0002482316288088802
+          },
+          {
+            "entry_i": 1928,
+            "exit_i": 1930,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.0019722934410745783
+          },
+          {
+            "entry_i": 1932,
+            "exit_i": 1934,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.011564246733251236
+          },
+          {
+            "entry_i": 1950,
+            "exit_i": 1951,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.013817345001238266
+          },
+          {
+            "entry_i": 1959,
+            "exit_i": 1965,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.06586458435487558
+          },
+          {
+            "entry_i": 1972,
+            "exit_i": 1977,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03343085087885361
+          },
+          {
+            "entry_i": 1996,
+            "exit_i": 2005,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0052918976673290135
+          },
+          {
+            "entry_i": 2029,
+            "exit_i": 2034,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.010336419660753325
+          },
+          {
+            "entry_i": 2042,
+            "exit_i": 2043,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.010394730995667732
+          },
+          {
+            "entry_i": 2094,
+            "exit_i": 2107,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.011697567098977681
+          },
+          {
+            "entry_i": 2125,
+            "exit_i": 2131,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.005322767798610127
+          },
+          {
+            "entry_i": 2136,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011211609563716972
+          },
+          {
+            "entry_i": 2140,
+            "exit_i": 2142,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.015704457564088836
+          },
+          {
+            "entry_i": 2152,
+            "exit_i": 2153,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011317764729752709
+          },
+          {
+            "entry_i": 2166,
+            "exit_i": 2170,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.005836903675744574
+          },
+          {
+            "entry_i": 2174,
+            "exit_i": 2174,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.016768329352020495
+          },
+          {
+            "entry_i": 2187,
+            "exit_i": 2187,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.007585344183770824
+          }
+        ]
+      }
+    },
+    "ICPUSDT": {
+      "none": {
+        "stats": {
+          "n": 43,
+          "wr_pct": 39.5,
+          "mean_net_pct": 0.082,
+          "pf": 1.075,
+          "mdd_pct": 11.86
+        },
+        "long": {
+          "n": 19,
+          "wr_pct": 42.1,
+          "mean_net_pct": 0.404,
+          "pf": 1.388,
+          "mdd_pct": 7.65
+        },
+        "short": {
+          "n": 24,
+          "wr_pct": 37.5,
+          "mean_net_pct": -0.173,
+          "pf": 0.844,
+          "mdd_pct": 15.0
+        },
+        "trades": [
+          {
+            "entry_i": 1644,
+            "exit_i": 1650,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.01199464867380168
+          },
+          {
+            "entry_i": 1652,
+            "exit_i": 1652,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02370518867924526
+          },
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.005342619745845769
+          },
+          {
+            "entry_i": 1698,
+            "exit_i": 1705,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.004381844380403508
+          },
+          {
+            "entry_i": 1707,
+            "exit_i": 1710,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.00969672131147553
+          },
+          {
+            "entry_i": 1725,
+            "exit_i": 1726,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.021757826887661202
+          },
+          {
+            "entry_i": 1737,
+            "exit_i": 1745,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02310850111856816
+          },
+          {
+            "entry_i": 1748,
+            "exit_i": 1749,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.009308911345888791
+          },
+          {
+            "entry_i": 1756,
+            "exit_i": 1760,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": -0.02256186924089515
+          },
+          {
+            "entry_i": 1771,
+            "exit_i": 1778,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02163167259786475
+          },
+          {
+            "entry_i": 1827,
+            "exit_i": 1828,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.000585070892410279
+          },
+          {
+            "entry_i": 1837,
+            "exit_i": 1839,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.028236618521665202
+          },
+          {
+            "entry_i": 1846,
+            "exit_i": 1852,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.00689195354624633
+          },
+          {
+            "entry_i": 1854,
+            "exit_i": 1862,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.04183193100546917
+          },
+          {
+            "entry_i": 1868,
+            "exit_i": 1869,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006370129870129913
+          },
+          {
+            "entry_i": 1884,
+            "exit_i": 1886,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.028038461538461623
+          },
+          {
+            "entry_i": 1891,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.024586387434554824
+          },
+          {
+            "entry_i": 1893,
+            "exit_i": 1893,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03376975376699737
+          },
+          {
+            "entry_i": 1904,
+            "exit_i": 1920,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.05432028590878152
+          },
+          {
+            "entry_i": 1926,
+            "exit_i": 1929,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02453942133815551
+          },
+          {
+            "entry_i": 1949,
+            "exit_i": 1950,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.03272529644268768
+          },
+          {
+            "entry_i": 1957,
+            "exit_i": 1965,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.09134627092846254
+          },
+          {
+            "entry_i": 1970,
+            "exit_i": 1974,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016829958100558595
+          },
+          {
+            "entry_i": 1978,
+            "exit_i": 1978,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016843909928352108
+          },
+          {
+            "entry_i": 1990,
+            "exit_i": 1990,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.018037318361955046
+          },
+          {
+            "entry_i": 1992,
+            "exit_i": 1994,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.02422727272727271
+          },
+          {
+            "entry_i": 2009,
+            "exit_i": 2009,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0253281786941581
+          },
+          {
+            "entry_i": 2011,
+            "exit_i": 2013,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.009683597390493905
+          },
+          {
+            "entry_i": 2016,
+            "exit_i": 2024,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.008916666666666741
+          },
+          {
+            "entry_i": 2035,
+            "exit_i": 2037,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.007378894767783693
+          },
+          {
+            "entry_i": 2045,
+            "exit_i": 2049,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.022880574221136152
+          },
+          {
+            "entry_i": 2052,
+            "exit_i": 2055,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.0049024390243904165
+          },
+          {
+            "entry_i": 2069,
+            "exit_i": 2078,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.0625877598152425
+          },
+          {
+            "entry_i": 2091,
+            "exit_i": 2105,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.09614743796326125
+          },
+          {
+            "entry_i": 2109,
+            "exit_i": 2120,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.028908615774469404
+          },
+          {
+            "entry_i": 2126,
+            "exit_i": 2134,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.02016404715127701
+          },
+          {
+            "entry_i": 2137,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.014500000000000011
+          },
+          {
+            "entry_i": 2144,
+            "exit_i": 2145,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006329251466022865
+          },
+          {
+            "entry_i": 2151,
+            "exit_i": 2152,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.018195652173913113
+          },
+          {
+            "entry_i": 2154,
+            "exit_i": 2162,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.006170850767085069
+          },
+          {
+            "entry_i": 2165,
+            "exit_i": 2170,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.004238880918220946
+          },
+          {
+            "entry_i": 2174,
+            "exit_i": 2175,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.004784671532846839
+          },
+          {
+            "entry_i": 2184,
+            "exit_i": 2186,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02105610310841538
+          }
+        ]
+      },
+      "trend": {
+        "stats": {
+          "n": 29,
+          "wr_pct": 34.5,
+          "mean_net_pct": -0.11,
+          "pf": 0.896,
+          "mdd_pct": 15.0
+        },
+        "long": {
+          "n": 9,
+          "wr_pct": 33.3,
+          "mean_net_pct": -0.101,
+          "pf": 0.843,
+          "mdd_pct": 5.03
+        },
+        "short": {
+          "n": 20,
+          "wr_pct": 35.0,
+          "mean_net_pct": -0.114,
+          "pf": 0.908,
+          "mdd_pct": 15.0
+        },
+        "trades": [
+          {
+            "entry_i": 1650,
+            "exit_i": 1651,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0005566037735850724
+          },
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.005342619745845769
+          },
+          {
+            "entry_i": 1710,
+            "exit_i": 1725,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.037237446197991464
+          },
+          {
+            "entry_i": 1737,
+            "exit_i": 1745,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02310850111856816
+          },
+          {
+            "entry_i": 1760,
+            "exit_i": 1762,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.015843343792021514
+          },
+          {
+            "entry_i": 1771,
+            "exit_i": 1778,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02163167259786475
+          },
+          {
+            "entry_i": 1846,
+            "exit_i": 1852,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.00689195354624633
+          },
+          {
+            "entry_i": 1868,
+            "exit_i": 1869,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006370129870129913
+          },
+          {
+            "entry_i": 1884,
+            "exit_i": 1886,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.028038461538461623
+          },
+          {
+            "entry_i": 1891,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.024586387434554824
+          },
+          {
+            "entry_i": 1893,
+            "exit_i": 1893,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03376975376699737
+          },
+          {
+            "entry_i": 1904,
+            "exit_i": 1920,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.05432028590878152
+          },
+          {
+            "entry_i": 1970,
+            "exit_i": 1974,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016829958100558595
+          },
+          {
+            "entry_i": 1978,
+            "exit_i": 1978,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016843909928352108
+          },
+          {
+            "entry_i": 1990,
+            "exit_i": 1990,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.018037318361955046
+          },
+          {
+            "entry_i": 1992,
+            "exit_i": 1994,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.02422727272727271
+          },
+          {
+            "entry_i": 2009,
+            "exit_i": 2009,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0253281786941581
+          },
+          {
+            "entry_i": 2011,
+            "exit_i": 2013,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.009683597390493905
+          },
+          {
+            "entry_i": 2016,
+            "exit_i": 2024,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.008916666666666741
+          },
+          {
+            "entry_i": 2035,
+            "exit_i": 2037,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.007378894767783693
+          },
+          {
+            "entry_i": 2045,
+            "exit_i": 2049,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.022880574221136152
+          },
+          {
+            "entry_i": 2069,
+            "exit_i": 2078,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.0625877598152425
+          },
+          {
+            "entry_i": 2105,
+            "exit_i": 2107,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.04400792718731655
+          },
+          {
+            "entry_i": 2144,
+            "exit_i": 2145,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006329251466022865
+          },
+          {
+            "entry_i": 2151,
+            "exit_i": 2152,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.018195652173913113
+          },
+          {
+            "entry_i": 2154,
+            "exit_i": 2162,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.006170850767085069
+          },
+          {
+            "entry_i": 2170,
+            "exit_i": 2171,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006911255411255311
+          },
+          {
+            "entry_i": 2174,
+            "exit_i": 2175,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.004784671532846839
+          },
+          {
+            "entry_i": 2184,
+            "exit_i": 2186,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02105610310841538
+          }
+        ]
+      },
+      "stretch": {
+        "stats": {
+          "n": 24,
+          "wr_pct": 33.3,
+          "mean_net_pct": -0.255,
+          "pf": 0.79,
+          "mdd_pct": 14.45
+        },
+        "long": {
+          "n": 5,
+          "wr_pct": 20.0,
+          "mean_net_pct": -0.896,
+          "pf": 0.121,
+          "mdd_pct": 4.42
+        },
+        "short": {
+          "n": 19,
+          "wr_pct": 36.8,
+          "mean_net_pct": -0.086,
+          "pf": 0.932,
+          "mdd_pct": 14.45
+        },
+        "trades": [
+          {
+            "entry_i": 1737,
+            "exit_i": 1745,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02310850111856816
+          },
+          {
+            "entry_i": 1760,
+            "exit_i": 1762,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.015843343792021514
+          },
+          {
+            "entry_i": 1771,
+            "exit_i": 1778,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02163167259786475
+          },
+          {
+            "entry_i": 1846,
+            "exit_i": 1852,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.00689195354624633
+          },
+          {
+            "entry_i": 1884,
+            "exit_i": 1886,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.028038461538461623
+          },
+          {
+            "entry_i": 1891,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.024586387434554824
+          },
+          {
+            "entry_i": 1893,
+            "exit_i": 1893,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03376975376699737
+          },
+          {
+            "entry_i": 1904,
+            "exit_i": 1920,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.05432028590878152
+          },
+          {
+            "entry_i": 1970,
+            "exit_i": 1974,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016829958100558595
+          },
+          {
+            "entry_i": 1978,
+            "exit_i": 1978,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016843909928352108
+          },
+          {
+            "entry_i": 1990,
+            "exit_i": 1990,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.018037318361955046
+          },
+          {
+            "entry_i": 1992,
+            "exit_i": 1994,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.02422727272727271
+          },
+          {
+            "entry_i": 2009,
+            "exit_i": 2009,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0253281786941581
+          },
+          {
+            "entry_i": 2011,
+            "exit_i": 2013,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.009683597390493905
+          },
+          {
+            "entry_i": 2016,
+            "exit_i": 2024,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.008916666666666741
+          },
+          {
+            "entry_i": 2035,
+            "exit_i": 2037,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.007378894767783693
+          },
+          {
+            "entry_i": 2045,
+            "exit_i": 2049,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.022880574221136152
+          },
+          {
+            "entry_i": 2069,
+            "exit_i": 2078,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.0625877598152425
+          },
+          {
+            "entry_i": 2105,
+            "exit_i": 2107,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.04400792718731655
+          },
+          {
+            "entry_i": 2151,
+            "exit_i": 2152,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.018195652173913113
+          },
+          {
+            "entry_i": 2154,
+            "exit_i": 2162,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.006170850767085069
+          },
+          {
+            "entry_i": 2170,
+            "exit_i": 2171,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006911255411255311
+          },
+          {
+            "entry_i": 2174,
+            "exit_i": 2175,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.004784671532846839
+          },
+          {
+            "entry_i": 2184,
+            "exit_i": 2186,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02105610310841538
+          }
+        ]
+      },
+      "candles": {
+        "stats": {
+          "n": 25,
+          "wr_pct": 28.0,
+          "mean_net_pct": -1.164,
+          "pf": 0.278,
+          "mdd_pct": 28.02
+        },
+        "long": {
+          "n": 15,
+          "wr_pct": 20.0,
+          "mean_net_pct": -1.353,
+          "pf": 0.075,
+          "mdd_pct": 18.98
+        },
+        "short": {
+          "n": 10,
+          "wr_pct": 40.0,
+          "mean_net_pct": -0.881,
+          "pf": 0.52,
+          "mdd_pct": 11.35
+        },
+        "trades": [
+          {
+            "entry_i": 1650,
+            "exit_i": 1651,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0005566037735850724
+          },
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.005342619745845769
+          },
+          {
+            "entry_i": 1737,
+            "exit_i": 1745,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02310850111856816
+          },
+          {
+            "entry_i": 1760,
+            "exit_i": 1762,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.015843343792021514
+          },
+          {
+            "entry_i": 1852,
+            "exit_i": 1853,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.011813531353135285
+          },
+          {
+            "entry_i": 1868,
+            "exit_i": 1869,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006370129870129913
+          },
+          {
+            "entry_i": 1884,
+            "exit_i": 1886,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.028038461538461623
+          },
+          {
+            "entry_i": 1904,
+            "exit_i": 1920,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.05432028590878152
+          },
+          {
+            "entry_i": 1926,
+            "exit_i": 1929,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02453942133815551
+          },
+          {
+            "entry_i": 1949,
+            "exit_i": 1950,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.03272529644268768
+          },
+          {
+            "entry_i": 1970,
+            "exit_i": 1974,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016829958100558595
+          },
+          {
+            "entry_i": 1995,
+            "exit_i": 1997,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.09362410501193325
+          },
+          {
+            "entry_i": 2016,
+            "exit_i": 2024,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.008916666666666741
+          },
+          {
+            "entry_i": 2038,
+            "exit_i": 2040,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.009106060606060508
+          },
+          {
+            "entry_i": 2045,
+            "exit_i": 2049,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.022880574221136152
+          },
+          {
+            "entry_i": 2052,
+            "exit_i": 2055,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.0049024390243904165
+          },
+          {
+            "entry_i": 2078,
+            "exit_i": 2079,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.033622455274521845
+          },
+          {
+            "entry_i": 2120,
+            "exit_i": 2120,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.028935478601764097
+          },
+          {
+            "entry_i": 2126,
+            "exit_i": 2134,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.02016404715127701
+          },
+          {
+            "entry_i": 2137,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.014500000000000011
+          },
+          {
+            "entry_i": 2144,
+            "exit_i": 2145,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006329251466022865
+          },
+          {
+            "entry_i": 2151,
+            "exit_i": 2152,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.018195652173913113
+          },
+          {
+            "entry_i": 2154,
+            "exit_i": 2162,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.006170850767085069
+          },
+          {
+            "entry_i": 2170,
+            "exit_i": 2171,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006911255411255311
+          },
+          {
+            "entry_i": 2184,
+            "exit_i": 2186,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02105610310841538
+          }
+        ]
+      },
+      "daily_or": {
+        "stats": {
+          "n": 39,
+          "wr_pct": 38.5,
+          "mean_net_pct": 0.093,
+          "pf": 1.082,
+          "mdd_pct": 11.86
+        },
+        "long": {
+          "n": 18,
+          "wr_pct": 38.9,
+          "mean_net_pct": 0.482,
+          "pf": 1.442,
+          "mdd_pct": 9.59
+        },
+        "short": {
+          "n": 21,
+          "wr_pct": 38.1,
+          "mean_net_pct": -0.241,
+          "pf": 0.795,
+          "mdd_pct": 15.0
+        },
+        "trades": [
+          {
+            "entry_i": 1644,
+            "exit_i": 1650,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.01199464867380168
+          },
+          {
+            "entry_i": 1652,
+            "exit_i": 1652,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02370518867924526
+          },
+          {
+            "entry_i": 1677,
+            "exit_i": 1679,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.005342619745845769
+          },
+          {
+            "entry_i": 1710,
+            "exit_i": 1725,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.037237446197991464
+          },
+          {
+            "entry_i": 1737,
+            "exit_i": 1745,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02310850111856816
+          },
+          {
+            "entry_i": 1748,
+            "exit_i": 1749,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.009308911345888791
+          },
+          {
+            "entry_i": 1760,
+            "exit_i": 1762,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.015843343792021514
+          },
+          {
+            "entry_i": 1771,
+            "exit_i": 1778,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.02163167259786475
+          },
+          {
+            "entry_i": 1846,
+            "exit_i": 1852,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.00689195354624633
+          },
+          {
+            "entry_i": 1854,
+            "exit_i": 1862,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.04183193100546917
+          },
+          {
+            "entry_i": 1868,
+            "exit_i": 1869,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.006370129870129913
+          },
+          {
+            "entry_i": 1884,
+            "exit_i": 1886,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.028038461538461623
+          },
+          {
+            "entry_i": 1891,
+            "exit_i": 1891,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.024586387434554824
+          },
+          {
+            "entry_i": 1893,
+            "exit_i": 1893,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.03376975376699737
+          },
+          {
+            "entry_i": 1904,
+            "exit_i": 1920,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.05432028590878152
+          },
+          {
+            "entry_i": 1926,
+            "exit_i": 1929,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02453942133815551
+          },
+          {
+            "entry_i": 1949,
+            "exit_i": 1950,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.03272529644268768
+          },
+          {
+            "entry_i": 1957,
+            "exit_i": 1965,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.09134627092846254
+          },
+          {
+            "entry_i": 1970,
+            "exit_i": 1974,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016829958100558595
+          },
+          {
+            "entry_i": 1978,
+            "exit_i": 1978,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.016843909928352108
+          },
+          {
+            "entry_i": 1990,
+            "exit_i": 1990,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.018037318361955046
+          },
+          {
+            "entry_i": 1992,
+            "exit_i": 1994,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.02422727272727271
+          },
+          {
+            "entry_i": 2009,
+            "exit_i": 2009,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.0253281786941581
+          },
+          {
+            "entry_i": 2011,
+            "exit_i": 2013,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.009683597390493905
+          },
+          {
+            "entry_i": 2016,
+            "exit_i": 2024,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.008916666666666741
+          },
+          {
+            "entry_i": 2035,
+            "exit_i": 2037,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.007378894767783693
+          },
+          {
+            "entry_i": 2045,
+            "exit_i": 2049,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.022880574221136152
+          },
+          {
+            "entry_i": 2052,
+            "exit_i": 2055,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.0049024390243904165
+          },
+          {
+            "entry_i": 2069,
+            "exit_i": 2078,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.0625877598152425
+          },
+          {
+            "entry_i": 2091,
+            "exit_i": 2105,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.09614743796326125
+          },
+          {
+            "entry_i": 2120,
+            "exit_i": 2120,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.028935478601764097
+          },
+          {
+            "entry_i": 2135,
+            "exit_i": 2135,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01218929765886295
+          },
+          {
+            "entry_i": 2137,
+            "exit_i": 2137,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.014500000000000011
+          },
+          {
+            "entry_i": 2144,
+            "exit_i": 2145,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006329251466022865
+          },
+          {
+            "entry_i": 2151,
+            "exit_i": 2152,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.018195652173913113
+          },
+          {
+            "entry_i": 2154,
+            "exit_i": 2162,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.006170850767085069
+          },
+          {
+            "entry_i": 2165,
+            "exit_i": 2170,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.004238880918220946
+          },
+          {
+            "entry_i": 2174,
+            "exit_i": 2175,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.004784671532846839
+          },
+          {
+            "entry_i": 2184,
+            "exit_i": 2186,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.02105610310841538
+          }
+        ]
+      }
+    },
+    "HYPEUSDT": {
+      "none": {
+        "stats": {
+          "n": 25,
+          "wr_pct": 32.0,
+          "mean_net_pct": -0.326,
+          "pf": 0.723,
+          "mdd_pct": 13.76
+        },
+        "long": {
+          "n": 15,
+          "wr_pct": 26.7,
+          "mean_net_pct": -0.883,
+          "pf": 0.34,
+          "mdd_pct": 13.22
+        },
+        "short": {
+          "n": 10,
+          "wr_pct": 40.0,
+          "mean_net_pct": 0.508,
+          "pf": 1.539,
+          "mdd_pct": 5.34
+        },
+        "trades": [
+          {
+            "entry_i": 954,
+            "exit_i": 958,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.005360427386084389
+          },
+          {
+            "entry_i": 972,
+            "exit_i": 973,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.010774471986094212
+          },
+          {
+            "entry_i": 981,
+            "exit_i": 988,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.02994735044403235
+          },
+          {
+            "entry_i": 990,
+            "exit_i": 991,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01080908584522283
+          },
+          {
+            "entry_i": 1010,
+            "exit_i": 1017,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.040098869842711216
+          },
+          {
+            "entry_i": 1037,
+            "exit_i": 1039,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.011586604514229602
+          },
+          {
+            "entry_i": 1052,
+            "exit_i": 1055,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.0101386554621849
+          },
+          {
+            "entry_i": 1060,
+            "exit_i": 1061,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.026870985837972816
+          },
+          {
+            "entry_i": 1063,
+            "exit_i": 1065,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.024520406406987882
+          },
+          {
+            "entry_i": 1067,
+            "exit_i": 1071,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.00031910712158783735
+          },
+          {
+            "entry_i": 1073,
+            "exit_i": 1078,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.010453160606093413
+          },
+          {
+            "entry_i": 1093,
+            "exit_i": 1094,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01800222428712478
+          },
+          {
+            "entry_i": 1108,
+            "exit_i": 1110,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.020487999676603363
+          },
+          {
+            "entry_i": 1112,
+            "exit_i": 1117,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.025442220200181997
+          },
+          {
+            "entry_i": 1121,
+            "exit_i": 1121,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.006788499972395444
+          },
+          {
+            "entry_i": 1131,
+            "exit_i": 1143,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.09457872922182203
+          },
+          {
+            "entry_i": 1152,
+            "exit_i": 1166,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.0217796660703638
+          },
+          {
+            "entry_i": 1180,
+            "exit_i": 1181,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0113174999080759
+          },
+          {
+            "entry_i": 1185,
+            "exit_i": 1195,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0186884968346665
+          },
+          {
+            "entry_i": 1200,
+            "exit_i": 1200,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013200011367511753
+          },
+          {
+            "entry_i": 1202,
+            "exit_i": 1203,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.026251367989056085
+          },
+          {
+            "entry_i": 1205,
+            "exit_i": 1206,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.006176301164767807
+          },
+          {
+            "entry_i": 1213,
+            "exit_i": 1214,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.02627139071497714
+          },
+          {
+            "entry_i": 1221,
+            "exit_i": 1225,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.03507338018133116
+          },
+          {
+            "entry_i": 1227,
+            "exit_i": 1231,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0037374510957117178
+          }
+        ]
+      },
+      "trend": {
+        "stats": {
+          "n": 11,
+          "wr_pct": 45.5,
+          "mean_net_pct": 0.456,
+          "pf": 1.57,
+          "mdd_pct": 6.84
+        },
+        "long": {
+          "n": 7,
+          "wr_pct": 28.6,
+          "mean_net_pct": -0.691,
+          "pf": 0.366,
+          "mdd_pct": 6.84
+        },
+        "short": {
+          "n": 4,
+          "wr_pct": 75.0,
+          "mean_net_pct": 2.462,
+          "pf": 9.5,
+          "mdd_pct": 1.16
+        },
+        "trades": [
+          {
+            "entry_i": 954,
+            "exit_i": 958,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.005360427386084389
+          },
+          {
+            "entry_i": 1037,
+            "exit_i": 1039,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.011586604514229602
+          },
+          {
+            "entry_i": 1052,
+            "exit_i": 1055,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.0101386554621849
+          },
+          {
+            "entry_i": 1131,
+            "exit_i": 1143,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.09457872922182203
+          },
+          {
+            "entry_i": 1152,
+            "exit_i": 1166,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.0217796660703638
+          },
+          {
+            "entry_i": 1180,
+            "exit_i": 1181,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0113174999080759
+          },
+          {
+            "entry_i": 1185,
+            "exit_i": 1195,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0186884968346665
+          },
+          {
+            "entry_i": 1200,
+            "exit_i": 1200,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013200011367511753
+          },
+          {
+            "entry_i": 1202,
+            "exit_i": 1203,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.026251367989056085
+          },
+          {
+            "entry_i": 1205,
+            "exit_i": 1206,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.006176301164767807
+          },
+          {
+            "entry_i": 1231,
+            "exit_i": 1232,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006870651494469802
+          }
+        ]
+      },
+      "stretch": {
+        "stats": {
+          "n": 10,
+          "wr_pct": 40.0,
+          "mean_net_pct": 0.283,
+          "pf": 1.322,
+          "mdd_pct": 6.84
+        },
+        "long": {
+          "n": 6,
+          "wr_pct": 16.7,
+          "mean_net_pct": -1.169,
+          "pf": 0.081,
+          "mdd_pct": 6.84
+        },
+        "short": {
+          "n": 4,
+          "wr_pct": 75.0,
+          "mean_net_pct": 2.462,
+          "pf": 9.5,
+          "mdd_pct": 1.16
+        },
+        "trades": [
+          {
+            "entry_i": 954,
+            "exit_i": 958,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.005360427386084389
+          },
+          {
+            "entry_i": 1037,
+            "exit_i": 1039,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.011586604514229602
+          },
+          {
+            "entry_i": 1052,
+            "exit_i": 1055,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.0101386554621849
+          },
+          {
+            "entry_i": 1131,
+            "exit_i": 1143,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.09457872922182203
+          },
+          {
+            "entry_i": 1180,
+            "exit_i": 1181,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0113174999080759
+          },
+          {
+            "entry_i": 1185,
+            "exit_i": 1195,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0186884968346665
+          },
+          {
+            "entry_i": 1200,
+            "exit_i": 1200,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013200011367511753
+          },
+          {
+            "entry_i": 1202,
+            "exit_i": 1203,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.026251367989056085
+          },
+          {
+            "entry_i": 1205,
+            "exit_i": 1206,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.006176301164767807
+          },
+          {
+            "entry_i": 1231,
+            "exit_i": 1232,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006870651494469802
+          }
+        ]
+      },
+      "candles": {
+        "stats": {
+          "n": 11,
+          "wr_pct": 18.2,
+          "mean_net_pct": -0.877,
+          "pf": 0.391,
+          "mdd_pct": 9.44
+        },
+        "long": {
+          "n": 11,
+          "wr_pct": 18.2,
+          "mean_net_pct": -0.877,
+          "pf": 0.391,
+          "mdd_pct": 9.44
+        },
+        "short": {
+          "n": 0
+        },
+        "trades": [
+          {
+            "entry_i": 972,
+            "exit_i": 973,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.010774471986094212
+          },
+          {
+            "entry_i": 981,
+            "exit_i": 988,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.02994735044403235
+          },
+          {
+            "entry_i": 1010,
+            "exit_i": 1017,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.040098869842711216
+          },
+          {
+            "entry_i": 1063,
+            "exit_i": 1065,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.024520406406987882
+          },
+          {
+            "entry_i": 1079,
+            "exit_i": 1079,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.010124457576484556
+          },
+          {
+            "entry_i": 1093,
+            "exit_i": 1094,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01800222428712478
+          },
+          {
+            "entry_i": 1152,
+            "exit_i": 1166,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.0217796660703638
+          },
+          {
+            "entry_i": 1185,
+            "exit_i": 1195,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0186884968346665
+          },
+          {
+            "entry_i": 1200,
+            "exit_i": 1200,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013200011367511753
+          },
+          {
+            "entry_i": 1202,
+            "exit_i": 1203,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.026251367989056085
+          },
+          {
+            "entry_i": 1231,
+            "exit_i": 1232,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.006870651494469802
+          }
+        ]
+      },
+      "daily_or": {
+        "stats": {
+          "n": 20,
+          "wr_pct": 35.0,
+          "mean_net_pct": -0.26,
+          "pf": 0.774,
+          "mdd_pct": 9.0
+        },
+        "long": {
+          "n": 13,
+          "wr_pct": 30.8,
+          "mean_net_pct": -0.732,
+          "pf": 0.418,
+          "mdd_pct": 9.88
+        },
+        "short": {
+          "n": 7,
+          "wr_pct": 42.9,
+          "mean_net_pct": 0.615,
+          "pf": 1.642,
+          "mdd_pct": 2.99
+        },
+        "trades": [
+          {
+            "entry_i": 954,
+            "exit_i": 958,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.005360427386084389
+          },
+          {
+            "entry_i": 972,
+            "exit_i": 973,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.010774471986094212
+          },
+          {
+            "entry_i": 981,
+            "exit_i": 988,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.02994735044403235
+          },
+          {
+            "entry_i": 990,
+            "exit_i": 991,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01080908584522283
+          },
+          {
+            "entry_i": 1010,
+            "exit_i": 1017,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.040098869842711216
+          },
+          {
+            "entry_i": 1037,
+            "exit_i": 1039,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.011586604514229602
+          },
+          {
+            "entry_i": 1052,
+            "exit_i": 1055,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": 0.0101386554621849
+          },
+          {
+            "entry_i": 1063,
+            "exit_i": 1065,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.024520406406987882
+          },
+          {
+            "entry_i": 1067,
+            "exit_i": 1071,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.00031910712158783735
+          },
+          {
+            "entry_i": 1093,
+            "exit_i": 1094,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.01800222428712478
+          },
+          {
+            "entry_i": 1112,
+            "exit_i": 1117,
+            "side": "SHORT",
+            "reason": "invalidation",
+            "ret": -0.025442220200181997
+          },
+          {
+            "entry_i": 1131,
+            "exit_i": 1143,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": 0.09457872922182203
+          },
+          {
+            "entry_i": 1152,
+            "exit_i": 1166,
+            "side": "LONG",
+            "reason": "opposite",
+            "ret": 0.0217796660703638
+          },
+          {
+            "entry_i": 1180,
+            "exit_i": 1181,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0113174999080759
+          },
+          {
+            "entry_i": 1185,
+            "exit_i": 1195,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": -0.0186884968346665
+          },
+          {
+            "entry_i": 1200,
+            "exit_i": 1200,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.013200011367511753
+          },
+          {
+            "entry_i": 1202,
+            "exit_i": 1203,
+            "side": "LONG",
+            "reason": "stop",
+            "ret": -0.026251367989056085
+          },
+          {
+            "entry_i": 1205,
+            "exit_i": 1206,
+            "side": "LONG",
+            "reason": "invalidation",
+            "ret": 0.006176301164767807
+          },
+          {
+            "entry_i": 1213,
+            "exit_i": 1214,
+            "side": "SHORT",
+            "reason": "stop",
+            "ret": -0.02627139071497714
+          },
+          {
+            "entry_i": 1227,
+            "exit_i": 1231,
+            "side": "SHORT",
+            "reason": "opposite",
+            "ret": -0.0037374510957117178
+          }
+        ]
+      }
+    }
+  },
+  "pooled": {
+    "none": {
+      "n": 173,
+      "wr_pct": 27.7,
+      "mean_net_pct": -0.32,
+      "pf": 0.653,
+      "mdd_pct": 47.59
+    },
+    "trend": {
+      "n": 84,
+      "wr_pct": 25.0,
+      "mean_net_pct": -0.324,
+      "pf": 0.622,
+      "mdd_pct": 31.99
+    },
+    "stretch": {
+      "n": 51,
+      "wr_pct": 27.5,
+      "mean_net_pct": -0.39,
+      "pf": 0.641,
+      "mdd_pct": 25.57
+    },
+    "candles": {
+      "n": 89,
+      "wr_pct": 20.2,
+      "mean_net_pct": -0.773,
+      "pf": 0.301,
+      "mdd_pct": 50.63
+    },
+    "daily_or": {
+      "n": 111,
+      "wr_pct": 26.1,
+      "mean_net_pct": -0.363,
+      "pf": 0.662,
+      "mdd_pct": 36.5
+    }
+  }
+}
