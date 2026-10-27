@@ -110,7 +110,12 @@ def reconcile(old, new, rate=RATE):
                                 "funding_delta_at_fixed_4h_notional":round(timing, 10)})
     cash4 = old["full_common_history"]["baseline"]["metrics"]["net_return_pct"] / 100
     cash1 = new["full"]["frozen_turn"]["primary"]["net_return_pct"] / 100
-    # Report return percentages are rounded to 4 decimals.
+    # Return percentages are rounded to 4 decimals; test each engine separately,
+    # not just their difference (which could hide offsetting accounting errors).
+    if abs(sum(x["net_pnl"] for x in a) - cash4) > 5.1e-7:
+        raise AssertionError("4H net ledger does not conserve reported equity")
+    if abs(sum(x["net"] for x in b) - cash1) > 5.1e-7:
+        raise AssertionError("1H net ledger does not conserve reported equity")
     if abs(totals["net_delta"] - (cash4 - cash1)) > 1.1e-6:
         raise AssertionError("Net return vs ledger mismatch")
     grid = {}
