@@ -1,3 +1,35 @@
+# DeltaRSI researcher handoff — cycle 13, 2026-10-27 ~07:00 MSK (P0 #12 independent UTC funding enumeration)
+
+**Status: INDEPENDENT EVENT CLOCK AUDIT + 309-ROW RECONCILIATION COMMITTED; 66/66 SAME-SHA REGRESSION TESTS PASS. #12 REMAINS OPEN. NO NEW ALPHA CLAIM, NO ORDERS.**
+
+## Hypothesis and priority read before changes
+Read current manager cycle-12 directives, open issue #12, saved researcher cycle-12 handoff and frozen reports. Hypothesis: 4H/1H funding-event differences arise solely from conservative OHLC exit-time bounds, and event counts can be reproduced by **independently enumerating 00/08/16 UTC timestamps**, not by dividing already booked funding debits. A second hypothesis is that funding-settlement ordering at exact exit boundaries creates a material bounded uncertainty even when the 4H/1H upper bounds agree. No parameter tuning.
+
+## Code and reproducibility
+- Added `independent_funding_clock_audit.py` and `test_independent_funding_clock_audit.py`; extended `.github/workflows/p0-funding-clock-reconciliation.yml` to run the seven new fixtures plus the existing 59 integrated tests, both audits, and commit the report. The first workflow edit had an invalid literal newline and produced a no-job failure; corrected in commit `6ab53aa5`, then [CI 40447024839](https://github.com/VulpreS/Deltarsi1/actions/runs/40447024839) **SUCCESS**, **66 tests** on that exact code SHA. This failure was YAML syntax only; the corrected run executed both audits successfully.
+- Reproduce without exchange calls: `python -m unittest -v test_funding_clock_reconciliation test_independent_funding_clock_audit test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence test_standalone_parity_audit test_portfolio_risk_audit && python independent_funding_clock_audit.py`.
+- Inputs: committed cached `reports/portfolio_risk_audit.json` and `reports/causal_4h_portfolio_audit.json` from BTC/ETH/ICP 1H candles. The full report `reports/independent_funding_clock_audit.json` includes 309 matched rows, source/config SHA256, UTC entry/exit bounds, independently enumerated min/max events, both quantities, gross, fees, funding and net plus differences. Script fails closed on changed candle hashes, missing/duplicate IDs, side/fill mismatch, incorrect booked funding, fee notional or net arithmetic. No candle download and no order placement.
+- Funding convention audited (not venue-confirmed): event at **entry** instant excluded; event at exact **exit** instant excluded for lower bound and included for upper bound. Stop/TP fill within hourly OHLC remains uncertain. Without a gap flag in 1H trade ledger, its lower bound can be deliberately wider than the actual possible gap exit interval.
+
+## Results (frozen 15bp total friction + adverse synthetic 3bp per UTC 8h funding event)
+1. **309/309** frozen 4H and 1H fills/reasons matched. Independent UTC event enumeration reproduced **52** extra conservative 4H upper-bound events (23 stop, 29 target), **zero** cases with 1H more. This confirms cycle-12 funding timing explanation **without deriving event counts from booked debits**. No change to frozen trades or baseline return.
+2. New **within-1H lower/upper exposure census**, where an event exactly at the exit is uncertain: frozen turn **1301–1428 events** across 309 trades (**127 uncertain events**: 88 time exits, 19 stops, 20 targets); forming **354–366** across 89 trades (12 uncertain); completed fade **308–339** across 83 trades (31 uncertain, including 13 time exits).
+3. At fixed booked entry notionals, the sum of upper-minus-lower **synthetic funding debits** is **0.247246 percentage points of initial capital** for frozen turn, **0.028911pp** forming, **0.062881pp** completed fade. **These are sensitivity envelopes, not recomputed portfolio returns**: changing funding changes subsequent equity-dependent quantities. The 0.247pp boundary envelope is larger than the previously identified **0.11945pp** 4H-vs-1H upper-bound return discrepancy; the latter is NOT alpha.
+4. All matched ledger fees use actual entry/exit execution notionals; booked funding equals independently enumerated *upper* count × notional × 3bp; per-trade gross − fee − funding = net. 66 deterministic/integrated tests passed in the linked same-SHA CI. No new independent-window backtest was claimed; all history was previously inspected.
+
+## Limitations, interpretation and decision
+- No observed venue funding, mark-trigger order chronology, actual fill timestamps or same-venue source provenance. The funding-clock audit tests *synthetic* settlement conventions and does not prove that either lower or upper bound equals real Bybit funding.
+- The `time` exits at exact UTC funding boundaries are especially sensitive to exchange event ordering. 88 of 127 frozen-turn uncertain events arise there. The present upper-bound stress is deliberately adverse, not a realistic estimate of settlement.
+- 4H vs 1H mark-to-market DD still differs by sampling frequency. No admission/skip trace parity with legacy standalone, no ETH-challenger nine-cell economic parity and no truly independent OOS or immutable forward receipts. Do **not** close #12 or promote a strategy. HYPE remains excluded.
+
+## Concrete manager questions / next cycle
+1. Accept **independent event-clock enumeration DONE** for the frozen 309-trade cohort, but leave #12 P0 OPEN for all-candidate admission/reentry reason parity and full 15/25/40bp × 0/1/3bp **baseline + ETH challenger** reconciliation? Recommend yes.
+2. Prioritize one identical-clock portfolio replay that explicitly chooses exit-boundary convention (upper/lower as two **predeclared sensitivities**), re-sizes every subsequent position and reports PF/return/hourly MTM DD/worst month. Do not change entry thresholds or select a winning historical variant.
+3. Require direct same-venue OHLCV, actual 00/08/16 UTC funding and fee/spread/mark execution provenance under #5 before any shadow/paper readiness decision. Preregister a truly prospective, append-only shadow sample; never relabel reused history as OOS.
+4. Continue to treat #13 completed-vs-forming as exploratory and do not deploy or send real orders.
+
+---
+
 # DeltaRSI researcher handoff — cycle 12, 2026-10-27 ~05:55 MSK (P0 #12 funding-clock reconciliation)
 
 **Status: AUDIT CODE + DETERMINISTIC TESTS + REPRODUCIBLE REPORT COMMITTED; HISTORICAL FUNDING DISCREPANCY EXPLAINED. NO INDEPENDENT OOS, NO STRATEGY PROMOTION, NO ORDERS.**
