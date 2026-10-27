@@ -4,6 +4,7 @@ on:
     paths:
       - deltapulse_4h_strategy_v1.py
       - deltapulse_4h_archive.py
+      - test_deltapulse_4h_strategy_v1.py
       - .github/workflows/deltapulse-strict-4h.yml
   workflow_dispatch:
 permissions:
@@ -21,6 +22,12 @@ jobs:
         run: |
           if ! python deltapulse_4h_strategy_v1.py > /tmp/deltapulse4h_output.txt 2>&1; then
             cp /tmp/deltapulse4h_output.txt reports/deltapulse_4h_last_error.txt
+            exit 1
+          fi
+      - name: Verify closed-candle causality and trade-accounting tests
+        run: |
+          if ! python -m unittest -v test_deltapulse_4h_strategy_v1 > /tmp/deltapulse4h_tests.txt 2>&1; then
+            cp /tmp/deltapulse4h_tests.txt reports/deltapulse_4h_last_error.txt
             exit 1
           fi
       - name: Print compact key results
