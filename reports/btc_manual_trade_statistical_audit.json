@@ -1,0 +1,642 @@
+{
+  "notes": "Exploratory BTC only. Historical journal quality=ok for full-journal return calculations, partial exits weighted by percent; 0.15% roundtrip. Matched selection signals +/-4h (not exact trade entry) compared to skipped, independent selected/skipped labels but temporally correlated signals. 19 prespecified comparisons per direction, BH false discovery rate across all tests. Fisher exact for binary, Mann Whitney for continuous; NOT chi-square for sparse counts. Selection regression chronological TimeSeriesSplit, not a trading backtest. Outcome correlations exploratory, BH-adjusted; journal returns and entry indicator timestamps may differ. Daily features only fully closed prior UTC day, hourly features only completed bars. No volume available. Avoid causal claims.",
+  "journal": {
+    "total_rows": 42,
+    "quality_ok_usable": 38,
+    "win_rate_pct": 81.58,
+    "mean_net_pct": 3.067,
+    "median_net_pct": 3.17
+  },
+  "selected_signals": 26,
+  "selected_with_outcome": 24,
+  "skipped_signals": 232,
+  "selection_tests": [
+    {
+      "side": "LONG",
+      "feature": "daily_3d_return_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": -3.3903,
+      "skipped_median": -1.8139,
+      "p_raw": 0.006867,
+      "method": "Mann-Whitney U",
+      "effect": -1.5764,
+      "q_bh": 0.17467
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_range5_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 7.7763,
+      "skipped_median": 5.9028,
+      "p_raw": 0.009193,
+      "method": "Mann-Whitney U",
+      "effect": 1.8735,
+      "q_bh": 0.17467
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_sma50_dist_pct",
+      "n_selected": 13,
+      "n_skipped": 106,
+      "selected_median": -10.051,
+      "skipped_median": 0.2317,
+      "p_raw": 0.017464,
+      "method": "Mann-Whitney U",
+      "effect": -10.2827,
+      "q_bh": 0.22121
+    },
+    {
+      "side": "LONG",
+      "feature": "bb_width_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 2.6739,
+      "skipped_median": 1.8118,
+      "p_raw": 0.023808,
+      "method": "Mann-Whitney U",
+      "effect": 0.8621,
+      "q_bh": 0.22409
+    },
+    {
+      "side": "LONG",
+      "feature": "range12_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 2.5272,
+      "skipped_median": 1.5867,
+      "p_raw": 0.029486,
+      "method": "Mann-Whitney U",
+      "effect": 0.9405,
+      "q_bh": 0.22409
+    },
+    {
+      "side": "SHORT",
+      "feature": "lower_wick_fraction",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.3513,
+      "skipped_median": 0.2388,
+      "p_raw": 0.073784,
+      "method": "Mann-Whitney U",
+      "effect": 0.1125,
+      "q_bh": 0.4673
+    },
+    {
+      "side": "LONG",
+      "feature": "prior12_return_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.5025,
+      "skipped_median": 0.0957,
+      "p_raw": 0.109275,
+      "method": "Mann-Whitney U",
+      "effect": 0.4068,
+      "q_bh": 0.5263
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_bullish",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.0,
+      "skipped_median": 0.0,
+      "p_raw": 0.110799,
+      "method": "Fisher exact (2x2)",
+      "effect": 0.1758,
+      "q_bh": 0.5263
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_sma20_dist_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": -2.2464,
+      "skipped_median": -1.1958,
+      "p_raw": 0.161262,
+      "method": "Mann-Whitney U",
+      "effect": -1.0506,
+      "q_bh": 0.63526
+    },
+    {
+      "side": "SHORT",
+      "feature": "upper_wick_fraction",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.1605,
+      "skipped_median": 0.2123,
+      "p_raw": 0.169314,
+      "method": "Mann-Whitney U",
+      "effect": -0.0518,
+      "q_bh": 0.63526
+    },
+    {
+      "side": "LONG",
+      "feature": "sma200_dist_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": -1.8183,
+      "skipped_median": -0.8144,
+      "p_raw": 0.18389,
+      "method": "Mann-Whitney U",
+      "effect": -1.0039,
+      "q_bh": 0.63526
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_bb_width_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 9.9206,
+      "skipped_median": 11.9084,
+      "p_raw": 0.226978,
+      "method": "Mann-Whitney U",
+      "effect": -1.9878,
+      "q_bh": 0.69424
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_bb_width_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 11.1573,
+      "skipped_median": 10.3314,
+      "p_raw": 0.237504,
+      "method": "Mann-Whitney U",
+      "effect": 0.8259,
+      "q_bh": 0.69424
+    },
+    {
+      "side": "SHORT",
+      "feature": "prior12_return_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": -0.6593,
+      "skipped_median": -0.1226,
+      "p_raw": 0.271904,
+      "method": "Mann-Whitney U",
+      "effect": -0.5367,
+      "q_bh": 0.70639
+    },
+    {
+      "side": "LONG",
+      "feature": "sma50_dist_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": -0.192,
+      "skipped_median": -0.1849,
+      "p_raw": 0.297811,
+      "method": "Mann-Whitney U",
+      "effect": -0.0071,
+      "q_bh": 0.70639
+    },
+    {
+      "side": "SHORT",
+      "feature": "bb_percent_b",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.3232,
+      "skipped_median": 0.4303,
+      "p_raw": 0.312737,
+      "method": "Mann-Whitney U",
+      "effect": -0.1071,
+      "q_bh": 0.70639
+    },
+    {
+      "side": "LONG",
+      "feature": "lower_wick_fraction",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.2379,
+      "skipped_median": 0.2358,
+      "p_raw": 0.349713,
+      "method": "Mann-Whitney U",
+      "effect": 0.0021,
+      "q_bh": 0.70639
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_upper_rejection",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.5,
+      "skipped_median": 0.0,
+      "p_raw": 0.352407,
+      "method": "Fisher exact (2x2)",
+      "effect": 1.8537,
+      "q_bh": 0.70639
+    },
+    {
+      "side": "SHORT",
+      "feature": "bb_width_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 1.8345,
+      "skipped_median": 2.1807,
+      "p_raw": 0.353194,
+      "method": "Mann-Whitney U",
+      "effect": -0.3462,
+      "q_bh": 0.70639
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_range5_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 5.83,
+      "skipped_median": 6.6389,
+      "p_raw": 0.399065,
+      "method": "Mann-Whitney U",
+      "effect": -0.8089,
+      "q_bh": 0.71516
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_bb_percent_b",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.3277,
+      "skipped_median": 0.3471,
+      "p_raw": 0.413479,
+      "method": "Mann-Whitney U",
+      "effect": -0.0194,
+      "q_bh": 0.71516
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_3d_return_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 2.5897,
+      "skipped_median": 1.9439,
+      "p_raw": 0.422119,
+      "method": "Mann-Whitney U",
+      "effect": 0.6458,
+      "q_bh": 0.71516
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_sma50_dist_pct",
+      "n_selected": 12,
+      "n_skipped": 111,
+      "selected_median": 1.2457,
+      "skipped_median": 0.5125,
+      "p_raw": 0.448076,
+      "method": "Mann-Whitney U",
+      "effect": 0.7332,
+      "q_bh": 0.71516
+    },
+    {
+      "side": "SHORT",
+      "feature": "sma200_dist_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 1.4288,
+      "skipped_median": 0.8471,
+      "p_raw": 0.458136,
+      "method": "Mann-Whitney U",
+      "effect": 0.5817,
+      "q_bh": 0.71516
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_bb_percent_b",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.6872,
+      "skipped_median": 0.6273,
+      "p_raw": 0.470501,
+      "method": "Mann-Whitney U",
+      "effect": 0.0599,
+      "q_bh": 0.71516
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_upper_rejection",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.0,
+      "skipped_median": 0.0,
+      "p_raw": 0.550348,
+      "method": "Fisher exact (2x2)",
+      "effect": 0.5985,
+      "q_bh": 0.80435
+    },
+    {
+      "side": "LONG",
+      "feature": "body_fraction",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.4829,
+      "skipped_median": 0.4762,
+      "p_raw": 0.577844,
+      "method": "Mann-Whitney U",
+      "effect": 0.0067,
+      "q_bh": 0.81326
+    },
+    {
+      "side": "SHORT",
+      "feature": "sma50_dist_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.0978,
+      "skipped_median": 0.1893,
+      "p_raw": 0.635256,
+      "method": "Mann-Whitney U",
+      "effect": -0.0915,
+      "q_bh": 0.83619
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_10d_return_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 2.3636,
+      "skipped_median": 0.5326,
+      "p_raw": 0.638142,
+      "method": "Mann-Whitney U",
+      "effect": 1.831,
+      "q_bh": 0.83619
+    },
+    {
+      "side": "SHORT",
+      "feature": "range12_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 1.9362,
+      "skipped_median": 2.0224,
+      "p_raw": 0.694129,
+      "method": "Mann-Whitney U",
+      "effect": -0.0862,
+      "q_bh": 0.86371
+    },
+    {
+      "side": "LONG",
+      "feature": "upper_wick_fraction",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.1998,
+      "skipped_median": 0.2358,
+      "p_raw": 0.719095,
+      "method": "Mann-Whitney U",
+      "effect": -0.036,
+      "q_bh": 0.86371
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_sma20_dist_pct",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 1.1041,
+      "skipped_median": 1.024,
+      "p_raw": 0.727338,
+      "method": "Mann-Whitney U",
+      "effect": 0.0801,
+      "q_bh": 0.86371
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_bullish",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 1.0,
+      "skipped_median": 1.0,
+      "p_raw": 0.75395,
+      "method": "Fisher exact (2x2)",
+      "effect": 0.7553,
+      "q_bh": 0.86818
+    },
+    {
+      "side": "SHORT",
+      "feature": "body_fraction",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.4808,
+      "skipped_median": 0.4591,
+      "p_raw": 0.804671,
+      "method": "Mann-Whitney U",
+      "effect": 0.0217,
+      "q_bh": 0.89934
+    },
+    {
+      "side": "LONG",
+      "feature": "bb_percent_b",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.5969,
+      "skipped_median": 0.6049,
+      "p_raw": 0.906571,
+      "method": "Mann-Whitney U",
+      "effect": -0.008,
+      "q_bh": 0.98428
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_10d_return_pct",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": -1.4491,
+      "skipped_median": -0.7287,
+      "p_raw": 0.951696,
+      "method": "Mann-Whitney U",
+      "effect": -0.7204,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "daily_lower_rejection",
+      "n_selected": 14,
+      "n_skipped": 115,
+      "selected_median": 0.0,
+      "skipped_median": 0.0,
+      "p_raw": 1.0,
+      "method": "Fisher exact (2x2)",
+      "effect": 1.0375,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "daily_lower_rejection",
+      "n_selected": 12,
+      "n_skipped": 117,
+      "selected_median": 0.0,
+      "skipped_median": 0.0,
+      "p_raw": 1.0,
+      "method": "Fisher exact (2x2)",
+      "effect": 0.7,
+      "q_bh": 1.0
+    }
+  ],
+  "selection_regression": {
+    "LONG": {
+      "features": [
+        "range12_pct",
+        "bb_width_pct",
+        "sma200_dist_pct",
+        "daily_3d_return_pct",
+        "daily_sma50_dist_pct",
+        "lower_wick_fraction"
+      ],
+      "samples": 119,
+      "selected": 13,
+      "chronological_folds": [
+        {
+          "n_test": 23,
+          "positives": 4,
+          "auc": 0.5395
+        },
+        {
+          "n_test": 23,
+          "positives": 6,
+          "auc": 0.6961
+        }
+      ],
+      "mean_auc": 0.6178
+    },
+    "SHORT": {
+      "features": [
+        "range12_pct",
+        "bb_width_pct",
+        "sma200_dist_pct",
+        "daily_3d_return_pct",
+        "daily_sma50_dist_pct",
+        "lower_wick_fraction"
+      ],
+      "samples": 123,
+      "selected": 12,
+      "chronological_folds": [
+        {
+          "n_test": 24,
+          "positives": 1,
+          "auc": 1.0
+        },
+        {
+          "n_test": 24,
+          "positives": 5,
+          "auc": 0.3579
+        },
+        {
+          "n_test": 24,
+          "positives": 2,
+          "auc": 0.1136
+        }
+      ],
+      "mean_auc": 0.4905
+    }
+  },
+  "outcome_correlations": [
+    {
+      "feature": "daily_bb_width_pct",
+      "n": 24,
+      "spearman_rho": 0.6078,
+      "p_raw": 0.001629,
+      "q_bh": 0.02606
+    },
+    {
+      "feature": "body_fraction",
+      "n": 24,
+      "spearman_rho": 0.4017,
+      "p_raw": 0.051664,
+      "q_bh": 0.41331
+    },
+    {
+      "feature": "range12_pct",
+      "n": 24,
+      "spearman_rho": 0.3443,
+      "p_raw": 0.099407,
+      "q_bh": 0.45914
+    },
+    {
+      "feature": "lower_wick_fraction",
+      "n": 24,
+      "spearman_rho": -0.3304,
+      "p_raw": 0.114785,
+      "q_bh": 0.45914
+    },
+    {
+      "feature": "bb_width_pct",
+      "n": 24,
+      "spearman_rho": 0.2513,
+      "p_raw": 0.236199,
+      "q_bh": 0.75584
+    },
+    {
+      "feature": "sma50_dist_pct",
+      "n": 24,
+      "spearman_rho": -0.1791,
+      "p_raw": 0.402303,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "daily_sma50_dist_pct",
+      "n": 23,
+      "spearman_rho": -0.164,
+      "p_raw": 0.454529,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "daily_3d_return_pct",
+      "n": 24,
+      "spearman_rho": 0.1374,
+      "p_raw": 0.522047,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "bb_percent_b",
+      "n": 24,
+      "spearman_rho": -0.1096,
+      "p_raw": 0.610302,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "daily_range5_pct",
+      "n": 24,
+      "spearman_rho": -0.1061,
+      "p_raw": 0.621752,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "upper_wick_fraction",
+      "n": 24,
+      "spearman_rho": -0.0948,
+      "p_raw": 0.659543,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "daily_bb_percent_b",
+      "n": 24,
+      "spearman_rho": -0.0887,
+      "p_raw": 0.68024,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "daily_10d_return_pct",
+      "n": 24,
+      "spearman_rho": 0.0878,
+      "p_raw": 0.683215,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "daily_sma20_dist_pct",
+      "n": 24,
+      "spearman_rho": -0.0757,
+      "p_raw": 0.725335,
+      "q_bh": 0.82895
+    },
+    {
+      "feature": "prior12_return_pct",
+      "n": 24,
+      "spearman_rho": -0.0383,
+      "p_raw": 0.859118,
+      "q_bh": 0.91639
+    },
+    {
+      "feature": "sma200_dist_pct",
+      "n": 24,
+      "spearman_rho": 0.0,
+      "p_raw": 1.0,
+      "q_bh": 1.0
+    }
+  ]
+}
