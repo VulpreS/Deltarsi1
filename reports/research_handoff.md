@@ -18,6 +18,7 @@ Read newly prioritized issue #17 (42 owner-labelled BTC trades), current #10/#11
 | Clean labels (exclude all four flagged) | 38 | **81.58%** | **+3.067%** | +1.675R | 10.04 |
 | Clean LONG | 21 | 76.19% | +2.315% | +1.451R | 5.34 |
 | Clean SHORT | 17 | 88.24% | +3.997% | +1.951R | 41.13 |
+| Clean AND covered by cached 1H | 31 | **77.42%** | +3.084% | +1.475R | 8.42 |
 
 - Clean cohort median annotated net return **+3.168%**, median annotated holding **68 hours**, average winning trade **+4.176%**, average losing trade **−1.841%**. The sequential 0.25% risk-sized *illustrative* equity curve would yield +17.15% with closed-trade DD 0.57%, **not an executable portfolio**: selected outcomes, uncertain fills, no concurrent exposure or real stop chronology proof.
 - Four **unrepaired** label issues: second exit time missing (2025-10-11); implausible 842300 exit price (2026-01-30); exit before entry (2026-03-02 trade); suspect 2026-02-05 entry date on next trade. The 842300 outlier explains why the all-label net expectancy reverses; do NOT silently replace it with 84230.
