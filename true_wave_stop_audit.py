@@ -111,6 +111,9 @@ def trade_one(raw, entry_i, side, stop, end_i, tp_r=TP_R):
 
 
 def stats(trades):
+    # Deterministic chronological order; pseudo DD remains non-executable
+    # when entries overlap across symbols or within one symbol.
+    trades = sorted(trades, key=lambda t: (t.get("entry_utc", ""), t.get("symbol", ""), t.get("entry_i", -1)))
     v = [t["net_R"] for t in trades]
     if not v:
         return dict(n=0, win_pct=None, mean_R=None, pf=None, avg_win_R=None,
