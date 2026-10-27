@@ -9,7 +9,10 @@ on:
       - '.github/workflows/manual-trade-label-audit.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: manual-label-audit-report-main
+  cancel-in-progress: false
 jobs:
   label-audit:
     runs-on: ubuntu-latest
@@ -26,3 +29,20 @@ jobs:
         with:
           name: manual-trade-label-audit
           path: reports/manual_trade_label_audit.json
+      - name: Commit reproducible aggregate report (safe fresh-ref retry)
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            python manual_trade_label_audit.py >/dev/null
+            git add reports/manual_trade_label_audit.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'research(#17): persist reproducible BTC label aggregate audit'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          echo 'Report persistence failed after retries' >&2
+          exit 1
