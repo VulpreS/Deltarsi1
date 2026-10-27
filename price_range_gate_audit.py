@@ -111,10 +111,19 @@ def run_asset(sym):
     raw, sha = load(sym)
     event_sets, rows = events(raw)
     es = add_features(raw, event_sets["frozen_turn"], rows)
-    cut = [0] + [bisect.bisect_left([r[0] for r in raw], utc_ms(c)) for c in CUTOFFS] + [len(raw)]
+    # HYPE history starts AFTER the BTC/ETH/ICP common training cutoff.
+    # Never pretend that it shares their UTC train/validation calendar.
+    if sym == "HYPEUSDT":
+        cut = [0, len(raw)//2, 3*len(raw)//4, len(raw)]
+        train_cutoff = raw[cut[1]][0]
+        split_method = "HYPE-only 50/25/25 chronological negative control; NOT common calendar"
+    else:
+        cut = [0] + [bisect.bisect_left([r[0] for r in raw], utc_ms(c)) for c in CUTOFFS] + [len(raw)]
+        train_cutoff = utc_ms(CUTOFFS[0])
+        split_method = "BTC/ETH/ICP aligned UTC cutoffs"
     if cut != sorted(cut):
         raise ValueError("UTC split boundaries outside chronological cache")
-    thresholds = train_medians(es, utc_ms(CUTOFFS[0]))
+    thresholds = train_medians(es, train_cutoff)
     windows = {}
     for k, (a, b) in enumerate(zip(cut[:-1], cut[1:])):
         name = ("train", "validation", "inspected_diagnostic")[k]
@@ -137,7 +146,7 @@ def run_asset(sym):
         windows[name] = dict(start_utc=iso(raw[a][0]) if a < len(raw) else None,
                              end_exclusive_utc=iso(raw[b][0]) if b < len(raw) else iso(raw[-1][0] + H),
                              baseline=base, n_candidates=len(subset), gates=filters)
-    return dict(source_sha256=sha, n_hours=len(raw), n_4h=len(rows),
+    return dict(source_sha256=sha, split_method=split_method, n_hours=len(raw), n_4h=len(rows),
                 first_utc=iso(raw[0][0]), last_utc=iso(raw[-1][0]),
                 n_frozen_turn_events=len(es), train_only_thresholds=thresholds,
                 windows=windows,
@@ -157,6 +166,7 @@ def main():
                       "Filtered and baseline schedules have different admissions/reentries: do not interpret return differences as paired causal effects.",
                       "Matched opportunity summaries ignore scheduling/capital competition; portfolio DD is only closed-trade pseudo DD.",
                       "No direct venue provenance, no real fills, 1H OHLC stop-first and adverse-gap model.",
+                      "HYPE begins after the shared train cutoff and uses its own separate 50/25/25 negative-control splits.",
                       "No cross-asset shared capital or hourly MTM drawdown. No real orders."])
     for sym in SYMS:
         report["assets"][sym] = run_asset(sym)
