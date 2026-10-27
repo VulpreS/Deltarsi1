@@ -1,0 +1,36 @@
+name: DeltaPulse 4H Cached 1H Cross Source Audit
+on:
+  push:
+    paths:
+      - deltapulse_4h_cached_hourly_sensitivity.py
+      - .github/workflows/deltapulse-4h-cached-hourly.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cached:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reaggregate cached complete 1H candles and test pulse
+        run: |
+          if ! python deltapulse_4h_cached_hourly_sensitivity.py > /tmp/cached_4h_research.txt 2>&1; then
+            cp /tmp/cached_4h_research.txt reports/deltapulse_4h_cached_hourly_last_error.txt
+            exit 1
+          fi
+      - name: Persist detailed comparison
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_cached_hourly_sensitivity.json
+          git diff --cached --quiet || (git commit -m "Save DeltaPulse 4H cached hourly OHLC source audit" && git pull --rebase origin main && git push)
+      - name: Persist diagnostic traceback
+        if: failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_cached_hourly_last_error.txt
+          git diff --cached --quiet || (git commit -m "Save DeltaPulse cache sensitivity error" && git pull --rebase origin main && git push)
