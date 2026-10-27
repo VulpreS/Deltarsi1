@@ -1,0 +1,23 @@
+name: Manual Swing Stop Audit
+on:
+  push:
+    paths:
+      - manual_stop_swing_audit.py
+      - .github/workflows/manual-swing-stop-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python manual_stop_swing_audit.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/manual_stop_swing_audit.json
+          git diff --cached --quiet || (git commit -m "Save manual swing stop audit" && git pull --rebase origin main && git push)
