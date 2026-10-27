@@ -199,10 +199,19 @@ def main():
     bb=json.loads(Path("reports/btc_4h_bollinger_sigma_study.json").read_text())
     selected_return={(x["time"],x["side"]):x.get("ret") for x in bb["selected_trades"]}
     matched_entries={(x["signal_time"],x["side"]):x["manual_time"] for x in prev["matched_trades"]}
-    samples=[];invalid=[]
+    # Signals after the final annotated manual entry are right-censored:
+    # no evidence the trader reviewed or skipped them.
+    with open("data/manual_btc_trades_2025_2026.csv") as stream:
+        journal_rows=list(csv.DictReader(stream))
+    last_manual_entry=max(ts(x["entry_msk"]) for x in journal_rows
+                          if x["quality"]=="ok" and ts(x["entry_msk"]) is not None)
+    samples=[];invalid=[];outside_journal=0
     for select,source in ((1,prev["matched_trades"]),(0,prev["skipped_signals"])):
         for s in source:
             tm=s["signal_time"] if select else s["time"]
+            if tm>last_manual_entry:
+                outside_journal+=1
+                continue
             side=s["side"]
             k=complete_time_to_idx.get(tm)
             if k is None:
@@ -300,12 +309,14 @@ def main():
     out={
         "description":"Test distance/velocity/acceleration of RSI12(SMA21) versus EMA7(RSI), with original signed symmetric log-DeltaRSI retained as control.",
         "mathematical_identity":"G_t=(1-alpha)*(G_(t-1)+(RSI_t-RSI_(t-1))); alpha=.25, so flat RSI mechanically shrinks |G| by 25% per closed 4H candle if same sign. Excess=(|G_prev|-|G_current|)-.25*|G_prev|.",
-        "selected_vs_skipped_notes":"Selection labels are trader's journal proximity-matched within 4h to mediumR->weakR and mediumB->weakB 4H transitions. This subset is NOT all visible DeltaRSI opportunities. Label provenance and serially correlated signals limit inference. Compare LONG and SHORT independently. Candidate features strictly from closed 4H candles; no lookahead.",
+        "selected_vs_skipped_notes":"Selection labels are trader's journal proximity-matched within 4h to mediumR->weakR and mediumB->weakB 4H transitions. This subset is NOT all visible DeltaRSI opportunities. Post-journal signals are censored, never silently labeled skipped. Label provenance and serially correlated signals limit inference. Compare LONG and SHORT independently. Candidate features strictly from closed 4H candles; no lookahead.",
         "partial_notes":"Manual entry-time snapshots constructed using only 1H candles already closed by marked entry hour. Forming 4H is reconstructed as-of that hour; intrahour changes not observable. Rows with RSI/EMA crossing or missing data excluded. Do not extrapolate 4H-close selection results to partial intrabar readings.",
         "cv_notes":"Chronological TimeSeriesSplit(4) expanding training, no tuning on folds; skip folds lacking both classes. Metrics measure imitation of journal selection, NOT profitable trading. All historic BTC data was previously inspected; no untouched holdout.",
         "outcome_notes":"Manual net outcomes from weighted journal exits with 0.15% roundtrip assumed. Returns NOT independently verified trades. Multiple outcome correlations BH-adjusted, tiny selected sample.",
         "raw_complete_4h_bars":len(bars),
         "source_candidate_events":len(prev["matched_trades"])+len(prev["skipped_signals"]),
+        "last_journal_entry_utc":dt.datetime.fromtimestamp(last_manual_entry/1000,dt.timezone.utc).isoformat(),
+        "post_journal_events_excluded":outside_journal,
         "accepted_candidate_events":len(samples),
         "selected_events":sum(x["selected"] for x in samples),
         "skipped_events":sum(not x["selected"] for x in samples),
