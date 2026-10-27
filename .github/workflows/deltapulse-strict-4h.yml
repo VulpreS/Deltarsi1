@@ -1,0 +1,49 @@
+name: DeltaPulse Strict 4H Five Asset Strategy
+on:
+  push:
+    paths:
+      - deltapulse_4h_strategy_v1.py
+      - deltapulse_4h_archive.py
+      - .github/workflows/deltapulse-strict-4h.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run all frozen four-hour variants on Binance perpetual archives
+        run: |
+          if ! python deltapulse_4h_strategy_v1.py > /tmp/deltapulse4h_output.txt 2>&1; then
+            cp /tmp/deltapulse4h_output.txt reports/deltapulse_4h_last_error.txt
+            exit 1
+          fi
+      - name: Print compact key results
+        run: |
+          python - <<'PY'
+          import json
+          j=json.load(open('reports/deltapulse_4h_v1.json'))
+          for x in j['comparisons']:
+              if x['signal'] in ('color_all','crest_p80_60','crest_p80_120'):
+                  print(x['asset'],x['signal'],x['whole'],x['recent'])
+          PY
+      - name: Save diagnostic traceback on failure
+        if: failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_last_error.txt
+          git diff --cached --quiet || (git commit -m "Record DeltaPulse 4H research failure diagnostics" && git pull --rebase origin main && git push)
+      - name: Commit results and complete 4H source candles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_v1.json reports/deltapulse_4h_v1_primary_trades.csv
+          git add data/BTCUSDT_4h_binance_um.csv data/ETHUSDT_4h_binance_um.csv
+          git add data/SOLUSDT_4h_binance_um.csv data/BNBUSDT_4h_binance_um.csv data/XRPUSDT_4h_binance_um.csv
+          git diff --cached --quiet || (git commit -m "Save DeltaPulse closed-four-hour cross-market study" && git pull --rebase origin main && git push)
