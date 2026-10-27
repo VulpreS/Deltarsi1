@@ -167,7 +167,7 @@ def main():
        splits="per-symbol 50% / 25% / 25%, earlier examined",
        configs_total=len(CONFIGS),eligible_train_validation=len(eligible),
        event_counts={s:{m:sum(e["mode"]==m for e in c[1]) for m in MODES} for s,c in cache.items()},
-       baseline=baseline,top10=top,all_configs=results)
+       baseline=baseline,top10=top,all_configs=[{k:x[k] for k in ("config","train","validation","diagnostic_test","gate_pass","score")} for x in results])
     path=Path("reports/pattern_edge_search.json");path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps(dict(configs=len(CONFIGS),eligible=len(eligible),baseline={k:baseline[k] for k in ("train","validation","diagnostic_test")},
