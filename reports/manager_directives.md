@@ -357,3 +357,27 @@ Read latest researcher cycle-12 handoff, `reports/funding_clock_reconciliation.j
 
 ### Next manager checkpoint
 Verify #12 independent UTC event enumeration, admission ledger, same-SHA CI and all 9 cells first; then #13 semantics/month CI, #9 five-entry funnel, #5/#6 provenance/forward receipts. **Absolute prohibition on optimization/feature selection/threshold tuning using an independent or prospective evaluation sample.** All previously inspected historical thirds are exploratory.
+
+
+---
+
+## Manager cycle 13 — 2026-10-27 06:57 MSK — new independent funding-clock CI reviewed
+
+### Evidence and decisions
+- Latest handoff remains researcher **cycle 12**; checked new commits after that handoff: `independent_funding_clock_audit.py`, fixtures and CI; [run 40447024839](https://github.com/VulpreS/Deltarsi1/actions/runs/40447024839) **SUCCESS, 66 tests OK** on `6ab53aa5b63cdeff03d52338a02da7834e612cf9`, generated [independent report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/independent_funding_clock_audit.json) persisted in `c2469cc`. Reviewed code, report, workflow and test log; no independent rerun in separate environment and no venue replay.
+- **ACCEPT narrowly:** 309 matched frozen-turn fills and independent-of-booked-debit enumeration of synthetic UTC 8h event counts; 52 trades have 4H upper-bound event excess. At 15bp round-trip friction + 3bp synthetic adverse funding, 4H-minus-1H net −0.11945pp is explained by funding clock plus equity sizing; not alpha. 0bp funding negative control previously agrees.
+- **NEW RISK QUANTIFICATION:** 1H synthetic funding upper-minus-lower uncertainty = **0.02891109pp** initial equity for forming (12 ambiguous events/89 trades), **0.06288084pp** for closed (31/83), **0.24724615pp** for frozen turn (127/309). These are fixed-size debit bounds, not recomputed portfolio return/DD or observed exchange funding. Ledger-derived 4H exit intervals and 1H exit_ms-1h are NOT independent raw-candle fill reconstructions; hence true venue funding parity remains UNKNOWN.
+- **REJECT promotion:** ETH reverse exit, early-forming superiority and any claim of proven cross-regime risk-adjusted alpha. Completed fade stays exploratory; last inspected third negative. #12 P0 still PARTIAL; #13 P1 PARTIAL; #5 venue/forward BLOCKED; #9 causal five-entry selectivity PARTIAL.
+
+### Mandatory researcher tasks (via issue #12; priorities, hypothesis, acceptance)
+**P0-1 / #12 — raw-candle exit-window verification.** Hypothesis: independently replayed OHLC feasible exit windows reproduce the 309-trade UTC funding bounds. Acceptance: derive stop/TP/time/gap intervals from cached candles and execution rules (not stored ledger bounds), enumerate 00/08/16 UTC lower/upper events for each 4H/1H trade, include boundary and LONG/SHORT fixtures; full mismatch table or fail-closed. No actual fill time claims from OHLC.
+
+**P0-2 / #12 — baseline+ETH 9-cell full admission/economics parity.** Hypothesis: only explicit time resolution and equity compounding explain residual differences. Acceptance: every eligible UTC signal accepted/rejected with occupancy, stop gap, slot/risk/notional/reentry reason; baseline and ETH challenger all 15/25/40bp × 0/1/3bp synthetic cells, full gross/fee/funding/net and trade-ID reconciliation across 1H/4H/standalone, common hourly-close MTM DD, worst month, cash conservation, source/config/code hashes, **single-SHA integrated CI with 66 existing + new tests**. No silent change of frozen signal/parameters.
+
+**P0-3 / #5 — market data and observed cost provenance.** Hypothesis: real funding/fees/mark triggers may invalidate small historical edges. Acceptance: per-symbol exchange+spot/perp+contract+endpoint+receipt UTC, direct same-venue 4H vs 1H >=30 preregistered closed buckets, timestamped actual funding, fee tier/spread and stop trigger rules; mark unavailable as BLOCKED, do not represent synthetic scenarios as actual.
+
+**P1-4 / #13, #9 — causal selectivity and uncertainty.** Hypothesis: structure filters matter more than early histogram color. Acceptance: correct misleading `peak_requires_previous_nonrising` documentation without changing event IDs; calendar-block completed-minus-forming shared-capital uncertainty with effective block count; five annotated entries plus rejected/losing candidates and equal-risk peak-bar vs wave stop, as-of UTC evidence. No retrospective winner selection.
+
+**P1-5 / #5 — forward shadow preregistration.** Hypothesis: frozen strategies maintain positive net expectancy only if they survive truly new market data. Acceptance: freeze baseline + at most one completed-fade challenger and version hashes/cost/venue/risk rules before receipts; >=90 calendar days AND >=50 independent virtual trades per candidate, append-only timestamp chain, no backfill counted forward; explicit PF/expectancy/DD/worst-month criteria before outcomes. Shadow only, **no paper or real orders** until separate approval.
+
+**Non-negotiable:** NEVER tune thresholds, feature selection, stop policy, cost assumptions or stopping rule using inspected historical final periods or sealed independent/forward evaluation data. No production without explicit user approval. Next checkpoint: verify raw-OHLC funding windows and baseline+ETH 9-cell admission/economics first; then #5/#13/#9.
