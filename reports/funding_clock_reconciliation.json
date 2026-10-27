@@ -1,0 +1,486 @@
+{
+  "title": "P0 #12 funding-clock decomposition of matched frozen 4H turn trades",
+  "producer_sha": "88a71c1460ed72420968fc5595c67e8eee6b19d1",
+  "generated_utc": "2026-10-27T02:54:02.913432+00:00",
+  "source_sha256": {
+    "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
+    "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b"
+  },
+  "source_report_sha256": {
+    "reports/portfolio_risk_audit.json": "8e1e2eec7aa3cbbde10c93719898f6a93ae866a807a65a524543df11f4c21733",
+    "reports/causal_4h_portfolio_audit.json": "6d7058b5b6d51f38ce6265ddd43a63d295a2de4580e5af83e52cc023310f5ff3"
+  },
+  "old_config_hash": "6922fb45e5dc090035e7ba90fcf335886f7d278567bae52368e810dcfcb2f0e1",
+  "new_config_hash": "fba5c1c87fe87faa3b069f45ff8503b89583a17b040714e0243a97eecbddb493",
+  "assumption": "Both models charge synthetic adverse 3bp per 00/08/16 UTC event, upper-bound OHLC timing. 1H tighter bounds are not observed fills.",
+  "matched_trade_ids": 309,
+  "event_counts": {
+    "4h_4": 15,
+    "1h_4": 19,
+    "4h_more": 52,
+    "1h_more": 0,
+    "equal": 257,
+    "4h_5": 22,
+    "1h_5": 22,
+    "4h_6": 188,
+    "1h_6": 181,
+    "4h_3": 32,
+    "1h_3": 21,
+    "4h_2": 36,
+    "1h_2": 36,
+    "4h_1": 14,
+    "1h_1": 21,
+    "4h_0": 2,
+    "1h_0": 9
+  },
+  "by_asset": {
+    "BTCUSDT": {
+      "n": 123,
+      "4h_more": 21,
+      "1h_more": 0,
+      "equal": 102,
+      "timing_funding_delta": 0.0005750700507745569,
+      "sizing_funding_delta": -7.148633756744506e-06
+    },
+    "ETHUSDT": {
+      "n": 97,
+      "4h_more": 18,
+      "1h_more": 0,
+      "equal": 79,
+      "timing_funding_delta": 0.0004264781414161375,
+      "sizing_funding_delta": -5.186264498824854e-06
+    },
+    "ICPUSDT": {
+      "n": 89,
+      "4h_more": 13,
+      "1h_more": 0,
+      "equal": 76,
+      "timing_funding_delta": 0.00016917737403166974,
+      "sizing_funding_delta": -2.8124974707023577e-06
+    }
+  },
+  "by_exit_reason": {
+    "target": {
+      "n": 66,
+      "4h_more": 29,
+      "1h_more": 0,
+      "equal": 37,
+      "timing_funding_delta": 0.000647707121459275,
+      "sizing_funding_delta": -2.7532563504051484e-06
+    },
+    "time": {
+      "n": 174,
+      "4h_more": 0,
+      "1h_more": 0,
+      "equal": 174,
+      "timing_funding_delta": 0.0,
+      "sizing_funding_delta": -1.0433246044655443e-05
+    },
+    "stop": {
+      "n": 67,
+      "4h_more": 23,
+      "1h_more": 0,
+      "equal": 44,
+      "timing_funding_delta": 0.0005230184447630893,
+      "sizing_funding_delta": -1.832399165899066e-06
+    },
+    "terminal": {
+      "n": 2,
+      "4h_more": 0,
+      "1h_more": 0,
+      "equal": 2,
+      "timing_funding_delta": 0.0,
+      "sizing_funding_delta": -1.2849416531206385e-07
+    }
+  },
+  "sum_4h_minus_1h": {
+    "gross_delta": -5.60242e-05,
+    "fee_delta": -1.71437e-05,
+    "funding_delta": 0.0011555782,
+    "timing_funding_delta": 0.0011707256,
+    "sizing_funding_delta": -1.51474e-05,
+    "net_delta": -0.0011944586
+  },
+  "cash_reconciliation_4h_minus_1h": -0.001194,
+  "funding_clock_different_trades": 52,
+  "funding_clock_examples": [
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2025-12-16T04:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 5,
+      "1h_events_max": 4,
+      "4h_exit_earliest": "2025-12-17T12:00:00+00:00",
+      "4h_exit_latest": "2025-12-17T16:00:00+00:00",
+      "1h_exit_latest": "2025-12-17T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.16757e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2025-12-31T16:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 6,
+      "1h_events_max": 5,
+      "4h_exit_earliest": "2026-01-02T12:00:00+00:00",
+      "4h_exit_latest": "2026-01-02T16:00:00+00:00",
+      "1h_exit_latest": "2026-01-02T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.10949e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-01-19T04:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 5,
+      "1h_events_max": 4,
+      "4h_exit_earliest": "2026-01-20T12:00:00+00:00",
+      "4h_exit_latest": "2026-01-20T16:00:00+00:00",
+      "1h_exit_latest": "2026-01-20T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.30416e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-02-04T04:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2026-02-04T20:00:00+00:00",
+      "4h_exit_latest": "2026-02-05T00:00:00+00:00",
+      "1h_exit_latest": "2026-02-04T23:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 1.21393e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-03-26T16:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2026-03-27T12:00:00+00:00",
+      "4h_exit_latest": "2026-03-27T16:00:00+00:00",
+      "1h_exit_latest": "2026-03-27T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 1.85899e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-03-31T12:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2026-04-01T04:00:00+00:00",
+      "4h_exit_latest": "2026-04-01T08:00:00+00:00",
+      "1h_exit_latest": "2026-04-01T07:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 1.97163e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-04-06T08:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 5,
+      "1h_events_max": 4,
+      "4h_exit_earliest": "2026-04-07T20:00:00+00:00",
+      "4h_exit_latest": "2026-04-08T00:00:00+00:00",
+      "1h_exit_latest": "2026-04-07T23:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.9204e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-04-30T20:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2026-05-01T12:00:00+00:00",
+      "4h_exit_latest": "2026-05-01T16:00:00+00:00",
+      "1h_exit_latest": "2026-05-01T14:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.87392e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-05-31T20:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2026-06-01T12:00:00+00:00",
+      "4h_exit_latest": "2026-06-01T16:00:00+00:00",
+      "1h_exit_latest": "2026-06-01T14:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.64535e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-06-04T04:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 5,
+      "1h_events_max": 4,
+      "4h_exit_earliest": "2026-06-05T12:00:00+00:00",
+      "4h_exit_latest": "2026-06-05T16:00:00+00:00",
+      "1h_exit_latest": "2026-06-05T14:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 1.44373e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-06-25T08:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 1,
+      "1h_events_max": 0,
+      "4h_exit_earliest": "2026-06-25T12:00:00+00:00",
+      "4h_exit_latest": "2026-06-25T16:00:00+00:00",
+      "1h_exit_latest": "2026-06-25T14:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 1.92973e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-07-05T04:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 6,
+      "1h_events_max": 5,
+      "4h_exit_earliest": "2026-07-06T20:00:00+00:00",
+      "4h_exit_latest": "2026-07-07T00:00:00+00:00",
+      "1h_exit_latest": "2026-07-06T22:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.67949e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-07-14T00:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 2,
+      "1h_events_max": 1,
+      "4h_exit_earliest": "2026-07-14T12:00:00+00:00",
+      "4h_exit_latest": "2026-07-14T16:00:00+00:00",
+      "1h_exit_latest": "2026-07-14T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.92481e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-07-16T04:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 5,
+      "1h_events_max": 4,
+      "4h_exit_earliest": "2026-07-17T12:00:00+00:00",
+      "4h_exit_latest": "2026-07-17T16:00:00+00:00",
+      "1h_exit_latest": "2026-07-17T14:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.92995e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-07-30T20:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2026-07-31T12:00:00+00:00",
+      "4h_exit_latest": "2026-07-31T16:00:00+00:00",
+      "1h_exit_latest": "2026-07-31T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.0152e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-09-03T12:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 1,
+      "1h_events_max": 0,
+      "4h_exit_earliest": "2026-09-03T12:00:00+00:00",
+      "4h_exit_latest": "2026-09-03T16:00:00+00:00",
+      "1h_exit_latest": "2026-09-03T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.73751e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-09-09T08:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 4,
+      "1h_events_max": 3,
+      "4h_exit_earliest": "2026-09-10T12:00:00+00:00",
+      "4h_exit_latest": "2026-09-10T16:00:00+00:00",
+      "1h_exit_latest": "2026-09-10T13:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.39867e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-09-18T12:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 1,
+      "1h_events_max": 0,
+      "4h_exit_earliest": "2026-09-18T12:00:00+00:00",
+      "4h_exit_latest": "2026-09-18T16:00:00+00:00",
+      "1h_exit_latest": "2026-09-18T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.80166e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-09-30T12:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 6,
+      "1h_events_max": 5,
+      "4h_exit_earliest": "2026-10-02T04:00:00+00:00",
+      "4h_exit_latest": "2026-10-02T08:00:00+00:00",
+      "1h_exit_latest": "2026-10-02T05:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.09232e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-10-12T08:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 2,
+      "1h_events_max": 1,
+      "4h_exit_earliest": "2026-10-12T20:00:00+00:00",
+      "4h_exit_latest": "2026-10-13T00:00:00+00:00",
+      "1h_exit_latest": "2026-10-12T23:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 4.2764e-05
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry_utc": "2026-10-21T04:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 2,
+      "1h_events_max": 1,
+      "4h_exit_earliest": "2026-10-21T12:00:00+00:00",
+      "4h_exit_latest": "2026-10-21T16:00:00+00:00",
+      "1h_exit_latest": "2026-10-21T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.21211e-05
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry_utc": "2025-12-22T16:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 3,
+      "1h_events_max": 2,
+      "4h_exit_earliest": "2025-12-23T12:00:00+00:00",
+      "4h_exit_latest": "2025-12-23T16:00:00+00:00",
+      "1h_exit_latest": "2025-12-23T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 1.97336e-05
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry_utc": "2025-12-29T08:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 1,
+      "1h_events_max": 0,
+      "4h_exit_earliest": "2025-12-29T12:00:00+00:00",
+      "4h_exit_latest": "2025-12-29T16:00:00+00:00",
+      "1h_exit_latest": "2025-12-29T13:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.53072e-05
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry_utc": "2026-01-02T00:00:00+00:00",
+      "exit_reason": "target",
+      "4h_events_max": 2,
+      "1h_events_max": 1,
+      "4h_exit_earliest": "2026-01-02T12:00:00+00:00",
+      "4h_exit_latest": "2026-01-02T16:00:00+00:00",
+      "1h_exit_latest": "2026-01-02T15:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 3.03194e-05
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry_utc": "2026-01-05T08:00:00+00:00",
+      "exit_reason": "stop",
+      "4h_events_max": 2,
+      "1h_events_max": 1,
+      "4h_exit_earliest": "2026-01-05T20:00:00+00:00",
+      "4h_exit_latest": "2026-01-06T00:00:00+00:00",
+      "1h_exit_latest": "2026-01-05T21:00:00+00:00",
+      "funding_delta_at_fixed_4h_notional": 2.60371e-05
+    }
+  ],
+  "cost_funding_grid": {
+    "15bp_cost_0bp_funding": {
+      "n": 309,
+      "4h_return_pct": 4.7203,
+      "1h_return_pct": 4.7203,
+      "delta_1h_minus_4h_pp": 0.0,
+      "4h_pf": 1.1959,
+      "1h_pf": 1.1959,
+      "4h_dd_pct": 2.837,
+      "1h_hourly_close_dd_pct": 2.8573
+    },
+    "15bp_cost_1bp_funding": {
+      "n": 309,
+      "4h_return_pct": 3.7217,
+      "1h_return_pct": 3.7622,
+      "delta_1h_minus_4h_pp": 0.0405,
+      "4h_pf": 1.1523,
+      "1h_pf": 1.154,
+      "4h_dd_pct": 2.8997,
+      "1h_hourly_close_dd_pct": 2.9312
+    },
+    "15bp_cost_3bp_funding": {
+      "n": 309,
+      "4h_return_pct": 1.7528,
+      "1h_return_pct": 1.8722,
+      "delta_1h_minus_4h_pp": 0.1194,
+      "4h_pf": 1.0697,
+      "1h_pf": 1.0746,
+      "4h_dd_pct": 3.3683,
+      "1h_hourly_close_dd_pct": 3.3238
+    },
+    "25bp_cost_0bp_funding": {
+      "n": 309,
+      "4h_return_pct": 2.5694,
+      "1h_return_pct": 2.5694,
+      "delta_1h_minus_4h_pp": 0.0,
+      "4h_pf": 1.1034,
+      "1h_pf": 1.1034,
+      "4h_dd_pct": 3.074,
+      "1h_hourly_close_dd_pct": 3.0976
+    },
+    "25bp_cost_1bp_funding": {
+      "n": 309,
+      "4h_return_pct": 1.5912,
+      "1h_return_pct": 1.6309,
+      "delta_1h_minus_4h_pp": 0.0397,
+      "4h_pf": 1.0631,
+      "1h_pf": 1.0647,
+      "4h_dd_pct": 3.4554,
+      "1h_hourly_close_dd_pct": 3.4406
+    },
+    "25bp_cost_3bp_funding": {
+      "n": 309,
+      "4h_return_pct": -0.3375,
+      "1h_return_pct": -0.2205,
+      "delta_1h_minus_4h_pp": 0.117,
+      "4h_pf": 0.987,
+      "1h_pf": 0.9915,
+      "4h_dd_pct": 4.3387,
+      "1h_hourly_close_dd_pct": 4.2654
+    },
+    "40bp_cost_0bp_funding": {
+      "n": 309,
+      "4h_return_pct": -0.5748,
+      "1h_return_pct": -0.5748,
+      "delta_1h_minus_4h_pp": 0.0,
+      "4h_pf": 0.9779,
+      "1h_pf": 0.9779,
+      "4h_dd_pct": 4.4917,
+      "1h_hourly_close_dd_pct": 4.5033
+    },
+    "40bp_cost_1bp_funding": {
+      "n": 309,
+      "4h_return_pct": -1.5231,
+      "1h_return_pct": -1.4846,
+      "delta_1h_minus_4h_pp": 0.0385,
+      "4h_pf": 0.9422,
+      "1h_pf": 0.9437,
+      "4h_dd_pct": 5.2087,
+      "1h_hourly_close_dd_pct": 5.192
+    },
+    "40bp_cost_3bp_funding": {
+      "n": 309,
+      "4h_return_pct": -3.3929,
+      "1h_return_pct": -3.2795,
+      "delta_1h_minus_4h_pp": 0.1134,
+      "4h_pf": 0.8748,
+      "1h_pf": 0.8788,
+      "4h_dd_pct": 6.6266,
+      "1h_hourly_close_dd_pct": 6.5551
+    }
+  },
+  "limitations": [
+    "All historical data previously inspected; this is not independent OOS.",
+    "Funding is synthetic, not exchange funding; event ordering at exact boundary unknown.",
+    "4H intrabar upper-bound exit window is wider than 1H; neither identifies actual fill time.",
+    "Quantities compound from prior cash differences; this is an accounting decomposition, not an executable re-optimized strategy.",
+    "1H vs 4H mark-to-market drawdowns use different clock frequencies and are not directly comparable.",
+    "Venue, market type, mark-price stop triggering and actual spread/slippage remain unknown.",
+    "No real orders or trading API calls."
+  ],
+  "conclusion": "Do not attribute 1H/4H PnL gap to alpha. Freeze 1H upper-bound clock as the more granular synthetic convention for future comparisons, pending observed venue funding."
+}
