@@ -25,9 +25,12 @@ from structural_delta_strategy import swing
 
 # Fixed before running new transfer assets; users may change for future tests.
 FIRST_MONTH.update({
-    "SOLUSDT": (2020,10),
-    "BNBUSDT": (2020,2),
-    "XRPUSDT": (2020,2)
+    # Use the same 2023-01 start on ALL external-transfer assets; early SOL
+    # Binance archive has real missing daily bars in Feb/Apr 2022. Never
+    # interpolate candles or calculate DeltaRSI across holes.
+    "SOLUSDT": (2023,1),
+    "BNBUSDT": (2023,1),
+    "XRPUSDT": (2023,1)
 })
 ASSETS=("BTCUSDT","ETHUSDT","SOLUSDT","BNBUSDT","XRPUSDT")
 STRENGTH_LOOKBACK=20
@@ -233,6 +236,7 @@ def main():
              "Stop level fixed for trade life. User may dynamically move a structural stop; not reproduced.",
              "Only structural levels use OHLC price; no MACD, BB, volume, external signals.",
              "Risk-sized compounding illustrative; no portfolio overlap across assets, leverage, margin liquidation or taxes.",
+             "SOL BNB XRP external-transfer bars begin January 2023 for a common contiguous historical interval. Earlier SOL archives had missing February/April 2022 daily candles; no candles interpolated.",
              "Alt-market transfer tests explore generality but cannot be considered independent confirmatory after viewing results."
          ],"assets":{},"overview":[]}
     logs=[]
