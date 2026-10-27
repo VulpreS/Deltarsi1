@@ -7,7 +7,8 @@
     "labels_git_blob_sha": "83dc9050b4481f6378798e086e0c3ffec6dd305a",
     "cached_1h": "data/BTCUSDT_1h.csv",
     "cached_1h_git_blob_sha": "4ab8fc2645ce097de6a5b8b256229a1858f16979",
-    "cached_1h_sha256_from_cycle18": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "cached_1h_sha256": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "labels_sha256": "d7fff047091bc231ce828a3c1cb31630db71a053034c7f3422aac7802bd520ac",
     "first_utc": "2025-10-26T13:00:00Z",
     "last_utc": "2026-10-26T13:00:00Z",
     "n_1h": 8761
@@ -65,7 +66,7 @@
         "marked_market_ohlc": {
           "open": 106011.13,
           "high": 106139.84,
-          "low": 105500,
+          "low": 105500.0,
           "close": 106139.83
         },
         "previous_market_ohlc": {
@@ -83,7 +84,7 @@
             "offset_hours": 1,
             "market_ohlc": {
               "open": 106139.82,
-              "high": 107500,
+              "high": 107500.0,
               "low": 106026.79,
               "close": 106110.36
             }
@@ -93,8 +94,8 @@
             "offset_hours": 2,
             "market_ohlc": {
               "open": 106110.36,
-              "high": 107130,
-              "low": 105610,
+              "high": 107130.0,
+              "low": 105610.0,
               "close": 106655.02
             }
           },
@@ -103,9 +104,9 @@
             "offset_hours": 3,
             "market_ohlc": {
               "open": 106655.02,
-              "high": 107100,
+              "high": 107100.0,
               "low": 106363.04,
-              "close": 106456
+              "close": 106456.0
             }
           }
         ]
@@ -129,7 +130,7 @@
         "previous_market_ohlc": {
           "open": 91713.45,
           "high": 92384.61,
-          "low": 89880,
+          "low": 89880.0,
           "close": 89951.7
         },
         "annotated_price_vs_marked": "above_high",
@@ -163,9 +164,9 @@
           "close": 87509.99
         },
         "previous_market_ohlc": {
-          "open": 87411,
+          "open": 87411.0,
           "high": 87535.98,
-          "low": 87310,
+          "low": 87310.0,
           "close": 87361.71
         },
         "annotated_price_vs_marked": "below_low",
@@ -176,7 +177,7 @@
             "utc": "2025-11-25T13:00:00Z",
             "offset_hours": 1,
             "market_ohlc": {
-              "open": 87510,
+              "open": 87510.0,
               "high": 87731.2,
               "low": 86870.5,
               "close": 87083.01
@@ -187,7 +188,7 @@
             "offset_hours": -2,
             "market_ohlc": {
               "open": 87231.76,
-              "high": 87430,
+              "high": 87430.0,
               "low": 86950.01,
               "close": 87411.01
             }
@@ -196,9 +197,9 @@
             "utc": "2025-11-25T14:00:00Z",
             "offset_hours": 2,
             "market_ohlc": {
-              "open": 87083,
+              "open": 87083.0,
               "high": 87298.35,
-              "low": 86116,
+              "low": 86116.0,
               "close": 86741.55
             }
           }
@@ -235,7 +236,7 @@
             "market_ohlc": {
               "open": 91201.09,
               "high": 91247.16,
-              "low": 90888,
+              "low": 90888.0,
               "close": 90888.01
             }
           },
@@ -244,8 +245,8 @@
             "offset_hours": -4,
             "market_ohlc": {
               "open": 92362.5,
-              "high": 92376,
-              "low": 90880,
+              "high": 92376.0,
+              "low": 90880.0,
               "close": 90936.23
             }
           },
@@ -254,7 +255,7 @@
             "offset_hours": -9,
             "market_ohlc": {
               "open": 91850.49,
-              "high": 92030,
+              "high": 92030.0,
               "low": 91065.13,
               "close": 91437.64
             }
@@ -274,13 +275,13 @@
         "marked_market_ohlc": {
           "open": 85875.91,
           "high": 85925.77,
-          "low": 85266,
+          "low": 85266.0,
           "close": 85838.51
         },
         "previous_market_ohlc": {
           "open": 85944.01,
           "high": 86019.76,
-          "low": 85386,
+          "low": 85386.0,
           "close": 85875.92
         },
         "annotated_price_vs_marked": "above_high",
@@ -292,7 +293,7 @@
             "offset_hours": 1,
             "market_ohlc": {
               "open": 85838.5,
-              "high": 86200,
+              "high": 86200.0,
               "low": 85812.61,
               "close": 86028.11
             }
@@ -303,7 +304,7 @@
             "market_ohlc": {
               "open": 85891.02,
               "high": 86227.99,
-              "low": 85800,
+              "low": 85800.0,
               "close": 85944.01
             }
           },
@@ -314,7 +315,7 @@
               "open": 86028.12,
               "high": 86611.69,
               "low": 86028.12,
-              "close": 86508
+              "close": 86508.0
             }
           }
         ]
@@ -324,8 +325,8 @@
         "marked_market_ohlc": {
           "open": 88513.43,
           "high": 88533.61,
-          "low": 87852,
-          "close": 88014
+          "low": 87852.0,
+          "close": 88014.0
         },
         "previous_market_ohlc": {
           "open": 88345.19,
@@ -341,8 +342,8 @@
             "utc": "2025-12-18T19:00:00Z",
             "offset_hours": 3,
             "market_ohlc": {
-              "open": 85970,
-              "high": 86010,
+              "open": 85970.0,
+              "high": 86010.0,
               "low": 84481.31,
               "close": 84483.79
             }
@@ -409,14 +410,14 @@
         "marked_utc": "2026-02-05T20:00:00Z",
         "marked_market_ohlc": {
           "open": 65265.66,
-          "high": 65700,
-          "low": 62345,
+          "high": 65700.0,
+          "low": 62345.0,
           "close": 63775.67
         },
         "previous_market_ohlc": {
           "open": 66347.01,
           "high": 66637.46,
-          "low": 65200,
+          "low": 65200.0,
           "close": 65265.65
         },
         "annotated_price_vs_marked": "above_high",
@@ -439,7 +440,7 @@
             "market_ohlc": {
               "open": 70858.13,
               "high": 71063.94,
-              "low": 69922,
+              "low": 69922.0,
               "close": 70318.35
             }
           },
@@ -512,7 +513,7 @@
             "offset_hours": 4,
             "market_ohlc": {
               "open": 65971.2,
-              "high": 66773,
+              "high": 66773.0,
               "low": 65821.97,
               "close": 66370.01
             }
@@ -536,7 +537,7 @@
           "close": 76492.46
         },
         "previous_market_ohlc": {
-          "open": 76350,
+          "open": 76350.0,
           "high": 76514.8,
           "low": 76308.33,
           "close": 76412.8
@@ -549,10 +550,10 @@
             "utc": "2026-04-30T18:00:00Z",
             "offset_hours": -2,
             "market_ohlc": {
-              "open": 76250,
+              "open": 76250.0,
               "high": 76468.84,
               "low": 76204.4,
-              "close": 76350
+              "close": 76350.0
             }
           },
           {
@@ -571,7 +572,7 @@
             "market_ohlc": {
               "open": 76261.04,
               "high": 76328.71,
-              "low": 76111,
+              "low": 76111.0,
               "close": 76250.01
             }
           }
@@ -580,7 +581,7 @@
       "first_exit": {
         "marked_utc": "2026-05-02T08:00:00Z",
         "marked_market_ohlc": {
-          "open": 78220,
+          "open": 78220.0,
           "high": 78356.51,
           "low": 78165.3,
           "close": 78315.37
@@ -589,7 +590,7 @@
           "open": 78327.8,
           "high": 78342.18,
           "low": 78207.2,
-          "close": 78220
+          "close": 78220.0
         },
         "annotated_price_vs_marked": "below_low",
         "annotated_price_vs_previous": "below_low",
@@ -601,8 +602,8 @@
             "market_ohlc": {
               "open": 78175.5,
               "high": 78235.25,
-              "low": 78040,
-              "close": 78174
+              "low": 78040.0,
+              "close": 78174.0
             }
           },
           {
@@ -639,7 +640,7 @@
         "marked_market_ohlc": {
           "open": 81058.79,
           "high": 81303.99,
-          "low": 81000,
+          "low": 81000.0,
           "close": 81240.01
         },
         "previous_market_ohlc": {
@@ -678,7 +679,7 @@
             "market_ohlc": {
               "open": 80843.3,
               "high": 80963.35,
-              "low": 80720,
+              "low": 80720.0,
               "close": 80837.15
             }
           }
@@ -696,7 +697,7 @@
         "marked_market_ohlc": {
           "open": 81058.79,
           "high": 81303.99,
-          "low": 81000,
+          "low": 81000.0,
           "close": 81240.01
         },
         "previous_market_ohlc": {
@@ -735,7 +736,7 @@
             "market_ohlc": {
               "open": 80843.3,
               "high": 80963.35,
-              "low": 80720,
+              "low": 80720.0,
               "close": 80837.15
             }
           }
@@ -751,15 +752,15 @@
       "first_exit": {
         "marked_utc": "2026-06-25T12:00:00Z",
         "marked_market_ohlc": {
-          "open": 61282,
+          "open": 61282.0,
           "high": 61761.35,
-          "low": 61080,
+          "low": 61080.0,
           "close": 61244.01
         },
         "previous_market_ohlc": {
           "open": 61269.95,
           "high": 61422.52,
-          "low": 61066,
+          "low": 61066.0,
           "close": 61282.01
         },
         "annotated_price_vs_marked": "below_low",
