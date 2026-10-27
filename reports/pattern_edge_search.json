@@ -1,6 +1,6 @@
 {
   "title": "Exploratory causal DeltaRSI entry-stop-exit pattern grid",
-  "generated_utc": "2026-10-27T04:55:22.317378+00:00",
+  "generated_utc": "2026-10-27T04:56:37.486203+00:00",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
@@ -18,7 +18,8 @@
     "0.15% round-trip fixed, exit notional included; funding excluded per latest manager issue.",
     "Per-symbol non-overlap, no shared-capital competition; pseudo DD from ordered 0.25%-risk R series is NOT executable portfolio MTM DD.",
     "Entry modes are separate causal signal families; differing trade counts and schedules prevent paired inference.",
-    "All configurations and failures included; selecting winners after seeing diagnostic_test would invalidate any test claim."
+    "All configurations and failures included; selecting winners after seeing diagnostic_test would invalidate any test claim.",
+    "Top-10 mean_R CIs are exploratory 30-day calendar-block bootstrap (1200 seeded draws), not selection-adjusted."
   ],
   "splits": "per-symbol 50% / 25% / 25%, earlier examined",
   "configs_total": 324,
@@ -522,6 +523,29 @@
             "pseudo_dd_pct": 1.7903
           }
         }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.222,
+            0.83503
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            -0.16472,
+            1.10451
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.9514,
+            -0.34228
+          ]
+        }
       }
     },
     {
@@ -796,6 +820,29 @@
             "pf": 0.462,
             "pseudo_dd_pct": 1.4746
           }
+        }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.10001,
+            0.58401
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            0.05993,
+            0.97713
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.40808,
+            -0.18086
+          ]
         }
       }
     },
@@ -1072,6 +1119,29 @@
             "pseudo_dd_pct": 1.9582
           }
         }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.24744,
+            0.54899
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            0.03619,
+            0.7595
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.82739,
+            -0.32793
+          ]
+        }
       }
     },
     {
@@ -1320,6 +1390,29 @@
             "pf": 0.725,
             "pseudo_dd_pct": 0.5564
           }
+        }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.0412,
+            0.53676
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            -0.2959,
+            0.78081
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.41987,
+            0.17872
+          ]
         }
       }
     },
@@ -1596,6 +1689,29 @@
             "pseudo_dd_pct": 1.6728
           }
         }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.14981,
+            0.38215
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            0.09835,
+            0.62518
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.43837,
+            -0.33911
+          ]
+        }
       }
     },
     {
@@ -1848,6 +1964,29 @@
             "pf": 0.3952,
             "pseudo_dd_pct": 1.5073
           }
+        }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            -0.22938,
+            0.71655
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            0.05121,
+            1.19071
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.78382,
+            0.09977
+          ]
         }
       }
     },
@@ -2102,6 +2241,29 @@
             "pseudo_dd_pct": 1.6417
           }
         }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            -0.47639,
+            0.79639
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            -0.60028,
+            1.20836
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.77781,
+            0.05586
+          ]
+        }
       }
     },
     {
@@ -2352,6 +2514,29 @@
             "pf": 0.4948,
             "pseudo_dd_pct": 0.7327
           }
+        }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.1407,
+            0.40211
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            -0.53594,
+            0.84401
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.3471,
+            0.16664
+          ]
         }
       }
     },
@@ -2621,6 +2806,29 @@
             "pseudo_dd_pct": 1.1368
           }
         }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            0.04625,
+            0.35885
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            0.00691,
+            0.56454
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.54634,
+            -0.19338
+          ]
+        }
       }
     },
     {
@@ -2871,6 +3079,29 @@
             "pf": 0.2934,
             "pseudo_dd_pct": 1.6065
           }
+        }
+      },
+      "block_bootstrap_30d": {
+        "train": {
+          "blocks": 9,
+          "ci95_R": [
+            -0.44783,
+            0.64325
+          ]
+        },
+        "validation": {
+          "blocks": 5,
+          "ci95_R": [
+            -0.4863,
+            0.89448
+          ]
+        },
+        "diagnostic_test": {
+          "blocks": 4,
+          "ci95_R": [
+            -0.76038,
+            0.35839
+          ]
         }
       }
     }
