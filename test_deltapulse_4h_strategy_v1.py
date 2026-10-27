@@ -42,6 +42,18 @@ class FourHourDeltaPulseTests(unittest.TestCase):
         got=[(x["i"],x["side"],x["peak_i"]) for x in prefix]
         self.assertEqual(ref,got)
 
+    def test_crest_growth_is_forward_chronological(self):
+        # Every crest must have 2 of the 3 PRECEDING candles with increasing
+        # |DeltaRSI| when read from older -> newer; regression for inversion.
+        events,_=candidates(self.ind,"crest",60,.8)
+        self.assertGreater(len(events),10)
+        d=self.ind["delta"]
+        for e in events:
+            k=e["i"]
+            growth=sum(abs(d[j])>abs(d[j-1]) for j in range(k-3,k))
+            self.assertGreaterEqual(growth,2)
+            self.assertLess(abs(d[k]),abs(d[k-1]))
+
     def test_one_crest_per_signed_episode(self):
         events,_=candidates(self.ind,"crest",60,.8)
         seen=set();episode=0;previous=0;ids=[]
