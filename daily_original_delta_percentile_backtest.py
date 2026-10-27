@@ -231,8 +231,9 @@ def exit_signal(ind,i,side,event_mode,exit_mode):
     if opposite:return "opposite_fade"
     return None
 
-def simulate(rows,ind,events,percentile,mode,exit_mode,stop_mode):
-    allowed=[x for x in events if percentile is None or x["strength_percentile"]>=percentile]
+def simulate(rows,ind,events,percentile,mode,exit_mode,stop_mode,only_side=None):
+    allowed=[x for x in events if (percentile is None or x["strength_percentile"]>=percentile)
+             and (only_side is None or x["side"]==only_side)]
     by_index={x["index"]:x for x in allowed}
     n=len(rows);k=110;trades=[];issues=Counter()
     while k<n-1:
@@ -344,7 +345,7 @@ def main():
        "Stop checked first on every daily OHLC bar, including gap-through fill at adverse open. OHLC cannot know exact intraday crossing order; stop-first conservative.",
        "Exit next-day open on opposite fading Delta or optional early original-impulse rebrightening. 90d administrative maximum, not user trading instruction.",
        "Closed-trade returns apply fixed 0.15% notional roundtrip fees+slippage. Funding omitted, mark-price stops and execution not independently verified.",
-       "Trade-level full-notional compounding and MDD illustrative only, NOT true leveraged portfolio MDD. No simultaneous positions within one asset.",
+       "Trade-level full-notional compounding and MDD illustrative only, NOT true leveraged portfolio MDD. No simultaneous positions within one asset. Separate LONG-only and SHORT-only replays recompute eligibility without opposite positions blocking signals.",
        "Assign trades to chronological segments by entry timestamp; positions may close after segment boundary. All prior BTC history previously analyzed; no pristine OOS.",
        "Mechanical results do not reconstruct trader's visual discretion, intraday partial daily bars, moving stop changes or partial exit fills."
       ],
@@ -378,6 +379,14 @@ def main():
                             "all_history":stats(trade),
                             "chronological":walkforward_by_entry(rows,trade),
                             "future_returns_at_all_signals":forwards(rows,events,pct)}
+                        if stop_mode=="confirmed_pivot":
+                            solo={}
+                            for direction,dname in ((1,"LONG"),(-1,"SHORT")):
+                                solo_trades,solo_issues=simulate(rows,ind,events,pct,event_mode,exit_mode,stop_mode,only_side=direction)
+                                solo[dname]={"all_history":stats(solo_trades),
+                                    "chronological":walkforward_by_entry(rows,solo_trades),
+                                    "signal_diagnostics":solo_issues}
+                            record["direction_only_replays"]=solo
                         asset["configurations"][label]=record
                         # Preserve all trades for primary structural stop, plus recent
                         # 5d sensitivity of the main 80th-percentile model only.
