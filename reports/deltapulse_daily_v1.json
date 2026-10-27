@@ -5721,19 +5721,11 @@
     },
     "SOLUSDT": {
       "source": {
-        "source": "Binance USD-M BTC/ETH perpetual daily archival klines, not Bybit",
-        "archive_url_pattern": "https://data.binance.vision/data/futures/um/monthly/klines/<SYMBOL>/1d/",
-        "cached": false,
+        "source": "cached Binance USD-M 1D archives",
+        "cached": true,
         "first": "2023-01-01",
         "last": "2026-10-25",
-        "rows": 1394,
-        "archive_errors": [
-          [
-            "2026-10-26",
-            "HTTP 404"
-          ]
-        ],
-        "unavailable_archive_count": 1
+        "rows": 1394
       },
       "rows": 1394,
       "buy_and_hold_2025_plus_pct": -46.44,
@@ -8517,14 +8509,11 @@
     },
     "BNBUSDT": {
       "source": {
-        "source": "Binance USD-M BTC/ETH perpetual daily archival klines, not Bybit",
-        "archive_url_pattern": "https://data.binance.vision/data/futures/um/monthly/klines/<SYMBOL>/1d/",
-        "cached": false,
+        "source": "cached Binance USD-M 1D archives",
+        "cached": true,
         "first": "2023-01-01",
         "last": "2026-10-26",
-        "rows": 1395,
-        "archive_errors": [],
-        "unavailable_archive_count": 0
+        "rows": 1395
       },
       "rows": 1395,
       "buy_and_hold_2025_plus_pct": 5.87,
@@ -11302,19 +11291,11 @@
     },
     "XRPUSDT": {
       "source": {
-        "source": "Binance USD-M BTC/ETH perpetual daily archival klines, not Bybit",
-        "archive_url_pattern": "https://data.binance.vision/data/futures/um/monthly/klines/<SYMBOL>/1d/",
-        "cached": false,
+        "source": "cached Binance USD-M 1D archives",
+        "cached": true,
         "first": "2023-01-01",
         "last": "2026-10-25",
-        "rows": 1394,
-        "archive_errors": [
-          [
-            "2026-10-26",
-            "HTTP 404"
-          ]
-        ],
-        "unavailable_archive_count": 1
+        "rows": 1394
       },
       "rows": 1394,
       "buy_and_hold_2025_plus_pct": -37.81,
