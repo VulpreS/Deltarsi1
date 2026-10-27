@@ -1,0 +1,23 @@
+name: DeltaPulse 4H Robustness Audit
+on:
+  push:
+    paths:
+      - deltapulse_4h_v1_robustness.py
+      - .github/workflows/deltapulse-4h-robustness.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python deltapulse_4h_v1_robustness.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_4h_v1_robustness.json
+          git diff --cached --quiet || (git commit -m "Save DeltaPulse 4H risk and robustness diagnostics" && git pull --rebase origin main && git push)
