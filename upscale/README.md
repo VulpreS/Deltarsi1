@@ -1,6 +1,29 @@
 # Upscale Crypto Backtester
 
-## Current objective: both stages in 14 days
+## Current position model: fixed margin, leverage at most 3
+
+Actions now runs `python -m upscale.margin_study --out reports/upscale_margin`.
+User constraints: margin 10–15% of account equity; leverage no greater than 3;
+stop no farther than 5% price movement; both challenge stages in 14 days.
+Fixed experiment uses margin 10% / 15% and leverage 1 / 2 / 3 on the same
+trend20/40 baselines and 1h/4h cached BTC/ETH candles, both directions / long only.
+This changes sizing, not the already rejected entry/exit hypothesis.
+
+Notional = current pre-entry equity × margin fraction × leverage. ATR stop
+above 5% rejects the entry; tighter stops do not increase notional. No hidden
+inverse-stop sizing or margin reduction at 4% drawdown. Costs remain separate.
+
+Extra research safeguards (not supplied by user): <=4% initial NAV aggregate
+reserved stop risk, planned all-stop equity >=96% UTC-day-start and >=92%
+initial NAV, daily guard 2.5%, stop new entries below initial NAV -6%. An entry
+that does not fit is skipped and counted rather than resized. These limits
+can affect passage speed; they are disclosed in the report.
+
+Every window and trade is exported, including failed and timed-out windows.
+Trade fields expose margin, notional, pre-entry equity, stop percent and planned
+loss percent. Monthly or weekly overlapping windows are dependent observations.
+
+## Previous experiment: fixed risk, both stages in 14 days
 
 The current Actions experiment is `python -m upscale.fortnight`. It evaluates
 both stages within **14 calendar days total**, including the 3/5 profitable-day

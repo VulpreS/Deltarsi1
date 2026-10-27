@@ -20,6 +20,20 @@ class Config:
     portfolio_risk: float = .0075
     leverage_cap: float = 5.
     long_only: bool = False
+    sizing_mode: str = 'risk'
+    margin_fraction: float = .10
+    position_leverage: float = 3.
+    max_stop_pct: float = .05
+
+    def __post_init__(self):
+        if self.sizing_mode not in ('risk','margin'):
+            raise ValueError('sizing_mode must be risk or margin')
+        if not 0 < self.margin_fraction <= 1 or self.position_leverage <= 0:
+            raise ValueError('invalid margin or leverage')
+        if not 0 < self.max_stop_pct < 1:
+            raise ValueError('invalid stop cap')
+        if self.sizing_mode == 'margin' and self.position_leverage > self.leverage_cap:
+            raise ValueError('position leverage exceeds account cap')
 
 
 def load_data(tf='4h'):
@@ -99,7 +113,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
     cash=1.; pos={}; trades=[]; curve=[]; daily=[]; day=None; day_base=1.; halted=False
     peak=1.; maxdd=0.; min_equity=1.; worst_day=0.; breach=None
     phase=1; phase_initial=1.; phase_base=1.; phase_daily=[]; phase1_date=None; outcome='timeout' if challenge else 'complete'
-    previous_close=1.; stop_all=False; completed_phases=[]
+    previous_close=1.; stop_all=False; completed_phases=[]; rejected_stop_cap=0; rejected_budget=0
     step=next(iter(frames.values())).index[1]-next(iter(frames.values())).index[0]
     def equity(prices):
         return cash+sum(p['qty']*p['side']*(prices[s]-p['entry']) for s,p in pos.items())
@@ -110,7 +124,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
         gross=adjusted_gross(raw,0 if ambiguous else (t-p['time']).total_seconds())
         fee=p['qty']*fill*cfg.fee
         cash+=gross-fee
-        trades.append(dict(symbol=s,side=p['side'],kind=p['kind'],entry_time=str(p['time']),exit_time=str(t),entry=p['entry'],exit=fill,raw_gross=raw,gross=gross,net=gross-fee-p['entry_fee']-p['funding'],funding=p['funding'],reason=reason,api_60s_ambiguous=bool(ambiguous and raw>0)))
+        trades.append(dict(symbol=s,side=p['side'],kind=p['kind'],entry_time=str(p['time']),exit_time=str(t),entry=p['entry'],exit=fill,raw_gross=raw,gross=gross,net=gross-fee-p['entry_fee']-p['funding'],funding=p['funding'],entry_equity=p['entry_equity'],entry_notional=p['qty']*p['entry'],entry_margin=p['margin'],planned_stop_pct=p['stop_pct'],planned_loss_pct=p['planned_loss_pct'],reason=reason,api_60s_ambiguous=bool(ambiguous and raw>0)))
     def finish_day(eq):
         gain=eq-day_base
         daily.append(dict(day=str(day),equity=eq,pnl=gain,return_on_day_start=gain/day_base,phase=phase))
@@ -150,6 +164,8 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
                 side=int(sig); entry=opens[s]*(1+side*cfg.slippage)
                 distance=float(atr)*(2. if kind=='trend' else 1.5)
                 if distance<=0: continue
+                if cfg.sizing_mode=='margin' and distance/entry>cfg.max_stop_pct+1e-12:
+                    rejected_stop_cap+=1; continue
                 eq=equity(opens)
                 drawdown=max(0,1-eq/phase_initial)
                 if drawdown>=.06: halted=True; break
@@ -159,13 +175,27 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
                 used=sum(p['reserved'] for p in pos.values())
                 available=max(0,cfg.portfolio_risk*phase_initial-used)
                 notional=sum(p['qty']*opens[k] for k,p in pos.items())
-                qty=min(risk/budget_per_unit,available/budget_per_unit,max(0,cfg.leverage_cap*eq-notional)/entry)
+                if cfg.sizing_mode=='margin':
+                    # Fixed equity fraction as collateral; never turn margin into risk sizing.
+                    qty=eq*cfg.margin_fraction*cfg.position_leverage/entry
+                    used_margin=sum(p['margin'] for p in pos.values())
+                    # Additional research safety buffer: planned all-stop equity stays
+                    # above 96% of day-start NAV and 92% of initial NAV.
+                    worst_existing=cash-sum(p['reserved'] for p in pos.values())
+                    buffer_floor=max(day_base*.96,phase_initial*.92)
+                    if (qty*budget_per_unit>available+1e-12 or
+                        qty*entry+notional>cfg.leverage_cap*eq+1e-12 or
+                        used_margin+eq*cfg.margin_fraction>eq+1e-12 or
+                        worst_existing-qty*budget_per_unit<buffer_floor):
+                        rejected_budget+=1; continue
+                else:
+                    qty=min(risk/budget_per_unit,available/budget_per_unit,max(0,cfg.leverage_cap*eq-notional)/entry)
                 if qty<=0: continue
                 entry_fee=qty*entry*cfg.fee; cash-=entry_fee
                 target=float(mid) if kind=='range' else None
                 if target is not None and side*(target-entry)<=0:
                     cash+=entry_fee; continue
-                pos[s]=dict(side=side,entry=entry,qty=qty,stop=entry-side*distance,target=target,time=t,kind=kind,max_hours=120 if kind=='trend' else 24,entry_fee=entry_fee,funding=0.,reserved=qty*budget_per_unit)
+                pos[s]=dict(side=side,entry=entry,qty=qty,stop=entry-side*distance,target=target,time=t,kind=kind,max_hours=120 if kind=='trend' else 24,entry_fee=entry_fee,funding=0.,reserved=qty*budget_per_unit,entry_equity=eq,margin=qty*entry/cfg.position_leverage if cfg.sizing_mode=='margin' else 0.,stop_pct=distance/entry,planned_loss_pct=qty*budget_per_unit/eq*100)
         # Bound intrabar equity at jointly adverse extrema (not claimed synchronous).
         adverse={s:(bars[s][2] if p['side']==1 else bars[s][1]) for s,p in pos.items()}
         # Stop execution limits excursion unless the open gapped across the stop.
@@ -219,7 +249,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
         elif cash<=day_base*.95: breach='daily'; outcome='failed'
     if len(idx) and day is not None: finish_day(cash)
     profits=[x['net'] for x in trades]; win=sum(x for x in profits if x>0); loss=-sum(x for x in profits if x<0)
-    return dict(summary=dict(outcome=outcome,return_pct=(cash-1)*100,max_drawdown_pct=maxdd*100,min_equity=min_equity,worst_day_pct=worst_day*100,trades=len(trades),win_rate=sum(x>0 for x in profits)/len(profits) if profits else None,profit_factor=win/loss if loss else None,breach=breach,phase=phase,phase1_date=phase1_date,completed_phases=completed_phases,elapsed_days=float((t+step-idx[0])/pd.Timedelta(days=1)) if len(idx) else 0,profit_days_current_phase=int(sum(x>=.005*phase_initial-1e-12 for x in phase_daily)),start=str(idx[0]) if len(idx) else None,end=str(t+step) if len(idx) else None,ambiguous_profit_exits=sum(x['api_60s_ambiguous'] for x in trades)),trades=trades,equity=curve,daily=daily)
+    return dict(summary=dict(outcome=outcome,return_pct=(cash-1)*100,max_drawdown_pct=maxdd*100,min_equity=min_equity,worst_day_pct=worst_day*100,trades=len(trades),win_rate=sum(x>0 for x in profits)/len(profits) if profits else None,profit_factor=win/loss if loss else None,breach=breach,phase=phase,phase1_date=phase1_date,completed_phases=completed_phases,rejected_stop_cap=rejected_stop_cap,rejected_budget=rejected_budget,elapsed_days=float((t+step-idx[0])/pd.Timedelta(days=1)) if len(idx) else 0,profit_days_current_phase=int(sum(x>=.005*phase_initial-1e-12 for x in phase_daily)),start=str(idx[0]) if len(idx) else None,end=str(t+step) if len(idx) else None,ambiguous_profit_exits=sum(x['api_60s_ambiguous'] for x in trades)),trades=trades,equity=curve,daily=daily)
 
 
 def run(out):
