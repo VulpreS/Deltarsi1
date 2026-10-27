@@ -1,6 +1,6 @@
 """No external data, orders, or network. Deterministic label normalization fixtures."""
 import unittest
-from manual_trade_label_audit import parse_msk, asof_hour, normalize, stats, stop_touched_before_first, H
+from manual_trade_label_audit import parse_msk, asof_hour, normalize, stats, stop_touched_before_first, in_cache, H
 
 def row(**kw):
     x=dict(entry_msk="2026-09-18 11:00",entry="100",sl="90",
@@ -16,6 +16,15 @@ class ManualLabelTests(unittest.TestCase):
         self.assertEqual(ms,1789718400000) # 08:00 UTC
         self.assertEqual(asof_hour([ms-H,ms,ms+H],ms),0)
         self.assertEqual(asof_hour([ms,ms+H],ms),-1)
+
+    def test_cache_boundaries_are_integer_timestamps(self):
+        times=[1000,2000,3000]
+        self.assertTrue(in_cache(times,1000))
+        self.assertTrue(in_cache(times,3000))
+        self.assertFalse(in_cache(times,999))
+        self.assertFalse(in_cache(times,3001))
+        self.assertFalse(in_cache(times,None))
+        self.assertFalse(in_cache([],1000))
 
     def test_fee_and_R_long(self):
         t=normalize(row())
