@@ -1,0 +1,4033 @@
+{
+  "purpose": "4H source sensitivity: cached 1H OHLC -> closed four-hour, plus BTC/ETH Binance archive price and Delta parity",
+  "notes": [
+    "Cached repository 1H CSV exchange provenance is not guaranteed; do not identify it as Bybit without separate validation.",
+    "4H only from FOUR complete 1H candles; missing hours omitted and no bridging across missing 4H candles.",
+    "Exclude 270 early bars for BTC/ETH cross-source indicator parity to avoid different EMA starting histories.",
+    "Signals from original log-mirrored DeltaRSI, frozen 60-bar 80th-percentile crest, next 4H open, confirmed local price swing stop.",
+    "1-year data available for BTC ETH ICP and about 7 months HYPE. Not an out-of-sample model selection or user's manual trades.",
+    "Market quotes/source and partial archive coverage may change signals and PnL versus full-history strategy."
+  ],
+  "assets": {
+    "BTCUSDT": {
+      "cached_data": {
+        "n_hourly": 8761,
+        "n_4h_completed": 2189,
+        "segments": 1,
+        "longest_segment": 2189,
+        "selected_latest_segment_bars": 2189,
+        "selected_start": "2025-10-26T16:00:00Z",
+        "selected_last_close": "2026-10-26T12:00:00Z",
+        "data_source": "existing hourly OHLC CSV; provider not explicitly recorded in CSV"
+      },
+      "parity": {
+        "overlap_4h_candles": 2189,
+        "comparison_after_270_4h_warmup": 1919,
+        "color_agreement_pct": 99.58,
+        "delta_sign_agreement_pct": 99.9,
+        "median_abs_close_difference_pct": 0.0472,
+        "median_abs_DeltaRSI_difference": 0.05568
+      },
+      "variants": {
+        "color_unfiltered": {
+          "all_signal_count": 255,
+          "rejected_events": {},
+          "LONG": {
+            "metrics": {
+              "n": 109,
+              "win_rate_pct": 31.19,
+              "mean_net_pct": -0.1848,
+              "median_net_pct": -0.4212,
+              "profit_factor": 0.7235,
+              "mean_r": -0.2863,
+              "median_initial_stop_pct": 1.366,
+              "median_hold_hours": 12,
+              "stops": 32,
+              "exit_reasons": {
+                "structural_stop": 32,
+                "rebrightening": 55,
+                "opposite_delta_fade": 22
+              },
+              "hypothetical_full_notional_compound_pct": -19.49,
+              "hypothetical_closed_trade_maxdd_pct": 19.49,
+              "illustrative_half_percent_initial_risk_compound_pct": -14.6,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 14.6
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 2,
+              "eligible_events_all": 127,
+              "occupied_while_previous_trade_open": 16
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-30T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.521816,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-01T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.536943,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.885804,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-07T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.025184,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-09T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.014031,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-15T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.442011,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.467716,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-23T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.390947,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-24T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.314247,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.844893,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 107,
+              "win_rate_pct": 29.91,
+              "mean_net_pct": -0.186,
+              "median_net_pct": -0.5033,
+              "profit_factor": 0.719,
+              "mean_r": -0.2398,
+              "median_initial_stop_pct": 1.604,
+              "median_hold_hours": 12,
+              "stops": 32,
+              "exit_reasons": {
+                "opposite_delta_fade": 24,
+                "rebrightening": 51,
+                "structural_stop": 32
+              },
+              "hypothetical_full_notional_compound_pct": -19.51,
+              "hypothetical_closed_trade_maxdd_pct": 22.82,
+              "illustrative_half_percent_initial_risk_compound_pct": -12.19,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 13.46
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 7,
+              "eligible_events_all": 128,
+              "occupied_while_previous_trade_open": 14
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-20T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.204027,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.605777,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-04T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.565841,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-05T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.703874,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-13T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.079127,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-14T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.699971,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-18T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.678177,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-20T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.202019,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-21T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.657604,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.471014,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 179,
+              "win_rate_pct": 31.84,
+              "mean_net_pct": -0.148,
+              "median_net_pct": -0.4753,
+              "profit_factor": 0.7783,
+              "mean_r": -0.2593,
+              "median_initial_stop_pct": 1.469,
+              "median_hold_hours": 12,
+              "stops": 55,
+              "exit_reasons": {
+                "opposite_delta_fade": 42,
+                "rebrightening": 82,
+                "structural_stop": 55
+              },
+              "hypothetical_full_notional_compound_pct": -25.55,
+              "hypothetical_closed_trade_maxdd_pct": 27.33,
+              "illustrative_half_percent_initial_risk_compound_pct": -20.96,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 21.16
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 8,
+              "eligible_events_all": 255,
+              "occupied_while_previous_trade_open": 68
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-10-09T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.014031,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-14T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.699971,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-15T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.442011,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.467716,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-20T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.202019,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-21T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.657604,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.471014,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-23T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.475322,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-24T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.314247,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.844893,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "color_p80_60": {
+          "all_signal_count": 83,
+          "rejected_events": {
+            "below_strength_threshold": 172
+          },
+          "LONG": {
+            "metrics": {
+              "n": 37,
+              "win_rate_pct": 35.14,
+              "mean_net_pct": -0.2215,
+              "median_net_pct": -0.6267,
+              "profit_factor": 0.7,
+              "mean_r": -0.2669,
+              "median_initial_stop_pct": 1.39,
+              "median_hold_hours": 16,
+              "stops": 16,
+              "exit_reasons": {
+                "structural_stop": 16,
+                "rebrightening": 14,
+                "opposite_delta_fade": 7
+              },
+              "hypothetical_full_notional_compound_pct": -8.38,
+              "hypothetical_closed_trade_maxdd_pct": 10.59,
+              "illustrative_half_percent_initial_risk_compound_pct": -4.87,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.94
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 39,
+              "occupied_while_previous_trade_open": 2
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-03T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.695358,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-11T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.084052,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-14T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.333465,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-03T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 4.734026,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-07T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.777122,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-11T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.805823,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.245207,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-07T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.025184,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-09T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.014031,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.844893,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 40,
+              "win_rate_pct": 40.0,
+              "mean_net_pct": -0.054,
+              "median_net_pct": -0.3229,
+              "profit_factor": 0.9163,
+              "mean_r": -0.1962,
+              "median_initial_stop_pct": 1.655,
+              "median_hold_hours": 18.0,
+              "stops": 15,
+              "exit_reasons": {
+                "opposite_delta_fade": 10,
+                "rebrightening": 15,
+                "structural_stop": 15
+              },
+              "hypothetical_full_notional_compound_pct": -2.63,
+              "hypothetical_closed_trade_maxdd_pct": 14.23,
+              "illustrative_half_percent_initial_risk_compound_pct": -3.9,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 6.95
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 2,
+              "eligible_events_all": 44,
+              "occupied_while_previous_trade_open": 2
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-07-22T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.52015,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-04T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.266301,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-18T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.912826,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.382955,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-04T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.503308,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-06T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.745855,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-20T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.204027,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.605777,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-05T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.703874,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.471014,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 72,
+              "win_rate_pct": 40.28,
+              "mean_net_pct": -0.1097,
+              "median_net_pct": -0.4442,
+              "profit_factor": 0.8441,
+              "mean_r": -0.1814,
+              "median_initial_stop_pct": 1.647,
+              "median_hold_hours": 18.0,
+              "stops": 29,
+              "exit_reasons": {
+                "opposite_delta_fade": 17,
+                "structural_stop": 29,
+                "rebrightening": 26
+              },
+              "hypothetical_full_notional_compound_pct": -8.56,
+              "hypothetical_closed_trade_maxdd_pct": 15.29,
+              "illustrative_half_percent_initial_risk_compound_pct": -6.42,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 7.9
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 83,
+              "occupied_while_previous_trade_open": 10
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-07T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.777122,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-11T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.805823,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-20T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.204027,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.245207,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.605777,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-05T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.703874,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-07T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.025184,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-09T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.014031,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.471014,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.844893,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "crest_p80_60": {
+          "all_signal_count": 8,
+          "rejected_events": {
+            "below_strength_threshold": 45,
+            "repeat_in_same_signed_impulse": 1
+          },
+          "LONG": {
+            "metrics": {
+              "n": 6,
+              "win_rate_pct": 16.67,
+              "mean_net_pct": -1.1004,
+              "median_net_pct": -1.1777,
+              "profit_factor": 0.2356,
+              "mean_r": -0.731,
+              "median_initial_stop_pct": 1.731,
+              "median_hold_hours": 14.0,
+              "stops": 4,
+              "exit_reasons": {
+                "structural_stop": 4,
+                "rebrightening": 1,
+                "opposite_delta_fade": 1
+              },
+              "hypothetical_full_notional_compound_pct": -6.52,
+              "hypothetical_closed_trade_maxdd_pct": 6.52,
+              "illustrative_half_percent_initial_risk_compound_pct": -2.18,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 2.18
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 6,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2025-12-18T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.326375,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-03-19T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.25354,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-03-28T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.101848,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-04-21T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.034589,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-06-04T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -4.178385,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-07T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.777122,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 2,
+              "win_rate_pct": 100.0,
+              "mean_net_pct": 2.4395,
+              "median_net_pct": 2.4395,
+              "profit_factor": null,
+              "mean_r": 0.9396,
+              "median_initial_stop_pct": 2.323,
+              "median_hold_hours": 48.0,
+              "stops": 0,
+              "exit_reasons": {
+                "opposite_delta_fade": 1,
+                "rebrightening": 1
+              },
+              "hypothetical_full_notional_compound_pct": 4.92,
+              "hypothetical_closed_trade_maxdd_pct": 0,
+              "illustrative_half_percent_initial_risk_compound_pct": 0.94,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 0.0
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 2,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-01-29T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.952042,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-06-08T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.927037,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 8,
+              "win_rate_pct": 37.5,
+              "mean_net_pct": -0.2155,
+              "median_net_pct": -0.9395,
+              "profit_factor": 0.8004,
+              "mean_r": -0.3133,
+              "median_initial_stop_pct": 1.847,
+              "median_hold_hours": 18.0,
+              "stops": 4,
+              "exit_reasons": {
+                "structural_stop": 4,
+                "opposite_delta_fade": 2,
+                "rebrightening": 2
+              },
+              "hypothetical_full_notional_compound_pct": -1.92,
+              "hypothetical_closed_trade_maxdd_pct": 4.52,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.26,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.3
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 8,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2025-12-18T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.326375,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-01-29T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.952042,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-03-19T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.25354,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-03-28T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.101848,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-04-21T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.034589,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-06-04T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -4.178385,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-08T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.927037,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-07T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.777122,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "confirm_p80_60": {
+          "all_signal_count": 58,
+          "rejected_events": {
+            "below_strength_threshold": 124,
+            "repeat_in_same_signed_impulse": 77
+          },
+          "LONG": {
+            "metrics": {
+              "n": 27,
+              "win_rate_pct": 22.22,
+              "mean_net_pct": -0.3289,
+              "median_net_pct": -0.655,
+              "profit_factor": 0.5835,
+              "mean_r": -0.3641,
+              "median_initial_stop_pct": 1.329,
+              "median_hold_hours": 16,
+              "stops": 11,
+              "exit_reasons": {
+                "structural_stop": 11,
+                "rebrightening": 13,
+                "opposite_delta_fade": 3
+              },
+              "hypothetical_full_notional_compound_pct": -8.89,
+              "hypothetical_closed_trade_maxdd_pct": 10.18,
+              "illustrative_half_percent_initial_risk_compound_pct": -4.88,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.88
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 27,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-25T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -3.802627,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-09T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.646789,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-14T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 3.799171,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-25T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.268475,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-02T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.896761,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-11T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.655005,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-11T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.241747,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.304256,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-08T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.890919,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.844893,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 30,
+              "win_rate_pct": 33.33,
+              "mean_net_pct": -0.0671,
+              "median_net_pct": -0.3541,
+              "profit_factor": 0.8701,
+              "mean_r": -0.1254,
+              "median_initial_stop_pct": 1.681,
+              "median_hold_hours": 20.0,
+              "stops": 7,
+              "exit_reasons": {
+                "opposite_delta_fade": 7,
+                "rebrightening": 16,
+                "structural_stop": 7
+              },
+              "hypothetical_full_notional_compound_pct": -2.24,
+              "hypothetical_closed_trade_maxdd_pct": 6.07,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.89,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 2.35
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 31,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-29T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.123867,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.03553,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-13T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.050596,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-22T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.058927,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-18T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.912826,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-04T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.045493,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.105815,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-03T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.364818,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.718716,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.099103,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 54,
+              "win_rate_pct": 27.78,
+              "mean_net_pct": -0.2575,
+              "median_net_pct": -0.4898,
+              "profit_factor": 0.6141,
+              "mean_r": -0.2362,
+              "median_initial_stop_pct": 1.494,
+              "median_hold_hours": 16.0,
+              "stops": 17,
+              "exit_reasons": {
+                "opposite_delta_fade": 9,
+                "structural_stop": 17,
+                "rebrightening": 28
+              },
+              "hypothetical_full_notional_compound_pct": -13.52,
+              "hypothetical_closed_trade_maxdd_pct": 14.79,
+              "illustrative_half_percent_initial_risk_compound_pct": -6.29,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 6.36
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 58,
+              "occupied_while_previous_trade_open": 3
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-18T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.912826,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-04T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.045493,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-11T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.241747,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.105815,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.304256,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-03T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.364818,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-08T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.890919,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.718716,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.099103,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.844893,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ETHUSDT": {
+      "cached_data": {
+        "n_hourly": 8779,
+        "n_4h_completed": 2194,
+        "segments": 1,
+        "longest_segment": 2194,
+        "selected_latest_segment_bars": 2194,
+        "selected_start": "2025-10-26T12:00:00Z",
+        "selected_last_close": "2026-10-27T04:00:00Z",
+        "data_source": "existing hourly OHLC CSV; provider not explicitly recorded in CSV"
+      },
+      "parity": {
+        "overlap_4h_candles": 2193,
+        "comparison_after_270_4h_warmup": 1923,
+        "color_agreement_pct": 99.53,
+        "delta_sign_agreement_pct": 99.84,
+        "median_abs_close_difference_pct": 0.04784,
+        "median_abs_DeltaRSI_difference": 0.04796
+      },
+      "variants": {
+        "color_unfiltered": {
+          "all_signal_count": 257,
+          "rejected_events": {},
+          "LONG": {
+            "metrics": {
+              "n": 105,
+              "win_rate_pct": 33.33,
+              "mean_net_pct": -0.299,
+              "median_net_pct": -0.55,
+              "profit_factor": 0.6797,
+              "mean_r": -0.198,
+              "median_initial_stop_pct": 1.771,
+              "median_hold_hours": 12,
+              "stops": 26,
+              "exit_reasons": {
+                "rebrightening": 54,
+                "structural_stop": 26,
+                "opposite_delta_fade": 25
+              },
+              "hypothetical_full_notional_compound_pct": -29.1,
+              "hypothetical_closed_trade_maxdd_pct": 29.1,
+              "illustrative_half_percent_initial_risk_compound_pct": -9.98,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 9.98
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 4,
+              "eligible_events_all": 130,
+              "occupied_while_previous_trade_open": 21
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-10-03T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.169761,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.424883,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-07T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.190072,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-10T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.169757,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-15T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.532277,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-17T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.121161,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -3.081586,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-20T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.131776,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-23T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.269465,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-26T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.758534,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 108,
+              "win_rate_pct": 31.48,
+              "mean_net_pct": 0.1562,
+              "median_net_pct": -0.5167,
+              "profit_factor": 1.2019,
+              "mean_r": -0.1085,
+              "median_initial_stop_pct": 1.901,
+              "median_hold_hours": 16.0,
+              "stops": 30,
+              "exit_reasons": {
+                "opposite_delta_fade": 29,
+                "rebrightening": 49,
+                "structural_stop": 30
+              },
+              "hypothetical_full_notional_compound_pct": 12.49,
+              "hypothetical_closed_trade_maxdd_pct": 23.98,
+              "illustrative_half_percent_initial_risk_compound_pct": -6.48,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 9.98
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 7,
+              "eligible_events_all": 127,
+              "occupied_while_previous_trade_open": 12
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-24T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.52919,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-29T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.033642,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-01T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.039473,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.417963,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-04T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.248556,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-05T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.55115,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-06T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.357288,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-12T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.099415,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -3.231792,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.58369,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 177,
+              "win_rate_pct": 32.77,
+              "mean_net_pct": 0.0404,
+              "median_net_pct": -0.5794,
+              "profit_factor": 1.0488,
+              "mean_r": -0.1587,
+              "median_initial_stop_pct": 1.884,
+              "median_hold_hours": 12,
+              "stops": 49,
+              "exit_reasons": {
+                "opposite_delta_fade": 46,
+                "structural_stop": 49,
+                "rebrightening": 82
+              },
+              "hypothetical_full_notional_compound_pct": 0.1,
+              "hypothetical_closed_trade_maxdd_pct": 30.02,
+              "illustrative_half_percent_initial_risk_compound_pct": -13.9,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 16.36
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 8,
+              "eligible_events_all": 257,
+              "occupied_while_previous_trade_open": 72
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-10-07T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.190072,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-10T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.169757,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-13T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.257581,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-17T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.121161,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -3.081586,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.476664,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-20T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.131776,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.58369,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-23T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.917941,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-26T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.758534,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "color_p80_60": {
+          "all_signal_count": 75,
+          "rejected_events": {
+            "below_strength_threshold": 182
+          },
+          "LONG": {
+            "metrics": {
+              "n": 30,
+              "win_rate_pct": 33.33,
+              "mean_net_pct": -0.1962,
+              "median_net_pct": -0.7432,
+              "profit_factor": 0.7569,
+              "mean_r": -0.2923,
+              "median_initial_stop_pct": 1.596,
+              "median_hold_hours": 14.0,
+              "stops": 11,
+              "exit_reasons": {
+                "structural_stop": 11,
+                "opposite_delta_fade": 7,
+                "rebrightening": 12
+              },
+              "hypothetical_full_notional_compound_pct": -6.28,
+              "hypothetical_closed_trade_maxdd_pct": 10.17,
+              "illustrative_half_percent_initial_risk_compound_pct": -4.32,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.32
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 2,
+              "eligible_events_all": 34,
+              "occupied_while_previous_trade_open": 2
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-01T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.39318,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-02T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.470415,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-02T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.477702,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-03T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.193469,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-03T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 4.016667,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-16T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.381735,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.213987,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.424883,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-07T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.190072,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-26T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.758534,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 37,
+              "win_rate_pct": 35.14,
+              "mean_net_pct": 0.135,
+              "median_net_pct": -0.5791,
+              "profit_factor": 1.1701,
+              "mean_r": -0.1555,
+              "median_initial_stop_pct": 1.551,
+              "median_hold_hours": 16,
+              "stops": 14,
+              "exit_reasons": {
+                "opposite_delta_fade": 11,
+                "rebrightening": 12,
+                "structural_stop": 14
+              },
+              "hypothetical_full_notional_compound_pct": 4.04,
+              "hypothetical_closed_trade_maxdd_pct": 10.21,
+              "illustrative_half_percent_initial_risk_compound_pct": -3.49,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 8.74
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 3,
+              "eligible_events_all": 41,
+              "occupied_while_previous_trade_open": 1
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-08T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.505242,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-18T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.298007,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.832126,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-04T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.141818,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.57907,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-07T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.09194,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-15T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.412575,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-19T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.547551,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-20T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -3.343085,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.417963,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 62,
+              "win_rate_pct": 33.87,
+              "mean_net_pct": 0.0093,
+              "median_net_pct": -0.6739,
+              "profit_factor": 1.0114,
+              "mean_r": -0.2009,
+              "median_initial_stop_pct": 1.585,
+              "median_hold_hours": 16.0,
+              "stops": 23,
+              "exit_reasons": {
+                "opposite_delta_fade": 17,
+                "rebrightening": 22,
+                "structural_stop": 23
+              },
+              "hypothetical_full_notional_compound_pct": -1.02,
+              "hypothetical_closed_trade_maxdd_pct": 14.91,
+              "illustrative_half_percent_initial_risk_compound_pct": -6.7,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 8.74
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 4,
+              "eligible_events_all": 75,
+              "occupied_while_previous_trade_open": 9
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-07T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.09194,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-15T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.412575,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-16T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.381735,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-19T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.547551,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-20T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -3.343085,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.213987,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-02T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.417963,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-06T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.424883,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-07T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.190072,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-26T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.758534,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "crest_p80_60": {
+          "all_signal_count": 8,
+          "rejected_events": {
+            "below_strength_threshold": 36
+          },
+          "LONG": {
+            "metrics": {
+              "n": 2,
+              "win_rate_pct": 0.0,
+              "mean_net_pct": -2.4625,
+              "median_net_pct": -2.4625,
+              "profit_factor": 0.0,
+              "mean_r": -1.086,
+              "median_initial_stop_pct": 2.312,
+              "median_hold_hours": 14.0,
+              "stops": 2,
+              "exit_reasons": {
+                "structural_stop": 2
+              },
+              "hypothetical_full_notional_compound_pct": -4.88,
+              "hypothetical_closed_trade_maxdd_pct": 4.88,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.08,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.08
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 3,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-03-29T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.316011,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-04T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -3.608989,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 4,
+              "win_rate_pct": 25.0,
+              "mean_net_pct": -0.0525,
+              "median_net_pct": -1.058,
+              "profit_factor": 0.952,
+              "mean_r": -0.5815,
+              "median_initial_stop_pct": 1.554,
+              "median_hold_hours": 12.0,
+              "stops": 3,
+              "exit_reasons": {
+                "structural_stop": 3,
+                "opposite_delta_fade": 1
+              },
+              "hypothetical_full_notional_compound_pct": -0.33,
+              "hypothetical_closed_trade_maxdd_pct": 2.27,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.16,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.16
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 5,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-01-05T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.265798,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-16T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.171628,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-05T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.974136,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-04T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.141818,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 6,
+              "win_rate_pct": 16.67,
+              "mean_net_pct": -0.8559,
+              "median_net_pct": -1.2289,
+              "profit_factor": 0.4482,
+              "mean_r": -0.7496,
+              "median_initial_stop_pct": 1.641,
+              "median_hold_hours": 12.0,
+              "stops": 5,
+              "exit_reasons": {
+                "structural_stop": 5,
+                "opposite_delta_fade": 1
+              },
+              "hypothetical_full_notional_compound_pct": -5.19,
+              "hypothetical_closed_trade_maxdd_pct": 7.03,
+              "illustrative_half_percent_initial_risk_compound_pct": -2.23,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 2.23
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 2,
+              "eligible_events_all": 8,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-01-05T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.265798,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-03-29T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.316011,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-04T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -3.608989,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-16T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.171628,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-05T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.974136,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-04T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.141818,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "confirm_p80_60": {
+          "all_signal_count": 54,
+          "rejected_events": {
+            "repeat_in_same_signed_impulse": 67,
+            "below_strength_threshold": 125
+          },
+          "LONG": {
+            "metrics": {
+              "n": 26,
+              "win_rate_pct": 42.31,
+              "mean_net_pct": -0.1218,
+              "median_net_pct": -0.7571,
+              "profit_factor": 0.8839,
+              "mean_r": -0.0146,
+              "median_initial_stop_pct": 2.12,
+              "median_hold_hours": 18.0,
+              "stops": 7,
+              "exit_reasons": {
+                "rebrightening": 12,
+                "structural_stop": 7,
+                "opposite_delta_fade": 7
+              },
+              "hypothetical_full_notional_compound_pct": -4.14,
+              "hypothetical_closed_trade_maxdd_pct": 11.26,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.23,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.78
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 26,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-26T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.717133,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-18T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.093391,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-25T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.341731,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-02T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.399933,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-11T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.781431,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-16T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.004279,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-25T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.916873,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.732785,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-09T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.322122,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.654349,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 27,
+              "win_rate_pct": 37.04,
+              "mean_net_pct": 0.1998,
+              "median_net_pct": -0.6747,
+              "profit_factor": 1.2629,
+              "mean_r": -0.014,
+              "median_initial_stop_pct": 2.129,
+              "median_hold_hours": 24,
+              "stops": 7,
+              "exit_reasons": {
+                "opposite_delta_fade": 11,
+                "rebrightening": 9,
+                "structural_stop": 7
+              },
+              "hypothetical_full_notional_compound_pct": 4.81,
+              "hypothetical_closed_trade_maxdd_pct": 6.76,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.23,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.84
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 28,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-05-26T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.065061,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-06-09T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.365602,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-06-16T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.730513,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-06-30T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.882485,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-16T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.581545,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-06T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.068296,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-18T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.07,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-07T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.416737,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.2368,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.67473,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 49,
+              "win_rate_pct": 38.78,
+              "mean_net_pct": 0.048,
+              "median_net_pct": -0.7814,
+              "profit_factor": 1.0512,
+              "mean_r": -0.0029,
+              "median_initial_stop_pct": 2.129,
+              "median_hold_hours": 20,
+              "stops": 13,
+              "exit_reasons": {
+                "opposite_delta_fade": 17,
+                "rebrightening": 19,
+                "structural_stop": 13
+              },
+              "hypothetical_full_notional_compound_pct": 0.61,
+              "hypothetical_closed_trade_maxdd_pct": 15.98,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.16,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 3.13
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 54,
+              "occupied_while_previous_trade_open": 4
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-11T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.781431,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-18T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.07,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-07T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.416737,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-16T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.004279,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-19T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.2368,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-25T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.916873,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.67473,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-06T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.732785,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-09T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.322122,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-25T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.654349,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ICPUSDT": {
+      "cached_data": {
+        "n_hourly": 8761,
+        "n_4h_completed": 2189,
+        "segments": 1,
+        "longest_segment": 2189,
+        "selected_latest_segment_bars": 2189,
+        "selected_start": "2025-10-26T16:00:00Z",
+        "selected_last_close": "2026-10-26T12:00:00Z",
+        "data_source": "existing hourly OHLC CSV; provider not explicitly recorded in CSV"
+      },
+      "parity": null,
+      "variants": {
+        "color_unfiltered": {
+          "all_signal_count": 281,
+          "rejected_events": {},
+          "LONG": {
+            "metrics": {
+              "n": 121,
+              "win_rate_pct": 32.23,
+              "mean_net_pct": -0.3016,
+              "median_net_pct": -0.8002,
+              "profit_factor": 0.7489,
+              "mean_r": -0.1769,
+              "median_initial_stop_pct": 2.678,
+              "median_hold_hours": 12,
+              "stops": 35,
+              "exit_reasons": {
+                "structural_stop": 35,
+                "opposite_delta_fade": 24,
+                "rebrightening": 62
+              },
+              "hypothetical_full_notional_compound_pct": -34.11,
+              "hypothetical_closed_trade_maxdd_pct": 46.07,
+              "illustrative_half_percent_initial_risk_compound_pct": -10.32,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 11.84
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 12,
+              "stop_over_15pct": 1,
+              "eligible_events_all": 162,
+              "occupied_while_previous_trade_open": 28
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-10-15T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.893548,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-16T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.016405,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-17T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.45,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.74268,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-19T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.632925,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-20T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.819565,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-20T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.617085,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-23T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.691126,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-24T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.478467,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.749393,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 91,
+              "win_rate_pct": 41.76,
+              "mean_net_pct": 0.0289,
+              "median_net_pct": -0.6686,
+              "profit_factor": 1.0307,
+              "mean_r": 0.0185,
+              "median_initial_stop_pct": 3.598,
+              "median_hold_hours": 16,
+              "stops": 17,
+              "exit_reasons": {
+                "opposite_delta_fade": 28,
+                "rebrightening": 46,
+                "structural_stop": 17
+              },
+              "hypothetical_full_notional_compound_pct": 0.06,
+              "hypothetical_closed_trade_maxdd_pct": 24.71,
+              "illustrative_half_percent_initial_risk_compound_pct": 0.72,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.96
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 9,
+              "stop_over_15pct": 3,
+              "eligible_events_all": 119,
+              "occupied_while_previous_trade_open": 16
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-26T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.751031,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-26T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.96836,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-27T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.891667,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-30T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.590476,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-30T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.737889,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-02T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.288057,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-06T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 6.258776,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.400793,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-13T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.890862,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.067993,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 174,
+              "win_rate_pct": 37.93,
+              "mean_net_pct": -0.1447,
+              "median_net_pct": -0.6994,
+              "profit_factor": 0.8641,
+              "mean_r": -0.1152,
+              "median_initial_stop_pct": 2.695,
+              "median_hold_hours": 12.0,
+              "stops": 40,
+              "exit_reasons": {
+                "opposite_delta_fade": 50,
+                "structural_stop": 40,
+                "rebrightening": 84
+              },
+              "hypothetical_full_notional_compound_pct": -27.01,
+              "hypothetical_closed_trade_maxdd_pct": 47.7,
+              "illustrative_half_percent_initial_risk_compound_pct": -9.73,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 11.37
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 17,
+              "stop_over_15pct": 4,
+              "eligible_events_all": 281,
+              "occupied_while_previous_trade_open": 86
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-10-13T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 2.890862,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-16T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.016405,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-17T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.45,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.74268,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-19T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.632925,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-20T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.819565,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-20T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.617085,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.423888,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-24T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.478467,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.749393,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "color_p80_60": {
+          "all_signal_count": 69,
+          "rejected_events": {
+            "below_strength_threshold": 212
+          },
+          "LONG": {
+            "metrics": {
+              "n": 23,
+              "win_rate_pct": 34.78,
+              "mean_net_pct": 0.1781,
+              "median_net_pct": -0.8002,
+              "profit_factor": 1.158,
+              "mean_r": -0.2305,
+              "median_initial_stop_pct": 2.208,
+              "median_hold_hours": 12,
+              "stops": 10,
+              "exit_reasons": {
+                "structural_stop": 10,
+                "opposite_delta_fade": 5,
+                "rebrightening": 8
+              },
+              "hypothetical_full_notional_compound_pct": 2.81,
+              "hypothetical_closed_trade_maxdd_pct": 13.88,
+              "illustrative_half_percent_initial_risk_compound_pct": -2.65,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.15
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 4,
+              "eligible_events_all": 27,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-07-13T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.708047,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-25T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.903857,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.253837,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-13T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.287615,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-29T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 7.027033,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-03T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.465789,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-03T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.490244,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 9.614744,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-16T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.016405,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.749393,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 30,
+              "win_rate_pct": 53.33,
+              "mean_net_pct": 0.6757,
+              "median_net_pct": 0.4696,
+              "profit_factor": 1.928,
+              "mean_r": 0.1164,
+              "median_initial_stop_pct": 3.96,
+              "median_hold_hours": 24.0,
+              "stops": 1,
+              "exit_reasons": {
+                "opposite_delta_fade": 9,
+                "rebrightening": 20,
+                "structural_stop": 1
+              },
+              "hypothetical_full_notional_compound_pct": 21.16,
+              "hypothetical_closed_trade_maxdd_pct": 8.11,
+              "illustrative_half_percent_initial_risk_compound_pct": 1.75,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.01
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 7,
+              "stop_over_15pct": 2,
+              "eligible_events_all": 42,
+              "occupied_while_previous_trade_open": 3
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-10T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.175783,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-05T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.803846,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-06T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.468624,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-09T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 5.432029,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-20T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.057821,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-27T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.891667,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-02T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.288057,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-06T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 6.258776,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.400793,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.067993,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 49,
+              "win_rate_pct": 42.86,
+              "mean_net_pct": 0.1771,
+              "median_net_pct": -0.6686,
+              "profit_factor": 1.1874,
+              "mean_r": -0.0884,
+              "median_initial_stop_pct": 3.42,
+              "median_hold_hours": 20,
+              "stops": 11,
+              "exit_reasons": {
+                "opposite_delta_fade": 12,
+                "rebrightening": 26,
+                "structural_stop": 11
+              },
+              "hypothetical_full_notional_compound_pct": 7.01,
+              "hypothetical_closed_trade_maxdd_pct": 17.34,
+              "illustrative_half_percent_initial_risk_compound_pct": -2.18,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.26
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 10,
+              "stop_over_15pct": 2,
+              "eligible_events_all": 69,
+              "occupied_while_previous_trade_open": 8
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-09T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 5.432029,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-20T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.057821,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-27T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.891667,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-02T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.288057,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-03T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.490244,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 6.258776,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 9.614744,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-16T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.016405,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.067993,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.749393,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        },
+        "crest_p80_60": {
+          "all_signal_count": 6,
+          "rejected_events": {
+            "below_strength_threshold": 60
+          },
+          "LONG": {
+            "metrics": {
+              "n": 2,
+              "win_rate_pct": 0.0,
+              "mean_net_pct": -1.0068,
+              "median_net_pct": -1.0068,
+              "profit_factor": 0.0,
+              "mean_r": -0.5497,
+              "median_initial_stop_pct": 4.67,
+              "median_hold_hours": 34.0,
+              "stops": 1,
+              "exit_reasons": {
+                "structural_stop": 1,
+                "opposite_delta_fade": 1
+              },
+              "hypothetical_full_notional_compound_pct": -2.01,
+              "hypothetical_closed_trade_maxdd_pct": 2.01,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.55,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 0.55
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 3,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-02-20T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.906564,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-07T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.106952,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 2,
+              "win_rate_pct": 50.0,
+              "mean_net_pct": -0.9763,
+              "median_net_pct": -0.9763,
+              "profit_factor": 0.1784,
+              "mean_r": -0.505,
+              "median_initial_stop_pct": 4.808,
+              "median_hold_hours": 14.0,
+              "stops": 1,
+              "exit_reasons": {
+                "structural_stop": 1,
+                "opposite_delta_fade": 1
+              },
+              "hypothetical_full_notional_compound_pct": -1.96,
+              "hypothetical_closed_trade_maxdd_pct": 2.38,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.51,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 0.53
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 1,
+              "eligible_events_all": 3,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-03-12T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.376555,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.423888,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 4,
+              "win_rate_pct": 25.0,
+              "mean_net_pct": -0.9915,
+              "median_net_pct": -1.0068,
+              "profit_factor": 0.0966,
+              "mean_r": -0.5274,
+              "median_initial_stop_pct": 4.808,
+              "median_hold_hours": 14.0,
+              "stops": 2,
+              "exit_reasons": {
+                "structural_stop": 2,
+                "opposite_delta_fade": 2
+              },
+              "hypothetical_full_notional_compound_pct": -3.93,
+              "hypothetical_closed_trade_maxdd_pct": 4.34,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.05,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.08
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 2,
+              "eligible_events_all": 6,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-02-20T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.906564,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-03-12T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.376555,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-07T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.106952,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.423888,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          }
+        },
+        "confirm_p80_60": {
+          "all_signal_count": 51,
+          "rejected_events": {
+            "below_strength_threshold": 144,
+            "repeat_in_same_signed_impulse": 70
+          },
+          "LONG": {
+            "metrics": {
+              "n": 19,
+              "win_rate_pct": 26.32,
+              "mean_net_pct": 0.5942,
+              "median_net_pct": -0.5436,
+              "profit_factor": 1.6192,
+              "mean_r": -0.1247,
+              "median_initial_stop_pct": 1.885,
+              "median_hold_hours": 12,
+              "stops": 9,
+              "exit_reasons": {
+                "structural_stop": 9,
+                "opposite_delta_fade": 2,
+                "rebrightening": 8
+              },
+              "hypothetical_full_notional_compound_pct": 10.19,
+              "hypothetical_closed_trade_maxdd_pct": 7.64,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.3,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.87
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 4,
+              "eligible_events_all": 23,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-19T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.642793,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-13T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.708047,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-25T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.202966,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-30T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.41506,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-13T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.287615,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-26T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.543577,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-03T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.632364,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-09T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": 13.459073,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-16T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.434585,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.749393,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 23,
+              "win_rate_pct": 47.83,
+              "mean_net_pct": 0.2388,
+              "median_net_pct": -0.066,
+              "profit_factor": 1.2369,
+              "mean_r": -0.0242,
+              "median_initial_stop_pct": 4.395,
+              "median_hold_hours": 24,
+              "stops": 2,
+              "exit_reasons": {
+                "rebrightening": 14,
+                "opposite_delta_fade": 7,
+                "structural_stop": 2
+              },
+              "hypothetical_full_notional_compound_pct": 4.73,
+              "hypothetical_closed_trade_maxdd_pct": 11.74,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.29,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.36
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 5,
+              "eligible_events_all": 28,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-07-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.335591,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-10T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.185631,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-04T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.515716,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-10T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.175783,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.317084,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-04T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -4.377053,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-02T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.163423,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.665032,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.400793,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.700762,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 39,
+              "win_rate_pct": 38.46,
+              "mean_net_pct": 0.4086,
+              "median_net_pct": -0.4754,
+              "profit_factor": 1.421,
+              "mean_r": -0.0387,
+              "median_initial_stop_pct": 3.464,
+              "median_hold_hours": 16,
+              "stops": 9,
+              "exit_reasons": {
+                "rebrightening": 21,
+                "structural_stop": 9,
+                "opposite_delta_fade": 9
+              },
+              "hypothetical_full_notional_compound_pct": 14.6,
+              "hypothetical_closed_trade_maxdd_pct": 14.7,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.88,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.91
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 8,
+              "eligible_events_all": 51,
+              "occupied_while_previous_trade_open": 4
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-13T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.287615,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-22T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.317084,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-04T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -4.377053,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-02T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.163423,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-03T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.632364,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.665032,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-09T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": 13.459073,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-16T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.434585,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.700762,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.749393,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "HYPEUSDT": {
+      "cached_data": {
+        "n_hourly": 5003,
+        "n_4h_completed": 1250,
+        "segments": 1,
+        "longest_segment": 1250,
+        "selected_latest_segment_bars": 1250,
+        "selected_start": "2026-04-01T04:00:00Z",
+        "selected_last_close": "2026-10-26T12:00:00Z",
+        "data_source": "existing hourly OHLC CSV; provider not explicitly recorded in CSV"
+      },
+      "parity": null,
+      "variants": {
+        "color_unfiltered": {
+          "all_signal_count": 123,
+          "rejected_events": {},
+          "LONG": {
+            "metrics": {
+              "n": 49,
+              "win_rate_pct": 36.73,
+              "mean_net_pct": -0.1012,
+              "median_net_pct": -0.7509,
+              "profit_factor": 0.8993,
+              "mean_r": -0.0336,
+              "median_initial_stop_pct": 2.631,
+              "median_hold_hours": 12,
+              "stops": 11,
+              "exit_reasons": {
+                "structural_stop": 11,
+                "opposite_delta_fade": 12,
+                "rebrightening": 26
+              },
+              "hypothetical_full_notional_compound_pct": -6.19,
+              "hypothetical_closed_trade_maxdd_pct": 13.36,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.89,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 3.93
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 5,
+              "eligible_events_all": 66,
+              "occupied_while_previous_trade_open": 12
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-27T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.045316,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-28T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.784101,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-29T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.367328,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-30T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.800222,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.177967,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-14T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.13175,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-15T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.86885,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.265279,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-19T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.61763,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-23T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.687065,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 44,
+              "win_rate_pct": 43.18,
+              "mean_net_pct": 0.1451,
+              "median_net_pct": -0.5263,
+              "profit_factor": 1.1231,
+              "mean_r": -0.0644,
+              "median_initial_stop_pct": 3.044,
+              "median_hold_hours": 16.0,
+              "stops": 16,
+              "exit_reasons": {
+                "rebrightening": 17,
+                "structural_stop": 16,
+                "opposite_delta_fade": 11
+              },
+              "hypothetical_full_notional_compound_pct": 3.95,
+              "hypothetical_closed_trade_maxdd_pct": 17.54,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.51,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 5.29
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_over_15pct": 1,
+              "stop_wrong_side": 5,
+              "eligible_events_all": 57,
+              "occupied_while_previous_trade_open": 7
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-21T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.15866,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-23T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.013866,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.0488,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-03T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.544222,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-05T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.67885,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 9.457873,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.760142,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-20T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.627139,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-21T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.507338,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.373745,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 81,
+              "win_rate_pct": 34.57,
+              "mean_net_pct": -0.3622,
+              "median_net_pct": -0.9496,
+              "profit_factor": 0.7029,
+              "mean_r": -0.1208,
+              "median_initial_stop_pct": 2.677,
+              "median_hold_hours": 12,
+              "stops": 26,
+              "exit_reasons": {
+                "structural_stop": 26,
+                "opposite_delta_fade": 16,
+                "rebrightening": 39
+              },
+              "hypothetical_full_notional_compound_pct": -27.75,
+              "hypothetical_closed_trade_maxdd_pct": 36.87,
+              "illustrative_half_percent_initial_risk_compound_pct": -4.89,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 7.68
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 7,
+              "stop_over_15pct": 1,
+              "eligible_events_all": 123,
+              "occupied_while_previous_trade_open": 34
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-10-05T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.67885,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 9.457873,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.177967,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-14T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.13175,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-15T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.86885,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-18T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.265279,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-19T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 0.61763,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-20T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.627139,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-21T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.507338,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-22T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.373745,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          }
+        },
+        "color_p80_60": {
+          "all_signal_count": 38,
+          "rejected_events": {
+            "below_strength_threshold": 85
+          },
+          "LONG": {
+            "metrics": {
+              "n": 12,
+              "win_rate_pct": 33.33,
+              "mean_net_pct": -0.0004,
+              "median_net_pct": -0.8652,
+              "profit_factor": 0.9997,
+              "mean_r": -0.0431,
+              "median_initial_stop_pct": 2.16,
+              "median_hold_hours": 24.0,
+              "stops": 5,
+              "exit_reasons": {
+                "structural_stop": 5,
+                "opposite_delta_fade": 4,
+                "rebrightening": 3
+              },
+              "hypothetical_full_notional_compound_pct": -0.5,
+              "hypothetical_closed_trade_maxdd_pct": 7.03,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.28,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.75
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 3,
+              "eligible_events_all": 16,
+              "occupied_while_previous_trade_open": 1
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-20T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.580098,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-06-24T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.979413,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-08T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.613819,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-19T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.966347,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-07-30T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.750116,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-26T00:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.432451,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-07T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.750933,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-11T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.994735,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-30T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.800222,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.177967,
+                "exit_reason": "opposite_delta_fade"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 17,
+              "win_rate_pct": 35.29,
+              "mean_net_pct": 0.1992,
+              "median_net_pct": -0.9211,
+              "profit_factor": 1.154,
+              "mean_r": -0.0681,
+              "median_initial_stop_pct": 2.73,
+              "median_hold_hours": 12,
+              "stops": 7,
+              "exit_reasons": {
+                "structural_stop": 7,
+                "rebrightening": 6,
+                "opposite_delta_fade": 4
+              },
+              "hypothetical_full_notional_compound_pct": 2.31,
+              "hypothetical_closed_trade_maxdd_pct": 11.48,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.64,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 4.35
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 4,
+              "eligible_events_all": 22,
+              "occupied_while_previous_trade_open": 1
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-06T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.293892,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-14T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.43012,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-18T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.155928,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-06T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.921055,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-15T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.15832,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.0488,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 9.457873,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-12T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.760142,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-20T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.627139,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-21T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.507338,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 26,
+              "win_rate_pct": 34.62,
+              "mean_net_pct": 0.0602,
+              "median_net_pct": -0.9502,
+              "profit_factor": 1.0466,
+              "mean_r": 0.0778,
+              "median_initial_stop_pct": 2.41,
+              "median_hold_hours": 22.0,
+              "stops": 10,
+              "exit_reasons": {
+                "structural_stop": 10,
+                "opposite_delta_fade": 7,
+                "rebrightening": 9
+              },
+              "hypothetical_full_notional_compound_pct": 0.11,
+              "hypothetical_closed_trade_maxdd_pct": 15.21,
+              "illustrative_half_percent_initial_risk_compound_pct": 0.96,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 3.16
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 6,
+              "eligible_events_all": 38,
+              "occupied_while_previous_trade_open": 6
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-09-06T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.921055,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-07T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.750933,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-11T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.994735,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-15T00:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 1.15832,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-30T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.800222,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.0488,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-06T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 9.457873,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": 2.177967,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-20T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.627139,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-21T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.507338,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          }
+        },
+        "crest_p80_60": {
+          "all_signal_count": 5,
+          "rejected_events": {
+            "below_strength_threshold": 16,
+            "repeat_in_same_signed_impulse": 1
+          },
+          "LONG": {
+            "metrics": {
+              "n": 2,
+              "win_rate_pct": 50.0,
+              "mean_net_pct": 7.6901,
+              "median_net_pct": 7.6901,
+              "profit_factor": 10.6816,
+              "mean_r": 3.5451,
+              "median_initial_stop_pct": 3.137,
+              "median_hold_hours": 22.0,
+              "stops": 0,
+              "exit_reasons": {
+                "opposite_delta_fade": 1,
+                "rebrightening": 1
+              },
+              "hypothetical_full_notional_compound_pct": 15.11,
+              "hypothetical_closed_trade_maxdd_pct": 1.59,
+              "illustrative_half_percent_initial_risk_compound_pct": 3.54,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 0.2
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 2,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-05-14T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": 16.968688,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-24T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.588587,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 3,
+              "win_rate_pct": 0.0,
+              "mean_net_pct": -3.4203,
+              "median_net_pct": -4.9613,
+              "profit_factor": 0.0,
+              "mean_r": -0.698,
+              "median_initial_stop_pct": 4.976,
+              "median_hold_hours": 24,
+              "stops": 2,
+              "exit_reasons": {
+                "rebrightening": 1,
+                "structural_stop": 2
+              },
+              "hypothetical_full_notional_compound_pct": -9.99,
+              "hypothetical_closed_trade_maxdd_pct": 9.99,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.04,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.04
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 3,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-27T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.174128,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-05T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -5.12553,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-22T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -4.961335,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 5,
+              "win_rate_pct": 20.0,
+              "mean_net_pct": 1.0238,
+              "median_net_pct": -1.5886,
+              "profit_factor": 1.432,
+              "mean_r": 0.9993,
+              "median_initial_stop_pct": 4.811,
+              "median_hold_hours": 24,
+              "stops": 2,
+              "exit_reasons": {
+                "opposite_delta_fade": 1,
+                "rebrightening": 2,
+                "structural_stop": 2
+              },
+              "hypothetical_full_notional_compound_pct": 3.61,
+              "hypothetical_closed_trade_maxdd_pct": 11.42,
+              "illustrative_half_percent_initial_risk_compound_pct": 2.46,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.24
+            },
+            "open_at_end": 0,
+            "skips": {
+              "eligible_events_all": 5,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-05-14T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": 16.968688,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-06-27T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.174128,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-05T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -5.12553,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-22T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -4.961335,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-09-24T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -1.588587,
+                "exit_reason": "rebrightening"
+              }
+            ]
+          }
+        },
+        "confirm_p80_60": {
+          "all_signal_count": 25,
+          "rejected_events": {
+            "repeat_in_same_signed_impulse": 32,
+            "below_strength_threshold": 72
+          },
+          "LONG": {
+            "metrics": {
+              "n": 8,
+              "win_rate_pct": 25.0,
+              "mean_net_pct": -1.3402,
+              "median_net_pct": -2.2294,
+              "profit_factor": 0.3049,
+              "mean_r": -0.5454,
+              "median_initial_stop_pct": 2.567,
+              "median_hold_hours": 24.0,
+              "stops": 5,
+              "exit_reasons": {
+                "structural_stop": 5,
+                "rebrightening": 1,
+                "opposite_delta_fade": 2
+              },
+              "hypothetical_full_notional_compound_pct": -10.45,
+              "hypothetical_closed_trade_maxdd_pct": 10.45,
+              "illustrative_half_percent_initial_risk_compound_pct": -2.17,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 2.17
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 2,
+              "eligible_events_all": 10,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-05-10T04:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.113214,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-04T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.835254,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-06-20T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": -0.580098,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-07-19T08:00:00Z",
+                "direction": "LONG",
+                "net_pct": 3.475706,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-07-30T20:00:00Z",
+                "direction": "LONG",
+                "net_pct": -4.952068,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-08-31T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.22797,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-30T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.345506,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.599228,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "SHORT": {
+            "metrics": {
+              "n": 12,
+              "win_rate_pct": 50.0,
+              "mean_net_pct": 0.4747,
+              "median_net_pct": -0.0797,
+              "profit_factor": 1.5517,
+              "mean_r": -0.0411,
+              "median_initial_stop_pct": 3.748,
+              "median_hold_hours": 30.0,
+              "stops": 3,
+              "exit_reasons": {
+                "rebrightening": 5,
+                "structural_stop": 3,
+                "opposite_delta_fade": 4
+              },
+              "hypothetical_full_notional_compound_pct": 5.4,
+              "hypothetical_closed_trade_maxdd_pct": 4.82,
+              "illustrative_half_percent_initial_risk_compound_pct": -0.26,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 1.26
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 3,
+              "eligible_events_all": 15,
+              "occupied_while_previous_trade_open": 0
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-06-01T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.590216,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-04T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -3.283854,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-07-27T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 4.773045,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-08-06T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.850273,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-14T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.208383,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-09-07T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.601601,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-15T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.048895,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.0488,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-12T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.05671,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-21T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.344325,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          },
+          "BOTH": {
+            "metrics": {
+              "n": 19,
+              "win_rate_pct": 42.11,
+              "mean_net_pct": -0.0038,
+              "median_net_pct": -0.5801,
+              "profit_factor": 0.9965,
+              "mean_r": -0.2013,
+              "median_initial_stop_pct": 3.483,
+              "median_hold_hours": 24,
+              "stops": 7,
+              "exit_reasons": {
+                "structural_stop": 7,
+                "rebrightening": 6,
+                "opposite_delta_fade": 6
+              },
+              "hypothetical_full_notional_compound_pct": -0.7,
+              "hypothetical_closed_trade_maxdd_pct": 8.06,
+              "illustrative_half_percent_initial_risk_compound_pct": -1.91,
+              "illustrative_half_percent_initial_risk_closed_maxdd_pct": 2.37
+            },
+            "open_at_end": 0,
+            "skips": {
+              "stop_wrong_side": 4,
+              "eligible_events_all": 25,
+              "occupied_while_previous_trade_open": 2
+            },
+            "last_ten_exits": [
+              {
+                "entry_time": "2026-08-06T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.850273,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-14T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -0.208383,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-08-31T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": 1.22797,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-07T08:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.601601,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-15T04:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 0.048895,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-09-30T12:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.345506,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-02T20:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -2.0488,
+                "exit_reason": "rebrightening"
+              },
+              {
+                "entry_time": "2026-10-12T16:00:00Z",
+                "direction": "SHORT",
+                "net_pct": 3.05671,
+                "exit_reason": "opposite_delta_fade"
+              },
+              {
+                "entry_time": "2026-10-21T12:00:00Z",
+                "direction": "SHORT",
+                "net_pct": -1.344325,
+                "exit_reason": "structural_stop"
+              },
+              {
+                "entry_time": "2026-10-25T16:00:00Z",
+                "direction": "LONG",
+                "net_pct": -2.599228,
+                "exit_reason": "structural_stop"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
