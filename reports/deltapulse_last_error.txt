@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Deltarsi1/Deltarsi1/deltapulse_daily_strategy_v1.py", line 285, in <module>
+    main()
+  File "/home/runner/work/Deltarsi1/Deltarsi1/deltapulse_daily_strategy_v1.py", line 240, in main
+    rows,source=load_market(symbol)
+                ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Deltarsi1/Deltarsi1/daily_original_delta_percentile_backtest.py", line 148, in load_market
+    if gaps:raise RuntimeError(f"{symbol}: internal historical daily data gaps {gaps[:10]}, archive errors {errors[:10]}")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: SOLUSDT: internal historical daily data gaps [('2022-02-25', '2022-03-01', 4), ('2022-03-31', '2022-04-03', 3)], archive errors [('2026-10-26', 'HTTP 404')]
