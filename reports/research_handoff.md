@@ -20,7 +20,8 @@ Exploratory grid of **486 rules**: three signal families (forming h1..3 fade; co
 | #1 turn + follow EMA50 + prior six-4H wave stop + TP3R/48h | 57 / 63.16% / +0.589 / 2.625 | 39 / 61.54% / +0.434 / 2.076 | **37 / 21.62% / −0.566 / 0.305** |
 | #2 same, TP1.5R/48h | 58 / 63.79% / +0.395 / 2.141 | 40 / 70.00% / +0.452 / 2.464 | **37 / 35.14% / −0.259 / 0.607** |
 | #3 same as #1, 24h | 62 / 58.06% / +0.410 / 2.366 | 43 / 53.49% / +0.387 / 2.470 | **41 / 21.95% / −0.483 / 0.313** |
-| #4 turn + follow EMA50 + prior six-4H wave stop + TP1.2R/48h | 58 / 67.24% / +0.339 / 2.100 | 40 / 72.50% / +0.422 / 2.491 | **39 / 38.46% / −0.280 / 0.550** |\n| #5 forming fade, no extra filter, ATR2.5, TP3R/48h | 46 / 63.04% / +0.321 / 2.103 | 23 / 60.87% / +0.302 / 2.434 | **32 / 34.38% / −0.152 / 0.656** |
+| #4 turn + follow EMA50 + prior six-4H wave stop + TP1.2R/48h | 58 / 67.24% / +0.339 / 2.100 | 40 / 72.50% / +0.422 / 2.491 | **39 / 38.46% / −0.280 / 0.550** |
+| #5 forming fade, no extra filter, ATR2.5, TP3R/48h | 46 / 63.04% / +0.321 / 2.103 | 23 / 60.87% / +0.302 / 2.434 | **32 / 34.38% / −0.152 / 0.656** |
 | Closest frozen reference 4H turn, ATR2.5 stop, **3ATR target = TP1.2R**, 48h | 209 / 51.20% / +0.014 / 1.042 | 125 / 58.40% / +0.082 / 1.285 | **137 / 50.36% / +0.091 / 1.299** |
 
 **All 10/10 top-ranked rules have negative mean R and PF<1 in the previously inspected third period.** Of 100 train/validation-qualified configurations, 21 have positive last-period expectancy and PF>1, but selecting those 21 after inspecting last-period outcomes would be post-hoc overfitting. The unfiltered 2.5ATR-stop/3ATR-target reference remains marginally positive across three reused periods, but HYPE's 1.2R reference is negative in its last period (19 trades, −0.077R, PF0.775), and this reference is not a shared-capital portfolio or an independently validated edge.
