@@ -1,3 +1,35 @@
+# DeltaRSI researcher handoff — cycle 17, 2026-10-27 ~10:57 MSK — PRICE-RANGE VOLATILITY FILTER (#20/#19/#17)
+
+**Decision: NO PROMOTION.** Read active manager issues #20/#19/#17/#18 and prior handoff. The owner's filter concerns **PRICE movement over recent ranges**, not histogram DeltaRSI amplitude. Hypothesis: 6×4H price high-low/close, 24×4H price high-low/close, or BB20 width can exclude unproductive DeltaRSI frozen-turn signals using a train-only median gate.
+
+## Changes / data / reproducibility
+- Added `price_range_gate_audit.py`, `test_price_range_gate_audit.py`, `.github/workflows/price-range-gate-audit.yml`, and generated `reports/price_range_gate_audit.json`. Reproduce: `python -m unittest -v test_price_range_gate_audit test_manual_trade_label_audit test_causal_4h_parity && python price_range_gate_audit.py`.
+- [GitHub Actions 40470178156](https://github.com/VulpreS/Deltarsi1/actions/runs/40470178156) **SUCCESS**, 22 tests PASS, cached-data report persisted. First run failed because HYPE has no candles before BTC common train cutoff; fixed by separating HYPE 50/25/25 negative-control calendar.
+- Only cached 1H BTC/ETH/ICP/HYPE; 4H features use fully closed 4H bars by decision timestamp; frozen 4H DeltaRSI turn timing, next 1H open entry, ATR2.5 stop, ATR3 target, 48h maximum, stop-first/adverse-gap. Fixed total fee 0.15%; funding excluded; no orders. BTC/ETH/ICP calendar: train to 2026-04-27 00:00 UTC, validation to 2026-07-27 06:00 UTC, diagnostic to cache end. Exact SHA256 and HYPE independent calendar in JSON. All periods previously examined, NOT untouched OOS.
+
+## Measured results vs baseline (validation, scheduled per-symbol, net after 15bp)
+| Asset | Frozen no-filter (N / mean R / PF) | Price range 6 (N / mean R / PF) | Price range 24 (N / mean R / PF) | BB width 20 (N / mean R / PF) |
+|---|---|---|---|---|
+| BTC | 34 / +0.2054 / 1.695 | 14 / +0.0863 / 1.279 | 10 / -0.3714 / 0.236 | 15 / -0.2134 / 0.541 |
+| ETH | 34 / +0.0001 / 0.998 | 12 / -0.1939 / 0.536 | 10 / -0.0345 / 0.889 | 10 / -0.0303 / 0.902 |
+| ICP | 38 / +0.0108 / 1.043 | 22 / -0.0324 / 0.862 | 15 / -0.0283 / 0.870 | 13 / -0.0964 / 0.660 |
+| HYPE (own split) | 22 / +0.1897 / 1.779 | 9 / -0.0354 / 0.833 | 3 / -0.3196 / 0.140 | 3 / -0.3196 / 0.140 |
+
+- BTC validation no-filter WR 67.65%, net +1.7529% of sequential equity, closed-trade DD 0.6694%; range6 WR 64.29%, +0.2996%, DD 0.5152%; range24 WR 40%, -0.9258%, DD 1.0090%; BB WR 46.67%, -0.8001%, DD 1.0825%. **All three gates showed better BTC/ETH TRAIN metrics but failed to generalize in validation**.
+- Matched BTC validation opportunities (no scheduling): range24 pass N15 -0.2640R vs reject N47 +0.1533R; BB pass N20 -0.1328R vs reject N42 +0.1405R. Changing admission also changes re-entry, so scheduled PnL differences are NOT paired causal effects.
+- BTC complete real journal: 42 rows, 4 unreconciled transcription flags, 31 clean inside cache; 30 have causal range features, 19 have a same-side frozen-turn candidate within ±4h (NOT fill match). Label median vs all candidate median: range6 2.798% vs 2.820%, range24 7.279% vs 5.794%, BB width 6.606% vs 4.418%. Directionally suggestive for broader range, not a validated filter.
+
+## Limitations, conclusion, manager questions
+**Reject unconditional high-range median gates on frozen 4H turns; do not reject discretionary price-range selection generally.** Need broader actual DeltaRSI color-transition event funnel, price sweep/rejection and compression→expansion interactions; no cherry-picking of inspected diagnostic. No common-capital portfolio, hourly MTM DD, venue-provenance, actual fills, or untouched forward sample. The 42-row complete journal is not an independent negative-control sample. Fees 15bp fixed, no funding by owner directive.
+
+1. Keep #20/#19 open: preregister at most two interaction rules, compare all eligible color transitions (not frozen-turn only), separate LONG/SHORT and skipped candidates; train-only calibration.
+2. Reconcile 5 BTC entry-hour and 8 exit-hour price mismatches plus one static-SL chronology conflict; request venue mapping and eight earlier months' missing cached coverage only with provenance.
+3. Require immutable prospective paper-only UTC receipt records and same-calendar portfolio MTM before any promotion; **never place real orders**.
+
+Detailed manager issue handoff: [#20 comment 6436663676](https://github.com/VulpreS/Deltarsi1/issues/20#issuecomment-6436663676). Report: [price_range_gate_audit.json](https://github.com/VulpreS/Deltarsi1/blob/main/reports/price_range_gate_audit.json).
+
+---
+
 # DeltaRSI researcher handoff — cycle 16, 2026-10-27 ~10:00 MSK — 42 USER-LABELLED BTC TRADES (#17, #10/#11)
 
 **Decision: PRIORITY #17 DESCRIPTIVE AUDIT COMPLETE; CAUSAL SIGNAL/EXECUTION AUDIT PARTIAL. Selected annotations show high in-sample win rate but DO NOT establish a profitable executable strategy. NO ORDERS.**
