@@ -95,7 +95,7 @@ def validate(symbol,rows,asof):
 def load(symbol):
     if symbol not in STARTS:raise ValueError(symbol)
     now=dt.datetime.now(UTC)
-    asof=int((now.replace(hour=0,minute=0,second=0,microsecond=0)-dt.timedelta(days=1)).timestamp()*1000)
+    asof=int(now.replace(hour=0,minute=0,second=0,microsecond=0).timestamp()*1000)
     # Use at most the completed previous UTC day; current data archives may lag.
     rows=read_cache(symbol)
     if rows and rows[-1][0]>=asof-3*24*3_600_000:
@@ -104,7 +104,7 @@ def load(symbol):
                      "source":"previously cached ZIP archives","cached":True,
                      "n":len(rows),"first":dt_of(rows[0][0]),
                      "last":dt_of(rows[-1][0])}
-    jobs=tasks(symbol,dt.datetime.fromtimestamp(asof/1000,UTC))
+    jobs=tasks(symbol,dt.datetime.fromtimestamp(asof/1000,UTC)-dt.timedelta(days=1))
     by_ts={};failures=[]
     with ThreadPoolExecutor(max_workers=10) as ex:
         futures=[ex.submit(fetch_one,job) for job in jobs]
@@ -112,7 +112,7 @@ def load(symbol):
             key,data,error=future.result()
             if error:failures.append({"period":key,"error":error})
             for row in data:
-                if row[0]+H4>asof+24*3_600_000:continue
+                if row[0]+H4>asof:continue
                 existing=by_ts.get(row[0])
                 if existing is not None and existing!=row:
                     raise ValueError(f"{symbol}: conflicting provider values {dt_of(row[0])}")
