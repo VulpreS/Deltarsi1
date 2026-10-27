@@ -1,3 +1,43 @@
+# DeltaRSI researcher handoff — cycle 10, 2026-10-27 ~04:00 MSK (P1 #13 causal forming-4H parity)
+
+**Status: REPRODUCIBLE EXPLORATORY AUDIT / CI PASS; NO ROBUST EARLY-ENTRY EDGE, NO INDEPENDENT OOS, NO LIVE ORDERS.** [CI 40429556695](https://github.com/VulpreS/Deltarsi1/actions/runs/40429556695) SUCCESS. [Machine-readable report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/causal_4h_parity_audit.json). Research code `causal_4h_parity_audit.py`; fixtures `test_causal_4h_parity.py`. Parameter SHA256 `9bcd09692a163f18c29b6f5e19236a079857488c6f4ba1b4370acb68d3a1a974`.
+
+## Hypothesis / manager priorities read first
+Read current open issues **#14 P0**, **#12 P0**, **#13 P1**, latest cycle-9 handoff and `reports/manager_directives.md`. #14 is fixed for synthetic resting-first semantics with **zero** historical competing gap-open reversals; #12 has matched standalone fill parity but still requires broader admission trace. **This cycle tests #13**: does earlier *causally observed* 4H DeltaRSI fading improve execution when **both** early and closed decisions use the *same previously completed 4H ATR*, 2.5 ATR stop, 3 ATR target, 48h hold, conservative 1H fills, 0.25% equity initial stop-risk, identical fee/funding grid? One predeclared exploratory fade hypothesis: previous opposite DeltaRSI >=15 and at/above its prior magnitude, current same-sign magnitude <=70% of previous; first qualifying 1H close at h=1..3 versus qualifying 4H close at h=4. No parameter search.
+
+## Changes and causal reproducibility
+- Added `causal_4h_parity_audit.py` (commit `b07eb40e`) and tests `test_causal_4h_parity.py` (commit `e22d4f13`), plus workflow `.github/workflows/p1-causal-4h-parity.yml` (commit `7f8e46e5`). CI ran regression suite and generated report; all steps SUCCESS.
+- **Streaming `CausalDelta`** reproduces the canonical full-history SMA(21)→RSI RMA(12)→EMA(7)→DeltaRSI on every completed 4H bar and on hypothetical partial bars, with tests comparing against the canonical full-prefix calculation. Partial h=1..3 snapshots **never commit** indicator state. Decision at 1H close, fill no earlier than next 1H open. At 2026-09-18 08:00 UTC (11:00 MSK, corrected L3), the 08:00–09:00 hourly bar is **not yet closed**; its first partial update is available only at 09:00 UTC. No use of future 4H close.
+- Strict completed UTC 4H aggregation from cached 1H only, fail closed on gaps; no downloads, APIs or orders. Full cached CSV SHA256 BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`, ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`, ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`, HYPE `7b1e66fbf6aee1f1407e877c7e1e4aaaeb8489009925438eadc53cf1b6c35bae`.
+- Both fade strategies use ATR computed **only through previous completed 4H candle**, the same stop/target multiples, 48 × 1H bars, gap-safe stop-first, 15/25/40bp round-trip fee+slippage charged on actual entry/exit notional and synthetic **0/1/3bp adverse funding per UTC 8h event**, upper-bound event timing for intrabar fills. Risk-sized 0.25% of equity at stop, max 1× equity per-symbol notional; one position per symbol; no same-exit-hour re-entry. **Separately** evaluated canonical completed-4H `turn` signal with ATR known at signal close, as a **distinct frozen-signal reference** (not identical engine/portfolio to #12).
+- Full chronological per-symbol runs and **three nonoverlapping window-reset regimes**, separate LONG/SHORT schedules, **matched same-bucket/side opportunities** (overlapping event-study, not executable), 30-day calendar-block bootstrap (1200 deterministic draws), reversed-side negative control, 0%-cash and price-only buy-and-hold contextual benchmarks.
+
+## Results — 15bp friction + synthetic 3bp adverse funding / 8h
+| Asset | Early forming N / return / PF | Closed fade N / return / PF | Frozen turn N / return / PF | Same-bucket pairs / mean early−closed (pp) / bootstrap 95% CI (pp) |
+|---|---|---|---|---|
+| BTC | 29 / **+1.1872% / 1.5598** | 31 / **+1.2401% / 1.5836** | 137 / +2.6577% / 1.2262 | 26 / +0.03965 / [+0.00708,+0.06763] |
+| ETH | 30 / **+2.4179% / 2.1739** | 28 / **+1.9899% / 2.0874** | 136 / +1.1451% / 1.1004 | 28 / −0.01794 / [−0.06063,+0.01234] |
+| ICP | 33 / **−0.8344% / 0.7674** | 28 / **+0.4113% / 1.1545** | 138 / −0.6831% / 0.9380 | 30 / +0.01525 / [−0.00671,+0.03907] |
+| HYPE | 13 / **−0.8090% / 0.4605** | 12 / **−0.5575% / 0.5307** | 69 / −0.9622% / 0.8387 | 11 / +0.06604 / [+0.00295,+0.10649] |
+
+**Interpretation:** BTC's positive matched-pair CI (26 pairs / 11 calendar blocks) is **exploratory only**, with positive-only hypothesis-selection exposure and overlapping outcomes; BTC *separately executable* early schedule actually underperformed closed fade. ETH's higher early executable return **reverses sign** on identical matched opportunities. ICP/HYPE early executable rules lose money; HYPE reversed-side negative control **gains +0.6081%** (13 trades), indicating fragile directional signal. There is **no cross-asset, cross-window robust incremental early-entry edge**.
+
+Three chronological windows (early vs closed, 15bp/3bp, per-symbol equity reset): BTC +0.8794/+0.7242, +0.7398/+0.9331, −0.4315/−0.4170%; ETH +0.8220/+0.7576, +1.7491/+1.8033, −0.1633/−0.5700%; ICP +0.1454/+0.0987, −0.1309/−0.0281, −0.8486/+0.3405%; HYPE −0.5350/−0.2667, +0.4916/+0.0933, −0.7633/−0.3844%. **Last-window early returns negative for all four symbols.** All windows were previously examined in other research, so chronological non-overlap is NOT independent OOS.
+
+## Limitations / decision
+- This closes **a substantial but not all** of #13: no single **multi-asset** portfolio comparison with shared capital, max two positions and true mark-to-market drawdown yet; current DD is **closed-trade DD only** and understates intrabar risk. Independent per-symbol results cannot be added as portfolio returns. Frozen-turn reference uses 1H intrabar fills and a separate signal definition; not numerical parity with #12 risk-sized 4H portfolio.
+- Same-bucket matched pairs are overlapping hypothetical trades with independent fixed-equity risk sizing, **not** an executable matched-entry cohort. Early vs closed can differ in whether a signal exists at all; full schedules have different trade counts and opportunity costs. Paired bootstrap CI is not an independent proof, ignores model-selection uncertainty, and has only 5–11 calendar blocks.
+- All history is reused/contaminated by prior exploration. Funding and 15/25/40bp friction are assumptions, not observed venue economics; OHLC does not reveal queue, spread, mark-price triggers or exact intrahour fills. HYPE venue provenance remains unknown.
+- **Decision: do NOT promote early entry or closed fade.** Preserve frozen turn as reference, paper research only, no real orders.
+
+## Specific questions / proposed next iteration for manager
+1. Should #13 be marked **PARTIAL / causal event timing, ATR parity and cost grid VERIFIED**, with **portfolio competition and MTM drawdown OPEN**? Recommend yes. Reconcile same-UTC frozen turn trade IDs with #12 before any numerical ranking.
+2. Next researcher: feed **both frozen early and closed event streams** into the P0-corrected `portfolio_risk_audit` event-driven engine with max 2 concurrent positions, 0.25%/trade and 0.5% total risk, 15/25/40bp × 0/1/3bp stress, true MTM DD, explicit skip/admission trace and identical UTC calendar; include HYPE only as negative control. **No retuning.**
+3. Investigate the *causal* last-window breakdown (all four early negative), especially regime/side and 1H gap sensitivity, **diagnostics only**; no regime filter selection on these inspected windows.
+4. Require source-verified venue/market, observed funding and append-only timestamped **future** 1H receipts before declaring any alpha. No independent holdout exists in the cache.
+
+---
+
 # DeltaRSI researcher handoff — cycle 9, 2026-10-27 03:00 MSK (P0 #14 reverse-gap order priority)
 
 **Status: P0 #14 CODE FIX + HISTORICAL CENSUS VERIFIED IN CI; NO ECONOMIC CHANGE ON CACHED HISTORY. No independent OOS, no production approval, no orders.** [GitHub Actions 40422961335](https://github.com/VulpreS/Deltarsi1/actions/runs/40422961335) SUCCESS. [Full report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/reverse_gap_priority_audit.json).
