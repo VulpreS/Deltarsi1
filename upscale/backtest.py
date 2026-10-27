@@ -203,7 +203,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
                 total=cash-phase_base; current[-1]=cash-day_base
                 if total>=target*phase_initial and sum(x>=.005*phase_initial-1e-12 for x in current)>=(3 if phase==1 else 5) and consistency(max(current),total):
                     finish_day(cash); day=None
-                    completed_phases.append(dict(phase=phase,completed_at=str(t+step),net_gain_pct=total*100,profit_days=sum(x>=.005*phase_initial-1e-12 for x in current),best_day_share=max(current)/total))
+                    completed_phases.append(dict(phase=phase,completed_at=str(t+step),net_gain_pct=total*100,profit_days=int(sum(x>=.005*phase_initial-1e-12 for x in current)),best_day_share=max(current)/total))
                     if phase==2: outcome='passed'; break
                     phase1_date=str(t+step); phase=2
                     # Conservative independent new stage starting at NAV=1.
@@ -219,7 +219,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
         elif cash<=day_base*.95: breach='daily'; outcome='failed'
     if len(idx) and day is not None: finish_day(cash)
     profits=[x['net'] for x in trades]; win=sum(x for x in profits if x>0); loss=-sum(x for x in profits if x<0)
-    return dict(summary=dict(outcome=outcome,return_pct=(cash-1)*100,max_drawdown_pct=maxdd*100,min_equity=min_equity,worst_day_pct=worst_day*100,trades=len(trades),win_rate=sum(x>0 for x in profits)/len(profits) if profits else None,profit_factor=win/loss if loss else None,breach=breach,phase=phase,phase1_date=phase1_date,completed_phases=completed_phases,elapsed_days=float((t+step-idx[0])/pd.Timedelta(days=1)) if len(idx) else 0,profit_days_current_phase=sum(x>=.005*phase_initial-1e-12 for x in phase_daily),start=str(idx[0]) if len(idx) else None,end=str(t+step) if len(idx) else None,ambiguous_profit_exits=sum(x['api_60s_ambiguous'] for x in trades)),trades=trades,equity=curve,daily=daily)
+    return dict(summary=dict(outcome=outcome,return_pct=(cash-1)*100,max_drawdown_pct=maxdd*100,min_equity=min_equity,worst_day_pct=worst_day*100,trades=len(trades),win_rate=sum(x>0 for x in profits)/len(profits) if profits else None,profit_factor=win/loss if loss else None,breach=breach,phase=phase,phase1_date=phase1_date,completed_phases=completed_phases,elapsed_days=float((t+step-idx[0])/pd.Timedelta(days=1)) if len(idx) else 0,profit_days_current_phase=int(sum(x>=.005*phase_initial-1e-12 for x in phase_daily)),start=str(idx[0]) if len(idx) else None,end=str(t+step) if len(idx) else None,ambiguous_profit_exits=sum(x['api_60s_ambiguous'] for x in trades)),trades=trades,equity=curve,daily=daily)
 
 
 def run(out):

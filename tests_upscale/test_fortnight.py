@@ -19,6 +19,8 @@ class FortnightTests(unittest.TestCase):
         with patch('upscale.backtest.features',return_value=f):
             r=simulate({'BTCUSDT':d},cfg,challenge=True,days=14)
         s=r['summary']
+        import json
+        json.dumps(r,allow_nan=False)
         self.assertEqual(s['outcome'],'passed')
         self.assertEqual(s['elapsed_days'],9)
         self.assertEqual([p['phase'] for p in s['completed_phases']],[1,2])
