@@ -1,0 +1,28 @@
+name: Manual BTC label audit (cached, no orders)
+on:
+  push:
+    paths:
+      - 'manual_trade_label_audit.py'
+      - 'test_manual_trade_label_audit.py'
+      - 'data/manual_btc_trades_2025_2026.csv'
+      - 'data/BTCUSDT_1h.csv'
+      - '.github/workflows/manual-trade-label-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  label-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests and cached-only research
+        run: |
+          python -m unittest -v test_manual_trade_label_audit
+          python -u manual_trade_label_audit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manual-trade-label-audit
+          path: reports/manual_trade_label_audit.json
