@@ -3,7 +3,7 @@ Issue #10 priority (2026-10-27). All three historical slices were previously ins
 Never label the last slice untouched OOS. Fee fixed at 15bp round trip.
 Reproduce: python -m unittest -v test_pattern_edge_search && python pattern_edge_search.py
 """
-import csv, datetime as dt, hashlib, json, math, statistics
+import csv, datetime as dt, hashlib, json, math, statistics, random
 from pathlib import Path
 from itertools import product
 from collections import defaultdict
@@ -110,6 +110,21 @@ def stats(tr):
     return dict(n=len(v),win_pct=round(100*sum(x>0 for x in v)/len(v),2),
        mean_R=round(statistics.mean(v),5),mean_net_pct=round(statistics.mean(x["net_pct"] for x in tr),5),
        pf=round(pos/neg,4) if neg else None,pseudo_dd_pct=round(100*dd,4))
+def block_ci_mean_R(tr,seed=SEED):
+    """Exploratory 30-day calendar-block bootstrap; NOT an independent OOS CI."""
+    groups=defaultdict(list)
+    for t in tr:
+        key=int(dt.datetime.fromisoformat(t["entry_utc"]).timestamp()//(30*24*3600))
+        groups[key].append(t["net_R"])
+    keys=sorted(groups)
+    if len(keys)<3:return dict(blocks=len(keys),ci95_R=None)
+    rng=random.Random(seed);draws=[]
+    for _ in range(1200):
+        sample=[v for __ in keys for v in groups[rng.choice(keys)]]
+        draws.append(statistics.mean(sample))
+    draws.sort()
+    return dict(blocks=len(keys),ci95_R=[round(draws[29],5),round(draws[1170],5)])
+
 def main():
     cache={};hashes={}
     for sym in SYMS:
@@ -152,6 +167,13 @@ def main():
             side[w]={"LONG":stats([t for t in tr if t["side"]==1]),
                      "SHORT":stats([t for t in tr if t["side"]==-1])}
         x["by_side"]=side
+        x["block_bootstrap_30d"]={}
+        for idx,w in enumerate(("train","validation","diagnostic_test")):
+            cohort=[]
+            for sym,(raw,ev,cut) in cache.items():
+                tx,_=simulate(raw,ev,tuple(cfg[k] for k in ("mode","filter","stop","tp_R","hold_h")),cut[idx],cut[idx+1])
+                cohort.extend(tx)
+            x["block_bootstrap_30d"][w]=block_ci_mean_R(cohort)
     out=dict(title="Exploratory causal DeltaRSI entry-stop-exit pattern grid",
        generated_utc=dt.datetime.now(dt.timezone.utc).isoformat(),source_sha256=hashes,
        fixed_fee_roundtrip=FEE,assumed_risk_fraction=RISK,
@@ -163,7 +185,8 @@ def main():
         "0.15% round-trip fixed, exit notional included; funding excluded per latest manager issue.",
         "Per-symbol non-overlap, no shared-capital competition; pseudo DD from ordered 0.25%-risk R series is NOT executable portfolio MTM DD.",
         "Entry modes are separate causal signal families; differing trade counts and schedules prevent paired inference.",
-        "All configurations and failures included; selecting winners after seeing diagnostic_test would invalidate any test claim."],
+        "All configurations and failures included; selecting winners after seeing diagnostic_test would invalidate any test claim.",
+        "Top-10 mean_R CIs are exploratory 30-day calendar-block bootstrap (1200 seeded draws), not selection-adjusted."]],
        splits="per-symbol 50% / 25% / 25%, earlier examined",
        configs_total=len(CONFIGS),eligible_train_validation=len(eligible),
        event_counts={s:{m:sum(e["mode"]==m for e in c[1]) for m in MODES} for s,c in cache.items()},
