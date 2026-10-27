@@ -17,7 +17,7 @@
     "price_containment": "annotated price inside [low,high] in marked or preceding 1H candle; exact equality allowed",
     "nearby_candidate": "up to three nearest containing 1H bars within ±12h; not evidence of actual fill",
     "static_stop": "test only clean records, on whole 1H bars strictly after entry hour and strictly before first exit hour; assume initial SL never revised",
-    "privacy": "only opaque row IDs, public cached market OHLC, relative distance and source-quality category; no original annotated entry/exit/stop prices"
+    "privacy": "only opaque row IDs, public cached market OHLC, relative distance and source-quality category; no original annotated entry/exit/stop prices; outside-cache flagged records retained with missing market data."
   },
   "summary": {
     "n_source_trades": 42,
@@ -28,7 +28,7 @@
     "n_clean_exit1_price_outside_marked_and_prior_hour": 8,
     "n_clean_static_stop_touch_before_exit": 1,
     "n_source_quality_flags": 4,
-    "n_distinct_flagged_ledger_rows": 13
+    "n_distinct_flagged_ledger_rows": 14
   },
   "quality_counts": {
     "second_exit_time_incomplete": 1,
@@ -37,6 +37,23 @@
     "entry_date_suspect_month": 1
   },
   "discrepancies": [
+    {
+      "opaque_id": "R05",
+      "side": "SHORT",
+      "flags": [
+        "original_source_quality_flag",
+        "outside_cached_1h_coverage"
+      ],
+      "quality_category": "second_exit_time_incomplete",
+      "quality_time_fields": {
+        "entry_utc": "2025-10-07T00:00:00Z",
+        "exit1_utc": "2025-10-08T04:00:00Z",
+        "exit2_utc": null,
+        "exit2_time_status": "missing_or_date_only"
+      },
+      "market_ohlc": null,
+      "uncertainty": "Before cached coverage; no observed 1H OHLC or execution inference."
+    },
     {
       "opaque_id": "R10",
       "side": "SHORT",
@@ -791,7 +808,7 @@
   ],
   "decisions": {
     "reconciled": 0,
-    "unresolved_ledger_rows": 13,
+    "unresolved_ledger_rows": 14,
     "live_or_paper_orders": 0,
     "funding": "excluded by owner research instruction",
     "roundtrip_cost_assumption": "0.15% used for annotated PnL elsewhere; no PnL recomputed here",
