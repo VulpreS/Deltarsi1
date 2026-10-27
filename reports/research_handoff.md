@@ -1,3 +1,40 @@
+# DeltaRSI researcher handoff — cycle 16, 2026-10-27 ~10:00 MSK — 42 USER-LABELLED BTC TRADES (#17, #10/#11)
+
+**Decision: PRIORITY #17 DESCRIPTIVE AUDIT COMPLETE; CAUSAL SIGNAL/EXECUTION AUDIT PARTIAL. Selected annotations show high in-sample win rate but DO NOT establish a profitable executable strategy. NO ORDERS.**
+
+## Hypothesis and manager instructions read
+Read newly prioritized issue #17 (42 owner-labelled BTC trades), current #10/#11/#15/#16, saved cycle-15 handoff and manager directives before changes. Hypothesis: a selective manually annotated DeltaRSI entry/exit process may have higher realized *annotated* win rate than entering on every generic histogram fade, but mislabeled prices, chart-vs-fill timestamps and a selected-only sample can create false edge. Freeze 15bp round-trip total fee, exclude funding by latest owner directive; do not train on already inspected final period.
+
+## Changes, data, reproducibility
+- New `manual_trade_label_audit.py`, `test_manual_trade_label_audit.py`, `.github/workflows/manual-trade-label-audit.yml`, plus independently calculated `reports/manual_trade_label_precheck.json`. Scripts read ONLY committed `data/manual_btc_trades_2025_2026.csv` and `data/BTCUSDT_1h.csv`; no exchange calls, no orders. Python script generates `reports/manual_trade_label_audit.json` when executed, including exact causal 1H as-of join, full existing candidate signal overlap census, and frozen BTC 2.5ATR stop / 3ATR target / 48h baseline versus forming/closed on common UTC calendars. Reproduce: `python -m unittest -v test_manual_trade_label_audit && python manual_trade_label_audit.py`. The workflow is configured to test, upload and persist its generated report with safe fresh-ref retries.
+- Input: **42 BTC trade labels** dated 2025-09 through 2026-07; cached **8,761 hourly candles** dated 2025-10-26 13:00 UTC through 2026-10-26 13:00 UTC. **8/42 labels precede cache**, **34/42 inside cache**; **31 clean inside cache**. Source blob SHAs in precheck JSON. MSK UTC+3 -> UTC -3h, at a marked hour the last observable 1H candle is the preceding one. Entry at the mark is NOT automatically treated as verified executable fill.
+- Partial exits are weighted **50%+50% of original notional**, not 50%+100%. Fees use half on entry and half on weighted exit notional. Hypothetical 0.25%-of-equity stop-risk DD is explicitly sequential closed-trade *pseudo* DD, NOT portfolio MTM DD. Funding intentionally excluded.
+- **Verification boundary:** the independent JavaScript precheck read the entire committed 1H cache and normalized labels, and its aggregate report is committed. Python unit tests / GitHub Actions outcome and Python-generated full candidate-overlap/baseline report were **not yet independently verified at this handoff**; do not claim CI PASS or claim its unobserved numbers.
+
+## Measured results — annotated, NOT a backtested executable strategy
+| Cohort | N | Win rate | Mean net annotated return | Mean net R | Profit factor |
+|---|---:|---:|---:|---:|---:|
+| All labels **including four flagged** | 42 | 80.95% | **−6.696%** | −3.652R | 0.343 |
+| Clean labels (exclude all four flagged) | 38 | **81.58%** | **+3.067%** | +1.675R | 10.04 |
+| Clean LONG | 21 | 76.19% | +2.315% | +1.451R | 5.34 |
+| Clean SHORT | 17 | 88.24% | +3.997% | +1.951R | 41.13 |
+
+- Clean cohort median annotated net return **+3.168%**, median annotated holding **68 hours**, average winning trade **+4.176%**, average losing trade **−1.841%**. The sequential 0.25% risk-sized *illustrative* equity curve would yield +17.15% with closed-trade DD 0.57%, **not an executable portfolio**: selected outcomes, uncertain fills, no concurrent exposure or real stop chronology proof.
+- Four **unrepaired** label issues: second exit time missing (2025-10-11); implausible 842300 exit price (2026-01-30); exit before entry (2026-03-02 trade); suspect 2026-02-05 entry date on next trade. The 842300 outlier explains why the all-label net expectancy reverses; do NOT silently replace it with 84230.
+- **Execution plausibility:** among 34 covered labels, **5 entry prices** lie outside both the marked 1H candle and the preceding 1H candle; among 31 clean covered labels, **8 first-exit prices** lie outside both corresponding hours. Under an unchanged initial static SL, **1/31 clean covered labels** has a stop touched on a full 1H bar strictly after marked entry and strictly before annotated first exit. These are falsification/uncertainty flags, not proof that annotations are false: chart timestamps may be decision markers, partial fills, later revised stops, or a different venue.
+- SHORT-labelled and `weak_blue` groups are nearly the same records; **reason and direction are confounded**. Their better descriptive metrics cannot be attributed to DeltaRSI color alone. The labels were curated, not sampled from all trade opportunities, so 81.58% cannot be extrapolated to automatic signals.
+
+## Limits, decision and concrete next manager questions
+**STATUS: PARTIAL / INCONCLUSIVE trading edge.** Do not promote high win rate or PF10 as strategy performance. There is no negative/background control for manually selected opportunities in the precheck, no verified execution of their fills, no same-calendar common-capital portfolio, no untouched OOS. All three historical periods are contaminated. Earlier 486-rule grid top 10 collapsed in diagnostic, and true peak-bar stop was inferior to ATR; neither result is reversed by selected annotations.
+
+1. Please accept issue #17 initial **42-label normalization + data-quality + price-containment** as DONE; keep #17 OPEN for candidate-background negative sample and causal as-of feature discrimination, with exact admitted/rejected/losing funnel.
+2. Prioritize reconciling the **5 entry-hour mismatches, 8 first-exit-hour mismatches, 1 static-stop conflict** before claiming real execution, and retain the four original suspect rows unmodified until owner clarification.
+3. Verify the Python workflow and generated full report, then compare frozen no-filter BTC baseline and forming/closed modes on the same **previously inspected** UTC calendar. No choosing winners using the last period.
+4. Train-only preregister at most three price-rejection/DeltaRSI-phase filters and validate on previously viewed validation as **exploratory**, with BTC negative controls and ETH/ICP/HYPE generalization. Need genuinely new append-only prospective paper receipts before any claim of stable positive expectancy.
+5. No live/paper order placement or production authorization; research only.
+
+---
+
 # DeltaRSI researcher handoff — cycle 15, 2026-10-27 ~09:00 MSK — TRUE PEAK/WAVE STOPS (#16, #15)
 
 **Decision: REJECT unconditional replacement of 2.5ATR stop by true peak-bar stop; true whole-wave stop INCONCLUSIVE/UNPROMOTED. Causal code, cached-data matched tests and 1,122-event ledger committed. No orders.**
