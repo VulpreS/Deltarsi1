@@ -1,0 +1,4455 @@
+{
+  "status": "exploratory stress test using previously researched futures OHLC, not independent holdout",
+  "cost_base_pct": 0.15,
+  "cost_stress_pct": 0.3,
+  "bootstrap_draws_per_case": 2500,
+  "limitations": [
+    "Trade bootstrap assumes independent identical distributions. Signals cluster in correlated crypto markets; intervals understate uncertainty.",
+    "Small-sample 4H crest strategies often have fewer than 10 trades per asset in the recent slice.",
+    "No funding, Bybit transaction execution, margin liquidation, partial exits, leverage or variable commission.",
+    "No artificial removal of negative assets. All existing configured variants are included.",
+    "Forward chronological splits refer to known historical market data, not fresh prospective validation."
+  ],
+  "assets": {
+    "BTCUSDT": {
+      "color_all_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 741,
+          "mean_net_pct": -0.121,
+          "median_net_pct": -0.4526,
+          "profit_factor": 0.857,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2894,
+            0.0629
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1452,
+          "mean_after_removing_top_two_trades_pct": -0.165,
+          "double_roundtrip_fee_mean_pct": -0.271,
+          "double_roundtrip_fee_pf": 0.7146,
+          "n_structural_stops": 226,
+          "pct_structural_stop": 30.5,
+          "mean_initial_stop_distance_pct": 2.363,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 17.809339,
+          "min_loss_pct": -15.147903,
+          "exit_reasons": {
+            "opposite_delta_fade": 168,
+            "structural_stop": 226,
+            "rebrightening": 347
+          }
+        },
+        "2020_2023": {
+          "n": 424,
+          "mean_net_pct": -0.0261,
+          "median_net_pct": -0.4779,
+          "profit_factor": 0.9712,
+          "pct_profitable": 32.55,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2967,
+            0.2484
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0683,
+          "mean_after_removing_top_two_trades_pct": -0.1027,
+          "double_roundtrip_fee_mean_pct": -0.1761,
+          "double_roundtrip_fee_pf": 0.8255,
+          "n_structural_stops": 130,
+          "pct_structural_stop": 30.66,
+          "mean_initial_stop_distance_pct": 2.621,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 17.809339,
+          "min_loss_pct": -15.147903,
+          "exit_reasons": {
+            "opposite_delta_fade": 100,
+            "structural_stop": 130,
+            "rebrightening": 194
+          }
+        },
+        "2024": {
+          "n": 113,
+          "mean_net_pct": -0.3439,
+          "median_net_pct": -0.5271,
+          "profit_factor": 0.6215,
+          "pct_profitable": 32.74,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7304,
+            0.0327
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4154,
+          "mean_after_removing_top_two_trades_pct": -0.4781,
+          "double_roundtrip_fee_mean_pct": -0.4939,
+          "double_roundtrip_fee_pf": 0.5123,
+          "n_structural_stops": 39,
+          "pct_structural_stop": 34.51,
+          "mean_initial_stop_distance_pct": 2.341,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 7.672788,
+          "min_loss_pct": -4.297316,
+          "exit_reasons": {
+            "structural_stop": 39,
+            "rebrightening": 57,
+            "opposite_delta_fade": 17
+          }
+        },
+        "2025_2026": {
+          "n": 204,
+          "mean_net_pct": -0.1948,
+          "median_net_pct": -0.4042,
+          "profit_factor": 0.7167,
+          "pct_profitable": 35.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4169,
+            0.0371
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2291,
+          "mean_after_removing_top_two_trades_pct": -0.2617,
+          "double_roundtrip_fee_mean_pct": -0.3448,
+          "double_roundtrip_fee_pf": 0.5637,
+          "n_structural_stops": 57,
+          "pct_structural_stop": 27.94,
+          "mean_initial_stop_distance_pct": 1.838,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 6.777754,
+          "min_loss_pct": -5.575417,
+          "exit_reasons": {
+            "opposite_delta_fade": 51,
+            "structural_stop": 57,
+            "rebrightening": 96
+          }
+        }
+      },
+      "color_all_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 763,
+          "mean_net_pct": -0.2411,
+          "median_net_pct": -0.5226,
+          "profit_factor": 0.7148,
+          "pct_profitable": 29.1,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3929,
+            -0.0857
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2607,
+          "mean_after_removing_top_two_trades_pct": -0.279,
+          "double_roundtrip_fee_mean_pct": -0.3911,
+          "double_roundtrip_fee_pf": 0.5903,
+          "n_structural_stops": 255,
+          "pct_structural_stop": 33.42,
+          "mean_initial_stop_distance_pct": 2.156,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 14.718057,
+          "min_loss_pct": -7.323303,
+          "exit_reasons": {
+            "structural_stop": 255,
+            "rebrightening": 338,
+            "opposite_delta_fade": 170
+          }
+        },
+        "2020_2023": {
+          "n": 436,
+          "mean_net_pct": -0.2088,
+          "median_net_pct": -0.5714,
+          "profit_factor": 0.7788,
+          "pct_profitable": 31.19,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4429,
+            0.044
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2431,
+          "mean_after_removing_top_two_trades_pct": -0.2712,
+          "double_roundtrip_fee_mean_pct": -0.3588,
+          "double_roundtrip_fee_pf": 0.6582,
+          "n_structural_stops": 139,
+          "pct_structural_stop": 31.88,
+          "mean_initial_stop_distance_pct": 2.435,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 14.718057,
+          "min_loss_pct": -7.323303,
+          "exit_reasons": {
+            "structural_stop": 139,
+            "rebrightening": 196,
+            "opposite_delta_fade": 101
+          }
+        },
+        "2024": {
+          "n": 114,
+          "mean_net_pct": -0.6234,
+          "median_net_pct": -0.7738,
+          "profit_factor": 0.3059,
+          "pct_profitable": 15.79,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8765,
+            -0.3503
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7048,
+          "mean_after_removing_top_two_trades_pct": -0.7508,
+          "double_roundtrip_fee_mean_pct": -0.7734,
+          "double_roundtrip_fee_pf": 0.246,
+          "n_structural_stops": 47,
+          "pct_structural_stop": 41.23,
+          "mean_initial_stop_distance_pct": 1.928,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 8.571498,
+          "min_loss_pct": -4.211542,
+          "exit_reasons": {
+            "rebrightening": 50,
+            "opposite_delta_fade": 17,
+            "structural_stop": 47
+          }
+        },
+        "2025_2026": {
+          "n": 213,
+          "mean_net_pct": -0.1025,
+          "median_net_pct": -0.3838,
+          "profit_factor": 0.8334,
+          "pct_profitable": 31.92,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3159,
+            0.1615
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1676,
+          "mean_after_removing_top_two_trades_pct": -0.1991,
+          "double_roundtrip_fee_mean_pct": -0.2525,
+          "double_roundtrip_fee_pf": 0.65,
+          "n_structural_stops": 69,
+          "pct_structural_stop": 32.39,
+          "mean_initial_stop_distance_pct": 1.707,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 13.695342,
+          "min_loss_pct": -3.093792,
+          "exit_reasons": {
+            "rebrightening": 92,
+            "opposite_delta_fade": 52,
+            "structural_stop": 69
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 231,
+          "mean_net_pct": -0.2405,
+          "median_net_pct": -0.6573,
+          "profit_factor": 0.756,
+          "pct_profitable": 31.17,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5696,
+            0.1087
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.319,
+          "mean_after_removing_top_two_trades_pct": -0.3658,
+          "double_roundtrip_fee_mean_pct": -0.3905,
+          "double_roundtrip_fee_pf": 0.6427,
+          "n_structural_stops": 82,
+          "pct_structural_stop": 35.5,
+          "mean_initial_stop_distance_pct": 2.516,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 17.809339,
+          "min_loss_pct": -7.311838,
+          "exit_reasons": {
+            "structural_stop": 82,
+            "opposite_delta_fade": 47,
+            "rebrightening": 102
+          }
+        },
+        "2020_2023": {
+          "n": 134,
+          "mean_net_pct": -0.0019,
+          "median_net_pct": -0.5589,
+          "profit_factor": 0.998,
+          "pct_profitable": 31.34,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4911,
+            0.55
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1358,
+          "mean_after_removing_top_two_trades_pct": -0.2156,
+          "double_roundtrip_fee_mean_pct": -0.1519,
+          "double_roundtrip_fee_pf": 0.8552,
+          "n_structural_stops": 48,
+          "pct_structural_stop": 35.82,
+          "mean_initial_stop_distance_pct": 2.582,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 17.809339,
+          "min_loss_pct": -7.311838,
+          "exit_reasons": {
+            "structural_stop": 48,
+            "opposite_delta_fade": 26,
+            "rebrightening": 60
+          }
+        },
+        "2024": {
+          "n": 33,
+          "mean_net_pct": -0.6135,
+          "median_net_pct": -0.9248,
+          "profit_factor": 0.4887,
+          "pct_profitable": 30.3,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.3424,
+            0.254
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8725,
+          "mean_after_removing_top_two_trades_pct": -1.0507,
+          "double_roundtrip_fee_mean_pct": -0.7635,
+          "double_roundtrip_fee_pf": 0.4149,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 30.3,
+          "mean_initial_stop_distance_pct": 3.067,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 7.672788,
+          "min_loss_pct": -4.297316,
+          "exit_reasons": {
+            "rebrightening": 18,
+            "opposite_delta_fade": 5,
+            "structural_stop": 10
+          }
+        },
+        "2025_2026": {
+          "n": 64,
+          "mean_net_pct": -0.5477,
+          "median_net_pct": -0.7604,
+          "profit_factor": 0.4309,
+          "pct_profitable": 31.25,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.996,
+            -0.1122
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6317,
+          "mean_after_removing_top_two_trades_pct": -0.7034,
+          "double_roundtrip_fee_mean_pct": -0.6977,
+          "double_roundtrip_fee_pf": 0.3511,
+          "n_structural_stops": 24,
+          "pct_structural_stop": 37.5,
+          "mean_initial_stop_distance_pct": 2.094,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 4.744256,
+          "min_loss_pct": -5.575417,
+          "exit_reasons": {
+            "structural_stop": 24,
+            "opposite_delta_fade": 16,
+            "rebrightening": 24
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 252,
+          "mean_net_pct": -0.2166,
+          "median_net_pct": -0.5968,
+          "profit_factor": 0.7462,
+          "pct_profitable": 31.75,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4818,
+            0.0559
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2651,
+          "mean_after_removing_top_two_trades_pct": -0.3081,
+          "double_roundtrip_fee_mean_pct": -0.3666,
+          "double_roundtrip_fee_pf": 0.6172,
+          "n_structural_stops": 97,
+          "pct_structural_stop": 38.49,
+          "mean_initial_stop_distance_pct": 2.106,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.938935,
+          "min_loss_pct": -7.083497,
+          "exit_reasons": {
+            "structural_stop": 97,
+            "opposite_delta_fade": 48,
+            "rebrightening": 107
+          }
+        },
+        "2020_2023": {
+          "n": 148,
+          "mean_net_pct": -0.0742,
+          "median_net_pct": -0.4974,
+          "profit_factor": 0.9152,
+          "pct_profitable": 37.84,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4598,
+            0.349
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.156,
+          "mean_after_removing_top_two_trades_pct": -0.2289,
+          "double_roundtrip_fee_mean_pct": -0.2242,
+          "double_roundtrip_fee_pf": 0.7691,
+          "n_structural_stops": 54,
+          "pct_structural_stop": 36.49,
+          "mean_initial_stop_distance_pct": 2.298,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.938935,
+          "min_loss_pct": -7.083497,
+          "exit_reasons": {
+            "structural_stop": 54,
+            "opposite_delta_fade": 32,
+            "rebrightening": 62
+          }
+        },
+        "2024": {
+          "n": 34,
+          "mean_net_pct": -1.1125,
+          "median_net_pct": -0.9775,
+          "profit_factor": 0.0,
+          "pct_profitable": 0.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.3797,
+            -0.8627
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.1442,
+          "mean_after_removing_top_two_trades_pct": -1.1771,
+          "double_roundtrip_fee_mean_pct": -1.2625,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 16,
+          "pct_structural_stop": 47.06,
+          "mean_initial_stop_distance_pct": 2.091,
+          "median_holding_hours": 16.0,
+          "max_win_pct": -0.06611,
+          "min_loss_pct": -3.42341,
+          "exit_reasons": {
+            "rebrightening": 18,
+            "structural_stop": 16
+          }
+        },
+        "2025_2026": {
+          "n": 70,
+          "mean_net_pct": -0.0826,
+          "median_net_pct": -0.3735,
+          "profit_factor": 0.8788,
+          "pct_profitable": 34.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4632,
+            0.3315
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1775,
+          "mean_after_removing_top_two_trades_pct": -0.2408,
+          "double_roundtrip_fee_mean_pct": -0.2326,
+          "double_roundtrip_fee_pf": 0.7025,
+          "n_structural_stops": 27,
+          "pct_structural_stop": 38.57,
+          "mean_initial_stop_distance_pct": 1.709,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 6.468949,
+          "min_loss_pct": -2.840041,
+          "exit_reasons": {
+            "rebrightening": 27,
+            "structural_stop": 27,
+            "opposite_delta_fade": 16
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 25,
+          "mean_net_pct": -0.3451,
+          "median_net_pct": -0.9772,
+          "profit_factor": 0.6791,
+          "pct_profitable": 36.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.1956,
+            0.6266
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.691,
+          "mean_after_removing_top_two_trades_pct": -0.8472,
+          "double_roundtrip_fee_mean_pct": -0.4951,
+          "double_roundtrip_fee_pf": 0.5773,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 2.369,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 7.95744,
+          "min_loss_pct": -5.17311,
+          "exit_reasons": {
+            "rebrightening": 12,
+            "opposite_delta_fade": 3,
+            "structural_stop": 10
+          }
+        },
+        "2020_2023": {
+          "n": 13,
+          "mean_net_pct": -0.0009,
+          "median_net_pct": -0.6443,
+          "profit_factor": 0.9992,
+          "pct_profitable": 38.46,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.521,
+            1.7375
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6641,
+          "mean_after_removing_top_two_trades_pct": -0.9881,
+          "double_roundtrip_fee_mean_pct": -0.1509,
+          "double_roundtrip_fee_pf": 0.8672,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 23.08,
+          "mean_initial_stop_distance_pct": 2.904,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 7.95744,
+          "min_loss_pct": -5.17311,
+          "exit_reasons": {
+            "rebrightening": 8,
+            "opposite_delta_fade": 2,
+            "structural_stop": 3
+          }
+        },
+        "2024": {
+          "n": 4,
+          "mean_net_pct": -0.0107,
+          "median_net_pct": -0.2255,
+          "profit_factor": 0.9823,
+          "pct_profitable": 50.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2102,
+            1.1888
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6213,
+          "mean_after_removing_top_two_trades_pct": -1.2102,
+          "double_roundtrip_fee_mean_pct": -0.1607,
+          "double_roundtrip_fee_pf": 0.7637,
+          "n_structural_stops": 2,
+          "pct_structural_stop": 50.0,
+          "mean_initial_stop_distance_pct": 1.652,
+          "median_holding_hours": 24.0,
+          "max_win_pct": 1.821088,
+          "min_loss_pct": -1.412928,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "structural_stop": 2
+          }
+        },
+        "2025_2026": {
+          "n": 8,
+          "mean_net_pct": -1.0717,
+          "median_net_pct": -1.1915,
+          "profit_factor": 0.2127,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.2332,
+            0.0516
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.5141,
+          "mean_after_removing_top_two_trades_pct": -1.815,
+          "double_roundtrip_fee_mean_pct": -1.2217,
+          "double_roundtrip_fee_pf": 0.171,
+          "n_structural_stops": 5,
+          "pct_structural_stop": 62.5,
+          "mean_initial_stop_distance_pct": 1.857,
+          "median_holding_hours": 14.0,
+          "max_win_pct": 2.025279,
+          "min_loss_pct": -4.19189,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "structural_stop": 5,
+            "opposite_delta_fade": 1
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 21,
+          "mean_net_pct": 0.0183,
+          "median_net_pct": -0.5041,
+          "profit_factor": 1.0282,
+          "pct_profitable": 28.57,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7694,
+            1.135
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3994,
+          "mean_after_removing_top_two_trades_pct": -0.628,
+          "double_roundtrip_fee_mean_pct": -0.1317,
+          "double_roundtrip_fee_pf": 0.8261,
+          "n_structural_stops": 9,
+          "pct_structural_stop": 42.86,
+          "mean_initial_stop_distance_pct": 1.391,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 8.371046,
+          "min_loss_pct": -2.33196,
+          "exit_reasons": {
+            "structural_stop": 9,
+            "rebrightening": 11,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2020_2023": {
+          "n": 15,
+          "mean_net_pct": -0.6455,
+          "median_net_pct": -0.5041,
+          "profit_factor": 0.0728,
+          "pct_profitable": 20.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0186,
+            -0.31
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.722,
+          "mean_after_removing_top_two_trades_pct": -0.7932,
+          "double_roundtrip_fee_mean_pct": -0.7955,
+          "double_roundtrip_fee_pf": 0.0268,
+          "n_structural_stops": 6,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 1.392,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 0.426512,
+          "min_loss_pct": -2.33196,
+          "exit_reasons": {
+            "structural_stop": 6,
+            "rebrightening": 9
+          }
+        },
+        "2024": {
+          "n": 1,
+          "mean_net_pct": -1.0086,
+          "median_net_pct": -1.0086,
+          "profit_factor": 0.0,
+          "pct_profitable": 0.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0086,
+            -1.0086
+          ],
+          "mean_after_removing_top_one_trade_pct": null,
+          "mean_after_removing_top_two_trades_pct": null,
+          "double_roundtrip_fee_mean_pct": -1.1586,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 100.0,
+          "mean_initial_stop_distance_pct": 0.859,
+          "median_holding_hours": 16.0,
+          "max_win_pct": -1.008616,
+          "min_loss_pct": -1.008616,
+          "exit_reasons": {
+            "structural_stop": 1
+          }
+        },
+        "2025_2026": {
+          "n": 5,
+          "mean_net_pct": 2.2149,
+          "median_net_pct": 0.9405,
+          "profit_factor": 6.0751,
+          "pct_profitable": 60.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6847,
+            5.5478
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.6758,
+          "mean_after_removing_top_two_trades_pct": -0.4139,
+          "double_roundtrip_fee_mean_pct": 2.0649,
+          "double_roundtrip_fee_pf": 5.1596,
+          "n_structural_stops": 2,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 1.496,
+          "median_holding_hours": 28.0,
+          "max_win_pct": 8.371046,
+          "min_loss_pct": -1.319323,
+          "exit_reasons": {
+            "structural_stop": 2,
+            "rebrightening": 2,
+            "opposite_delta_fade": 1
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 164,
+          "mean_net_pct": -0.4615,
+          "median_net_pct": -0.6333,
+          "profit_factor": 0.5818,
+          "pct_profitable": 26.83,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8685,
+            0.0214
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5847,
+          "mean_after_removing_top_two_trades_pct": -0.6621,
+          "double_roundtrip_fee_mean_pct": -0.6115,
+          "double_roundtrip_fee_pf": 0.4965,
+          "n_structural_stops": 61,
+          "pct_structural_stop": 37.2,
+          "mean_initial_stop_distance_pct": 2.472,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 19.607402,
+          "min_loss_pct": -9.164985,
+          "exit_reasons": {
+            "structural_stop": 61,
+            "opposite_delta_fade": 29,
+            "rebrightening": 74
+          }
+        },
+        "2020_2023": {
+          "n": 93,
+          "mean_net_pct": -0.3208,
+          "median_net_pct": -0.6252,
+          "profit_factor": 0.7232,
+          "pct_profitable": 26.88,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9384,
+            0.4349
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5374,
+          "mean_after_removing_top_two_trades_pct": -0.6747,
+          "double_roundtrip_fee_mean_pct": -0.4708,
+          "double_roundtrip_fee_pf": 0.6289,
+          "n_structural_stops": 34,
+          "pct_structural_stop": 36.56,
+          "mean_initial_stop_distance_pct": 2.64,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 19.607402,
+          "min_loss_pct": -9.164985,
+          "exit_reasons": {
+            "structural_stop": 34,
+            "opposite_delta_fade": 17,
+            "rebrightening": 42
+          }
+        },
+        "2024": {
+          "n": 23,
+          "mean_net_pct": -0.4981,
+          "median_net_pct": -0.6449,
+          "profit_factor": 0.4397,
+          "pct_profitable": 26.09,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.1585,
+            0.2631
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7657,
+          "mean_after_removing_top_two_trades_pct": -0.9154,
+          "double_roundtrip_fee_mean_pct": -0.6481,
+          "double_roundtrip_fee_pf": 0.3545,
+          "n_structural_stops": 8,
+          "pct_structural_stop": 34.78,
+          "mean_initial_stop_distance_pct": 2.374,
+          "median_holding_hours": 24.0,
+          "max_win_pct": 5.388319,
+          "min_loss_pct": -3.215785,
+          "exit_reasons": {
+            "rebrightening": 11,
+            "opposite_delta_fade": 4,
+            "structural_stop": 8
+          }
+        },
+        "2025_2026": {
+          "n": 48,
+          "mean_net_pct": -0.7168,
+          "median_net_pct": -0.6333,
+          "profit_factor": 0.348,
+          "pct_profitable": 27.08,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2649,
+            -0.1346
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8135,
+          "mean_after_removing_top_two_trades_pct": -0.914,
+          "double_roundtrip_fee_mean_pct": -0.8668,
+          "double_roundtrip_fee_pf": 0.2842,
+          "n_structural_stops": 19,
+          "pct_structural_stop": 39.58,
+          "mean_initial_stop_distance_pct": 2.193,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 3.83017,
+          "min_loss_pct": -6.075353,
+          "exit_reasons": {
+            "opposite_delta_fade": 8,
+            "rebrightening": 21,
+            "structural_stop": 19
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 177,
+          "mean_net_pct": -0.1201,
+          "median_net_pct": -0.559,
+          "profit_factor": 0.8629,
+          "pct_profitable": 31.64,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4695,
+            0.2333
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.188,
+          "mean_after_removing_top_two_trades_pct": -0.249,
+          "double_roundtrip_fee_mean_pct": -0.2701,
+          "double_roundtrip_fee_pf": 0.7241,
+          "n_structural_stops": 65,
+          "pct_structural_stop": 36.72,
+          "mean_initial_stop_distance_pct": 2.235,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.843596,
+          "min_loss_pct": -8.463283,
+          "exit_reasons": {
+            "opposite_delta_fade": 39,
+            "rebrightening": 73,
+            "structural_stop": 65
+          }
+        },
+        "2020_2023": {
+          "n": 102,
+          "mean_net_pct": 0.0446,
+          "median_net_pct": -0.5516,
+          "profit_factor": 1.0495,
+          "pct_profitable": 35.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5041,
+            0.6159
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0722,
+          "mean_after_removing_top_two_trades_pct": -0.1777,
+          "double_roundtrip_fee_mean_pct": -0.1054,
+          "double_roundtrip_fee_pf": 0.8945,
+          "n_structural_stops": 35,
+          "pct_structural_stop": 34.31,
+          "mean_initial_stop_distance_pct": 2.456,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.843596,
+          "min_loss_pct": -8.463283,
+          "exit_reasons": {
+            "opposite_delta_fade": 23,
+            "rebrightening": 44,
+            "structural_stop": 35
+          }
+        },
+        "2024": {
+          "n": 20,
+          "mean_net_pct": -0.8837,
+          "median_net_pct": -1.3219,
+          "profit_factor": 0.3078,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.5844,
+            -0.0844
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.1148,
+          "mean_after_removing_top_two_trades_pct": -1.3242,
+          "double_roundtrip_fee_mean_pct": -1.0337,
+          "double_roundtrip_fee_pf": 0.2559,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 55.0,
+          "mean_initial_stop_distance_pct": 2.286,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 3.507287,
+          "min_loss_pct": -3.42341,
+          "exit_reasons": {
+            "rebrightening": 6,
+            "structural_stop": 11,
+            "opposite_delta_fade": 3
+          }
+        },
+        "2025_2026": {
+          "n": 55,
+          "mean_net_pct": -0.1478,
+          "median_net_pct": -0.493,
+          "profit_factor": 0.7839,
+          "pct_profitable": 27.27,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5522,
+            0.3153
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2645,
+          "mean_after_removing_top_two_trades_pct": -0.3473,
+          "double_roundtrip_fee_mean_pct": -0.2978,
+          "double_roundtrip_fee_pf": 0.6245,
+          "n_structural_stops": 19,
+          "pct_structural_stop": 34.55,
+          "mean_initial_stop_distance_pct": 1.805,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 6.153817,
+          "min_loss_pct": -2.923758,
+          "exit_reasons": {
+            "rebrightening": 23,
+            "structural_stop": 19,
+            "opposite_delta_fade": 13
+          }
+        }
+      }
+    },
+    "ETHUSDT": {
+      "color_all_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 752,
+          "mean_net_pct": 0.1068,
+          "median_net_pct": -0.4624,
+          "profit_factor": 1.1018,
+          "pct_profitable": 36.17,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.1616,
+            0.3617
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.0771,
+          "mean_after_removing_top_two_trades_pct": 0.0496,
+          "double_roundtrip_fee_mean_pct": -0.0432,
+          "double_roundtrip_fee_pf": 0.9624,
+          "n_structural_stops": 199,
+          "pct_structural_stop": 26.46,
+          "mean_initial_stop_distance_pct": 3.263,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 22.440412,
+          "min_loss_pct": -13.397348,
+          "exit_reasons": {
+            "opposite_delta_fade": 196,
+            "rebrightening": 357,
+            "structural_stop": 199
+          }
+        },
+        "2020_2023": {
+          "n": 453,
+          "mean_net_pct": 0.2552,
+          "median_net_pct": -0.3772,
+          "profit_factor": 1.2391,
+          "pct_profitable": 37.97,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.0961,
+            0.6495
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.2061,
+          "mean_after_removing_top_two_trades_pct": 0.1606,
+          "double_roundtrip_fee_mean_pct": 0.1052,
+          "double_roundtrip_fee_pf": 1.0904,
+          "n_structural_stops": 122,
+          "pct_structural_stop": 26.93,
+          "mean_initial_stop_distance_pct": 3.488,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 22.440412,
+          "min_loss_pct": -13.397348,
+          "exit_reasons": {
+            "opposite_delta_fade": 121,
+            "rebrightening": 210,
+            "structural_stop": 122
+          }
+        },
+        "2024": {
+          "n": 93,
+          "mean_net_pct": -0.2295,
+          "median_net_pct": -0.7772,
+          "profit_factor": 0.782,
+          "pct_profitable": 29.03,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7478,
+            0.3696
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3616,
+          "mean_after_removing_top_two_trades_pct": -0.469,
+          "double_roundtrip_fee_mean_pct": -0.3795,
+          "double_roundtrip_fee_pf": 0.6737,
+          "n_structural_stops": 29,
+          "pct_structural_stop": 31.18,
+          "mean_initial_stop_distance_pct": 3.11,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.927865,
+          "min_loss_pct": -6.58582,
+          "exit_reasons": {
+            "opposite_delta_fade": 21,
+            "rebrightening": 43,
+            "structural_stop": 29
+          }
+        },
+        "2025_2026": {
+          "n": 206,
+          "mean_net_pct": -0.0675,
+          "median_net_pct": -0.4981,
+          "profit_factor": 0.9331,
+          "pct_profitable": 35.44,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4625,
+            0.396
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1433,
+          "mean_after_removing_top_two_trades_pct": -0.2099,
+          "double_roundtrip_fee_mean_pct": -0.2175,
+          "double_roundtrip_fee_pf": 0.8037,
+          "n_structural_stops": 48,
+          "pct_structural_stop": 23.3,
+          "mean_initial_stop_distance_pct": 2.837,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 15.456898,
+          "min_loss_pct": -9.303855,
+          "exit_reasons": {
+            "opposite_delta_fade": 54,
+            "rebrightening": 104,
+            "structural_stop": 48
+          }
+        }
+      },
+      "color_all_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 758,
+          "mean_net_pct": -0.0482,
+          "median_net_pct": -0.617,
+          "profit_factor": 0.9518,
+          "pct_profitable": 31.93,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2649,
+            0.1639
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0769,
+          "mean_after_removing_top_two_trades_pct": -0.1046,
+          "double_roundtrip_fee_mean_pct": -0.1982,
+          "double_roundtrip_fee_pf": 0.8205,
+          "n_structural_stops": 248,
+          "pct_structural_stop": 32.72,
+          "mean_initial_stop_distance_pct": 2.755,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 21.646972,
+          "min_loss_pct": -8.140852,
+          "exit_reasons": {
+            "rebrightening": 322,
+            "opposite_delta_fade": 188,
+            "structural_stop": 248
+          }
+        },
+        "2020_2023": {
+          "n": 430,
+          "mean_net_pct": -0.1915,
+          "median_net_pct": -0.7116,
+          "profit_factor": 0.829,
+          "pct_profitable": 30.7,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4698,
+            0.1017
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2283,
+          "mean_after_removing_top_two_trades_pct": -0.2639,
+          "double_roundtrip_fee_mean_pct": -0.3415,
+          "double_roundtrip_fee_pf": 0.7214,
+          "n_structural_stops": 145,
+          "pct_structural_stop": 33.72,
+          "mean_initial_stop_distance_pct": 2.958,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 15.558346,
+          "min_loss_pct": -8.140852,
+          "exit_reasons": {
+            "rebrightening": 181,
+            "opposite_delta_fade": 104,
+            "structural_stop": 145
+          }
+        },
+        "2024": {
+          "n": 116,
+          "mean_net_pct": -0.0359,
+          "median_net_pct": -0.5442,
+          "profit_factor": 0.9584,
+          "pct_profitable": 32.76,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4506,
+            0.4003
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.132,
+          "mean_after_removing_top_two_trades_pct": -0.1917,
+          "double_roundtrip_fee_mean_pct": -0.1859,
+          "double_roundtrip_fee_pf": 0.8069,
+          "n_structural_stops": 41,
+          "pct_structural_stop": 35.34,
+          "mean_initial_stop_distance_pct": 2.129,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.018741,
+          "min_loss_pct": -4.802882,
+          "exit_reasons": {
+            "structural_stop": 41,
+            "opposite_delta_fade": 27,
+            "rebrightening": 48
+          }
+        },
+        "2025_2026": {
+          "n": 212,
+          "mean_net_pct": 0.2358,
+          "median_net_pct": -0.5921,
+          "profit_factor": 1.2824,
+          "pct_profitable": 33.96,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.1943,
+            0.7447
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1343,
+          "mean_after_removing_top_two_trades_pct": 0.0354,
+          "double_roundtrip_fee_mean_pct": 0.0858,
+          "double_roundtrip_fee_pf": 1.0917,
+          "n_structural_stops": 62,
+          "pct_structural_stop": 29.25,
+          "mean_initial_stop_distance_pct": 2.685,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 21.646972,
+          "min_loss_pct": -6.618974,
+          "exit_reasons": {
+            "rebrightening": 93,
+            "structural_stop": 62,
+            "opposite_delta_fade": 57
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 224,
+          "mean_net_pct": 0.1933,
+          "median_net_pct": -0.681,
+          "profit_factor": 1.1593,
+          "pct_profitable": 36.61,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3022,
+            0.7175
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1213,
+          "mean_after_removing_top_two_trades_pct": 0.0513,
+          "double_roundtrip_fee_mean_pct": 0.0433,
+          "double_roundtrip_fee_pf": 1.0331,
+          "n_structural_stops": 67,
+          "pct_structural_stop": 29.91,
+          "mean_initial_stop_distance_pct": 3.528,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 16.26752,
+          "min_loss_pct": -12.947753,
+          "exit_reasons": {
+            "opposite_delta_fade": 59,
+            "rebrightening": 98,
+            "structural_stop": 67
+          }
+        },
+        "2020_2023": {
+          "n": 135,
+          "mean_net_pct": 0.4603,
+          "median_net_pct": -0.4005,
+          "profit_factor": 1.3668,
+          "pct_profitable": 41.48,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.245,
+            1.2216
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.3423,
+          "mean_after_removing_top_two_trades_pct": 0.2272,
+          "double_roundtrip_fee_mean_pct": 0.3103,
+          "double_roundtrip_fee_pf": 1.2308,
+          "n_structural_stops": 40,
+          "pct_structural_stop": 29.63,
+          "mean_initial_stop_distance_pct": 3.745,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 16.26752,
+          "min_loss_pct": -12.947753,
+          "exit_reasons": {
+            "opposite_delta_fade": 37,
+            "rebrightening": 58,
+            "structural_stop": 40
+          }
+        },
+        "2024": {
+          "n": 28,
+          "mean_net_pct": -0.028,
+          "median_net_pct": -0.8584,
+          "profit_factor": 0.9756,
+          "pct_profitable": 28.57,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2404,
+            1.3649
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4709,
+          "mean_after_removing_top_two_trades_pct": -0.8511,
+          "double_roundtrip_fee_mean_pct": -0.178,
+          "double_roundtrip_fee_pf": 0.8587,
+          "n_structural_stops": 7,
+          "pct_structural_stop": 25.0,
+          "mean_initial_stop_distance_pct": 3.874,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.927865,
+          "min_loss_pct": -3.537445,
+          "exit_reasons": {
+            "rebrightening": 13,
+            "opposite_delta_fade": 8,
+            "structural_stop": 7
+          }
+        },
+        "2025_2026": {
+          "n": 61,
+          "mean_net_pct": -0.2958,
+          "median_net_pct": -1.0269,
+          "profit_factor": 0.7433,
+          "pct_profitable": 29.51,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0021,
+            0.4956
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5248,
+          "mean_after_removing_top_two_trades_pct": -0.662,
+          "double_roundtrip_fee_mean_pct": -0.4458,
+          "double_roundtrip_fee_pf": 0.6462,
+          "n_structural_stops": 20,
+          "pct_structural_stop": 32.79,
+          "mean_initial_stop_distance_pct": 2.888,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 13.440566,
+          "min_loss_pct": -5.159369,
+          "exit_reasons": {
+            "rebrightening": 27,
+            "opposite_delta_fade": 14,
+            "structural_stop": 20
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 223,
+          "mean_net_pct": -0.0639,
+          "median_net_pct": -0.7811,
+          "profit_factor": 0.9416,
+          "pct_profitable": 32.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4719,
+            0.3678
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1617,
+          "mean_after_removing_top_two_trades_pct": -0.2329,
+          "double_roundtrip_fee_mean_pct": -0.2139,
+          "double_roundtrip_fee_pf": 0.8212,
+          "n_structural_stops": 86,
+          "pct_structural_stop": 38.57,
+          "mean_initial_stop_distance_pct": 2.569,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 21.646972,
+          "min_loss_pct": -7.228783,
+          "exit_reasons": {
+            "rebrightening": 89,
+            "opposite_delta_fade": 48,
+            "structural_stop": 86
+          }
+        },
+        "2020_2023": {
+          "n": 131,
+          "mean_net_pct": -0.3238,
+          "median_net_pct": -0.7376,
+          "profit_factor": 0.7332,
+          "pct_profitable": 31.3,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8367,
+            0.1905
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.446,
+          "mean_after_removing_top_two_trades_pct": -0.5222,
+          "double_roundtrip_fee_mean_pct": -0.4738,
+          "double_roundtrip_fee_pf": 0.6405,
+          "n_structural_stops": 52,
+          "pct_structural_stop": 39.69,
+          "mean_initial_stop_distance_pct": 2.82,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 15.558346,
+          "min_loss_pct": -7.228783,
+          "exit_reasons": {
+            "rebrightening": 51,
+            "opposite_delta_fade": 28,
+            "structural_stop": 52
+          }
+        },
+        "2024": {
+          "n": 25,
+          "mean_net_pct": -0.1537,
+          "median_net_pct": -0.8702,
+          "profit_factor": 0.8537,
+          "pct_profitable": 32.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2053,
+            1.1085
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6192,
+          "mean_after_removing_top_two_trades_pct": -0.9266,
+          "double_roundtrip_fee_mean_pct": -0.3037,
+          "double_roundtrip_fee_pf": 0.7365,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 44.0,
+          "mean_initial_stop_distance_pct": 2.356,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 11.018741,
+          "min_loss_pct": -4.802882,
+          "exit_reasons": {
+            "structural_stop": 11,
+            "opposite_delta_fade": 3,
+            "rebrightening": 11
+          }
+        },
+        "2025_2026": {
+          "n": 67,
+          "mean_net_pct": 0.4778,
+          "median_net_pct": -0.7333,
+          "profit_factor": 1.545,
+          "pct_profitable": 34.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3156,
+            1.4443
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.157,
+          "mean_after_removing_top_two_trades_pct": 0.0307,
+          "double_roundtrip_fee_mean_pct": 0.3278,
+          "double_roundtrip_fee_pf": 1.3358,
+          "n_structural_stops": 23,
+          "pct_structural_stop": 34.33,
+          "mean_initial_stop_distance_pct": 2.158,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 21.646972,
+          "min_loss_pct": -3.439633,
+          "exit_reasons": {
+            "rebrightening": 27,
+            "structural_stop": 23,
+            "opposite_delta_fade": 17
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 21,
+          "mean_net_pct": -0.0022,
+          "median_net_pct": -1.3424,
+          "profit_factor": 0.9987,
+          "pct_profitable": 23.81,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.8212,
+            2.1111
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7074,
+          "mean_after_removing_top_two_trades_pct": -1.1621,
+          "double_roundtrip_fee_mean_pct": -0.1522,
+          "double_roundtrip_fee_pf": 0.9122,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 52.38,
+          "mean_initial_stop_distance_pct": 2.73,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 14.102635,
+          "min_loss_pct": -8.117951,
+          "exit_reasons": {
+            "rebrightening": 6,
+            "structural_stop": 11,
+            "opposite_delta_fade": 4
+          }
+        },
+        "2020_2023": {
+          "n": 11,
+          "mean_net_pct": 0.3489,
+          "median_net_pct": -1.4915,
+          "profit_factor": 1.3154,
+          "pct_profitable": 27.27,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.4263,
+            2.4501
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4095,
+          "mean_after_removing_top_two_trades_pct": -0.9197,
+          "double_roundtrip_fee_mean_pct": 0.1989,
+          "double_roundtrip_fee_pf": 1.1636,
+          "n_structural_stops": 6,
+          "pct_structural_stop": 54.55,
+          "mean_initial_stop_distance_pct": 2.32,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 7.932148,
+          "min_loss_pct": -2.914928,
+          "exit_reasons": {
+            "rebrightening": 3,
+            "structural_stop": 6,
+            "opposite_delta_fade": 2
+          }
+        },
+        "2024": {
+          "n": 3,
+          "mean_net_pct": 3.5542,
+          "median_net_pct": -0.3152,
+          "profit_factor": 4.0996,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -3.1248,
+            14.1026
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.72,
+          "mean_after_removing_top_two_trades_pct": -3.1248,
+          "double_roundtrip_fee_mean_pct": 3.4042,
+          "double_roundtrip_fee_pf": 3.7307,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 2.416,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 14.102635,
+          "min_loss_pct": -3.124761,
+          "exit_reasons": {
+            "opposite_delta_fade": 1,
+            "rebrightening": 1,
+            "structural_stop": 1
+          }
+        },
+        "2025_2026": {
+          "n": 7,
+          "mean_net_pct": -2.0779,
+          "median_net_pct": -1.3424,
+          "profit_factor": 0.2084,
+          "pct_profitable": 14.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -4.7039,
+            0.4892
+          ],
+          "mean_after_removing_top_one_trade_pct": -3.0623,
+          "mean_after_removing_top_two_trades_pct": -3.6424,
+          "double_roundtrip_fee_mean_pct": -2.2279,
+          "double_roundtrip_fee_pf": 0.1908,
+          "n_structural_stops": 4,
+          "pct_structural_stop": 57.14,
+          "mean_initial_stop_distance_pct": 3.508,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 3.828138,
+          "min_loss_pct": -8.117951,
+          "exit_reasons": {
+            "opposite_delta_fade": 1,
+            "structural_stop": 4,
+            "rebrightening": 2
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 20,
+          "mean_net_pct": -0.6242,
+          "median_net_pct": -1.0123,
+          "profit_factor": 0.6178,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.182,
+            1.0008
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.0868,
+          "mean_after_removing_top_two_trades_pct": -1.3777,
+          "double_roundtrip_fee_mean_pct": -0.7742,
+          "double_roundtrip_fee_pf": 0.5565,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 50.0,
+          "mean_initial_stop_distance_pct": 3.226,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 8.165641,
+          "min_loss_pct": -9.722656,
+          "exit_reasons": {
+            "rebrightening": 5,
+            "structural_stop": 10,
+            "opposite_delta_fade": 5
+          }
+        },
+        "2020_2023": {
+          "n": 9,
+          "mean_net_pct": -0.7968,
+          "median_net_pct": -0.7948,
+          "profit_factor": 0.5231,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -3.3246,
+            1.2352
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.2952,
+          "mean_after_removing_top_two_trades_pct": -1.8669,
+          "double_roundtrip_fee_mean_pct": -0.9468,
+          "double_roundtrip_fee_pf": 0.4653,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 3.75,
+          "median_holding_hours": 28.0,
+          "max_win_pct": 3.191033,
+          "min_loss_pct": -9.722656,
+          "exit_reasons": {
+            "rebrightening": 3,
+            "structural_stop": 3,
+            "opposite_delta_fade": 3
+          }
+        },
+        "2024": {
+          "n": 4,
+          "mean_net_pct": -2.0822,
+          "median_net_pct": -1.5005,
+          "profit_factor": 0.0,
+          "pct_profitable": 0.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -3.8439,
+            -0.7459
+          ],
+          "mean_after_removing_top_one_trade_pct": -2.6013,
+          "mean_after_removing_top_two_trades_pct": -3.4186,
+          "double_roundtrip_fee_mean_pct": -2.2322,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 75.0,
+          "mean_initial_stop_distance_pct": 3.303,
+          "median_holding_hours": 8.0,
+          "max_win_pct": -0.524891,
+          "min_loss_pct": -4.802882,
+          "exit_reasons": {
+            "rebrightening": 1,
+            "structural_stop": 3
+          }
+        },
+        "2025_2026": {
+          "n": 7,
+          "mean_net_pct": 0.4309,
+          "median_net_pct": -1.0357,
+          "profit_factor": 1.3244,
+          "pct_profitable": 28.57,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.0376,
+            3.3562
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8582,
+          "mean_after_removing_top_two_trades_pct": -1.8599,
+          "double_roundtrip_fee_mean_pct": 0.2809,
+          "double_roundtrip_fee_pf": 1.1957,
+          "n_structural_stops": 4,
+          "pct_structural_stop": 57.14,
+          "mean_initial_stop_distance_pct": 2.508,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 8.165641,
+          "min_loss_pct": -3.839184,
+          "exit_reasons": {
+            "structural_stop": 4,
+            "opposite_delta_fade": 2,
+            "rebrightening": 1
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 159,
+          "mean_net_pct": -0.1545,
+          "median_net_pct": -0.7915,
+          "profit_factor": 0.8884,
+          "pct_profitable": 35.85,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7554,
+            0.4834
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2668,
+          "mean_after_removing_top_two_trades_pct": -0.3515,
+          "double_roundtrip_fee_mean_pct": -0.3045,
+          "double_roundtrip_fee_pf": 0.7946,
+          "n_structural_stops": 51,
+          "pct_structural_stop": 32.08,
+          "mean_initial_stop_distance_pct": 3.467,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 17.581098,
+          "min_loss_pct": -11.402093,
+          "exit_reasons": {
+            "opposite_delta_fade": 42,
+            "rebrightening": 66,
+            "structural_stop": 51
+          }
+        },
+        "2020_2023": {
+          "n": 85,
+          "mean_net_pct": 0.2035,
+          "median_net_pct": -0.8128,
+          "profit_factor": 1.1439,
+          "pct_profitable": 40.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7365,
+            1.1734
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0034,
+          "mean_after_removing_top_two_trades_pct": -0.1604,
+          "double_roundtrip_fee_mean_pct": 0.0535,
+          "double_roundtrip_fee_pf": 1.0355,
+          "n_structural_stops": 26,
+          "pct_structural_stop": 30.59,
+          "mean_initial_stop_distance_pct": 3.791,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 17.581098,
+          "min_loss_pct": -11.402093,
+          "exit_reasons": {
+            "opposite_delta_fade": 22,
+            "rebrightening": 37,
+            "structural_stop": 26
+          }
+        },
+        "2024": {
+          "n": 26,
+          "mean_net_pct": -0.1639,
+          "median_net_pct": -0.7647,
+          "profit_factor": 0.8236,
+          "pct_profitable": 26.92,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0614,
+            1.005
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6476,
+          "mean_after_removing_top_two_trades_pct": -0.7742,
+          "double_roundtrip_fee_mean_pct": -0.3139,
+          "double_roundtrip_fee_pf": 0.6978,
+          "n_structural_stops": 9,
+          "pct_structural_stop": 34.62,
+          "mean_initial_stop_distance_pct": 2.932,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 11.927865,
+          "min_loss_pct": -3.341962,
+          "exit_reasons": {
+            "structural_stop": 9,
+            "opposite_delta_fade": 8,
+            "rebrightening": 9
+          }
+        },
+        "2025_2026": {
+          "n": 48,
+          "mean_net_pct": -0.7835,
+          "median_net_pct": -0.6949,
+          "profit_factor": 0.5035,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.7748,
+            0.1852
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.0279,
+          "mean_after_removing_top_two_trades_pct": -1.2254,
+          "double_roundtrip_fee_mean_pct": -0.9335,
+          "double_roundtrip_fee_pf": 0.4447,
+          "n_structural_stops": 16,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 3.185,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 10.70193,
+          "min_loss_pct": -8.953154,
+          "exit_reasons": {
+            "rebrightening": 20,
+            "opposite_delta_fade": 12,
+            "structural_stop": 16
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 171,
+          "mean_net_pct": -0.4013,
+          "median_net_pct": -0.8125,
+          "profit_factor": 0.6745,
+          "pct_profitable": 30.41,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8258,
+            0.0303
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4642,
+          "mean_after_removing_top_two_trades_pct": -0.5225,
+          "double_roundtrip_fee_mean_pct": -0.5513,
+          "double_roundtrip_fee_pf": 0.5881,
+          "n_structural_stops": 68,
+          "pct_structural_stop": 39.77,
+          "mean_initial_stop_distance_pct": 2.759,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 10.282705,
+          "min_loss_pct": -12.803764,
+          "exit_reasons": {
+            "rebrightening": 62,
+            "structural_stop": 68,
+            "opposite_delta_fade": 41
+          }
+        },
+        "2020_2023": {
+          "n": 99,
+          "mean_net_pct": -0.4526,
+          "median_net_pct": -0.6619,
+          "profit_factor": 0.6614,
+          "pct_profitable": 35.35,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0707,
+            0.1624
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5531,
+          "mean_after_removing_top_two_trades_pct": -0.6288,
+          "double_roundtrip_fee_mean_pct": -0.6026,
+          "double_roundtrip_fee_pf": 0.5804,
+          "n_structural_stops": 41,
+          "pct_structural_stop": 41.41,
+          "mean_initial_stop_distance_pct": 2.74,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 9.396859,
+          "min_loss_pct": -12.803764,
+          "exit_reasons": {
+            "rebrightening": 33,
+            "structural_stop": 41,
+            "opposite_delta_fade": 25
+          }
+        },
+        "2024": {
+          "n": 19,
+          "mean_net_pct": 0.0397,
+          "median_net_pct": -0.8288,
+          "profit_factor": 1.0413,
+          "pct_profitable": 21.05,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.1266,
+            1.6141
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5293,
+          "mean_after_removing_top_two_trades_pct": -0.9292,
+          "double_roundtrip_fee_mean_pct": -0.1103,
+          "double_roundtrip_fee_pf": 0.8979,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 52.63,
+          "mean_initial_stop_distance_pct": 1.958,
+          "median_holding_hours": 8.0,
+          "max_win_pct": 10.282705,
+          "min_loss_pct": -2.574,
+          "exit_reasons": {
+            "structural_stop": 10,
+            "rebrightening": 7,
+            "opposite_delta_fade": 2
+          }
+        },
+        "2025_2026": {
+          "n": 53,
+          "mean_net_pct": -0.4637,
+          "median_net_pct": -0.8825,
+          "profit_factor": 0.5918,
+          "pct_profitable": 24.53,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0901,
+            0.1742
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6179,
+          "mean_after_removing_top_two_trades_pct": -0.7179,
+          "double_roundtrip_fee_mean_pct": -0.6137,
+          "double_roundtrip_fee_pf": 0.5087,
+          "n_structural_stops": 17,
+          "pct_structural_stop": 32.08,
+          "mean_initial_stop_distance_pct": 3.08,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 7.556902,
+          "min_loss_pct": -7.124362,
+          "exit_reasons": {
+            "structural_stop": 17,
+            "rebrightening": 22,
+            "opposite_delta_fade": 14
+          }
+        }
+      }
+    },
+    "SOLUSDT": {
+      "color_all_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 427,
+          "mean_net_pct": 0.1347,
+          "median_net_pct": -0.686,
+          "profit_factor": 1.1209,
+          "pct_profitable": 35.36,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2393,
+            0.5508
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.0037,
+          "mean_after_removing_top_two_trades_pct": -0.0445,
+          "double_roundtrip_fee_mean_pct": -0.0153,
+          "double_roundtrip_fee_pf": 0.9874,
+          "n_structural_stops": 133,
+          "pct_structural_stop": 31.15,
+          "mean_initial_stop_distance_pct": 3.247,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 55.945252,
+          "min_loss_pct": -7.073141,
+          "exit_reasons": {
+            "structural_stop": 133,
+            "rebrightening": 198,
+            "opposite_delta_fade": 96
+          }
+        },
+        "2020_2023": {
+          "n": 105,
+          "mean_net_pct": 0.4406,
+          "median_net_pct": -0.737,
+          "profit_factor": 1.4064,
+          "pct_profitable": 28.57,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6057,
+            1.8352
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0931,
+          "mean_after_removing_top_two_trades_pct": -0.293,
+          "double_roundtrip_fee_mean_pct": 0.2906,
+          "double_roundtrip_fee_pf": 1.2437,
+          "n_structural_stops": 33,
+          "pct_structural_stop": 31.43,
+          "mean_initial_stop_distance_pct": 3.253,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 55.945252,
+          "min_loss_pct": -4.331935,
+          "exit_reasons": {
+            "structural_stop": 33,
+            "rebrightening": 54,
+            "opposite_delta_fade": 18
+          }
+        },
+        "2024": {
+          "n": 119,
+          "mean_net_pct": -0.2304,
+          "median_net_pct": -1.1394,
+          "profit_factor": 0.839,
+          "pct_profitable": 29.41,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8561,
+            0.4439
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3693,
+          "mean_after_removing_top_two_trades_pct": -0.4561,
+          "double_roundtrip_fee_mean_pct": -0.3804,
+          "double_roundtrip_fee_pf": 0.7526,
+          "n_structural_stops": 41,
+          "pct_structural_stop": 34.45,
+          "mean_initial_stop_distance_pct": 3.659,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 16.151078,
+          "min_loss_pct": -7.059246,
+          "exit_reasons": {
+            "rebrightening": 52,
+            "structural_stop": 41,
+            "opposite_delta_fade": 26
+          }
+        },
+        "2025_2026": {
+          "n": 203,
+          "mean_net_pct": 0.1905,
+          "median_net_pct": -0.4112,
+          "profit_factor": 1.202,
+          "pct_profitable": 42.36,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2265,
+            0.6185
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.126,
+          "mean_after_removing_top_two_trades_pct": 0.0668,
+          "double_roundtrip_fee_mean_pct": 0.0405,
+          "double_roundtrip_fee_pf": 1.0392,
+          "n_structural_stops": 59,
+          "pct_structural_stop": 29.06,
+          "mean_initial_stop_distance_pct": 3.003,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 13.213256,
+          "min_loss_pct": -7.073141,
+          "exit_reasons": {
+            "opposite_delta_fade": 52,
+            "rebrightening": 92,
+            "structural_stop": 59
+          }
+        }
+      },
+      "color_all_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 405,
+          "mean_net_pct": -0.2111,
+          "median_net_pct": -0.7563,
+          "profit_factor": 0.8306,
+          "pct_profitable": 34.32,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.528,
+            0.1388
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2663,
+          "mean_after_removing_top_two_trades_pct": -0.2979,
+          "double_roundtrip_fee_mean_pct": -0.3611,
+          "double_roundtrip_fee_pf": 0.7317,
+          "n_structural_stops": 134,
+          "pct_structural_stop": 33.09,
+          "mean_initial_stop_distance_pct": 3.393,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 22.063958,
+          "min_loss_pct": -11.103223,
+          "exit_reasons": {
+            "structural_stop": 134,
+            "rebrightening": 172,
+            "opposite_delta_fade": 99
+          }
+        },
+        "2020_2023": {
+          "n": 88,
+          "mean_net_pct": -0.2587,
+          "median_net_pct": -0.6758,
+          "profit_factor": 0.8182,
+          "pct_profitable": 37.5,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9248,
+            0.4825
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3827,
+          "mean_after_removing_top_two_trades_pct": -0.4909,
+          "double_roundtrip_fee_mean_pct": -0.4087,
+          "double_roundtrip_fee_pf": 0.7306,
+          "n_structural_stops": 24,
+          "pct_structural_stop": 27.27,
+          "mean_initial_stop_distance_pct": 3.918,
+          "median_holding_hours": 14.0,
+          "max_win_pct": 10.533308,
+          "min_loss_pct": -7.723991,
+          "exit_reasons": {
+            "structural_stop": 24,
+            "rebrightening": 42,
+            "opposite_delta_fade": 22
+          }
+        },
+        "2024": {
+          "n": 113,
+          "mean_net_pct": -0.5897,
+          "median_net_pct": -1.0852,
+          "profit_factor": 0.603,
+          "pct_profitable": 30.97,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.1548,
+            0.0219
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6721,
+          "mean_after_removing_top_two_trades_pct": -0.7534,
+          "double_roundtrip_fee_mean_pct": -0.7397,
+          "double_roundtrip_fee_pf": 0.5353,
+          "n_structural_stops": 42,
+          "pct_structural_stop": 37.17,
+          "mean_initial_stop_distance_pct": 3.338,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 8.643881,
+          "min_loss_pct": -11.103223,
+          "exit_reasons": {
+            "rebrightening": 48,
+            "opposite_delta_fade": 23,
+            "structural_stop": 42
+          }
+        },
+        "2025_2026": {
+          "n": 204,
+          "mean_net_pct": 0.0191,
+          "median_net_pct": -0.7073,
+          "profit_factor": 1.0184,
+          "pct_profitable": 34.8,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4167,
+            0.5072
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0895,
+          "mean_after_removing_top_two_trades_pct": -0.1518,
+          "double_roundtrip_fee_mean_pct": -0.1309,
+          "double_roundtrip_fee_pf": 0.8847,
+          "n_structural_stops": 68,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 3.198,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 22.063958,
+          "min_loss_pct": -7.134539,
+          "exit_reasons": {
+            "opposite_delta_fade": 54,
+            "structural_stop": 68,
+            "rebrightening": 82
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 129,
+          "mean_net_pct": 0.2028,
+          "median_net_pct": -0.9309,
+          "profit_factor": 1.1646,
+          "pct_profitable": 31.78,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4199,
+            0.885
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.0442,
+          "mean_after_removing_top_two_trades_pct": -0.0851,
+          "double_roundtrip_fee_mean_pct": 0.0528,
+          "double_roundtrip_fee_pf": 1.0396,
+          "n_structural_stops": 46,
+          "pct_structural_stop": 35.66,
+          "mean_initial_stop_distance_pct": 3.315,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 20.497422,
+          "min_loss_pct": -5.3,
+          "exit_reasons": {
+            "rebrightening": 52,
+            "opposite_delta_fade": 31,
+            "structural_stop": 46
+          }
+        },
+        "2020_2023": {
+          "n": 33,
+          "mean_net_pct": 0.5342,
+          "median_net_pct": -0.9309,
+          "profit_factor": 1.4223,
+          "pct_profitable": 30.3,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0284,
+            2.5581
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0897,
+          "mean_after_removing_top_two_trades_pct": -0.6237,
+          "double_roundtrip_fee_mean_pct": 0.3842,
+          "double_roundtrip_fee_pf": 1.2805,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 3.638,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 20.497422,
+          "min_loss_pct": -4.331935,
+          "exit_reasons": {
+            "rebrightening": 17,
+            "opposite_delta_fade": 5,
+            "structural_stop": 11
+          }
+        },
+        "2024": {
+          "n": 37,
+          "mean_net_pct": -0.3185,
+          "median_net_pct": -1.1394,
+          "profit_factor": 0.7845,
+          "pct_profitable": 24.32,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.3394,
+            0.8221
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5361,
+          "mean_after_removing_top_two_trades_pct": -0.7324,
+          "double_roundtrip_fee_mean_pct": -0.4685,
+          "double_roundtrip_fee_pf": 0.7056,
+          "n_structural_stops": 16,
+          "pct_structural_stop": 43.24,
+          "mean_initial_stop_distance_pct": 3.68,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 7.515892,
+          "min_loss_pct": -5.3,
+          "exit_reasons": {
+            "structural_stop": 16,
+            "opposite_delta_fade": 8,
+            "rebrightening": 13
+          }
+        },
+        "2025_2026": {
+          "n": 59,
+          "mean_net_pct": 0.3444,
+          "median_net_pct": -0.7349,
+          "profit_factor": 1.3248,
+          "pct_profitable": 37.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4677,
+            1.2438
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1574,
+          "mean_after_removing_top_two_trades_pct": -0.0264,
+          "double_roundtrip_fee_mean_pct": 0.1944,
+          "double_roundtrip_fee_pf": 1.1684,
+          "n_structural_stops": 19,
+          "pct_structural_stop": 32.2,
+          "mean_initial_stop_distance_pct": 2.906,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 11.186653,
+          "min_loss_pct": -3.839283,
+          "exit_reasons": {
+            "structural_stop": 19,
+            "rebrightening": 22,
+            "opposite_delta_fade": 18
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 137,
+          "mean_net_pct": -0.2973,
+          "median_net_pct": -1.1047,
+          "profit_factor": 0.7984,
+          "pct_profitable": 28.47,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8986,
+            0.3802
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4617,
+          "mean_after_removing_top_two_trades_pct": -0.5577,
+          "double_roundtrip_fee_mean_pct": -0.4473,
+          "double_roundtrip_fee_pf": 0.7173,
+          "n_structural_stops": 60,
+          "pct_structural_stop": 43.8,
+          "mean_initial_stop_distance_pct": 3.066,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 22.063958,
+          "min_loss_pct": -11.103223,
+          "exit_reasons": {
+            "structural_stop": 60,
+            "opposite_delta_fade": 28,
+            "rebrightening": 49
+          }
+        },
+        "2020_2023": {
+          "n": 30,
+          "mean_net_pct": -0.5396,
+          "median_net_pct": -1.2095,
+          "profit_factor": 0.6297,
+          "pct_profitable": 23.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.5605,
+            0.6723
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.9214,
+          "mean_after_removing_top_two_trades_pct": -1.2073,
+          "double_roundtrip_fee_mean_pct": -0.6896,
+          "double_roundtrip_fee_pf": 0.5613,
+          "n_structural_stops": 9,
+          "pct_structural_stop": 30.0,
+          "mean_initial_stop_distance_pct": 3.439,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 10.533308,
+          "min_loss_pct": -3.915648,
+          "exit_reasons": {
+            "structural_stop": 9,
+            "opposite_delta_fade": 4,
+            "rebrightening": 17
+          }
+        },
+        "2024": {
+          "n": 36,
+          "mean_net_pct": -0.957,
+          "median_net_pct": -1.3361,
+          "profit_factor": 0.4579,
+          "pct_profitable": 27.78,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.0879,
+            0.1141
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.1336,
+          "mean_after_removing_top_two_trades_pct": -1.3119,
+          "double_roundtrip_fee_mean_pct": -1.107,
+          "double_roundtrip_fee_pf": 0.4092,
+          "n_structural_stops": 17,
+          "pct_structural_stop": 47.22,
+          "mean_initial_stop_distance_pct": 3.186,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 5.223993,
+          "min_loss_pct": -11.103223,
+          "exit_reasons": {
+            "rebrightening": 14,
+            "structural_stop": 17,
+            "opposite_delta_fade": 5
+          }
+        },
+        "2025_2026": {
+          "n": 71,
+          "mean_net_pct": 0.1395,
+          "median_net_pct": -0.9704,
+          "profit_factor": 1.1046,
+          "pct_profitable": 30.99,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7878,
+            1.161
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1737,
+          "mean_after_removing_top_two_trades_pct": -0.3573,
+          "double_roundtrip_fee_mean_pct": -0.0105,
+          "double_roundtrip_fee_pf": 0.9927,
+          "n_structural_stops": 34,
+          "pct_structural_stop": 47.89,
+          "mean_initial_stop_distance_pct": 2.848,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 22.063958,
+          "min_loss_pct": -5.930963,
+          "exit_reasons": {
+            "structural_stop": 34,
+            "rebrightening": 18,
+            "opposite_delta_fade": 19
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 4,
+          "mean_net_pct": -0.0767,
+          "median_net_pct": -0.6933,
+          "profit_factor": 0.902,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.4135,
+            1.8766
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.0433,
+          "mean_after_removing_top_two_trades_pct": -1.3529,
+          "double_roundtrip_fee_mean_pct": -0.2267,
+          "double_roundtrip_fee_pf": 0.7467,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 75.0,
+          "mean_initial_stop_distance_pct": 1.318,
+          "median_holding_hours": 4.0,
+          "max_win_pct": 2.822993,
+          "min_loss_pct": -1.743304,
+          "exit_reasons": {
+            "structural_stop": 3,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2020_2023": {
+          "n": 1,
+          "mean_net_pct": -0.9625,
+          "median_net_pct": -0.9625,
+          "profit_factor": 0.0,
+          "pct_profitable": 0.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9625,
+            -0.9625
+          ],
+          "mean_after_removing_top_one_trade_pct": null,
+          "mean_after_removing_top_two_trades_pct": null,
+          "double_roundtrip_fee_mean_pct": -1.1125,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 100.0,
+          "mean_initial_stop_distance_pct": 0.813,
+          "median_holding_hours": 4.0,
+          "max_win_pct": -0.962539,
+          "min_loss_pct": -0.962539,
+          "exit_reasons": {
+            "structural_stop": 1
+          }
+        },
+        "2024": {
+          "n": 1,
+          "mean_net_pct": -0.424,
+          "median_net_pct": -0.424,
+          "profit_factor": 0.0,
+          "pct_profitable": 0.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.424,
+            -0.424
+          ],
+          "mean_after_removing_top_one_trade_pct": null,
+          "mean_after_removing_top_two_trades_pct": null,
+          "double_roundtrip_fee_mean_pct": -0.574,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 100.0,
+          "mean_initial_stop_distance_pct": 0.274,
+          "median_holding_hours": 4.0,
+          "max_win_pct": -0.424029,
+          "min_loss_pct": -0.424029,
+          "exit_reasons": {
+            "structural_stop": 1
+          }
+        },
+        "2025_2026": {
+          "n": 2,
+          "mean_net_pct": 0.5398,
+          "median_net_pct": 0.5398,
+          "profit_factor": 1.6193,
+          "pct_profitable": 50.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.7433,
+            2.823
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.7433,
+          "mean_after_removing_top_two_trades_pct": null,
+          "double_roundtrip_fee_mean_pct": 0.3898,
+          "double_roundtrip_fee_pf": 1.4118,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 50.0,
+          "mean_initial_stop_distance_pct": 2.093,
+          "median_holding_hours": 34.0,
+          "max_win_pct": 2.822993,
+          "min_loss_pct": -1.743304,
+          "exit_reasons": {
+            "structural_stop": 1,
+            "opposite_delta_fade": 1
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 20,
+          "mean_net_pct": 0.475,
+          "median_net_pct": -0.5913,
+          "profit_factor": 1.4935,
+          "pct_profitable": 45.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7525,
+            1.8557
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.0358,
+          "mean_after_removing_top_two_trades_pct": -0.2022,
+          "double_roundtrip_fee_mean_pct": 0.325,
+          "double_roundtrip_fee_pf": 1.311,
+          "n_structural_stops": 8,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 2.767,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 8.820528,
+          "min_loss_pct": -3.718625,
+          "exit_reasons": {
+            "rebrightening": 8,
+            "opposite_delta_fade": 4,
+            "structural_stop": 8
+          }
+        },
+        "2020_2023": {
+          "n": 3,
+          "mean_net_pct": 2.4716,
+          "median_net_pct": 0.6149,
+          "profit_factor": 4.6696,
+          "pct_profitable": 66.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.0206,
+            8.8205
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7029,
+          "mean_after_removing_top_two_trades_pct": -2.0206,
+          "double_roundtrip_fee_mean_pct": 2.3216,
+          "double_roundtrip_fee_pf": 4.2087,
+          "n_structural_stops": 0,
+          "pct_structural_stop": 0.0,
+          "mean_initial_stop_distance_pct": 3.447,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 8.820528,
+          "min_loss_pct": -2.020586,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2024": {
+          "n": 6,
+          "mean_net_pct": 0.9444,
+          "median_net_pct": 0.9559,
+          "profit_factor": 2.3955,
+          "pct_profitable": 50.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9932,
+            2.7694
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.3322,
+          "mean_after_removing_top_two_trades_pct": -0.4216,
+          "double_roundtrip_fee_mean_pct": 0.7944,
+          "double_roundtrip_fee_pf": 2.0567,
+          "n_structural_stops": 2,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 2.594,
+          "median_holding_hours": 14.0,
+          "max_win_pct": 4.004982,
+          "min_loss_pct": -2.375414,
+          "exit_reasons": {
+            "rebrightening": 3,
+            "structural_stop": 2,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2025_2026": {
+          "n": 11,
+          "mean_net_pct": -0.3255,
+          "median_net_pct": -1.1923,
+          "profit_factor": 0.7282,
+          "pct_profitable": 36.36,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.6176,
+            1.056
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.79,
+          "mean_after_removing_top_two_trades_pct": -1.1166,
+          "double_roundtrip_fee_mean_pct": -0.4755,
+          "double_roundtrip_fee_pf": 0.6322,
+          "n_structural_stops": 6,
+          "pct_structural_stop": 54.55,
+          "mean_initial_stop_distance_pct": 2.676,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 4.319336,
+          "min_loss_pct": -3.718625,
+          "exit_reasons": {
+            "structural_stop": 6,
+            "opposite_delta_fade": 2,
+            "rebrightening": 3
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 83,
+          "mean_net_pct": 0.2116,
+          "median_net_pct": -0.6431,
+          "profit_factor": 1.1737,
+          "pct_profitable": 34.94,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6712,
+            1.2285
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0358,
+          "mean_after_removing_top_two_trades_pct": -0.2636,
+          "double_roundtrip_fee_mean_pct": 0.0616,
+          "double_roundtrip_fee_pf": 1.0467,
+          "n_structural_stops": 30,
+          "pct_structural_stop": 36.14,
+          "mean_initial_stop_distance_pct": 3.43,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 20.497422,
+          "min_loss_pct": -6.289898,
+          "exit_reasons": {
+            "opposite_delta_fade": 22,
+            "structural_stop": 30,
+            "rebrightening": 31
+          }
+        },
+        "2020_2023": {
+          "n": 20,
+          "mean_net_pct": 1.7589,
+          "median_net_pct": -0.4869,
+          "profit_factor": 2.962,
+          "pct_profitable": 40.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6073,
+            4.7419
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.7727,
+          "mean_after_removing_top_two_trades_pct": -0.2072,
+          "double_roundtrip_fee_mean_pct": 1.6089,
+          "double_roundtrip_fee_pf": 2.6273,
+          "n_structural_stops": 7,
+          "pct_structural_stop": 35.0,
+          "mean_initial_stop_distance_pct": 3.321,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 20.497422,
+          "min_loss_pct": -3.307054,
+          "exit_reasons": {
+            "opposite_delta_fade": 5,
+            "structural_stop": 7,
+            "rebrightening": 8
+          }
+        },
+        "2024": {
+          "n": 23,
+          "mean_net_pct": -0.7013,
+          "median_net_pct": -1.0114,
+          "profit_factor": 0.5392,
+          "pct_profitable": 26.09,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.9328,
+            0.4489
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.999,
+          "mean_after_removing_top_two_trades_pct": -1.2356,
+          "double_roundtrip_fee_mean_pct": -0.8513,
+          "double_roundtrip_fee_pf": 0.4786,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 43.48,
+          "mean_initial_stop_distance_pct": 3.825,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 5.846887,
+          "min_loss_pct": -6.289898,
+          "exit_reasons": {
+            "structural_stop": 10,
+            "opposite_delta_fade": 5,
+            "rebrightening": 8
+          }
+        },
+        "2025_2026": {
+          "n": 40,
+          "mean_net_pct": -0.0372,
+          "median_net_pct": -0.5549,
+          "profit_factor": 0.9691,
+          "pct_profitable": 37.5,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0501,
+            0.9497
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3036,
+          "mean_after_removing_top_two_trades_pct": -0.5323,
+          "double_roundtrip_fee_mean_pct": -0.1872,
+          "double_roundtrip_fee_pf": 0.8561,
+          "n_structural_stops": 13,
+          "pct_structural_stop": 32.5,
+          "mean_initial_stop_distance_pct": 3.256,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 10.354308,
+          "min_loss_pct": -5.912454,
+          "exit_reasons": {
+            "rebrightening": 15,
+            "opposite_delta_fade": 12,
+            "structural_stop": 13
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 99,
+          "mean_net_pct": -0.6147,
+          "median_net_pct": -1.1919,
+          "profit_factor": 0.5817,
+          "pct_profitable": 29.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2826,
+            0.1254
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8461,
+          "mean_after_removing_top_two_trades_pct": -0.9395,
+          "double_roundtrip_fee_mean_pct": -0.7647,
+          "double_roundtrip_fee_pf": 0.5148,
+          "n_structural_stops": 48,
+          "pct_structural_stop": 48.48,
+          "mean_initial_stop_distance_pct": 3.156,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 22.063958,
+          "min_loss_pct": -10.429042,
+          "exit_reasons": {
+            "structural_stop": 48,
+            "rebrightening": 36,
+            "opposite_delta_fade": 15
+          }
+        },
+        "2020_2023": {
+          "n": 24,
+          "mean_net_pct": -0.9852,
+          "median_net_pct": -1.6509,
+          "profit_factor": 0.3597,
+          "pct_profitable": 20.83,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.9442,
+            0.0234
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.2734,
+          "mean_after_removing_top_two_trades_pct": -1.5462,
+          "double_roundtrip_fee_mean_pct": -1.1352,
+          "double_roundtrip_fee_pf": 0.3157,
+          "n_structural_stops": 9,
+          "pct_structural_stop": 37.5,
+          "mean_initial_stop_distance_pct": 3.723,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 5.643977,
+          "min_loss_pct": -6.544054,
+          "exit_reasons": {
+            "structural_stop": 9,
+            "rebrightening": 12,
+            "opposite_delta_fade": 3
+          }
+        },
+        "2024": {
+          "n": 26,
+          "mean_net_pct": -0.822,
+          "median_net_pct": -1.6403,
+          "profit_factor": 0.5141,
+          "pct_profitable": 34.62,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.8599,
+            0.3799
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.1832,
+          "mean_after_removing_top_two_trades_pct": -1.4046,
+          "double_roundtrip_fee_mean_pct": -0.972,
+          "double_roundtrip_fee_pf": 0.4569,
+          "n_structural_stops": 12,
+          "pct_structural_stop": 46.15,
+          "mean_initial_stop_distance_pct": 3.326,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 8.208676,
+          "min_loss_pct": -4.632676,
+          "exit_reasons": {
+            "structural_stop": 12,
+            "rebrightening": 11,
+            "opposite_delta_fade": 3
+          }
+        },
+        "2025_2026": {
+          "n": 49,
+          "mean_net_pct": -0.3233,
+          "median_net_pct": -1.0071,
+          "profit_factor": 0.7547,
+          "pct_profitable": 30.61,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.3071,
+            0.9126
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7897,
+          "mean_after_removing_top_two_trades_pct": -0.9618,
+          "double_roundtrip_fee_mean_pct": -0.4733,
+          "double_roundtrip_fee_pf": 0.6672,
+          "n_structural_stops": 27,
+          "pct_structural_stop": 55.1,
+          "mean_initial_stop_distance_pct": 2.789,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 22.063958,
+          "min_loss_pct": -10.429042,
+          "exit_reasons": {
+            "structural_stop": 27,
+            "rebrightening": 13,
+            "opposite_delta_fade": 9
+          }
+        }
+      }
+    },
+    "BNBUSDT": {
+      "color_all_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 420,
+          "mean_net_pct": -0.0746,
+          "median_net_pct": -0.4428,
+          "profit_factor": 0.9033,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2995,
+            0.1898
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1431,
+          "mean_after_removing_top_two_trades_pct": -0.1735,
+          "double_roundtrip_fee_mean_pct": -0.2246,
+          "double_roundtrip_fee_pf": 0.7434,
+          "n_structural_stops": 110,
+          "pct_structural_stop": 26.19,
+          "mean_initial_stop_distance_pct": 2.368,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 28.607422,
+          "min_loss_pct": -5.679404,
+          "exit_reasons": {
+            "structural_stop": 110,
+            "rebrightening": 197,
+            "opposite_delta_fade": 113
+          }
+        },
+        "2020_2023": {
+          "n": 109,
+          "mean_net_pct": -0.2827,
+          "median_net_pct": -0.4824,
+          "profit_factor": 0.6099,
+          "pct_profitable": 24.77,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6027,
+            0.0727
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3809,
+          "mean_after_removing_top_two_trades_pct": -0.4489,
+          "double_roundtrip_fee_mean_pct": -0.4327,
+          "double_roundtrip_fee_pf": 0.4851,
+          "n_structural_stops": 36,
+          "pct_structural_stop": 33.03,
+          "mean_initial_stop_distance_pct": 1.763,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 10.327802,
+          "min_loss_pct": -2.928229,
+          "exit_reasons": {
+            "structural_stop": 36,
+            "rebrightening": 50,
+            "opposite_delta_fade": 23
+          }
+        },
+        "2024": {
+          "n": 107,
+          "mean_net_pct": 0.1103,
+          "median_net_pct": -0.5472,
+          "profit_factor": 1.1227,
+          "pct_profitable": 35.51,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4883,
+            0.9361
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1585,
+          "mean_after_removing_top_two_trades_pct": -0.2619,
+          "double_roundtrip_fee_mean_pct": -0.0397,
+          "double_roundtrip_fee_pf": 0.9603,
+          "n_structural_stops": 27,
+          "pct_structural_stop": 25.23,
+          "mean_initial_stop_distance_pct": 3.078,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 28.607422,
+          "min_loss_pct": -4.178768,
+          "exit_reasons": {
+            "structural_stop": 27,
+            "rebrightening": 46,
+            "opposite_delta_fade": 34
+          }
+        },
+        "2025_2026": {
+          "n": 204,
+          "mean_net_pct": -0.0605,
+          "median_net_pct": -0.3991,
+          "profit_factor": 0.9173,
+          "pct_profitable": 36.76,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3453,
+            0.2466
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.1226,
+          "mean_after_removing_top_two_trades_pct": -0.1742,
+          "double_roundtrip_fee_mean_pct": -0.2105,
+          "double_roundtrip_fee_pf": 0.7463,
+          "n_structural_stops": 47,
+          "pct_structural_stop": 23.04,
+          "mean_initial_stop_distance_pct": 2.32,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 12.555008,
+          "min_loss_pct": -5.679404,
+          "exit_reasons": {
+            "structural_stop": 47,
+            "rebrightening": 101,
+            "opposite_delta_fade": 56
+          }
+        }
+      },
+      "color_all_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 438,
+          "mean_net_pct": -0.1974,
+          "median_net_pct": -0.5203,
+          "profit_factor": 0.7422,
+          "pct_profitable": 29.22,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3854,
+            0.0064
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2313,
+          "mean_after_removing_top_two_trades_pct": -0.2652,
+          "double_roundtrip_fee_mean_pct": -0.3474,
+          "double_roundtrip_fee_pf": 0.6026,
+          "n_structural_stops": 136,
+          "pct_structural_stop": 31.05,
+          "mean_initial_stop_distance_pct": 2.014,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 14.609362,
+          "min_loss_pct": -4.726219,
+          "exit_reasons": {
+            "structural_stop": 136,
+            "opposite_delta_fade": 104,
+            "rebrightening": 198
+          }
+        },
+        "2020_2023": {
+          "n": 112,
+          "mean_net_pct": -0.1279,
+          "median_net_pct": -0.4848,
+          "profit_factor": 0.8213,
+          "pct_profitable": 28.57,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5169,
+            0.3196
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2607,
+          "mean_after_removing_top_two_trades_pct": -0.3461,
+          "double_roundtrip_fee_mean_pct": -0.2779,
+          "double_roundtrip_fee_pf": 0.6635,
+          "n_structural_stops": 35,
+          "pct_structural_stop": 31.25,
+          "mean_initial_stop_distance_pct": 1.826,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 14.609362,
+          "min_loss_pct": -3.849903,
+          "exit_reasons": {
+            "structural_stop": 35,
+            "opposite_delta_fade": 24,
+            "rebrightening": 53
+          }
+        },
+        "2024": {
+          "n": 114,
+          "mean_net_pct": -0.3376,
+          "median_net_pct": -0.5801,
+          "profit_factor": 0.6023,
+          "pct_profitable": 30.7,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6647,
+            0.0246
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4206,
+          "mean_after_removing_top_two_trades_pct": -0.4855,
+          "double_roundtrip_fee_mean_pct": -0.4876,
+          "double_roundtrip_fee_pf": 0.4892,
+          "n_structural_stops": 42,
+          "pct_structural_stop": 36.84,
+          "mean_initial_stop_distance_pct": 2.051,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 9.034753,
+          "min_loss_pct": -4.726219,
+          "exit_reasons": {
+            "opposite_delta_fade": 27,
+            "rebrightening": 45,
+            "structural_stop": 42
+          }
+        },
+        "2025_2026": {
+          "n": 212,
+          "mean_net_pct": -0.1588,
+          "median_net_pct": -0.5177,
+          "profit_factor": 0.7876,
+          "pct_profitable": 28.77,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4277,
+            0.1381
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2285,
+          "mean_after_removing_top_two_trades_pct": -0.2909,
+          "double_roundtrip_fee_mean_pct": -0.3088,
+          "double_roundtrip_fee_pf": 0.6395,
+          "n_structural_stops": 59,
+          "pct_structural_stop": 27.83,
+          "mean_initial_stop_distance_pct": 2.093,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 14.556938,
+          "min_loss_pct": -4.234986,
+          "exit_reasons": {
+            "rebrightening": 100,
+            "opposite_delta_fade": 53,
+            "structural_stop": 59
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 137,
+          "mean_net_pct": 0.1911,
+          "median_net_pct": -0.4515,
+          "profit_factor": 1.2369,
+          "pct_profitable": 39.42,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3257,
+            0.818
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0178,
+          "mean_after_removing_top_two_trades_pct": -0.1109,
+          "double_roundtrip_fee_mean_pct": 0.0411,
+          "double_roundtrip_fee_pf": 1.0456,
+          "n_structural_stops": 38,
+          "pct_structural_stop": 27.74,
+          "mean_initial_stop_distance_pct": 2.53,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 28.607422,
+          "min_loss_pct": -5.679404,
+          "exit_reasons": {
+            "structural_stop": 38,
+            "rebrightening": 61,
+            "opposite_delta_fade": 38
+          }
+        },
+        "2020_2023": {
+          "n": 34,
+          "mean_net_pct": -0.3192,
+          "median_net_pct": -0.4932,
+          "profit_factor": 0.5454,
+          "pct_profitable": 32.35,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7546,
+            0.1513
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4388,
+          "mean_after_removing_top_two_trades_pct": -0.5515,
+          "double_roundtrip_fee_mean_pct": -0.4692,
+          "double_roundtrip_fee_pf": 0.4183,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 32.35,
+          "mean_initial_stop_distance_pct": 1.664,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 3.62963,
+          "min_loss_pct": -2.734733,
+          "exit_reasons": {
+            "structural_stop": 11,
+            "rebrightening": 14,
+            "opposite_delta_fade": 9
+          }
+        },
+        "2024": {
+          "n": 33,
+          "mean_net_pct": 0.484,
+          "median_net_pct": -0.6882,
+          "profit_factor": 1.479,
+          "pct_profitable": 36.36,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9293,
+            2.6102
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3949,
+          "mean_after_removing_top_two_trades_pct": -0.542,
+          "double_roundtrip_fee_mean_pct": 0.334,
+          "double_roundtrip_fee_pf": 1.3008,
+          "n_structural_stops": 7,
+          "pct_structural_stop": 21.21,
+          "mean_initial_stop_distance_pct": 3.572,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 28.607422,
+          "min_loss_pct": -4.007232,
+          "exit_reasons": {
+            "rebrightening": 18,
+            "structural_stop": 7,
+            "opposite_delta_fade": 8
+          }
+        },
+        "2025_2026": {
+          "n": 70,
+          "mean_net_pct": 0.301,
+          "median_net_pct": -0.3019,
+          "profit_factor": 1.395,
+          "pct_profitable": 44.29,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3256,
+            0.9629
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1234,
+          "mean_after_removing_top_two_trades_pct": -0.0261,
+          "double_roundtrip_fee_mean_pct": 0.151,
+          "double_roundtrip_fee_pf": 1.1778,
+          "n_structural_stops": 20,
+          "pct_structural_stop": 28.57,
+          "mean_initial_stop_distance_pct": 2.46,
+          "median_holding_hours": 28.0,
+          "max_win_pct": 12.555008,
+          "min_loss_pct": -5.679404,
+          "exit_reasons": {
+            "structural_stop": 20,
+            "opposite_delta_fade": 21,
+            "rebrightening": 29
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 126,
+          "mean_net_pct": -0.3116,
+          "median_net_pct": -0.6784,
+          "profit_factor": 0.6533,
+          "pct_profitable": 25.4,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6725,
+            0.0925
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.417,
+          "mean_after_removing_top_two_trades_pct": -0.4757,
+          "double_roundtrip_fee_mean_pct": -0.4616,
+          "double_roundtrip_fee_pf": 0.5439,
+          "n_structural_stops": 50,
+          "pct_structural_stop": 39.68,
+          "mean_initial_stop_distance_pct": 1.882,
+          "median_holding_hours": 14.0,
+          "max_win_pct": 12.869355,
+          "min_loss_pct": -4.726219,
+          "exit_reasons": {
+            "rebrightening": 56,
+            "opposite_delta_fade": 20,
+            "structural_stop": 50
+          }
+        },
+        "2020_2023": {
+          "n": 36,
+          "mean_net_pct": -0.6726,
+          "median_net_pct": -0.8499,
+          "profit_factor": 0.2337,
+          "pct_profitable": 22.22,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0605,
+            -0.2562
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8142,
+          "mean_after_removing_top_two_trades_pct": -0.8767,
+          "double_roundtrip_fee_mean_pct": -0.8226,
+          "double_roundtrip_fee_pf": 0.1753,
+          "n_structural_stops": 13,
+          "pct_structural_stop": 36.11,
+          "mean_initial_stop_distance_pct": 1.862,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 4.284182,
+          "min_loss_pct": -3.849903,
+          "exit_reasons": {
+            "rebrightening": 18,
+            "opposite_delta_fade": 5,
+            "structural_stop": 13
+          }
+        },
+        "2024": {
+          "n": 30,
+          "mean_net_pct": -0.5085,
+          "median_net_pct": -0.8734,
+          "profit_factor": 0.557,
+          "pct_profitable": 26.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2819,
+            0.4025
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7623,
+          "mean_after_removing_top_two_trades_pct": -0.9194,
+          "double_roundtrip_fee_mean_pct": -0.6585,
+          "double_roundtrip_fee_pf": 0.4765,
+          "n_structural_stops": 14,
+          "pct_structural_stop": 46.67,
+          "mean_initial_stop_distance_pct": 2.068,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 6.852559,
+          "min_loss_pct": -4.726219,
+          "exit_reasons": {
+            "rebrightening": 11,
+            "opposite_delta_fade": 5,
+            "structural_stop": 14
+          }
+        },
+        "2025_2026": {
+          "n": 60,
+          "mean_net_pct": 0.0035,
+          "median_net_pct": -0.5587,
+          "profit_factor": 1.0044,
+          "pct_profitable": 26.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5907,
+            0.675
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2146,
+          "mean_after_removing_top_two_trades_pct": -0.3281,
+          "double_roundtrip_fee_mean_pct": -0.1465,
+          "double_roundtrip_fee_pf": 0.8368,
+          "n_structural_stops": 23,
+          "pct_structural_stop": 38.33,
+          "mean_initial_stop_distance_pct": 1.8,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 12.869355,
+          "min_loss_pct": -4.234986,
+          "exit_reasons": {
+            "opposite_delta_fade": 10,
+            "rebrightening": 27,
+            "structural_stop": 23
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 10,
+          "mean_net_pct": -0.5604,
+          "median_net_pct": -0.9263,
+          "profit_factor": 0.5894,
+          "pct_profitable": 20.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.1025,
+            1.1807
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.0838,
+          "mean_after_removing_top_two_trades_pct": -1.706,
+          "double_roundtrip_fee_mean_pct": -0.7104,
+          "double_roundtrip_fee_pf": 0.5215,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 30.0,
+          "mean_initial_stop_distance_pct": 3.206,
+          "median_holding_hours": 24.0,
+          "max_win_pct": 4.149805,
+          "min_loss_pct": -4.463829,
+          "exit_reasons": {
+            "structural_stop": 3,
+            "rebrightening": 5,
+            "opposite_delta_fade": 2
+          }
+        },
+        "2020_2023": {
+          "n": 2,
+          "mean_net_pct": -0.7986,
+          "median_net_pct": -0.7986,
+          "profit_factor": 0.0,
+          "pct_profitable": 0.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0542,
+            -0.543
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.0542,
+          "mean_after_removing_top_two_trades_pct": null,
+          "double_roundtrip_fee_mean_pct": -0.9486,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 50.0,
+          "mean_initial_stop_distance_pct": 0.97,
+          "median_holding_hours": 20.0,
+          "max_win_pct": -0.543032,
+          "min_loss_pct": -1.05417,
+          "exit_reasons": {
+            "structural_stop": 1,
+            "rebrightening": 1
+          }
+        },
+        "2024": {
+          "n": 5,
+          "mean_net_pct": -0.7718,
+          "median_net_pct": -1.2412,
+          "profit_factor": 0.5181,
+          "pct_profitable": 20.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -3.0862,
+            1.9405
+          ],
+          "mean_after_removing_top_one_trade_pct": -2.0022,
+          "mean_after_removing_top_two_trades_pct": -2.4035,
+          "double_roundtrip_fee_mean_pct": -0.9218,
+          "double_roundtrip_fee_pf": 0.4646,
+          "n_structural_stops": 2,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 2.968,
+          "median_holding_hours": 28.0,
+          "max_win_pct": 4.149805,
+          "min_loss_pct": -4.463829,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "structural_stop": 2,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2025_2026": {
+          "n": 3,
+          "mean_net_pct": -0.0493,
+          "median_net_pct": -0.3238,
+          "profit_factor": 0.9634,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -3.7181,
+            3.8941
+          ],
+          "mean_after_removing_top_one_trade_pct": -2.0209,
+          "mean_after_removing_top_two_trades_pct": -3.7181,
+          "double_roundtrip_fee_mean_pct": -0.1993,
+          "double_roundtrip_fee_pf": 0.8623,
+          "n_structural_stops": 0,
+          "pct_structural_stop": 0.0,
+          "mean_initial_stop_distance_pct": 5.094,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 3.894088,
+          "min_loss_pct": -3.718051,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "opposite_delta_fade": 1
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 11,
+          "mean_net_pct": -0.2062,
+          "median_net_pct": -0.8786,
+          "profit_factor": 0.7914,
+          "pct_profitable": 36.36,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.4387,
+            1.2752
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.7505,
+          "mean_after_removing_top_two_trades_pct": -1.2002,
+          "double_roundtrip_fee_mean_pct": -0.3562,
+          "double_roundtrip_fee_pf": 0.6776,
+          "n_structural_stops": 4,
+          "pct_structural_stop": 36.36,
+          "mean_initial_stop_distance_pct": 2.089,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 5.23688,
+          "min_loss_pct": -3.564112,
+          "exit_reasons": {
+            "rebrightening": 5,
+            "structural_stop": 4,
+            "opposite_delta_fade": 2
+          }
+        },
+        "2020_2023": {
+          "n": 4,
+          "mean_net_pct": -0.7911,
+          "median_net_pct": -0.8007,
+          "profit_factor": 0.0143,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.3875,
+            -0.1852
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.0702,
+          "mean_after_removing_top_two_trades_pct": -1.2438,
+          "double_roundtrip_fee_mean_pct": -0.9411,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 25.0,
+          "mean_initial_stop_distance_pct": 1.319,
+          "median_holding_hours": 10.0,
+          "max_win_pct": 0.0459,
+          "min_loss_pct": -1.609059,
+          "exit_reasons": {
+            "rebrightening": 3,
+            "structural_stop": 1
+          }
+        },
+        "2024": {
+          "n": 4,
+          "mean_net_pct": -0.103,
+          "median_net_pct": -1.0423,
+          "profit_factor": 0.9271,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.8995,
+            3.6329
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.8829,
+          "mean_after_removing_top_two_trades_pct": -2.3716,
+          "double_roundtrip_fee_mean_pct": -0.253,
+          "double_roundtrip_fee_pf": 0.8341,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 75.0,
+          "mean_initial_stop_distance_pct": 2.449,
+          "median_holding_hours": 22.0,
+          "max_win_pct": 5.23688,
+          "min_loss_pct": -3.564112,
+          "exit_reasons": {
+            "structural_stop": 3,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2025_2026": {
+          "n": 3,
+          "mean_net_pct": 0.436,
+          "median_net_pct": 0.0269,
+          "profit_factor": 1.649,
+          "pct_profitable": 66.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.0156,
+            3.2968
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.9943,
+          "mean_after_removing_top_two_trades_pct": -2.0156,
+          "double_roundtrip_fee_mean_pct": 0.286,
+          "double_roundtrip_fee_pf": 1.3749,
+          "n_structural_stops": 0,
+          "pct_structural_stop": 0.0,
+          "mean_initial_stop_distance_pct": 2.635,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 3.296797,
+          "min_loss_pct": -2.015614,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "opposite_delta_fade": 1
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 102,
+          "mean_net_pct": -0.1763,
+          "median_net_pct": -0.5437,
+          "profit_factor": 0.8179,
+          "pct_profitable": 41.18,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6712,
+            0.3878
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3515,
+          "mean_after_removing_top_two_trades_pct": -0.4413,
+          "double_roundtrip_fee_mean_pct": -0.3263,
+          "double_roundtrip_fee_pf": 0.6929,
+          "n_structural_stops": 36,
+          "pct_structural_stop": 35.29,
+          "mean_initial_stop_distance_pct": 2.563,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 17.515961,
+          "min_loss_pct": -7.057845,
+          "exit_reasons": {
+            "structural_stop": 36,
+            "rebrightening": 38,
+            "opposite_delta_fade": 28
+          }
+        },
+        "2020_2023": {
+          "n": 28,
+          "mean_net_pct": 0.1334,
+          "median_net_pct": -0.2848,
+          "profit_factor": 1.1368,
+          "pct_profitable": 50.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.1233,
+            1.8178
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5104,
+          "mean_after_removing_top_two_trades_pct": -0.6689,
+          "double_roundtrip_fee_mean_pct": -0.0166,
+          "double_roundtrip_fee_pf": 0.9844,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 39.29,
+          "mean_initial_stop_distance_pct": 1.899,
+          "median_holding_hours": 22.0,
+          "max_win_pct": 17.515961,
+          "min_loss_pct": -7.057845,
+          "exit_reasons": {
+            "structural_stop": 11,
+            "rebrightening": 7,
+            "opposite_delta_fade": 10
+          }
+        },
+        "2024": {
+          "n": 26,
+          "mean_net_pct": -0.7202,
+          "median_net_pct": -0.8478,
+          "profit_factor": 0.4857,
+          "pct_profitable": 34.62,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.5995,
+            0.1979
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8935,
+          "mean_after_removing_top_two_trades_pct": -1.0731,
+          "double_roundtrip_fee_mean_pct": -0.8702,
+          "double_roundtrip_fee_pf": 0.4212,
+          "n_structural_stops": 7,
+          "pct_structural_stop": 26.92,
+          "mean_initial_stop_distance_pct": 3.89,
+          "median_holding_hours": 26.0,
+          "max_win_pct": 3.612116,
+          "min_loss_pct": -4.91681,
+          "exit_reasons": {
+            "structural_stop": 7,
+            "rebrightening": 13,
+            "opposite_delta_fade": 6
+          }
+        },
+        "2025_2026": {
+          "n": 48,
+          "mean_net_pct": -0.0623,
+          "median_net_pct": -0.4859,
+          "profit_factor": 0.9146,
+          "pct_profitable": 39.58,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6029,
+            0.5235
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2473,
+          "mean_after_removing_top_two_trades_pct": -0.349,
+          "double_roundtrip_fee_mean_pct": -0.2123,
+          "double_roundtrip_fee_pf": 0.7423,
+          "n_structural_stops": 18,
+          "pct_structural_stop": 37.5,
+          "mean_initial_stop_distance_pct": 2.23,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 8.631917,
+          "min_loss_pct": -3.363785,
+          "exit_reasons": {
+            "structural_stop": 18,
+            "opposite_delta_fade": 12,
+            "rebrightening": 18
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 90,
+          "mean_net_pct": 0.1171,
+          "median_net_pct": -0.4199,
+          "profit_factor": 1.1551,
+          "pct_profitable": 34.44,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3557,
+            0.68
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0446,
+          "mean_after_removing_top_two_trades_pct": -0.1298,
+          "double_roundtrip_fee_mean_pct": -0.0329,
+          "double_roundtrip_fee_pf": 0.9615,
+          "n_structural_stops": 31,
+          "pct_structural_stop": 34.44,
+          "mean_initial_stop_distance_pct": 2.102,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 14.510084,
+          "min_loss_pct": -4.726219,
+          "exit_reasons": {
+            "opposite_delta_fade": 24,
+            "structural_stop": 31,
+            "rebrightening": 35
+          }
+        },
+        "2020_2023": {
+          "n": 23,
+          "mean_net_pct": -0.1541,
+          "median_net_pct": -0.3011,
+          "profit_factor": 0.7784,
+          "pct_profitable": 39.13,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8358,
+            0.57
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3507,
+          "mean_after_removing_top_two_trades_pct": -0.5508,
+          "double_roundtrip_fee_mean_pct": -0.3041,
+          "double_roundtrip_fee_pf": 0.6134,
+          "n_structural_stops": 7,
+          "pct_structural_stop": 30.43,
+          "mean_initial_stop_distance_pct": 2.209,
+          "median_holding_hours": 24.0,
+          "max_win_pct": 4.17265,
+          "min_loss_pct": -3.408299,
+          "exit_reasons": {
+            "opposite_delta_fade": 7,
+            "structural_stop": 7,
+            "rebrightening": 9
+          }
+        },
+        "2024": {
+          "n": 27,
+          "mean_net_pct": 0.0491,
+          "median_net_pct": -0.5601,
+          "profit_factor": 1.0543,
+          "pct_profitable": 40.74,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.876,
+            1.0538
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2357,
+          "mean_after_removing_top_two_trades_pct": -0.4417,
+          "double_roundtrip_fee_mean_pct": -0.1009,
+          "double_roundtrip_fee_pf": 0.8989,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 37.04,
+          "mean_initial_stop_distance_pct": 2.067,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 7.454425,
+          "min_loss_pct": -4.726219,
+          "exit_reasons": {
+            "rebrightening": 9,
+            "opposite_delta_fade": 8,
+            "structural_stop": 10
+          }
+        },
+        "2025_2026": {
+          "n": 40,
+          "mean_net_pct": 0.319,
+          "median_net_pct": -0.4541,
+          "profit_factor": 1.4634,
+          "pct_profitable": 27.5,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4549,
+            1.3409
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.0449,
+          "mean_after_removing_top_two_trades_pct": -0.1743,
+          "double_roundtrip_fee_mean_pct": 0.169,
+          "double_roundtrip_fee_pf": 1.212,
+          "n_structural_stops": 14,
+          "pct_structural_stop": 35.0,
+          "mean_initial_stop_distance_pct": 2.065,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 14.510084,
+          "min_loss_pct": -2.507424,
+          "exit_reasons": {
+            "opposite_delta_fade": 9,
+            "rebrightening": 17,
+            "structural_stop": 14
+          }
+        }
+      }
+    },
+    "XRPUSDT": {
+      "color_all_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 435,
+          "mean_net_pct": -0.2589,
+          "median_net_pct": -0.6258,
+          "profit_factor": 0.7332,
+          "pct_profitable": 30.11,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5063,
+            0.0437
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3411,
+          "mean_after_removing_top_two_trades_pct": -0.3791,
+          "double_roundtrip_fee_mean_pct": -0.4089,
+          "double_roundtrip_fee_pf": 0.6206,
+          "n_structural_stops": 137,
+          "pct_structural_stop": 31.49,
+          "mean_initial_stop_distance_pct": 2.792,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 35.405453,
+          "min_loss_pct": -8.396466,
+          "exit_reasons": {
+            "rebrightening": 215,
+            "structural_stop": 137,
+            "opposite_delta_fade": 83
+          }
+        },
+        "2020_2023": {
+          "n": 90,
+          "mean_net_pct": -0.2671,
+          "median_net_pct": -0.4353,
+          "profit_factor": 0.6753,
+          "pct_profitable": 30.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6905,
+            0.1958
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4139,
+          "mean_after_removing_top_two_trades_pct": -0.5048,
+          "double_roundtrip_fee_mean_pct": -0.4171,
+          "double_roundtrip_fee_pf": 0.5515,
+          "n_structural_stops": 28,
+          "pct_structural_stop": 31.11,
+          "mean_initial_stop_distance_pct": 2.837,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 12.796126,
+          "min_loss_pct": -4.270159,
+          "exit_reasons": {
+            "rebrightening": 44,
+            "structural_stop": 28,
+            "opposite_delta_fade": 18
+          }
+        },
+        "2024": {
+          "n": 117,
+          "mean_net_pct": -0.5323,
+          "median_net_pct": -0.7999,
+          "profit_factor": 0.5292,
+          "pct_profitable": 29.91,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9095,
+            -0.1356
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.6071,
+          "mean_after_removing_top_two_trades_pct": -0.659,
+          "double_roundtrip_fee_mean_pct": -0.6823,
+          "double_roundtrip_fee_pf": 0.4488,
+          "n_structural_stops": 41,
+          "pct_structural_stop": 35.04,
+          "mean_initial_stop_distance_pct": 3.001,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 8.151611,
+          "min_loss_pct": -5.076573,
+          "exit_reasons": {
+            "opposite_delta_fade": 25,
+            "structural_stop": 41,
+            "rebrightening": 51
+          }
+        },
+        "2025_2026": {
+          "n": 228,
+          "mean_net_pct": -0.1154,
+          "median_net_pct": -0.6166,
+          "profit_factor": 0.8781,
+          "pct_profitable": 30.26,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.5136,
+            0.3807
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2718,
+          "mean_after_removing_top_two_trades_pct": -0.3444,
+          "double_roundtrip_fee_mean_pct": -0.2654,
+          "double_roundtrip_fee_pf": 0.7482,
+          "n_structural_stops": 68,
+          "pct_structural_stop": 29.82,
+          "mean_initial_stop_distance_pct": 2.666,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 35.405453,
+          "min_loss_pct": -8.396466,
+          "exit_reasons": {
+            "rebrightening": 120,
+            "structural_stop": 68,
+            "opposite_delta_fade": 40
+          }
+        }
+      },
+      "color_all_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 405,
+          "mean_net_pct": 0.0022,
+          "median_net_pct": -0.4224,
+          "profit_factor": 1.0026,
+          "pct_profitable": 37.04,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.2504,
+            0.2455
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.036,
+          "mean_after_removing_top_two_trades_pct": -0.068,
+          "double_roundtrip_fee_mean_pct": -0.1478,
+          "double_roundtrip_fee_pf": 0.8424,
+          "n_structural_stops": 107,
+          "pct_structural_stop": 26.42,
+          "mean_initial_stop_distance_pct": 2.915,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 15.436568,
+          "min_loss_pct": -8.808035,
+          "exit_reasons": {
+            "rebrightening": 194,
+            "opposite_delta_fade": 104,
+            "structural_stop": 107
+          }
+        },
+        "2020_2023": {
+          "n": 101,
+          "mean_net_pct": -0.1217,
+          "median_net_pct": -0.4298,
+          "profit_factor": 0.824,
+          "pct_profitable": 32.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4487,
+            0.2404
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.194,
+          "mean_after_removing_top_two_trades_pct": -0.2566,
+          "double_roundtrip_fee_mean_pct": -0.2717,
+          "double_roundtrip_fee_pf": 0.6578,
+          "n_structural_stops": 24,
+          "pct_structural_stop": 23.76,
+          "mean_initial_stop_distance_pct": 2.86,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 7.107019,
+          "min_loss_pct": -3.599374,
+          "exit_reasons": {
+            "rebrightening": 55,
+            "opposite_delta_fade": 22,
+            "structural_stop": 24
+          }
+        },
+        "2024": {
+          "n": 119,
+          "mean_net_pct": -0.2957,
+          "median_net_pct": -0.5095,
+          "profit_factor": 0.6999,
+          "pct_profitable": 34.45,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7148,
+            0.1358
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3752,
+          "mean_after_removing_top_two_trades_pct": -0.4495,
+          "double_roundtrip_fee_mean_pct": -0.4457,
+          "double_roundtrip_fee_pf": 0.5903,
+          "n_structural_stops": 40,
+          "pct_structural_stop": 33.61,
+          "mean_initial_stop_distance_pct": 2.78,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 9.089445,
+          "min_loss_pct": -8.808035,
+          "exit_reasons": {
+            "rebrightening": 52,
+            "structural_stop": 40,
+            "opposite_delta_fade": 27
+          }
+        },
+        "2025_2026": {
+          "n": 185,
+          "mean_net_pct": 0.2614,
+          "median_net_pct": -0.2393,
+          "profit_factor": 1.3151,
+          "pct_profitable": 41.08,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.1565,
+            0.6839
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1789,
+          "mean_after_removing_top_two_trades_pct": 0.1097,
+          "double_roundtrip_fee_mean_pct": 0.1114,
+          "double_roundtrip_fee_pf": 1.1209,
+          "n_structural_stops": 43,
+          "pct_structural_stop": 23.24,
+          "mean_initial_stop_distance_pct": 3.031,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 15.436568,
+          "min_loss_pct": -7.877498,
+          "exit_reasons": {
+            "rebrightening": 87,
+            "opposite_delta_fade": 55,
+            "structural_stop": 43
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 141,
+          "mean_net_pct": -0.4766,
+          "median_net_pct": -0.9264,
+          "profit_factor": 0.6012,
+          "pct_profitable": 25.53,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9225,
+            0.0071
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5952,
+          "mean_after_removing_top_two_trades_pct": -0.6836,
+          "double_roundtrip_fee_mean_pct": -0.6266,
+          "double_roundtrip_fee_pf": 0.5206,
+          "n_structural_stops": 58,
+          "pct_structural_stop": 41.13,
+          "mean_initial_stop_distance_pct": 3.008,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 16.118216,
+          "min_loss_pct": -6.062826,
+          "exit_reasons": {
+            "structural_stop": 58,
+            "rebrightening": 55,
+            "opposite_delta_fade": 28
+          }
+        },
+        "2020_2023": {
+          "n": 26,
+          "mean_net_pct": -1.0495,
+          "median_net_pct": -1.1838,
+          "profit_factor": 0.1019,
+          "pct_profitable": 15.38,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.4558,
+            -0.6063
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.1714,
+          "mean_after_removing_top_two_trades_pct": -1.2389,
+          "double_roundtrip_fee_mean_pct": -1.1995,
+          "double_roundtrip_fee_pf": 0.0741,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 42.31,
+          "mean_initial_stop_distance_pct": 2.818,
+          "median_holding_hours": 22.0,
+          "max_win_pct": 1.996728,
+          "min_loss_pct": -2.906246,
+          "exit_reasons": {
+            "structural_stop": 11,
+            "rebrightening": 11,
+            "opposite_delta_fade": 4
+          }
+        },
+        "2024": {
+          "n": 40,
+          "mean_net_pct": -0.8881,
+          "median_net_pct": -1.1338,
+          "profit_factor": 0.3796,
+          "pct_profitable": 22.5,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.5713,
+            -0.0932
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.1199,
+          "mean_after_removing_top_two_trades_pct": -1.2902,
+          "double_roundtrip_fee_mean_pct": -1.0381,
+          "double_roundtrip_fee_pf": 0.3297,
+          "n_structural_stops": 20,
+          "pct_structural_stop": 50.0,
+          "mean_initial_stop_distance_pct": 3.243,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 8.151611,
+          "min_loss_pct": -5.076573,
+          "exit_reasons": {
+            "opposite_delta_fade": 6,
+            "rebrightening": 14,
+            "structural_stop": 20
+          }
+        },
+        "2025_2026": {
+          "n": 75,
+          "mean_net_pct": -0.0586,
+          "median_net_pct": -0.7186,
+          "profit_factor": 0.9457,
+          "pct_profitable": 30.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7594,
+            0.8028
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.2772,
+          "mean_after_removing_top_two_trades_pct": -0.4412,
+          "double_roundtrip_fee_mean_pct": -0.2086,
+          "double_roundtrip_fee_pf": 0.8236,
+          "n_structural_stops": 27,
+          "pct_structural_stop": 36.0,
+          "mean_initial_stop_distance_pct": 2.949,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 16.118216,
+          "min_loss_pct": -6.062826,
+          "exit_reasons": {
+            "structural_stop": 27,
+            "rebrightening": 30,
+            "opposite_delta_fade": 18
+          }
+        }
+      },
+      "color_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 114,
+          "mean_net_pct": 0.1397,
+          "median_net_pct": -0.3738,
+          "profit_factor": 1.175,
+          "pct_profitable": 35.96,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.3294,
+            0.6654
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.0043,
+          "mean_after_removing_top_two_trades_pct": -0.0768,
+          "double_roundtrip_fee_mean_pct": -0.0103,
+          "double_roundtrip_fee_pf": 0.9885,
+          "n_structural_stops": 30,
+          "pct_structural_stop": 26.32,
+          "mean_initial_stop_distance_pct": 2.868,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 15.436568,
+          "min_loss_pct": -7.346259,
+          "exit_reasons": {
+            "rebrightening": 57,
+            "opposite_delta_fade": 27,
+            "structural_stop": 30
+          }
+        },
+        "2020_2023": {
+          "n": 29,
+          "mean_net_pct": -0.2021,
+          "median_net_pct": -0.5537,
+          "profit_factor": 0.6819,
+          "pct_profitable": 24.14,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7056,
+            0.4026
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4091,
+          "mean_after_removing_top_two_trades_pct": -0.5163,
+          "double_roundtrip_fee_mean_pct": -0.3521,
+          "double_roundtrip_fee_pf": 0.53,
+          "n_structural_stops": 8,
+          "pct_structural_stop": 27.59,
+          "mean_initial_stop_distance_pct": 2.838,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 5.5917,
+          "min_loss_pct": -1.952942,
+          "exit_reasons": {
+            "rebrightening": 17,
+            "opposite_delta_fade": 4,
+            "structural_stop": 8
+          }
+        },
+        "2024": {
+          "n": 30,
+          "mean_net_pct": -0.0302,
+          "median_net_pct": -0.2784,
+          "profit_factor": 0.9629,
+          "pct_profitable": 36.67,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9295,
+            0.9286
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3446,
+          "mean_after_removing_top_two_trades_pct": -0.4846,
+          "double_roundtrip_fee_mean_pct": -0.1802,
+          "double_roundtrip_fee_pf": 0.8027,
+          "n_structural_stops": 10,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 2.787,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 9.089445,
+          "min_loss_pct": -7.346259,
+          "exit_reasons": {
+            "rebrightening": 13,
+            "structural_stop": 10,
+            "opposite_delta_fade": 7
+          }
+        },
+        "2025_2026": {
+          "n": 55,
+          "mean_net_pct": 0.4126,
+          "median_net_pct": -0.2339,
+          "profit_factor": 1.4712,
+          "pct_profitable": 41.82,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.4156,
+            1.3486
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1343,
+          "mean_after_removing_top_two_trades_pct": -0.0208,
+          "double_roundtrip_fee_mean_pct": 0.2626,
+          "double_roundtrip_fee_pf": 1.272,
+          "n_structural_stops": 12,
+          "pct_structural_stop": 21.82,
+          "mean_initial_stop_distance_pct": 2.927,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 15.436568,
+          "min_loss_pct": -5.055525,
+          "exit_reasons": {
+            "rebrightening": 27,
+            "structural_stop": 12,
+            "opposite_delta_fade": 16
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 15,
+          "mean_net_pct": 0.9869,
+          "median_net_pct": 0.3979,
+          "profit_factor": 2.0284,
+          "pct_profitable": 53.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.9455,
+            3.1267
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.3238,
+          "mean_after_removing_top_two_trades_pct": -0.4065,
+          "double_roundtrip_fee_mean_pct": 0.8369,
+          "double_roundtrip_fee_pf": 1.8128,
+          "n_structural_stops": 3,
+          "pct_structural_stop": 20.0,
+          "mean_initial_stop_distance_pct": 4.056,
+          "median_holding_hours": 24.0,
+          "max_win_pct": 10.27042,
+          "min_loss_pct": -5.076573,
+          "exit_reasons": {
+            "structural_stop": 3,
+            "rebrightening": 6,
+            "opposite_delta_fade": 6
+          }
+        },
+        "2020_2023": {
+          "n": 4,
+          "mean_net_pct": 0.8386,
+          "median_net_pct": 1.0617,
+          "profit_factor": 2.3927,
+          "pct_profitable": 50.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2043,
+            2.8815
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.1306,
+          "mean_after_removing_top_two_trades_pct": -1.2043,
+          "double_roundtrip_fee_mean_pct": 0.6886,
+          "double_roundtrip_fee_pf": 2.0169,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 25.0,
+          "mean_initial_stop_distance_pct": 3.373,
+          "median_holding_hours": 36.0,
+          "max_win_pct": 2.962597,
+          "min_loss_pct": -1.731568,
+          "exit_reasons": {
+            "structural_stop": 1,
+            "rebrightening": 2,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2024": {
+          "n": 5,
+          "mean_net_pct": 0.7296,
+          "median_net_pct": 0.3979,
+          "profit_factor": 1.4899,
+          "pct_profitable": 60.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -2.9107,
+            5.5925
+          ],
+          "mean_after_removing_top_one_trade_pct": -1.5426,
+          "mean_after_removing_top_two_trades_pct": -2.3493,
+          "double_roundtrip_fee_mean_pct": 0.5796,
+          "double_roundtrip_fee_pf": 1.3741,
+          "n_structural_stops": 2,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 4.426,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 9.818037,
+          "min_loss_pct": -5.076573,
+          "exit_reasons": {
+            "opposite_delta_fade": 2,
+            "structural_stop": 2,
+            "rebrightening": 1
+          }
+        },
+        "2025_2026": {
+          "n": 6,
+          "mean_net_pct": 1.3002,
+          "median_net_pct": 0.2217,
+          "profit_factor": 2.718,
+          "pct_profitable": 50.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.396,
+            5.0245
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4938,
+          "mean_after_removing_top_two_trades_pct": -0.8971,
+          "double_roundtrip_fee_mean_pct": 1.1502,
+          "double_roundtrip_fee_pf": 2.3828,
+          "n_structural_stops": 0,
+          "pct_structural_stop": 0.0,
+          "mean_initial_stop_distance_pct": 4.204,
+          "median_holding_hours": 28.0,
+          "max_win_pct": 10.27042,
+          "min_loss_pct": -2.75732,
+          "exit_reasons": {
+            "rebrightening": 3,
+            "opposite_delta_fade": 3
+          }
+        }
+      },
+      "crest_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 14,
+          "mean_net_pct": 1.7458,
+          "median_net_pct": 0.454,
+          "profit_factor": 4.9889,
+          "pct_profitable": 57.14,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.1194,
+            4.1274
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.6927,
+          "mean_after_removing_top_two_trades_pct": 0.4278,
+          "double_roundtrip_fee_mean_pct": 1.5958,
+          "double_roundtrip_fee_pf": 4.1604,
+          "n_structural_stops": 2,
+          "pct_structural_stop": 14.29,
+          "mean_initial_stop_distance_pct": 2.94,
+          "median_holding_hours": 30.0,
+          "max_win_pct": 15.436568,
+          "min_loss_pct": -2.459771,
+          "exit_reasons": {
+            "structural_stop": 2,
+            "rebrightening": 6,
+            "opposite_delta_fade": 6
+          }
+        },
+        "2020_2023": {
+          "n": 3,
+          "mean_net_pct": -0.2378,
+          "median_net_pct": -0.0189,
+          "profit_factor": 0.1316,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8027,
+            0.1082
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.4108,
+          "mean_after_removing_top_two_trades_pct": -0.8027,
+          "double_roundtrip_fee_mean_pct": -0.3878,
+          "double_roundtrip_fee_pf": 0.0,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 1.738,
+          "median_holding_hours": 40.0,
+          "max_win_pct": 0.108155,
+          "min_loss_pct": -0.802748,
+          "exit_reasons": {
+            "structural_stop": 1,
+            "rebrightening": 1,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2024": {
+          "n": 3,
+          "mean_net_pct": 0.8387,
+          "median_net_pct": -0.4576,
+          "profit_factor": 3.3785,
+          "pct_profitable": 33.33,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6002,
+            3.5738
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5289,
+          "mean_after_removing_top_two_trades_pct": -0.6002,
+          "double_roundtrip_fee_mean_pct": 0.6887,
+          "double_roundtrip_fee_pf": 2.5216,
+          "n_structural_stops": 0,
+          "pct_structural_stop": 0.0,
+          "mean_initial_stop_distance_pct": 4.106,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 3.573792,
+          "min_loss_pct": -0.600225,
+          "exit_reasons": {
+            "rebrightening": 2,
+            "opposite_delta_fade": 1
+          }
+        },
+        "2025_2026": {
+          "n": 8,
+          "mean_net_pct": 2.8298,
+          "median_net_pct": 1.6315,
+          "profit_factor": 6.3294,
+          "pct_profitable": 75.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.0818,
+            6.9958
+          ],
+          "mean_after_removing_top_one_trade_pct": 1.0289,
+          "mean_after_removing_top_two_trades_pct": 0.5552,
+          "double_roundtrip_fee_mean_pct": 2.6798,
+          "double_roundtrip_fee_pf": 5.714,
+          "n_structural_stops": 1,
+          "pct_structural_stop": 12.5,
+          "mean_initial_stop_distance_pct": 2.953,
+          "median_holding_hours": 34.0,
+          "max_win_pct": 15.436568,
+          "min_loss_pct": -2.459771,
+          "exit_reasons": {
+            "structural_stop": 1,
+            "rebrightening": 3,
+            "opposite_delta_fade": 4
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+        "full": {
+          "n": 94,
+          "mean_net_pct": -0.324,
+          "median_net_pct": -0.6659,
+          "profit_factor": 0.6813,
+          "pct_profitable": 32.98,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.8168,
+            0.1982
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.425,
+          "mean_after_removing_top_two_trades_pct": -0.5218,
+          "double_roundtrip_fee_mean_pct": -0.474,
+          "double_roundtrip_fee_pf": 0.5764,
+          "n_structural_stops": 30,
+          "pct_structural_stop": 31.91,
+          "mean_initial_stop_distance_pct": 3.354,
+          "median_holding_hours": 20.0,
+          "max_win_pct": 9.06725,
+          "min_loss_pct": -9.737036,
+          "exit_reasons": {
+            "structural_stop": 30,
+            "rebrightening": 41,
+            "opposite_delta_fade": 23
+          }
+        },
+        "2020_2023": {
+          "n": 20,
+          "mean_net_pct": -0.0807,
+          "median_net_pct": -0.2576,
+          "profit_factor": 0.8823,
+          "pct_profitable": 35.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.7715,
+            0.6897
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.258,
+          "mean_after_removing_top_two_trades_pct": -0.4358,
+          "double_roundtrip_fee_mean_pct": -0.2307,
+          "double_roundtrip_fee_pf": 0.7062,
+          "n_structural_stops": 8,
+          "pct_structural_stop": 40.0,
+          "mean_initial_stop_distance_pct": 2.408,
+          "median_holding_hours": 22.0,
+          "max_win_pct": 3.288735,
+          "min_loss_pct": -3.291452,
+          "exit_reasons": {
+            "structural_stop": 8,
+            "rebrightening": 7,
+            "opposite_delta_fade": 5
+          }
+        },
+        "2024": {
+          "n": 24,
+          "mean_net_pct": -0.5009,
+          "median_net_pct": -0.8674,
+          "profit_factor": 0.5488,
+          "pct_profitable": 25.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.3425,
+            0.6488
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.8917,
+          "mean_after_removing_top_two_trades_pct": -1.0544,
+          "double_roundtrip_fee_mean_pct": -0.6509,
+          "double_roundtrip_fee_pf": 0.4676,
+          "n_structural_stops": 8,
+          "pct_structural_stop": 33.33,
+          "mean_initial_stop_distance_pct": 3.54,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 8.487742,
+          "min_loss_pct": -3.591405,
+          "exit_reasons": {
+            "opposite_delta_fade": 5,
+            "rebrightening": 11,
+            "structural_stop": 8
+          }
+        },
+        "2025_2026": {
+          "n": 50,
+          "mean_net_pct": -0.3363,
+          "median_net_pct": -0.7122,
+          "profit_factor": 0.6953,
+          "pct_profitable": 36.0,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.0827,
+            0.415
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.5283,
+          "mean_after_removing_top_two_trades_pct": -0.6755,
+          "double_roundtrip_fee_mean_pct": -0.4863,
+          "double_roundtrip_fee_pf": 0.5955,
+          "n_structural_stops": 14,
+          "pct_structural_stop": 28.0,
+          "mean_initial_stop_distance_pct": 3.643,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 9.06725,
+          "min_loss_pct": -9.737036,
+          "exit_reasons": {
+            "opposite_delta_fade": 13,
+            "structural_stop": 14,
+            "rebrightening": 23
+          }
+        }
+      },
+      "confirm_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+        "full": {
+          "n": 91,
+          "mean_net_pct": 0.3894,
+          "median_net_pct": -0.325,
+          "profit_factor": 1.4944,
+          "pct_profitable": 40.66,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.1998,
+            1.029
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.2748,
+          "mean_after_removing_top_two_trades_pct": 0.1758,
+          "double_roundtrip_fee_mean_pct": 0.2394,
+          "double_roundtrip_fee_pf": 1.2719,
+          "n_structural_stops": 28,
+          "pct_structural_stop": 30.77,
+          "mean_initial_stop_distance_pct": 2.766,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 10.704396,
+          "min_loss_pct": -9.150346,
+          "exit_reasons": {
+            "opposite_delta_fade": 21,
+            "rebrightening": 42,
+            "structural_stop": 28
+          }
+        },
+        "2020_2023": {
+          "n": 22,
+          "mean_net_pct": 0.0013,
+          "median_net_pct": -0.3051,
+          "profit_factor": 1.0023,
+          "pct_profitable": 40.91,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.6756,
+            0.8637
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3218,
+          "mean_after_removing_top_two_trades_pct": -0.4669,
+          "double_roundtrip_fee_mean_pct": -0.1487,
+          "double_roundtrip_fee_pf": 0.784,
+          "n_structural_stops": 9,
+          "pct_structural_stop": 40.91,
+          "mean_initial_stop_distance_pct": 2.423,
+          "median_holding_hours": 16.0,
+          "max_win_pct": 6.787149,
+          "min_loss_pct": -1.643322,
+          "exit_reasons": {
+            "opposite_delta_fade": 4,
+            "rebrightening": 9,
+            "structural_stop": 9
+          }
+        },
+        "2024": {
+          "n": 23,
+          "mean_net_pct": 0.1606,
+          "median_net_pct": -0.4868,
+          "profit_factor": 1.1565,
+          "pct_profitable": 30.43,
+          "95pct_bootstrap_mean_ci_pct": [
+            -1.2866,
+            1.7146
+          ],
+          "mean_after_removing_top_one_trade_pct": -0.3187,
+          "mean_after_removing_top_two_trades_pct": -0.7667,
+          "double_roundtrip_fee_mean_pct": 0.0106,
+          "double_roundtrip_fee_pf": 1.0093,
+          "n_structural_stops": 8,
+          "pct_structural_stop": 34.78,
+          "mean_initial_stop_distance_pct": 2.712,
+          "median_holding_hours": 12.0,
+          "max_win_pct": 10.704396,
+          "min_loss_pct": -9.150346,
+          "exit_reasons": {
+            "rebrightening": 9,
+            "opposite_delta_fade": 6,
+            "structural_stop": 8
+          }
+        },
+        "2025_2026": {
+          "n": 46,
+          "mean_net_pct": 0.6895,
+          "median_net_pct": -0.2188,
+          "profit_factor": 1.904,
+          "pct_profitable": 45.65,
+          "95pct_bootstrap_mean_ci_pct": [
+            -0.131,
+            1.5632
+          ],
+          "mean_after_removing_top_one_trade_pct": 0.5068,
+          "mean_after_removing_top_two_trades_pct": 0.3284,
+          "double_roundtrip_fee_mean_pct": 0.5395,
+          "double_roundtrip_fee_pf": 1.6366,
+          "n_structural_stops": 11,
+          "pct_structural_stop": 23.91,
+          "mean_initial_stop_distance_pct": 2.957,
+          "median_holding_hours": 18.0,
+          "max_win_pct": 8.907315,
+          "min_loss_pct": -4.710183,
+          "exit_reasons": {
+            "opposite_delta_fade": 11,
+            "rebrightening": 24,
+            "structural_stop": 11
+          }
+        }
+      }
+    }
+  },
+  "pooled": {
+    "color_all_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 2775,
+      "mean_net_pct": -0.0345,
+      "median_net_pct": -0.5237,
+      "profit_factor": 0.9637,
+      "pct_profitable": 33.91,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.1486,
+        0.0862
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.0547,
+      "mean_after_removing_top_two_trades_pct": -0.0675,
+      "double_roundtrip_fee_mean_pct": -0.1845,
+      "double_roundtrip_fee_pf": 0.8248,
+      "n_structural_stops": 805,
+      "pct_structural_stop": 29.01,
+      "mean_initial_stop_distance_pct": 2.811,
+      "median_holding_hours": 16.0,
+      "max_win_pct": 55.945252,
+      "min_loss_pct": -15.147903,
+      "exit_reasons": {
+        "opposite_delta_fade": 656,
+        "structural_stop": 805,
+        "rebrightening": 1314
+      }
+    },
+    "color_all_fast_invalidation_confirmed_pivot_SHORT": {
+      "n": 2769,
+      "mean_net_pct": -0.1414,
+      "median_net_pct": -0.5638,
+      "profit_factor": 0.8485,
+      "pct_profitable": 31.82,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.2433,
+        -0.0495
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.1494,
+      "mean_after_removing_top_two_trades_pct": -0.1573,
+      "double_roundtrip_fee_mean_pct": -0.2914,
+      "double_roundtrip_fee_pf": 0.7192,
+      "n_structural_stops": 880,
+      "pct_structural_stop": 31.78,
+      "mean_initial_stop_distance_pct": 2.59,
+      "median_holding_hours": 16.0,
+      "max_win_pct": 22.063958,
+      "min_loss_pct": -11.103223,
+      "exit_reasons": {
+        "structural_stop": 880,
+        "rebrightening": 1224,
+        "opposite_delta_fade": 665
+      }
+    },
+    "color_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 862,
+      "mean_net_pct": -0.0314,
+      "median_net_pct": -0.6996,
+      "profit_factor": 0.9711,
+      "pct_profitable": 33.06,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.2562,
+        0.1971
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.0647,
+      "mean_after_removing_top_two_trades_pct": -0.0886,
+      "double_roundtrip_fee_mean_pct": -0.1814,
+      "double_roundtrip_fee_pf": 0.8476,
+      "n_structural_stops": 291,
+      "pct_structural_stop": 33.76,
+      "mean_initial_stop_distance_pct": 2.981,
+      "median_holding_hours": 18.0,
+      "max_win_pct": 28.607422,
+      "min_loss_pct": -12.947753,
+      "exit_reasons": {
+        "structural_stop": 291,
+        "opposite_delta_fade": 203,
+        "rebrightening": 368
+      }
+    },
+    "color_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+      "n": 852,
+      "mean_net_pct": -0.156,
+      "median_net_pct": -0.6577,
+      "profit_factor": 0.8464,
+      "pct_profitable": 30.99,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.3413,
+        0.046
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.1821,
+      "mean_after_removing_top_two_trades_pct": -0.2078,
+      "double_roundtrip_fee_mean_pct": -0.306,
+      "double_roundtrip_fee_pf": 0.7269,
+      "n_structural_stops": 323,
+      "pct_structural_stop": 37.91,
+      "mean_initial_stop_distance_pct": 2.45,
+      "median_holding_hours": 16.0,
+      "max_win_pct": 22.063958,
+      "min_loss_pct": -11.103223,
+      "exit_reasons": {
+        "structural_stop": 323,
+        "opposite_delta_fade": 171,
+        "rebrightening": 358
+      }
+    },
+    "crest_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 75,
+      "mean_net_pct": 0.0029,
+      "median_net_pct": -0.8014,
+      "profit_factor": 1.0024,
+      "pct_profitable": 33.33,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.7511,
+        0.8592
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.1876,
+      "mean_after_removing_top_two_trades_pct": -0.3309,
+      "double_roundtrip_fee_mean_pct": -0.1471,
+      "double_roundtrip_fee_pf": 0.8892,
+      "n_structural_stops": 30,
+      "pct_structural_stop": 40.0,
+      "mean_initial_stop_distance_pct": 2.863,
+      "median_holding_hours": 16.0,
+      "max_win_pct": 14.102635,
+      "min_loss_pct": -8.117951,
+      "exit_reasons": {
+        "rebrightening": 29,
+        "opposite_delta_fade": 16,
+        "structural_stop": 30
+      }
+    },
+    "crest_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+      "n": 86,
+      "mean_net_pct": 0.2276,
+      "median_net_pct": -0.6602,
+      "profit_factor": 1.2371,
+      "pct_profitable": 37.21,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.4314,
+        0.9344
+      ],
+      "mean_after_removing_top_one_trade_pct": 0.0487,
+      "mean_after_removing_top_two_trades_pct": -0.0557,
+      "double_roundtrip_fee_mean_pct": 0.0776,
+      "double_roundtrip_fee_pf": 1.0734,
+      "n_structural_stops": 33,
+      "pct_structural_stop": 38.37,
+      "mean_initial_stop_distance_pct": 2.479,
+      "median_holding_hours": 16.0,
+      "max_win_pct": 15.436568,
+      "min_loss_pct": -9.722656,
+      "exit_reasons": {
+        "structural_stop": 33,
+        "rebrightening": 35,
+        "opposite_delta_fade": 18
+      }
+    },
+    "confirm_p80_60_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 602,
+      "mean_net_pct": -0.2178,
+      "median_net_pct": -0.6396,
+      "profit_factor": 0.8117,
+      "pct_profitable": 33.72,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.4779,
+        0.056
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.2523,
+      "mean_after_removing_top_two_trades_pct": -0.2854,
+      "double_roundtrip_fee_mean_pct": -0.3678,
+      "double_roundtrip_fee_pf": 0.7078,
+      "n_structural_stops": 208,
+      "pct_structural_stop": 34.55,
+      "mean_initial_stop_distance_pct": 3.02,
+      "median_holding_hours": 20.0,
+      "max_win_pct": 20.497422,
+      "min_loss_pct": -11.402093,
+      "exit_reasons": {
+        "structural_stop": 208,
+        "opposite_delta_fade": 144,
+        "rebrightening": 250
+      }
+    },
+    "confirm_p80_60_fast_invalidation_confirmed_pivot_SHORT": {
+      "n": 628,
+      "mean_net_pct": -0.1668,
+      "median_net_pct": -0.6397,
+      "profit_factor": 0.8391,
+      "pct_profitable": 32.64,
+      "95pct_bootstrap_mean_ci_pct": [
+        -0.3888,
+        0.0623
+      ],
+      "mean_after_removing_top_one_trade_pct": -0.2023,
+      "mean_after_removing_top_two_trades_pct": -0.2258,
+      "double_roundtrip_fee_mean_pct": -0.3168,
+      "double_roundtrip_fee_pf": 0.7218,
+      "n_structural_stops": 240,
+      "pct_structural_stop": 38.22,
+      "mean_initial_stop_distance_pct": 2.581,
+      "median_holding_hours": 16.0,
+      "max_win_pct": 22.063958,
+      "min_loss_pct": -12.803764,
+      "exit_reasons": {
+        "opposite_delta_fade": 140,
+        "rebrightening": 248,
+        "structural_stop": 240
+      }
+    }
+  }
+}
