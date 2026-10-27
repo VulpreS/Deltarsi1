@@ -1,0 +1,682 @@
+{
+  "notes": "Exploratory BTC manual selection. MACD 11/27/22 matching user's indicator, classic 12/26/9 control, 4H closed bars. ATR used only as normalization, NOT stop. Divergence proxy compares new price extreme to six-bar histogram extrema, not a fully validated swing divergence. 4H signal time matched to manual entry within 4 hours. All features computed without future candles. Fisher/Mann Whitney and BH over feature tests; outcomes are small and post hoc. No volume data. Do not infer profitability from selection tests.",
+  "selected": 26,
+  "skipped": 232,
+  "selection_tests": [
+    {
+      "side": "LONG",
+      "feature": "atr_pct",
+      "p": 0.0028162,
+      "selected_median": 1.47324,
+      "skipped_median": 1.06116,
+      "q_bh": 0.13518
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_fading",
+      "p": 0.0294669,
+      "selected_pct": 91.7,
+      "skipped_pct": 59.0,
+      "q_bh": 0.53882
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_atr",
+      "p": 0.0336765,
+      "selected_median": -0.54669,
+      "skipped_median": -0.27549,
+      "q_bh": 0.53882
+    },
+    {
+      "side": "SHORT",
+      "feature": "atr_accel_pct",
+      "p": 0.060505,
+      "selected_median": 6.26688,
+      "skipped_median": -2.67482,
+      "q_bh": 0.63676
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_classic_hist_atr",
+      "p": 0.0663295,
+      "selected_median": -0.18718,
+      "skipped_median": -0.06639,
+      "q_bh": 0.63676
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_growing",
+      "p": 0.1029979,
+      "selected_pct": 8.3,
+      "skipped_pct": 33.3,
+      "q_bh": 0.70695
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_line_atr",
+      "p": 0.1092748,
+      "selected_median": -0.68795,
+      "skipped_median": -0.40336,
+      "q_bh": 0.70695
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_classic_slope_atr",
+      "p": 0.1264048,
+      "selected_median": -0.0573,
+      "skipped_median": -0.0351,
+      "q_bh": 0.70695
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_slope_atr",
+      "p": 0.1325533,
+      "selected_median": -0.07301,
+      "skipped_median": -0.04058,
+      "q_bh": 0.70695
+    },
+    {
+      "side": "SHORT",
+      "feature": "range_compression",
+      "p": 0.1693254,
+      "selected_median": 0.71665,
+      "skipped_median": 1.01398,
+      "q_bh": 0.724
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_3bar_rising",
+      "p": 0.1814892,
+      "selected_pct": 8.3,
+      "skipped_pct": 28.2,
+      "q_bh": 0.724
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_positive",
+      "p": 0.2111863,
+      "selected_pct": 100.0,
+      "skipped_pct": 82.9,
+      "q_bh": 0.724
+    },
+    {
+      "side": "SHORT",
+      "feature": "price_new_high_6",
+      "p": 0.2111863,
+      "selected_pct": 0.0,
+      "skipped_pct": 17.1,
+      "q_bh": 0.724
+    },
+    {
+      "side": "SHORT",
+      "feature": "hist_flip_3",
+      "p": 0.2152995,
+      "selected_pct": 0.0,
+      "skipped_pct": 15.4,
+      "q_bh": 0.724
+    },
+    {
+      "side": "LONG",
+      "feature": "atr_accel_pct",
+      "p": 0.2330349,
+      "selected_median": 2.17718,
+      "skipped_median": -4.97148,
+      "q_bh": 0.724
+    },
+    {
+      "side": "SHORT",
+      "feature": "efficiency_6",
+      "p": 0.2413318,
+      "selected_median": 0.20234,
+      "skipped_median": 0.35495,
+      "q_bh": 0.724
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_classic_slope_atr",
+      "p": 0.2705859,
+      "selected_median": 0.04634,
+      "skipped_median": 0.02876,
+      "q_bh": 0.76401
+    },
+    {
+      "side": "SHORT",
+      "feature": "atr_pct",
+      "p": 0.3012196,
+      "selected_median": 1.12654,
+      "skipped_median": 1.18874,
+      "q_bh": 0.80325
+    },
+    {
+      "side": "LONG",
+      "feature": "price_new_low_6",
+      "p": 0.3402638,
+      "selected_pct": 14.3,
+      "skipped_pct": 7.8,
+      "q_bh": 0.81175
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_line_atr",
+      "p": 0.3616658,
+      "selected_median": 0.55109,
+      "skipped_median": 0.35381,
+      "q_bh": 0.81175
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_3bar_falling",
+      "p": 0.3642043,
+      "selected_pct": 66.7,
+      "skipped_pct": 48.7,
+      "q_bh": 0.81175
+    },
+    {
+      "side": "LONG",
+      "feature": "bear_div_6",
+      "p": 0.3720498,
+      "selected_pct": 7.1,
+      "skipped_pct": 2.6,
+      "q_bh": 0.81175
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_slope_atr",
+      "p": 0.4376771,
+      "selected_median": 0.06026,
+      "skipped_median": 0.03973,
+      "q_bh": 0.88476
+    },
+    {
+      "side": "LONG",
+      "feature": "bull_div_6",
+      "p": 0.4423802,
+      "selected_pct": 7.1,
+      "skipped_pct": 3.5,
+      "q_bh": 0.88476
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_atr",
+      "p": 0.4983731,
+      "selected_median": 0.27301,
+      "skipped_median": 0.24784,
+      "q_bh": 0.95688
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_positive",
+      "p": 0.5187927,
+      "selected_pct": 14.3,
+      "skipped_pct": 24.3,
+      "q_bh": 0.95777
+    },
+    {
+      "side": "SHORT",
+      "feature": "close_location",
+      "p": 0.6009798,
+      "selected_median": 0.35442,
+      "skipped_median": 0.30533,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_bear_cross_3",
+      "p": 0.6019945,
+      "selected_pct": 0.0,
+      "skipped_pct": 10.3,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "range_compression",
+      "p": 0.6468798,
+      "selected_median": 0.86167,
+      "skipped_median": 0.91045,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "hist_flip_3",
+      "p": 0.690693,
+      "selected_pct": 7.1,
+      "skipped_pct": 14.8,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "body_fraction",
+      "p": 0.7001269,
+      "selected_median": 0.54864,
+      "skipped_median": 0.4553,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "price_new_high_6",
+      "p": 0.7064726,
+      "selected_pct": 21.4,
+      "skipped_pct": 16.5,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "price_new_low_6",
+      "p": 0.7223821,
+      "selected_pct": 25.0,
+      "skipped_pct": 21.4,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_growing",
+      "p": 0.7694352,
+      "selected_pct": 28.6,
+      "skipped_pct": 35.7,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_fading",
+      "p": 0.7760261,
+      "selected_pct": 64.3,
+      "skipped_pct": 56.5,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_3bar_rising",
+      "p": 0.7807563,
+      "selected_pct": 57.1,
+      "skipped_pct": 51.3,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "close_location",
+      "p": 0.8468932,
+      "selected_median": 0.65545,
+      "skipped_median": 0.72415,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_accel_atr",
+      "p": 0.9515081,
+      "selected_median": -0.0397,
+      "skipped_median": -0.03933,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "body_fraction",
+      "p": 0.954713,
+      "selected_median": 0.41608,
+      "skipped_median": 0.47467,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_classic_hist_atr",
+      "p": 0.9644292,
+      "selected_median": 0.09405,
+      "skipped_median": 0.086,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_accel_atr",
+      "p": 0.9667813,
+      "selected_median": 0.02311,
+      "skipped_median": 0.03146,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "efficiency_6",
+      "p": 0.9969792,
+      "selected_median": 0.40584,
+      "skipped_median": 0.29635,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_bull_cross_3",
+      "p": 1.0,
+      "selected_pct": 7.1,
+      "skipped_pct": 12.2,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_bear_cross_3",
+      "p": 1.0,
+      "selected_pct": 0.0,
+      "skipped_pct": 5.2,
+      "q_bh": 1.0
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_3bar_falling",
+      "p": 1.0,
+      "selected_pct": 21.4,
+      "skipped_pct": 26.1,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_bull_cross_3",
+      "p": 1.0,
+      "selected_pct": 0.0,
+      "skipped_pct": 6.8,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "bull_div_6",
+      "p": 1.0,
+      "selected_pct": 0.0,
+      "skipped_pct": 6.8,
+      "q_bh": 1.0
+    },
+    {
+      "side": "SHORT",
+      "feature": "bear_div_6",
+      "p": 1.0,
+      "selected_pct": 0.0,
+      "skipped_pct": 7.7,
+      "q_bh": 1.0
+    }
+  ],
+  "outcome_tests": [
+    {
+      "side": "ALL",
+      "feature": "atr_accel_pct",
+      "n": 24,
+      "rho": 0.4757,
+      "p": 0.0188113,
+      "q_bh": 0.38355
+    },
+    {
+      "side": "SHORT",
+      "feature": "close_location",
+      "n": 11,
+      "rho": -0.6545,
+      "p": 0.0288646,
+      "q_bh": 0.38355
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_accel_atr",
+      "n": 11,
+      "rho": -0.6455,
+      "p": 0.0319628,
+      "q_bh": 0.38355
+    },
+    {
+      "side": "SHORT",
+      "feature": "range_compression",
+      "n": 11,
+      "rho": 0.5818,
+      "p": 0.0604199,
+      "q_bh": 0.50193
+    },
+    {
+      "side": "ALL",
+      "feature": "range_compression",
+      "n": 24,
+      "rho": 0.3609,
+      "p": 0.0831946,
+      "q_bh": 0.50193
+    },
+    {
+      "side": "LONG",
+      "feature": "atr_accel_pct",
+      "n": 13,
+      "rho": 0.4835,
+      "p": 0.0941347,
+      "q_bh": 0.50193
+    },
+    {
+      "side": "ALL",
+      "feature": "body_fraction",
+      "n": 24,
+      "rho": 0.3461,
+      "p": 0.0975977,
+      "q_bh": 0.50193
+    },
+    {
+      "side": "SHORT",
+      "feature": "body_fraction",
+      "n": 11,
+      "rho": 0.4091,
+      "p": 0.211545,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "LONG",
+      "feature": "range_compression",
+      "n": 13,
+      "rho": 0.3571,
+      "p": 0.2309299,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_classic_slope_atr",
+      "n": 11,
+      "rho": -0.3909,
+      "p": 0.2345401,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_atr",
+      "n": 11,
+      "rho": -0.3364,
+      "p": 0.3118243,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_hist_slope_atr",
+      "n": 11,
+      "rho": -0.3364,
+      "p": 0.3118243,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "LONG",
+      "feature": "atr_pct",
+      "n": 13,
+      "rho": 0.2747,
+      "p": 0.363675,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "SHORT",
+      "feature": "atr_pct",
+      "n": 11,
+      "rho": 0.3,
+      "p": 0.3700831,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_line_atr",
+      "n": 13,
+      "rho": 0.2692,
+      "p": 0.373733,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "ALL",
+      "feature": "atr_pct",
+      "n": 24,
+      "rho": 0.1852,
+      "p": 0.3862327,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "ALL",
+      "feature": "close_location",
+      "n": 24,
+      "rho": -0.1843,
+      "p": 0.3885059,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "ALL",
+      "feature": "macd_classic_slope_atr",
+      "n": 24,
+      "rho": -0.18,
+      "p": 0.3999851,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "ALL",
+      "feature": "macd_hist_slope_atr",
+      "n": 24,
+      "rho": -0.1696,
+      "p": 0.4282953,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "SHORT",
+      "feature": "atr_accel_pct",
+      "n": 11,
+      "rho": 0.2636,
+      "p": 0.4334407,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "ALL",
+      "feature": "macd_hist_accel_atr",
+      "n": 24,
+      "rho": -0.1617,
+      "p": 0.4502189,
+      "q_bh": 0.7718
+    },
+    {
+      "side": "LONG",
+      "feature": "body_fraction",
+      "n": 13,
+      "rho": 0.2033,
+      "p": 0.5053147,
+      "q_bh": 0.80942
+    },
+    {
+      "side": "LONG",
+      "feature": "efficiency_6",
+      "n": 13,
+      "rho": 0.1978,
+      "p": 0.5171309,
+      "q_bh": 0.80942
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_classic_hist_atr",
+      "n": 11,
+      "rho": -0.2,
+      "p": 0.5554454,
+      "q_bh": 0.83317
+    },
+    {
+      "side": "SHORT",
+      "feature": "macd_line_atr",
+      "n": 11,
+      "rho": -0.1727,
+      "p": 0.6115424,
+      "q_bh": 0.84825
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_accel_atr",
+      "n": 13,
+      "rho": 0.1484,
+      "p": 0.6286094,
+      "q_bh": 0.84825
+    },
+    {
+      "side": "ALL",
+      "feature": "macd_line_atr",
+      "n": 24,
+      "rho": 0.1017,
+      "p": 0.6361838,
+      "q_bh": 0.84825
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_slope_atr",
+      "n": 13,
+      "rho": 0.1154,
+      "p": 0.7073899,
+      "q_bh": 0.85586
+    },
+    {
+      "side": "SHORT",
+      "feature": "efficiency_6",
+      "n": 11,
+      "rho": -0.1273,
+      "p": 0.7092146,
+      "q_bh": 0.85586
+    },
+    {
+      "side": "ALL",
+      "feature": "efficiency_6",
+      "n": 24,
+      "rho": 0.0791,
+      "p": 0.7132156,
+      "q_bh": 0.85586
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_classic_slope_atr",
+      "n": 13,
+      "rho": 0.0879,
+      "p": 0.7751954,
+      "q_bh": 0.8887
+    },
+    {
+      "side": "ALL",
+      "feature": "macd_classic_hist_atr",
+      "n": 24,
+      "rho": 0.0574,
+      "p": 0.7899551,
+      "q_bh": 0.8887
+    },
+    {
+      "side": "ALL",
+      "feature": "macd_hist_atr",
+      "n": 24,
+      "rho": 0.0478,
+      "p": 0.8243778,
+      "q_bh": 0.89418
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_hist_atr",
+      "n": 13,
+      "rho": -0.0604,
+      "p": 0.8445024,
+      "q_bh": 0.89418
+    },
+    {
+      "side": "LONG",
+      "feature": "macd_classic_hist_atr",
+      "n": 13,
+      "rho": -0.0165,
+      "p": 0.9573762,
+      "q_bh": 0.98473
+    },
+    {
+      "side": "LONG",
+      "feature": "close_location",
+      "n": 13,
+      "rho": 0.0055,
+      "p": 0.9857869,
+      "q_bh": 0.98579
+    }
+  ],
+  "models": {}
+}
