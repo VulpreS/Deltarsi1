@@ -1,3 +1,35 @@
+# DeltaRSI researcher handoff — cycle 12, 2026-10-27 ~05:55 MSK (P0 #12 funding-clock reconciliation)
+
+**Status: AUDIT CODE + DETERMINISTIC TESTS + REPRODUCIBLE REPORT COMMITTED; HISTORICAL FUNDING DISCREPANCY EXPLAINED. NO INDEPENDENT OOS, NO STRATEGY PROMOTION, NO ORDERS.**
+
+## Hypothesis / manager tasks read first
+Read open issues #12 (P0 chronological economic parity), #13 (P1 shared-capital forming/closed 4H), #5 (venue/funding provenance), cycle-11 handoff and `reports/manager_directives.md`. Hypothesis: the +0.1194 percentage-point 1H-vs-4H frozen-turn portfolio return discrepancy is caused by the wider 4H OHLC funding-exposure upper bound plus compounding of equity-dependent sizing, **not** a signal edge or mismatched fills.
+
+## Changes and reproducibility
+- Added `funding_clock_reconciliation.py`, `test_funding_clock_reconciliation.py`, `.github/workflows/p0-funding-clock-reconciliation.yml`; source commit `88a71c1460ed72420968fc5595c67e8eee6b19d1` (workflow fix), code commit `248e8e519aac3181239bf6aa5e6f8c6c77581235`.
+- Reproduce with **existing cached reports** (no candle fetch): `python -m unittest -v test_funding_clock_reconciliation test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence test_standalone_parity_audit test_portfolio_risk_audit && python funding_clock_reconciliation.py`. The workflow executes the same tests and saves `reports/funding_clock_reconciliation.json`.
+- Matched all 309 BTC/ETH/ICP frozen-turn entries by symbol + UTC entry; strict fail-closed on source hashes, duplicate/missing IDs, side, entry/exit fills and reason, fractional inferred funding events, per-trade funding and net accounting. No rule, parameter, signal or trade was changed.
+- Per-trade algebra decomposes funding difference `F4-F1 = rate*N4*(events4-events1) + rate*(N4-N1)*events1`, separating **time-bound** vs **equity-compounding size** effects. Nine 15/25/40bp friction × 0/1/3bp adverse synthetic funding scenarios are reported. Original source candle SHA256 BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`, ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`, ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`.
+
+## Results: frozen-turn 309-trade matched accounting
+- **309/309 matched fills; 52 trades** have one more synthetic UTC funding event in the 4H conservative upper bound than the 1H bound; 257 equal, **zero** cases with 1H more. BTC 21/123, ETH 18/97, ICP 13/89. Of 52: 29 target and 23 stop; no time/terminal exits differ.
+- At 3bp adverse synthetic funding/event and 15bp friction, 4H − 1H funding debit = **+0.0011555782 initial equity** (0.11556 percentage points). Timing convention contributes +0.0011707256, position-size compounding −0.0000151474. Gross PnL delta −0.0000560242; fee delta −0.0000171437; **net 4H − 1H = −0.0011944586** (~−0.11945pp). This exactly reconciles previously reported **4H +1.7528% vs 1H +1.8722%** within report rounding.
+- **Funding 0bp negative control:** identical 4H/1H net returns at all 15/25/40bp costs: +4.7203%, +2.5694%, −0.5748%, respectively. At 25bp/3bp, 4H −0.3375% vs 1H −0.2205%; at 40bp/3bp, −3.3929% vs −3.2795%. The strategy remains cost-sensitive and not robust.
+- Per-asset and per-exit-reason breakdowns, 309-event census, exact examples, nine-scenario PF/return/DD table, SHA256 of both input reports and source config hashes are in `reports/funding_clock_reconciliation.json`. Producer SHA `88a71c1460ed72420968fc5595c67e8eee6b19d1`. A machine-readable report was generated and committed; workflow run URL/status was not available from the connector at handoff time, so do not claim independently verified CI SUCCESS solely from the report.
+
+## Limitations and conclusion
+- This is **reconciliation of reused historical ledgers**, not fresh bktest evidence or untouched OOS. Hourly OHLC narrows the conservative possible stop/target time interval; it does **not** reveal actual fill timestamp, funding settlement ordering or exchange receipts. Both models use assumed adverse 3bp/8h funding, not observed venue rates.
+- 4H marks and 1H hourly-close MTM drawdowns have different sampling frequency. Do not directly compare their DD without standardizing marks. No order book, mark-trigger, slippage observation, or venue/market provenance. The 1H-vs-4H discrepancy is **not alpha**.
+- **Decision:** keep frozen strategy unchanged. Prefer the 1H tighter conservative funding-clock convention for future **research comparisons only**, clearly labeled synthetic, pending venue-verified actual funding. No production promotion and no real orders.
+
+## Concrete manager questions / next iteration
+1. Accept #12 **funding discrepancy classified and 309-trade economic bridge DONE**, but keep **venue-funding parity and independently verified CI run status OPEN**? Recommend yes. Do not mark whole #12 complete until integrated test-run status and admission/skip parity are confirmed.
+2. Require **single-SHA integrated CI confirmation** and, if needed, separate exact per-UTC candidate admission/skip trace for frozen 4H vs hourly; report any unexplained IDs. Do not change frozen thresholds.
+3. Under #5 obtain exchange, spot/perp, observed UTC funding receipts and direct same-venue 4H OHLC parity. Freeze a prospective post-cutoff shadow stream before any strategy ranking.
+4. Do not use the 0.1194pp reconciliation as evidence for forming/closed fades or reselect strategies on the already-inspected final third.
+
+---
+
 # DeltaRSI researcher handoff — cycle 11, 2026-10-27 ~05:00 MSK (P1 #13 shared-capital causal 4H portfolio)
 
 **Decision: EXPLORATORY ONLY / NO STRATEGY PROMOTION / NO LIVE ORDERS.** Integrated cached-only [CI 40435628911](https://github.com/VulpreS/Deltarsi1/actions/runs/40435628911) **SUCCESS**. Full [report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/causal_4h_portfolio_audit.json), [code](https://github.com/VulpreS/Deltarsi1/blob/main/causal_4h_portfolio_audit.py), [tests](https://github.com/VulpreS/Deltarsi1/blob/main/test_causal_4h_portfolio.py). Last producer code commit `8d9c1bf8`, workflow `043b1314`; config SHA256 `fba5c1c87fe87faa3b069f45ff8503b89583a17b040714e0243a97eecbddb493`.
