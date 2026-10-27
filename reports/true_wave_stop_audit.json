@@ -1,8 +1,8 @@
 {
   "title": "Causal true-wave vs peak-bar vs ATR stop: matched-entry exploratory audit",
-  "generated_utc": "2026-10-27T05:55:43.672641+00:00",
-  "producer_sha": "89be0b1e74c1ecc9b0f2428582f58304f9b1a802",
-  "ci_run": "40458088927",
+  "generated_utc": "2026-10-27T05:55:55.306896+00:00",
+  "producer_sha": "c0802468278d6a1e690d9b09882a538729594ae9",
+  "ci_run": "40458108457",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
@@ -56,6 +56,7 @@
     "0.25%-risk pseudo DD is NOT hourly MTM portfolio drawdown; no admission competition.",
     "Stop/TP ambiguous within 1H uses stop-first; adverse gaps fill at worse open.",
     "15bp fixed round-trip trading friction; funding excluded from this pattern experiment.",
+    "Exploratory 30-day calendar block CI is not selection-adjusted and blocks are few.",
     "No selection or promotion using inspected diagnostic results."
   ],
   "summary": {
@@ -342,6 +343,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 267,
+            "block_bootstrap_30d": {
+              "effective_blocks": 6,
+              "ci95_delta_R": [
+                -0.33403,
+                -0.071427
+              ]
+            },
             "mean_delta_R": -0.200933,
             "win_fraction": 0.3296,
             "matched_baseline": {
@@ -393,6 +401,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 334,
+            "block_bootstrap_30d": {
+              "effective_blocks": 6,
+              "ci95_delta_R": [
+                -0.243056,
+                0.006099
+              ]
+            },
             "mean_delta_R": -0.098494,
             "win_fraction": 0.3563,
             "matched_baseline": {
@@ -726,6 +741,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 43,
+            "block_bootstrap_30d": {
+              "effective_blocks": 6,
+              "ci95_delta_R": [
+                -0.879801,
+                -0.356936
+              ]
+            },
             "mean_delta_R": -0.561741,
             "win_fraction": 0.1628,
             "matched_baseline": {
@@ -777,6 +799,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 47,
+            "block_bootstrap_30d": {
+              "effective_blocks": 6,
+              "ci95_delta_R": [
+                -0.75916,
+                -0.230735
+              ]
+            },
             "mean_delta_R": -0.432215,
             "win_fraction": 0.2128,
             "matched_baseline": {
@@ -1110,6 +1139,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 45,
+            "block_bootstrap_30d": {
+              "effective_blocks": 6,
+              "ci95_delta_R": [
+                -1.055326,
+                0.285682
+              ]
+            },
             "mean_delta_R": -0.252258,
             "win_fraction": 0.3333,
             "matched_baseline": {
@@ -1161,6 +1197,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 51,
+            "block_bootstrap_30d": {
+              "effective_blocks": 6,
+              "ci95_delta_R": [
+                -0.733352,
+                0.134688
+              ]
+            },
             "mean_delta_R": -0.211,
             "win_fraction": 0.3137,
             "matched_baseline": {
@@ -1502,6 +1545,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 142,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.33194,
+                0.044567
+              ]
+            },
             "mean_delta_R": -0.120795,
             "win_fraction": 0.3521,
             "matched_baseline": {
@@ -1553,6 +1603,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 190,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.140251,
+                0.088846
+              ]
+            },
             "mean_delta_R": -0.031573,
             "win_fraction": 0.3684,
             "matched_baseline": {
@@ -1892,6 +1949,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 20,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.481721,
+                0.355307
+              ]
+            },
             "mean_delta_R": -0.181083,
             "win_fraction": 0.35,
             "matched_baseline": {
@@ -1943,6 +2007,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 22,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.232183,
+                0.231193
+              ]
+            },
             "mean_delta_R": 0.004178,
             "win_fraction": 0.3182,
             "matched_baseline": {
@@ -2282,6 +2353,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 19,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.816465,
+                0.279795
+              ]
+            },
             "mean_delta_R": -0.137995,
             "win_fraction": 0.4211,
             "matched_baseline": {
@@ -2333,6 +2411,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 22,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.296458,
+                0.393686
+              ]
+            },
             "mean_delta_R": 0.039043,
             "win_fraction": 0.3636,
             "matched_baseline": {
@@ -2674,6 +2759,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 152,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.295884,
+                -0.126919
+              ]
+            },
             "mean_delta_R": -0.213625,
             "win_fraction": 0.25,
             "matched_baseline": {
@@ -2725,6 +2817,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 214,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.191729,
+                -0.056964
+              ]
+            },
             "mean_delta_R": -0.144498,
             "win_fraction": 0.3037,
             "matched_baseline": {
@@ -3064,6 +3163,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 25,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.599771,
+                -0.228618
+              ]
+            },
             "mean_delta_R": -0.426466,
             "win_fraction": 0.04,
             "matched_baseline": {
@@ -3115,6 +3221,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 32,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.302136,
+                0.00024
+              ]
+            },
             "mean_delta_R": -0.18788,
             "win_fraction": 0.2188,
             "matched_baseline": {
@@ -3454,6 +3567,13 @@
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 15,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.498473,
+                -0.130531
+              ]
+            },
             "mean_delta_R": -0.330545,
             "win_fraction": 0.1333,
             "matched_baseline": {
@@ -3505,6 +3625,13 @@
           },
           "true_whole_wave": {
             "matched_core_n": 26,
+            "block_bootstrap_30d": {
+              "effective_blocks": 4,
+              "ci95_delta_R": [
+                -0.241634,
+                -0.016604
+              ]
+            },
             "mean_delta_R": -0.077189,
             "win_fraction": 0.2692,
             "matched_baseline": {
