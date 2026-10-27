@@ -1,0 +1,36 @@
+name: DeltaPulse Autonomous Daily Strategy v1
+on:
+  push:
+    paths:
+      - deltapulse_daily_strategy_v1.py
+      - .github/workflows/deltapulse-daily-v1.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run fixed DeltaPulse rules across five futures markets
+        run: python deltapulse_daily_strategy_v1.py > /tmp/deltapulse_stdout.json
+      - name: Print short primary summary
+        run: |
+          python - <<'PY'
+          import json
+          j=json.load(open('/tmp/deltapulse_stdout.json'))
+          for t in j['primary_fixed']:
+              if t['long_only']:print(t['asset'],t['mode'],t['all'],t['2025_plus'])
+          PY
+      - name: Preserve research and exact daily candles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/deltapulse_daily_v1.json reports/deltapulse_daily_v1_trades.csv
+          git add data/BTCUSDT_1d_binance_um.csv data/ETHUSDT_1d_binance_um.csv
+          git add data/SOLUSDT_1d_binance_um.csv data/BNBUSDT_1d_binance_um.csv data/XRPUSDT_1d_binance_um.csv
+          git diff --cached --quiet || (git commit -m "Save autonomous DeltaPulse v1 1D backtest with five-market OHLC" && git pull --rebase origin main && git push)
