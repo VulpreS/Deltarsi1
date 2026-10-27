@@ -111,6 +111,7 @@ def main():
           "Counterfactual is not same population as autonomous bot; do not infer that the bot reproduced user's entry selection.",
           "Near-exchange OHLC can still cross a stop that differs from Bybit; report stop-related disagreements separately.",
           "The 'opposite_weak' rule considers first available closed 4H bar with weak opposite signed DeltaRSI, instead of requiring medium->weak transition; not guaranteed to match trader's manual decision.",
+          "Corrected crest 4H condition: require increasing |Delta| on 2 of prior 3 candles (newer > older), fixing an earlier inverted condition.",
           "Existing fully studied historical period; no untouched test data and no optimal exit-mode selection justified."
        ],"method_A_algorithmic_entry_same_stop":{},"method_B_same_manual_entry_same_initial_stop":{}}
     data=journal_rows()
@@ -133,6 +134,13 @@ def main():
         runs={}
         for label,mode,window,pctl in SIGNAL_MODELS:
             events,discard=candidates(ind,mode,window,pctl)
+            if mode=="crest":
+                # Regression for corrected causal impulse definition: recent
+                # |Delta| must be rising relative to older |Delta| values.
+                d=ind["delta"]
+                for ev in events:
+                    k=ev["i"]
+                    assert sum(abs(d[j])>abs(d[j-1]) for j in range(k-3,k))>=2
             run={}
             for direction in ("LONG","SHORT"):
                 for exitmode in EXIT_MODES:
