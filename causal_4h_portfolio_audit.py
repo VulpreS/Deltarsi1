@@ -50,7 +50,7 @@ def equity_at(data,active,cash,t,rate,at_close):
 
 def simulate(data,times,mode,cost=.0015,rate=.0003,starting_cash=1.):
  if mode not in ("forming","closed","frozen_turn"):raise ValueError("mode")
- cash=starting_cash;active={};ledger=[];curve=[];skips=defaultdict(int);attempts=defaultdict(int)
+ cash=starting_cash;active={};ledger=[];curve=[];skips=defaultdict(int);attempts=defaultdict(int);admissions=[]
  def settle(s,price,reason,t,latest):
   nonlocal cash
   p=active.pop(s)
@@ -74,27 +74,32 @@ def simulate(data,times,mode,cost=.0015,rate=.0003,starting_cash=1.):
    e=data[s]["events"][mode].get(t)
    if e is None:continue
    attempts[s]+=1
+   def reject(why):
+    skips[why]+=1
+    admissions.append({"symbol":s,"entry_utc":iso(t),"decision_utc":iso(e["decision_ms"]),"side":e["side"],"accepted":False,"reason":why})
    if e["decision_ms"]>t or e["entry_ms"]!=t:raise AssertionError("Future signal")
-   if s in active:skips["same_symbol"]+=1;continue
-   if len(active)>=MAX_POS:skips["max_positions"]+=1;continue
+   if s in active:reject("same_symbol");continue
+   if len(active)>=MAX_POS:reject("max_positions");continue
    row=data[s]["rows"][t];price=row[1];a=e["atr_4h"];side=e["side"]
    if not (math.isfinite(a) and a>0 and price>0 and side in (-1,1)):
-    skips["invalid_input"]+=1;continue
+    reject("invalid_input");continue
    stop=price-side*SL_ATR*a;target=price+side*TP_ATR*a
    if stop<=0 or target<=0 or side*(price-stop)<=0:
-    skips["invalid_stop"]+=1;continue
+    reject("invalid_stop");continue
    eq=equity_at(data,active,cash,t,rate,False)
    risk_budget=min(RISK*eq,PORT_RISK*eq-sum(p["risk"] for p in active.values()))
-   if eq<=0 or risk_budget<=0:skips["risk_budget"]+=1;continue
+   if eq<=0 or risk_budget<=0:reject("risk_budget");continue
    qty=risk_budget/abs(price-stop);notional=qty*price
    if notional>MAX_SYMBOL_NOTIONAL*eq or notional+sum(p["entry_notional"] for p in active.values())>MAX_GROSS*eq:
-    skips["notional_cap"]+=1;continue
+    reject("notional_cap");continue
    fee=notional*cost/2
-   if fee>=eq or fee>=cash:skips["fee_affordability"]+=1;continue
+   if fee>=eq or fee>=cash:reject("fee_affordability");continue
    cash-=fee
    active[s]={"entry_ms":t,"signal_ms":e["decision_ms"],"side":side,"qty":qty,
     "entry":price,"stop":stop,"target":target,"risk":risk_budget,
     "entry_notional":notional,"entry_fee":fee}
+   admissions.append({"symbol":s,"entry_utc":iso(t),"decision_utc":iso(e["decision_ms"]),
+    "side":side,"accepted":True,"risk_cash":risk_budget,"entry_notional":notional})
   # OHLC resolution AFTER admissions; intrabar stop wins ambiguous bars.
   for s in tuple(active):
    p=active[s];row=data[s]["rows"][t]
@@ -108,14 +113,20 @@ def simulate(data,times,mode,cost=.0015,rate=.0003,starting_cash=1.):
   curve.append((t+H,eq,len(active)))
  if active:raise AssertionError("Positions left after terminal")
  return {"trades":ledger,"curve":curve,"skips":dict(skips),"attempts":dict(attempts),
-  "start_cash":starting_cash,"final_cash":cash}
+  "start_cash":starting_cash,"final_cash":cash,"admissions":admissions}
 
 def metrics(run):
  tr=run["trades"];vals=[p["net"] for p in tr]
  pos=sum(max(0,x) for x in vals);neg=-sum(min(0,x) for x in vals)
- peak=run["start_cash"];dd=0.;worst=0.
+ peak=run["start_cash"];dd=0.;worst=0.;monthly={}
  for _,eq,_ in run["curve"]:
   peak=max(peak,eq);dd=max(dd,1-eq/peak)
+  monthly[iso(_ )[:7]]=eq
+ prev=run["start_cash"];worst_month=None
+ for month,eq in sorted(monthly.items()):
+  rr=100*(eq/prev-1)
+  if worst_month is None or rr<worst_month[1]:worst_month=(month,rr)
+  prev=eq
  ret=100*(run["final_cash"]/run["start_cash"]-1)
  return {"n":len(tr),"net_return_pct":round(ret,4),
   "pf":round(pos/neg,4) if neg else None,
@@ -126,6 +137,11 @@ def metrics(run):
   "fee_total":round(sum(p["fees"] for p in tr),6),
   "funding_total":round(sum(p["funding"] for p in tr),6),
   "exposure_pct":round(100*sum(c>0 for _,_,c in run["curve"])/len(run["curve"]),2),
+  "worst_month":{"utc_month":worst_month[0],"return_pct":round(worst_month[1],4)} if worst_month else None,
+  "by_side":{name:{"n":len([p for p in tr if p["side"]==side]),
+   "net_pnl":round(sum(p["net"] for p in tr if p["side"]==side),6),
+   "mean_R":round(statistics.mean([p["R"] for p in tr if p["side"]==side]),4) if any(p["side"]==side for p in tr) else None}
+   for side,name in ((1,"LONG"),(-1,"SHORT"))},
   "by_asset":{s:{"n":len([p for p in tr if p["symbol"]==s]),
     "net_pnl":round(sum(p["net"] for p in tr if p["symbol"]==s),6),
     "mean_R":round(statistics.mean([p["R"] for p in tr if p["symbol"]==s]),4)
@@ -145,14 +161,21 @@ def main():
    "Identical entry/exit/risk mechanics; frozen_turn signal has completed-signal ATR while fade uses previous completed ATR",
    "No venue-provenance, order-book spread, mark-price liquidation, actual fills or market impact",
    "Shared portfolio excludes HYPE; HYPE remains separate negative control in causal_4h_parity_audit.json"],
-  "full":{},"windows":[]}
+  "full":{},"windows":[],"benchmarks":{}}
+ out["benchmarks"]={"cash_pct":0.,"equal_weight_price_only_buyhold_15bp_pct":round(100*(sum(
+  (1-.0015/2)**2*data[s]["rows"][times[-1]][4]/data[s]["rows"][times[0]][1]
+  for s in SYMS)/len(SYMS)-1),4),
+  "warning":"Long-only passive benchmark has unmatched exposure and no funding."}
  for mode in ("forming","closed","frozen_turn"):
-  grid={}
+  grid={};primary_trace=[]
   for c in COSTS:
    for f in FUNDING:
     key=f"{round(c*10000)}bp_cost_{round(f*10000)}bp_funding"
-    grid[key]=metrics(simulate(data,times,mode,c,f))
-  out["full"][mode]={"primary":grid["15bp_cost_3bp_funding"],"stress":grid}
+    run=simulate(data,times,mode,c,f)
+    grid[key]=metrics(run)
+    if c==.0015 and f==.0003:primary_trace=run["admissions"]
+  out["full"][mode]={"primary":grid["15bp_cost_3bp_funding"],"stress":grid,
+   "primary_admission_trace":primary_trace}
  for j in range(3):
   chunk=times[cuts[j]:cuts[j+1]]
   w={"index":j+1,"start_utc":iso(chunk[0]),"end_utc":iso(chunk[-1]+H),
