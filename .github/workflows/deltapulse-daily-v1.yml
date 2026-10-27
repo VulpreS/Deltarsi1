@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - deltapulse_daily_strategy_v1.py
+      - test_deltapulse_daily_v1.py
       - .github/workflows/deltapulse-daily-v1.yml
   workflow_dispatch:
 permissions:
@@ -16,6 +17,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Verify no-lookahead and data continuity
+        run: python -m unittest -v test_deltapulse_daily_v1
       - name: Run fixed DeltaPulse rules across five futures markets
         run: |
           if ! python deltapulse_daily_strategy_v1.py > /tmp/deltapulse_stdout.json 2>&1; then
