@@ -1,0 +1,3380 @@
+{
+  "description": "Selected diagnostic daily DeltaRSI trade logs with 20-day percentile>=80.",
+  "research_status": "Exploratory, parameter/lookback chosen after earlier results were inspected. Not independent OOS.",
+  "data": "Binance USD-M futures 1D BTCUSDT/ETHUSDT, daily candles 00 UTC. Previous-month archives cached in data/.",
+  "entry": "Next daily open after completed DeltaRSI medium->weak OR first fading impulse, as shown in signal_mode.",
+  "exit": "Next-day open on opposite fade or optionally impulse rebrightening; initial confirmed swing pivot with 0.1% buffer and gap-aware stop; 90d safety timeout.",
+  "assumed_fee_pct": 0.15,
+  "funding_included": false,
+  "trade_rows": 1491,
+  "summary": [
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "color",
+      "exit_mode": "opposite_only",
+      "position_mode": "both",
+      "all_history": {
+        "n": 68,
+        "win_rate_pct": 42.65,
+        "mean_net_pct": 1.492,
+        "median_net_pct": -1.208,
+        "profit_factor": 1.631,
+        "avg_win_pct": 9.043,
+        "avg_loss_pct": -4.122,
+        "median_initial_risk_pct": 4.876,
+        "mean_R": 0.209,
+        "median_days_held": 6.0,
+        "hypothetical_sequential_full_notional_compound_pct": 117.75,
+        "hypothetical_closed_trade_mdd_pct": 28.08,
+        "exit_reasons": {
+          "opposite_fade": 34,
+          "structural_stop": 34
+        },
+        "by_side": {
+          "LONG": {
+            "n": 36,
+            "mean_net_pct": 3.064,
+            "win_rate_pct": 44.44,
+            "profit_factor": 2.313
+          },
+          "SHORT": {
+            "n": 32,
+            "mean_net_pct": -0.276,
+            "win_rate_pct": 40.62,
+            "profit_factor": 0.885
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 40,
+            "win_rate_pct": 40.0,
+            "mean_net_pct": 2.568,
+            "median_net_pct": -1.354,
+            "profit_factor": 2.048,
+            "avg_win_pct": 12.545,
+            "avg_loss_pct": -4.083,
+            "median_initial_risk_pct": 4.972,
+            "mean_R": 0.397,
+            "median_days_held": 6.0,
+            "hypothetical_sequential_full_notional_compound_pct": 132.47,
+            "hypothetical_closed_trade_mdd_pct": 25.32,
+            "exit_reasons": {
+              "opposite_fade": 20,
+              "structural_stop": 20
+            },
+            "by_side": {
+              "LONG": {
+                "n": 22,
+                "mean_net_pct": 5.215,
+                "win_rate_pct": 45.45,
+                "profit_factor": 3.975
+              },
+              "SHORT": {
+                "n": 18,
+                "mean_net_pct": -0.667,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.798
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 14,
+            "win_rate_pct": 42.86,
+            "mean_net_pct": -1.73,
+            "median_net_pct": -0.985,
+            "profit_factor": 0.449,
+            "avg_win_pct": 3.287,
+            "avg_loss_pct": -5.493,
+            "median_initial_risk_pct": 5.941,
+            "mean_R": -0.287,
+            "median_days_held": 7.0,
+            "hypothetical_sequential_full_notional_compound_pct": -23.26,
+            "hypothetical_closed_trade_mdd_pct": 27.03,
+            "exit_reasons": {
+              "structural_stop": 7,
+              "opposite_fade": 7
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_net_pct": -2.659,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.3
+              },
+              "SHORT": {
+                "n": 5,
+                "mean_net_pct": -0.058,
+                "win_rate_pct": 60.0,
+                "profit_factor": 0.971
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 14,
+            "win_rate_pct": 50.0,
+            "mean_net_pct": 1.641,
+            "median_net_pct": -0.034,
+            "profit_factor": 2.22,
+            "avg_win_pct": 5.972,
+            "avg_loss_pct": -2.689,
+            "median_initial_risk_pct": 3.498,
+            "mean_R": 0.168,
+            "median_days_held": 5.5,
+            "hypothetical_sequential_full_notional_compound_pct": 22.06,
+            "hypothetical_closed_trade_mdd_pct": 10.76,
+            "exit_reasons": {
+              "opposite_fade": 7,
+              "structural_stop": 7
+            },
+            "by_side": {
+              "LONG": {
+                "n": 5,
+                "mean_net_pct": 3.903,
+                "win_rate_pct": 60.0,
+                "profit_factor": 2.732
+              },
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": 0.385,
+                "win_rate_pct": 44.44,
+                "profit_factor": 1.458
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 10,
+        "risk_gt_15pct": 2,
+        "eligible_signal_events": 111,
+        "not_taken_due_to_held_position": 31
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "color",
+      "exit_mode": "opposite_only",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 42,
+        "win_rate_pct": 38.1,
+        "mean_net_pct": 2.18,
+        "median_net_pct": -1.483,
+        "profit_factor": 1.891,
+        "avg_win_pct": 12.145,
+        "avg_loss_pct": -3.952,
+        "median_initial_risk_pct": 5.119,
+        "mean_R": 0.292,
+        "median_days_held": 6.0,
+        "hypothetical_sequential_full_notional_compound_pct": 107.07,
+        "hypothetical_closed_trade_mdd_pct": 28.01,
+        "exit_reasons": {
+          "structural_stop": 22,
+          "opposite_fade": 20
+        },
+        "by_side": {
+          "LONG": {
+            "n": 42,
+            "mean_net_pct": 2.18,
+            "win_rate_pct": 38.1,
+            "profit_factor": 1.891
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 26,
+            "win_rate_pct": 38.46,
+            "mean_net_pct": 3.802,
+            "median_net_pct": -1.483,
+            "profit_factor": 2.816,
+            "avg_win_pct": 15.329,
+            "avg_loss_pct": -3.403,
+            "median_initial_risk_pct": 5.025,
+            "mean_R": 0.437,
+            "median_days_held": 7.0,
+            "hypothetical_sequential_full_notional_compound_pct": 132.95,
+            "hypothetical_closed_trade_mdd_pct": 12.41,
+            "exit_reasons": {
+              "structural_stop": 13,
+              "opposite_fade": 13
+            },
+            "by_side": {
+              "LONG": {
+                "n": 26,
+                "mean_net_pct": 3.802,
+                "win_rate_pct": 38.46,
+                "profit_factor": 2.816
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 10,
+            "win_rate_pct": 30.0,
+            "mean_net_pct": -2.508,
+            "median_net_pct": -1.474,
+            "profit_factor": 0.29,
+            "avg_win_pct": 3.413,
+            "avg_loss_pct": -5.046,
+            "median_initial_risk_pct": 6.46,
+            "mean_R": -0.481,
+            "median_days_held": 6.0,
+            "hypothetical_sequential_full_notional_compound_pct": -23.53,
+            "hypothetical_closed_trade_mdd_pct": 25.47,
+            "exit_reasons": {
+              "structural_stop": 6,
+              "opposite_fade": 4
+            },
+            "by_side": {
+              "LONG": {
+                "n": 10,
+                "mean_net_pct": -2.508,
+                "win_rate_pct": 30.0,
+                "profit_factor": 0.29
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 6,
+            "win_rate_pct": 50.0,
+            "mean_net_pct": 2.966,
+            "median_net_pct": 0.8,
+            "profit_factor": 2.37,
+            "avg_win_pct": 10.261,
+            "avg_loss_pct": -4.329,
+            "median_initial_risk_pct": 3.498,
+            "mean_R": 0.955,
+            "median_days_held": 5.0,
+            "hypothetical_sequential_full_notional_compound_pct": 16.24,
+            "hypothetical_closed_trade_mdd_pct": 8.02,
+            "exit_reasons": {
+              "opposite_fade": 3,
+              "structural_stop": 3
+            },
+            "by_side": {
+              "LONG": {
+                "n": 6,
+                "mean_net_pct": 2.966,
+                "win_rate_pct": 50.0,
+                "profit_factor": 2.37
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 5,
+        "risk_gt_15pct": 2,
+        "eligible_signal_events": 56,
+        "not_taken_due_to_held_position": 7
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "color",
+      "exit_mode": "opposite_only",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 41,
+        "win_rate_pct": 39.02,
+        "mean_net_pct": 0.496,
+        "median_net_pct": -1.294,
+        "profit_factor": 1.225,
+        "avg_win_pct": 6.907,
+        "avg_loss_pct": -3.608,
+        "median_initial_risk_pct": 4.455,
+        "mean_R": -0.154,
+        "median_days_held": 5,
+        "hypothetical_sequential_full_notional_compound_pct": 10.5,
+        "hypothetical_closed_trade_mdd_pct": 24.47,
+        "exit_reasons": {
+          "opposite_fade": 18,
+          "structural_stop": 23
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 41,
+            "mean_net_pct": 0.496,
+            "win_rate_pct": 39.02,
+            "profit_factor": 1.225
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 23,
+            "win_rate_pct": 34.78,
+            "mean_net_pct": 0.79,
+            "median_net_pct": -1.373,
+            "profit_factor": 1.267,
+            "avg_win_pct": 10.771,
+            "avg_loss_pct": -4.534,
+            "median_initial_risk_pct": 4.998,
+            "mean_R": 0.063,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": 9.16,
+            "hypothetical_closed_trade_mdd_pct": 21.08,
+            "exit_reasons": {
+              "opposite_fade": 10,
+              "structural_stop": 13
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 23,
+                "mean_net_pct": 0.79,
+                "win_rate_pct": 34.78,
+                "profit_factor": 1.267
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 44.44,
+            "mean_net_pct": -0.144,
+            "median_net_pct": -1.294,
+            "profit_factor": 0.912,
+            "avg_win_pct": 3.333,
+            "avg_loss_pct": -2.925,
+            "median_initial_risk_pct": 4.17,
+            "mean_R": -0.365,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": -1.9,
+            "hypothetical_closed_trade_mdd_pct": 9.97,
+            "exit_reasons": {
+              "structural_stop": 5,
+              "opposite_fade": 4
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": -0.144,
+                "win_rate_pct": 44.44,
+                "profit_factor": 0.912
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 44.44,
+            "mean_net_pct": 0.385,
+            "median_net_pct": -0.247,
+            "profit_factor": 1.458,
+            "avg_win_pct": 2.755,
+            "avg_loss_pct": -1.512,
+            "median_initial_risk_pct": 2.74,
+            "mean_R": -0.497,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": 3.2,
+            "hypothetical_closed_trade_mdd_pct": 7.35,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "structural_stop": 5
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": 0.385,
+                "win_rate_pct": 44.44,
+                "profit_factor": 1.458
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 1,
+        "stop_on_wrong_side": 6,
+        "eligible_signal_events": 55,
+        "not_taken_due_to_held_position": 7
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "color",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "both",
+      "all_history": {
+        "n": 79,
+        "win_rate_pct": 40.51,
+        "mean_net_pct": 1.231,
+        "median_net_pct": -0.714,
+        "profit_factor": 1.866,
+        "avg_win_pct": 6.55,
+        "avg_loss_pct": -2.39,
+        "median_initial_risk_pct": 4.798,
+        "mean_R": 0.182,
+        "median_days_held": 4,
+        "hypothetical_sequential_full_notional_compound_pct": 123.97,
+        "hypothetical_closed_trade_mdd_pct": 29.03,
+        "exit_reasons": {
+          "opposite_fade": 23,
+          "rebrightening": 32,
+          "structural_stop": 24
+        },
+        "by_side": {
+          "LONG": {
+            "n": 40,
+            "mean_net_pct": 2.367,
+            "win_rate_pct": 40.0,
+            "profit_factor": 2.809
+          },
+          "SHORT": {
+            "n": 39,
+            "mean_net_pct": 0.065,
+            "win_rate_pct": 41.03,
+            "profit_factor": 1.043
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 48,
+            "win_rate_pct": 43.75,
+            "mean_net_pct": 1.931,
+            "median_net_pct": -0.774,
+            "profit_factor": 2.302,
+            "avg_win_pct": 7.806,
+            "avg_loss_pct": -2.638,
+            "median_initial_risk_pct": 4.876,
+            "mean_R": 0.349,
+            "median_days_held": 2.5,
+            "hypothetical_sequential_full_notional_compound_pct": 121.34,
+            "hypothetical_closed_trade_mdd_pct": 22.26,
+            "exit_reasons": {
+              "opposite_fade": 14,
+              "rebrightening": 20,
+              "structural_stop": 14
+            },
+            "by_side": {
+              "LONG": {
+                "n": 24,
+                "mean_net_pct": 3.407,
+                "win_rate_pct": 45.83,
+                "profit_factor": 3.773
+              },
+              "SHORT": {
+                "n": 24,
+                "mean_net_pct": 0.456,
+                "win_rate_pct": 41.67,
+                "profit_factor": 1.262
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 16,
+            "win_rate_pct": 31.25,
+            "mean_net_pct": -1.291,
+            "median_net_pct": -1.388,
+            "profit_factor": 0.303,
+            "avg_win_pct": 1.797,
+            "avg_loss_pct": -2.695,
+            "median_initial_risk_pct": 5.467,
+            "mean_R": -0.354,
+            "median_days_held": 5.5,
+            "hypothetical_sequential_full_notional_compound_pct": -19.27,
+            "hypothetical_closed_trade_mdd_pct": 19.27,
+            "exit_reasons": {
+              "structural_stop": 6,
+              "rebrightening": 7,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "LONG": {
+                "n": 10,
+                "mean_net_pct": -1.286,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.28
+              },
+              "SHORT": {
+                "n": 6,
+                "mean_net_pct": -1.299,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.338
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 15,
+            "win_rate_pct": 40.0,
+            "mean_net_pct": 1.68,
+            "median_net_pct": -0.098,
+            "profit_factor": 3.194,
+            "avg_win_pct": 6.114,
+            "avg_loss_pct": -1.276,
+            "median_initial_risk_pct": 3.23,
+            "mean_R": 0.222,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 25.35,
+            "hypothetical_closed_trade_mdd_pct": 5.98,
+            "exit_reasons": {
+              "structural_stop": 4,
+              "opposite_fade": 6,
+              "rebrightening": 5
+            },
+            "by_side": {
+              "LONG": {
+                "n": 6,
+                "mean_net_pct": 4.298,
+                "win_rate_pct": 50.0,
+                "profit_factor": 6.166
+              },
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": -0.066,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.909
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 11,
+        "risk_gt_15pct": 2,
+        "eligible_signal_events": 111,
+        "not_taken_due_to_held_position": 19
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "color",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 44,
+        "win_rate_pct": 38.64,
+        "mean_net_pct": 1.958,
+        "median_net_pct": -0.763,
+        "profit_factor": 2.327,
+        "avg_win_pct": 8.89,
+        "avg_loss_pct": -2.406,
+        "median_initial_risk_pct": 5.119,
+        "mean_R": 0.321,
+        "median_days_held": 4.5,
+        "hypothetical_sequential_full_notional_compound_pct": 107.3,
+        "hypothetical_closed_trade_mdd_pct": 16.17,
+        "exit_reasons": {
+          "rebrightening": 14,
+          "structural_stop": 15,
+          "opposite_fade": 15
+        },
+        "by_side": {
+          "LONG": {
+            "n": 44,
+            "mean_net_pct": 1.958,
+            "win_rate_pct": 38.64,
+            "profit_factor": 2.327
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 27,
+            "win_rate_pct": 44.44,
+            "mean_net_pct": 2.776,
+            "median_net_pct": -0.598,
+            "profit_factor": 2.857,
+            "avg_win_pct": 9.612,
+            "avg_loss_pct": -2.692,
+            "median_initial_risk_pct": 5.239,
+            "mean_R": 0.418,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": 90.71,
+            "hypothetical_closed_trade_mdd_pct": 16.17,
+            "exit_reasons": {
+              "rebrightening": 8,
+              "structural_stop": 10,
+              "opposite_fade": 9
+            },
+            "by_side": {
+              "LONG": {
+                "n": 27,
+                "mean_net_pct": 2.776,
+                "win_rate_pct": 44.44,
+                "profit_factor": 2.857
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 10,
+            "win_rate_pct": 20.0,
+            "mean_net_pct": -1.286,
+            "median_net_pct": -1.388,
+            "profit_factor": 0.28,
+            "avg_win_pct": 2.501,
+            "avg_loss_pct": -2.233,
+            "median_initial_risk_pct": 6.46,
+            "mean_R": -0.34,
+            "median_days_held": 5.0,
+            "hypothetical_sequential_full_notional_compound_pct": -12.44,
+            "hypothetical_closed_trade_mdd_pct": 12.44,
+            "exit_reasons": {
+              "structural_stop": 3,
+              "rebrightening": 4,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "LONG": {
+                "n": 10,
+                "mean_net_pct": -1.286,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.28
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 7,
+            "win_rate_pct": 42.86,
+            "mean_net_pct": 3.438,
+            "median_net_pct": -0.529,
+            "profit_factor": 4.585,
+            "avg_win_pct": 10.261,
+            "avg_loss_pct": -1.678,
+            "median_initial_risk_pct": 3.23,
+            "mean_R": 0.891,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 24.14,
+            "hypothetical_closed_trade_mdd_pct": 2.85,
+            "exit_reasons": {
+              "structural_stop": 2,
+              "opposite_fade": 3,
+              "rebrightening": 2
+            },
+            "by_side": {
+              "LONG": {
+                "n": 7,
+                "mean_net_pct": 3.438,
+                "win_rate_pct": 42.86,
+                "profit_factor": 4.585
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 6,
+        "risk_gt_15pct": 2,
+        "eligible_signal_events": 56,
+        "not_taken_due_to_held_position": 4
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "color",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 44,
+        "win_rate_pct": 40.91,
+        "mean_net_pct": 0.147,
+        "median_net_pct": -0.555,
+        "profit_factor": 1.098,
+        "avg_win_pct": 4.019,
+        "avg_loss_pct": -2.533,
+        "median_initial_risk_pct": 4.312,
+        "mean_R": -0.063,
+        "median_days_held": 3.0,
+        "hypothetical_sequential_full_notional_compound_pct": 2.35,
+        "hypothetical_closed_trade_mdd_pct": 20.33,
+        "exit_reasons": {
+          "opposite_fade": 11,
+          "structural_stop": 15,
+          "rebrightening": 18
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 44,
+            "mean_net_pct": 0.147,
+            "win_rate_pct": 40.91,
+            "profit_factor": 1.098
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 26,
+            "win_rate_pct": 42.31,
+            "mean_net_pct": 0.533,
+            "median_net_pct": -1.063,
+            "profit_factor": 1.31,
+            "avg_win_pct": 5.328,
+            "avg_loss_pct": -2.983,
+            "median_initial_risk_pct": 4.729,
+            "mean_R": 0.206,
+            "median_days_held": 2.5,
+            "hypothetical_sequential_full_notional_compound_pct": 10.86,
+            "hypothetical_closed_trade_mdd_pct": 14.8,
+            "exit_reasons": {
+              "opposite_fade": 7,
+              "structural_stop": 7,
+              "rebrightening": 12
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 26,
+                "mean_net_pct": 0.533,
+                "win_rate_pct": 42.31,
+                "profit_factor": 1.31
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 44.44,
+            "mean_net_pct": -0.755,
+            "median_net_pct": -1.294,
+            "profit_factor": 0.535,
+            "avg_win_pct": 1.957,
+            "avg_loss_pct": -2.925,
+            "median_initial_risk_pct": 4.17,
+            "mean_R": -0.457,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": -6.96,
+            "hypothetical_closed_trade_mdd_pct": 9.55,
+            "exit_reasons": {
+              "structural_stop": 5,
+              "rebrightening": 3,
+              "opposite_fade": 1
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": -0.755,
+                "win_rate_pct": 44.44,
+                "profit_factor": 0.535
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": -0.066,
+            "median_net_pct": -0.098,
+            "profit_factor": 0.909,
+            "avg_win_pct": 1.967,
+            "avg_loss_pct": -1.082,
+            "median_initial_risk_pct": 2.74,
+            "mean_R": -0.444,
+            "median_days_held": 2,
+            "hypothetical_sequential_full_notional_compound_pct": -0.77,
+            "hypothetical_closed_trade_mdd_pct": 4.68,
+            "exit_reasons": {
+              "rebrightening": 3,
+              "opposite_fade": 3,
+              "structural_stop": 3
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": -0.066,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.909
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 1,
+        "stop_on_wrong_side": 6,
+        "eligible_signal_events": 55,
+        "not_taken_due_to_held_position": 4
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "opposite_only",
+      "position_mode": "both",
+      "all_history": {
+        "n": 92,
+        "win_rate_pct": 34.78,
+        "mean_net_pct": 0.942,
+        "median_net_pct": -1.681,
+        "profit_factor": 1.357,
+        "avg_win_pct": 10.29,
+        "avg_loss_pct": -4.044,
+        "median_initial_risk_pct": 4.389,
+        "mean_R": 0.045,
+        "median_days_held": 6.0,
+        "hypothetical_sequential_full_notional_compound_pct": 61.95,
+        "hypothetical_closed_trade_mdd_pct": 38.38,
+        "exit_reasons": {
+          "opposite_fade": 35,
+          "structural_stop": 56,
+          "end_of_data": 1
+        },
+        "by_side": {
+          "LONG": {
+            "n": 39,
+            "mean_net_pct": 3.365,
+            "win_rate_pct": 41.03,
+            "profit_factor": 2.552
+          },
+          "SHORT": {
+            "n": 53,
+            "mean_net_pct": -0.841,
+            "win_rate_pct": 30.19,
+            "profit_factor": 0.718
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 55,
+            "win_rate_pct": 32.73,
+            "mean_net_pct": 1.687,
+            "median_net_pct": -1.94,
+            "profit_factor": 1.595,
+            "avg_win_pct": 13.818,
+            "avg_loss_pct": -4.214,
+            "median_initial_risk_pct": 4.648,
+            "mean_R": 0.201,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 83.89,
+            "hypothetical_closed_trade_mdd_pct": 33.61,
+            "exit_reasons": {
+              "opposite_fade": 21,
+              "structural_stop": 34
+            },
+            "by_side": {
+              "LONG": {
+                "n": 22,
+                "mean_net_pct": 5.728,
+                "win_rate_pct": 40.91,
+                "profit_factor": 4.051
+              },
+              "SHORT": {
+                "n": 33,
+                "mean_net_pct": -1.007,
+                "win_rate_pct": 27.27,
+                "profit_factor": 0.71
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 17,
+            "win_rate_pct": 35.29,
+            "mean_net_pct": -1.309,
+            "median_net_pct": -1.796,
+            "profit_factor": 0.522,
+            "avg_win_pct": 4.05,
+            "avg_loss_pct": -4.232,
+            "median_initial_risk_pct": 4.798,
+            "mean_R": -0.392,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": -21.7,
+            "hypothetical_closed_trade_mdd_pct": 27.42,
+            "exit_reasons": {
+              "structural_stop": 10,
+              "opposite_fade": 7
+            },
+            "by_side": {
+              "LONG": {
+                "n": 8,
+                "mean_net_pct": -1.243,
+                "win_rate_pct": 37.5,
+                "profit_factor": 0.585
+              },
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": -1.367,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.455
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 20,
+            "win_rate_pct": 40.0,
+            "mean_net_pct": 0.805,
+            "median_net_pct": -0.85,
+            "profit_factor": 1.401,
+            "avg_win_pct": 7.032,
+            "avg_loss_pct": -3.347,
+            "median_initial_risk_pct": 3.229,
+            "mean_R": -0.013,
+            "median_days_held": 8.0,
+            "hypothetical_sequential_full_notional_compound_pct": 12.47,
+            "hypothetical_closed_trade_mdd_pct": 25.84,
+            "exit_reasons": {
+              "opposite_fade": 7,
+              "structural_stop": 12,
+              "end_of_data": 1
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_net_pct": 1.685,
+                "win_rate_pct": 44.44,
+                "profit_factor": 1.787
+              },
+              "SHORT": {
+                "n": 11,
+                "mean_net_pct": 0.084,
+                "win_rate_pct": 36.36,
+                "profit_factor": 1.044
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 12,
+        "risk_gt_15pct": 5,
+        "eligible_signal_events": 147,
+        "not_taken_due_to_held_position": 38
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "opposite_only",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 47,
+        "win_rate_pct": 38.3,
+        "mean_net_pct": 2.618,
+        "median_net_pct": -1.335,
+        "profit_factor": 2.189,
+        "avg_win_pct": 12.581,
+        "avg_loss_pct": -3.567,
+        "median_initial_risk_pct": 4.798,
+        "mean_R": 0.238,
+        "median_days_held": 6,
+        "hypothetical_sequential_full_notional_compound_pct": 158.02,
+        "hypothetical_closed_trade_mdd_pct": 24.7,
+        "exit_reasons": {
+          "opposite_fade": 21,
+          "structural_stop": 26
+        },
+        "by_side": {
+          "LONG": {
+            "n": 47,
+            "mean_net_pct": 2.618,
+            "win_rate_pct": 38.3,
+            "profit_factor": 2.189
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 29,
+            "win_rate_pct": 37.93,
+            "mean_net_pct": 4.102,
+            "median_net_pct": -1.63,
+            "profit_factor": 3.015,
+            "avg_win_pct": 16.181,
+            "avg_loss_pct": -3.28,
+            "median_initial_risk_pct": 4.546,
+            "mean_R": 0.375,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 158.98,
+            "hypothetical_closed_trade_mdd_pct": 12.02,
+            "exit_reasons": {
+              "opposite_fade": 13,
+              "structural_stop": 16
+            },
+            "by_side": {
+              "LONG": {
+                "n": 29,
+                "mean_net_pct": 4.102,
+                "win_rate_pct": 37.93,
+                "profit_factor": 3.015
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": -1.233,
+            "median_net_pct": -1.15,
+            "profit_factor": 0.558,
+            "avg_win_pct": 4.678,
+            "avg_loss_pct": -4.188,
+            "median_initial_risk_pct": 5.868,
+            "mean_R": -0.378,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": -11.77,
+            "hypothetical_closed_trade_mdd_pct": 18.45,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "structural_stop": 5
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_net_pct": -1.233,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.558
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 44.44,
+            "mean_net_pct": 1.685,
+            "median_net_pct": -0.538,
+            "profit_factor": 1.787,
+            "avg_win_pct": 8.61,
+            "avg_loss_pct": -3.854,
+            "median_initial_risk_pct": 3.23,
+            "mean_R": 0.416,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 12.92,
+            "hypothetical_closed_trade_mdd_pct": 12.09,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "structural_stop": 5
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_net_pct": 1.685,
+                "win_rate_pct": 44.44,
+                "profit_factor": 1.787
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 7,
+        "risk_gt_15pct": 5,
+        "eligible_signal_events": 65,
+        "not_taken_due_to_held_position": 6
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "opposite_only",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 64,
+        "win_rate_pct": 29.69,
+        "mean_net_pct": -0.446,
+        "median_net_pct": -1.9,
+        "profit_factor": 0.842,
+        "avg_win_pct": 8.021,
+        "avg_loss_pct": -4.021,
+        "median_initial_risk_pct": 3.9,
+        "mean_R": -0.25,
+        "median_days_held": 4.0,
+        "hypothetical_sequential_full_notional_compound_pct": -35.94,
+        "hypothetical_closed_trade_mdd_pct": 42.5,
+        "exit_reasons": {
+          "opposite_fade": 19,
+          "structural_stop": 44,
+          "end_of_data": 1
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 64,
+            "mean_net_pct": -0.446,
+            "win_rate_pct": 29.69,
+            "profit_factor": 0.842
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 38,
+            "win_rate_pct": 26.32,
+            "mean_net_pct": -0.409,
+            "median_net_pct": -3.114,
+            "profit_factor": 0.88,
+            "avg_win_pct": 11.396,
+            "avg_loss_pct": -4.625,
+            "median_initial_risk_pct": 4.03,
+            "mean_R": -0.109,
+            "median_days_held": 4.0,
+            "hypothetical_sequential_full_notional_compound_pct": -25.34,
+            "hypothetical_closed_trade_mdd_pct": 40.5,
+            "exit_reasons": {
+              "opposite_fade": 11,
+              "structural_stop": 27
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 38,
+                "mean_net_pct": -0.409,
+                "win_rate_pct": 26.32,
+                "profit_factor": 0.88
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 30.77,
+            "mean_net_pct": -1.023,
+            "median_net_pct": -1.613,
+            "profit_factor": 0.515,
+            "avg_win_pct": 3.529,
+            "avg_loss_pct": -3.047,
+            "median_initial_risk_pct": 4.021,
+            "mean_R": -0.564,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": -13.24,
+            "hypothetical_closed_trade_mdd_pct": 19.12,
+            "exit_reasons": {
+              "structural_stop": 9,
+              "opposite_fade": 4
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 13,
+                "mean_net_pct": -1.023,
+                "win_rate_pct": 30.77,
+                "profit_factor": 0.515
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 38.46,
+            "mean_net_pct": 0.023,
+            "median_net_pct": -1.374,
+            "profit_factor": 1.012,
+            "avg_win_pct": 4.865,
+            "avg_loss_pct": -3.004,
+            "median_initial_risk_pct": 2.991,
+            "mean_R": -0.35,
+            "median_days_held": 9,
+            "hypothetical_sequential_full_notional_compound_pct": -1.1,
+            "hypothetical_closed_trade_mdd_pct": 20.77,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "structural_stop": 8,
+              "end_of_data": 1
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 13,
+                "mean_net_pct": 0.023,
+                "win_rate_pct": 38.46,
+                "profit_factor": 1.012
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 8,
+        "risk_gt_15pct": 1,
+        "eligible_signal_events": 82,
+        "not_taken_due_to_held_position": 9
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "both",
+      "all_history": {
+        "n": 107,
+        "win_rate_pct": 34.58,
+        "mean_net_pct": 0.742,
+        "median_net_pct": -1.367,
+        "profit_factor": 1.406,
+        "avg_win_pct": 7.431,
+        "avg_loss_pct": -2.793,
+        "median_initial_risk_pct": 4.37,
+        "mean_R": 0.034,
+        "median_days_held": 3,
+        "hypothetical_sequential_full_notional_compound_pct": 64.28,
+        "hypothetical_closed_trade_mdd_pct": 41.48,
+        "exit_reasons": {
+          "opposite_fade": 23,
+          "rebrightening": 40,
+          "structural_stop": 43,
+          "end_of_data": 1
+        },
+        "by_side": {
+          "LONG": {
+            "n": 46,
+            "mean_net_pct": 2.657,
+            "win_rate_pct": 36.96,
+            "profit_factor": 2.92
+          },
+          "SHORT": {
+            "n": 61,
+            "mean_net_pct": -0.702,
+            "win_rate_pct": 32.79,
+            "profit_factor": 0.675
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 66,
+            "win_rate_pct": 36.36,
+            "mean_net_pct": 1.273,
+            "median_net_pct": -1.553,
+            "profit_factor": 1.637,
+            "avg_win_pct": 8.995,
+            "avg_loss_pct": -3.141,
+            "median_initial_risk_pct": 4.477,
+            "mean_R": 0.151,
+            "median_days_held": 3.0,
+            "hypothetical_sequential_full_notional_compound_pct": 79.01,
+            "hypothetical_closed_trade_mdd_pct": 28.88,
+            "exit_reasons": {
+              "opposite_fade": 15,
+              "rebrightening": 25,
+              "structural_stop": 26
+            },
+            "by_side": {
+              "LONG": {
+                "n": 27,
+                "mean_net_pct": 4.176,
+                "win_rate_pct": 44.44,
+                "profit_factor": 4.346
+              },
+              "SHORT": {
+                "n": 39,
+                "mean_net_pct": -0.738,
+                "win_rate_pct": 30.77,
+                "profit_factor": 0.707
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 20,
+            "win_rate_pct": 30.0,
+            "mean_net_pct": -1.058,
+            "median_net_pct": -1.62,
+            "profit_factor": 0.413,
+            "avg_win_pct": 2.485,
+            "avg_loss_pct": -2.576,
+            "median_initial_risk_pct": 4.584,
+            "mean_R": -0.426,
+            "median_days_held": 4.0,
+            "hypothetical_sequential_full_notional_compound_pct": -19.84,
+            "hypothetical_closed_trade_mdd_pct": 19.84,
+            "exit_reasons": {
+              "structural_stop": 10,
+              "rebrightening": 7,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "LONG": {
+                "n": 10,
+                "mean_net_pct": -0.792,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.526
+              },
+              "SHORT": {
+                "n": 10,
+                "mean_net_pct": -1.325,
+                "win_rate_pct": 40.0,
+                "profit_factor": 0.316
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 21,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": 0.791,
+            "median_net_pct": -0.538,
+            "profit_factor": 1.603,
+            "avg_win_pct": 6.308,
+            "avg_loss_pct": -1.968,
+            "median_initial_risk_pct": 3.23,
+            "mean_R": 0.104,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": 14.48,
+            "hypothetical_closed_trade_mdd_pct": 15.11,
+            "exit_reasons": {
+              "rebrightening": 8,
+              "opposite_fade": 5,
+              "structural_stop": 7,
+              "end_of_data": 1
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_net_pct": 1.933,
+                "win_rate_pct": 33.33,
+                "profit_factor": 2.313
+              },
+              "SHORT": {
+                "n": 12,
+                "mean_net_pct": -0.066,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.945
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 13,
+        "risk_gt_15pct": 5,
+        "eligible_signal_events": 147,
+        "not_taken_due_to_held_position": 22
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 50,
+        "win_rate_pct": 38.0,
+        "mean_net_pct": 2.372,
+        "median_net_pct": -0.758,
+        "profit_factor": 2.549,
+        "avg_win_pct": 10.27,
+        "avg_loss_pct": -2.469,
+        "median_initial_risk_pct": 4.849,
+        "mean_R": 0.263,
+        "median_days_held": 5.0,
+        "hypothetical_sequential_full_notional_compound_pct": 159.4,
+        "hypothetical_closed_trade_mdd_pct": 17.67,
+        "exit_reasons": {
+          "opposite_fade": 15,
+          "rebrightening": 15,
+          "structural_stop": 20
+        },
+        "by_side": {
+          "LONG": {
+            "n": 50,
+            "mean_net_pct": 2.372,
+            "win_rate_pct": 38.0,
+            "profit_factor": 2.549
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 31,
+            "win_rate_pct": 45.16,
+            "mean_net_pct": 3.519,
+            "median_net_pct": -0.598,
+            "profit_factor": 3.342,
+            "avg_win_pct": 11.12,
+            "avg_loss_pct": -2.74,
+            "median_initial_risk_pct": 4.811,
+            "mean_R": 0.406,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": 143.47,
+            "hypothetical_closed_trade_mdd_pct": 17.67,
+            "exit_reasons": {
+              "opposite_fade": 9,
+              "rebrightening": 10,
+              "structural_stop": 12
+            },
+            "by_side": {
+              "LONG": {
+                "n": 31,
+                "mean_net_pct": 3.519,
+                "win_rate_pct": 45.16,
+                "profit_factor": 3.342
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 10,
+            "win_rate_pct": 20.0,
+            "mean_net_pct": -0.792,
+            "median_net_pct": -1.388,
+            "profit_factor": 0.526,
+            "avg_win_pct": 4.399,
+            "avg_loss_pct": -2.089,
+            "median_initial_risk_pct": 5.68,
+            "mean_R": -0.35,
+            "median_days_held": 5.0,
+            "hypothetical_sequential_full_notional_compound_pct": -8.05,
+            "hypothetical_closed_trade_mdd_pct": 8.05,
+            "exit_reasons": {
+              "rebrightening": 3,
+              "structural_stop": 4,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "LONG": {
+                "n": 10,
+                "mean_net_pct": -0.792,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.526
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": 1.933,
+            "median_net_pct": -0.538,
+            "profit_factor": 2.313,
+            "avg_win_pct": 10.216,
+            "avg_loss_pct": -2.209,
+            "median_initial_risk_pct": 3.23,
+            "mean_R": 0.451,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 15.87,
+            "hypothetical_closed_trade_mdd_pct": 9.79,
+            "exit_reasons": {
+              "opposite_fade": 3,
+              "rebrightening": 2,
+              "structural_stop": 4
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_net_pct": 1.933,
+                "win_rate_pct": 33.33,
+                "profit_factor": 2.313
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 7,
+        "risk_gt_15pct": 5,
+        "eligible_signal_events": 65,
+        "not_taken_due_to_held_position": 3
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 68,
+        "win_rate_pct": 32.35,
+        "mean_net_pct": -0.46,
+        "median_net_pct": -1.627,
+        "profit_factor": 0.778,
+        "avg_win_pct": 4.978,
+        "avg_loss_pct": -3.06,
+        "median_initial_risk_pct": 3.758,
+        "mean_R": -0.16,
+        "median_days_held": 3.0,
+        "hypothetical_sequential_full_notional_compound_pct": -32.87,
+        "hypothetical_closed_trade_mdd_pct": 38.44,
+        "exit_reasons": {
+          "opposite_fade": 11,
+          "structural_stop": 31,
+          "rebrightening": 25,
+          "end_of_data": 1
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 68,
+            "mean_net_pct": -0.46,
+            "win_rate_pct": 32.35,
+            "profit_factor": 0.778
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 42,
+            "win_rate_pct": 30.95,
+            "mean_net_pct": -0.359,
+            "median_net_pct": -1.731,
+            "profit_factor": 0.851,
+            "avg_win_pct": 6.619,
+            "avg_loss_pct": -3.487,
+            "median_initial_risk_pct": 3.758,
+            "mean_R": -0.026,
+            "median_days_held": 2.5,
+            "hypothetical_sequential_full_notional_compound_pct": -20.27,
+            "hypothetical_closed_trade_mdd_pct": 26.02,
+            "exit_reasons": {
+              "opposite_fade": 8,
+              "structural_stop": 19,
+              "rebrightening": 15
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 42,
+                "mean_net_pct": -0.359,
+                "win_rate_pct": 30.95,
+                "profit_factor": 0.851
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 38.46,
+            "mean_net_pct": -0.942,
+            "median_net_pct": -1.554,
+            "profit_factor": 0.448,
+            "avg_win_pct": 1.992,
+            "avg_loss_pct": -2.776,
+            "median_initial_risk_pct": 4.021,
+            "mean_R": -0.527,
+            "median_days_held": 3,
+            "hypothetical_sequential_full_notional_compound_pct": -12.02,
+            "hypothetical_closed_trade_mdd_pct": 13.32,
+            "exit_reasons": {
+              "structural_stop": 8,
+              "rebrightening": 4,
+              "opposite_fade": 1
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 13,
+                "mean_net_pct": -0.942,
+                "win_rate_pct": 38.46,
+                "profit_factor": 0.448
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 30.77,
+            "mean_net_pct": -0.303,
+            "median_net_pct": -1.367,
+            "profit_factor": 0.774,
+            "avg_win_pct": 3.377,
+            "avg_loss_pct": -1.938,
+            "median_initial_risk_pct": 2.991,
+            "mean_R": -0.225,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": -4.3,
+            "hypothetical_closed_trade_mdd_pct": 12.9,
+            "exit_reasons": {
+              "rebrightening": 6,
+              "opposite_fade": 2,
+              "structural_stop": 4,
+              "end_of_data": 1
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 13,
+                "mean_net_pct": -0.303,
+                "win_rate_pct": 30.77,
+                "profit_factor": 0.774
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 8,
+        "risk_gt_15pct": 1,
+        "eligible_signal_events": 82,
+        "not_taken_due_to_held_position": 5
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "color",
+      "exit_mode": "opposite_only",
+      "position_mode": "both",
+      "all_history": {
+        "n": 75,
+        "win_rate_pct": 30.67,
+        "mean_net_pct": -0.884,
+        "median_net_pct": -3.215,
+        "profit_factor": 0.794,
+        "avg_win_pct": 11.122,
+        "avg_loss_pct": -6.195,
+        "median_initial_risk_pct": 6.425,
+        "mean_R": 0.005,
+        "median_days_held": 7,
+        "hypothetical_sequential_full_notional_compound_pct": -63.41,
+        "hypothetical_closed_trade_mdd_pct": 76.22,
+        "exit_reasons": {
+          "opposite_fade": 26,
+          "structural_stop": 49
+        },
+        "by_side": {
+          "LONG": {
+            "n": 41,
+            "mean_net_pct": 0.468,
+            "win_rate_pct": 34.15,
+            "profit_factor": 1.11
+          },
+          "SHORT": {
+            "n": 34,
+            "mean_net_pct": -2.515,
+            "win_rate_pct": 26.47,
+            "profit_factor": 0.42
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 41,
+            "win_rate_pct": 24.39,
+            "mean_net_pct": -2.12,
+            "median_net_pct": -4.069,
+            "profit_factor": 0.568,
+            "avg_win_pct": 11.408,
+            "avg_loss_pct": -6.484,
+            "median_initial_risk_pct": 6.425,
+            "mean_R": -0.407,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": -65.11,
+            "hypothetical_closed_trade_mdd_pct": 69.52,
+            "exit_reasons": {
+              "opposite_fade": 10,
+              "structural_stop": 31
+            },
+            "by_side": {
+              "LONG": {
+                "n": 19,
+                "mean_net_pct": -0.818,
+                "win_rate_pct": 31.58,
+                "profit_factor": 0.834
+              },
+              "SHORT": {
+                "n": 22,
+                "mean_net_pct": -3.245,
+                "win_rate_pct": 18.18,
+                "profit_factor": 0.335
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 16,
+            "win_rate_pct": 31.25,
+            "mean_net_pct": -0.312,
+            "median_net_pct": -3.161,
+            "profit_factor": 0.932,
+            "avg_win_pct": 13.782,
+            "avg_loss_pct": -6.719,
+            "median_initial_risk_pct": 7.129,
+            "mean_R": 0.109,
+            "median_days_held": 11.0,
+            "hypothetical_sequential_full_notional_compound_pct": -12.47,
+            "hypothetical_closed_trade_mdd_pct": 41.32,
+            "exit_reasons": {
+              "opposite_fade": 6,
+              "structural_stop": 10
+            },
+            "by_side": {
+              "LONG": {
+                "n": 12,
+                "mean_net_pct": 0.431,
+                "win_rate_pct": 33.33,
+                "profit_factor": 1.091
+              },
+              "SHORT": {
+                "n": 4,
+                "mean_net_pct": -2.543,
+                "win_rate_pct": 25.0,
+                "profit_factor": 0.409
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 18,
+            "win_rate_pct": 44.44,
+            "mean_net_pct": 1.422,
+            "median_net_pct": -0.884,
+            "profit_factor": 1.542,
+            "avg_win_pct": 9.102,
+            "avg_loss_pct": -4.722,
+            "median_initial_risk_pct": 6.051,
+            "mean_R": 0.851,
+            "median_days_held": 8.0,
+            "hypothetical_sequential_full_notional_compound_pct": 19.82,
+            "hypothetical_closed_trade_mdd_pct": 19.15,
+            "exit_reasons": {
+              "structural_stop": 8,
+              "opposite_fade": 10
+            },
+            "by_side": {
+              "LONG": {
+                "n": 10,
+                "mean_net_pct": 2.955,
+                "win_rate_pct": 40.0,
+                "profit_factor": 2.21
+              },
+              "SHORT": {
+                "n": 8,
+                "mean_net_pct": -0.494,
+                "win_rate_pct": 50.0,
+                "profit_factor": 0.827
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 13,
+        "stop_on_wrong_side": 6,
+        "eligible_signal_events": 123,
+        "not_taken_due_to_held_position": 29
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "color",
+      "exit_mode": "opposite_only",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 46,
+        "win_rate_pct": 36.96,
+        "mean_net_pct": 1.054,
+        "median_net_pct": -2.226,
+        "profit_factor": 1.273,
+        "avg_win_pct": 13.288,
+        "avg_loss_pct": -6.118,
+        "median_initial_risk_pct": 6.486,
+        "mean_R": 0.339,
+        "median_days_held": 10.0,
+        "hypothetical_sequential_full_notional_compound_pct": 24.41,
+        "hypothetical_closed_trade_mdd_pct": 44.76,
+        "exit_reasons": {
+          "opposite_fade": 18,
+          "structural_stop": 28
+        },
+        "by_side": {
+          "LONG": {
+            "n": 46,
+            "mean_net_pct": 1.054,
+            "win_rate_pct": 36.96,
+            "profit_factor": 1.273
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 20,
+            "win_rate_pct": 35.0,
+            "mean_net_pct": 0.146,
+            "median_net_pct": -3.637,
+            "profit_factor": 1.031,
+            "avg_win_pct": 13.79,
+            "avg_loss_pct": -7.201,
+            "median_initial_risk_pct": 6.399,
+            "mean_R": -0.066,
+            "median_days_held": 7.5,
+            "hypothetical_sequential_full_notional_compound_pct": -9.26,
+            "hypothetical_closed_trade_mdd_pct": 30.04,
+            "exit_reasons": {
+              "opposite_fade": 7,
+              "structural_stop": 13
+            },
+            "by_side": {
+              "LONG": {
+                "n": 20,
+                "mean_net_pct": 0.146,
+                "win_rate_pct": 35.0,
+                "profit_factor": 1.031
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 38.46,
+            "mean_net_pct": 1.371,
+            "median_net_pct": -3.108,
+            "profit_factor": 1.314,
+            "avg_win_pct": 14.903,
+            "avg_loss_pct": -7.086,
+            "median_initial_risk_pct": 8.046,
+            "mean_R": 0.352,
+            "median_days_held": 11,
+            "hypothetical_sequential_full_notional_compound_pct": 10.35,
+            "hypothetical_closed_trade_mdd_pct": 29.71,
+            "exit_reasons": {
+              "opposite_fade": 5,
+              "structural_stop": 8
+            },
+            "by_side": {
+              "LONG": {
+                "n": 13,
+                "mean_net_pct": 1.371,
+                "win_rate_pct": 38.46,
+                "profit_factor": 1.314
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 38.46,
+            "mean_net_pct": 2.133,
+            "median_net_pct": -0.899,
+            "profit_factor": 2.022,
+            "avg_win_pct": 10.97,
+            "avg_loss_pct": -3.39,
+            "median_initial_risk_pct": 5.26,
+            "mean_R": 0.951,
+            "median_days_held": 12,
+            "hypothetical_sequential_full_notional_compound_pct": 24.24,
+            "hypothetical_closed_trade_mdd_pct": 21.42,
+            "exit_reasons": {
+              "structural_stop": 7,
+              "opposite_fade": 6
+            },
+            "by_side": {
+              "LONG": {
+                "n": 13,
+                "mean_net_pct": 2.133,
+                "win_rate_pct": 38.46,
+                "profit_factor": 2.022
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 8,
+        "stop_on_wrong_side": 3,
+        "eligible_signal_events": 70,
+        "not_taken_due_to_held_position": 13
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "color",
+      "exit_mode": "opposite_only",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 39,
+        "win_rate_pct": 25.64,
+        "mean_net_pct": -2.41,
+        "median_net_pct": -3.322,
+        "profit_factor": 0.403,
+        "avg_win_pct": 6.342,
+        "avg_loss_pct": -5.428,
+        "median_initial_risk_pct": 6.196,
+        "mean_R": -0.416,
+        "median_days_held": 5,
+        "hypothetical_sequential_full_notional_compound_pct": -64.69,
+        "hypothetical_closed_trade_mdd_pct": 66.77,
+        "exit_reasons": {
+          "opposite_fade": 13,
+          "structural_stop": 26
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 39,
+            "mean_net_pct": -2.41,
+            "win_rate_pct": 25.64,
+            "profit_factor": 0.403
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 22,
+            "win_rate_pct": 18.18,
+            "mean_net_pct": -3.245,
+            "median_net_pct": -4.237,
+            "profit_factor": 0.335,
+            "avg_win_pct": 8.999,
+            "avg_loss_pct": -5.966,
+            "median_initial_risk_pct": 6.397,
+            "mean_R": -0.564,
+            "median_days_held": 4.5,
+            "hypothetical_sequential_full_notional_compound_pct": -54.46,
+            "hypothetical_closed_trade_mdd_pct": 58.89,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "structural_stop": 18
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 22,
+                "mean_net_pct": -3.245,
+                "win_rate_pct": 18.18,
+                "profit_factor": 0.335
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 6,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": -1.766,
+            "median_net_pct": -1.642,
+            "profit_factor": 0.447,
+            "avg_win_pct": 4.29,
+            "avg_loss_pct": -4.794,
+            "median_initial_risk_pct": 3.065,
+            "mean_R": -0.375,
+            "median_days_held": 7.5,
+            "hypothetical_sequential_full_notional_compound_pct": -11.05,
+            "hypothetical_closed_trade_mdd_pct": 16.53,
+            "exit_reasons": {
+              "structural_stop": 3,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 6,
+                "mean_net_pct": -1.766,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.447
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 11,
+            "win_rate_pct": 36.36,
+            "mean_net_pct": -1.09,
+            "median_net_pct": -0.76,
+            "profit_factor": 0.611,
+            "avg_win_pct": 4.712,
+            "avg_loss_pct": -4.405,
+            "median_initial_risk_pct": 6.629,
+            "mean_R": -0.142,
+            "median_days_held": 7,
+            "hypothetical_sequential_full_notional_compound_pct": -12.84,
+            "hypothetical_closed_trade_mdd_pct": 19.36,
+            "exit_reasons": {
+              "opposite_fade": 6,
+              "structural_stop": 5
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 11,
+                "mean_net_pct": -1.09,
+                "win_rate_pct": 36.36,
+                "profit_factor": 0.611
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 5,
+        "stop_on_wrong_side": 5,
+        "eligible_signal_events": 53,
+        "not_taken_due_to_held_position": 4
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "color",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "both",
+      "all_history": {
+        "n": 88,
+        "win_rate_pct": 35.23,
+        "mean_net_pct": -0.284,
+        "median_net_pct": -1.523,
+        "profit_factor": 0.89,
+        "avg_win_pct": 6.519,
+        "avg_loss_pct": -3.983,
+        "median_initial_risk_pct": 6.399,
+        "mean_R": -0.013,
+        "median_days_held": 3.0,
+        "hypothetical_sequential_full_notional_compound_pct": -34.56,
+        "hypothetical_closed_trade_mdd_pct": 60.32,
+        "exit_reasons": {
+          "rebrightening": 41,
+          "opposite_fade": 17,
+          "structural_stop": 30
+        },
+        "by_side": {
+          "LONG": {
+            "n": 52,
+            "mean_net_pct": 0.409,
+            "win_rate_pct": 40.38,
+            "profit_factor": 1.194
+          },
+          "SHORT": {
+            "n": 36,
+            "mean_net_pct": -1.284,
+            "win_rate_pct": 27.78,
+            "profit_factor": 0.607
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 44,
+            "win_rate_pct": 29.55,
+            "mean_net_pct": -1.32,
+            "median_net_pct": -2.525,
+            "profit_factor": 0.618,
+            "avg_win_pct": 7.215,
+            "avg_loss_pct": -4.899,
+            "median_initial_risk_pct": 6.511,
+            "mean_R": -0.248,
+            "median_days_held": 2.0,
+            "hypothetical_sequential_full_notional_compound_pct": -50.12,
+            "hypothetical_closed_trade_mdd_pct": 60.32,
+            "exit_reasons": {
+              "rebrightening": 17,
+              "opposite_fade": 7,
+              "structural_stop": 20
+            },
+            "by_side": {
+              "LONG": {
+                "n": 23,
+                "mean_net_pct": -0.597,
+                "win_rate_pct": 39.13,
+                "profit_factor": 0.807
+              },
+              "SHORT": {
+                "n": 21,
+                "mean_net_pct": -2.112,
+                "win_rate_pct": 19.05,
+                "profit_factor": 0.45
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 21,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": 0.099,
+            "median_net_pct": -1.33,
+            "profit_factor": 1.045,
+            "avg_win_pct": 6.857,
+            "avg_loss_pct": -3.28,
+            "median_initial_risk_pct": 6.229,
+            "mean_R": 0.054,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": -1.28,
+            "hypothetical_closed_trade_mdd_pct": 24.77,
+            "exit_reasons": {
+              "rebrightening": 12,
+              "opposite_fade": 4,
+              "structural_stop": 5
+            },
+            "by_side": {
+              "LONG": {
+                "n": 15,
+                "mean_net_pct": 0.866,
+                "win_rate_pct": 33.33,
+                "profit_factor": 1.487
+              },
+              "SHORT": {
+                "n": 6,
+                "mean_net_pct": -1.82,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.433
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 23,
+            "win_rate_pct": 47.83,
+            "mean_net_pct": 1.35,
+            "median_net_pct": -0.689,
+            "profit_factor": 2.062,
+            "avg_win_pct": 5.481,
+            "avg_loss_pct": -2.437,
+            "median_initial_risk_pct": 5.556,
+            "mean_R": 0.374,
+            "median_days_held": 3,
+            "hypothetical_sequential_full_notional_compound_pct": 32.9,
+            "hypothetical_closed_trade_mdd_pct": 9.72,
+            "exit_reasons": {
+              "structural_stop": 5,
+              "rebrightening": 12,
+              "opposite_fade": 6
+            },
+            "by_side": {
+              "LONG": {
+                "n": 14,
+                "mean_net_pct": 1.571,
+                "win_rate_pct": 50.0,
+                "profit_factor": 2.918
+              },
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": 1.007,
+                "win_rate_pct": 44.44,
+                "profit_factor": 1.51
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 13,
+        "stop_on_wrong_side": 6,
+        "eligible_signal_events": 123,
+        "not_taken_due_to_held_position": 16
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "color",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 54,
+        "win_rate_pct": 40.74,
+        "mean_net_pct": 0.611,
+        "median_net_pct": -0.936,
+        "profit_factor": 1.3,
+        "avg_win_pct": 6.51,
+        "avg_loss_pct": -3.444,
+        "median_initial_risk_pct": 6.486,
+        "mean_R": 0.106,
+        "median_days_held": 4.0,
+        "hypothetical_sequential_full_notional_compound_pct": 25.65,
+        "hypothetical_closed_trade_mdd_pct": 34.6,
+        "exit_reasons": {
+          "opposite_fade": 12,
+          "rebrightening": 27,
+          "structural_stop": 15
+        },
+        "by_side": {
+          "LONG": {
+            "n": 54,
+            "mean_net_pct": 0.611,
+            "win_rate_pct": 40.74,
+            "profit_factor": 1.3
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 23,
+            "win_rate_pct": 39.13,
+            "mean_net_pct": -0.597,
+            "median_net_pct": -1.717,
+            "profit_factor": 0.807,
+            "avg_win_pct": 6.386,
+            "avg_loss_pct": -5.085,
+            "median_initial_risk_pct": 6.425,
+            "mean_R": -0.125,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": -17.65,
+            "hypothetical_closed_trade_mdd_pct": 34.26,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "rebrightening": 10,
+              "structural_stop": 9
+            },
+            "by_side": {
+              "LONG": {
+                "n": 23,
+                "mean_net_pct": -0.597,
+                "win_rate_pct": 39.13,
+                "profit_factor": 0.807
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 16,
+            "win_rate_pct": 37.5,
+            "mean_net_pct": 1.603,
+            "median_net_pct": -0.705,
+            "profit_factor": 1.962,
+            "avg_win_pct": 8.716,
+            "avg_loss_pct": -2.665,
+            "median_initial_risk_pct": 7.417,
+            "mean_R": 0.237,
+            "median_days_held": 5.5,
+            "hypothetical_sequential_full_notional_compound_pct": 25.13,
+            "hypothetical_closed_trade_mdd_pct": 11.76,
+            "exit_reasons": {
+              "rebrightening": 10,
+              "opposite_fade": 4,
+              "structural_stop": 2
+            },
+            "by_side": {
+              "LONG": {
+                "n": 16,
+                "mean_net_pct": 1.603,
+                "win_rate_pct": 37.5,
+                "profit_factor": 1.962
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 15,
+            "win_rate_pct": 46.67,
+            "mean_net_pct": 1.406,
+            "median_net_pct": -0.689,
+            "profit_factor": 2.706,
+            "avg_win_pct": 4.78,
+            "avg_loss_pct": -1.546,
+            "median_initial_risk_pct": 5.26,
+            "mean_R": 0.321,
+            "median_days_held": 3,
+            "hypothetical_sequential_full_notional_compound_pct": 21.93,
+            "hypothetical_closed_trade_mdd_pct": 4.66,
+            "exit_reasons": {
+              "structural_stop": 4,
+              "rebrightening": 7,
+              "opposite_fade": 4
+            },
+            "by_side": {
+              "LONG": {
+                "n": 15,
+                "mean_net_pct": 1.406,
+                "win_rate_pct": 46.67,
+                "profit_factor": 2.706
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 8,
+        "stop_on_wrong_side": 3,
+        "eligible_signal_events": 70,
+        "not_taken_due_to_held_position": 5
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "color",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 40,
+        "win_rate_pct": 30.0,
+        "mean_net_pct": -1.22,
+        "median_net_pct": -2.817,
+        "profit_factor": 0.604,
+        "avg_win_pct": 6.213,
+        "avg_loss_pct": -4.406,
+        "median_initial_risk_pct": 6.213,
+        "mean_R": -0.181,
+        "median_days_held": 2.5,
+        "hypothetical_sequential_full_notional_compound_pct": -43.4,
+        "hypothetical_closed_trade_mdd_pct": 49.2,
+        "exit_reasons": {
+          "rebrightening": 17,
+          "structural_stop": 17,
+          "opposite_fade": 6
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 40,
+            "mean_net_pct": -1.22,
+            "win_rate_pct": 30.0,
+            "profit_factor": 0.604
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 22,
+            "win_rate_pct": 18.18,
+            "mean_net_pct": -2.146,
+            "median_net_pct": -3.158,
+            "profit_factor": 0.435,
+            "avg_win_pct": 9.08,
+            "avg_loss_pct": -4.641,
+            "median_initial_risk_pct": 6.397,
+            "mean_R": -0.412,
+            "median_days_held": 1.5,
+            "hypothetical_sequential_full_notional_compound_pct": -41.16,
+            "hypothetical_closed_trade_mdd_pct": 47.06,
+            "exit_reasons": {
+              "rebrightening": 7,
+              "structural_stop": 12,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 22,
+                "mean_net_pct": -2.146,
+                "win_rate_pct": 18.18,
+                "profit_factor": 0.435
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 7,
+            "win_rate_pct": 42.86,
+            "mean_net_pct": -1.195,
+            "median_net_pct": -1.33,
+            "profit_factor": 0.566,
+            "avg_win_pct": 3.637,
+            "avg_loss_pct": -4.819,
+            "median_initial_risk_pct": 4.017,
+            "mean_R": -0.072,
+            "median_days_held": 2,
+            "hypothetical_sequential_full_notional_compound_pct": -8.85,
+            "hypothetical_closed_trade_mdd_pct": 18.04,
+            "exit_reasons": {
+              "rebrightening": 3,
+              "opposite_fade": 1,
+              "structural_stop": 3
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 7,
+                "mean_net_pct": -1.195,
+                "win_rate_pct": 42.86,
+                "profit_factor": 0.566
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 11,
+            "win_rate_pct": 45.45,
+            "mean_net_pct": 0.616,
+            "median_net_pct": -0.76,
+            "profit_factor": 1.33,
+            "avg_win_pct": 5.466,
+            "avg_loss_pct": -3.426,
+            "median_initial_risk_pct": 6.629,
+            "mean_R": 0.214,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": 5.53,
+            "hypothetical_closed_trade_mdd_pct": 7.94,
+            "exit_reasons": {
+              "rebrightening": 7,
+              "opposite_fade": 2,
+              "structural_stop": 2
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 11,
+                "mean_net_pct": 0.616,
+                "win_rate_pct": 45.45,
+                "profit_factor": 1.33
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 5,
+        "stop_on_wrong_side": 5,
+        "eligible_signal_events": 53,
+        "not_taken_due_to_held_position": 3
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "opposite_only",
+      "position_mode": "both",
+      "all_history": {
+        "n": 89,
+        "win_rate_pct": 28.09,
+        "mean_net_pct": -0.931,
+        "median_net_pct": -3.667,
+        "profit_factor": 0.789,
+        "avg_win_pct": 12.401,
+        "avg_loss_pct": -6.139,
+        "median_initial_risk_pct": 6.063,
+        "mean_R": -0.134,
+        "median_days_held": 8,
+        "hypothetical_sequential_full_notional_compound_pct": -72.14,
+        "hypothetical_closed_trade_mdd_pct": 80.99,
+        "exit_reasons": {
+          "opposite_fade": 30,
+          "structural_stop": 59
+        },
+        "by_side": {
+          "LONG": {
+            "n": 43,
+            "mean_net_pct": 0.348,
+            "win_rate_pct": 32.56,
+            "profit_factor": 1.085
+          },
+          "SHORT": {
+            "n": 46,
+            "mean_net_pct": -2.127,
+            "win_rate_pct": 23.91,
+            "profit_factor": 0.55
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 52,
+            "win_rate_pct": 25.0,
+            "mean_net_pct": -1.031,
+            "median_net_pct": -4.232,
+            "profit_factor": 0.781,
+            "avg_win_pct": 14.719,
+            "avg_loss_pct": -6.281,
+            "median_initial_risk_pct": 6.216,
+            "mean_R": -0.426,
+            "median_days_held": 7.0,
+            "hypothetical_sequential_full_notional_compound_pct": -56.49,
+            "hypothetical_closed_trade_mdd_pct": 70.86,
+            "exit_reasons": {
+              "opposite_fade": 14,
+              "structural_stop": 38
+            },
+            "by_side": {
+              "LONG": {
+                "n": 21,
+                "mean_net_pct": -0.054,
+                "win_rate_pct": 33.33,
+                "profit_factor": 0.988
+              },
+              "SHORT": {
+                "n": 31,
+                "mean_net_pct": -1.693,
+                "win_rate_pct": 19.35,
+                "profit_factor": 0.652
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 18,
+            "win_rate_pct": 27.78,
+            "mean_net_pct": -2.074,
+            "median_net_pct": -4.247,
+            "profit_factor": 0.591,
+            "avg_win_pct": 10.804,
+            "avg_loss_pct": -7.027,
+            "median_initial_risk_pct": 5.641,
+            "mean_R": -0.236,
+            "median_days_held": 11.5,
+            "hypothetical_sequential_full_notional_compound_pct": -36.34,
+            "hypothetical_closed_trade_mdd_pct": 51.08,
+            "exit_reasons": {
+              "structural_stop": 12,
+              "opposite_fade": 6
+            },
+            "by_side": {
+              "LONG": {
+                "n": 11,
+                "mean_net_pct": -0.729,
+                "win_rate_pct": 27.27,
+                "profit_factor": 0.849
+              },
+              "SHORT": {
+                "n": 7,
+                "mean_net_pct": -4.189,
+                "win_rate_pct": 28.57,
+                "profit_factor": 0.236
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 19,
+            "win_rate_pct": 36.84,
+            "mean_net_pct": 0.426,
+            "median_net_pct": -2.268,
+            "profit_factor": 1.143,
+            "avg_win_pct": 9.238,
+            "avg_loss_pct": -4.714,
+            "median_initial_risk_pct": 5.26,
+            "mean_R": 0.763,
+            "median_days_held": 7,
+            "hypothetical_sequential_full_notional_compound_pct": 0.6,
+            "hypothetical_closed_trade_mdd_pct": 28.75,
+            "exit_reasons": {
+              "structural_stop": 9,
+              "opposite_fade": 10
+            },
+            "by_side": {
+              "LONG": {
+                "n": 11,
+                "mean_net_pct": 2.194,
+                "win_rate_pct": 36.36,
+                "profit_factor": 1.851
+              },
+              "SHORT": {
+                "n": 8,
+                "mean_net_pct": -2.004,
+                "win_rate_pct": 37.5,
+                "profit_factor": 0.432
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 12,
+        "risk_gt_15pct": 11,
+        "eligible_signal_events": 149,
+        "not_taken_due_to_held_position": 37
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "opposite_only",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 47,
+        "win_rate_pct": 36.17,
+        "mean_net_pct": 0.983,
+        "median_net_pct": -2.905,
+        "profit_factor": 1.257,
+        "avg_win_pct": 13.298,
+        "avg_loss_pct": -5.996,
+        "median_initial_risk_pct": 6.213,
+        "mean_R": 0.457,
+        "median_days_held": 9,
+        "hypothetical_sequential_full_notional_compound_pct": 21.43,
+        "hypothetical_closed_trade_mdd_pct": 42.27,
+        "exit_reasons": {
+          "opposite_fade": 19,
+          "structural_stop": 28
+        },
+        "by_side": {
+          "LONG": {
+            "n": 47,
+            "mean_net_pct": 0.983,
+            "win_rate_pct": 36.17,
+            "profit_factor": 1.257
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 22,
+            "win_rate_pct": 36.36,
+            "mean_net_pct": 0.967,
+            "median_net_pct": -3.449,
+            "profit_factor": 1.226,
+            "avg_win_pct": 14.433,
+            "avg_loss_pct": -6.727,
+            "median_initial_risk_pct": 6.245,
+            "mean_R": 0.36,
+            "median_days_held": 10.5,
+            "hypothetical_sequential_full_notional_compound_pct": 7.19,
+            "hypothetical_closed_trade_mdd_pct": 35.98,
+            "exit_reasons": {
+              "opposite_fade": 9,
+              "structural_stop": 13
+            },
+            "by_side": {
+              "LONG": {
+                "n": 22,
+                "mean_net_pct": 0.967,
+                "win_rate_pct": 36.36,
+                "profit_factor": 1.226
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 12,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": 0.356,
+            "median_net_pct": -3.161,
+            "profit_factor": 1.081,
+            "avg_win_pct": 14.31,
+            "avg_loss_pct": -6.621,
+            "median_initial_risk_pct": 8.07,
+            "mean_R": -0.035,
+            "median_days_held": 10.0,
+            "hypothetical_sequential_full_notional_compound_pct": -1.95,
+            "hypothetical_closed_trade_mdd_pct": 27.85,
+            "exit_reasons": {
+              "structural_stop": 8,
+              "opposite_fade": 4
+            },
+            "by_side": {
+              "LONG": {
+                "n": 12,
+                "mean_net_pct": 0.356,
+                "win_rate_pct": 33.33,
+                "profit_factor": 1.081
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 13,
+            "win_rate_pct": 38.46,
+            "mean_net_pct": 1.587,
+            "median_net_pct": -1.984,
+            "profit_factor": 1.631,
+            "avg_win_pct": 10.672,
+            "avg_loss_pct": -4.09,
+            "median_initial_risk_pct": 5.245,
+            "mean_R": 1.076,
+            "median_days_held": 6,
+            "hypothetical_sequential_full_notional_compound_pct": 15.55,
+            "hypothetical_closed_trade_mdd_pct": 19.98,
+            "exit_reasons": {
+              "structural_stop": 7,
+              "opposite_fade": 6
+            },
+            "by_side": {
+              "LONG": {
+                "n": 13,
+                "mean_net_pct": 1.587,
+                "win_rate_pct": 38.46,
+                "profit_factor": 1.631
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 9,
+        "stop_on_wrong_side": 4,
+        "eligible_signal_events": 76,
+        "not_taken_due_to_held_position": 16
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "opposite_only",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 52,
+        "win_rate_pct": 21.15,
+        "mean_net_pct": -2.201,
+        "median_net_pct": -3.943,
+        "profit_factor": 0.511,
+        "avg_win_pct": 10.868,
+        "avg_loss_pct": -5.707,
+        "median_initial_risk_pct": 5.516,
+        "mean_R": -0.666,
+        "median_days_held": 5.0,
+        "hypothetical_sequential_full_notional_compound_pct": -74.4,
+        "hypothetical_closed_trade_mdd_pct": 74.84,
+        "exit_reasons": {
+          "opposite_fade": 15,
+          "structural_stop": 37
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 52,
+            "mean_net_pct": -2.201,
+            "win_rate_pct": 21.15,
+            "profit_factor": 0.511
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 33,
+            "win_rate_pct": 18.18,
+            "mean_net_pct": -1.678,
+            "median_net_pct": -4.395,
+            "profit_factor": 0.64,
+            "avg_win_pct": 16.382,
+            "avg_loss_pct": -5.691,
+            "median_initial_risk_pct": 6.157,
+            "mean_R": -0.818,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": -51.87,
+            "hypothetical_closed_trade_mdd_pct": 57.06,
+            "exit_reasons": {
+              "opposite_fade": 7,
+              "structural_stop": 26
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 33,
+                "mean_net_pct": -1.678,
+                "win_rate_pct": 18.18,
+                "profit_factor": 0.64
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 9,
+            "win_rate_pct": 22.22,
+            "mean_net_pct": -3.877,
+            "median_net_pct": -3.465,
+            "profit_factor": 0.206,
+            "avg_win_pct": 4.532,
+            "avg_loss_pct": -6.28,
+            "median_initial_risk_pct": 4.878,
+            "mean_R": -0.56,
+            "median_days_held": 9,
+            "hypothetical_sequential_full_notional_compound_pct": -31.1,
+            "hypothetical_closed_trade_mdd_pct": 32.2,
+            "exit_reasons": {
+              "structural_stop": 6,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 9,
+                "mean_net_pct": -3.877,
+                "win_rate_pct": 22.22,
+                "profit_factor": 0.206
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 10,
+            "win_rate_pct": 30.0,
+            "mean_net_pct": -2.417,
+            "median_net_pct": -3.227,
+            "profit_factor": 0.335,
+            "avg_win_pct": 4.063,
+            "avg_loss_pct": -5.195,
+            "median_initial_risk_pct": 6.092,
+            "mean_R": -0.259,
+            "median_days_held": 6.0,
+            "hypothetical_sequential_full_notional_compound_pct": -22.79,
+            "hypothetical_closed_trade_mdd_pct": 23.78,
+            "exit_reasons": {
+              "opposite_fade": 5,
+              "structural_stop": 5
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 10,
+                "mean_net_pct": -2.417,
+                "win_rate_pct": 30.0,
+                "profit_factor": 0.335
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 12,
+        "risk_gt_15pct": 3,
+        "eligible_signal_events": 73,
+        "not_taken_due_to_held_position": 6
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "both",
+      "all_history": {
+        "n": 104,
+        "win_rate_pct": 32.69,
+        "mean_net_pct": 0.05,
+        "median_net_pct": -2.066,
+        "profit_factor": 1.019,
+        "avg_win_pct": 8.398,
+        "avg_loss_pct": -4.004,
+        "median_initial_risk_pct": 6.094,
+        "mean_R": -0.174,
+        "median_days_held": 4.0,
+        "hypothetical_sequential_full_notional_compound_pct": -22.06,
+        "hypothetical_closed_trade_mdd_pct": 38.87,
+        "exit_reasons": {
+          "rebrightening": 49,
+          "opposite_fade": 18,
+          "structural_stop": 37
+        },
+        "by_side": {
+          "LONG": {
+            "n": 54,
+            "mean_net_pct": 0.861,
+            "win_rate_pct": 40.74,
+            "profit_factor": 1.456
+          },
+          "SHORT": {
+            "n": 50,
+            "mean_net_pct": -0.825,
+            "win_rate_pct": 24.0,
+            "profit_factor": 0.769
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 56,
+            "win_rate_pct": 30.36,
+            "mean_net_pct": -0.072,
+            "median_net_pct": -2.166,
+            "profit_factor": 0.977,
+            "avg_win_pct": 10.233,
+            "avg_loss_pct": -4.563,
+            "median_initial_risk_pct": 6.245,
+            "mean_R": -0.359,
+            "median_days_held": 4.0,
+            "hypothetical_sequential_full_notional_compound_pct": -22.89,
+            "hypothetical_closed_trade_mdd_pct": 38.87,
+            "exit_reasons": {
+              "rebrightening": 24,
+              "opposite_fade": 9,
+              "structural_stop": 23
+            },
+            "by_side": {
+              "LONG": {
+                "n": 24,
+                "mean_net_pct": 0.38,
+                "win_rate_pct": 41.67,
+                "profit_factor": 1.161
+              },
+              "SHORT": {
+                "n": 32,
+                "mean_net_pct": -0.41,
+                "win_rate_pct": 21.88,
+                "profit_factor": 0.892
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 25,
+            "win_rate_pct": 36.0,
+            "mean_net_pct": 0.203,
+            "median_net_pct": -2.737,
+            "profit_factor": 1.085,
+            "avg_win_pct": 7.223,
+            "avg_loss_pct": -3.745,
+            "median_initial_risk_pct": 5.787,
+            "mean_R": 0.096,
+            "median_days_held": 4,
+            "hypothetical_sequential_full_notional_compound_pct": -0.59,
+            "hypothetical_closed_trade_mdd_pct": 30.66,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "rebrightening": 15,
+              "structural_stop": 6
+            },
+            "by_side": {
+              "LONG": {
+                "n": 15,
+                "mean_net_pct": 2.25,
+                "win_rate_pct": 46.67,
+                "profit_factor": 2.595
+              },
+              "SHORT": {
+                "n": 10,
+                "mean_net_pct": -2.867,
+                "win_rate_pct": 20.0,
+                "profit_factor": 0.26
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 23,
+            "win_rate_pct": 34.78,
+            "mean_net_pct": 0.181,
+            "median_net_pct": -1.361,
+            "profit_factor": 1.098,
+            "avg_win_pct": 5.824,
+            "avg_loss_pct": -2.829,
+            "median_initial_risk_pct": 4.436,
+            "mean_R": -0.019,
+            "median_days_held": 3,
+            "hypothetical_sequential_full_notional_compound_pct": 1.67,
+            "hypothetical_closed_trade_mdd_pct": 15.51,
+            "exit_reasons": {
+              "structural_stop": 8,
+              "rebrightening": 10,
+              "opposite_fade": 5
+            },
+            "by_side": {
+              "LONG": {
+                "n": 15,
+                "mean_net_pct": 0.242,
+                "win_rate_pct": 33.33,
+                "profit_factor": 1.151
+              },
+              "SHORT": {
+                "n": 8,
+                "mean_net_pct": 0.067,
+                "win_rate_pct": 37.5,
+                "profit_factor": 1.029
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 13,
+        "risk_gt_15pct": 11,
+        "eligible_signal_events": 149,
+        "not_taken_due_to_held_position": 21
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "long_only",
+      "all_history": {
+        "n": 56,
+        "win_rate_pct": 41.07,
+        "mean_net_pct": 1.038,
+        "median_net_pct": -0.777,
+        "profit_factor": 1.566,
+        "avg_win_pct": 6.988,
+        "avg_loss_pct": -3.109,
+        "median_initial_risk_pct": 6.169,
+        "mean_R": 0.083,
+        "median_days_held": 4.0,
+        "hypothetical_sequential_full_notional_compound_pct": 59.1,
+        "hypothetical_closed_trade_mdd_pct": 24.57,
+        "exit_reasons": {
+          "opposite_fade": 11,
+          "rebrightening": 31,
+          "structural_stop": 14
+        },
+        "by_side": {
+          "LONG": {
+            "n": 56,
+            "mean_net_pct": 1.038,
+            "win_rate_pct": 41.07,
+            "profit_factor": 1.566
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 25,
+            "win_rate_pct": 40.0,
+            "mean_net_pct": 0.329,
+            "median_net_pct": -0.893,
+            "profit_factor": 1.143,
+            "avg_win_pct": 6.584,
+            "avg_loss_pct": -3.841,
+            "median_initial_risk_pct": 6.213,
+            "mean_R": -0.004,
+            "median_days_held": 5,
+            "hypothetical_sequential_full_notional_compound_pct": 2.72,
+            "hypothetical_closed_trade_mdd_pct": 24.57,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "rebrightening": 14,
+              "structural_stop": 7
+            },
+            "by_side": {
+              "LONG": {
+                "n": 25,
+                "mean_net_pct": 0.329,
+                "win_rate_pct": 40.0,
+                "profit_factor": 1.143
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 16,
+            "win_rate_pct": 50.0,
+            "mean_net_pct": 2.877,
+            "median_net_pct": 0.576,
+            "profit_factor": 3.175,
+            "avg_win_pct": 8.4,
+            "avg_loss_pct": -2.646,
+            "median_initial_risk_pct": 7.425,
+            "mean_R": 0.42,
+            "median_days_held": 5.5,
+            "hypothetical_sequential_full_notional_compound_pct": 51.05,
+            "hypothetical_closed_trade_mdd_pct": 11.85,
+            "exit_reasons": {
+              "opposite_fade": 4,
+              "rebrightening": 10,
+              "structural_stop": 2
+            },
+            "by_side": {
+              "LONG": {
+                "n": 16,
+                "mean_net_pct": 2.877,
+                "win_rate_pct": 50.0,
+                "profit_factor": 3.175
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 15,
+            "win_rate_pct": 33.33,
+            "mean_net_pct": 0.257,
+            "median_net_pct": -1.062,
+            "profit_factor": 1.162,
+            "avg_win_pct": 5.535,
+            "avg_loss_pct": -2.382,
+            "median_initial_risk_pct": 5.245,
+            "mean_R": -0.13,
+            "median_days_held": 3,
+            "hypothetical_sequential_full_notional_compound_pct": 2.54,
+            "hypothetical_closed_trade_mdd_pct": 10.23,
+            "exit_reasons": {
+              "structural_stop": 5,
+              "rebrightening": 7,
+              "opposite_fade": 3
+            },
+            "by_side": {
+              "LONG": {
+                "n": 15,
+                "mean_net_pct": 0.257,
+                "win_rate_pct": 33.33,
+                "profit_factor": 1.162
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "risk_gt_15pct": 9,
+        "stop_on_wrong_side": 4,
+        "eligible_signal_events": 76,
+        "not_taken_due_to_held_position": 7
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "signal_mode": "first_fade",
+      "exit_mode": "rebrighten_plus_opposite",
+      "position_mode": "short_only",
+      "all_history": {
+        "n": 55,
+        "win_rate_pct": 23.64,
+        "mean_net_pct": -0.901,
+        "median_net_pct": -3.069,
+        "profit_factor": 0.735,
+        "avg_win_pct": 10.585,
+        "avg_loss_pct": -4.456,
+        "median_initial_risk_pct": 5.556,
+        "mean_R": -0.463,
+        "median_days_held": 3,
+        "hypothetical_sequential_full_notional_compound_pct": -49.76,
+        "hypothetical_closed_trade_mdd_pct": 50.99,
+        "exit_reasons": {
+          "rebrightening": 22,
+          "structural_stop": 25,
+          "opposite_fade": 8
+        },
+        "by_side": {
+          "SHORT": {
+            "n": 55,
+            "mean_net_pct": -0.901,
+            "win_rate_pct": 23.64,
+            "profit_factor": 0.735
+          }
+        }
+      },
+      "chronological": {
+        "early_60pct": {
+          "from_date": "2020-01-01",
+          "to_date": "2024-02-02",
+          "statistics": {
+            "n": 34,
+            "win_rate_pct": 20.59,
+            "mean_net_pct": -0.492,
+            "median_net_pct": -3.306,
+            "profit_factor": 0.866,
+            "avg_win_pct": 15.445,
+            "avg_loss_pct": -4.624,
+            "median_initial_risk_pct": 5.816,
+            "mean_R": -0.664,
+            "median_days_held": 2.0,
+            "hypothetical_sequential_full_notional_compound_pct": -28.26,
+            "hypothetical_closed_trade_mdd_pct": 41.01,
+            "exit_reasons": {
+              "rebrightening": 11,
+              "structural_stop": 18,
+              "opposite_fade": 5
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 34,
+                "mean_net_pct": -0.492,
+                "win_rate_pct": 20.59,
+                "profit_factor": 0.866
+              }
+            }
+          }
+        },
+        "middle_20pct": {
+          "from_date": "2024-02-03",
+          "to_date": "2025-06-14",
+          "statistics": {
+            "n": 11,
+            "win_rate_pct": 18.18,
+            "mean_net_pct": -2.825,
+            "median_net_pct": -3.167,
+            "profit_factor": 0.245,
+            "avg_win_pct": 5.044,
+            "avg_loss_pct": -4.573,
+            "median_initial_risk_pct": 5.083,
+            "mean_R": -0.408,
+            "median_days_held": 3,
+            "hypothetical_sequential_full_notional_compound_pct": -27.88,
+            "hypothetical_closed_trade_mdd_pct": 29.03,
+            "exit_reasons": {
+              "structural_stop": 5,
+              "opposite_fade": 1,
+              "rebrightening": 5
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 11,
+                "mean_net_pct": -2.825,
+                "win_rate_pct": 18.18,
+                "profit_factor": 0.245
+              }
+            }
+          }
+        },
+        "recent_20pct": {
+          "from_date": "2025-06-15",
+          "to_date": "2026-10-25",
+          "statistics": {
+            "n": 10,
+            "win_rate_pct": 40.0,
+            "mean_net_pct": -0.175,
+            "median_net_pct": -2.07,
+            "profit_factor": 0.917,
+            "avg_win_pct": 4.851,
+            "avg_loss_pct": -3.526,
+            "median_initial_risk_pct": 6.092,
+            "mean_R": 0.16,
+            "median_days_held": 3.5,
+            "hypothetical_sequential_full_notional_compound_pct": -2.9,
+            "hypothetical_closed_trade_mdd_pct": 8.5,
+            "exit_reasons": {
+              "rebrightening": 6,
+              "opposite_fade": 2,
+              "structural_stop": 2
+            },
+            "by_side": {
+              "SHORT": {
+                "n": 10,
+                "mean_net_pct": -0.175,
+                "win_rate_pct": 40.0,
+                "profit_factor": 0.917
+              }
+            }
+          }
+        }
+      },
+      "diagnostics": {
+        "stop_on_wrong_side": 12,
+        "risk_gt_15pct": 3,
+        "eligible_signal_events": 73,
+        "not_taken_due_to_held_position": 3
+      }
+    }
+  ]
+}
