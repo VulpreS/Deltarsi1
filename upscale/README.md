@@ -1,5 +1,31 @@
 # Upscale Crypto Backtester
 
+## Current objective: both stages in 14 days
+
+The current Actions experiment is `python -m upscale.fortnight`. It evaluates
+both stages within **14 calendar days total**, including the 3/5 profitable-day
+requirements and strict API 30% consistency. Weekly UTC starts use only full
+windows; 4h and 1h histories are evaluated separately. Fixed variants: trend
+lookbacks 20/40, both directions or long-only, per-trade risk 0.25% / 0.5% / 1%.
+Portfolio risk budget is twice per-trade risk; internal daily guard is 2.5%,
+other loss and exposure controls remain. This is a risk/direction sensitivity
+experiment, not an invitation to increase risk on an unprofitable strategy.
+
+No winner is selected from this already-inspected history. Report every start,
+pass, phase-1 completion, modeled breach and timeout. A timeout is a missed
+research deadline, not a prop rule violation. Overlapping windows are dependent.
+Conservative adverse-extreme guard execution can overstate losses/violations
+relative to continuous monitoring; exact path and fill data are unavailable.
+
+```bash
+python -m unittest discover -s tests_upscale -v
+python -m upscale.fortnight --out reports/upscale_14d
+```
+
+The older 180-day experiment below remains reproducible as a historical
+baseline, but is not the user's target or the current Actions default.
+
+
 Offline research using existing BTC/ETH CSV cache only. Does not fetch candles,
 read credentials, connect exchange accounts or send orders. Shared account NAV
 starts at 1; account dollar size is not required for percentage-based research.
@@ -15,7 +41,7 @@ python -m upscale.backtest --out reports/upscale
 GitHub Actions runs the same commands, writes a job summary, and uploads all
 results as artifacts without committing generated files or modifying old strategies.
 
-## Frozen first experiment
+## Historical baseline: frozen first experiment
 
 Six candidates: trend, range, mixed, each with lookback 20 or 40. BTC and ETH,
 4-hour candles. Signals at closed candle, execution next open. Both directions.

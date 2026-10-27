@@ -21,11 +21,11 @@ jobs:
           python-version: '3.12'
       - run: pip install numpy==2.2.6 pandas==2.2.3
       - run: python -m unittest discover -s tests_upscale -v
-      - run: python -m upscale.backtest --out reports/upscale
+      - run: python -m upscale.fortnight --out reports/upscale_14d
       - name: Publish research summary
-        run: cat reports/upscale/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+        run: cat reports/upscale_14d/REPORT.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: upscale-research-${{ github.sha }}
-          path: reports/upscale/
+          path: reports/upscale_14d/
           retention-days: 90
