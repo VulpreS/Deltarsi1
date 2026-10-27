@@ -1,0 +1,23 @@
+name: Manual Entry Exit Partial 4H
+on:
+  push:
+    paths:
+      - manual_entry_exit_partial_4h.py
+      - .github/workflows/manual-entry-exit-partial-4h.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python manual_entry_exit_partial_4h.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/manual_entry_exit_partial_4h.json
+          git diff --cached --quiet || (git commit -m "Save actual manual entry exit snapshots" && git pull --rebase origin main && git push)
