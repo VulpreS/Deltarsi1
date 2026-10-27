@@ -1,0 +1,44 @@
+name: Preregistered DeltaRSI color-price interaction audit (cached only)
+on:
+  push:
+    paths:
+      - 'color_interaction_audit.py'
+      - 'test_color_interaction_audit.py'
+      - '.github/workflows/color-interaction-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: color-interaction-audit-main
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Strict causal and one-to-one matching regression tests
+        run: python -m unittest -v test_color_interaction_audit test_price_range_gate_audit test_causal_4h_parity
+      - name: Evaluate two preregistered hypotheses on cached 1H candles
+        run: python -u color_interaction_audit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: color-interaction-audit
+          path: reports/color_interaction_audit.json
+      - name: Persist report only against exact producer source HEAD
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            echo "Main changed since producer SHA: preserve artifact, do not silently recompute or rebase" >&2
+            exit 1
+          fi
+          git add reports/color_interaction_audit.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(#20): persist preregistered interaction results with producer SHA'
+          git push origin HEAD:main
