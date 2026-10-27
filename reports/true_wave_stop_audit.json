@@ -1,8 +1,8 @@
 {
   "title": "Causal true-wave vs peak-bar vs ATR stop: matched-entry exploratory audit",
-  "generated_utc": "2026-10-27T05:56:37.430682+00:00",
-  "producer_sha": "b048733ed58335a81962be563f7ed5e96da903ca",
-  "ci_run": "40458168781",
+  "generated_utc": "2026-10-27T05:56:59.328848+00:00",
+  "producer_sha": "a52575cbb4acc135b3d101b0903a7ac8784b5b63",
+  "ci_run": "40458203283",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
