@@ -53,7 +53,7 @@ def width(bars, denominator):
 
 def price_context(bars, i, side):
     """Only bars through i are visible. P=[i-11..i-6], C=[i-5..i]."""
-    if i < 12:
+    if i < 11:
         return None
     p = bars[i-11:i-5]
     c = bars[i-5:i+1]
@@ -105,7 +105,6 @@ def color_events(raw, bars=None):
         if entry_i == 0 or raw[entry_i-1][0]+H != decision:
             rejected["last_known_1h_not_closed_at_decision"] += 1
             continue
-        eid = "%s:%s:%s" % ("BTC" if False else "", "", "")  # overwritten below
         eid = iso(decision) + (":L" if side == 1 else ":S")
         out.append(dict(event_id=eid, bucket_ms=bars[i][0],
                         decision_ms=decision, decision_utc=iso(decision),
