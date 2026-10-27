@@ -1,0 +1,24 @@
+name: BTC Original DeltaRSI Relative Fade Speed Study
+on:
+  push:
+    paths:
+      - btc_delta_relative_fade_speed_study.py
+      - .github/workflows/btc-delta-relative-fade-speed.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy scikit-learn
+      - run: python btc_delta_relative_fade_speed_study.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/btc_delta_relative_fade_speed_study.json
+          git diff --cached --quiet || (git commit -m "Save DeltaRSI relative fade speed study" && git pull --rebase origin main && git push)
