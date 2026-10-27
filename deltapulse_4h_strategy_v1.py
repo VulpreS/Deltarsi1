@@ -144,6 +144,11 @@ def signal_exit(ind,k,side,exitmode):
         invalid=colors[k-1]=="weakB" and colors[k] in ("mediumB","strongB")
         accel=d[k]>0 and d[k-1]>0 and d[k-2]>0 and abs(d[k])>abs(d[k-1])>abs(d[k-2])
     if opposite:return "opposite_delta_fade"
+    if exitmode=="opposite_weak":
+        weak_opposite=(colors[k]=="weakB") if side==1 else (colors[k]=="weakR")
+        if weak_opposite:return "opposite_weak"
+        return None
+    if exitmode=="opposite_only":return None
     if exitmode=="fast_invalidation" and invalid:return "rebrightening"
     if exitmode=="two_bar_reacceleration" and accel:return "two_bar_reacceleration"
     return None
