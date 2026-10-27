@@ -89,7 +89,10 @@ def candidates(ind,mode,lookback,threshold):
                 peak=k-1
         elif mode=="crest":
             if sg==sign(d[k-1])==sign(d[k-2]) and a[0]<a[1] and a[1]>=a[2]:
-                preceding=sum(a[j]<a[j+1] for j in (1,2,3))
+                # Chronological growth: newer magnitude > older magnitude.
+                # a[1]=|D[k-1]|, a[2]=|D[k-2]|, ... . The old
+                # a[j]<a[j+1] comparison INVERTED rising impulse candles.
+                preceding=sum(a[j]>a[j+1] for j in (1,2,3))
                 if preceding>=2:peak=k-1
         elif mode=="confirm":
             if sg==sign(d[k-1])==sign(d[k-2])==sign(d[k-3]) and a[0]<a[1]<a[2]:
@@ -257,7 +260,7 @@ def main():
             "4h_close_Moscow_clock":"03:00 07:00 11:00 15:00 19:00 23:00 MSK",
             "pulse_strength_window_4h_bars":60,
             "strength_percentile_min":80,
-            "impulse_growth":"2 of prior 3 DeltaRSI-magnitude increments positive",
+            "impulse_growth":"2 of prior 3 DeltaRSI-magnitude increments positive (newer > older; bugfixed 2026-10-27)",
             "pulse_fade":"first magnitude decline after a local peak, same sign",
             "pulse_rearm":"one eligible pulse per continuous signed DeltaRSI episode",
             "direction":"LONG when negative red Delta fades, SHORT when positive blue Delta fades",
