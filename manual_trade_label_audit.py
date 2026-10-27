@@ -14,7 +14,7 @@ import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from causal_4h_parity_audit import H, events, iso, load
+from causal_4h_parity_audit import H, events, execute, metrics, iso, load
 
 FEE = 0.0015  # 15bp total, half on entry and half on exit notional
 RISK = 0.0025
@@ -186,6 +186,19 @@ def main():
                            last_closed_hour_utc=iso(times[i]) if i>=0 else None))
     clean=[r for r in labels if not r["issues"]]
     valid_cached=[j["label"] for j in joined if not j["label"]["issues"]]
+    # Frozen existing baseline; no fitting to the 42 selected annotations.
+    # Distinct signal families have different admissions; compare descriptively,
+    # not as a matched-opportunity causal improvement.
+    bounds=[0]
+    for cutoff in CUTOFFS:
+        bounds.append(bisect.bisect_left(times,int(dt.datetime.fromisoformat(cutoff).timestamp()*1000)))
+    bounds.append(len(raw))
+    backtest={}
+    for mode,es in event_sets.items():
+        backtest[mode]={}
+        for name,start,end in zip(("earlier_inspected_train","earlier_inspected_validation",
+                                   "earlier_inspected_diagnostic"),bounds[:-1],bounds[1:]):
+            backtest[mode][name]=metrics(execute(raw,es,FEE,0.,start,end))
     flags=Counter(x for r in labels for x in r["issues"])
     windows=aggregate(valid_cached,lambda r:
        "earlier_inspected_train" if iso(r["entry_ms"])<CUTOFFS[0] else
@@ -213,6 +226,7 @@ def main():
       asof_join_funnel=dict(funnel),
       candidate_signal_counts={k:len(v) for k,v in event_sets.items()},
       same_side_signal_matches={k:dict(v) for k,v in matches.items()},
+      frozen_2p5ATR_3ATR_48h_btc_backtest_by_mode_and_calendar=backtest,
       notes=[
        "User annotations are selected winners/losers, not independently observed executable fills; statistics are descriptive only.",
        "All four non-ok quality labels are excluded from clean results without silently repairing price/date/time.",
@@ -225,7 +239,9 @@ def main():
        "Hypothetical sequential risk-sized DD/return assume no overlapping trades, perfect annotated fills and fixed 0.25% initial stop risk; NOT executable portfolio DD.",
        "All historical train/validation/diagnostic windows have been previously inspected and cannot support independent OOS claims.",
        "Exact candidate matches are an overlap census, NOT proof that the annotated discretionary rule is the automated DeltaRSI rule.",
-       "Full negative/control candidate event streams are from existing causal_4h_parity_audit.events; no filter fitted to 42 labels."
+       "Full negative/control candidate event streams are from existing causal_4h_parity_audit.events; no filter fitted to 42 labels.",
+       "BTC frozen baseline and forming/closed signal families are independently scheduled, not paired and not comparable to selected manual annotation fills.",
+       "Backtests use next-hour-open entries, 2.5 ATR stop, 3 ATR target, 48h timeout, fixed 15bp fee, zero funding, and sequential per-symbol risk sizing; closed-trade DD is not hourly MTM DD."
       ])
     OUTPUT.parent.mkdir(exist_ok=True)
     OUTPUT.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n")
