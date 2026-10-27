@@ -1,0 +1,140 @@
+//@version=6
+// DeltaPulse v1 - DeltaRSI-only 4H research strategy.
+// Original symmetric mirrored-log DeltaRSI preserved. Price used ONLY for
+// structural stop location and simulated fills. Long only default.
+// NOTE: Python audit (deltapulse_daily_strategy_v1.py) is the numerical
+// reference. TradingView's fill engine, RSI seeding and next-bar OPEN gap
+// may differ. Risk eligibility is estimated using signal-bar CLOSE here, not the next-bar OPEN used by Python.
+// No intrabar data or future daily candles are used for signal generation.
+strategy("DeltaPulse v1 - DeltaRSI 4H phase strategy", shorttitle="DeltaPulse 4H",
+     overlay=true, pyramiding=0, initial_capital=10000,
+     default_qty_type=strategy.percent_of_equity, default_qty_value=10,
+     commission_type=strategy.commission.percent, commission_value=0.075,
+     process_orders_on_close=false, calc_on_every_tick=false)
+
+// 1. Original DeltaRSI. Source is SMA21(close), Wilder RSI12, signal EMA7.
+sourceLen = input.int(21, "SMA source", minval=1, group="DeltaRSI", tooltip="Use 21 for matching the source indicator")
+rsiLen    = input.int(12, "RSI RMA length", minval=1, group="DeltaRSI")
+emaLen    = input.int(7, "RSI signal EMA length", minval=1, group="DeltaRSI")
+brightThreshold = input.float(60, "Original bright threshold", minval=1, group="DeltaRSI")
+percentLookback = input.int(60, "Historical strength: completed 4H bars (60 = 10 days)", minval=10, maxval=120, group="Phase")
+minPercentile = input.float(80, "Minimum preceding-peak percentile", minval=1, maxval=100, step=5, group="Phase")
+growthRequired = input.int(2, "Prior 3 bars growing", minval=1, maxval=3, group="Phase")
+longOnly = input.bool(true, "LONG only (recommended research mode)", group="Orders")
+pivotLookback = input.int(24, "Confirmed structural swing lookback", minval=3, maxval=60, group="Risk")
+maxStopPct = input.float(15, "Maximum initial structural stop distance (%)", minval=0.1, group="Risk")
+stopBufferPct = input.float(0.10, "Structural stop buffer (%)", minval=0, step=0.05, group="Risk")
+maxHoldDays = input.int(180, "Safety max holding 4H bars", minval=3, group="Risk")
+
+maSource = ta.sma(close, sourceLen)
+chg = ta.change(maSource)
+avgGain = ta.rma(math.max(chg, 0), rsiLen)
+avgLoss = ta.rma(math.max(-chg, 0), rsiLen)
+rsi = avgLoss == 0 ? 100.0 : avgGain == 0 ? 0.0 : 100.0 - 100.0 / (1 + avgGain / avgLoss)
+rsiSignal = ta.ema(rsi, emaLen)
+
+rsiMirror = rsi > 50 ? 100 - rsi : rsi
+signalMirror = rsiSignal > 50 ? 100 - rsiSignal : rsiSignal
+mirrorMagnitude = rsiMirror > 0 and signalMirror > 0 ? math.abs(100 * math.log(rsiMirror / signalMirror)) : na
+delta = rsi > rsiSignal ? mirrorMagnitude : -mirrorMagnitude
+dAbs = math.abs(delta)
+dPrev = math.abs(delta[1])
+deltaSign = na(delta) ? 0 : delta > 0 ? 1 : delta < 0 ? -1 : 0
+
+// Same color transition logic as the original Pine and Python indicator.
+string shade = ""
+if not na(delta) and not na(delta[1])
+    if delta > 0
+        shade := dAbs > brightThreshold and delta > delta[1] ? "strongB" : (dAbs > brightThreshold or dAbs > dPrev ? "mediumB" : "weakB")
+    else if delta < 0
+        shade := dAbs > brightThreshold and delta < delta[1] ? "strongR" : (dAbs > brightThreshold or dAbs > dPrev ? "mediumR" : "weakR")
+
+// Historical percentile of the PRECEDING PEAK, not current faded magnitude.
+// On signal bar t, D[t-1] is compared to D[t-2..t-1-lookback].
+float strengthRank = na
+if bar_index > 130 and not na(dAbs[percentLookback + 1]) and dPrev > 0
+    float less = 0.0
+    for age = 2 to percentLookback + 1
+        float item = dAbs[age]
+        less += item < dPrev ? 1.0 : item == dPrev ? 0.5 : 0.0
+    strengthRank := 100 * less / percentLookback
+
+growingCount = (dAbs[3] > dAbs[4] ? 1 : 0) + (dAbs[2] > dAbs[3] ? 1 : 0) + (dAbs[1] > dAbs[2] ? 1 : 0)
+sameSigned = deltaSign != 0 and deltaSign == (delta[1] > 0 ? 1 : delta[1] < 0 ? -1 : 0) and deltaSign == (delta[2] > 0 ? 1 : delta[2] < 0 ? -1 : 0)
+crest = sameSigned and dAbs < dPrev and dPrev >= dAbs[2] and growingCount >= growthRequired and strengthRank >= minPercentile
+
+// Only the first selected crest per continuous signed DeltaRSI episode.
+var int episodeSign = 0
+var bool usedEpisode = false
+if barstate.isconfirmed and not na(delta)
+    if episodeSign != deltaSign
+        episodeSign := deltaSign
+        usedEpisode := false
+
+// A closed trade cannot generate a new entry on its own exit bar.
+justExited = strategy.closedtrades > 0 and strategy.closedtrades.exit_bar_index(strategy.closedtrades - 1) == bar_index
+newCrest = barstate.isconfirmed and (timeframe.isminutes and timeframe.multiplier == 240) and crest and not usedEpisode
+if newCrest
+    usedEpisode := true
+eligible = newCrest and strategy.position_size == 0 and not justExited
+
+// A low pivot is confirmed if the 2 preceding lows and 1 following low
+// (all completed at signal close) are higher. SHORT mirrors the definition.
+float lastLowPivot = na
+float lastHighPivot = na
+for back = 1 to pivotLookback
+    bool enough = not na(low[back + 2]) and not na(high[back + 2])
+    if enough
+        if na(lastLowPivot) and low[back] < low[back + 1] and low[back] < low[back + 2] and low[back] < low[back - 1]
+            lastLowPivot := low[back]
+        if na(lastHighPivot) and high[back] > high[back + 1] and high[back] > high[back + 2] and high[back] > high[back - 1]
+            lastHighPivot := high[back]
+
+var float fixedLongStop = na
+var float fixedShortStop = na
+var int signalBarIndex = na
+longCandidate = eligible and deltaSign < 0
+shortCandidate = eligible and deltaSign > 0 and not longOnly
+
+float proposedLongStop = na(lastLowPivot) ? na : lastLowPivot * (1 - stopBufferPct / 100)
+float proposedShortStop = na(lastHighPivot) ? na : lastHighPivot * (1 + stopBufferPct / 100)
+longValid = longCandidate and not na(proposedLongStop) and proposedLongStop < close and 100 * (close - proposedLongStop) / close <= maxStopPct
+shortValid = shortCandidate and not na(proposedShortStop) and proposedShortStop > close and 100 * (proposedShortStop - close) / close <= maxStopPct
+
+if longValid
+    fixedLongStop := proposedLongStop
+    signalBarIndex := bar_index
+    strategy.entry("DeltaPulse LONG", strategy.long)
+    strategy.exit("LONG structural stop", "DeltaPulse LONG", stop=fixedLongStop)
+else if shortValid
+    fixedShortStop := proposedShortStop
+    signalBarIndex := bar_index
+    strategy.entry("DeltaPulse SHORT", strategy.short)
+    strategy.exit("SHORT structural stop", "DeltaPulse SHORT", stop=fixedShortStop)
+
+if strategy.position_size > 0
+    strategy.exit("LONG structural stop", "DeltaPulse LONG", stop=fixedLongStop)
+    invalid = shade[1] == "weakR" and (shade == "mediumR" or shade == "strongR")
+    opposite = shade[1] == "mediumB" and shade == "weakB"
+    timeout = not na(signalBarIndex) and bar_index - signalBarIndex >= maxHoldDays
+    if barstate.isconfirmed and (invalid or opposite or timeout)
+        strategy.close("DeltaPulse LONG", comment=invalid ? "Delta rebrightens" : opposite ? "Opposite fade" : "Safety")
+
+if strategy.position_size < 0
+    strategy.exit("SHORT structural stop", "DeltaPulse SHORT", stop=fixedShortStop)
+    invalid = shade[1] == "weakB" and (shade == "mediumB" or shade == "strongB")
+    opposite = shade[1] == "mediumR" and shade == "weakR"
+    timeout = not na(signalBarIndex) and bar_index - signalBarIndex >= maxHoldDays
+    if barstate.isconfirmed and (invalid or opposite or timeout)
+        strategy.close("DeltaPulse SHORT", comment=invalid ? "Delta rebrightens" : opposite ? "Opposite fade" : "Safety")
+
+plotshape(longValid, title="DeltaPulse LONG", text="DP L", style=shape.triangleup,
+    color=color.new(color.green, 0), textcolor=color.white,
+    location=location.belowbar, size=size.small)
+plotshape(shortValid, title="DeltaPulse SHORT", text="DP S", style=shape.triangledown,
+    color=color.new(color.red, 0), textcolor=color.white,
+    location=location.abovebar, size=size.small)
+plot(strengthRank, "Delta peak percentile", display=display.data_window)
+plot(dAbs, "Original |DeltaRSI|", display=display.data_window)
+alertcondition(longValid, title="DeltaPulse LONG (closed 4H)", message="DeltaPulse LONG confirmed on closed 4H candle")
+alertcondition(shortValid, title="DeltaPulse SHORT (closed 4H)", message="DeltaPulse SHORT confirmed on closed 4H candle")
