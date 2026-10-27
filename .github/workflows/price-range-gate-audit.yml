@@ -1,0 +1,47 @@
+name: Causal price range eligibility research (cached only)
+on:
+  push:
+    paths:
+      - 'price_range_gate_audit.py'
+      - 'test_price_range_gate_audit.py'
+      - '.github/workflows/price-range-gate-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: price-range-gate-audit-main
+  cancel-in-progress: false
+jobs:
+  price-range-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: As-of causal regression tests
+        run: python -m unittest -v test_price_range_gate_audit test_manual_trade_label_audit test_causal_4h_parity
+      - name: Run cached-only backtest with fixed fees and no funding
+        run: python -u price_range_gate_audit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: price-range-gate-audit
+          path: reports/price_range_gate_audit.json
+      - name: Persist reproducible report with fresh-ref retry
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            python price_range_gate_audit.py >/dev/null
+            git add reports/price_range_gate_audit.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'research(#20): persist causal price-range ablation results'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          echo 'Failed to persist report after retries' >&2
+          exit 1
