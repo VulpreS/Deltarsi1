@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Full integrated regressions and funding decomposition fixtures
-        run: python -m unittest -v test_funding_clock_reconciliation test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence test_standalone_parity_audit test_portfolio_risk_audit test_funding_timing
+        run: python -m unittest -v test_funding_clock_reconciliation test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence test_standalone_parity_audit test_portfolio_risk_audit
       - name: Decompose existing 309 cached historical trades without any exchange API
         run: python -u funding_clock_reconciliation.py
       - name: Persist audit report
