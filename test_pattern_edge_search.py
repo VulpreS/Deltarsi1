@@ -1,6 +1,6 @@
 """Deterministic regression fixtures for exploratory pattern grid."""
 import unittest
-from pattern_edge_search import FEE,allowed,stop_for,one,stats,asof_features
+from pattern_edge_search import FEE,allowed,stop_for,one,stats,asof_features,block_ci_mean_R
 H=3600000
 class PatternSearchTests(unittest.TestCase):
     def ev(self,side=1,atr=2):
@@ -42,6 +42,11 @@ class PatternSearchTests(unittest.TestCase):
         e=self.ev();e["peak_low"]=105.
         raw=[(i*H,100,101,99,100) for i in range(4)]
         self.assertIsNone(one(raw,e,"prior_peak4h",3,12,4))
+    def test_calendar_block_ci(self):
+        cohort=[dict(entry_utc=f"2026-0{i}-01T00:00:00+00:00",net_R=0.25) for i in (1,2,3)]
+        x=block_ci_mean_R(cohort)
+        self.assertEqual(x["blocks"],3)
+        self.assertEqual(x["ci95_R"],[0.25,0.25])
     def test_zero_trades(self):
         self.assertEqual(stats([])["n"],0)
 if __name__=="__main__":unittest.main()
