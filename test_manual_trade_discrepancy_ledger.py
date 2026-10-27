@@ -19,7 +19,7 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(location(b, 110), "inside")
         self.assertEqual(location(b, 111), "above_high")
         self.assertEqual(location(b, 89), "below_low")
-        self.assertAlmostEqual(distance_pct(b, 111), 100/110)
+        self.assertAlmostEqual(distance_pct(b, 111), 100/110, places=4)
     def test_nearby_candidate_is_not_a_fill(self):
         t = parse_msk("2026-09-18 11:00")
         b = {t + H: dict(open=100., high=105., low=95., close=100.)}
