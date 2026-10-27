@@ -1,7 +1,7 @@
 """Deterministic fixtures for true causal peak/wave stops (#16)."""
 import unittest
 from true_wave_stop_audit import (H, FEE, wave_snapshot, stop_price,
-                                  trade_one, stats)
+                                  trade_one, stats, paired_block_ci)
 
 
 def bar(i, low, high):
@@ -85,6 +85,18 @@ class TrueWaveTests(unittest.TestCase):
         changed = [*raw]
         changed[4] = (4*H,100.,500.,1.,100.)
         self.assertEqual(first, trade_one(changed, 2, 1, 95., 5)[0])
+
+    def test_seeded_paired_calendar_block_ci(self):
+        cohort = []
+        for month in (1, 2, 3):
+            for i in range(2):
+                baseline = dict(net_R=0.0)
+                challenger = dict(net_R=0.2)
+                cohort.append(dict(entry_utc=f"2026-0{month}-01T00:00:00+00:00",
+                                   baseline=baseline, challenger=challenger))
+        x = paired_block_ci(cohort)
+        self.assertEqual(x["effective_blocks"], 3)
+        self.assertEqual(x["ci95_delta_R"], [0.2, 0.2])
 
     def test_empty_stats(self):
         self.assertEqual(stats([])["n"], 0)
