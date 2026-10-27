@@ -73,7 +73,10 @@ if barstate.isconfirmed and not na(delta)
 
 // A closed trade cannot generate a new entry on its own exit bar.
 justExited = strategy.closedtrades > 0 and strategy.closedtrades.exit_bar_index(strategy.closedtrades - 1) == bar_index
-eligible = barstate.isconfirmed and timeframe.isdaily and crest and not usedEpisode and strategy.position_size == 0 and not justExited
+newCrest = barstate.isconfirmed and timeframe.isdaily and crest and not usedEpisode
+if newCrest
+    usedEpisode := true
+eligible = newCrest and strategy.position_size == 0 and not justExited
 
 // A low pivot is confirmed if the 2 preceding lows and 1 following low
 // (all completed at signal close) are higher. SHORT mirrors the definition.
@@ -97,10 +100,6 @@ float proposedLongStop = na(lastLowPivot) ? na : lastLowPivot * (1 - stopBufferP
 float proposedShortStop = na(lastHighPivot) ? na : lastHighPivot * (1 + stopBufferPct / 100)
 longValid = longCandidate and not na(proposedLongStop) and proposedLongStop < close and 100 * (close - proposedLongStop) / close <= maxStopPct
 shortValid = shortCandidate and not na(proposedShortStop) and proposedShortStop > close and 100 * (proposedShortStop - close) / close <= maxStopPct
-
-if longCandidate or shortCandidate
-    // Signal has been evaluated; do not retry within the same impulse.
-    usedEpisode := true
 
 if longValid
     fixedLongStop := proposedLongStop
