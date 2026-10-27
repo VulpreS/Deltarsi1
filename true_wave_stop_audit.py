@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 import os
+import random
 import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -132,6 +133,26 @@ def stats(trades):
                 pseudo_dd_pct=round(100 * dd, 4))
 
 
+
+def paired_block_ci(cohort, seed=20261027):
+    """Exploratory 30-day UTC block bootstrap; not selection-adjusted."""
+    groups = defaultdict(list)
+    for x in cohort:
+        day = int(dt.datetime.fromisoformat(x["entry_utc"]).timestamp() // (30 * 24 * 3600))
+        groups[day].append(x["challenger"]["net_R"] - x["baseline"]["net_R"])
+    keys = sorted(groups)
+    if len(keys) < 3:
+        return dict(effective_blocks=len(keys), ci95_delta_R=None)
+    rng = random.Random(seed)
+    draws = []
+    for _ in range(1200):
+        sample = [v for __ in keys for v in groups[rng.choice(keys)]]
+        draws.append(statistics.mean(sample))
+    draws.sort()
+    return dict(effective_blocks=len(keys),
+                ci95_delta_R=[round(draws[29], 6), round(draws[1170], 6)])
+
+
 def build():
     cache = {}
     for sym in SYMS:
@@ -225,6 +246,7 @@ def research():
                 cohort = [x for x in pairs[w][mode][challenger] if x["symbol"] in CORE]
                 values = [x["challenger"]["net_R"] - x["baseline"]["net_R"] for x in cohort]
                 diffs[challenger] = dict(matched_core_n=len(values),
+                    block_bootstrap_30d=paired_block_ci(cohort),
                     mean_delta_R=round(statistics.mean(values), 6) if values else None,
                     win_fraction=round(sum(v > 0 for v in values) / len(values), 4) if values else None,
                     matched_baseline=stats([x["baseline"] for x in cohort]),
@@ -262,6 +284,7 @@ def research():
           "0.25%-risk pseudo DD is NOT hourly MTM portfolio drawdown; no admission competition.",
           "Stop/TP ambiguous within 1H uses stop-first; adverse gaps fill at worse open.",
           "15bp fixed round-trip trading friction; funding excluded from this pattern experiment.",
+          "Exploratory 30-day calendar block CI is not selection-adjusted and blocks are few.",
           "No selection or promotion using inspected diagnostic results."],
        summary=summary,
        rejection_counts=[dict(window=w,symbol=s,mode=m,stop=k,reason=r,count=n)
