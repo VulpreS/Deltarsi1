@@ -306,6 +306,30 @@ def main():
             "fraction_positive_actual_convergence":rnd(np.mean([x["features"]["gap_closure_abs"]>0 for x in group]),4) if group else None,
             "fraction_excess_over_ema":rnd(np.mean([x["features"]["ema_excess_abs"]>0 for x in group]),4) if group else None,
         }
+    # Diagnostic: the mirrored logarithmic DeltaRSI may fade even when the
+    # literal |RSI-EMA| gap is still widening. These are distinct quantities.
+    divergence_diagnostic={}
+    mismatch_examples=[]
+    for side,label in ((1,"LONG"),(-1,"SHORT")):
+        for chosen,name in ((1,"selected"),(0,"skipped")):
+            subset=[x for x in samples if x["side"]==side and x["selected"]==chosen]
+            fading=[x for x in subset if x["features"]["delta_fade_abs"]>0]
+            contradictory=[x for x in fading if x["features"]["gap_closure_abs"]<=0]
+            divergence_diagnostic[label+"_"+name]={
+                "n":len(subset),
+                "delta_fading_n":len(fading),
+                "delta_fades_but_gap_not_converging":len(contradictory),
+                "fraction_of_delta_fades_without_gap_convergence":rnd(
+                    len(contradictory)/len(fading)) if fading else None,
+            }
+            for x in contradictory[:2]:
+                if chosen:
+                    mismatch_examples.append({
+                        "time_utc":dt.datetime.fromtimestamp(x["time"]/1000,dt.timezone.utc).isoformat(),
+                        "side":label,"delta_prev_abs":rnd(x["features"]["delta_prev_abs"]),
+                        "delta_abs":rnd(x["features"]["delta_abs"]),
+                        "gap_closure_fraction":rnd(x["features"]["gap_closure_fraction"]),
+                    })
     out={
         "description":"Test distance/velocity/acceleration of RSI12(SMA21) versus EMA7(RSI), with original signed symmetric log-DeltaRSI retained as control.",
         "mathematical_identity":"G_t=(1-alpha)*(G_(t-1)+(RSI_t-RSI_(t-1))); alpha=.25, so flat RSI mechanically shrinks |G| by 25% per closed 4H candle if same sign. Excess=(|G_prev|-|G_current|)-.25*|G_prev|.",
@@ -322,6 +346,8 @@ def main():
         "skipped_events":sum(not x["selected"] for x in samples),
         "skipped_feature_events":invalid,
         "selection_tests":sorted(tests,key=lambda x:x["p_raw"]),
+        "mirrored_delta_vs_literal_gap_diagnostics":divergence_diagnostic,
+        "selected_mismatch_examples":mismatch_examples,
         "local_time_matched_checks":time_matched,
         "selection_cv":models,
         "return_correlations":sorted(outcomes,key=lambda x:x["p_raw"]),
