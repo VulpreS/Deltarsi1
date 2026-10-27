@@ -1,0 +1,1887 @@
+{
+  "notes": "Causal closed-4H experiment. Entry mediumR->weakR LONG, mediumB->weakB SHORT, next open. Structural confirmed 4H pivot stop, 0.1% buffer. New invalidation: weakR->mediumR/strongR while LONG or weakB->mediumB/strongB while SHORT; exit next 4H open. Opposite fade remains exit. 0.15% roundtrip fee, no funding. Stop-first, one position per asset, no overlapping. Safety cap 120 bars. Strict last-25% test, but trader rules are inferred from BTC history, not pristine BTC holdout. Does not model forming 4H snapshots or discretionary candle-pattern selection.",
+  "assets": {
+    "BTCUSDT": {
+      "last25_baseline": {
+        "n": 31,
+        "wr_pct": 22.6,
+        "mean_net_pct": -0.407,
+        "pf": 0.572,
+        "mdd_pct": 12.35
+      },
+      "last25_invalidation": {
+        "n": 47,
+        "wr_pct": 23.4,
+        "mean_net_pct": -0.383,
+        "pf": 0.423,
+        "mdd_pct": 16.8
+      },
+      "last25_exit_reasons": {
+        "invalidation": 23,
+        "opposite": 8,
+        "stop": 16,
+        "safety_timeout": 0
+      },
+      "full_baseline": {
+        "n": 120,
+        "wr_pct": 37.5,
+        "mean_net_pct": 0.114,
+        "pf": 1.138,
+        "mdd_pct": 14.81
+      },
+      "full_invalidation": {
+        "n": 164,
+        "wr_pct": 34.1,
+        "mean_net_pct": -0.033,
+        "pf": 0.949,
+        "mdd_pct": 22.61
+      },
+      "trades_last25_invalidation": [
+        {
+          "entry_i": 1650,
+          "exit_i": 1653,
+          "side": "LONG",
+          "entry": 63928.46,
+          "exit": 63753.04,
+          "stop": 62996.33061,
+          "reason": "invalidation",
+          "ret": -0.0042440047828463095
+        },
+        {
+          "entry_i": 1663,
+          "exit_i": 1666,
+          "side": "LONG",
+          "entry": 64800.0,
+          "exit": 63950.01,
+          "stop": 63204.07266,
+          "reason": "invalidation",
+          "ret": -0.014617129629629631
+        },
+        {
+          "entry_i": 1677,
+          "exit_i": 1679,
+          "side": "LONG",
+          "entry": 63461.95,
+          "exit": 63031.99,
+          "stop": 62212.725,
+          "reason": "invalidation",
+          "ret": -0.008275083337338339
+        },
+        {
+          "entry_i": 1681,
+          "exit_i": 1682,
+          "side": "LONG",
+          "entry": 63456.0,
+          "exit": 63570.01,
+          "stop": 62212.725,
+          "reason": "invalidation",
+          "ret": 0.00029667801311156336
+        },
+        {
+          "entry_i": 1686,
+          "exit_i": 1693,
+          "side": "LONG",
+          "entry": 63694.9,
+          "exit": 64233.35,
+          "stop": 62212.725,
+          "reason": "opposite",
+          "ret": 0.006953581055940074
+        },
+        {
+          "entry_i": 1703,
+          "exit_i": 1704,
+          "side": "SHORT",
+          "entry": 64622.08,
+          "exit": 64631.88,
+          "stop": 65090.24522,
+          "reason": "invalidation",
+          "ret": -0.0016516509527392796
+        },
+        {
+          "entry_i": 1707,
+          "exit_i": 1708,
+          "side": "SHORT",
+          "entry": 64289.99,
+          "exit": 65063.998999999996,
+          "stop": 65063.998999999996,
+          "reason": "stop",
+          "ret": -0.013539339250169423
+        },
+        {
+          "entry_i": 1710,
+          "exit_i": 1710,
+          "side": "SHORT",
+          "entry": 64912.71,
+          "exit": 65063.998999999996,
+          "stop": 65063.998999999996,
+          "reason": "stop",
+          "ret": -0.0038306529645734653
+        },
+        {
+          "entry_i": 1712,
+          "exit_i": 1722,
+          "side": "SHORT",
+          "entry": 64923.2,
+          "exit": 65228.68,
+          "stop": 65456.38098999999,
+          "reason": "invalidation",
+          "ret": -0.006205251743598593
+        },
+        {
+          "entry_i": 1728,
+          "exit_i": 1733,
+          "side": "SHORT",
+          "entry": 64299.99,
+          "exit": 64389.58,
+          "stop": 65539.93445999999,
+          "reason": "opposite",
+          "ret": -0.002893312813890102
+        },
+        {
+          "entry_i": 1739,
+          "exit_i": 1740,
+          "side": "LONG",
+          "entry": 64240.04,
+          "exit": 63441.48,
+          "stop": 63174.762,
+          "reason": "invalidation",
+          "ret": -0.013930876444037064
+        },
+        {
+          "entry_i": 1744,
+          "exit_i": 1746,
+          "side": "LONG",
+          "entry": 63865.84,
+          "exit": 63420.01,
+          "stop": 63247.02965999999,
+          "reason": "invalidation",
+          "ret": -0.008480727099181627
+        },
+        {
+          "entry_i": 1748,
+          "exit_i": 1749,
+          "side": "LONG",
+          "entry": 63490.86,
+          "exit": 63247.02965999999,
+          "stop": 63247.02965999999,
+          "reason": "stop",
+          "ret": -0.005340400649794406
+        },
+        {
+          "entry_i": 1755,
+          "exit_i": 1760,
+          "side": "LONG",
+          "entry": 63051.25,
+          "exit": 63086.01,
+          "stop": 62472.70476,
+          "reason": "invalidation",
+          "ret": -0.0009487024444400625
+        },
+        {
+          "entry_i": 1767,
+          "exit_i": 1773,
+          "side": "LONG",
+          "entry": 63429.21,
+          "exit": 64185.0,
+          "stop": 62905.48155,
+          "reason": "opposite",
+          "ret": 0.010415488148126041
+        },
+        {
+          "entry_i": 1779,
+          "exit_i": 1781,
+          "side": "SHORT",
+          "entry": 64330.7,
+          "exit": 65123.86880999999,
+          "stop": 65123.86880999999,
+          "reason": "stop",
+          "ret": -0.0138295535413106
+        },
+        {
+          "entry_i": 1804,
+          "exit_i": 1805,
+          "side": "SHORT",
+          "entry": 76007.12,
+          "exit": 77625.50796,
+          "stop": 77625.50796,
+          "reason": "stop",
+          "ret": -0.022792583642164244
+        },
+        {
+          "entry_i": 1822,
+          "exit_i": 1825,
+          "side": "SHORT",
+          "entry": 78925.57,
+          "exit": 78475.49,
+          "stop": 81353.89261999998,
+          "reason": "invalidation",
+          "ret": 0.004202587893885336
+        },
+        {
+          "entry_i": 1840,
+          "exit_i": 1847,
+          "side": "LONG",
+          "entry": 77626.01,
+          "exit": 78165.99,
+          "stop": 76811.112,
+          "reason": "invalidation",
+          "ret": 0.005456173581509795
+        },
+        {
+          "entry_i": 1854,
+          "exit_i": 1860,
+          "side": "LONG",
+          "entry": 78580.43,
+          "exit": 76923.0,
+          "stop": 76923.0,
+          "reason": "stop",
+          "ret": -0.022592147243276683
+        },
+        {
+          "entry_i": 1871,
+          "exit_i": 1873,
+          "side": "LONG",
+          "entry": 77948.39,
+          "exit": 81755.41,
+          "stop": 76187.736,
+          "reason": "opposite",
+          "ret": 0.04734026469308744
+        },
+        {
+          "entry_i": 1878,
+          "exit_i": 1882,
+          "side": "SHORT",
+          "entry": 79429.33,
+          "exit": 79709.96,
+          "stop": 82382.29999999999,
+          "reason": "invalidation",
+          "ret": -0.005033077768627768
+        },
+        {
+          "entry_i": 1888,
+          "exit_i": 1891,
+          "side": "SHORT",
+          "entry": 79804.68,
+          "exit": 80280.2,
+          "stop": 80280.2,
+          "reason": "stop",
+          "ret": -0.007458547794440161
+        },
+        {
+          "entry_i": 1895,
+          "exit_i": 1895,
+          "side": "LONG",
+          "entry": 79420.16,
+          "exit": 79153.767,
+          "stop": 79153.767,
+          "reason": "stop",
+          "ret": -0.00485422391493545
+        },
+        {
+          "entry_i": 1906,
+          "exit_i": 1908,
+          "side": "LONG",
+          "entry": 79277.44,
+          "exit": 78596.7,
+          "stop": 77542.38999,
+          "reason": "invalidation",
+          "ret": -0.01008680603208184
+        },
+        {
+          "entry_i": 1929,
+          "exit_i": 1930,
+          "side": "LONG",
+          "entry": 77192.0,
+          "exit": 76982.69025,
+          "stop": 76982.69025,
+          "reason": "stop",
+          "ret": -0.00421154718105504
+        },
+        {
+          "entry_i": 1932,
+          "exit_i": 1933,
+          "side": "LONG",
+          "entry": 77134.82,
+          "exit": 76982.69025,
+          "stop": 76982.69025,
+          "reason": "stop",
+          "ret": -0.003472257794858545
+        },
+        {
+          "entry_i": 1952,
+          "exit_i": 1954,
+          "side": "LONG",
+          "entry": 76206.0,
+          "exit": 76462.77,
+          "stop": 74893.00203,
+          "reason": "invalidation",
+          "ret": 0.0018694197307299056
+        },
+        {
+          "entry_i": 1961,
+          "exit_i": 1964,
+          "side": "LONG",
+          "entry": 78062.01,
+          "exit": 80883.86,
+          "stop": 75924.0,
+          "reason": "opposite",
+          "ret": 0.03464882578606426
+        },
+        {
+          "entry_i": 1975,
+          "exit_i": 1976,
+          "side": "SHORT",
+          "entry": 81177.32,
+          "exit": 82032.95099999999,
+          "stop": 82032.95099999999,
+          "reason": "stop",
+          "ret": -0.012040271593099781
+        },
+        {
+          "entry_i": 2005,
+          "exit_i": 2019,
+          "side": "LONG",
+          "entry": 84020.01,
+          "exit": 82792.05506999999,
+          "stop": 82792.05506999999,
+          "reason": "stop",
+          "ret": -0.016115029562600747
+        },
+        {
+          "entry_i": 2026,
+          "exit_i": 2028,
+          "side": "LONG",
+          "entry": 83980.97,
+          "exit": 83068.0,
+          "stop": 82480.437,
+          "reason": "invalidation",
+          "ret": -0.012371153310089143
+        },
+        {
+          "entry_i": 2033,
+          "exit_i": 2035,
+          "side": "LONG",
+          "entry": 83915.17,
+          "exit": 83603.16,
+          "stop": 82817.1,
+          "reason": "invalidation",
+          "ret": -0.005218159660523801
+        },
+        {
+          "entry_i": 2037,
+          "exit_i": 2038,
+          "side": "LONG",
+          "entry": 83754.01,
+          "exit": 83429.93,
+          "stop": 82873.15389,
+          "reason": "invalidation",
+          "ret": -0.00536942666983947
+        },
+        {
+          "entry_i": 2043,
+          "exit_i": 2043,
+          "side": "SHORT",
+          "entry": 85512.89,
+          "exit": 85735.59994999999,
+          "stop": 85735.59994999999,
+          "reason": "stop",
+          "ret": -0.004104402096572755
+        },
+        {
+          "entry_i": 2050,
+          "exit_i": 2052,
+          "side": "SHORT",
+          "entry": 84560.0,
+          "exit": 84867.27,
+          "stop": 87307.21999999999,
+          "reason": "invalidation",
+          "ret": -0.005133751182592348
+        },
+        {
+          "entry_i": 2054,
+          "exit_i": 2056,
+          "side": "SHORT",
+          "entry": 84753.57,
+          "exit": 85106.01,
+          "stop": 87307.21999999999,
+          "reason": "invalidation",
+          "ret": -0.005658408902421362
+        },
+        {
+          "entry_i": 2067,
+          "exit_i": 2072,
+          "side": "LONG",
+          "entry": 85516.27,
+          "exit": 84887.03799,
+          "stop": 84887.03799,
+          "reason": "stop",
+          "ret": -0.008858038534655553
+        },
+        {
+          "entry_i": 2087,
+          "exit_i": 2104,
+          "side": "LONG",
+          "entry": 83246.82,
+          "exit": 83991.52,
+          "stop": 80313.16644,
+          "reason": "opposite",
+          "ret": 0.007445687054472407
+        },
+        {
+          "entry_i": 2111,
+          "exit_i": 2114,
+          "side": "SHORT",
+          "entry": 83360.01,
+          "exit": 83169.01,
+          "stop": 84436.35199999998,
+          "reason": "invalidation",
+          "ret": 0.0007912665197617476
+        },
+        {
+          "entry_i": 2116,
+          "exit_i": 2124,
+          "side": "SHORT",
+          "entry": 83582.28,
+          "exit": 82418.0,
+          "stop": 84252.16799999999,
+          "reason": "opposite",
+          "ret": 0.012429746831505386
+        },
+        {
+          "entry_i": 2139,
+          "exit_i": 2143,
+          "side": "LONG",
+          "entry": 81960.01,
+          "exit": 80880.01,
+          "stop": 80728.44075,
+          "reason": "opposite",
+          "ret": -0.014677157982289133
+        },
+        {
+          "entry_i": 2152,
+          "exit_i": 2153,
+          "side": "SHORT",
+          "entry": 81567.38,
+          "exit": 83241.158,
+          "stop": 83241.158,
+          "reason": "stop",
+          "ret": -0.022020188339995694
+        },
+        {
+          "entry_i": 2157,
+          "exit_i": 2158,
+          "side": "SHORT",
+          "entry": 82733.82,
+          "exit": 83153.78,
+          "stop": 83522.43899999998,
+          "reason": "invalidation",
+          "ret": -0.0065760378283027925
+        },
+        {
+          "entry_i": 2169,
+          "exit_i": 2172,
+          "side": "LONG",
+          "entry": 81889.32,
+          "exit": 81692.01,
+          "stop": 80858.60045999999,
+          "reason": "invalidation",
+          "ret": -0.003909471711329547
+        },
+        {
+          "entry_i": 2176,
+          "exit_i": 2177,
+          "side": "LONG",
+          "entry": 80732.01,
+          "exit": 80599.41,
+          "stop": 80432.487,
+          "reason": "invalidation",
+          "ret": -0.0031424711833632477
+        },
+        {
+          "entry_i": 2185,
+          "exit_i": 2185,
+          "side": "LONG",
+          "entry": 80567.47,
+          "exit": 80007.6123,
+          "stop": 80007.6123,
+          "reason": "stop",
+          "ret": -0.008448929884480814
+        }
+      ]
+    },
+    "ETHUSDT": {
+      "last25_baseline": {
+        "n": 40,
+        "wr_pct": 30.0,
+        "mean_net_pct": -0.305,
+        "pf": 0.686,
+        "mdd_pct": 12.31
+      },
+      "last25_invalidation": {
+        "n": 58,
+        "wr_pct": 20.7,
+        "mean_net_pct": -0.564,
+        "pf": 0.374,
+        "mdd_pct": 28.49
+      },
+      "last25_exit_reasons": {
+        "invalidation": 27,
+        "opposite": 14,
+        "stop": 17,
+        "safety_timeout": 0
+      },
+      "full_baseline": {
+        "n": 121,
+        "wr_pct": 35.5,
+        "mean_net_pct": 0.457,
+        "pf": 1.433,
+        "mdd_pct": 14.25
+      },
+      "full_invalidation": {
+        "n": 165,
+        "wr_pct": 35.2,
+        "mean_net_pct": 0.2,
+        "pf": 1.243,
+        "mdd_pct": 32.71
+      },
+      "trades_last25_invalidation": [
+        {
+          "entry_i": 1648,
+          "exit_i": 1651,
+          "side": "SHORT",
+          "entry": 1881.37,
+          "exit": 1920.02,
+          "stop": 1983.2212399999999,
+          "reason": "invalidation",
+          "ret": -0.0220435400798355
+        },
+        {
+          "entry_i": 1654,
+          "exit_i": 1655,
+          "side": "SHORT",
+          "entry": 1892.7,
+          "exit": 1924.71,
+          "stop": 1983.2212399999999,
+          "reason": "invalidation",
+          "ret": -0.0184123474401649
+        },
+        {
+          "entry_i": 1666,
+          "exit_i": 1668,
+          "side": "LONG",
+          "entry": 1908.9,
+          "exit": 1870.128,
+          "stop": 1870.128,
+          "reason": "stop",
+          "ret": -0.02181117397454041
+        },
+        {
+          "entry_i": 1671,
+          "exit_i": 1672,
+          "side": "LONG",
+          "entry": 1862.6,
+          "exit": 1869.88,
+          "stop": 1846.8513,
+          "reason": "invalidation",
+          "ret": 0.002408514979061639
+        },
+        {
+          "entry_i": 1675,
+          "exit_i": 1675,
+          "side": "LONG",
+          "entry": 1870.1,
+          "exit": 1846.8513,
+          "stop": 1846.8513,
+          "reason": "stop",
+          "ret": -0.013931795091171538
+        },
+        {
+          "entry_i": 1678,
+          "exit_i": 1680,
+          "side": "LONG",
+          "entry": 1877.44,
+          "exit": 1852.65,
+          "stop": 1820.23794,
+          "reason": "invalidation",
+          "ret": -0.014704150332367437
+        },
+        {
+          "entry_i": 1682,
+          "exit_i": 1684,
+          "side": "LONG",
+          "entry": 1882.2,
+          "exit": 1857.21,
+          "stop": 1820.23794,
+          "reason": "invalidation",
+          "ret": -0.014777016257570939
+        },
+        {
+          "entry_i": 1687,
+          "exit_i": 1695,
+          "side": "LONG",
+          "entry": 1863.34,
+          "exit": 1869.74,
+          "stop": 1820.23794,
+          "reason": "opposite",
+          "ret": 0.0019346925413504259
+        },
+        {
+          "entry_i": 1698,
+          "exit_i": 1698,
+          "side": "SHORT",
+          "entry": 1868.92,
+          "exit": 1884.32244,
+          "stop": 1884.32244,
+          "reason": "stop",
+          "ret": -0.00974135864563491
+        },
+        {
+          "entry_i": 1702,
+          "exit_i": 1704,
+          "side": "SHORT",
+          "entry": 1899.04,
+          "exit": 1907.77,
+          "stop": 1929.9279999999999,
+          "reason": "invalidation",
+          "ret": -0.006097059566939121
+        },
+        {
+          "entry_i": 1708,
+          "exit_i": 1710,
+          "side": "SHORT",
+          "entry": 1897.43,
+          "exit": 1916.33,
+          "stop": 1922.4305099999997,
+          "reason": "invalidation",
+          "ret": -0.011460841770183748
+        },
+        {
+          "entry_i": 1713,
+          "exit_i": 1716,
+          "side": "SHORT",
+          "entry": 1914.19,
+          "exit": 1920.99,
+          "stop": 1944.9630199999997,
+          "reason": "invalidation",
+          "ret": -0.005052416426791493
+        },
+        {
+          "entry_i": 1718,
+          "exit_i": 1727,
+          "side": "SHORT",
+          "entry": 1920.41,
+          "exit": 1925.26,
+          "stop": 1944.9630199999997,
+          "reason": "invalidation",
+          "ret": -0.0040255023666821415
+        },
+        {
+          "entry_i": 1739,
+          "exit_i": 1742,
+          "side": "LONG",
+          "entry": 1891.7,
+          "exit": 1879.37,
+          "stop": 1851.7663799999998,
+          "reason": "invalidation",
+          "ret": -0.008017946820320474
+        },
+        {
+          "entry_i": 1745,
+          "exit_i": 1747,
+          "side": "LONG",
+          "entry": 1895.57,
+          "exit": 1880.01,
+          "stop": 1851.7663799999998,
+          "reason": "invalidation",
+          "ret": -0.009708612712798713
+        },
+        {
+          "entry_i": 1750,
+          "exit_i": 1757,
+          "side": "LONG",
+          "entry": 1883.0,
+          "exit": 1880.4,
+          "stop": 1861.8063300000001,
+          "reason": "opposite",
+          "ret": -0.0028807753584704763
+        },
+        {
+          "entry_i": 1763,
+          "exit_i": 1765,
+          "side": "LONG",
+          "entry": 1881.54,
+          "exit": 1884.06,
+          "stop": 1874.13399,
+          "reason": "invalidation",
+          "ret": -0.00016067157753746212
+        },
+        {
+          "entry_i": 1775,
+          "exit_i": 1776,
+          "side": "SHORT",
+          "entry": 1898.83,
+          "exit": 1920.6287099999997,
+          "stop": 1920.6287099999997,
+          "reason": "stop",
+          "ret": -0.012980074572236542
+        },
+        {
+          "entry_i": 1780,
+          "exit_i": 1781,
+          "side": "SHORT",
+          "entry": 1912.15,
+          "exit": 1925.1932699999998,
+          "stop": 1925.1932699999998,
+          "reason": "stop",
+          "ret": -0.00832125879245854
+        },
+        {
+          "entry_i": 1806,
+          "exit_i": 1806,
+          "side": "SHORT",
+          "entry": 2433.67,
+          "exit": 2447.15471,
+          "stop": 2447.15471,
+          "reason": "stop",
+          "ret": -0.007040895026852288
+        },
+        {
+          "entry_i": 1821,
+          "exit_i": 1833,
+          "side": "LONG",
+          "entry": 2442.65,
+          "exit": 2510.94,
+          "stop": 2422.30527,
+          "reason": "opposite",
+          "ret": 0.02645734141199113
+        },
+        {
+          "entry_i": 1841,
+          "exit_i": 1847,
+          "side": "LONG",
+          "entry": 2436.4,
+          "exit": 2455.28,
+          "stop": 2403.56403,
+          "reason": "invalidation",
+          "ret": 0.006249138072566053
+        },
+        {
+          "entry_i": 1849,
+          "exit_i": 1850,
+          "side": "LONG",
+          "entry": 2481.11,
+          "exit": 2403.56403,
+          "stop": 2403.56403,
+          "reason": "stop",
+          "ret": -0.032754547359851116
+        },
+        {
+          "entry_i": 1855,
+          "exit_i": 1861,
+          "side": "LONG",
+          "entry": 2467.68,
+          "exit": 2384.8927200000003,
+          "stop": 2384.8927200000003,
+          "reason": "stop",
+          "ret": -0.035048628671464466
+        },
+        {
+          "entry_i": 1872,
+          "exit_i": 1875,
+          "side": "LONG",
+          "entry": 2407.2,
+          "exit": 2507.5,
+          "stop": 2367.76986,
+          "reason": "opposite",
+          "ret": 0.04016666666666674
+        },
+        {
+          "entry_i": 1891,
+          "exit_i": 1892,
+          "side": "SHORT",
+          "entry": 2479.78,
+          "exit": 2490.42,
+          "stop": 2526.4939699999995,
+          "reason": "invalidation",
+          "ret": -0.005790703207542545
+        },
+        {
+          "entry_i": 1894,
+          "exit_i": 1898,
+          "side": "SHORT",
+          "entry": 2497.43,
+          "exit": 2495.98,
+          "stop": 2526.4939699999995,
+          "reason": "opposite",
+          "ret": -0.0009194031464346262
+        },
+        {
+          "entry_i": 1900,
+          "exit_i": 1900,
+          "side": "LONG",
+          "entry": 2486.05,
+          "exit": 2463.534,
+          "stop": 2463.534,
+          "reason": "stop",
+          "ret": -0.01055693771243543
+        },
+        {
+          "entry_i": 1908,
+          "exit_i": 1908,
+          "side": "SHORT",
+          "entry": 2501.01,
+          "exit": 2510.0475399999996,
+          "stop": 2510.0475399999996,
+          "reason": "stop",
+          "ret": -0.005113556123325922
+        },
+        {
+          "entry_i": 1912,
+          "exit_i": 1913,
+          "side": "LONG",
+          "entry": 2475.4,
+          "exit": 2472.96,
+          "stop": 2439.23832,
+          "reason": "invalidation",
+          "ret": -0.0024856992809242904
+        },
+        {
+          "entry_i": 1915,
+          "exit_i": 1915,
+          "side": "LONG",
+          "entry": 2441.54,
+          "exit": 2439.9975600000002,
+          "stop": 2439.9975600000002,
+          "reason": "stop",
+          "ret": -0.002131748814272859
+        },
+        {
+          "entry_i": 1919,
+          "exit_i": 1920,
+          "side": "LONG",
+          "entry": 2467.53,
+          "exit": 2458.27,
+          "stop": 2403.44415,
+          "reason": "invalidation",
+          "ret": -0.005252740594845982
+        },
+        {
+          "entry_i": 1923,
+          "exit_i": 1924,
+          "side": "SHORT",
+          "entry": 2516.44,
+          "exit": 2513.29,
+          "stop": 2668.6559899999993,
+          "reason": "invalidation",
+          "ret": -0.0002482316288088802
+        },
+        {
+          "entry_i": 1928,
+          "exit_i": 1930,
+          "side": "SHORT",
+          "entry": 2519.62,
+          "exit": 2520.81,
+          "stop": 2668.6559899999993,
+          "reason": "invalidation",
+          "ret": -0.0019722934410745783
+        },
+        {
+          "entry_i": 1932,
+          "exit_i": 1934,
+          "side": "SHORT",
+          "entry": 2481.06,
+          "exit": 2506.03,
+          "stop": 2548.55601,
+          "reason": "invalidation",
+          "ret": -0.011564246733251236
+        },
+        {
+          "entry_i": 1950,
+          "exit_i": 1951,
+          "side": "LONG",
+          "entry": 2422.6,
+          "exit": 2392.76,
+          "stop": 2356.52112,
+          "reason": "invalidation",
+          "ret": -0.013817345001238266
+        },
+        {
+          "entry_i": 1959,
+          "exit_i": 1965,
+          "side": "LONG",
+          "entry": 2447.28,
+          "exit": 2612.14,
+          "stop": 2366.74089,
+          "reason": "opposite",
+          "ret": 0.06586458435487558
+        },
+        {
+          "entry_i": 1972,
+          "exit_i": 1977,
+          "side": "SHORT",
+          "entry": 2588.03,
+          "exit": 2670.6679999999997,
+          "stop": 2670.6679999999997,
+          "reason": "stop",
+          "ret": -0.03343085087885361
+        },
+        {
+          "entry_i": 1996,
+          "exit_i": 2005,
+          "side": "SHORT",
+          "entry": 2676.76,
+          "exit": 2686.91,
+          "stop": 2791.7889999999998,
+          "reason": "opposite",
+          "ret": -0.0052918976673290135
+        },
+        {
+          "entry_i": 2016,
+          "exit_i": 2019,
+          "side": "LONG",
+          "entry": 2709.81,
+          "exit": 2662.12521,
+          "stop": 2662.12521,
+          "reason": "stop",
+          "ret": -0.019097097213457703
+        },
+        {
+          "entry_i": 2024,
+          "exit_i": 2025,
+          "side": "LONG",
+          "entry": 2673.49,
+          "exit": 2688.71,
+          "stop": 2633.05431,
+          "reason": "invalidation",
+          "ret": 0.004192933207156248
+        },
+        {
+          "entry_i": 2027,
+          "exit_i": 2029,
+          "side": "LONG",
+          "entry": 2712.35,
+          "exit": 2674.16,
+          "stop": 2633.05431,
+          "reason": "opposite",
+          "ret": -0.015580041292606093
+        },
+        {
+          "entry_i": 2034,
+          "exit_i": 2035,
+          "side": "LONG",
+          "entry": 2697.79,
+          "exit": 2683.73,
+          "stop": 2649.5478,
+          "reason": "invalidation",
+          "ret": -0.00671167325848193
+        },
+        {
+          "entry_i": 2038,
+          "exit_i": 2039,
+          "side": "LONG",
+          "entry": 2696.08,
+          "exit": 2677.47,
+          "stop": 2654.26308,
+          "reason": "invalidation",
+          "ret": -0.008402614165751774
+        },
+        {
+          "entry_i": 2042,
+          "exit_i": 2043,
+          "side": "SHORT",
+          "entry": 2700.7,
+          "exit": 2724.7219999999998,
+          "stop": 2724.7219999999998,
+          "reason": "stop",
+          "ret": -0.010394730995667732
+        },
+        {
+          "entry_i": 2047,
+          "exit_i": 2050,
+          "side": "SHORT",
+          "entry": 2697.36,
+          "exit": 2682.04,
+          "stop": 2724.7219999999998,
+          "reason": "opposite",
+          "ret": 0.004179627487617634
+        },
+        {
+          "entry_i": 2052,
+          "exit_i": 2059,
+          "side": "LONG",
+          "entry": 2684.54,
+          "exit": 2698.98,
+          "stop": 2648.22912,
+          "reason": "opposite",
+          "ret": 0.0038789476036862904
+        },
+        {
+          "entry_i": 2064,
+          "exit_i": 2068,
+          "side": "SHORT",
+          "entry": 2718.39,
+          "exit": 2699.33,
+          "stop": 2742.2394999999997,
+          "reason": "opposite",
+          "ret": 0.0055115031323687575
+        },
+        {
+          "entry_i": 2072,
+          "exit_i": 2073,
+          "side": "SHORT",
+          "entry": 2691.91,
+          "exit": 2697.49,
+          "stop": 2726.28356,
+          "reason": "invalidation",
+          "ret": -0.0035728776222087575
+        },
+        {
+          "entry_i": 2094,
+          "exit_i": 2107,
+          "side": "LONG",
+          "entry": 2497.43,
+          "exit": 2530.39,
+          "stop": 2471.86566,
+          "reason": "opposite",
+          "ret": 0.011697567098977681
+        },
+        {
+          "entry_i": 2112,
+          "exit_i": 2125,
+          "side": "SHORT",
+          "entry": 2500.85,
+          "exit": 2440.64,
+          "stop": 2582.45988,
+          "reason": "opposite",
+          "ret": 0.02257581422316418
+        },
+        {
+          "entry_i": 2136,
+          "exit_i": 2137,
+          "side": "LONG",
+          "entry": 2434.2,
+          "exit": 2410.56,
+          "stop": 2391.08652,
+          "reason": "invalidation",
+          "ret": -0.011211609563716972
+        },
+        {
+          "entry_i": 2140,
+          "exit_i": 2142,
+          "side": "LONG",
+          "entry": 2425.54,
+          "exit": 2391.08652,
+          "stop": 2391.08652,
+          "reason": "stop",
+          "ret": -0.015704457564088836
+        },
+        {
+          "entry_i": 2144,
+          "exit_i": 2145,
+          "side": "SHORT",
+          "entry": 2338.25,
+          "exit": 2410.31,
+          "stop": 2432.43,
+          "reason": "invalidation",
+          "ret": -0.0323179193841549
+        },
+        {
+          "entry_i": 2152,
+          "exit_i": 2153,
+          "side": "LONG",
+          "entry": 2415.01,
+          "exit": 2391.3,
+          "stop": 2382.7948199999996,
+          "reason": "invalidation",
+          "ret": -0.011317764729752709
+        },
+        {
+          "entry_i": 2166,
+          "exit_i": 2170,
+          "side": "SHORT",
+          "entry": 2400.33,
+          "exit": 2410.74,
+          "stop": 2529.1466199999995,
+          "reason": "opposite",
+          "ret": -0.005836903675744574
+        },
+        {
+          "entry_i": 2174,
+          "exit_i": 2174,
+          "side": "LONG",
+          "entry": 2394.52,
+          "exit": 2357.95968,
+          "stop": 2357.95968,
+          "reason": "stop",
+          "ret": -0.016768329352020495
+        },
+        {
+          "entry_i": 2187,
+          "exit_i": 2187,
+          "side": "LONG",
+          "entry": 2329.86,
+          "exit": 2315.682,
+          "stop": 2315.682,
+          "reason": "stop",
+          "ret": -0.007585344183770824
+        }
+      ]
+    },
+    "ICPUSDT": {
+      "last25_baseline": {
+        "n": 37,
+        "wr_pct": 45.9,
+        "mean_net_pct": -0.305,
+        "pf": 0.82,
+        "mdd_pct": 23.42
+      },
+      "last25_invalidation": {
+        "n": 43,
+        "wr_pct": 39.5,
+        "mean_net_pct": 0.082,
+        "pf": 1.075,
+        "mdd_pct": 11.86
+      },
+      "last25_exit_reasons": {
+        "invalidation": 16,
+        "opposite": 17,
+        "stop": 10,
+        "safety_timeout": 0
+      },
+      "full_baseline": {
+        "n": 111,
+        "wr_pct": 45.0,
+        "mean_net_pct": 0.238,
+        "pf": 1.149,
+        "mdd_pct": 31.37
+      },
+      "full_invalidation": {
+        "n": 162,
+        "wr_pct": 38.9,
+        "mean_net_pct": -0.153,
+        "pf": 0.864,
+        "mdd_pct": 45.72
+      },
+      "trades_last25_invalidation": [
+        {
+          "entry_i": 1644,
+          "exit_i": 1650,
+          "side": "SHORT",
+          "entry": 2.149,
+          "exit": 2.12,
+          "stop": 2.21221,
+          "reason": "opposite",
+          "ret": 0.01199464867380168
+        },
+        {
+          "entry_i": 1652,
+          "exit_i": 1652,
+          "side": "LONG",
+          "entry": 2.12,
+          "exit": 2.072925,
+          "stop": 2.072925,
+          "reason": "stop",
+          "ret": -0.02370518867924526
+        },
+        {
+          "entry_i": 1677,
+          "exit_i": 1679,
+          "side": "LONG",
+          "entry": 2.046,
+          "exit": 2.06,
+          "stop": 2.0369610000000002,
+          "reason": "opposite",
+          "ret": 0.005342619745845769
+        },
+        {
+          "entry_i": 1698,
+          "exit_i": 1705,
+          "side": "SHORT",
+          "entry": 2.082,
+          "exit": 2.088,
+          "stop": 2.1281259999999995,
+          "reason": "invalidation",
+          "ret": -0.004381844380403508
+        },
+        {
+          "entry_i": 1707,
+          "exit_i": 1710,
+          "side": "SHORT",
+          "entry": 2.074,
+          "exit": 2.091,
+          "stop": 2.107105,
+          "reason": "opposite",
+          "ret": -0.00969672131147553
+        },
+        {
+          "entry_i": 1725,
+          "exit_i": 1726,
+          "side": "SHORT",
+          "entry": 2.172,
+          "exit": 2.216,
+          "stop": 2.2292269999999994,
+          "reason": "invalidation",
+          "ret": -0.021757826887661202
+        },
+        {
+          "entry_i": 1737,
+          "exit_i": 1745,
+          "side": "SHORT",
+          "entry": 2.235,
+          "exit": 2.18,
+          "stop": 2.3993969999999996,
+          "reason": "opposite",
+          "ret": 0.02310850111856816
+        },
+        {
+          "entry_i": 1748,
+          "exit_i": 1749,
+          "side": "LONG",
+          "entry": 2.177,
+          "exit": 2.16,
+          "stop": 2.131866,
+          "reason": "invalidation",
+          "ret": -0.009308911345888791
+        },
+        {
+          "entry_i": 1756,
+          "exit_i": 1760,
+          "side": "LONG",
+          "entry": 2.279,
+          "exit": 2.231,
+          "stop": 2.155842,
+          "reason": "opposite",
+          "ret": -0.02256186924089515
+        },
+        {
+          "entry_i": 1771,
+          "exit_i": 1778,
+          "side": "SHORT",
+          "entry": 2.248,
+          "exit": 2.196,
+          "stop": 2.3263239999999996,
+          "reason": "opposite",
+          "ret": 0.02163167259786475
+        },
+        {
+          "entry_i": 1827,
+          "exit_i": 1828,
+          "side": "LONG",
+          "entry": 2.398,
+          "exit": 2.403,
+          "stop": 2.32767,
+          "reason": "invalidation",
+          "ret": 0.000585070892410279
+        },
+        {
+          "entry_i": 1837,
+          "exit_i": 1839,
+          "side": "LONG",
+          "entry": 2.354,
+          "exit": 2.424,
+          "stop": 2.319678,
+          "reason": "invalidation",
+          "ret": 0.028236618521665202
+        },
+        {
+          "entry_i": 1846,
+          "exit_i": 1852,
+          "side": "SHORT",
+          "entry": 2.411,
+          "exit": 2.424,
+          "stop": 2.5445419999999994,
+          "reason": "opposite",
+          "ret": -0.00689195354624633
+        },
+        {
+          "entry_i": 1854,
+          "exit_i": 1862,
+          "side": "LONG",
+          "entry": 2.377,
+          "exit": 2.48,
+          "stop": 2.319678,
+          "reason": "opposite",
+          "ret": 0.04183193100546917
+        },
+        {
+          "entry_i": 1868,
+          "exit_i": 1869,
+          "side": "SHORT",
+          "entry": 2.464,
+          "exit": 2.476,
+          "stop": 2.6005979999999997,
+          "reason": "invalidation",
+          "ret": -0.006370129870129913
+        },
+        {
+          "entry_i": 1884,
+          "exit_i": 1886,
+          "side": "SHORT",
+          "entry": 2.6,
+          "exit": 2.669,
+          "stop": 2.7207179999999997,
+          "reason": "invalidation",
+          "ret": -0.028038461538461623
+        },
+        {
+          "entry_i": 1891,
+          "exit_i": 1891,
+          "side": "SHORT",
+          "entry": 2.674,
+          "exit": 2.7357329999999997,
+          "stop": 2.7357329999999997,
+          "reason": "stop",
+          "ret": -0.024586387434554824
+        },
+        {
+          "entry_i": 1893,
+          "exit_i": 1893,
+          "side": "SHORT",
+          "entry": 2.721,
+          "exit": 2.8088059999999997,
+          "stop": 2.8088059999999997,
+          "reason": "stop",
+          "ret": -0.03376975376699737
+        },
+        {
+          "entry_i": 1904,
+          "exit_i": 1920,
+          "side": "SHORT",
+          "entry": 2.938,
+          "exit": 2.774,
+          "stop": 3.1421389999999993,
+          "reason": "opposite",
+          "ret": 0.05432028590878152
+        },
+        {
+          "entry_i": 1926,
+          "exit_i": 1929,
+          "side": "LONG",
+          "entry": 2.765,
+          "exit": 2.701296,
+          "stop": 2.701296,
+          "reason": "stop",
+          "ret": -0.02453942133815551
+        },
+        {
+          "entry_i": 1949,
+          "exit_i": 1950,
+          "side": "LONG",
+          "entry": 2.53,
+          "exit": 2.451,
+          "stop": 2.442555,
+          "reason": "invalidation",
+          "ret": -0.03272529644268768
+        },
+        {
+          "entry_i": 1957,
+          "exit_i": 1965,
+          "side": "LONG",
+          "entry": 2.628,
+          "exit": 2.872,
+          "stop": 2.433564,
+          "reason": "opposite",
+          "ret": 0.09134627092846254
+        },
+        {
+          "entry_i": 1970,
+          "exit_i": 1974,
+          "side": "SHORT",
+          "entry": 2.864,
+          "exit": 2.9079049999999995,
+          "stop": 2.9079049999999995,
+          "reason": "stop",
+          "ret": -0.016829958100558595
+        },
+        {
+          "entry_i": 1978,
+          "exit_i": 1978,
+          "side": "SHORT",
+          "entry": 2.931,
+          "exit": 2.9759729999999998,
+          "stop": 2.9759729999999998,
+          "reason": "stop",
+          "ret": -0.016843909928352108
+        },
+        {
+          "entry_i": 1990,
+          "exit_i": 1990,
+          "side": "SHORT",
+          "entry": 3.028,
+          "exit": 3.0780749999999997,
+          "stop": 3.0780749999999997,
+          "reason": "stop",
+          "ret": -0.018037318361955046
+        },
+        {
+          "entry_i": 1992,
+          "exit_i": 1994,
+          "side": "SHORT",
+          "entry": 2.86,
+          "exit": 2.925,
+          "stop": 3.0780749999999997,
+          "reason": "invalidation",
+          "ret": -0.02422727272727271
+        },
+        {
+          "entry_i": 2009,
+          "exit_i": 2009,
+          "side": "SHORT",
+          "entry": 3.201,
+          "exit": 3.277274,
+          "stop": 3.277274,
+          "reason": "stop",
+          "ret": -0.0253281786941581
+        },
+        {
+          "entry_i": 2011,
+          "exit_i": 2013,
+          "side": "SHORT",
+          "entry": 3.219,
+          "exit": 3.183,
+          "stop": 3.277274,
+          "reason": "invalidation",
+          "ret": 0.009683597390493905
+        },
+        {
+          "entry_i": 2016,
+          "exit_i": 2024,
+          "side": "SHORT",
+          "entry": 3.168,
+          "exit": 3.135,
+          "stop": 3.2892859999999997,
+          "reason": "opposite",
+          "ret": 0.008916666666666741
+        },
+        {
+          "entry_i": 2035,
+          "exit_i": 2037,
+          "side": "SHORT",
+          "entry": 3.402,
+          "exit": 3.422,
+          "stop": 3.557553999999999,
+          "reason": "invalidation",
+          "ret": -0.007378894767783693
+        },
+        {
+          "entry_i": 2045,
+          "exit_i": 2049,
+          "side": "SHORT",
+          "entry": 3.274,
+          "exit": 3.344,
+          "stop": 3.5615579999999993,
+          "reason": "opposite",
+          "ret": -0.022880574221136152
+        },
+        {
+          "entry_i": 2052,
+          "exit_i": 2055,
+          "side": "LONG",
+          "entry": 3.28,
+          "exit": 3.301,
+          "stop": 3.167829,
+          "reason": "invalidation",
+          "ret": 0.0049024390243904165
+        },
+        {
+          "entry_i": 2069,
+          "exit_i": 2078,
+          "side": "SHORT",
+          "entry": 3.464,
+          "exit": 3.242,
+          "stop": 3.6126089999999995,
+          "reason": "opposite",
+          "ret": 0.0625877598152425
+        },
+        {
+          "entry_i": 2091,
+          "exit_i": 2105,
+          "side": "LONG",
+          "entry": 3.103,
+          "exit": 3.406,
+          "stop": 2.9460509999999998,
+          "reason": "opposite",
+          "ret": 0.09614743796326125
+        },
+        {
+          "entry_i": 2109,
+          "exit_i": 2120,
+          "side": "SHORT",
+          "entry": 3.157,
+          "exit": 3.061,
+          "stop": 3.5535499999999995,
+          "reason": "opposite",
+          "ret": 0.028908615774469404
+        },
+        {
+          "entry_i": 2126,
+          "exit_i": 2134,
+          "side": "LONG",
+          "entry": 3.054,
+          "exit": 2.997,
+          "stop": 2.821176,
+          "reason": "invalidation",
+          "ret": -0.02016404715127701
+        },
+        {
+          "entry_i": 2137,
+          "exit_i": 2137,
+          "side": "LONG",
+          "entry": 2.997,
+          "exit": 2.958039,
+          "stop": 2.958039,
+          "reason": "stop",
+          "ret": -0.014500000000000011
+        },
+        {
+          "entry_i": 2144,
+          "exit_i": 2145,
+          "side": "LONG",
+          "entry": 2.899,
+          "exit": 2.885,
+          "stop": 2.866131,
+          "reason": "invalidation",
+          "ret": -0.006329251466022865
+        },
+        {
+          "entry_i": 2151,
+          "exit_i": 2152,
+          "side": "LONG",
+          "entry": 2.875,
+          "exit": 2.827,
+          "stop": 2.760237,
+          "reason": "invalidation",
+          "ret": -0.018195652173913113
+        },
+        {
+          "entry_i": 2154,
+          "exit_i": 2162,
+          "side": "LONG",
+          "entry": 2.868,
+          "exit": 2.89,
+          "stop": 2.760237,
+          "reason": "opposite",
+          "ret": 0.006170850767085069
+        },
+        {
+          "entry_i": 2165,
+          "exit_i": 2170,
+          "side": "SHORT",
+          "entry": 2.788,
+          "exit": 2.772,
+          "stop": 2.993991,
+          "reason": "opposite",
+          "ret": 0.004238880918220946
+        },
+        {
+          "entry_i": 2174,
+          "exit_i": 2175,
+          "side": "LONG",
+          "entry": 2.74,
+          "exit": 2.731,
+          "stop": 2.679318,
+          "reason": "invalidation",
+          "ret": -0.004784671532846839
+        },
+        {
+          "entry_i": 2184,
+          "exit_i": 2186,
+          "side": "LONG",
+          "entry": 2.638,
+          "exit": 2.586411,
+          "stop": 2.586411,
+          "reason": "stop",
+          "ret": -0.02105610310841538
+        }
+      ]
+    },
+    "HYPEUSDT": {
+      "last25_baseline": {
+        "n": 18,
+        "wr_pct": 33.3,
+        "mean_net_pct": -0.594,
+        "pf": 0.655,
+        "mdd_pct": 15.05
+      },
+      "last25_invalidation": {
+        "n": 25,
+        "wr_pct": 32.0,
+        "mean_net_pct": -0.326,
+        "pf": 0.723,
+        "mdd_pct": 13.76
+      },
+      "last25_exit_reasons": {
+        "invalidation": 13,
+        "opposite": 5,
+        "stop": 7,
+        "safety_timeout": 0
+      },
+      "full_baseline": {
+        "n": 54,
+        "wr_pct": 37.0,
+        "mean_net_pct": -0.444,
+        "pf": 0.754,
+        "mdd_pct": 28.25
+      },
+      "full_invalidation": {
+        "n": 76,
+        "wr_pct": 36.8,
+        "mean_net_pct": -0.183,
+        "pf": 0.843,
+        "mdd_pct": 29.04
+      },
+      "trades_last25_invalidation": [
+        {
+          "entry_i": 954,
+          "exit_i": 958,
+          "side": "SHORT",
+          "entry": 86.292,
+          "exit": 85.7,
+          "stop": 89.693604,
+          "reason": "opposite",
+          "ret": 0.005360427386084389
+        },
+        {
+          "entry_i": 972,
+          "exit_i": 973,
+          "side": "LONG",
+          "entry": 83.994,
+          "exit": 83.215,
+          "stop": 81.409509,
+          "reason": "invalidation",
+          "ret": -0.010774471986094212
+        },
+        {
+          "entry_i": 981,
+          "exit_i": 988,
+          "side": "LONG",
+          "entry": 81.976,
+          "exit": 79.644,
+          "stop": 78.05986200000001,
+          "reason": "invalidation",
+          "ret": -0.02994735044403235
+        },
+        {
+          "entry_i": 990,
+          "exit_i": 991,
+          "side": "LONG",
+          "entry": 78.991,
+          "exit": 78.255666,
+          "stop": 78.255666,
+          "reason": "stop",
+          "ret": -0.01080908584522283
+        },
+        {
+          "entry_i": 1010,
+          "exit_i": 1017,
+          "side": "LONG",
+          "entry": 79.281,
+          "exit": 82.579,
+          "stop": 75.07485000000001,
+          "reason": "opposite",
+          "ret": 0.040098869842711216
+        },
+        {
+          "entry_i": 1037,
+          "exit_i": 1039,
+          "side": "SHORT",
+          "entry": 93.748,
+          "exit": 94.69359899999999,
+          "stop": 94.69359899999999,
+          "reason": "stop",
+          "ret": -0.011586604514229602
+        },
+        {
+          "entry_i": 1052,
+          "exit_i": 1055,
+          "side": "SHORT",
+          "entry": 95.2,
+          "exit": 94.092,
+          "stop": 96.24915299999999,
+          "reason": "invalidation",
+          "ret": 0.0101386554621849
+        },
+        {
+          "entry_i": 1060,
+          "exit_i": 1061,
+          "side": "LONG",
+          "entry": 94.478,
+          "exit": 92.081,
+          "stop": 89.681229,
+          "reason": "invalidation",
+          "ret": -0.026870985837972816
+        },
+        {
+          "entry_i": 1063,
+          "exit_i": 1065,
+          "side": "LONG",
+          "entry": 92.961,
+          "exit": 90.821,
+          "stop": 89.681229,
+          "reason": "invalidation",
+          "ret": -0.024520406406987882
+        },
+        {
+          "entry_i": 1067,
+          "exit_i": 1071,
+          "side": "LONG",
+          "entry": 92.353,
+          "exit": 92.521,
+          "stop": 90.156753,
+          "reason": "invalidation",
+          "ret": 0.00031910712158783735
+        },
+        {
+          "entry_i": 1073,
+          "exit_i": 1078,
+          "side": "LONG",
+          "entry": 92.593,
+          "exit": 91.764,
+          "stop": 90.156753,
+          "reason": "invalidation",
+          "ret": -0.010453160606093413
+        },
+        {
+          "entry_i": 1093,
+          "exit_i": 1094,
+          "side": "LONG",
+          "entry": 86.095,
+          "exit": 84.674241,
+          "stop": 84.674241,
+          "reason": "stop",
+          "ret": -0.01800222428712478
+        },
+        {
+          "entry_i": 1108,
+          "exit_i": 1110,
+          "side": "SHORT",
+          "entry": 86.581,
+          "exit": 88.225,
+          "stop": 90.76066999999999,
+          "reason": "invalidation",
+          "ret": -0.020487999676603363
+        },
+        {
+          "entry_i": 1112,
+          "exit_i": 1117,
+          "side": "SHORT",
+          "entry": 87.92,
+          "exit": 90.025,
+          "stop": 91.642551,
+          "reason": "invalidation",
+          "ret": -0.025442220200181997
+        },
+        {
+          "entry_i": 1121,
+          "exit_i": 1121,
+          "side": "SHORT",
+          "entry": 90.565,
+          "exit": 91.04395299999999,
+          "stop": 91.04395299999999,
+          "reason": "stop",
+          "ret": -0.006788499972395444
+        },
+        {
+          "entry_i": 1131,
+          "exit_i": 1143,
+          "side": "SHORT",
+          "entry": 92.164,
+          "exit": 83.309,
+          "stop": 95.434339,
+          "reason": "opposite",
+          "ret": 0.09457872922182203
+        },
+        {
+          "entry_i": 1152,
+          "exit_i": 1166,
+          "side": "LONG",
+          "entry": 83.85,
+          "exit": 85.802,
+          "stop": 82.494423,
+          "reason": "opposite",
+          "ret": 0.0217796660703638
+        },
+        {
+          "entry_i": 1180,
+          "exit_i": 1181,
+          "side": "LONG",
+          "entry": 81.589,
+          "exit": 80.788,
+          "stop": 80.382537,
+          "reason": "invalidation",
+          "ret": -0.0113174999080759
+        },
+        {
+          "entry_i": 1185,
+          "exit_i": 1195,
+          "side": "LONG",
+          "entry": 81.508,
+          "exit": 80.107,
+          "stop": 78.003918,
+          "reason": "invalidation",
+          "ret": -0.0186884968346665
+        },
+        {
+          "entry_i": 1200,
+          "exit_i": 1200,
+          "side": "LONG",
+          "entry": 79.173,
+          "exit": 78.246675,
+          "stop": 78.246675,
+          "reason": "stop",
+          "ret": -0.013200011367511753
+        },
+        {
+          "entry_i": 1202,
+          "exit_i": 1203,
+          "side": "LONG",
+          "entry": 78.948,
+          "exit": 76.993929,
+          "stop": 76.993929,
+          "reason": "stop",
+          "ret": -0.026251367989056085
+        },
+        {
+          "entry_i": 1205,
+          "exit_i": 1206,
+          "side": "LONG",
+          "entry": 78.814,
+          "exit": 79.419,
+          "stop": 76.993929,
+          "reason": "invalidation",
+          "ret": 0.006176301164767807
+        },
+        {
+          "entry_i": 1213,
+          "exit_i": 1214,
+          "side": "SHORT",
+          "entry": 78.492,
+          "exit": 80.43635599999999,
+          "stop": 80.43635599999999,
+          "reason": "stop",
+          "ret": -0.02627139071497714
+        },
+        {
+          "entry_i": 1221,
+          "exit_i": 1225,
+          "side": "SHORT",
+          "entry": 81.398,
+          "exit": 78.421,
+          "stop": 82.38229999999999,
+          "reason": "invalidation",
+          "ret": 0.03507338018133116
+        },
+        {
+          "entry_i": 1227,
+          "exit_i": 1231,
+          "side": "SHORT",
+          "entry": 78.214,
+          "exit": 78.389,
+          "stop": 82.55447199999999,
+          "reason": "opposite",
+          "ret": -0.0037374510957117178
+        }
+      ]
+    }
+  }
+}
