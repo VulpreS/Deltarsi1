@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Deterministic and prior regression tests
-        run: python -m unittest -v test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence
+        run: python -m unittest -v test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence test_standalone_parity_audit test_portfolio_risk_audit
       - name: Cache-only portfolio experiment; no exchange access
         run: python -u causal_4h_portfolio_audit.py
       - name: Persist machine-readable audit
