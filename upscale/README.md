@@ -2,9 +2,14 @@
 
 ## Current position model: fixed margin, leverage at most 3
 
-Actions now runs `python -m upscale.margin_study --out reports/upscale_margin`.
+Actions now runs `python -m upscale.margin_study --days 30 --out reports/upscale_margin_30d`.
+The user now allows **30 calendar days total for both stages**. The comparison
+reruns the 14-day baseline on exactly the same eligible weekly start dates, with
+all sizing, entry/exit rules, costs and research safeguards unchanged. Prior
+14-day reports remain in their original folder. Reproduce the old horizon with
+`--days 14 --out reports/upscale_margin`.
 User constraints: margin 10–15% of account equity; leverage no greater than 3;
-stop no farther than 5% price movement; both challenge stages in 14 days.
+stop no farther than 5% price movement; both challenge stages in 30 days.
 Fixed experiment uses margin 10% / 15% and leverage 1 / 2 / 3 on the same
 trend20/40 baselines and 1h/4h cached BTC/ETH candles, both directions / long only.
 This changes sizing, not the already rejected entry/exit hypothesis.
