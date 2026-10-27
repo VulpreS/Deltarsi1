@@ -28,9 +28,22 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/true_wave_stop_audit.json
-          if ! git diff --cached --quiet; then
+          cp reports/true_wave_stop_audit.json "$RUNNER_TEMP/wave_audit.json"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP/wave_audit.json" reports/true_wave_stop_audit.json
+            git add reports/true_wave_stop_audit.json
+            if git diff --cached --quiet; then
+              echo "Report already current"
+              break
+            fi
             git commit -m "Record true causal DeltaRSI wave stop audit"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+            if git push origin HEAD:main; then
+              break
+            fi
+            if [ "$attempt" -eq 4 ]; then
+              echo "Report push failed after four safe retries" >&2
+              exit 1
+            fi
+          done
