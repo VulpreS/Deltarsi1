@@ -1,0 +1,620 @@
+{
+  "method": "Closed 4H DeltaRSI. LONG mediumR->weakR, SHORT newly weakB. Price range high-low / current close on last 12 or 24 completed 4H bars, thresholds 2.5%-12%; 4H ATR rank as comparison. Next 4H open fills. 3R TP, 2 ATR or prior 12-bar swing stop, stop-first, opposite signal or 24-bar timeout. 0.15% roundtrip cost, no funding. 50/25/25 per-asset chronological splits. Best 8 selected train+validation only; last 25% holdout. Note BTC trade journal already seen so this is not genuinely untouched research.",
+  "candidate_count": 108,
+  "qualified": 65,
+  "results": [
+    {
+      "rule": [
+        "range12_0.075",
+        -1,
+        "2atr",
+        "opposite"
+      ],
+      "train": {
+        "n": 55,
+        "wr": 47.3,
+        "avg_pct": 0.259,
+        "pf": 1.1,
+        "mdd_pct": 28.34
+      },
+      "validation": {
+        "n": 19,
+        "wr": 68.4,
+        "avg_pct": 2.926,
+        "pf": 4.183,
+        "mdd_pct": 10.33
+      },
+      "holdout": {
+        "n": 28,
+        "wr": 39.3,
+        "avg_pct": -1.116,
+        "pf": 0.593,
+        "mdd_pct": 38.36
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 1,
+          "wr": 100.0,
+          "avg_pct": 1.802,
+          "pf": null,
+          "mdd_pct": 0
+        },
+        "ETHUSDT": {
+          "n": 4,
+          "wr": 50.0,
+          "avg_pct": 0.539,
+          "pf": 1.538,
+          "mdd_pct": 3.49
+        },
+        "ICPUSDT": {
+          "n": 21,
+          "wr": 38.1,
+          "avg_pct": -1.22,
+          "pf": 0.594,
+          "mdd_pct": 38.03
+        },
+        "HYPEUSDT": {
+          "n": 2,
+          "wr": 0.0,
+          "avg_pct": -4.799,
+          "pf": 0.0,
+          "mdd_pct": 9.37
+        }
+      }
+    },
+    {
+      "rule": [
+        "range12_0.075",
+        -1,
+        "2atr",
+        "time"
+      ],
+      "train": {
+        "n": 55,
+        "wr": 47.3,
+        "avg_pct": 0.175,
+        "pf": 1.065,
+        "mdd_pct": 32.65
+      },
+      "validation": {
+        "n": 16,
+        "wr": 50.0,
+        "avg_pct": 2.825,
+        "pf": 2.873,
+        "mdd_pct": 8.96
+      },
+      "holdout": {
+        "n": 26,
+        "wr": 38.5,
+        "avg_pct": -1.451,
+        "pf": 0.544,
+        "mdd_pct": 45.05
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 1,
+          "wr": 100.0,
+          "avg_pct": 1.897,
+          "pf": null,
+          "mdd_pct": 0
+        },
+        "ETHUSDT": {
+          "n": 4,
+          "wr": 50.0,
+          "avg_pct": -0.018,
+          "pf": 0.991,
+          "mdd_pct": 4.61
+        },
+        "ICPUSDT": {
+          "n": 19,
+          "wr": 36.8,
+          "avg_pct": -1.576,
+          "pf": 0.54,
+          "mdd_pct": 44.67
+        },
+        "HYPEUSDT": {
+          "n": 2,
+          "wr": 0.0,
+          "avg_pct": -4.799,
+          "pf": 0.0,
+          "mdd_pct": 9.37
+        }
+      }
+    },
+    {
+      "rule": [
+        "atr_0.5",
+        -1,
+        "2atr",
+        "opposite"
+      ],
+      "train": {
+        "n": 56,
+        "wr": 53.6,
+        "avg_pct": 0.814,
+        "pf": 1.479,
+        "mdd_pct": 17.95
+      },
+      "validation": {
+        "n": 20,
+        "wr": 55.0,
+        "avg_pct": 1.551,
+        "pf": 2.326,
+        "mdd_pct": 9.06
+      },
+      "holdout": {
+        "n": 51,
+        "wr": 43.1,
+        "avg_pct": -0.815,
+        "pf": 0.581,
+        "mdd_pct": 38.42
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 11,
+          "wr": 36.4,
+          "avg_pct": -0.616,
+          "pf": 0.53,
+          "mdd_pct": 9.06
+        },
+        "ETHUSDT": {
+          "n": 12,
+          "wr": 41.7,
+          "avg_pct": -0.349,
+          "pf": 0.733,
+          "mdd_pct": 6.91
+        },
+        "ICPUSDT": {
+          "n": 22,
+          "wr": 45.5,
+          "avg_pct": -1.079,
+          "pf": 0.571,
+          "mdd_pct": 28.4
+        },
+        "HYPEUSDT": {
+          "n": 6,
+          "wr": 50.0,
+          "avg_pct": -1.144,
+          "pf": 0.502,
+          "mdd_pct": 11.24
+        }
+      }
+    },
+    {
+      "rule": [
+        "range12_0.05",
+        -1,
+        "2atr",
+        "opposite"
+      ],
+      "train": {
+        "n": 90,
+        "wr": 48.9,
+        "avg_pct": 0.292,
+        "pf": 1.14,
+        "mdd_pct": 28.34
+      },
+      "validation": {
+        "n": 39,
+        "wr": 61.5,
+        "avg_pct": 1.44,
+        "pf": 2.241,
+        "mdd_pct": 12.87
+      },
+      "holdout": {
+        "n": 51,
+        "wr": 49.0,
+        "avg_pct": -0.394,
+        "pf": 0.813,
+        "mdd_pct": 42.18
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 5,
+          "wr": 40.0,
+          "avg_pct": -0.913,
+          "pf": 0.497,
+          "mdd_pct": 6.44
+        },
+        "ETHUSDT": {
+          "n": 11,
+          "wr": 63.6,
+          "avg_pct": 0.579,
+          "pf": 1.799,
+          "mdd_pct": 3.94
+        },
+        "ICPUSDT": {
+          "n": 25,
+          "wr": 40.0,
+          "avg_pct": -0.919,
+          "pf": 0.681,
+          "mdd_pct": 39.81
+        },
+        "HYPEUSDT": {
+          "n": 10,
+          "wr": 60.0,
+          "avg_pct": 0.111,
+          "pf": 1.061,
+          "mdd_pct": 12.75
+        }
+      }
+    },
+    {
+      "rule": [
+        "range24_0.08",
+        -1,
+        "2atr",
+        "opposite"
+      ],
+      "train": {
+        "n": 66,
+        "wr": 54.5,
+        "avg_pct": 0.569,
+        "pf": 1.26,
+        "mdd_pct": 28.34
+      },
+      "validation": {
+        "n": 30,
+        "wr": 53.3,
+        "avg_pct": 1.472,
+        "pf": 2.182,
+        "mdd_pct": 10.38
+      },
+      "holdout": {
+        "n": 40,
+        "wr": 40.0,
+        "avg_pct": -0.8,
+        "pf": 0.675,
+        "mdd_pct": 44.02
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 2,
+          "wr": 50.0,
+          "avg_pct": -0.775,
+          "pf": 0.538,
+          "mdd_pct": 3.35
+        },
+        "ETHUSDT": {
+          "n": 5,
+          "wr": 40.0,
+          "avg_pct": 0.314,
+          "pf": 1.342,
+          "mdd_pct": 3.49
+        },
+        "ICPUSDT": {
+          "n": 23,
+          "wr": 34.8,
+          "avg_pct": -1.271,
+          "pf": 0.594,
+          "mdd_pct": 43.39
+        },
+        "HYPEUSDT": {
+          "n": 10,
+          "wr": 50.0,
+          "avg_pct": -0.281,
+          "pf": 0.848,
+          "mdd_pct": 12.75
+        }
+      }
+    },
+    {
+      "rule": [
+        "range12_0.05",
+        -1,
+        "2atr",
+        "time"
+      ],
+      "train": {
+        "n": 87,
+        "wr": 50.6,
+        "avg_pct": 0.444,
+        "pf": 1.205,
+        "mdd_pct": 30.89
+      },
+      "validation": {
+        "n": 35,
+        "wr": 51.4,
+        "avg_pct": 1.558,
+        "pf": 2.036,
+        "mdd_pct": 17.42
+      },
+      "holdout": {
+        "n": 46,
+        "wr": 47.8,
+        "avg_pct": -0.296,
+        "pf": 0.876,
+        "mdd_pct": 47.58
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 5,
+          "wr": 40.0,
+          "avg_pct": -0.881,
+          "pf": 0.515,
+          "mdd_pct": 6.44
+        },
+        "ETHUSDT": {
+          "n": 11,
+          "wr": 63.6,
+          "avg_pct": 0.401,
+          "pf": 1.303,
+          "mdd_pct": 6.09
+        },
+        "ICPUSDT": {
+          "n": 22,
+          "wr": 36.4,
+          "avg_pct": -1.356,
+          "pf": 0.589,
+          "mdd_pct": 47.13
+        },
+        "HYPEUSDT": {
+          "n": 8,
+          "wr": 62.5,
+          "avg_pct": 2.022,
+          "pf": 2.173,
+          "mdd_pct": 11.46
+        }
+      }
+    },
+    {
+      "rule": [
+        "range12_0.075",
+        -1,
+        "swing12",
+        "opposite"
+      ],
+      "train": {
+        "n": 62,
+        "wr": 43.5,
+        "avg_pct": 0.655,
+        "pf": 1.373,
+        "mdd_pct": 18.66
+      },
+      "validation": {
+        "n": 22,
+        "wr": 63.6,
+        "avg_pct": 1.34,
+        "pf": 1.93,
+        "mdd_pct": 20.71
+      },
+      "holdout": {
+        "n": 30,
+        "wr": 40.0,
+        "avg_pct": -0.59,
+        "pf": 0.704,
+        "mdd_pct": 30.2
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 1,
+          "wr": 100.0,
+          "avg_pct": 1.802,
+          "pf": null,
+          "mdd_pct": 0
+        },
+        "ETHUSDT": {
+          "n": 5,
+          "wr": 40.0,
+          "avg_pct": 0.236,
+          "pf": 1.22,
+          "mdd_pct": 4.8
+        },
+        "ICPUSDT": {
+          "n": 22,
+          "wr": 40.9,
+          "avg_pct": -0.718,
+          "pf": 0.681,
+          "mdd_pct": 29.13
+        },
+        "HYPEUSDT": {
+          "n": 2,
+          "wr": 0.0,
+          "avg_pct": -2.442,
+          "pf": 0.0,
+          "mdd_pct": 4.84
+        }
+      }
+    },
+    {
+      "rule": [
+        "atr_0.5",
+        -1,
+        "2atr",
+        "time"
+      ],
+      "train": {
+        "n": 55,
+        "wr": 52.7,
+        "avg_pct": 0.69,
+        "pf": 1.356,
+        "mdd_pct": 29.63
+      },
+      "validation": {
+        "n": 19,
+        "wr": 42.1,
+        "avg_pct": 1.292,
+        "pf": 1.93,
+        "mdd_pct": 9.95
+      },
+      "holdout": {
+        "n": 46,
+        "wr": 45.7,
+        "avg_pct": -1.01,
+        "pf": 0.555,
+        "mdd_pct": 45.88
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 11,
+          "wr": 45.5,
+          "avg_pct": -0.4,
+          "pf": 0.724,
+          "mdd_pct": 11.11
+        },
+        "ETHUSDT": {
+          "n": 11,
+          "wr": 54.5,
+          "avg_pct": -0.221,
+          "pf": 0.862,
+          "mdd_pct": 7.24
+        },
+        "ICPUSDT": {
+          "n": 20,
+          "wr": 40.0,
+          "avg_pct": -2.007,
+          "pf": 0.347,
+          "mdd_pct": 40.71
+        },
+        "HYPEUSDT": {
+          "n": 4,
+          "wr": 50.0,
+          "avg_pct": 0.125,
+          "pf": 1.053,
+          "mdd_pct": 9.25
+        }
+      }
+    },
+    {
+      "rule": [
+        "none",
+        0,
+        "2atr",
+        "time"
+      ],
+      "train": null,
+      "validation": null,
+      "holdout": {
+        "n": 94,
+        "wr": 35.1,
+        "avg_pct": -1.034,
+        "pf": 0.543,
+        "mdd_pct": 66.64
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 25,
+          "wr": 44.0,
+          "avg_pct": -0.018,
+          "pf": 0.983,
+          "mdd_pct": 9.86
+        },
+        "ETHUSDT": {
+          "n": 26,
+          "wr": 34.6,
+          "avg_pct": -0.492,
+          "pf": 0.705,
+          "mdd_pct": 18.74
+        },
+        "ICPUSDT": {
+          "n": 29,
+          "wr": 27.6,
+          "avg_pct": -2.408,
+          "pf": 0.344,
+          "mdd_pct": 55.75
+        },
+        "HYPEUSDT": {
+          "n": 14,
+          "wr": 35.7,
+          "avg_pct": -1.008,
+          "pf": 0.615,
+          "mdd_pct": 21.82
+        }
+      }
+    },
+    {
+      "rule": [
+        "none",
+        0,
+        "2atr",
+        "opposite"
+      ],
+      "train": null,
+      "validation": null,
+      "holdout": {
+        "n": 126,
+        "wr": 44.4,
+        "avg_pct": -0.218,
+        "pf": 0.853,
+        "mdd_pct": 43.77
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 34,
+          "wr": 38.2,
+          "avg_pct": -0.133,
+          "pf": 0.855,
+          "mdd_pct": 14.99
+        },
+        "ETHUSDT": {
+          "n": 37,
+          "wr": 43.2,
+          "avg_pct": -0.01,
+          "pf": 0.99,
+          "mdd_pct": 12.37
+        },
+        "ICPUSDT": {
+          "n": 38,
+          "wr": 47.4,
+          "avg_pct": -0.418,
+          "pf": 0.812,
+          "mdd_pct": 28.04
+        },
+        "HYPEUSDT": {
+          "n": 17,
+          "wr": 52.9,
+          "avg_pct": -0.397,
+          "pf": 0.803,
+          "mdd_pct": 22.72
+        }
+      }
+    },
+    {
+      "rule": [
+        "range12_0.05",
+        0,
+        "2atr",
+        "opposite"
+      ],
+      "train": null,
+      "validation": null,
+      "holdout": {
+        "n": 75,
+        "wr": 45.3,
+        "avg_pct": -0.43,
+        "pf": 0.786,
+        "mdd_pct": 43.77
+      },
+      "holdout_by_asset": {
+        "BTCUSDT": {
+          "n": 7,
+          "wr": 28.6,
+          "avg_pct": -0.813,
+          "pf": 0.442,
+          "mdd_pct": 6.96
+        },
+        "ETHUSDT": {
+          "n": 17,
+          "wr": 47.1,
+          "avg_pct": 0.284,
+          "pf": 1.246,
+          "mdd_pct": 12.58
+        },
+        "ICPUSDT": {
+          "n": 34,
+          "wr": 47.1,
+          "avg_pct": -0.46,
+          "pf": 0.811,
+          "mdd_pct": 26.98
+        },
+        "HYPEUSDT": {
+          "n": 17,
+          "wr": 47.1,
+          "avg_pct": -0.926,
+          "pf": 0.59,
+          "mdd_pct": 22.72
+        }
+      }
+    }
+  ]
+}
