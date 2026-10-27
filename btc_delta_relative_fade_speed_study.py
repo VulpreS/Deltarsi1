@@ -36,7 +36,9 @@ H = 3_600_000
 FEE = 0.0015
 OUT = Path("reports/btc_delta_relative_fade_speed_study.json")
 
-# Small, predeclared nested models; no post-hoc threshold optimization.
+# Exploratory fixed model comparisons on previously inspected BTC history.
+# Historical-percentile variants were added after initial results were inspected;
+# they are NOT independent confirmatory out-of-sample tests.
 MODELS = {
     "magnitude_only": ["delta_prev_abs"],
     "historical_percentile_only": ["prior_delta_pctile"],
@@ -335,7 +337,7 @@ def main():
         "The only eligible signals are completed 4H medium-to-weak COLOR transitions, not every intrabar signal the trader saw.",
         "Selection labels inferred from journal, not a verified exhaustive record of opportunities. Signals after last journal entry right-censored.",
         "Main universe excludes unselected signals during documented open manual BTC positions. Sensitivity includes them.",
-        "Previously explored BTC history means chronological checks are NOT untouched independent validation.",
+        "Previously explored BTC history means chronological checks are NOT untouched independent validation. Percentile model variants were added after inspection of the initial results, so their improvements are exploratory.",
         "Features use data available at 4H signal close, without subsequent candles.",
         "Candidate futures can overlap and 12/24/48H returns omit structural stops, user exits, funding. Costs 0.15% roundtrip only.",
         "Manual PnL self-reported and journal reconstruction may be inconsistent with executable fills.",
