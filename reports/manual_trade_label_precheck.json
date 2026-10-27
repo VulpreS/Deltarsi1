@@ -387,6 +387,25 @@
     "Four flagged records excluded from clean summary; suspect prices and dates are never silently fixed.",
     "One or more 1H price containment checks can be false even if discretionary chart mark is valid; no execution claims.",
     "Sequential 0.25% stop-risk DD assumes no overlap and exact annotated fills, not an executable portfolio.",
-    "All inspected historical windows are contaminated; no independent OOS."
-  ]
+    "All inspected historical windows are contaminated; no independent OOS.",
+    "Any pre-first-exit stop touch under a static active SL conflicts with annotated profitable exits, but discretionary stop changes and timestamp ambiguity cannot be excluded."
+  ],
+  "stop_chronology_precheck": {
+    "n": 31,
+    "stop_before_first": 1,
+    "exit1_outside_marked_and_previous_hour": 8,
+    "exit2_outside_marked_and_previous_hour": 0,
+    "entry_outside_marked_hour": 4,
+    "by_side": {
+      "LONG": {
+        "n": 16,
+        "stop_before_first": 1
+      },
+      "SHORT": {
+        "n": 15,
+        "stop_before_first": 0
+      }
+    },
+    "definition": "Stop touched on an hourly candle at least 1 hour AFTER annotated entry and strictly BEFORE annotated first exit timestamp, assuming original stop remained active; conservative falsification screen, not proof of execution."
+  }
 }
