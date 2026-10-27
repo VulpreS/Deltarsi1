@@ -1,6 +1,6 @@
 {
   "title": "42 manually annotated BTC trades: descriptive label and as-of 1H audit",
-  "generated_utc": "2026-10-27T10:00:31.487609+00:00",
+  "generated_utc": "2026-10-27T10:00:43.250462+00:00",
   "source_files": {
     "manual_labels": "data/manual_btc_trades_2025_2026.csv",
     "cached_btc_1h": "data/BTCUSDT_1h.csv"
