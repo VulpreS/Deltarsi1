@@ -1,0 +1,1699 @@
+{
+  "title": "Causal price-range volatility eligibility gates on frozen DeltaRSI turns",
+  "generated_utc": "2026-10-27T07:56:40.201857+00:00",
+  "fee_roundtrip": 0.0015,
+  "funding": "excluded by owner instruction",
+  "gates": {
+    "range6_pct": "prior 6 completed 4H high-low width / latest completed close >= TRAIN median",
+    "range24_pct": "prior 24 completed 4H high-low width / latest completed close >= TRAIN median",
+    "bb_width20": "4 * population stddev(last 20 completed 4H closes) / mean >= TRAIN median"
+  },
+  "thresholds": "per-symbol median of eligible train events ONLY; never selected on validation/diagnostic outcomes",
+  "split_cutoffs_utc": [
+    "2026-04-27T00:00:00+00:00",
+    "2026-07-27T06:00:00+00:00"
+  ],
+  "assets": {
+    "BTCUSDT": {
+      "source_sha256": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+      "split_method": "BTC/ETH/ICP aligned UTC cutoffs",
+      "n_hours": 8761,
+      "n_4h": 2189,
+      "first_utc": "2025-10-26T13:00:00+00:00",
+      "last_utc": "2026-10-26T13:00:00+00:00",
+      "n_frozen_turn_events": 255,
+      "train_only_thresholds": {
+        "range6_pct": 0.03371586676313752,
+        "range24_pct": 0.06881604391475363,
+        "bb_width20": 0.05281482401357608
+      },
+      "windows": {
+        "train": {
+          "start_utc": "2025-10-26T13:00:00+00:00",
+          "end_exclusive_utc": "2026-04-27T00:00:00+00:00",
+          "baseline": {
+            "n": 64,
+            "net_return_pct": 0.8177,
+            "pf": 1.1457,
+            "win_pct": 54.69,
+            "mean_R": 0.0518,
+            "closed_trade_dd_pct": 2.102,
+            "skips": {
+              "occupied_or_exit_bar": 61
+            }
+          },
+          "n_candidates": 125,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.03371587,
+              "admitted_candidates": 63,
+              "rejected_candidates": 62,
+              "independently_scheduled": {
+                "n": 40,
+                "net_return_pct": 2.4331,
+                "pf": 1.8641,
+                "win_pct": 67.5,
+                "mean_R": 0.2414,
+                "closed_trade_dd_pct": 1.0099,
+                "skips": {
+                  "occupied_or_exit_bar": 23
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 63,
+                "win_pct": 65.08,
+                "mean_net_R": 0.27979,
+                "pf_R": 2.2347
+              },
+              "paired_opportunity_reject": {
+                "n": 62,
+                "win_pct": 48.39,
+                "mean_net_R": -0.03882,
+                "pf_R": 0.9017
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 28,
+                  "rejected": 30
+                },
+                "SHORT": {
+                  "admitted": 35,
+                  "rejected": 32
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.06881604,
+              "admitted_candidates": 63,
+              "rejected_candidates": 62,
+              "independently_scheduled": {
+                "n": 35,
+                "net_return_pct": 1.6416,
+                "pf": 1.7195,
+                "win_pct": 65.71,
+                "mean_R": 0.1869,
+                "closed_trade_dd_pct": 1.0291,
+                "skips": {
+                  "occupied_or_exit_bar": 28
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 63,
+                "win_pct": 66.67,
+                "mean_net_R": 0.23798,
+                "pf_R": 2.0
+              },
+              "paired_opportunity_reject": {
+                "n": 62,
+                "win_pct": 46.77,
+                "mean_net_R": 0.00366,
+                "pf_R": 1.0096
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 28,
+                  "rejected": 30
+                },
+                "SHORT": {
+                  "admitted": 35,
+                  "rejected": 32
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.05281482,
+              "admitted_candidates": 63,
+              "rejected_candidates": 62,
+              "independently_scheduled": {
+                "n": 37,
+                "net_return_pct": 1.5118,
+                "pf": 1.5816,
+                "win_pct": 59.46,
+                "mean_R": 0.1631,
+                "closed_trade_dd_pct": 1.0291,
+                "skips": {
+                  "occupied_or_exit_bar": 26
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 63,
+                "win_pct": 66.67,
+                "mean_net_R": 0.28185,
+                "pf_R": 2.2668
+              },
+              "paired_opportunity_reject": {
+                "n": 62,
+                "win_pct": 46.77,
+                "mean_net_R": -0.04092,
+                "pf_R": 0.8974
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 30,
+                  "rejected": 28
+                },
+                "SHORT": {
+                  "admitted": 33,
+                  "rejected": 34
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "start_utc": "2026-04-27T00:00:00+00:00",
+          "end_exclusive_utc": "2026-07-27T06:00:00+00:00",
+          "baseline": {
+            "n": 34,
+            "net_return_pct": 1.7529,
+            "pf": 1.695,
+            "win_pct": 67.65,
+            "mean_R": 0.2054,
+            "closed_trade_dd_pct": 0.6694,
+            "skips": {
+              "occupied_or_exit_bar": 28
+            }
+          },
+          "n_candidates": 62,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.03371587,
+              "admitted_candidates": 18,
+              "rejected_candidates": 44,
+              "independently_scheduled": {
+                "n": 14,
+                "net_return_pct": 0.2996,
+                "pf": 1.2787,
+                "win_pct": 64.29,
+                "mean_R": 0.0863,
+                "closed_trade_dd_pct": 0.5152,
+                "skips": {
+                  "occupied_or_exit_bar": 4
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 18,
+                "win_pct": 55.56,
+                "mean_net_R": -0.00552,
+                "pf_R": 0.9835
+              },
+              "paired_opportunity_reject": {
+                "n": 44,
+                "win_pct": 61.36,
+                "mean_net_R": 0.07604,
+                "pf_R": 1.2111
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 11,
+                  "rejected": 20
+                },
+                "SHORT": {
+                  "admitted": 7,
+                  "rejected": 24
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.06881604,
+              "admitted_candidates": 15,
+              "rejected_candidates": 47,
+              "independently_scheduled": {
+                "n": 10,
+                "net_return_pct": -0.9258,
+                "pf": 0.2361,
+                "win_pct": 40.0,
+                "mean_R": -0.3714,
+                "closed_trade_dd_pct": 1.009,
+                "skips": {
+                  "occupied_or_exit_bar": 5
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 15,
+                "win_pct": 46.67,
+                "mean_net_R": -0.26399,
+                "pf_R": 0.3589
+              },
+              "paired_opportunity_reject": {
+                "n": 47,
+                "win_pct": 63.83,
+                "mean_net_R": 0.15332,
+                "pf_R": 1.4592
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 10,
+                  "rejected": 21
+                },
+                "SHORT": {
+                  "admitted": 5,
+                  "rejected": 26
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.05281482,
+              "admitted_candidates": 20,
+              "rejected_candidates": 42,
+              "independently_scheduled": {
+                "n": 15,
+                "net_return_pct": -0.8001,
+                "pf": 0.5407,
+                "win_pct": 46.67,
+                "mean_R": -0.2134,
+                "closed_trade_dd_pct": 1.0825,
+                "skips": {
+                  "occupied_or_exit_bar": 5
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 20,
+                "win_pct": 55.0,
+                "mean_net_R": -0.13276,
+                "pf_R": 0.6691
+              },
+              "paired_opportunity_reject": {
+                "n": 42,
+                "win_pct": 61.9,
+                "mean_net_R": 0.14051,
+                "pf_R": 1.4263
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 10,
+                  "rejected": 21
+                },
+                "SHORT": {
+                  "admitted": 10,
+                  "rejected": 21
+                }
+              }
+            }
+          }
+        },
+        "inspected_diagnostic": {
+          "start_utc": "2026-07-27T06:00:00+00:00",
+          "end_exclusive_utc": "2026-10-26T14:00:00+00:00",
+          "baseline": {
+            "n": 39,
+            "net_return_pct": 1.53,
+            "pf": 1.5023,
+            "win_pct": 58.97,
+            "mean_R": 0.1567,
+            "closed_trade_dd_pct": 0.8495,
+            "skips": {
+              "occupied_or_exit_bar": 29
+            }
+          },
+          "n_candidates": 68,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.03371587,
+              "admitted_candidates": 14,
+              "rejected_candidates": 54,
+              "independently_scheduled": {
+                "n": 12,
+                "net_return_pct": 0.3461,
+                "pf": 1.4306,
+                "win_pct": 58.33,
+                "mean_R": 0.1159,
+                "closed_trade_dd_pct": 0.3847,
+                "skips": {
+                  "occupied_or_exit_bar": 2
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 14,
+                "win_pct": 50.0,
+                "mean_net_R": 0.0135,
+                "pf_R": 1.0429
+              },
+              "paired_opportunity_reject": {
+                "n": 54,
+                "win_pct": 48.15,
+                "mean_net_R": 0.01518,
+                "pf_R": 1.0382
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 5,
+                  "rejected": 34
+                },
+                "SHORT": {
+                  "admitted": 9,
+                  "rejected": 20
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.06881604,
+              "admitted_candidates": 8,
+              "rejected_candidates": 60,
+              "independently_scheduled": {
+                "n": 6,
+                "net_return_pct": -0.3057,
+                "pf": 0.3729,
+                "win_pct": 33.33,
+                "mean_R": -0.2037,
+                "closed_trade_dd_pct": 0.3401,
+                "skips": {
+                  "occupied_or_exit_bar": 2
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 8,
+                "win_pct": 37.5,
+                "mean_net_R": -0.20168,
+                "pf_R": 0.4642
+              },
+              "paired_opportunity_reject": {
+                "n": 60,
+                "win_pct": 50.0,
+                "mean_net_R": 0.04371,
+                "pf_R": 1.1147
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 2,
+                  "rejected": 37
+                },
+                "SHORT": {
+                  "admitted": 6,
+                  "rejected": 23
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.05281482,
+              "admitted_candidates": 9,
+              "rejected_candidates": 59,
+              "independently_scheduled": {
+                "n": 7,
+                "net_return_pct": 0.1159,
+                "pf": 1.2805,
+                "win_pct": 57.14,
+                "mean_R": 0.0667,
+                "closed_trade_dd_pct": 0.2613,
+                "skips": {
+                  "occupied_or_exit_bar": 2
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 9,
+                "win_pct": 44.44,
+                "mean_net_R": -0.08179,
+                "pf_R": 0.7422
+              },
+              "paired_opportunity_reject": {
+                "n": 59,
+                "win_pct": 49.15,
+                "mean_net_R": 0.02958,
+                "pf_R": 1.0758
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 2,
+                  "rejected": 37
+                },
+                "SHORT": {
+                  "admitted": 7,
+                  "rejected": 22
+                }
+              }
+            }
+          }
+        }
+      },
+      "labels": {
+        "n_clean_cached": 31,
+        "n_with_causal_features": 30,
+        "n_near_frozen_turn_same_side": 19,
+        "label_median": {
+          "range6_pct": 0.027981,
+          "range24_pct": 0.072786,
+          "bb_width20": 0.066063
+        },
+        "all_candidate_median": {
+          "range6_pct": 0.028204,
+          "range24_pct": 0.057938,
+          "bb_width20": 0.044184
+        },
+        "matched_candidate_median": {
+          "range6_pct": 0.027699,
+          "range24_pct": 0.059521,
+          "bb_width20": 0.056537
+        },
+        "notes": [
+          "The 42 BTC rows are the complete owner journal, but 4 have unreconciled transcription issues.",
+          "Near-match <=4h is a diagnostic, NOT proof of identical fill or timing.",
+          "This frozen-turn control family is narrower than all visual histogram color transitions."
+        ]
+      }
+    },
+    "ETHUSDT": {
+      "source_sha256": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
+      "split_method": "BTC/ETH/ICP aligned UTC cutoffs",
+      "n_hours": 8760,
+      "n_4h": 2190,
+      "first_utc": "2025-10-26T12:00:00+00:00",
+      "last_utc": "2026-10-26T11:00:00+00:00",
+      "n_frozen_turn_events": 233,
+      "train_only_thresholds": {
+        "range6_pct": 0.043674554018455256,
+        "range24_pct": 0.09764913016397972,
+        "bb_width20": 0.07626634485200237
+      },
+      "windows": {
+        "train": {
+          "start_utc": "2025-10-26T12:00:00+00:00",
+          "end_exclusive_utc": "2026-04-27T00:00:00+00:00",
+          "baseline": {
+            "n": 62,
+            "net_return_pct": 1.3514,
+            "pf": 1.2692,
+            "win_pct": 54.84,
+            "mean_R": 0.0875,
+            "closed_trade_dd_pct": 1.4224,
+            "skips": {
+              "occupied_or_exit_bar": 40
+            }
+          },
+          "n_candidates": 102,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.04367455,
+              "admitted_candidates": 51,
+              "rejected_candidates": 51,
+              "independently_scheduled": {
+                "n": 36,
+                "net_return_pct": 2.2546,
+                "pf": 1.9862,
+                "win_pct": 63.89,
+                "mean_R": 0.2486,
+                "closed_trade_dd_pct": 0.6248,
+                "skips": {
+                  "occupied_or_exit_bar": 15
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 51,
+                "win_pct": 62.75,
+                "mean_net_R": 0.30595,
+                "pf_R": 2.5731
+              },
+              "paired_opportunity_reject": {
+                "n": 51,
+                "win_pct": 47.06,
+                "mean_net_R": -0.0518,
+                "pf_R": 0.8782
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 25,
+                  "rejected": 25
+                },
+                "SHORT": {
+                  "admitted": 26,
+                  "rejected": 26
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.09764913,
+              "admitted_candidates": 51,
+              "rejected_candidates": 51,
+              "independently_scheduled": {
+                "n": 34,
+                "net_return_pct": 2.2321,
+                "pf": 2.0493,
+                "win_pct": 64.71,
+                "mean_R": 0.2606,
+                "closed_trade_dd_pct": 0.8131,
+                "skips": {
+                  "occupied_or_exit_bar": 17
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 51,
+                "win_pct": 64.71,
+                "mean_net_R": 0.25703,
+                "pf_R": 2.1015
+              },
+              "paired_opportunity_reject": {
+                "n": 51,
+                "win_pct": 45.1,
+                "mean_net_R": -0.00288,
+                "pf_R": 0.9925
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 27,
+                  "rejected": 23
+                },
+                "SHORT": {
+                  "admitted": 24,
+                  "rejected": 28
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.07626634,
+              "admitted_candidates": 51,
+              "rejected_candidates": 51,
+              "independently_scheduled": {
+                "n": 31,
+                "net_return_pct": 2.2245,
+                "pf": 2.3559,
+                "win_pct": 67.74,
+                "mean_R": 0.2847,
+                "closed_trade_dd_pct": 0.5011,
+                "skips": {
+                  "occupied_or_exit_bar": 20
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 51,
+                "win_pct": 66.67,
+                "mean_net_R": 0.29498,
+                "pf_R": 2.4437
+              },
+              "paired_opportunity_reject": {
+                "n": 51,
+                "win_pct": 43.14,
+                "mean_net_R": -0.04083,
+                "pf_R": 0.9017
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 23,
+                  "rejected": 27
+                },
+                "SHORT": {
+                  "admitted": 28,
+                  "rejected": 24
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "start_utc": "2026-04-27T00:00:00+00:00",
+          "end_exclusive_utc": "2026-07-27T06:00:00+00:00",
+          "baseline": {
+            "n": 34,
+            "net_return_pct": -0.0055,
+            "pf": 0.9981,
+            "win_pct": 55.88,
+            "mean_R": 0.0001,
+            "closed_trade_dd_pct": 0.9949,
+            "skips": {
+              "occupied_or_exit_bar": 27
+            }
+          },
+          "n_candidates": 61,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.04367455,
+              "admitted_candidates": 16,
+              "rejected_candidates": 45,
+              "independently_scheduled": {
+                "n": 12,
+                "net_return_pct": -0.5823,
+                "pf": 0.5363,
+                "win_pct": 41.67,
+                "mean_R": -0.1939,
+                "closed_trade_dd_pct": 0.7142,
+                "skips": {
+                  "occupied_or_exit_bar": 4
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 16,
+                "win_pct": 43.75,
+                "mean_net_R": -0.17774,
+                "pf_R": 0.5984
+              },
+              "paired_opportunity_reject": {
+                "n": 45,
+                "win_pct": 57.78,
+                "mean_net_R": 0.07464,
+                "pf_R": 1.2243
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 9,
+                  "rejected": 25
+                },
+                "SHORT": {
+                  "admitted": 7,
+                  "rejected": 20
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.09764913,
+              "admitted_candidates": 15,
+              "rejected_candidates": 46,
+              "independently_scheduled": {
+                "n": 10,
+                "net_return_pct": -0.088,
+                "pf": 0.8887,
+                "win_pct": 60.0,
+                "mean_R": -0.0345,
+                "closed_trade_dd_pct": 0.5336,
+                "skips": {
+                  "occupied_or_exit_bar": 5
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 15,
+                "win_pct": 60.0,
+                "mean_net_R": 0.00413,
+                "pf_R": 1.014
+              },
+              "paired_opportunity_reject": {
+                "n": 46,
+                "win_pct": 52.17,
+                "mean_net_R": 0.00985,
+                "pf_R": 1.0257
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 9,
+                  "rejected": 25
+                },
+                "SHORT": {
+                  "admitted": 6,
+                  "rejected": 21
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.07626634,
+              "admitted_candidates": 14,
+              "rejected_candidates": 47,
+              "independently_scheduled": {
+                "n": 10,
+                "net_return_pct": -0.0775,
+                "pf": 0.9019,
+                "win_pct": 60.0,
+                "mean_R": -0.0303,
+                "closed_trade_dd_pct": 0.5336,
+                "skips": {
+                  "occupied_or_exit_bar": 4
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 14,
+                "win_pct": 57.14,
+                "mean_net_R": -0.00156,
+                "pf_R": 0.9951
+              },
+              "paired_opportunity_reject": {
+                "n": 47,
+                "win_pct": 53.19,
+                "mean_net_R": 0.01142,
+                "pf_R": 1.0304
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 8,
+                  "rejected": 26
+                },
+                "SHORT": {
+                  "admitted": 6,
+                  "rejected": 21
+                }
+              }
+            }
+          }
+        },
+        "inspected_diagnostic": {
+          "start_utc": "2026-07-27T06:00:00+00:00",
+          "end_exclusive_utc": "2026-10-26T12:00:00+00:00",
+          "baseline": {
+            "n": 40,
+            "net_return_pct": 0.8892,
+            "pf": 1.3025,
+            "win_pct": 45.0,
+            "mean_R": 0.0893,
+            "closed_trade_dd_pct": 1.2915,
+            "skips": {
+              "occupied_or_exit_bar": 30
+            }
+          },
+          "n_candidates": 70,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.04367455,
+              "admitted_candidates": 21,
+              "rejected_candidates": 49,
+              "independently_scheduled": {
+                "n": 18,
+                "net_return_pct": 0.5348,
+                "pf": 1.5442,
+                "win_pct": 50.0,
+                "mean_R": 0.1191,
+                "closed_trade_dd_pct": 0.3907,
+                "skips": {
+                  "occupied_or_exit_bar": 3
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 21,
+                "win_pct": 47.62,
+                "mean_net_R": 0.04111,
+                "pf_R": 1.1439
+              },
+              "paired_opportunity_reject": {
+                "n": 49,
+                "win_pct": 36.73,
+                "mean_net_R": -0.11232,
+                "pf_R": 0.7179
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 10,
+                  "rejected": 25
+                },
+                "SHORT": {
+                  "admitted": 11,
+                  "rejected": 24
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.09764913,
+              "admitted_candidates": 14,
+              "rejected_candidates": 56,
+              "independently_scheduled": {
+                "n": 9,
+                "net_return_pct": 0.1991,
+                "pf": 1.3824,
+                "win_pct": 44.44,
+                "mean_R": 0.089,
+                "closed_trade_dd_pct": 0.323,
+                "skips": {
+                  "occupied_or_exit_bar": 5
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 14,
+                "win_pct": 42.86,
+                "mean_net_R": -0.02624,
+                "pf_R": 0.9296
+              },
+              "paired_opportunity_reject": {
+                "n": 56,
+                "win_pct": 39.29,
+                "mean_net_R": -0.0763,
+                "pf_R": 0.7894
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 7,
+                  "rejected": 28
+                },
+                "SHORT": {
+                  "admitted": 7,
+                  "rejected": 28
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.07626634,
+              "admitted_candidates": 8,
+              "rejected_candidates": 62,
+              "independently_scheduled": {
+                "n": 7,
+                "net_return_pct": 0.1298,
+                "pf": 1.2469,
+                "win_pct": 42.86,
+                "mean_R": 0.0749,
+                "closed_trade_dd_pct": 0.3702,
+                "skips": {
+                  "occupied_or_exit_bar": 1
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 8,
+                "win_pct": 37.5,
+                "mean_net_R": -0.06474,
+                "pf_R": 0.8354
+              },
+              "paired_opportunity_reject": {
+                "n": 62,
+                "win_pct": 40.32,
+                "mean_net_R": -0.06649,
+                "pf_R": 0.8156
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 3,
+                  "rejected": 32
+                },
+                "SHORT": {
+                  "admitted": 5,
+                  "rejected": 30
+                }
+              }
+            }
+          }
+        }
+      },
+      "labels": null
+    },
+    "ICPUSDT": {
+      "source_sha256": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b",
+      "split_method": "BTC/ETH/ICP aligned UTC cutoffs",
+      "n_hours": 8761,
+      "n_4h": 2189,
+      "first_utc": "2025-10-26T13:00:00+00:00",
+      "last_utc": "2026-10-26T13:00:00+00:00",
+      "n_frozen_turn_events": 274,
+      "train_only_thresholds": {
+        "range6_pct": 0.05749486652977418,
+        "range24_pct": 0.12845528455284547,
+        "bb_width20": 0.10028279763372296
+      },
+      "windows": {
+        "train": {
+          "start_utc": "2025-10-26T13:00:00+00:00",
+          "end_exclusive_utc": "2026-04-27T00:00:00+00:00",
+          "baseline": {
+            "n": 61,
+            "net_return_pct": -0.1242,
+            "pf": 0.9752,
+            "win_pct": 49.18,
+            "mean_R": -0.0074,
+            "closed_trade_dd_pct": 1.2603,
+            "skips": {
+              "occupied_or_exit_bar": 60
+            }
+          },
+          "n_candidates": 121,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.05749487,
+              "admitted_candidates": 61,
+              "rejected_candidates": 60,
+              "independently_scheduled": {
+                "n": 39,
+                "net_return_pct": -0.8394,
+                "pf": 0.7571,
+                "win_pct": 43.59,
+                "mean_R": -0.0858,
+                "closed_trade_dd_pct": 1.0773,
+                "skips": {
+                  "occupied_or_exit_bar": 22
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 61,
+                "win_pct": 45.9,
+                "mean_net_R": -0.00694,
+                "pf_R": 0.9754
+              },
+              "paired_opportunity_reject": {
+                "n": 60,
+                "win_pct": 58.33,
+                "mean_net_R": 0.04264,
+                "pf_R": 1.131
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 35,
+                  "rejected": 43
+                },
+                "SHORT": {
+                  "admitted": 26,
+                  "rejected": 17
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.12845528,
+              "admitted_candidates": 61,
+              "rejected_candidates": 60,
+              "independently_scheduled": {
+                "n": 36,
+                "net_return_pct": -1.0453,
+                "pf": 0.6828,
+                "win_pct": 41.67,
+                "mean_R": -0.1161,
+                "closed_trade_dd_pct": 1.2891,
+                "skips": {
+                  "occupied_or_exit_bar": 25
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 61,
+                "win_pct": 40.98,
+                "mean_net_R": -0.09122,
+                "pf_R": 0.7235
+              },
+              "paired_opportunity_reject": {
+                "n": 60,
+                "win_pct": 63.33,
+                "mean_net_R": 0.12832,
+                "pf_R": 1.464
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 37,
+                  "rejected": 41
+                },
+                "SHORT": {
+                  "admitted": 24,
+                  "rejected": 19
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.1002828,
+              "admitted_candidates": 61,
+              "rejected_candidates": 60,
+              "independently_scheduled": {
+                "n": 36,
+                "net_return_pct": 0.5471,
+                "pf": 1.2256,
+                "win_pct": 52.78,
+                "mean_R": 0.0612,
+                "closed_trade_dd_pct": 0.7349,
+                "skips": {
+                  "occupied_or_exit_bar": 25
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 61,
+                "win_pct": 49.18,
+                "mean_net_R": 0.02279,
+                "pf_R": 1.08
+              },
+              "paired_opportunity_reject": {
+                "n": 60,
+                "win_pct": 55.0,
+                "mean_net_R": 0.01241,
+                "pf_R": 1.0385
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 35,
+                  "rejected": 43
+                },
+                "SHORT": {
+                  "admitted": 26,
+                  "rejected": 17
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "start_utc": "2026-04-27T00:00:00+00:00",
+          "end_exclusive_utc": "2026-07-27T06:00:00+00:00",
+          "baseline": {
+            "n": 38,
+            "net_return_pct": 0.0978,
+            "pf": 1.0431,
+            "win_pct": 52.63,
+            "mean_R": 0.0108,
+            "closed_trade_dd_pct": 1.0594,
+            "skips": {
+              "occupied_or_exit_bar": 37
+            }
+          },
+          "n_candidates": 75,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.05749487,
+              "admitted_candidates": 32,
+              "rejected_candidates": 43,
+              "independently_scheduled": {
+                "n": 22,
+                "net_return_pct": -0.1801,
+                "pf": 0.862,
+                "win_pct": 54.55,
+                "mean_R": -0.0324,
+                "closed_trade_dd_pct": 0.8653,
+                "skips": {
+                  "occupied_or_exit_bar": 10
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 32,
+                "win_pct": 68.75,
+                "mean_net_R": 0.13179,
+                "pf_R": 1.8058
+              },
+              "paired_opportunity_reject": {
+                "n": 43,
+                "win_pct": 48.84,
+                "mean_net_R": 0.05274,
+                "pf_R": 1.1762
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 13,
+                  "rejected": 29
+                },
+                "SHORT": {
+                  "admitted": 19,
+                  "rejected": 14
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.12845528,
+              "admitted_candidates": 25,
+              "rejected_candidates": 50,
+              "independently_scheduled": {
+                "n": 15,
+                "net_return_pct": -0.1074,
+                "pf": 0.8703,
+                "win_pct": 53.33,
+                "mean_R": -0.0283,
+                "closed_trade_dd_pct": 0.6091,
+                "skips": {
+                  "occupied_or_exit_bar": 10
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 25,
+                "win_pct": 72.0,
+                "mean_net_R": 0.22032,
+                "pf_R": 2.6594
+              },
+              "paired_opportunity_reject": {
+                "n": 50,
+                "win_pct": 50.0,
+                "mean_net_R": 0.01954,
+                "pf_R": 1.0661
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 11,
+                  "rejected": 31
+                },
+                "SHORT": {
+                  "admitted": 14,
+                  "rejected": 19
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.1002828,
+              "admitted_candidates": 23,
+              "rejected_candidates": 52,
+              "independently_scheduled": {
+                "n": 13,
+                "net_return_pct": -0.3141,
+                "pf": 0.6602,
+                "win_pct": 38.46,
+                "mean_R": -0.0964,
+                "closed_trade_dd_pct": 0.6344,
+                "skips": {
+                  "occupied_or_exit_bar": 10
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 23,
+                "win_pct": 65.22,
+                "mean_net_R": 0.15984,
+                "pf_R": 1.9926
+              },
+              "paired_opportunity_reject": {
+                "n": 52,
+                "win_pct": 53.85,
+                "mean_net_R": 0.05401,
+                "pf_R": 1.195
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 10,
+                  "rejected": 32
+                },
+                "SHORT": {
+                  "admitted": 13,
+                  "rejected": 20
+                }
+              }
+            }
+          }
+        },
+        "inspected_diagnostic": {
+          "start_utc": "2026-07-27T06:00:00+00:00",
+          "end_exclusive_utc": "2026-10-26T14:00:00+00:00",
+          "baseline": {
+            "n": 39,
+            "net_return_pct": 1.0455,
+            "pf": 1.3738,
+            "win_pct": 46.15,
+            "mean_R": 0.1075,
+            "closed_trade_dd_pct": 0.9075,
+            "skips": {
+              "occupied_or_exit_bar": 39
+            }
+          },
+          "n_candidates": 78,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.05749487,
+              "admitted_candidates": 41,
+              "rejected_candidates": 37,
+              "independently_scheduled": {
+                "n": 25,
+                "net_return_pct": 1.2607,
+                "pf": 1.7755,
+                "win_pct": 56.0,
+                "mean_R": 0.2013,
+                "closed_trade_dd_pct": 0.8178,
+                "skips": {
+                  "occupied_or_exit_bar": 16
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 41,
+                "win_pct": 56.1,
+                "mean_net_R": 0.11632,
+                "pf_R": 1.3795
+              },
+              "paired_opportunity_reject": {
+                "n": 37,
+                "win_pct": 35.14,
+                "mean_net_R": -0.04852,
+                "pf_R": 0.8683
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 16,
+                  "rejected": 22
+                },
+                "SHORT": {
+                  "admitted": 25,
+                  "rejected": 15
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.12845528,
+              "admitted_candidates": 33,
+              "rejected_candidates": 45,
+              "independently_scheduled": {
+                "n": 21,
+                "net_return_pct": 0.3978,
+                "pf": 1.2582,
+                "win_pct": 47.62,
+                "mean_R": 0.0764,
+                "closed_trade_dd_pct": 0.643,
+                "skips": {
+                  "occupied_or_exit_bar": 12
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 33,
+                "win_pct": 51.52,
+                "mean_net_R": 0.087,
+                "pf_R": 1.2802
+              },
+              "paired_opportunity_reject": {
+                "n": 45,
+                "win_pct": 42.22,
+                "mean_net_R": 0.00229,
+                "pf_R": 1.0065
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 11,
+                  "rejected": 27
+                },
+                "SHORT": {
+                  "admitted": 22,
+                  "rejected": 18
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.1002828,
+              "admitted_candidates": 33,
+              "rejected_candidates": 45,
+              "independently_scheduled": {
+                "n": 22,
+                "net_return_pct": 1.0805,
+                "pf": 1.7316,
+                "win_pct": 59.09,
+                "mean_R": 0.1963,
+                "closed_trade_dd_pct": 0.5187,
+                "skips": {
+                  "occupied_or_exit_bar": 11
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 33,
+                "win_pct": 57.58,
+                "mean_net_R": 0.16505,
+                "pf_R": 1.5469
+              },
+              "paired_opportunity_reject": {
+                "n": 45,
+                "win_pct": 37.78,
+                "mean_net_R": -0.05495,
+                "pf_R": 0.8478
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 13,
+                  "rejected": 25
+                },
+                "SHORT": {
+                  "admitted": 20,
+                  "rejected": 20
+                }
+              }
+            }
+          }
+        }
+      },
+      "labels": null
+    },
+    "HYPEUSDT": {
+      "source_sha256": "7b1e66fbf6aee1f1407e877c7e1e4aaaeb8489009925438eadc53cf1b6c35bae",
+      "split_method": "HYPE-only 50/25/25 chronological negative control; NOT common calendar",
+      "n_hours": 5003,
+      "n_4h": 1250,
+      "first_utc": "2026-04-01T03:00:00+00:00",
+      "last_utc": "2026-10-26T13:00:00+00:00",
+      "n_frozen_turn_events": 125,
+      "train_only_thresholds": {
+        "range6_pct": 0.06116968698517299,
+        "range24_pct": 0.14665024002718893,
+        "bb_width20": 0.11965487108571339
+      },
+      "windows": {
+        "train": {
+          "start_utc": "2026-04-01T03:00:00+00:00",
+          "end_exclusive_utc": "2026-07-14T08:00:00+00:00",
+          "baseline": {
+            "n": 28,
+            "net_return_pct": -1.2538,
+            "pf": 0.5628,
+            "win_pct": 39.29,
+            "mean_R": -0.1795,
+            "closed_trade_dd_pct": 1.3634,
+            "skips": {
+              "occupied_or_exit_bar": 25
+            }
+          },
+          "n_candidates": 53,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.06116969,
+              "admitted_candidates": 27,
+              "rejected_candidates": 26,
+              "independently_scheduled": {
+                "n": 21,
+                "net_return_pct": -0.849,
+                "pf": 0.6015,
+                "win_pct": 42.86,
+                "mean_R": -0.1617,
+                "closed_trade_dd_pct": 1.1173,
+                "skips": {
+                  "occupied_or_exit_bar": 6
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 27,
+                "win_pct": 48.15,
+                "mean_net_R": -0.09124,
+                "pf_R": 0.7378
+              },
+              "paired_opportunity_reject": {
+                "n": 26,
+                "win_pct": 19.23,
+                "mean_net_R": -0.43512,
+                "pf_R": 0.2105
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 12,
+                  "rejected": 14
+                },
+                "SHORT": {
+                  "admitted": 15,
+                  "rejected": 12
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.14665024,
+              "admitted_candidates": 27,
+              "rejected_candidates": 26,
+              "independently_scheduled": {
+                "n": 18,
+                "net_return_pct": -0.4925,
+                "pf": 0.6987,
+                "win_pct": 38.89,
+                "mean_R": -0.109,
+                "closed_trade_dd_pct": 1.1173,
+                "skips": {
+                  "occupied_or_exit_bar": 9
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 27,
+                "win_pct": 44.44,
+                "mean_net_R": -0.13408,
+                "pf_R": 0.611
+              },
+              "paired_opportunity_reject": {
+                "n": 26,
+                "win_pct": 23.08,
+                "mean_net_R": -0.39063,
+                "pf_R": 0.2956
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 11,
+                  "rejected": 15
+                },
+                "SHORT": {
+                  "admitted": 16,
+                  "rejected": 11
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.11965487,
+              "admitted_candidates": 27,
+              "rejected_candidates": 26,
+              "independently_scheduled": {
+                "n": 19,
+                "net_return_pct": -0.1019,
+                "pf": 0.9356,
+                "win_pct": 47.37,
+                "mean_R": -0.0207,
+                "closed_trade_dd_pct": 1.0598,
+                "skips": {
+                  "occupied_or_exit_bar": 8
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 27,
+                "win_pct": 55.56,
+                "mean_net_R": 0.01052,
+                "pf_R": 1.0359
+              },
+              "paired_opportunity_reject": {
+                "n": 26,
+                "win_pct": 11.54,
+                "mean_net_R": -0.5408,
+                "pf_R": 0.1111
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 11,
+                  "rejected": 15
+                },
+                "SHORT": {
+                  "admitted": 16,
+                  "rejected": 11
+                }
+              }
+            }
+          }
+        },
+        "validation": {
+          "start_utc": "2026-07-14T08:00:00+00:00",
+          "end_exclusive_utc": "2026-09-04T11:00:00+00:00",
+          "baseline": {
+            "n": 22,
+            "net_return_pct": 1.0443,
+            "pf": 1.779,
+            "win_pct": 59.09,
+            "mean_R": 0.1897,
+            "closed_trade_dd_pct": 0.9506,
+            "skips": {
+              "occupied_or_exit_bar": 14
+            }
+          },
+          "n_candidates": 36,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.06116969,
+              "admitted_candidates": 12,
+              "rejected_candidates": 24,
+              "independently_scheduled": {
+                "n": 9,
+                "net_return_pct": -0.0805,
+                "pf": 0.833,
+                "win_pct": 44.44,
+                "mean_R": -0.0354,
+                "closed_trade_dd_pct": 0.4325,
+                "skips": {
+                  "occupied_or_exit_bar": 3
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 12,
+                "win_pct": 50.0,
+                "mean_net_R": 0.01567,
+                "pf_R": 1.0948
+              },
+              "paired_opportunity_reject": {
+                "n": 24,
+                "win_pct": 66.67,
+                "mean_net_R": 0.21344,
+                "pf_R": 1.7845
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 7,
+                  "rejected": 13
+                },
+                "SHORT": {
+                  "admitted": 5,
+                  "rejected": 11
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.14665024,
+              "admitted_candidates": 4,
+              "rejected_candidates": 32,
+              "independently_scheduled": {
+                "n": 3,
+                "net_return_pct": -0.2398,
+                "pf": 0.1402,
+                "win_pct": 33.33,
+                "mean_R": -0.3196,
+                "closed_trade_dd_pct": 0.2788,
+                "skips": {
+                  "occupied_or_exit_bar": 1
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 4,
+                "win_pct": 50.0,
+                "mean_net_R": -0.10074,
+                "pf_R": 0.6387
+              },
+              "paired_opportunity_reject": {
+                "n": 32,
+                "win_pct": 62.5,
+                "mean_net_R": 0.17855,
+                "pf_R": 1.7722
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 2,
+                  "rejected": 18
+                },
+                "SHORT": {
+                  "admitted": 2,
+                  "rejected": 14
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.11965487,
+              "admitted_candidates": 4,
+              "rejected_candidates": 32,
+              "independently_scheduled": {
+                "n": 3,
+                "net_return_pct": -0.2398,
+                "pf": 0.1402,
+                "win_pct": 33.33,
+                "mean_R": -0.3196,
+                "closed_trade_dd_pct": 0.2788,
+                "skips": {
+                  "occupied_or_exit_bar": 1
+                }
+              },
+              "paired_opportunity_pass": {
+                "n": 4,
+                "win_pct": 50.0,
+                "mean_net_R": -0.10074,
+                "pf_R": 0.6387
+              },
+              "paired_opportunity_reject": {
+                "n": 32,
+                "win_pct": 62.5,
+                "mean_net_R": 0.17855,
+                "pf_R": 1.7722
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 2,
+                  "rejected": 18
+                },
+                "SHORT": {
+                  "admitted": 2,
+                  "rejected": 14
+                }
+              }
+            }
+          }
+        },
+        "inspected_diagnostic": {
+          "start_utc": "2026-09-04T11:00:00+00:00",
+          "end_exclusive_utc": "2026-10-26T14:00:00+00:00",
+          "baseline": {
+            "n": 19,
+            "net_return_pct": -0.3695,
+            "pf": 0.7729,
+            "win_pct": 52.63,
+            "mean_R": -0.0772,
+            "closed_trade_dd_pct": 1.0003,
+            "skips": {
+              "occupied_or_exit_bar": 17
+            }
+          },
+          "n_candidates": 36,
+          "gates": {
+            "range6_pct": {
+              "threshold": 0.06116969,
+              "admitted_candidates": 5,
+              "rejected_candidates": 31,
+              "independently_scheduled": {
+                "n": 5,
+                "net_return_pct": -0.2517,
+                "pf": 0.5095,
+                "win_pct": 60.0,
+                "mean_R": -0.2009,
+                "closed_trade_dd_pct": 0.5124,
+                "skips": {}
+              },
+              "paired_opportunity_pass": {
+                "n": 5,
+                "win_pct": 60.0,
+                "mean_net_R": -0.20093,
+                "pf_R": 0.5105
+              },
+              "paired_opportunity_reject": {
+                "n": 31,
+                "win_pct": 48.39,
+                "mean_net_R": -0.01078,
+                "pf_R": 0.9665
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 2,
+                  "rejected": 19
+                },
+                "SHORT": {
+                  "admitted": 3,
+                  "rejected": 12
+                }
+              }
+            },
+            "range24_pct": {
+              "threshold": 0.14665024,
+              "admitted_candidates": 1,
+              "rejected_candidates": 35,
+              "independently_scheduled": {
+                "n": 1,
+                "net_return_pct": -0.1425,
+                "pf": 0.0,
+                "win_pct": 0.0,
+                "mean_R": -0.5699,
+                "closed_trade_dd_pct": 0.1425,
+                "skips": {}
+              },
+              "paired_opportunity_pass": {
+                "n": 1,
+                "win_pct": 0.0,
+                "mean_net_R": -0.56992,
+                "pf_R": 0.0
+              },
+              "paired_opportunity_reject": {
+                "n": 35,
+                "win_pct": 51.43,
+                "mean_net_R": -0.02197,
+                "pf_R": 0.9329
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 0,
+                  "rejected": 21
+                },
+                "SHORT": {
+                  "admitted": 1,
+                  "rejected": 14
+                }
+              }
+            },
+            "bb_width20": {
+              "threshold": 0.11965487,
+              "admitted_candidates": 2,
+              "rejected_candidates": 34,
+              "independently_scheduled": {
+                "n": 2,
+                "net_return_pct": 0.0007,
+                "pf": 1.0049,
+                "win_pct": 50.0,
+                "mean_R": 0.0018,
+                "closed_trade_dd_pct": 0.1425,
+                "skips": {}
+              },
+              "paired_opportunity_pass": {
+                "n": 2,
+                "win_pct": 50.0,
+                "mean_net_R": 0.00182,
+                "pf_R": 1.0064
+              },
+              "paired_opportunity_reject": {
+                "n": 34,
+                "win_pct": 50.0,
+                "mean_net_R": -0.03948,
+                "pf_R": 0.8828
+              },
+              "by_side": {
+                "LONG": {
+                  "admitted": 1,
+                  "rejected": 20
+                },
+                "SHORT": {
+                  "admitted": 1,
+                  "rejected": 14
+                }
+              }
+            }
+          }
+        }
+      },
+      "labels": null
+    }
+  },
+  "limitations": [
+    "ALL cached chronological periods have been previously inspected: NOT untouched OOS.",
+    "Frozen 4H turn is a narrow signal subset, not every discretionary histogram color transition.",
+    "Price-range features are computed from 4H candles closed by decision; no future candles.",
+    "Per-symbol medians calibrate eligibility without labels or outcome optimization; not portable fixed thresholds.",
+    "Filtered and baseline schedules have different admissions/reentries: do not interpret return differences as paired causal effects.",
+    "Matched opportunity summaries ignore scheduling/capital competition; portfolio DD is only closed-trade pseudo DD.",
+    "No direct venue provenance, no real fills, 1H OHLC stop-first and adverse-gap model.",
+    "HYPE begins after the shared train cutoff and uses its own separate 50/25/25 negative-control splits.",
+    "No cross-asset shared capital or hourly MTM drawdown. No real orders."
+  ]
+}
