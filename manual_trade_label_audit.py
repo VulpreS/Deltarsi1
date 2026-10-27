@@ -45,6 +45,14 @@ def within_hour(bar, price):
     return bar is not None and bar[3] - 1e-8 <= price <= bar[2] + 1e-8
 
 
+def stop_touched_before_first(raw, entry_ms, exit_ms, side, stop):
+    """Conservative static-SL falsification: omit ambiguous entry/exit hours."""
+    if entry_ms is None or exit_ms is None:
+        return False
+    return any((b[3] <= stop if side == 1 else b[2] >= stop)
+               for b in raw if entry_ms + H <= b[0] < exit_ms)
+
+
 def normalize(row):
     """Preserve raw labels; never fix questionable dates or prices automatically."""
     entry = float(row["entry"])
@@ -158,6 +166,13 @@ def main():
         if in_previous:funnel["entry_price_inside_prior_hour"]+=1
         if not in_current and not in_previous:
             funnel["entry_price_outside_both_hours"]+=1
+        if not r["issues"]:
+            if stop_touched_before_first(raw, ms, r["exit1_ms"], r["side"], r["sl"]):
+                funnel["clean_static_stop_touched_before_first_exit"]+=1
+            x1=bars_by_ms.get(r["exit1_ms"])
+            x1prev=bars_by_ms.get(r["exit1_ms"]-H)
+            if not within_hour(x1,r["exit1"]) and not within_hour(x1prev,r["exit1"]):
+                funnel["clean_exit1_price_outside_marked_and_prior_hour"]+=1
         if not r["issues"]:funnel["clean_label_inside_cache"]+=1
         if r["issues"]:funnel["quality_flagged_inside_cache"]+=1
         for mode, keys in event_keys.items():
@@ -206,6 +221,7 @@ def main():
        "No funding by owner instruction; no real orders, exchange access, or new candle downloads.",
        "OHLC containment in the marked/prior hour is only a plausibility check; not proof of actual fill or execution.",
        "Hourly OHLC cannot establish intrabar chronology or stop hit before annotated exits; no executable trade-PnL claim.",
+       "Static-stop breach test ignores entry and first-exit hours; a breach is a conflict only if the annotated initial SL remained active.",
        "Hypothetical sequential risk-sized DD/return assume no overlapping trades, perfect annotated fills and fixed 0.25% initial stop risk; NOT executable portfolio DD.",
        "All historical train/validation/diagnostic windows have been previously inspected and cannot support independent OOS claims.",
        "Exact candidate matches are an overlap census, NOT proof that the annotated discretionary rule is the automated DeltaRSI rule.",
