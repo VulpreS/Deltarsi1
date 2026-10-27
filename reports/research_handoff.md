@@ -1,3 +1,47 @@
+# DeltaRSI researcher handoff — cycle 14, 2026-10-27 ~08:00 MSK — priority shift to ENTRY/EXIT EDGE (#10/#11)
+
+**Decision: FIRST FULL PATTERN GRID COMPLETED; NO ROBUST NEW EDGE; NO LIVE ORDERS.** Manager issues #10/#11 (27 Oct priority change) supersede the previous funding-focused queue: prioritize finding selective high-win-rate net-positive entries/exits; keep **FEE=0.0015 fixed round-trip**, and **exclude funding** from this research. Read issues and prior handoff/directives before the experiment.
+
+## Hypothesis and preregistered search
+Hypothesis: **not every DeltaRSI fading histogram is a trade**. A combination of prior-wave exhaustion, 4H EMA trend context, 1H price rejection/sweep and causal structural stops might improve both net expectancy and win rate across train/validation, and retain performance in a third chronological diagnostic period.
+
+Exploratory grid of **324 rules**: three signal families (forming h1..3 fade; completed h4 fade; frozen completed 4H turn), six filters (none, follow/counter EMA50, follow EMA200, 1H wick rejection, 20h swing sweep), three stops (2.5 prior-known ATR, preceding 4H peak-bar extreme, extreme of six preceding completed 4H candles), two TP levels (1.5R/3R), and three timeouts (12/24/48h). Same fixed cost across all cells. Trend filters use **previous fully closed 4H** for every family; wick/sweep use **last completed 1H** at decision. Entry is next 1H open. No future candle used to decide; stop known at entry; stop-first when both touched; adverse gap fills via shared execution core. Stops and TP evaluated together as a pair.
+
+## Changes, code, reproducibility and evidence
+- New `pattern_edge_search.py`, `test_pattern_edge_search.py`, `.github/workflows/pattern-edge-search.yml`; machine-readable `reports/pattern_edge_search.json` contains **all 324 cells including failures**, per-symbol/side diagnostics for top 10, rejection counts, seed, exact fee and SHA256 for each cached source.
+- Reproduce: `python -m unittest -v test_pattern_edge_search test_causal_4h_parity test_completed_candles && python -u pattern_edge_search.py`. No exchange calls or orders.
+- **GitHub Actions run [40452491428](https://github.com/VulpreS/Deltarsi1/actions/runs/40452491428) SUCCESS, 25 tests OK**, grid run and report committed. Producer SHA `f91b7e654aae63146b5fe71e4f0fa5c61bc4f657`; new test SHA `c096640446e2881121b3997facc65e098a2fbde4` included in run. Earlier failed runs 40452432776/40452440167 were a temporary syntax error in the newly added bootstrap note, fixed before this successful run.
+- Inputs only committed `data/BTCUSDT_1h.csv`, `ETHUSDT_1h.csv`, `ICPUSDT_1h.csv`, `HYPEUSDT_1h.csv`; source hashes are in JSON and unchanged from prior cycles. Event counts BTC 32/35/255, ETH 35/32/233, ICP 40/32/274, HYPE 15/14/125 (forming/closed/turn). No candle downloads.
+- Each asset split 50/25/25 chronologically. Candidate rank uses **only first two periods**; last period is a **diagnostic already examined in prior research**, NOT untouched OOS. Gate: train >=30, validation >=12, positive mean net R and PF>1 in both. **72/324** pass. Top 10 selected without using the third period. Fixed fee = **15bp round-trip** including entry/exit execution notionals; no cost parameter optimization.
+
+## Results: pattern discovery, NOT independent validation
+| Rule | Train N / WR / mean R / PF | Validation N / WR / mean R / PF | Previously seen last period N / WR / mean R / PF |
+|---|---|---|---|
+| #1 turn + follow EMA50 + prior six-4H wave stop + TP3R/48h | 57 / 63.16% / +0.589 / 2.625 | 39 / 61.54% / +0.434 / 2.076 | **37 / 21.62% / −0.566 / 0.305** |
+| #2 same, TP1.5R/48h | 58 / 63.79% / +0.395 / 2.141 | 40 / 70.00% / +0.452 / 2.464 | **37 / 35.14% / −0.259 / 0.607** |
+| #3 same as #1, 24h | 62 / 58.06% / +0.410 / 2.366 | 43 / 53.49% / +0.387 / 2.470 | **41 / 21.95% / −0.483 / 0.313** |
+| #4 forming fade, no extra filter, ATR2.5, TP3R/48h | 46 / 63.04% / +0.321 / 2.103 | 23 / 60.87% / +0.302 / 2.434 | **32 / 34.38% / −0.152 / 0.656** |
+| Reference 4H turn, no filter, ATR2.5, TP3R/48h | 198 / 53.03% / +0.081 / 1.253 | 122 / 59.02% / +0.078 / 1.260 | **121 / 50.41% / +0.067 / 1.229** |
+
+**All 10/10 top-ranked rules have negative mean R and PF<1 in the previously inspected third period.** Of 72 train/validation-qualified configurations, 13 have positive last-period expectancy and PF>1, but selecting those 13 after inspecting last-period outcomes would be post-hoc overfitting. The unfiltered reference remains marginally positive across three reused periods, but HYPE is negative in its last period (19 trades, −0.085R, PF0.753), and this reference is not a shared-capital portfolio or an independently validated edge.
+
+For #1, last-period LONG 24 trades/20.83% WR/−0.572R, SHORT 13/23.08% WR/−0.554R. Last-period per-asset mean R: BTC −0.190 (N10), ETH −0.690 (N15), ICP −0.485 (N6), HYPE −0.961 (N6). Its exploratory 30-calendar-day block bootstrap last-period mean R 95% interval is [−0.951, −0.342] with **only four effective blocks**; NOT selection-adjusted, NOT independent. Top-10 full block CIs and per-asset/side diagnostics are in JSON.
+
+## Limitations / risks / failed hypotheses
+1. **Cross-regime failure:** the apparently strongest EMA50 + wave-stop combination collapses in the latest reused segment on both sides and all four assets. Strong historical train/validation WR alone is not a reliable edge.
+2. **Data snooping:** all three historical periods were already examined by earlier studies. Even the nominal last 25% is contaminated. The bootstrap interval is conditional on the selected rule and only 4 last-period blocks; do not claim out-of-sample significance.
+3. **Execution model:** per-symbol sequential non-overlap, 0.25%-risk-normalized R-based pseudo DD, not shared-capital hourly mark-to-market DD; no cross-symbol competition or venue fills. Historical `mean_net_pct` is per-notional price return, NOT portfolio return. Price stop `prior_wave6x4h` is a fixed **six-bar proxy**, not the entire actual DeltaRSI wave. Structural stops can be rejected for geometry.
+4. No user-expanded labeled trade CSV yet; five annotated chart cases are not independent wins or exact fill timestamps. No real orders.
+
+## Conclusion and concrete manager questions / next cycle
+1. **Reject promotion of all 10 top rules**: none survives even the reused diagnostic segment. Do not re-rank using that segment; retain the unfiltered 4H turn as a descriptive control and mark all selected rules exploratory.
+2. Next prioritize **regime shift analysis** (why trend-following wave stops collapse: pre-entry trend strength, long/short asymmetry, trend transitions, stop distance and 1H price structure), using a *predeclared* small feature ablation. Investigate **net-positive high-WR regimes**, not funding/accounting.
+3. Prepare CSV importer `symbol,side,timestamp_MSK,entry,exit,stop,notes,confidence` for incoming user-marked trades. Compare causal features at each annotated decision and all losing/rejected controls, with explicit uncertainty in timestamps; do NOT tune solely to five marked wins.
+4. Next experiment: predeclare a **regime filter** on train only, validate without inspecting the third segment for selection; show N/WR/avg R/PF and opportunity loss, LONG/SHORT separately, then hold fixed for prospective paper-only data. Re-run 3 candidate families on common-capital portfolio before any strategy recommendation.
+5. Need fresh forward immutable receipts and >=90 days / >=50 independent virtual fills for credible confirmation. No orders; no production authorization.
+
+---
+
 # DeltaRSI researcher handoff — cycle 13, 2026-10-27 ~07:00 MSK (P0 #12 independent UTC funding enumeration)
 
 **Status: INDEPENDENT EVENT CLOCK AUDIT + 309-ROW RECONCILIATION COMMITTED; 66/66 SAME-SHA REGRESSION TESTS PASS. #12 REMAINS OPEN. NO NEW ALPHA CLAIM, NO ORDERS.**
