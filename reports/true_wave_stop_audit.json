@@ -1,8 +1,8 @@
 {
   "title": "Causal true-wave vs peak-bar vs ATR stop: matched-entry exploratory audit",
-  "generated_utc": "2026-10-27T05:55:55.306896+00:00",
-  "producer_sha": "c0802468278d6a1e690d9b09882a538729594ae9",
-  "ci_run": "40458108457",
+  "generated_utc": "2026-10-27T05:56:37.430682+00:00",
+  "producer_sha": "b048733ed58335a81962be563f7ed5e96da903ca",
+  "ci_run": "40458168781",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
@@ -361,7 +361,7 @@
               "avg_loss_R": -0.63188,
               "median_stop_pct": 4.4548,
               "median_fee_R": 0.0336,
-              "pseudo_dd_pct": 2.0105
+              "pseudo_dd_pct": 2.558
             },
             "matched_challenger": {
               "n": 267,
@@ -372,7 +372,7 @@
               "avg_loss_R": -1.02497,
               "median_stop_pct": 1.713,
               "median_fee_R": 0.0884,
-              "pseudo_dd_pct": 4.9406
+              "pseudo_dd_pct": 8.4692
             },
             "by_asset": {
               "BTCUSDT": {
@@ -419,7 +419,7 @@
               "avg_loss_R": -0.70103,
               "median_stop_pct": 4.5488,
               "median_fee_R": 0.033,
-              "pseudo_dd_pct": 3.1452
+              "pseudo_dd_pct": 4.8041
             },
             "matched_challenger": {
               "n": 334,
@@ -430,7 +430,7 @@
               "avg_loss_R": -0.93992,
               "median_stop_pct": 2.4749,
               "median_fee_R": 0.0613,
-              "pseudo_dd_pct": 5.0076
+              "pseudo_dd_pct": 7.8666
             },
             "by_asset": {
               "BTCUSDT": {
@@ -759,7 +759,7 @@
               "avg_loss_R": -0.88243,
               "median_stop_pct": 4.3407,
               "median_fee_R": 0.034,
-              "pseudo_dd_pct": 0.5327
+              "pseudo_dd_pct": 0.8649
             },
             "matched_challenger": {
               "n": 43,
@@ -770,7 +770,7 @@
               "avg_loss_R": -1.33013,
               "median_stop_pct": 0.6427,
               "median_fee_R": 0.2325,
-              "pseudo_dd_pct": 3.2487
+              "pseudo_dd_pct": 3.2305
             },
             "by_asset": {
               "BTCUSDT": {
@@ -817,7 +817,7 @@
               "avg_loss_R": -0.83118,
               "median_stop_pct": 4.3407,
               "median_fee_R": 0.0345,
-              "pseudo_dd_pct": 0.5327
+              "pseudo_dd_pct": 0.7812
             },
             "matched_challenger": {
               "n": 47,
@@ -828,7 +828,7 @@
               "avg_loss_R": -1.23339,
               "median_stop_pct": 1.0959,
               "median_fee_R": 0.1378,
-              "pseudo_dd_pct": 2.0076
+              "pseudo_dd_pct": 3.0086
             },
             "by_asset": {
               "BTCUSDT": {
@@ -1157,7 +1157,7 @@
               "avg_loss_R": -0.70433,
               "median_stop_pct": 4.2912,
               "median_fee_R": 0.0348,
-              "pseudo_dd_pct": 0.6124
+              "pseudo_dd_pct": 0.5745
             },
             "matched_challenger": {
               "n": 45,
@@ -1168,7 +1168,7 @@
               "avg_loss_R": -1.19376,
               "median_stop_pct": 1.4232,
               "median_fee_R": 0.1046,
-              "pseudo_dd_pct": 1.67
+              "pseudo_dd_pct": 3.1476
             },
             "by_asset": {
               "BTCUSDT": {
@@ -1215,7 +1215,7 @@
               "avg_loss_R": -0.74257,
               "median_stop_pct": 4.137,
               "median_fee_R": 0.0359,
-              "pseudo_dd_pct": 0.6124
+              "pseudo_dd_pct": 1.095
             },
             "matched_challenger": {
               "n": 51,
@@ -1226,7 +1226,7 @@
               "avg_loss_R": -1.07104,
               "median_stop_pct": 1.5609,
               "median_fee_R": 0.0955,
-              "pseudo_dd_pct": 1.5797
+              "pseudo_dd_pct": 2.734
             },
             "by_asset": {
               "BTCUSDT": {
@@ -1563,7 +1563,7 @@
               "avg_loss_R": -0.68427,
               "median_stop_pct": 3.7436,
               "median_fee_R": 0.0403,
-              "pseudo_dd_pct": 1.2694
+              "pseudo_dd_pct": 2.0425
             },
             "matched_challenger": {
               "n": 142,
@@ -1574,7 +1574,7 @@
               "avg_loss_R": -1.06165,
               "median_stop_pct": 1.5772,
               "median_fee_R": 0.0951,
-              "pseudo_dd_pct": 4.2465
+              "pseudo_dd_pct": 3.192
             },
             "by_asset": {
               "BTCUSDT": {
@@ -1621,7 +1621,7 @@
               "avg_loss_R": -0.72778,
               "median_stop_pct": 3.6346,
               "median_fee_R": 0.0408,
-              "pseudo_dd_pct": 2.4099
+              "pseudo_dd_pct": 4.5295
             },
             "matched_challenger": {
               "n": 190,
@@ -1632,7 +1632,7 @@
               "avg_loss_R": -0.95517,
               "median_stop_pct": 2.1757,
               "median_fee_R": 0.0698,
-              "pseudo_dd_pct": 3.7566
+              "pseudo_dd_pct": 5.0131
             },
             "by_asset": {
               "BTCUSDT": {
@@ -1967,7 +1967,7 @@
               "avg_loss_R": -0.40701,
               "median_stop_pct": 3.6615,
               "median_fee_R": 0.0409,
-              "pseudo_dd_pct": 0.264
+              "pseudo_dd_pct": 0.5222
             },
             "matched_challenger": {
               "n": 20,
@@ -1978,7 +1978,7 @@
               "avg_loss_R": -1.04505,
               "median_stop_pct": 1.3832,
               "median_fee_R": 0.1075,
-              "pseudo_dd_pct": 0.6667
+              "pseudo_dd_pct": 1.1192
             },
             "by_asset": {
               "BTCUSDT": {
@@ -2025,7 +2025,7 @@
               "avg_loss_R": -0.40701,
               "median_stop_pct": 3.6615,
               "median_fee_R": 0.0409,
-              "pseudo_dd_pct": 0.264
+              "pseudo_dd_pct": 0.5222
             },
             "matched_challenger": {
               "n": 22,
@@ -2036,7 +2036,7 @@
               "avg_loss_R": -0.79274,
               "median_stop_pct": 1.6938,
               "median_fee_R": 0.0886,
-              "pseudo_dd_pct": 0.3579
+              "pseudo_dd_pct": 0.5447
             },
             "by_asset": {
               "BTCUSDT": {
@@ -2371,7 +2371,7 @@
               "avg_loss_R": -0.5991,
               "median_stop_pct": 3.6742,
               "median_fee_R": 0.0416,
-              "pseudo_dd_pct": 0.4306
+              "pseudo_dd_pct": 0.7023
             },
             "matched_challenger": {
               "n": 19,
@@ -2382,7 +2382,7 @@
               "avg_loss_R": -1.00452,
               "median_stop_pct": 2.3684,
               "median_fee_R": 0.0632,
-              "pseudo_dd_pct": 0.8692
+              "pseudo_dd_pct": 0.8589
             },
             "by_asset": {
               "BTCUSDT": {
@@ -2429,7 +2429,7 @@
               "avg_loss_R": -0.64765,
               "median_stop_pct": 3.558,
               "median_fee_R": 0.0427,
-              "pseudo_dd_pct": 0.5849
+              "pseudo_dd_pct": 0.8451
             },
             "matched_challenger": {
               "n": 22,
@@ -2440,7 +2440,7 @@
               "avg_loss_R": -0.86454,
               "median_stop_pct": 2.4801,
               "median_fee_R": 0.0598,
-              "pseudo_dd_pct": 0.5807
+              "pseudo_dd_pct": 0.8448
             },
             "by_asset": {
               "BTCUSDT": {
@@ -2777,7 +2777,7 @@
               "avg_loss_R": -0.64516,
               "median_stop_pct": 3.6479,
               "median_fee_R": 0.0417,
-              "pseudo_dd_pct": 3.5749
+              "pseudo_dd_pct": 3.6462
             },
             "matched_challenger": {
               "n": 152,
@@ -2788,7 +2788,7 @@
               "avg_loss_R": -1.06512,
               "median_stop_pct": 1.3855,
               "median_fee_R": 0.1083,
-              "pseudo_dd_pct": 9.8569
+              "pseudo_dd_pct": 10.1367
             },
             "by_asset": {
               "BTCUSDT": {
@@ -2835,7 +2835,7 @@
               "avg_loss_R": -0.6449,
               "median_stop_pct": 3.539,
               "median_fee_R": 0.0425,
-              "pseudo_dd_pct": 3.8297
+              "pseudo_dd_pct": 3.7229
             },
             "matched_challenger": {
               "n": 214,
@@ -2846,7 +2846,7 @@
               "avg_loss_R": -0.91141,
               "median_stop_pct": 2.0428,
               "median_fee_R": 0.0734,
-              "pseudo_dd_pct": 7.7794
+              "pseudo_dd_pct": 8.5724
             },
             "by_asset": {
               "BTCUSDT": {
@@ -3181,7 +3181,7 @@
               "avg_loss_R": -0.67266,
               "median_stop_pct": 3.1075,
               "median_fee_R": 0.048,
-              "pseudo_dd_pct": 1.6912
+              "pseudo_dd_pct": 1.8574
             },
             "matched_challenger": {
               "n": 25,
@@ -3192,7 +3192,7 @@
               "avg_loss_R": -1.13722,
               "median_stop_pct": 1.2436,
               "median_fee_R": 0.1199,
-              "pseudo_dd_pct": 4.1879
+              "pseudo_dd_pct": 4.4006
             },
             "by_asset": {
               "BTCUSDT": {
@@ -3239,7 +3239,7 @@
               "avg_loss_R": -0.6064,
               "median_stop_pct": 3.0905,
               "median_fee_R": 0.0485,
-              "pseudo_dd_pct": 1.7513
+              "pseudo_dd_pct": 2.1253
             },
             "matched_challenger": {
               "n": 32,
@@ -3250,7 +3250,7 @@
               "avg_loss_R": -1.00529,
               "median_stop_pct": 1.7665,
               "median_fee_R": 0.0849,
-              "pseudo_dd_pct": 3.2065
+              "pseudo_dd_pct": 3.5531
             },
             "by_asset": {
               "BTCUSDT": {
@@ -3585,7 +3585,7 @@
               "avg_loss_R": -0.38234,
               "median_stop_pct": 3.3529,
               "median_fee_R": 0.0446,
-              "pseudo_dd_pct": 0.548
+              "pseudo_dd_pct": 0.551
             },
             "matched_challenger": {
               "n": 15,
@@ -3596,7 +3596,7 @@
               "avg_loss_R": -1.12771,
               "median_stop_pct": 1.3992,
               "median_fee_R": 0.1065,
-              "pseudo_dd_pct": 1.7347
+              "pseudo_dd_pct": 1.7487
             },
             "by_asset": {
               "BTCUSDT": {
@@ -3643,7 +3643,7 @@
               "avg_loss_R": -0.45379,
               "median_stop_pct": 3.131,
               "median_fee_R": 0.048,
-              "pseudo_dd_pct": 1.1979
+              "pseudo_dd_pct": 1.0446
             },
             "matched_challenger": {
               "n": 26,
@@ -3654,7 +3654,7 @@
               "avg_loss_R": -0.97608,
               "median_stop_pct": 1.5582,
               "median_fee_R": 0.0971,
-              "pseudo_dd_pct": 1.4896
+              "pseudo_dd_pct": 1.0996
             },
             "by_asset": {
               "BTCUSDT": {
