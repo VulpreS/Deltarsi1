@@ -26,7 +26,9 @@ jobs:
         run: python -m unittest -v test_funding_clock_reconciliation test_independent_funding_clock_audit test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence test_standalone_parity_audit test_portfolio_risk_audit
       - name: Decompose existing 309 cached historical trades without any exchange API
         run: python -u funding_clock_reconciliation.py
-      - name: Independently enumerate all frozen 4H/1H funding boundaries\n        run: python -u independent_funding_clock_audit.py\n      - name: Persist audit report
+      - name: Independently enumerate all frozen 4H/1H funding boundaries
+        run: python -u independent_funding_clock_audit.py
+      - name: Persist audit report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
