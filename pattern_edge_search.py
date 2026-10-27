@@ -186,7 +186,7 @@ def main():
         "Per-symbol non-overlap, no shared-capital competition; pseudo DD from ordered 0.25%-risk R series is NOT executable portfolio MTM DD.",
         "Entry modes are separate causal signal families; differing trade counts and schedules prevent paired inference.",
         "All configurations and failures included; selecting winners after seeing diagnostic_test would invalidate any test claim.",
-        "Top-10 mean_R CIs are exploratory 30-day calendar-block bootstrap (1200 seeded draws), not selection-adjusted."]],
+        "Top-10 mean_R CIs are exploratory 30-day calendar-block bootstrap (1200 seeded draws), not selection-adjusted."],
        splits="per-symbol 50% / 25% / 25%, earlier examined",
        configs_total=len(CONFIGS),eligible_train_validation=len(eligible),
        event_counts={s:{m:sum(e["mode"]==m for e in c[1]) for m in MODES} for s,c in cache.items()},
