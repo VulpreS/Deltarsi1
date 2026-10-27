@@ -1,0 +1,2282 @@
+{
+  "audit": "Frozen DeltaPulse daily strategy stress test",
+  "notes": [
+    "All markets retained, including failed SOL. No filtering assets after seeing returns.",
+    "Bootstrap resamples whole trades; ignores serial dependence and shared crypto market risk. Indicative uncertainty only.",
+    "Removing the top two trades exposes outlier dependence, not a realistic executed alternative.",
+    "Double fee assumes 0.30% roundtrip notional total; no funding, liquidations or variable slippage.",
+    "This historical data was previously inspected. Neither stress test nor earlier chronological splits are independently prospective.",
+    "Variant comparisons are descriptive only. Do not select the best-performing asset, timeframe, stop or exit using this report.",
+    "No trade automation, exchange keys or positions were opened."
+  ],
+  "trade_rows": 6399,
+  "by_asset": {
+    "BNBUSDT": {
+      "pulse_crest_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 18,
+          "win_rate_pct": 50.0,
+          "mean_net_pct": 0.6232,
+          "median_net_pct": -0.3251,
+          "profit_factor": 1.4907,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.164,
+            2.6233
+          ],
+          "mean_without_best_trade": 0.0829,
+          "mean_without_two_best_trades": -0.5206,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 28.78,
+          "double_roundtrip_cost_mean_pct": 0.4732,
+          "double_roundtrip_cost_profit_factor": 1.3518,
+          "stop_count": 3,
+          "stop_fraction_pct": 16.67,
+          "mean_initial_risk_pct": 6.847,
+          "median_days_in_position": 6.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -0.8116,
+          "median_net_pct": -1.7854,
+          "profit_factor": 0.392,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.219,
+            1.5696
+          ],
+          "mean_without_best_trade": -2.0022,
+          "mean_without_two_best_trades": -2.219,
+          "best_trade_net_pct": 1.5696,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -0.9616,
+          "double_roundtrip_cost_profit_factor": 0.3298,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 4.688,
+          "median_days_in_position": 7.0
+        },
+        "2024": {
+          "n": 7,
+          "win_rate_pct": 71.43,
+          "mean_net_pct": 2.1714,
+          "median_net_pct": 1.7158,
+          "profit_factor": 3.5389,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.9685,
+            5.5142
+          ],
+          "mean_without_best_trade": 0.9103,
+          "mean_without_two_best_trades": -0.1585,
+          "best_trade_net_pct": 9.7383,
+          "share_of_total_positive_pnl_from_best_pct": 45.96,
+          "double_roundtrip_cost_mean_pct": 2.0214,
+          "double_roundtrip_cost_profit_factor": 3.2507,
+          "stop_count": 1,
+          "stop_fraction_pct": 14.29,
+          "mean_initial_risk_pct": 7.154,
+          "median_days_in_position": 8.0
+        },
+        "2025_plus": {
+          "n": 8,
+          "win_rate_pct": 37.5,
+          "mean_net_pct": -0.1935,
+          "median_net_pct": -1.238,
+          "profit_factor": 0.8797,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.5981,
+            3.0127
+          ],
+          "mean_without_best_trade": -1.6223,
+          "mean_without_two_best_trades": -2.0874,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 86.66,
+          "double_roundtrip_cost_mean_pct": -0.3435,
+          "double_roundtrip_cost_profit_factor": 0.7982,
+          "stop_count": 2,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 7.388,
+          "median_days_in_position": 3.5
+        }
+      },
+      "pulse_confirm_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 16,
+          "win_rate_pct": 50.0,
+          "mean_net_pct": 0.6111,
+          "median_net_pct": 0.1417,
+          "profit_factor": 1.4459,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.1851,
+            2.5415
+          ],
+          "mean_without_best_trade": 0.1205,
+          "mean_without_two_best_trades": -0.3192,
+          "best_trade_net_pct": 7.9698,
+          "share_of_total_positive_pnl_from_best_pct": 25.14,
+          "double_roundtrip_cost_mean_pct": 0.4611,
+          "double_roundtrip_cost_profit_factor": 1.319,
+          "stop_count": 6,
+          "stop_fraction_pct": 37.5,
+          "mean_initial_risk_pct": 5.705,
+          "median_days_in_position": 7.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -0.849,
+          "median_net_pct": -1.7773,
+          "profit_factor": 0.5037,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.3545,
+            2.5849
+          ],
+          "mean_without_best_trade": -2.5659,
+          "mean_without_two_best_trades": -3.3545,
+          "best_trade_net_pct": 2.5849,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -0.999,
+          "double_roundtrip_cost_profit_factor": 0.4483,
+          "stop_count": 1,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 3.828,
+          "median_days_in_position": 6.0
+        },
+        "2024": {
+          "n": 6,
+          "win_rate_pct": 66.67,
+          "mean_net_pct": 1.8743,
+          "median_net_pct": 3.519,
+          "profit_factor": 2.7657,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.1824,
+            4.6987
+          ],
+          "mean_without_best_trade": 0.9941,
+          "mean_without_two_best_trades": 0.1672,
+          "best_trade_net_pct": 6.2755,
+          "share_of_total_positive_pnl_from_best_pct": 35.63,
+          "double_roundtrip_cost_mean_pct": 1.7243,
+          "double_roundtrip_cost_profit_factor": 2.5513,
+          "stop_count": 2,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 6.753,
+          "median_days_in_position": 7.5
+        },
+        "2025_plus": {
+          "n": 7,
+          "win_rate_pct": 42.86,
+          "mean_net_pct": 0.154,
+          "median_net_pct": -0.9171,
+          "profit_factor": 1.1034,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.5954,
+            3.3179
+          ],
+          "mean_without_best_trade": -1.1486,
+          "mean_without_two_best_trades": -1.8451,
+          "best_trade_net_pct": 7.9698,
+          "share_of_total_positive_pnl_from_best_pct": 69.28,
+          "double_roundtrip_cost_mean_pct": 0.004,
+          "double_roundtrip_cost_profit_factor": 1.0025,
+          "stop_count": 3,
+          "stop_fraction_pct": 42.86,
+          "mean_initial_risk_pct": 5.611,
+          "median_days_in_position": 7.0
+        }
+      },
+      "plain_color_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 21,
+          "win_rate_pct": 47.62,
+          "mean_net_pct": 0.6295,
+          "median_net_pct": -0.2671,
+          "profit_factor": 1.5642,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.0002,
+            2.4676
+          ],
+          "mean_without_best_trade": 0.1705,
+          "mean_without_two_best_trades": -0.333,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 26.76,
+          "double_roundtrip_cost_mean_pct": 0.4795,
+          "double_roundtrip_cost_profit_factor": 1.4015,
+          "stop_count": 5,
+          "stop_fraction_pct": 23.81,
+          "mean_initial_risk_pct": 6.037,
+          "median_days_in_position": 3.0
+        },
+        "2020_2023": {
+          "n": 2,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -1.5396,
+          "median_net_pct": -1.5396,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.7854,
+            -1.2937
+          ],
+          "mean_without_best_trade": -1.7854,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -1.2937,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -1.6896,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 1,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 2.734,
+          "median_days_in_position": 2.0
+        },
+        "2024": {
+          "n": 8,
+          "win_rate_pct": 62.5,
+          "mean_net_pct": 0.9808,
+          "median_net_pct": 0.2123,
+          "profit_factor": 1.6611,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.5034,
+            4.5287
+          ],
+          "mean_without_best_trade": -0.2702,
+          "mean_without_two_best_trades": -1.3577,
+          "best_trade_net_pct": 9.7383,
+          "share_of_total_positive_pnl_from_best_pct": 49.39,
+          "double_roundtrip_cost_mean_pct": 0.8308,
+          "double_roundtrip_cost_profit_factor": 1.5395,
+          "stop_count": 2,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 7.104,
+          "median_days_in_position": 7.0
+        },
+        "2025_plus": {
+          "n": 11,
+          "win_rate_pct": 45.45,
+          "mean_net_pct": 0.7684,
+          "median_net_pct": -0.2671,
+          "profit_factor": 1.9963,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.9449,
+            3.0432
+          ],
+          "mean_without_best_trade": -0.1357,
+          "mean_without_two_best_trades": -0.6636,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 57.92,
+          "double_roundtrip_cost_mean_pct": 0.6184,
+          "double_roundtrip_cost_profit_factor": 1.7249,
+          "stop_count": 2,
+          "stop_fraction_pct": 18.18,
+          "mean_initial_risk_pct": 5.863,
+          "median_days_in_position": 3.0
+        }
+      },
+      "pulse_crest_persistent_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 18,
+          "win_rate_pct": 38.89,
+          "mean_net_pct": 0.441,
+          "median_net_pct": -0.9818,
+          "profit_factor": 1.2501,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.7013,
+            2.744
+          ],
+          "mean_without_best_trade": -0.11,
+          "mean_without_two_best_trades": -0.7256,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 24.72,
+          "double_roundtrip_cost_mean_pct": 0.291,
+          "double_roundtrip_cost_profit_factor": 1.1569,
+          "stop_count": 4,
+          "stop_fraction_pct": 22.22,
+          "mean_initial_risk_pct": 6.847,
+          "median_days_in_position": 9.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -1.2404,
+          "median_net_pct": -1.1337,
+          "profit_factor": 0.1403,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.195,
+            0.6075
+          ],
+          "mean_without_best_trade": -2.1643,
+          "mean_without_two_best_trades": -3.195,
+          "best_trade_net_pct": 0.6075,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -1.3904,
+          "double_roundtrip_cost_profit_factor": 0.0988,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 4.688,
+          "median_days_in_position": 9.0
+        },
+        "2024": {
+          "n": 7,
+          "win_rate_pct": 57.14,
+          "mean_net_pct": 2.3005,
+          "median_net_pct": 3.2986,
+          "profit_factor": 2.5477,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.5816,
+            6.1641
+          ],
+          "mean_without_best_trade": 1.0608,
+          "mean_without_two_best_trades": -0.1703,
+          "best_trade_net_pct": 9.7383,
+          "share_of_total_positive_pnl_from_best_pct": 36.74,
+          "double_roundtrip_cost_mean_pct": 2.1505,
+          "double_roundtrip_cost_profit_factor": 2.3868,
+          "stop_count": 1,
+          "stop_fraction_pct": 14.29,
+          "mean_initial_risk_pct": 7.154,
+          "median_days_in_position": 9.0
+        },
+        "2025_plus": {
+          "n": 8,
+          "win_rate_pct": 25.0,
+          "mean_net_pct": -0.5555,
+          "median_net_pct": -1.4754,
+          "profit_factor": 0.7386,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.3429,
+            3.0846
+          ],
+          "mean_without_best_trade": -2.0361,
+          "mean_without_two_best_trades": -2.8333,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 78.12,
+          "double_roundtrip_cost_mean_pct": -0.7055,
+          "double_roundtrip_cost_profit_factor": 0.6847,
+          "stop_count": 3,
+          "stop_fraction_pct": 37.5,
+          "mean_initial_risk_pct": 7.388,
+          "median_days_in_position": 9.0
+        }
+      },
+      "pulse_crest_fast_invalidation_recent_5d_extreme_LONG": {
+        "all": {
+          "n": 19,
+          "win_rate_pct": 47.37,
+          "mean_net_pct": 0.3879,
+          "median_net_pct": -0.83,
+          "profit_factor": 1.276,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.3444,
+            2.3489
+          ],
+          "mean_without_best_trade": -0.1355,
+          "mean_without_two_best_trades": -0.7163,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 28.78,
+          "double_roundtrip_cost_mean_pct": 0.2379,
+          "double_roundtrip_cost_profit_factor": 1.1602,
+          "stop_count": 5,
+          "stop_fraction_pct": 26.32,
+          "mean_initial_risk_pct": 5.201,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -1.1019,
+          "median_net_pct": -2.219,
+          "profit_factor": 0.322,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.6562,
+            1.5696
+          ],
+          "mean_without_best_trade": -2.4376,
+          "mean_without_two_best_trades": -2.6562,
+          "best_trade_net_pct": 1.5696,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -1.2519,
+          "double_roundtrip_cost_profit_factor": 0.2743,
+          "stop_count": 1,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 4.082,
+          "median_days_in_position": 7.0
+        },
+        "2024": {
+          "n": 7,
+          "win_rate_pct": 71.43,
+          "mean_net_pct": 2.1714,
+          "median_net_pct": 1.7158,
+          "profit_factor": 3.5389,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.9685,
+            5.4915
+          ],
+          "mean_without_best_trade": 0.9103,
+          "mean_without_two_best_trades": -0.1585,
+          "best_trade_net_pct": 9.7383,
+          "share_of_total_positive_pnl_from_best_pct": 45.96,
+          "double_roundtrip_cost_mean_pct": 2.0214,
+          "double_roundtrip_cost_profit_factor": 3.2507,
+          "stop_count": 1,
+          "stop_fraction_pct": 14.29,
+          "mean_initial_risk_pct": 5.736,
+          "median_days_in_position": 8.0
+        },
+        "2025_plus": {
+          "n": 9,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -0.5027,
+          "median_net_pct": -1.6461,
+          "profit_factor": 0.7144,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.7331,
+            2.3738
+          ],
+          "mean_without_best_trade": -1.7916,
+          "mean_without_two_best_trades": -2.2145,
+          "best_trade_net_pct": 9.8086,
+          "share_of_total_positive_pnl_from_best_pct": 86.66,
+          "double_roundtrip_cost_mean_pct": -0.6527,
+          "double_roundtrip_cost_profit_factor": 0.6491,
+          "stop_count": 3,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.158,
+          "median_days_in_position": 2.0
+        }
+      }
+    },
+    "BTCUSDT": {
+      "pulse_crest_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 33,
+          "win_rate_pct": 39.39,
+          "mean_net_pct": 2.5907,
+          "median_net_pct": -0.598,
+          "profit_factor": 2.5632,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.653,
+            6.6226
+          ],
+          "mean_without_best_trade": 1.0606,
+          "mean_without_two_best_trades": 0.3255,
+          "best_trade_net_pct": 51.5536,
+          "share_of_total_positive_pnl_from_best_pct": 36.77,
+          "double_roundtrip_cost_mean_pct": 2.4407,
+          "double_roundtrip_cost_profit_factor": 2.3961,
+          "stop_count": 11,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.834,
+          "median_days_in_position": 6.0
+        },
+        "2020_2023": {
+          "n": 20,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 3.4498,
+          "median_net_pct": -0.7055,
+          "profit_factor": 3.0982,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.2646,
+            9.7319
+          ],
+          "mean_without_best_trade": 0.918,
+          "mean_without_two_best_trades": -0.3561,
+          "best_trade_net_pct": 51.5536,
+          "share_of_total_positive_pnl_from_best_pct": 50.6,
+          "double_roundtrip_cost_mean_pct": 3.2998,
+          "double_roundtrip_cost_profit_factor": 2.9028,
+          "stop_count": 6,
+          "stop_fraction_pct": 30.0,
+          "mean_initial_risk_pct": 6.194,
+          "median_days_in_position": 5.0
+        },
+        "2024": {
+          "n": 6,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -0.009,
+          "median_net_pct": -0.9854,
+          "profit_factor": 0.9929,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.1933,
+            2.3779
+          ],
+          "mean_without_best_trade": -0.9831,
+          "mean_without_two_best_trades": -1.8952,
+          "best_trade_net_pct": 4.8617,
+          "share_of_total_positive_pnl_from_best_pct": 64.59,
+          "double_roundtrip_cost_mean_pct": -0.159,
+          "double_roundtrip_cost_profit_factor": 0.8834,
+          "stop_count": 2,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.5,
+          "median_days_in_position": 5.5
+        },
+        "2025_plus": {
+          "n": 7,
+          "win_rate_pct": 42.86,
+          "mean_net_pct": 2.3647,
+          "median_net_pct": -0.5288,
+          "profit_factor": 2.1633,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.3482,
+            9.9007
+          ],
+          "mean_without_best_trade": -0.9813,
+          "mean_without_two_best_trades": -2.1817,
+          "best_trade_net_pct": 22.4405,
+          "share_of_total_positive_pnl_from_best_pct": 72.9,
+          "double_roundtrip_cost_mean_pct": 2.2147,
+          "double_roundtrip_cost_profit_factor": 2.0455,
+          "stop_count": 3,
+          "stop_fraction_pct": 42.86,
+          "mean_initial_risk_pct": 5.092,
+          "median_days_in_position": 9.0
+        }
+      },
+      "pulse_confirm_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 33,
+          "win_rate_pct": 42.42,
+          "mean_net_pct": 1.9753,
+          "median_net_pct": -0.5271,
+          "profit_factor": 1.9994,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.9804,
+            5.6634
+          ],
+          "mean_without_best_trade": 0.7046,
+          "mean_without_two_best_trades": 0.015,
+          "best_trade_net_pct": 42.6403,
+          "share_of_total_positive_pnl_from_best_pct": 32.7,
+          "double_roundtrip_cost_mean_pct": 1.8253,
+          "double_roundtrip_cost_profit_factor": 1.8848,
+          "stop_count": 14,
+          "stop_fraction_pct": 42.42,
+          "mean_initial_risk_pct": 5.366,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 19,
+          "win_rate_pct": 42.11,
+          "mean_net_pct": 3.1968,
+          "median_net_pct": -0.2833,
+          "profit_factor": 2.8586,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.0765,
+            8.7049
+          ],
+          "mean_without_best_trade": 1.0055,
+          "mean_without_two_best_trades": -0.0426,
+          "best_trade_net_pct": 42.6403,
+          "share_of_total_positive_pnl_from_best_pct": 45.64,
+          "double_roundtrip_cost_mean_pct": 3.0468,
+          "double_roundtrip_cost_profit_factor": 2.6862,
+          "stop_count": 8,
+          "stop_fraction_pct": 42.11,
+          "mean_initial_risk_pct": 5.4,
+          "median_days_in_position": 4.0
+        },
+        "2024": {
+          "n": 5,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": -1.3414,
+          "median_net_pct": -0.5271,
+          "profit_factor": 0.3361,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.9353,
+            1.2945
+          ],
+          "mean_without_best_trade": -2.3927,
+          "mean_without_two_best_trades": -3.3673,
+          "best_trade_net_pct": 2.8637,
+          "share_of_total_positive_pnl_from_best_pct": 84.36,
+          "double_roundtrip_cost_mean_pct": -1.4914,
+          "double_roundtrip_cost_profit_factor": 0.2933,
+          "stop_count": 2,
+          "stop_fraction_pct": 40.0,
+          "mean_initial_risk_pct": 5.386,
+          "median_days_in_position": 3.0
+        },
+        "2025_plus": {
+          "n": 9,
+          "win_rate_pct": 44.44,
+          "mean_net_pct": 1.2393,
+          "median_net_pct": -2.8535,
+          "profit_factor": 1.4969,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.4995,
+            7.4777
+          ],
+          "mean_without_best_trade": -1.3659,
+          "mean_without_two_best_trades": -2.2871,
+          "best_trade_net_pct": 22.0805,
+          "share_of_total_positive_pnl_from_best_pct": 65.72,
+          "double_roundtrip_cost_mean_pct": 1.0893,
+          "double_roundtrip_cost_profit_factor": 1.4227,
+          "stop_count": 4,
+          "stop_fraction_pct": 44.44,
+          "mean_initial_risk_pct": 5.284,
+          "median_days_in_position": 13.0
+        }
+      },
+      "plain_color_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 44,
+          "win_rate_pct": 38.64,
+          "mean_net_pct": 1.9584,
+          "median_net_pct": -0.7635,
+          "profit_factor": 2.3267,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.1787,
+            4.5642
+          ],
+          "mean_without_best_trade": 1.2808,
+          "mean_without_two_best_trades": 0.7434,
+          "best_trade_net_pct": 31.0966,
+          "share_of_total_positive_pnl_from_best_pct": 20.58,
+          "double_roundtrip_cost_mean_pct": 1.8084,
+          "double_roundtrip_cost_profit_factor": 2.153,
+          "stop_count": 15,
+          "stop_fraction_pct": 34.09,
+          "mean_initial_risk_pct": 5.709,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 25,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 2.4652,
+          "median_net_pct": -0.813,
+          "profit_factor": 2.5264,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.7738,
+            6.3574
+          ],
+          "mean_without_best_trade": 1.2723,
+          "mean_without_two_best_trades": 0.2906,
+          "best_trade_net_pct": 31.0966,
+          "share_of_total_positive_pnl_from_best_pct": 30.48,
+          "double_roundtrip_cost_mean_pct": 2.3152,
+          "double_roundtrip_cost_profit_factor": 2.3579,
+          "stop_count": 10,
+          "stop_fraction_pct": 40.0,
+          "mean_initial_risk_pct": 5.507,
+          "median_days_in_position": 5.0
+        },
+        "2024": {
+          "n": 8,
+          "win_rate_pct": 37.5,
+          "mean_net_pct": 0.4779,
+          "median_net_pct": -0.9854,
+          "profit_factor": 1.266,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.7175,
+            4.1174
+          ],
+          "mean_without_best_trade": -0.978,
+          "mean_without_two_best_trades": -1.9513,
+          "best_trade_net_pct": 10.6689,
+          "share_of_total_positive_pnl_from_best_pct": 58.63,
+          "double_roundtrip_cost_mean_pct": 0.3279,
+          "double_roundtrip_cost_profit_factor": 1.1734,
+          "stop_count": 2,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 6.705,
+          "median_days_in_position": 7.5
+        },
+        "2025_plus": {
+          "n": 11,
+          "win_rate_pct": 36.36,
+          "mean_net_pct": 1.8834,
+          "median_net_pct": -0.714,
+          "profit_factor": 3.0303,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.1478,
+            6.4022
+          ],
+          "mean_without_best_trade": -0.1723,
+          "mean_without_two_best_trades": -0.7493,
+          "best_trade_net_pct": 22.4405,
+          "share_of_total_positive_pnl_from_best_pct": 72.57,
+          "double_roundtrip_cost_mean_pct": 1.7334,
+          "double_roundtrip_cost_profit_factor": 2.6928,
+          "stop_count": 3,
+          "stop_fraction_pct": 27.27,
+          "mean_initial_risk_pct": 5.443,
+          "median_days_in_position": 4.0
+        }
+      },
+      "pulse_crest_persistent_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 33,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": 0.141,
+          "median_net_pct": -1.7973,
+          "profit_factor": 1.0601,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.0862,
+            2.7646
+          ],
+          "mean_without_best_trade": -0.5999,
+          "mean_without_two_best_trades": -1.3432,
+          "best_trade_net_pct": 23.8513,
+          "share_of_total_positive_pnl_from_best_pct": 29.05,
+          "double_roundtrip_cost_mean_pct": -0.009,
+          "double_roundtrip_cost_profit_factor": 0.9963,
+          "stop_count": 15,
+          "stop_fraction_pct": 45.45,
+          "mean_initial_risk_pct": 5.834,
+          "median_days_in_position": 6.0
+        },
+        "2020_2023": {
+          "n": 20,
+          "win_rate_pct": 30.0,
+          "mean_net_pct": -0.2098,
+          "median_net_pct": -2.0904,
+          "profit_factor": 0.9141,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.8442,
+            3.1182
+          ],
+          "mean_without_best_trade": -1.4762,
+          "mean_without_two_best_trades": -2.215,
+          "best_trade_net_pct": 23.8513,
+          "share_of_total_positive_pnl_from_best_pct": 53.4,
+          "double_roundtrip_cost_mean_pct": -0.3598,
+          "double_roundtrip_cost_profit_factor": 0.8588,
+          "stop_count": 9,
+          "stop_fraction_pct": 45.0,
+          "mean_initial_risk_pct": 6.194,
+          "median_days_in_position": 5.5
+        },
+        "2024": {
+          "n": 6,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -0.1469,
+          "median_net_pct": -0.9854,
+          "profit_factor": 0.883,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.1821,
+            2.3144
+          ],
+          "mean_without_best_trade": -1.1486,
+          "mean_without_two_best_trades": -1.8828,
+          "best_trade_net_pct": 4.8617,
+          "share_of_total_positive_pnl_from_best_pct": 73.11,
+          "double_roundtrip_cost_mean_pct": -0.2969,
+          "double_roundtrip_cost_profit_factor": 0.7809,
+          "stop_count": 2,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.5,
+          "median_days_in_position": 5.5
+        },
+        "2025_plus": {
+          "n": 7,
+          "win_rate_pct": 42.86,
+          "mean_net_pct": 1.3902,
+          "median_net_pct": -1.1499,
+          "profit_factor": 1.4623,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.7203,
+            9.5946
+          ],
+          "mean_without_best_trade": -2.1182,
+          "mean_without_two_best_trades": -3.546,
+          "best_trade_net_pct": 22.4405,
+          "share_of_total_positive_pnl_from_best_pct": 72.9,
+          "double_roundtrip_cost_mean_pct": 1.2402,
+          "double_roundtrip_cost_profit_factor": 1.401,
+          "stop_count": 4,
+          "stop_fraction_pct": 57.14,
+          "mean_initial_risk_pct": 5.092,
+          "median_days_in_position": 9.0
+        }
+      },
+      "pulse_crest_fast_invalidation_recent_5d_extreme_LONG": {
+        "all": {
+          "n": 35,
+          "win_rate_pct": 45.71,
+          "mean_net_pct": 2.8478,
+          "median_net_pct": -0.1739,
+          "profit_factor": 2.7585,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.2785,
+            6.8081
+          ],
+          "mean_without_best_trade": 1.4153,
+          "mean_without_two_best_trades": 0.7354,
+          "best_trade_net_pct": 51.5536,
+          "share_of_total_positive_pnl_from_best_pct": 32.97,
+          "double_roundtrip_cost_mean_pct": 2.6978,
+          "double_roundtrip_cost_profit_factor": 2.5861,
+          "stop_count": 10,
+          "stop_fraction_pct": 28.57,
+          "mean_initial_risk_pct": 5.84,
+          "median_days_in_position": 6.0
+        },
+        "2020_2023": {
+          "n": 21,
+          "win_rate_pct": 47.62,
+          "mean_net_pct": 3.7762,
+          "median_net_pct": -0.1739,
+          "profit_factor": 3.1961,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.8078,
+            9.7674
+          ],
+          "mean_without_best_trade": 1.3873,
+          "mean_without_two_best_trades": 0.205,
+          "best_trade_net_pct": 51.5536,
+          "share_of_total_positive_pnl_from_best_pct": 44.67,
+          "double_roundtrip_cost_mean_pct": 3.6262,
+          "double_roundtrip_cost_profit_factor": 3.0167,
+          "stop_count": 5,
+          "stop_fraction_pct": 23.81,
+          "mean_initial_risk_pct": 6.461,
+          "median_days_in_position": 5.0
+        },
+        "2024": {
+          "n": 6,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -0.009,
+          "median_net_pct": -0.9854,
+          "profit_factor": 0.9929,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.1985,
+            2.2709
+          ],
+          "mean_without_best_trade": -0.9831,
+          "mean_without_two_best_trades": -1.8952,
+          "best_trade_net_pct": 4.8617,
+          "share_of_total_positive_pnl_from_best_pct": 64.59,
+          "double_roundtrip_cost_mean_pct": -0.159,
+          "double_roundtrip_cost_profit_factor": 0.8834,
+          "stop_count": 2,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.5,
+          "median_days_in_position": 5.5
+        },
+        "2025_plus": {
+          "n": 8,
+          "win_rate_pct": 50.0,
+          "mean_net_pct": 2.5532,
+          "median_net_pct": 1.053,
+          "profit_factor": 2.5723,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.382,
+            9.0938
+          ],
+          "mean_without_best_trade": -0.2878,
+          "mean_without_two_best_trades": -1.1726,
+          "best_trade_net_pct": 22.4405,
+          "share_of_total_positive_pnl_from_best_pct": 67.15,
+          "double_roundtrip_cost_mean_pct": 2.4032,
+          "double_roundtrip_cost_profit_factor": 2.4146,
+          "stop_count": 3,
+          "stop_fraction_pct": 37.5,
+          "mean_initial_risk_pct": 4.467,
+          "median_days_in_position": 10.5
+        }
+      }
+    },
+    "ETHUSDT": {
+      "pulse_crest_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 29,
+          "win_rate_pct": 48.28,
+          "mean_net_pct": 2.1238,
+          "median_net_pct": -0.0314,
+          "profit_factor": 2.4186,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.2684,
+            4.6556
+          ],
+          "mean_without_best_trade": 1.5408,
+          "mean_without_two_best_trades": 1.076,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 17.57,
+          "double_roundtrip_cost_mean_pct": 1.9738,
+          "double_roundtrip_cost_profit_factor": 2.2534,
+          "stop_count": 7,
+          "stop_fraction_pct": 24.14,
+          "mean_initial_risk_pct": 6.653,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 13,
+          "win_rate_pct": 53.85,
+          "mean_net_pct": 2.1704,
+          "median_net_pct": 0.5454,
+          "profit_factor": 2.1333,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.0369,
+            6.5324
+          ],
+          "mean_without_best_trade": 0.8139,
+          "mean_without_two_best_trades": -0.3004,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 34.74,
+          "double_roundtrip_cost_mean_pct": 2.0204,
+          "double_roundtrip_cost_profit_factor": 2.0182,
+          "stop_count": 3,
+          "stop_fraction_pct": 23.08,
+          "mean_initial_risk_pct": 7.947,
+          "median_days_in_position": 6.0
+        },
+        "2024": {
+          "n": 6,
+          "win_rate_pct": 66.67,
+          "mean_net_pct": 5.9581,
+          "median_net_pct": 6.4134,
+          "profit_factor": 10.3534,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            0.489,
+            11.1319
+          ],
+          "mean_without_best_trade": 4.3315,
+          "mean_without_two_best_trades": 2.2512,
+          "best_trade_net_pct": 14.0908,
+          "share_of_total_positive_pnl_from_best_pct": 35.61,
+          "double_roundtrip_cost_mean_pct": 5.8081,
+          "double_roundtrip_cost_profit_factor": 9.4543,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 7.703,
+          "median_days_in_position": 7.0
+        },
+        "2025_plus": {
+          "n": 10,
+          "win_rate_pct": 30.0,
+          "mean_net_pct": -0.2373,
+          "median_net_pct": -0.7148,
+          "profit_factor": 0.8386,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.2494,
+            2.268
+          ],
+          "mean_without_best_trade": -1.2505,
+          "mean_without_two_best_trades": -1.7273,
+          "best_trade_net_pct": 8.8823,
+          "share_of_total_positive_pnl_from_best_pct": 72.06,
+          "double_roundtrip_cost_mean_pct": -0.3873,
+          "double_roundtrip_cost_profit_factor": 0.7541,
+          "stop_count": 4,
+          "stop_fraction_pct": 40.0,
+          "mean_initial_risk_pct": 4.34,
+          "median_days_in_position": 3.5
+        }
+      },
+      "pulse_confirm_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 24,
+          "win_rate_pct": 37.5,
+          "mean_net_pct": 1.5059,
+          "median_net_pct": -0.6342,
+          "profit_factor": 1.7979,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.2379,
+            4.5957
+          ],
+          "mean_without_best_trade": 0.6869,
+          "mean_without_two_best_trades": 0.0242,
+          "best_trade_net_pct": 20.3438,
+          "share_of_total_positive_pnl_from_best_pct": 24.98,
+          "double_roundtrip_cost_mean_pct": 1.3559,
+          "double_roundtrip_cost_profit_factor": 1.6844,
+          "stop_count": 6,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 6.468,
+          "median_days_in_position": 6.5
+        },
+        "2020_2023": {
+          "n": 11,
+          "win_rate_pct": 36.36,
+          "mean_net_pct": 2.4826,
+          "median_net_pct": -0.2992,
+          "profit_factor": 2.1781,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.3261,
+            8.0386
+          ],
+          "mean_without_best_trade": 0.6964,
+          "mean_without_two_best_trades": -0.9223,
+          "best_trade_net_pct": 20.3438,
+          "share_of_total_positive_pnl_from_best_pct": 40.29,
+          "double_roundtrip_cost_mean_pct": 2.3326,
+          "double_roundtrip_cost_profit_factor": 2.059,
+          "stop_count": 3,
+          "stop_fraction_pct": 27.27,
+          "mean_initial_risk_pct": 7.03,
+          "median_days_in_position": 7.0
+        },
+        "2024": {
+          "n": 5,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 2.359,
+          "median_net_pct": -0.9879,
+          "profit_factor": 2.0668,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.225,
+            9.0427
+          ],
+          "mean_without_best_trade": -0.1729,
+          "mean_without_two_best_trades": -3.6855,
+          "best_trade_net_pct": 12.4864,
+          "share_of_total_positive_pnl_from_best_pct": 54.64,
+          "double_roundtrip_cost_mean_pct": 2.209,
+          "double_roundtrip_cost_profit_factor": 1.9599,
+          "stop_count": 1,
+          "stop_fraction_pct": 20.0,
+          "mean_initial_risk_pct": 6.855,
+          "median_days_in_position": 9.0
+        },
+        "2025_plus": {
+          "n": 8,
+          "win_rate_pct": 37.5,
+          "mean_net_pct": -0.3701,
+          "median_net_pct": -0.6342,
+          "profit_factor": 0.7324,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.3029,
+            1.4827
+          ],
+          "mean_without_best_trade": -0.8802,
+          "mean_without_two_best_trades": -1.5103,
+          "best_trade_net_pct": 3.2006,
+          "share_of_total_positive_pnl_from_best_pct": 39.51,
+          "double_roundtrip_cost_mean_pct": -0.5201,
+          "double_roundtrip_cost_profit_factor": 0.6478,
+          "stop_count": 2,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 5.454,
+          "median_days_in_position": 3.0
+        }
+      },
+      "plain_color_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 54,
+          "win_rate_pct": 40.74,
+          "mean_net_pct": 0.6114,
+          "median_net_pct": -0.9361,
+          "profit_factor": 1.2996,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.0038,
+            2.2969
+          ],
+          "mean_without_best_trade": 0.2748,
+          "mean_without_two_best_trades": 0.0091,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 12.88,
+          "double_roundtrip_cost_mean_pct": 0.4614,
+          "double_roundtrip_cost_profit_factor": 1.2166,
+          "stop_count": 15,
+          "stop_fraction_pct": 27.78,
+          "mean_initial_risk_pct": 6.648,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 22,
+          "win_rate_pct": 40.91,
+          "mean_net_pct": -0.2734,
+          "median_net_pct": -1.5047,
+          "profit_factor": 0.9053,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.1695,
+            2.8627
+          ],
+          "mean_without_best_trade": -1.1649,
+          "mean_without_two_best_trades": -1.8767,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 32.1,
+          "double_roundtrip_cost_mean_pct": -0.4234,
+          "double_roundtrip_cost_profit_factor": 0.8577,
+          "stop_count": 8,
+          "stop_fraction_pct": 36.36,
+          "mean_initial_risk_pct": 7.386,
+          "median_days_in_position": 5.0
+        },
+        "2024": {
+          "n": 11,
+          "win_rate_pct": 36.36,
+          "mean_net_pct": 1.9618,
+          "median_net_pct": -0.9879,
+          "profit_factor": 1.8448,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.3971,
+            6.5441
+          ],
+          "mean_without_best_trade": 0.7489,
+          "mean_without_two_best_trades": -0.5738,
+          "best_trade_net_pct": 14.0908,
+          "share_of_total_positive_pnl_from_best_pct": 29.9,
+          "double_roundtrip_cost_mean_pct": 1.8118,
+          "double_roundtrip_cost_profit_factor": 1.7494,
+          "stop_count": 1,
+          "stop_fraction_pct": 9.09,
+          "mean_initial_risk_pct": 8.052,
+          "median_days_in_position": 7.0
+        },
+        "2025_plus": {
+          "n": 21,
+          "win_rate_pct": 42.86,
+          "mean_net_pct": 0.8308,
+          "median_net_pct": -0.6894,
+          "profit_factor": 1.8238,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.6862,
+            2.5376
+          ],
+          "mean_without_best_trade": 0.3659,
+          "mean_without_two_best_trades": -0.075,
+          "best_trade_net_pct": 10.1303,
+          "share_of_total_positive_pnl_from_best_pct": 26.23,
+          "double_roundtrip_cost_mean_pct": 0.6808,
+          "double_roundtrip_cost_profit_factor": 1.6222,
+          "stop_count": 6,
+          "stop_fraction_pct": 28.57,
+          "mean_initial_risk_pct": 5.139,
+          "median_days_in_position": 4.0
+        }
+      },
+      "pulse_crest_persistent_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 29,
+          "win_rate_pct": 55.17,
+          "mean_net_pct": 3.5409,
+          "median_net_pct": 0.8803,
+          "profit_factor": 2.681,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.0039,
+            7.2679
+          ],
+          "mean_without_best_trade": 2.5479,
+          "mean_without_two_best_trades": 1.7263,
+          "best_trade_net_pct": 31.345,
+          "share_of_total_positive_pnl_from_best_pct": 19.14,
+          "double_roundtrip_cost_mean_pct": 3.3909,
+          "double_roundtrip_cost_profit_factor": 2.56,
+          "stop_count": 10,
+          "stop_fraction_pct": 34.48,
+          "mean_initial_risk_pct": 6.653,
+          "median_days_in_position": 8.0
+        },
+        "2020_2023": {
+          "n": 13,
+          "win_rate_pct": 53.85,
+          "mean_net_pct": 0.6641,
+          "median_net_pct": 0.4226,
+          "profit_factor": 1.1979,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.1485,
+            5.7554
+          ],
+          "mean_without_best_trade": -0.8179,
+          "mean_without_two_best_trades": -2.0806,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 35.3,
+          "double_roundtrip_cost_mean_pct": 0.5141,
+          "double_roundtrip_cost_profit_factor": 1.1501,
+          "stop_count": 5,
+          "stop_fraction_pct": 38.46,
+          "mean_initial_risk_pct": 7.947,
+          "median_days_in_position": 8.0
+        },
+        "2024": {
+          "n": 6,
+          "win_rate_pct": 83.33,
+          "mean_net_pct": 10.9587,
+          "median_net_pct": 12.123,
+          "profit_factor": 255.7541,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            4.6417,
+            17.3138
+          ],
+          "mean_without_best_trade": 8.2038,
+          "mean_without_two_best_trades": 6.7321,
+          "best_trade_net_pct": 24.7329,
+          "share_of_total_positive_pnl_from_best_pct": 37.47,
+          "double_roundtrip_cost_mean_pct": 10.8087,
+          "double_roundtrip_cost_profit_factor": 159.9121,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 7.703,
+          "median_days_in_position": 9.5
+        },
+        "2025_plus": {
+          "n": 10,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 2.8301,
+          "median_net_pct": -1.3623,
+          "profit_factor": 2.6461,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.2157,
+            10.0706
+          ],
+          "mean_without_best_trade": -0.3382,
+          "mean_without_two_best_trades": -1.4908,
+          "best_trade_net_pct": 31.345,
+          "share_of_total_positive_pnl_from_best_pct": 68.9,
+          "double_roundtrip_cost_mean_pct": 2.6801,
+          "double_roundtrip_cost_profit_factor": 2.4813,
+          "stop_count": 5,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 4.34,
+          "median_days_in_position": 4.0
+        }
+      },
+      "pulse_crest_fast_invalidation_recent_5d_extreme_LONG": {
+        "all": {
+          "n": 32,
+          "win_rate_pct": 43.75,
+          "mean_net_pct": 1.2785,
+          "median_net_pct": -0.7148,
+          "profit_factor": 1.6145,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.1273,
+            3.8524
+          ],
+          "mean_without_best_trade": 0.7246,
+          "mean_without_two_best_trades": 0.2791,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 17.16,
+          "double_roundtrip_cost_mean_pct": 1.1285,
+          "double_roundtrip_cost_profit_factor": 1.5213,
+          "stop_count": 8,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 7.053,
+          "median_days_in_position": 5.5
+        },
+        "2020_2023": {
+          "n": 14,
+          "win_rate_pct": 50.0,
+          "mean_net_pct": 1.8172,
+          "median_net_pct": 0.137,
+          "profit_factor": 1.8438,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.0748,
+            5.9577
+          ],
+          "mean_without_best_trade": 0.5378,
+          "mean_without_two_best_trades": -0.5066,
+          "best_trade_net_pct": 18.4487,
+          "share_of_total_positive_pnl_from_best_pct": 33.19,
+          "double_roundtrip_cost_mean_pct": 1.6672,
+          "double_roundtrip_cost_profit_factor": 1.7481,
+          "stop_count": 4,
+          "stop_fraction_pct": 28.57,
+          "mean_initial_risk_pct": 7.553,
+          "median_days_in_position": 6.0
+        },
+        "2024": {
+          "n": 8,
+          "win_rate_pct": 50.0,
+          "mean_net_pct": 2.7293,
+          "median_net_pct": 0.2235,
+          "profit_factor": 2.2311,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.7036,
+            8.6818
+          ],
+          "mean_without_best_trade": 1.1062,
+          "mean_without_two_best_trades": -0.8182,
+          "best_trade_net_pct": 14.0908,
+          "share_of_total_positive_pnl_from_best_pct": 35.61,
+          "double_roundtrip_cost_mean_pct": 2.5793,
+          "double_roundtrip_cost_profit_factor": 2.1253,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 9.07,
+          "median_days_in_position": 11.0
+        },
+        "2025_plus": {
+          "n": 10,
+          "win_rate_pct": 30.0,
+          "mean_net_pct": -0.6362,
+          "median_net_pct": -0.7148,
+          "profit_factor": 0.6596,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.9357,
+            2.0353
+          ],
+          "mean_without_best_trade": -1.6938,
+          "mean_without_two_best_trades": -2.226,
+          "best_trade_net_pct": 8.8823,
+          "share_of_total_positive_pnl_from_best_pct": 72.06,
+          "double_roundtrip_cost_mean_pct": -0.7862,
+          "double_roundtrip_cost_profit_factor": 0.6017,
+          "stop_count": 4,
+          "stop_fraction_pct": 40.0,
+          "mean_initial_risk_pct": 4.739,
+          "median_days_in_position": 3.5
+        }
+      }
+    },
+    "SOLUSDT": {
+      "pulse_crest_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 13,
+          "win_rate_pct": 15.38,
+          "mean_net_pct": -2.9901,
+          "median_net_pct": -3.2402,
+          "profit_factor": 0.1471,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.8049,
+            -1.0456
+          ],
+          "mean_without_best_trade": -3.6331,
+          "mean_without_two_best_trades": -4.1434,
+          "best_trade_net_pct": 4.7256,
+          "share_of_total_positive_pnl_from_best_pct": 70.48,
+          "double_roundtrip_cost_mean_pct": -3.1401,
+          "double_roundtrip_cost_profit_factor": 0.1356,
+          "stop_count": 7,
+          "stop_fraction_pct": 53.85,
+          "mean_initial_risk_pct": 6.356,
+          "median_days_in_position": 2.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -1.2674,
+          "median_net_pct": -1.7503,
+          "profit_factor": 0.3424,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.0317,
+            1.9797
+          ],
+          "mean_without_best_trade": -2.891,
+          "mean_without_two_best_trades": -4.0317,
+          "best_trade_net_pct": 1.9797,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -1.4174,
+          "double_roundtrip_cost_profit_factor": 0.3008,
+          "stop_count": 1,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.724,
+          "median_days_in_position": 2.0
+        },
+        "2024": {
+          "n": 4,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -4.9325,
+          "median_net_pct": -5.1025,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -6.9998,
+            -2.8653
+          ],
+          "mean_without_best_trade": -5.8277,
+          "mean_without_two_best_trades": -6.9998,
+          "best_trade_net_pct": -2.247,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -5.0825,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 3,
+          "stop_fraction_pct": 75.0,
+          "mean_initial_risk_pct": 5.562,
+          "median_days_in_position": 2.0
+        },
+        "2025_plus": {
+          "n": 6,
+          "win_rate_pct": 16.67,
+          "mean_net_pct": -2.5566,
+          "median_net_pct": -2.7883,
+          "profit_factor": 0.2355,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.7752,
+            0.86
+          ],
+          "mean_without_best_trade": -4.013,
+          "mean_without_two_best_trades": -4.7377,
+          "best_trade_net_pct": 4.7256,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -2.7066,
+          "double_roundtrip_cost_profit_factor": 0.2198,
+          "stop_count": 3,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 7.202,
+          "median_days_in_position": 3.0
+        }
+      },
+      "pulse_confirm_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 13,
+          "win_rate_pct": 30.77,
+          "mean_net_pct": -1.586,
+          "median_net_pct": -1.6717,
+          "profit_factor": 0.3995,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.7993,
+            0.7305
+          ],
+          "mean_without_best_trade": -2.3504,
+          "mean_without_two_best_trades": -2.9762,
+          "best_trade_net_pct": 7.5872,
+          "share_of_total_positive_pnl_from_best_pct": 55.32,
+          "double_roundtrip_cost_mean_pct": -1.736,
+          "double_roundtrip_cost_profit_factor": 0.3675,
+          "stop_count": 5,
+          "stop_fraction_pct": 38.46,
+          "mean_initial_risk_pct": 5.798,
+          "median_days_in_position": 4.0
+        },
+        "2020_2023": {
+          "n": 2,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -2.714,
+          "median_net_pct": -2.714,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.0013,
+            -1.4267
+          ],
+          "mean_without_best_trade": -4.0013,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -1.4267,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -2.864,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 7.572,
+          "median_days_in_position": 9.5
+        },
+        "2024": {
+          "n": 4,
+          "win_rate_pct": 25.0,
+          "mean_net_pct": -1.5575,
+          "median_net_pct": -2.2513,
+          "profit_factor": 0.5491,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -7.6936,
+            4.9826
+          ],
+          "mean_without_best_trade": -4.6057,
+          "mean_without_two_best_trades": -6.0727,
+          "best_trade_net_pct": 7.5872,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -1.7075,
+          "double_roundtrip_cost_profit_factor": 0.5213,
+          "stop_count": 2,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 5.115,
+          "median_days_in_position": 3.5
+        },
+        "2025_plus": {
+          "n": 7,
+          "win_rate_pct": 42.86,
+          "mean_net_pct": -1.28,
+          "median_net_pct": -1.3277,
+          "profit_factor": 0.4061,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.7159,
+            1.3742
+          ],
+          "mean_without_best_trade": -2.2488,
+          "mean_without_two_best_trades": -2.9449,
+          "best_trade_net_pct": 4.533,
+          "share_of_total_positive_pnl_from_best_pct": 73.99,
+          "double_roundtrip_cost_mean_pct": -1.43,
+          "double_roundtrip_cost_profit_factor": 0.3619,
+          "stop_count": 3,
+          "stop_fraction_pct": 42.86,
+          "mean_initial_risk_pct": 5.681,
+          "median_days_in_position": 3.0
+        }
+      },
+      "plain_color_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 19,
+          "win_rate_pct": 10.53,
+          "mean_net_pct": -3.9337,
+          "median_net_pct": -3.8805,
+          "profit_factor": 0.0604,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.551,
+            -2.3527
+          ],
+          "mean_without_best_trade": -4.3969,
+          "mean_without_two_best_trades": -4.6791,
+          "best_trade_net_pct": 4.4042,
+          "share_of_total_positive_pnl_from_best_pct": 91.66,
+          "double_roundtrip_cost_mean_pct": -4.0837,
+          "double_roundtrip_cost_profit_factor": 0.0549,
+          "stop_count": 12,
+          "stop_fraction_pct": 63.16,
+          "mean_initial_risk_pct": 5.799,
+          "median_days_in_position": 2.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -3.3452,
+          "median_net_pct": -4.0317,
+          "profit_factor": 0.0384,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -6.4047,
+            0.4008
+          ],
+          "mean_without_best_trade": -5.2182,
+          "mean_without_two_best_trades": -6.4047,
+          "best_trade_net_pct": 0.4008,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -3.4952,
+          "double_roundtrip_cost_profit_factor": 0.0234,
+          "stop_count": 2,
+          "stop_fraction_pct": 66.67,
+          "mean_initial_risk_pct": 4.648,
+          "median_days_in_position": 2.0
+        },
+        "2024": {
+          "n": 4,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -4.51,
+          "median_net_pct": -4.5357,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -6.481,
+            -2.5389
+          ],
+          "mean_without_best_trade": -5.2643,
+          "mean_without_two_best_trades": -6.481,
+          "best_trade_net_pct": -2.247,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -4.66,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 3,
+          "stop_fraction_pct": 75.0,
+          "mean_initial_risk_pct": 5.117,
+          "median_days_in_position": 1.5
+        },
+        "2025_plus": {
+          "n": 12,
+          "win_rate_pct": 8.33,
+          "mean_net_pct": -3.8887,
+          "median_net_pct": -3.5603,
+          "profit_factor": 0.0862,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -6.2658,
+            -1.5674
+          ],
+          "mean_without_best_trade": -4.6426,
+          "mean_without_two_best_trades": -5.0965,
+          "best_trade_net_pct": 4.4042,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -4.0387,
+          "double_roundtrip_cost_profit_factor": 0.0807,
+          "stop_count": 7,
+          "stop_fraction_pct": 58.33,
+          "mean_initial_risk_pct": 6.314,
+          "median_days_in_position": 2.5
+        }
+      },
+      "pulse_crest_persistent_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 13,
+          "win_rate_pct": 15.38,
+          "mean_net_pct": -3.4197,
+          "median_net_pct": -4.0317,
+          "profit_factor": 0.0654,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.1794,
+            -1.6335
+          ],
+          "mean_without_best_trade": -3.91,
+          "mean_without_two_best_trades": -4.3242,
+          "best_trade_net_pct": 2.4636,
+          "share_of_total_positive_pnl_from_best_pct": 79.2,
+          "double_roundtrip_cost_mean_pct": -3.5697,
+          "double_roundtrip_cost_profit_factor": 0.0571,
+          "stop_count": 9,
+          "stop_fraction_pct": 69.23,
+          "mean_initial_risk_pct": 6.356,
+          "median_days_in_position": 3.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -2.6666,
+          "median_net_pct": -4.0317,
+          "profit_factor": 0.0748,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.6152,
+            0.647
+          ],
+          "mean_without_best_trade": -4.3234,
+          "mean_without_two_best_trades": -4.6152,
+          "best_trade_net_pct": 0.647,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -2.8166,
+          "double_roundtrip_cost_profit_factor": 0.0556,
+          "stop_count": 2,
+          "stop_fraction_pct": 66.67,
+          "mean_initial_risk_pct": 5.724,
+          "median_days_in_position": 3.0
+        },
+        "2024": {
+          "n": 4,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -5.7121,
+          "median_net_pct": -6.6617,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -7.1091,
+            -3.3656
+          ],
+          "mean_without_best_trade": -6.8672,
+          "mean_without_two_best_trades": -6.9998,
+          "best_trade_net_pct": -2.247,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -5.8621,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 4,
+          "stop_fraction_pct": 100.0,
+          "mean_initial_risk_pct": 5.562,
+          "median_days_in_position": 2.0
+        },
+        "2025_plus": {
+          "n": 6,
+          "win_rate_pct": 16.67,
+          "mean_net_pct": -2.2679,
+          "median_net_pct": -1.0238,
+          "profit_factor": 0.1533,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.3967,
+            0.2937
+          ],
+          "mean_without_best_trade": -3.2142,
+          "mean_without_two_best_trades": -3.8555,
+          "best_trade_net_pct": 2.4636,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -2.4179,
+          "double_roundtrip_cost_profit_factor": 0.1375,
+          "stop_count": 3,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 7.202,
+          "median_days_in_position": 3.5
+        }
+      },
+      "pulse_crest_fast_invalidation_recent_5d_extreme_LONG": {
+        "all": {
+          "n": 14,
+          "win_rate_pct": 21.43,
+          "mean_net_pct": -3.0196,
+          "median_net_pct": -3.3619,
+          "profit_factor": 0.1413,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.7608,
+            -1.1354
+          ],
+          "mean_without_best_trade": -3.6154,
+          "mean_without_two_best_trades": -4.0817,
+          "best_trade_net_pct": 4.7256,
+          "share_of_total_positive_pnl_from_best_pct": 67.92,
+          "double_roundtrip_cost_mean_pct": -3.1696,
+          "double_roundtrip_cost_profit_factor": 0.1279,
+          "stop_count": 7,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 6.142,
+          "median_days_in_position": 3.0
+        },
+        "2020_2023": {
+          "n": 3,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": -1.2674,
+          "median_net_pct": -1.7503,
+          "profit_factor": 0.3424,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.0317,
+            1.9797
+          ],
+          "mean_without_best_trade": -2.891,
+          "mean_without_two_best_trades": -4.0317,
+          "best_trade_net_pct": 1.9797,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -1.4174,
+          "double_roundtrip_cost_profit_factor": 0.3008,
+          "stop_count": 1,
+          "stop_fraction_pct": 33.33,
+          "mean_initial_risk_pct": 5.724,
+          "median_days_in_position": 2.0
+        },
+        "2024": {
+          "n": 4,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -4.9325,
+          "median_net_pct": -5.1025,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -6.9998,
+            -2.8653
+          ],
+          "mean_without_best_trade": -5.8277,
+          "mean_without_two_best_trades": -6.9998,
+          "best_trade_net_pct": -2.247,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -5.0825,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 3,
+          "stop_fraction_pct": 75.0,
+          "mean_initial_risk_pct": 5.562,
+          "median_days_in_position": 2.0
+        },
+        "2025_plus": {
+          "n": 7,
+          "win_rate_pct": 28.57,
+          "mean_net_pct": -2.6775,
+          "median_net_pct": -3.2402,
+          "profit_factor": 0.2099,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.4283,
+            0.2662
+          ],
+          "mean_without_best_trade": -3.9113,
+          "mean_without_two_best_trades": -4.744,
+          "best_trade_net_pct": 4.7256,
+          "share_of_total_positive_pnl_from_best_pct": 94.94,
+          "double_roundtrip_cost_mean_pct": -2.8275,
+          "double_roundtrip_cost_profit_factor": 0.1912,
+          "stop_count": 3,
+          "stop_fraction_pct": 42.86,
+          "mean_initial_risk_pct": 6.652,
+          "median_days_in_position": 4.0
+        }
+      }
+    },
+    "XRPUSDT": {
+      "pulse_crest_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 16,
+          "win_rate_pct": 37.5,
+          "mean_net_pct": 2.3365,
+          "median_net_pct": -0.5678,
+          "profit_factor": 2.3184,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.8348,
+            8.2125
+          ],
+          "mean_without_best_trade": -0.124,
+          "mean_without_two_best_trades": -0.9181,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 59.69,
+          "double_roundtrip_cost_mean_pct": 2.1865,
+          "double_roundtrip_cost_profit_factor": 2.1717,
+          "stop_count": 5,
+          "stop_fraction_pct": 31.25,
+          "mean_initial_risk_pct": 5.611,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 2,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -2.4695,
+          "median_net_pct": -2.4695,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.0809,
+            -1.8582
+          ],
+          "mean_without_best_trade": -3.0809,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -1.8582,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -2.6195,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 2,
+          "stop_fraction_pct": 100.0,
+          "mean_initial_risk_pct": 2.32,
+          "median_days_in_position": 3.5
+        },
+        "2024": {
+          "n": 5,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 5.5121,
+          "median_net_pct": -3.2584,
+          "profit_factor": 2.7844,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.5265,
+            22.5952
+          ],
+          "mean_without_best_trade": -2.9209,
+          "mean_without_two_best_trades": -5.1485,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 91.25,
+          "double_roundtrip_cost_mean_pct": 5.3621,
+          "double_roundtrip_cost_profit_factor": 2.6867,
+          "stop_count": 1,
+          "stop_fraction_pct": 20.0,
+          "mean_initial_risk_pct": 8.825,
+          "median_days_in_position": 9.0
+        },
+        "2025_plus": {
+          "n": 9,
+          "win_rate_pct": 44.44,
+          "mean_net_pct": 1.6403,
+          "median_net_pct": -0.187,
+          "profit_factor": 2.8518,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.1998,
+            4.7329
+          ],
+          "mean_without_best_trade": 0.4711,
+          "mean_without_two_best_trades": -0.3919,
+          "best_trade_net_pct": 10.9945,
+          "share_of_total_positive_pnl_from_best_pct": 48.36,
+          "double_roundtrip_cost_mean_pct": 1.4903,
+          "double_roundtrip_cost_profit_factor": 2.5378,
+          "stop_count": 2,
+          "stop_fraction_pct": 22.22,
+          "mean_initial_risk_pct": 4.557,
+          "median_days_in_position": 4.0
+        }
+      },
+      "pulse_confirm_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 13,
+          "win_rate_pct": 23.08,
+          "mean_net_pct": -1.4048,
+          "median_net_pct": -2.8418,
+          "profit_factor": 0.5049,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.7882,
+            1.3807
+          ],
+          "mean_without_best_trade": -2.3728,
+          "mean_without_two_best_trades": -3.1733,
+          "best_trade_net_pct": 10.2122,
+          "share_of_total_positive_pnl_from_best_pct": 54.83,
+          "double_roundtrip_cost_mean_pct": -1.5548,
+          "double_roundtrip_cost_profit_factor": 0.4735,
+          "stop_count": 5,
+          "stop_fraction_pct": 38.46,
+          "mean_initial_risk_pct": 5.692,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 1,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -2.8418,
+          "median_net_pct": -2.8418,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.8418,
+            -2.8418
+          ],
+          "mean_without_best_trade": null,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -2.8418,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -2.9918,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 1,
+          "stop_fraction_pct": 100.0,
+          "mean_initial_risk_pct": 2.692,
+          "median_days_in_position": 5.0
+        },
+        "2024": {
+          "n": 5,
+          "win_rate_pct": 20.0,
+          "mean_net_pct": -3.6148,
+          "median_net_pct": -3.4468,
+          "profit_factor": 0.0988,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -6.1745,
+            -0.6334
+          ],
+          "mean_without_best_trade": -5.0141,
+          "mean_without_two_best_trades": -5.7199,
+          "best_trade_net_pct": 1.9821,
+          "share_of_total_positive_pnl_from_best_pct": 100.0,
+          "double_roundtrip_cost_mean_pct": -3.7648,
+          "double_roundtrip_cost_profit_factor": 0.0887,
+          "stop_count": 2,
+          "stop_fraction_pct": 40.0,
+          "mean_initial_risk_pct": 7.961,
+          "median_days_in_position": 8.0
+        },
+        "2025_plus": {
+          "n": 7,
+          "win_rate_pct": 28.57,
+          "mean_net_pct": 0.3792,
+          "median_net_pct": -1.3889,
+          "profit_factor": 1.1897,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.308,
+            4.7195
+          ],
+          "mean_without_best_trade": -1.2597,
+          "mean_without_two_best_trades": -2.7981,
+          "best_trade_net_pct": 10.2122,
+          "share_of_total_positive_pnl_from_best_pct": 61.35,
+          "double_roundtrip_cost_mean_pct": 0.2292,
+          "double_roundtrip_cost_profit_factor": 1.1088,
+          "stop_count": 2,
+          "stop_fraction_pct": 28.57,
+          "mean_initial_risk_pct": 4.5,
+          "median_days_in_position": 3.0
+        }
+      },
+      "plain_color_fast_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 18,
+          "win_rate_pct": 38.89,
+          "mean_net_pct": 2.2482,
+          "median_net_pct": -0.3456,
+          "profit_factor": 2.4778,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.3786,
+            7.4199
+          ],
+          "mean_without_best_trade": 0.0719,
+          "mean_without_two_best_trades": -0.6107,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 57.84,
+          "double_roundtrip_cost_mean_pct": 2.0982,
+          "double_roundtrip_cost_profit_factor": 2.3008,
+          "stop_count": 4,
+          "stop_fraction_pct": 22.22,
+          "mean_initial_risk_pct": 5.829,
+          "median_days_in_position": 4.5
+        },
+        "2020_2023": {
+          "n": 1,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -1.8582,
+          "median_net_pct": -1.8582,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.8582,
+            -1.8582
+          ],
+          "mean_without_best_trade": null,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -1.8582,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -2.0082,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 1,
+          "stop_fraction_pct": 100.0,
+          "mean_initial_risk_pct": 1.708,
+          "median_days_in_position": 1.0
+        },
+        "2024": {
+          "n": 8,
+          "win_rate_pct": 25.0,
+          "mean_net_pct": 2.6192,
+          "median_net_pct": -3.4639,
+          "profit_factor": 1.9502,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -4.1139,
+            13.6961
+          ],
+          "mean_without_best_trade": -2.6129,
+          "mean_without_two_best_trades": -3.6754,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 91.25,
+          "double_roundtrip_cost_mean_pct": 2.4692,
+          "double_roundtrip_cost_profit_factor": 1.8606,
+          "stop_count": 3,
+          "stop_fraction_pct": 37.5,
+          "mean_initial_risk_pct": 6.997,
+          "median_days_in_position": 7.0
+        },
+        "2025_plus": {
+          "n": 9,
+          "win_rate_pct": 55.56,
+          "mean_net_pct": 2.3746,
+          "median_net_pct": 0.2027,
+          "profit_factor": 7.1549,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.0326,
+            5.178
+          ],
+          "mean_without_best_trade": 1.2971,
+          "mean_without_two_best_trades": 0.5522,
+          "best_trade_net_pct": 10.9945,
+          "share_of_total_positive_pnl_from_best_pct": 44.25,
+          "double_roundtrip_cost_mean_pct": 2.2246,
+          "double_roundtrip_cost_profit_factor": 5.9165,
+          "stop_count": 0,
+          "stop_fraction_pct": 0.0,
+          "mean_initial_risk_pct": 5.247,
+          "median_days_in_position": 4.0
+        }
+      },
+      "pulse_crest_persistent_invalidation_confirmed_pivot_LONG": {
+        "all": {
+          "n": 16,
+          "win_rate_pct": 31.25,
+          "mean_net_pct": 1.6609,
+          "median_net_pct": -1.7768,
+          "profit_factor": 1.7462,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.61,
+            7.6971
+          ],
+          "mean_without_best_trade": -0.8447,
+          "mean_without_two_best_trades": -1.6903,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 63.11,
+          "double_roundtrip_cost_mean_pct": 1.5109,
+          "double_roundtrip_cost_profit_factor": 1.6488,
+          "stop_count": 7,
+          "stop_fraction_pct": 43.75,
+          "mean_initial_risk_pct": 5.611,
+          "median_days_in_position": 5.5
+        },
+        "2020_2023": {
+          "n": 2,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -2.4695,
+          "median_net_pct": -2.4695,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.0809,
+            -1.8582
+          ],
+          "mean_without_best_trade": -3.0809,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -1.8582,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -2.6195,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 2,
+          "stop_fraction_pct": 100.0,
+          "mean_initial_risk_pct": 2.32,
+          "median_days_in_position": 3.5
+        },
+        "2024": {
+          "n": 5,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 5.767,
+          "median_net_pct": -2.7422,
+          "profit_factor": 3.0349,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -5.1198,
+            22.5952
+          ],
+          "mean_without_best_trade": -2.6022,
+          "mean_without_two_best_trades": -4.7235,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 91.25,
+          "double_roundtrip_cost_mean_pct": 5.617,
+          "double_roundtrip_cost_profit_factor": 2.9209,
+          "stop_count": 1,
+          "stop_fraction_pct": 20.0,
+          "mean_initial_risk_pct": 8.825,
+          "median_days_in_position": 10.0
+        },
+        "2025_plus": {
+          "n": 9,
+          "win_rate_pct": 33.33,
+          "mean_net_pct": 0.2976,
+          "median_net_pct": -1.2801,
+          "profit_factor": 1.1623,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -2.7801,
+            3.8826
+          ],
+          "mean_without_best_trade": -1.0396,
+          "mean_without_two_best_trades": -2.1183,
+          "best_trade_net_pct": 10.9945,
+          "share_of_total_positive_pnl_from_best_pct": 57.32,
+          "double_roundtrip_cost_mean_pct": 0.1476,
+          "double_roundtrip_cost_profit_factor": 1.0763,
+          "stop_count": 4,
+          "stop_fraction_pct": 44.44,
+          "mean_initial_risk_pct": 4.557,
+          "median_days_in_position": 4.0
+        }
+      },
+      "pulse_crest_fast_invalidation_recent_5d_extreme_LONG": {
+        "all": {
+          "n": 16,
+          "win_rate_pct": 37.5,
+          "mean_net_pct": 2.8462,
+          "median_net_pct": -0.5678,
+          "profit_factor": 3.2541,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -0.976,
+            8.5953
+          ],
+          "mean_without_best_trade": 0.4197,
+          "mean_without_two_best_trades": -0.3357,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 59.69,
+          "double_roundtrip_cost_mean_pct": 2.6962,
+          "double_roundtrip_cost_profit_factor": 2.9877,
+          "stop_count": 4,
+          "stop_fraction_pct": 25.0,
+          "mean_initial_risk_pct": 5.206,
+          "median_days_in_position": 5.0
+        },
+        "2020_2023": {
+          "n": 2,
+          "win_rate_pct": 0.0,
+          "mean_net_pct": -2.0581,
+          "median_net_pct": -2.0581,
+          "profit_factor": 0.0,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.0809,
+            -1.0354
+          ],
+          "mean_without_best_trade": -3.0809,
+          "mean_without_two_best_trades": null,
+          "best_trade_net_pct": -1.0354,
+          "share_of_total_positive_pnl_from_best_pct": null,
+          "double_roundtrip_cost_mean_pct": -2.2081,
+          "double_roundtrip_cost_profit_factor": 0.0,
+          "stop_count": 1,
+          "stop_fraction_pct": 50.0,
+          "mean_initial_risk_pct": 3.767,
+          "median_days_in_position": 4.0
+        },
+        "2024": {
+          "n": 5,
+          "win_rate_pct": 40.0,
+          "mean_net_pct": 6.9784,
+          "median_net_pct": -1.1861,
+          "profit_factor": 5.3003,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -3.0083,
+            23.5648
+          ],
+          "mean_without_best_trade": -1.088,
+          "mean_without_two_best_trades": -2.7046,
+          "best_trade_net_pct": 39.2439,
+          "share_of_total_positive_pnl_from_best_pct": 91.25,
+          "double_roundtrip_cost_mean_pct": 6.8284,
+          "double_roundtrip_cost_profit_factor": 4.9867,
+          "stop_count": 1,
+          "stop_fraction_pct": 20.0,
+          "mean_initial_risk_pct": 7.44,
+          "median_days_in_position": 9.0
+        },
+        "2025_plus": {
+          "n": 9,
+          "win_rate_pct": 44.44,
+          "mean_net_pct": 1.6403,
+          "median_net_pct": -0.187,
+          "profit_factor": 2.8518,
+          "bootstrap_trade_resample_95pct_mean_interval": [
+            -1.1542,
+            4.7606
+          ],
+          "mean_without_best_trade": 0.4711,
+          "mean_without_two_best_trades": -0.3919,
+          "best_trade_net_pct": 10.9945,
+          "share_of_total_positive_pnl_from_best_pct": 48.36,
+          "double_roundtrip_cost_mean_pct": 1.4903,
+          "double_roundtrip_cost_profit_factor": 2.5378,
+          "stop_count": 2,
+          "stop_fraction_pct": 22.22,
+          "mean_initial_risk_pct": 4.284,
+          "median_days_in_position": 4.0
+        }
+      }
+    }
+  },
+  "pooled": {
+    "pulse_crest_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 109,
+      "win_rate_pct": 40.37,
+      "mean_net_pct": 1.4387,
+      "median_net_pct": -0.7676,
+      "profit_factor": 1.8046,
+      "bootstrap_trade_resample_95pct_mean_interval": [
+        -0.074,
+        3.165
+      ],
+      "mean_without_best_trade": 0.9746,
+      "mean_without_two_best_trades": 0.617,
+      "best_trade_net_pct": 51.5536,
+      "share_of_total_positive_pnl_from_best_pct": 14.66,
+      "double_roundtrip_cost_mean_pct": 1.2887,
+      "double_roundtrip_cost_profit_factor": 1.6864,
+      "stop_count": 33,
+      "stop_fraction_pct": 30.28,
+      "mean_initial_risk_pct": 6.249,
+      "median_days_in_position": 5.0
+    },
+    "pulse_confirm_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 99,
+      "win_rate_pct": 38.38,
+      "mean_net_pct": 0.7296,
+      "median_net_pct": -0.9879,
+      "profit_factor": 1.3546,
+      "bootstrap_trade_resample_95pct_mean_interval": [
+        -0.5969,
+        2.2776
+      ],
+      "mean_without_best_trade": 0.3019,
+      "mean_without_two_best_trades": 0.0774,
+      "best_trade_net_pct": 42.6403,
+      "share_of_total_positive_pnl_from_best_pct": 15.46,
+      "double_roundtrip_cost_mean_pct": 0.5796,
+      "double_roundtrip_cost_profit_factor": 1.2696,
+      "stop_count": 36,
+      "stop_fraction_pct": 36.36,
+      "mean_initial_risk_pct": 5.788,
+      "median_days_in_position": 6.0
+    },
+    "plain_color_fast_invalidation_confirmed_pivot_LONG": {
+      "n": 156,
+      "win_rate_pct": 37.18,
+      "mean_net_pct": 0.6291,
+      "median_net_pct": -0.9805,
+      "profit_factor": 1.3212,
+      "bootstrap_trade_resample_95pct_mean_interval": [
+        -0.4334,
+        1.7762
+      ],
+      "mean_without_best_trade": 0.3799,
+      "mean_without_two_best_trades": 0.1805,
+      "best_trade_net_pct": 39.2439,
+      "share_of_total_positive_pnl_from_best_pct": 9.72,
+      "double_roundtrip_cost_mean_pct": 0.4791,
+      "double_roundtrip_cost_profit_factor": 1.2334,
+      "stop_count": 51,
+      "stop_fraction_pct": 32.69,
+      "mean_initial_risk_pct": 6.103,
+      "median_days_in_position": 4.0
+    },
+    "pulse_crest_persistent_invalidation_confirmed_pivot_LONG": {
+      "n": 109,
+      "win_rate_pct": 37.61,
+      "mean_net_pct": 0.8935,
+      "median_net_pct": -1.2801,
+      "profit_factor": 1.3843,
+      "bootstrap_trade_resample_95pct_mean_interval": [
+        -0.6131,
+        2.528
+      ],
+      "mean_without_best_trade": 0.5385,
+      "mean_without_two_best_trades": 0.2505,
+      "best_trade_net_pct": 39.2439,
+      "share_of_total_positive_pnl_from_best_pct": 11.19,
+      "double_roundtrip_cost_mean_pct": 0.7435,
+      "double_roundtrip_cost_profit_factor": 1.3074,
+      "stop_count": 45,
+      "stop_fraction_pct": 41.28,
+      "mean_initial_risk_pct": 6.249,
+      "median_days_in_position": 7.0
+    },
+    "pulse_crest_fast_invalidation_recent_5d_extreme_LONG": {
+      "n": 116,
+      "win_rate_pct": 41.38,
+      "mean_net_pct": 1.3036,
+      "median_net_pct": -0.7591,
+      "profit_factor": 1.6893,
+      "bootstrap_trade_resample_95pct_mean_interval": [
+        -0.1294,
+        2.9209
+      ],
+      "mean_without_best_trade": 0.8666,
+      "mean_without_two_best_trades": 0.53,
+      "best_trade_net_pct": 51.5536,
+      "share_of_total_positive_pnl_from_best_pct": 13.91,
+      "double_roundtrip_cost_mean_pct": 1.1536,
+      "double_roundtrip_cost_profit_factor": 1.5828,
+      "stop_count": 34,
+      "stop_fraction_pct": 29.31,
+      "mean_initial_risk_pct": 6.019,
+      "median_days_in_position": 5.0
+    }
+  }
+}
