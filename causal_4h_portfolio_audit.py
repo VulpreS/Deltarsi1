@@ -119,9 +119,9 @@ def metrics(run):
  tr=run["trades"];vals=[p["net"] for p in tr]
  pos=sum(max(0,x) for x in vals);neg=-sum(min(0,x) for x in vals)
  peak=run["start_cash"];dd=0.;worst=0.;monthly={}
- for _,eq,_ in run["curve"]:
+ for ts,eq,nactive in run["curve"]:
   peak=max(peak,eq);dd=max(dd,1-eq/peak)
-  monthly[iso(_ )[:7]]=eq
+  monthly[iso(ts)[:7]]=eq
  prev=run["start_cash"];worst_month=None
  for month,eq in sorted(monthly.items()):
   rr=100*(eq/prev-1)
