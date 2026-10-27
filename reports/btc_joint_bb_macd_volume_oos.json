@@ -1,0 +1,303 @@
+{
+  "notes": "Exploratory, not a strategy backtest. BTC completed 4H DeltaRSI signals matched to 26 manual trades within 4h; 1H Binance USDT-M volume proxy (not Bybit). 4H BB20 2\u03c3, MACD 11/27/22, 1H closes. Only strictly completed candles. Common complete-case volume subset across models. Expanding chronological TimeSeriesSplit; tiny positives and serial dependence make results unstable. Top-decile precision is based on each test fold; AUC/AP only if test has both classes. No hyperparameter tuning on test; no probability calibration; comparisons are exploratory.",
+  "volume_hours": 8147,
+  "volume_errors": [
+    "2026-10: HTTPError HTTP Error 404: Not Found"
+  ],
+  "models": {
+    "LONG_bb_only": {
+      "features": [
+        "bb_width"
+      ],
+      "folds": [
+        {
+          "train_n": 26,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.7632,
+          "average_precision": 0.5298,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        },
+        {
+          "train_n": 49,
+          "test_n": 23,
+          "test_positives": 3,
+          "auc": 0.3833,
+          "average_precision": 0.1397,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.1304
+        },
+        {
+          "train_n": 72,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.8026,
+          "average_precision": 0.5083,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        }
+      ],
+      "mean_auc": 0.6497,
+      "mean_ap": 0.3926,
+      "mean_precision_top_10pct": 0.3333
+    },
+    "LONG_bb_macd": {
+      "features": [
+        "bb_width",
+        "macd_fading",
+        "macd_slope"
+      ],
+      "folds": [
+        {
+          "train_n": 26,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.7237,
+          "average_precision": 0.4896,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        },
+        {
+          "train_n": 49,
+          "test_n": 23,
+          "test_positives": 3,
+          "auc": 0.35,
+          "average_precision": 0.1279,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.1304
+        },
+        {
+          "train_n": 72,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.6711,
+          "average_precision": 0.4026,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        }
+      ],
+      "mean_auc": 0.5816,
+      "mean_ap": 0.34,
+      "mean_precision_top_10pct": 0.3333
+    },
+    "LONG_bb_macd_volume": {
+      "features": [
+        "bb_width",
+        "macd_fading",
+        "macd_slope",
+        "volume_ratio"
+      ],
+      "folds": [
+        {
+          "train_n": 26,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.7105,
+          "average_precision": 0.4848,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        },
+        {
+          "train_n": 49,
+          "test_n": 23,
+          "test_positives": 3,
+          "auc": 0.3333,
+          "average_precision": 0.1267,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.1304
+        },
+        {
+          "train_n": 72,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.7105,
+          "average_precision": 0.3743,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        }
+      ],
+      "mean_auc": 0.5848,
+      "mean_ap": 0.3286,
+      "mean_precision_top_10pct": 0.3333
+    },
+    "LONG_all_context": {
+      "features": [
+        "bb_width",
+        "bb_directional_touch_3",
+        "macd_fading",
+        "macd_slope",
+        "atr_pct",
+        "close_efficiency",
+        "volume_ratio"
+      ],
+      "folds": [
+        {
+          "train_n": 26,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.4868,
+          "average_precision": 0.3884,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        },
+        {
+          "train_n": 49,
+          "test_n": 23,
+          "test_positives": 3,
+          "auc": 0.3833,
+          "average_precision": 0.1342,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.1304
+        },
+        {
+          "train_n": 72,
+          "test_n": 23,
+          "test_positives": 4,
+          "auc": 0.6842,
+          "average_precision": 0.3375,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.1739
+        }
+      ],
+      "mean_auc": 0.5181,
+      "mean_ap": 0.2867,
+      "mean_precision_top_10pct": 0.3333
+    },
+    "SHORT_bb_only": {
+      "features": [
+        "bb_width"
+      ],
+      "folds": [
+        {
+          "train_n": 48,
+          "test_n": 23,
+          "test_positives": 1,
+          "auc": 0.5909,
+          "average_precision": 0.1,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.0435
+        },
+        {
+          "train_n": 71,
+          "test_n": 23,
+          "test_positives": 7,
+          "auc": 0.4018,
+          "average_precision": 0.4089,
+          "precision_top_10pct": 0.5,
+          "base_rate": 0.3043
+        }
+      ],
+      "mean_auc": 0.4963,
+      "mean_ap": 0.2545,
+      "mean_precision_top_10pct": 0.25
+    },
+    "SHORT_bb_macd": {
+      "features": [
+        "bb_width",
+        "macd_fading",
+        "macd_slope"
+      ],
+      "folds": [
+        {
+          "train_n": 48,
+          "test_n": 23,
+          "test_positives": 1,
+          "auc": 0.7273,
+          "average_precision": 0.1429,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.0435
+        },
+        {
+          "train_n": 71,
+          "test_n": 23,
+          "test_positives": 7,
+          "auc": 0.75,
+          "average_precision": 0.48,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.3043
+        }
+      ],
+      "mean_auc": 0.7387,
+      "mean_ap": 0.3115,
+      "mean_precision_top_10pct": 0.0
+    },
+    "SHORT_bb_macd_volume": {
+      "features": [
+        "bb_width",
+        "macd_fading",
+        "macd_slope",
+        "volume_ratio"
+      ],
+      "folds": [
+        {
+          "train_n": 48,
+          "test_n": 23,
+          "test_positives": 1,
+          "auc": 0.8182,
+          "average_precision": 0.2,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.0435
+        },
+        {
+          "train_n": 71,
+          "test_n": 23,
+          "test_positives": 7,
+          "auc": 0.7768,
+          "average_precision": 0.7261,
+          "precision_top_10pct": 1.0,
+          "base_rate": 0.3043
+        }
+      ],
+      "mean_auc": 0.7975,
+      "mean_ap": 0.463,
+      "mean_precision_top_10pct": 0.5
+    },
+    "SHORT_all_context": {
+      "features": [
+        "bb_width",
+        "bb_directional_touch_3",
+        "macd_fading",
+        "macd_slope",
+        "atr_pct",
+        "close_efficiency",
+        "volume_ratio"
+      ],
+      "folds": [
+        {
+          "train_n": 48,
+          "test_n": 23,
+          "test_positives": 1,
+          "auc": 0.4091,
+          "average_precision": 0.0714,
+          "precision_top_10pct": 0.0,
+          "base_rate": 0.0435
+        },
+        {
+          "train_n": 71,
+          "test_n": 23,
+          "test_positives": 7,
+          "auc": 0.7857,
+          "average_precision": 0.7054,
+          "precision_top_10pct": 1.0,
+          "base_rate": 0.3043
+        }
+      ],
+      "mean_auc": 0.5974,
+      "mean_ap": 0.3884,
+      "mean_precision_top_10pct": 0.5
+    }
+  },
+  "counts": {
+    "LONG": {
+      "n": 118,
+      "selected": 14,
+      "base_rate": 0.1186
+    },
+    "SHORT": {
+      "n": 117,
+      "selected": 12,
+      "base_rate": 0.1026
+    }
+  }
+}
