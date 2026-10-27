@@ -1,6 +1,6 @@
 """No external data, orders, or network. Deterministic label normalization fixtures."""
 import unittest
-from manual_trade_label_audit import parse_msk, asof_hour, normalize, stats, H
+from manual_trade_label_audit import parse_msk, asof_hour, normalize, stats, stop_touched_before_first, H
 
 def row(**kw):
     x=dict(entry_msk="2026-09-18 11:00",entry="100",sl="90",
@@ -49,6 +49,14 @@ class ManualLabelTests(unittest.TestCase):
         t=normalize(row(exit1_pct="50",exit2="120",exit2_pct="50",
                         exit2_msk="2026-09-20"))
         self.assertIn("missing_second_exit_time",t["issues"])
+
+    def test_static_stop_chronology_excludes_ambiguous_entry_and_exit_hours(self):
+        ms=parse_msk("2026-09-18 11:00")
+        raw=[(ms,100,101,88,99),(ms+H,99,100,95,98),
+             (ms+2*H,98,99,89,97),(ms+3*H,97,99,95,98)]
+        self.assertFalse(stop_touched_before_first(raw,ms,ms+2*H,1,90))
+        self.assertTrue(stop_touched_before_first(raw,ms,ms+3*H,1,90))
+        self.assertFalse(stop_touched_before_first(raw,ms,ms+3*H,-1,110))
 
     def test_stats_one_win_one_loss(self):
         a=normalize(row())
