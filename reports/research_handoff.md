@@ -1,3 +1,51 @@
+# DeltaRSI researcher handoff — cycle 15, 2026-10-27 ~09:00 MSK — TRUE PEAK/WAVE STOPS (#16, #15)
+
+**Decision: REJECT unconditional replacement of 2.5ATR stop by true peak-bar stop; true whole-wave stop INCONCLUSIVE/UNPROMOTED. Causal code, cached-data matched tests and 1,122-event ledger committed. No orders.**
+
+## Hypothesis and manager priorities read
+Read current issues #10, #15 (P0 aligned calendar/regime collapse), #16 (P1 genuine peak vs same-sign wave), #11 and saved cycle-14 handoff plus manager directives. Predeclared **one small stop-family ablation**: on the *same causal DeltaRSI entry opportunities*, the extremum of the actual strongest already-known opposite-sign 4H DeltaRSI bar, or the entire contiguous already-known opposite-sign wave, could improve net R / WR over 2.5ATR. Fixed TP **1.2R**, timeout **48h**, 0.05 ATR structural buffer, round-trip **FEE=0.0015**. Funding excluded per owner instructions for pattern discovery. No parameter search and no model selection on diagnostic third.
+
+## Changes, data, reproducibility
+- New `true_wave_stop_audit.py`, `test_true_wave_stop_audit.py`, `.github/workflows/true-wave-stop-audit.yml`; 1,122-event full ledger at `reports/true_wave_stop_audit.json` (all eligible and rejected stops, exact wave start/end/peak UTC, delta peak, OHLC extremes, stop, reason, R and source hashes). Script: `python -m unittest -v test_true_wave_stop_audit test_pattern_edge_search test_causal_4h_parity test_completed_candles && python -u true_wave_stop_audit.py`.
+- Only cached `data/{BTC,ETH,ICP,HYPE}USDT_1h.csv`. Existing 4H indicator and frozen causal 1H entry stream; next-hour-open execution; 1H OHLC stop-first and adverse gaps; fees on actual entry/exit notional; same 0.25% equity stop-risk *normalization* (R). No exchange calls.
+- Causal wave: use current 4H only when fully closed; for forming h1–h3 use previous completed 4H. Trace consecutive *opposite-sign* completed DeltaRSI back to last sign flip; peak is max absolute DeltaRSI within that wave; whole-wave extreme covers every bar in wave, **not a fixed six-bar proxy**. Explicit reject if stop is on wrong side or <0.1%/>12% of entry.
+- UTC calendar aligned across BTC/ETH/ICP: train **2025-10-26 13:00 → 2026-04-27 00:00**, validation **2026-04-27 00:00 → 2026-07-27 06:00**, inspected diagnostic **2026-07-27 06:00 → 2026-10-26 12:00** (end exclusive). HYPE shorter history, reported separately as a negative control. Windows **all previously inspected**, NOT independent OOS. Pairwise stop comparisons require ATR and the *specific* challenger both geometrically valid; no artificial triple-stop eligibility gate.
+- Synthetic fixtures: >6/<6 wave length, interior peak, LONG/SHORT sign flips, early forming vs completed 4H, L3 2026-09-18 11:00 MSK = 08:00 UTC no current-bar knowledge, invalid geometry, stop+TP same hour, adverse gap, mutation of future prices/indicator and seeded 30-day block CI. Latest fully passing source run: [40458168781](https://github.com/VulpreS/Deltarsi1/actions/runs/40458168781). A prior run [40458116590](https://github.com/VulpreS/Deltarsi1/actions/runs/40458116590) had tests and research **PASS**, but report persistence failed because two runners concurrently rebased the same JSON; workflow now uses fresh-ref/reset/copy/retry instead of conflicted rebase (commit `a52575cb`; revalidation in progress at handoff).
+- Code commits: `68a86d4` original producer, `89be0b1` correct pairwise cohort, `c080246` block bootstrap, `6cd6cc5` deterministic CI fixture, `b048733` chronological pseudo-DD order, `a52575c` safe report persistence. No tuning of the strategy parameters.
+
+## Results: same BTC/ETH/ICP calendar, frozen 4H turn, fixed 15bp friction
+| Window | Stop | All eligible N | WR | Mean net R | PF |
+|---|---|---:|---:|---:|---:|
+| Train | ATR2.5 | 341 | 55.72% | +0.09664 | 1.3177 |
+| Train | TRUE peak bar | 270 | 49.26% | -0.04749 | 0.9081 |
+| Train | TRUE whole wave | 338 | 50.00% | +0.00034 | 1.0007 |
+| Validation | ATR2.5 | 191 | 56.02% | +0.04238 | 1.1324 |
+| Validation | TRUE peak bar | 146 | 52.74% | -0.01251 | 0.9754 |
+| Validation | TRUE whole wave | 197 | 52.28% | +0.01898 | 1.0415 |
+| Previously inspected diagnostic | ATR2.5 | 216 | 44.91% | -0.00088 | 0.9975 |
+| Previously inspected diagnostic | TRUE peak bar | 152 | 40.79% | -0.24789 | 0.6069 |
+| Previously inspected diagnostic | TRUE whole wave | 214 | 42.99% | -0.14455 | 0.7218 |
+
+**Matched opportunity attribution (core only, challenger minus ATR, paired 30-day UTC block bootstrap exploratory 95% CI):**
+- TRUE peak: train **N267, -0.20093R** CI [-0.33403, -0.07143], validation **N142, -0.12080R** CI [-0.33194, +0.04457], inspected diagnostic **N152, -0.21363R** CI [-0.29588, -0.12692].
+- TRUE whole wave: train **N334, -0.09849R** CI [-0.24306, +0.00610], validation **N190, -0.03157R** CI [-0.14025, +0.08885], inspected diagnostic **N214, -0.14450R** CI [-0.19173, -0.05696].
+- **Geometry mechanism:** train frozen-turn median stop distance ATR **4.61%**, true peak **1.71%**, true wave **2.50%**; median round-trip fee per initial R **0.0327R / 0.0883R / 0.0596R** respectively. Tighter structural stops pay materially higher cost per R and are often hit/rejected.
+- **Six-bar proxy not equivalent:** across 762 core frozen-turn candidate entries, 547 (**71.8%**) have true same-sign waves **longer than six 4H bars**; median wave length **11**. The prior `prior_wave6x4h` stop cannot be described as a true wave stop.
+- Forming true whole-wave vs ATR matched: train **N47 -0.4322R**, validation **N22 +0.0042R**, inspected diagnostic **N32 -0.1879R**. No stable benefit from the early-entry subfamily.
+- Results are not a same-calendar *executable portfolio*: overlapping frozen signal opportunities can share capital; the displayed pseudo DD is not hourly MTM portfolio DD. Block CIs use only 4–6 calendar blocks and are not selection-adjusted.
+
+## Interpretation, limits, decisions
+**REJECT** universal peak-bar stop as an ATR replacement in this fixed entry/exit family. **INCONCLUSIVE / do not promote** true whole-wave stop: small pockets of better R exist by asset/side, but combined matched train/validation are not positive and the already-inspected diagnostic fails. **RETAIN** ATR2.5 as the frozen descriptive control, **not** an independently validated trading edge. Do not search for winners in the diagnostic period. 1H OHLC cannot establish exact intrabar fills; no verified venue provenance or prospective immutable sample. This experiment deliberately holds exit TP/time fixed, so it does not answer joint optimal exit or discretionary selectivity. No CSV of expanded user trade labels available. No orders.
+
+## Questions and concrete next iteration for research lead
+1. Approve the **true wave/peak causal geometry DONE** for issue #16 but keep issue open for the CSV importer and **three causal matched exit policies** (fixed, raw opposite closed DeltaRSI next-open, price rejection / momentum fade next-open) with identical initial entry IDs? Recommend yes.
+2. Run a preregistered *small* regime/price-rejection filter test using only train to calibrate and validation to rank; do not reuse inspected diagnostic for selection. Explicitly examine why peak/wave stops are so tight (fee-to-R, wrong-side rejection, trend transitions) and price-action selectivity; never treat every histogram fade as entry.
+3. Build an executable shared-capital BTC/ETH/ICP comparison (0.25% stop-risk/trade, max 2 positions, 0.50% total, hourly MTM DD, missed admissions). Distinguish matched-entry R from independently scheduled portfolio results.
+4. Implement validated `symbol,side,timestamp_MSK,entry,exit,stop,notes,confidence` importer and five annotated case ledger, preserving chart-time vs fill uncertainty. No filter fitting to five examples.
+5. Preregister a new prospective paper-only stream before claiming stable positive net expectancy. No live orders without separate explicit authorization.
+
+---
+
 # DeltaRSI researcher handoff — cycle 14, 2026-10-27 ~08:00 MSK — priority shift to ENTRY/EXIT EDGE (#10/#11)
 
 **Decision: FIRST FULL PATTERN GRID COMPLETED; NO ROBUST NEW EDGE; NO LIVE ORDERS.** Manager issues #10/#11 (27 Oct priority change) supersede the previous funding-focused queue: prioritize finding selective high-win-rate net-positive entries/exits; keep **FEE=0.0015 fixed round-trip**, and **exclude funding** from this research. Read issues and prior handoff/directives before the experiment.
