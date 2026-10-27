@@ -61,7 +61,7 @@ def simulate(data,times,mode,cost=.0015,rate=.0003,starting_cash=1.):
   net=gross-p["entry_fee"]-exit_fee-f
   cash+=gross-exit_fee-f
   ledger.append({"symbol":s,"side":p["side"],"entry_ms":p["entry_ms"],"exit_ms":latest,
-   "reason":reason,"gross":gross,"fees":p["entry_fee"]+exit_fee,
+   "reason":reason,"entry_price":p["entry"],"exit_price":price,"gross":gross,"fees":p["entry_fee"]+exit_fee,
    "funding":f,"net":net,"R":net/p["risk"],"risk":p["risk"],
    "signal_ms":p["signal_ms"],"stop":p["stop"],"target":p["target"]})
  for t in times:
@@ -167,15 +167,40 @@ def main():
   for s in SYMS)/len(SYMS)-1),4),
   "warning":"Long-only passive benchmark has unmatched exposure and no funding."}
  for mode in ("forming","closed","frozen_turn"):
-  grid={};primary_trace=[]
+  grid={};primary_trace=[];primary_ledger=[]
   for c in COSTS:
    for f in FUNDING:
     key=f"{round(c*10000)}bp_cost_{round(f*10000)}bp_funding"
     run=simulate(data,times,mode,c,f)
     grid[key]=metrics(run)
-    if c==.0015 and f==.0003:primary_trace=run["admissions"]
+    if c==.0015 and f==.0003:
+     primary_trace=run["admissions"];primary_ledger=run["trades"]
   out["full"][mode]={"primary":grid["15bp_cost_3bp_funding"],"stress":grid,
-   "primary_admission_trace":primary_trace}
+   "primary_admission_trace":primary_trace,"primary_trade_ledger":primary_ledger}
+ # Reconcile with the prior 4H baseline ledger; execution timing is NOT identical.
+ refpath=Path("reports/portfolio_risk_audit.json")
+ if refpath.exists():
+  ref=json.loads(refpath.read_text())
+  if ref.get("source_hashes")!=hashes:raise ValueError("Frozen 4H source hashes changed")
+  old=ref["full_common_history"]["baseline"]["trades"]
+  new=out["full"]["frozen_turn"]["primary_trade_ledger"]
+  byold={(x["symbol"],x["entry_utc"]):x for x in old}
+  bynew={(x["symbol"],iso(x["entry_ms"])):x for x in new}
+  shared=set(byold)&set(bynew)
+  differences=[]
+  for k in sorted(shared):
+   a=byold[k];b=bynew[k]
+   if abs(a["exit"]-b["exit_price"])>1e-8 or a["exit_reason"]!=b["reason"]:
+    differences.append({"symbol":k[0],"entry_utc":k[1],"4h_exit":a["exit"],
+      "1h_exit":b["exit_price"],"4h_reason":a["exit_reason"],"1h_reason":b["reason"]})
+  out["frozen_turn_4h_reconciliation"]={
+   "4h_n":len(old),"1h_n":len(new),"shared_entry_ids":len(shared),
+   "only_4h":len(set(byold)-set(bynew)),"only_1h":len(set(bynew)-set(byold)),
+   "different_exit_fill_or_reason":len(differences),
+   "sample_differences":differences[:20],
+   "4h_report_net_return_pct":ref["full_common_history"]["baseline"]["metrics"]["net_return_pct"],
+   "1h_report_net_return_pct":out["full"]["frozen_turn"]["primary"]["net_return_pct"],
+   "note":"Same entry UTC may have different OHLC stop/target priority and synthetic funding timing in 1H vs 4H; comparison is diagnostic, not equal-engine parity."}
  for j in range(3):
   chunk=times[cuts[j]:cuts[j+1]]
   w={"index":j+1,"start_utc":iso(chunk[0]),"end_utc":iso(chunk[-1]+H),
