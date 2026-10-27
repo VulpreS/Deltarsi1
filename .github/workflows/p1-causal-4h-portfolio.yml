@@ -1,0 +1,36 @@
+name: P1 Causal 4H Shared Portfolio
+on:
+  push:
+    paths:
+      - causal_4h_portfolio_audit.py
+      - test_causal_4h_portfolio.py
+      - .github/workflows/p1-causal-4h-portfolio.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: p1-causal-4h-portfolio
+  cancel-in-progress: false
+jobs:
+  cached-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Deterministic and prior regression tests
+        run: python -m unittest -v test_causal_4h_portfolio test_causal_4h_parity test_completed_candles test_portfolio_open_order test_reverse_open_precedence
+      - name: Cache-only portfolio experiment; no exchange access
+        run: python -u causal_4h_portfolio_audit.py
+      - name: Persist machine-readable audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/causal_4h_portfolio_audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record causal forming/closed shared portfolio audit"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
