@@ -156,7 +156,7 @@ def research():
     buckets = {w: defaultdict(lambda: defaultdict(list)) for w in WINDOWS}
     rejected = Counter()
     catalog = []
-    pairs = {w: defaultdict(list) for w in WINDOWS}
+    pairs = {w: defaultdict(lambda: defaultdict(list)) for w in WINDOWS}
     for sym, c in cache.items():
         raw, bars, delta = c["raw"], c["bars"], c["delta"]
         timestamps = [r[0] for r in raw]
@@ -198,11 +198,15 @@ def research():
                              stop=t["stop"], exit=t["exit"], exit_utc=t["exit_utc"],
                              exit_reason=t["exit_reason"])
                         all_valid[kind] = t
-                if len(all_valid) == len(STOPS):
-                    pairs[window][mode].append(dict(id=identity, symbol=sym,
-                        side=e["side"], entry_utc=iso(when),
-                        net_R={k:all_valid[k]["net_R"] for k in STOPS},
-                        stop_distance_pct={k:all_valid[k]["stop_distance_pct"] for k in STOPS}))
+                # Pairwise cohorts: a valid whole-wave stop must not be dropped
+                # merely because the peak-bar stop was geometrically invalid.
+                for challenger in STOPS[1:]:
+                    if "atr2.5" in all_valid and challenger in all_valid:
+                        pairs[window][mode][challenger].append(dict(
+                            id=identity, symbol=sym, side=e["side"],
+                            entry_utc=iso(when),
+                            baseline=all_valid["atr2.5"],
+                            challenger=all_valid[challenger]))
                 catalog.append(row)
     summary = {}
     for w in WINDOWS:
@@ -216,17 +220,28 @@ def research():
                     by_asset={s:stats([t for t in trades if t["symbol"] == s]) for s in SYMS},
                     by_side={label:stats([t for t in trades if t["side"] == side])
                              for label, side in (("LONG",1),("SHORT",-1))})
-            cohort = pairs[w][mode]
             diffs = {}
             for challenger in STOPS[1:]:
-                values = [x["net_R"][challenger] - x["net_R"]["atr2.5"] for x in cohort if x["symbol"] in CORE]
+                cohort = [x for x in pairs[w][mode][challenger] if x["symbol"] in CORE]
+                values = [x["challenger"]["net_R"] - x["baseline"]["net_R"] for x in cohort]
                 diffs[challenger] = dict(matched_core_n=len(values),
                     mean_delta_R=round(statistics.mean(values), 6) if values else None,
-                    win_fraction=round(sum(v > 0 for v in values) / len(values), 4) if values else None)
-            summary[w][mode] = dict(stops=per, matched_core=stats([
-                dict(net_R=x["net_R"]["atr2.5"], stop_distance_pct=x["stop_distance_pct"]["atr2.5"],
-                     fee_R=0) for x in cohort if x["symbol"] in CORE]),
-                paired_vs_atr=diffs)
+                    win_fraction=round(sum(v > 0 for v in values) / len(values), 4) if values else None,
+                    matched_baseline=stats([x["baseline"] for x in cohort]),
+                    matched_challenger=stats([x["challenger"] for x in cohort]),
+                    by_asset={sym:dict(n=sum(x["symbol"] == sym for x in cohort),
+                        mean_delta_R=round(statistics.mean(
+                            x["challenger"]["net_R"] - x["baseline"]["net_R"]
+                            for x in cohort if x["symbol"] == sym), 6)
+                        if any(x["symbol"] == sym for x in cohort) else None)
+                        for sym in CORE},
+                    by_side={label:dict(n=sum(x["side"] == side for x in cohort),
+                        mean_delta_R=round(statistics.mean(
+                            x["challenger"]["net_R"] - x["baseline"]["net_R"]
+                            for x in cohort if x["side"] == side), 6)
+                        if any(x["side"] == side for x in cohort) else None)
+                        for label, side in (("LONG", 1), ("SHORT", -1))})
+            summary[w][mode] = dict(stops=per, paired_vs_atr=diffs)
     return dict(title="Causal true-wave vs peak-bar vs ATR stop: matched-entry exploratory audit",
        generated_utc=dt.datetime.now(dt.timezone.utc).isoformat(),
        producer_sha=os.environ.get("GITHUB_SHA", "local"),
