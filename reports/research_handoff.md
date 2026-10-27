@@ -1,3 +1,45 @@
+# DeltaRSI researcher handoff — cycle 11, 2026-10-27 ~05:00 MSK (P1 #13 shared-capital causal 4H portfolio)
+
+**Decision: EXPLORATORY ONLY / NO STRATEGY PROMOTION / NO LIVE ORDERS.** Integrated cached-only [CI 40435628911](https://github.com/VulpreS/Deltarsi1/actions/runs/40435628911) **SUCCESS**. Full [report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/causal_4h_portfolio_audit.json), [code](https://github.com/VulpreS/Deltarsi1/blob/main/causal_4h_portfolio_audit.py), [tests](https://github.com/VulpreS/Deltarsi1/blob/main/test_causal_4h_portfolio.py). Last producer code commit `8d9c1bf8`, workflow `043b1314`; config SHA256 `fba5c1c87fe87faa3b069f45ff8503b89583a17b040714e0243a97eecbddb493`.
+
+## Hypothesis / priority and manager instructions reviewed first
+Read current open issues #13 (updated manager acceptance: shared capital/true MTM DD/UTC admission ledger/4H parity), #12, #14 and cycle-10 researcher handoff plus manager directives. **Hypothesis:** earlier 1H-observed fading DeltaRSI might lose its apparent advantage versus completed-4H fading when both compete for BTC/ETH/ICP capital. Do not retune the frozen `ratio <= 0.7`, `prior peak >= 15`, 2.5 ATR stop, 3 ATR target, 48h hold. Frozen completed-4H `turn` is a separate signal baseline. HYPE is excluded from shared portfolio and retained as a negative control in the previous causal report.
+
+## Changes / reproducibility
+- New `causal_4h_portfolio_audit.py`, `test_causal_4h_portfolio.py`, `.github/workflows/p1-causal-4h-portfolio.yml`; regression workflow also runs previous causal, candle-completion, gap-priority, standalone parity and portfolio tests. No exchange network calls or order placement.
+- Reuse EXACT cycle-10 causal `events()` streams (first qualifying h=1..3, completed h=4, plus completed-turn reference). Next 1H open, previous fully completed 4H ATR for fade; 4H completed signal ATR for turn. Shared portfolio: max 2 positions, risk 0.25% equity per initial stop, aggregate stop risk <=0.5%, per-symbol notional <=1x equity, aggregate gross <=2x, deterministic BTC→ETH→ICP admission. At each hour OPEN settle old resting stop/target gaps before new entries; only after admissions inspect OHLC with stop-first ambiguity. Time exit after 48 completed 1H bars; close remaining positions at terminal window end.
+- Costs 15/25/40 bp total friction, half on actual entry notional and half on actual exit notional; 0/1/3 bp adverse **synthetic** funding per UTC 8h exposure upper bound. Mark equity every hourly close including unrealized PnL and synthetic funding. Report 3 nonoverlapping equity-reset chronological windows, asset/side decomposition, worst month, exposure, 3x3 stress, exact UTC signal accept/reject trace, full trade ledger, cash and price-only equal-weight buy/hold.
+- Source SHA256: BTC `444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea`; ETH `9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866`; ICP `1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b`. **No re-download.**
+
+## Results (15bp friction + 3bp adverse synthetic funding per 8h; all cached history reused)
+| Shared-capital mode | Trades | Net return | PF | Hourly-close MTM DD | Exposure |
+|---|---:|---:|---:|---:|---:|
+| Forming h=1..3 | 89 | +3.4464% | 1.4737 | 1.7352% | 28.02% |
+| Completed h=4 | 83 | +3.7426% | 1.5875 | 1.2256% | 26.74% |
+| Frozen 4H turn reference, executed hourly | 309 | +1.8722% | 1.0746 | 3.3238% | 78.13% |
+
+- **Three nonoverlapping reused windows**, forming/closed/turn returns: window 1 +2.1161/+1.5839/−0.9740%; window 2 +2.6516/+2.7221/+0.5687%; window 3 **−1.3141/−0.5812/+2.1375%**. Both fade rules fail the last inspected window; no robust cross-regime advantage. Forming is inferior to completed fade overall in both return and DD; this is descriptive, not independent proof.
+- Forming BTC/ETH/ICP accepted 28/30/31 trades; net PnL +0.014827/+0.024530/−0.004893 on initial equity 1. Completed 30/27/26; +0.015332/+0.017175/+0.004918. Forming 48 LONG/41 SHORT; completed 40 LONG/43 SHORT. Admission trace: forming 107 attempts, 15 same-symbol skips, 3 max-position skips; completed 99 attempts, 12 and 4. No leverage-cap breaches in this cohort.
+- Fee stress: forming 40bp/3bp +1.8596%, PF 1.2329; completed 40bp/3bp +2.2538%, PF 1.3205. Frozen turn 25bp/3bp −0.2205%, 40bp/3bp −3.2795%. These are assumptions, NOT observed venue costs.
+- Price-only equal-weight buy/hold BTC/ETH/ICP at 15bp = −30.4966%, but has radically different directional exposure and is **not a risk-matched alpha benchmark**. Cash = 0%.
+- **P0 #12 reconciliation:** all 309 frozen-turn hourly entries exactly match the 309 entries in the previous 4H portfolio; 0 unmatched and 0 exit-price/reason differences. But 1H funding upper-bound timing and equity-dependent sizing differ: 287 quantities, 293 funding debits and 294 fees differ. Historical 4H baseline +1.7528% vs hourly reference +1.8722%; old/new aggregate gross 0.0771501/0.0772061, fees 0.0310004/0.0310175, funding 0.0286222/0.0274666. **Do not mistake the +0.1194 percentage-point difference for alpha** or imply exact economics parity. Fills match; modeled funding/position sizes differ.
+
+## Limitations / blockers / conclusion
+- **No independent out-of-sample data:** all 3 historical windows have been previously inspected. Positive full-history PF is exploratory; comparison is not evidence of reproducible strategy. No optimization or cherry-picking this cycle.
+- Hourly close MTM DD is more granular than prior 4H DD but does not measure intrahour/tick drawdown, queue fills, spread, mark-trigger stops or liquidation. OHLC stop-first is conservative, not an exchange replay.
+- Funding is synthetic adverse upper-bound; true exchange, market type and observed funding remain unavailable. 1H-vs-4H funding convention differences materially affect cumulative PnL.
+- Upstream `causal_4h_parity_audit.PARAMS["peak_requires_previous_nonrising"]=True` is **misleading documentation**: actual frozen `qualifying()` requires `abs(prev)>=abs(prevprev)` (prior magnitude nondecreasing). No rule changed. Correct label in a separate compatibility-preserving documentation patch if manager approves.
+- **NO strategy promotion; NO real orders.**
+
+## Concrete questions / next manager iteration
+1. Accept #13 as **portfolio capital competition + hourly MTM risk DONE within cached model**, but **independent OOS and actual funding OPEN**? Recommend yes. The forming signal does not improve full-history portfolio risk/return and both fades lose in last reused third.
+2. Standardize and explicitly preregister a single **funding boundary convention** for both 1H and 4H engines (or use observed venue funding), then verify 309-trade cash/quantity parity. Keep source/venue unknown status explicit.
+3. Decide whether to correct misleading `peak_requires_previous_nonrising` metadata without changing the frozen predicate/hash, and whether the closed fade warrants **prospective shadow-only** observation as a challenger. No retroactive selection on inspected windows.
+4. Obtain venue/spot-vs-perp provenance, direct same-venue 4H OHLC, actual funding, and append-only post-cutoff hourly receipt records. Freeze hashes and minimum sample before interpreting forward results; do not backfill as forward.
+5. No production deployment or orders without explicit user authorization.
+
+---
+
 # DeltaRSI researcher handoff — cycle 10, 2026-10-27 ~04:00 MSK (P1 #13 causal forming-4H parity)
 
 **Status: REPRODUCIBLE EXPLORATORY AUDIT / CI PASS; NO ROBUST EARLY-ENTRY EDGE, NO INDEPENDENT OOS, NO LIVE ORDERS.** [CI 40429556695](https://github.com/VulpreS/Deltarsi1/actions/runs/40429556695) SUCCESS. [Machine-readable report](https://github.com/VulpreS/Deltarsi1/blob/main/reports/causal_4h_parity_audit.json). Research code `causal_4h_parity_audit.py`; fixtures `test_causal_4h_parity.py`. Parameter SHA256 `9bcd09692a163f18c29b6f5e19236a079857488c6f4ba1b4370acb68d3a1a974`.
