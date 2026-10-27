@@ -1,0 +1,48 @@
+name: Redacted BTC trade discrepancy ledger (no orders)
+on:
+  push:
+    paths:
+      - 'manual_trade_discrepancy_ledger.py'
+      - 'test_manual_trade_discrepancy_ledger.py'
+      - 'data/manual_btc_trades_2025_2026.csv'
+      - 'data/BTCUSDT_1h.csv'
+      - '.github/workflows/manual-trade-discrepancy-ledger.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: manual-discrepancy-ledger-main
+  cancel-in-progress: false
+jobs:
+  ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Tests and cached-only ledger
+        run: |
+          python -m unittest -v test_manual_trade_discrepancy_ledger test_manual_trade_label_audit
+          python manual_trade_discrepancy_ledger.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: redacted-btc-trade-discrepancy-ledger
+          path: reports/manual_trade_discrepancy_ledger.json
+      - name: Persist reproducible ledger with fresh-ref retry
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            python manual_trade_discrepancy_ledger.py >/dev/null
+            git add reports/manual_trade_discrepancy_ledger.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'research(#17): regenerate redacted BTC discrepancy ledger'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          echo 'Ledger persistence failed after retries' >&2
+          exit 1
