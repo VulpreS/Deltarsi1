@@ -41,6 +41,11 @@ def asof_hour(times, decision_ms):
     return bisect.bisect_right(times, decision_ms - H) - 1
 
 
+def in_cache(times, decision_ms):
+    """Inclusive first/last cached 1H OPEN; timestamps are integer UTC ms."""
+    return decision_ms is not None and bool(times) and times[0] <= decision_ms <= times[-1]
+
+
 def within_hour(bar, price):
     return bar is not None and bar[3] - 1e-8 <= price <= bar[2] + 1e-8
 
@@ -151,7 +156,7 @@ def main():
     joined=[]
     for r in labels:
         ms=r["entry_ms"]
-        if ms is None or ms<times[0] or ms>times[-1][0]:
+        if not in_cache(times, ms):
             funnel["outside_cache"]+=1
             continue
         funnel["inside_cache"]+=1
