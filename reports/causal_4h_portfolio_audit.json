@@ -1,0 +1,1576 @@
+{
+  "title": "P1 #13 shared 1H portfolio: forming vs closed fade vs frozen turn",
+  "generated_utc": "2026-10-27T01:56:13.992931+00:00",
+  "producer_sha": "12e209a90c9645fca4febbc374bf6ef398846841",
+  "source_sha256": {
+    "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
+    "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b"
+  },
+  "config": {
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "ICPUSDT"
+    ],
+    "signal_modes": [
+      "forming",
+      "closed",
+      "frozen_turn"
+    ],
+    "causal_signal_hash": "9bcd09692a163f18c29b6f5e19236a079857488c6f4ba1b4370acb68d3a1a974",
+    "stop_atr_4h": 2.5,
+    "target_atr_4h": 3.0,
+    "hold_1h_bars": 48,
+    "risk": 0.0025,
+    "aggregate_risk": 0.005,
+    "max_positions": 2,
+    "max_symbol_notional": 1.0,
+    "max_gross_notional": 2.0,
+    "tie_priority": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "ICPUSDT"
+    ],
+    "costs": [
+      0.0015,
+      0.0025,
+      0.004
+    ],
+    "synthetic_funding": [
+      0.0,
+      0.0001,
+      0.0003
+    ],
+    "mark": "hourly_close",
+    "gap": "resting_first",
+    "entry": "next_1h_open"
+  },
+  "config_sha256": "fba5c1c87fe87faa3b069f45ff8503b89583a17b040714e0243a97eecbddb493",
+  "caveats": [
+    "ALL cached history previously inspected: no independent OOS",
+    "Synthetic adverse funding 00/08/16 UTC, not venue rates",
+    "Hourly close MTM DD, not tick/intrahour DD",
+    "Identical entry/exit/risk mechanics; frozen_turn signal has completed-signal ATR while fade uses previous completed ATR",
+    "No venue-provenance, order-book spread, mark-price liquidation, actual fills or market impact",
+    "Shared portfolio excludes HYPE; HYPE remains separate negative control in causal_4h_parity_audit.json"
+  ],
+  "full": {
+    "forming": {
+      "primary": {
+        "n": 89,
+        "net_return_pct": 3.4464,
+        "pf": 1.4737,
+        "win_pct": 53.93,
+        "mean_R": 0.1535,
+        "max_hourly_close_mtm_dd_pct": 1.7352,
+        "return_over_dd": 1.9861,
+        "fee_total": 0.009568,
+        "funding_total": 0.007396,
+        "exposure_pct": 28.02,
+        "by_asset": {
+          "BTCUSDT": {
+            "n": 28,
+            "net_pnl": 0.014827,
+            "mean_R": 0.2094
+          },
+          "ETHUSDT": {
+            "n": 30,
+            "net_pnl": 0.02453,
+            "mean_R": 0.3197
+          },
+          "ICPUSDT": {
+            "n": 31,
+            "net_pnl": -0.004893,
+            "mean_R": -0.0577
+          }
+        },
+        "skips": {
+          "same_symbol": 15,
+          "max_positions": 3
+        },
+        "attempts": {
+          "BTCUSDT": 32,
+          "ETHUSDT": 35,
+          "ICPUSDT": 40
+        }
+      },
+      "stress": {
+        "15bp_cost_0bp_funding": {
+          "n": 89,
+          "net_return_pct": 4.1901,
+          "pf": 1.6059,
+          "win_pct": 56.18,
+          "mean_R": 0.1858,
+          "max_hourly_close_mtm_dd_pct": 1.6419,
+          "return_over_dd": 2.552,
+          "fee_total": 0.009602,
+          "funding_total": 0.0,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.017633,
+              "mean_R": 0.2481
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.027291,
+              "mean_R": 0.3547
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.003023,
+              "mean_R": -0.0341
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "15bp_cost_1bp_funding": {
+          "n": 89,
+          "net_return_pct": 3.9416,
+          "pf": 1.5606,
+          "win_pct": 56.18,
+          "mean_R": 0.175,
+          "max_hourly_close_mtm_dd_pct": 1.6654,
+          "return_over_dd": 2.3668,
+          "fee_total": 0.00959,
+          "funding_total": 0.002471,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.016696,
+              "mean_R": 0.2352
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.026368,
+              "mean_R": 0.343
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.003648,
+              "mean_R": -0.042
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "15bp_cost_3bp_funding": {
+          "n": 89,
+          "net_return_pct": 3.4464,
+          "pf": 1.4737,
+          "win_pct": 53.93,
+          "mean_R": 0.1535,
+          "max_hourly_close_mtm_dd_pct": 1.7352,
+          "return_over_dd": 1.9861,
+          "fee_total": 0.009568,
+          "funding_total": 0.007396,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.014827,
+              "mean_R": 0.2094
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.02453,
+              "mean_R": 0.3197
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.004893,
+              "mean_R": -0.0577
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "25bp_cost_0bp_funding": {
+          "n": 89,
+          "net_return_pct": 3.548,
+          "pf": 1.4934,
+          "win_pct": 53.93,
+          "mean_R": 0.158,
+          "max_hourly_close_mtm_dd_pct": 1.7017,
+          "return_over_dd": 2.0849,
+          "fee_total": 0.015954,
+          "funding_total": 0.0,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.015022,
+              "mean_R": 0.2122
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.024999,
+              "mean_R": 0.3256
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.004541,
+              "mean_R": -0.0533
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "25bp_cost_1bp_funding": {
+          "n": 89,
+          "net_return_pct": 3.301,
+          "pf": 1.4513,
+          "win_pct": 53.93,
+          "mean_R": 0.1472,
+          "max_hourly_close_mtm_dd_pct": 1.7844,
+          "return_over_dd": 1.8499,
+          "fee_total": 0.015935,
+          "funding_total": 0.002463,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.01409,
+              "mean_R": 0.1993
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.024082,
+              "mean_R": 0.314
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.005162,
+              "mean_R": -0.0612
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "25bp_cost_3bp_funding": {
+          "n": 89,
+          "net_return_pct": 2.8087,
+          "pf": 1.3715,
+          "win_pct": 53.93,
+          "mean_R": 0.1257,
+          "max_hourly_close_mtm_dd_pct": 1.9741,
+          "return_over_dd": 1.4228,
+          "fee_total": 0.015898,
+          "funding_total": 0.007373,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.012233,
+              "mean_R": 0.1735
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.022254,
+              "mean_R": 0.2906
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.006399,
+              "mean_R": -0.0769
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "40bp_cost_0bp_funding": {
+          "n": 89,
+          "net_return_pct": 2.5921,
+          "pf": 1.3402,
+          "win_pct": 53.93,
+          "mean_R": 0.1162,
+          "max_hourly_close_mtm_dd_pct": 2.0477,
+          "return_over_dd": 1.2659,
+          "fee_total": 0.025409,
+          "funding_total": 0.0,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.011134,
+              "mean_R": 0.1582
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.021587,
+              "mean_R": 0.282
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.006801,
+              "mean_R": -0.0821
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "40bp_cost_1bp_funding": {
+          "n": 89,
+          "net_return_pct": 2.3473,
+          "pf": 1.3032,
+          "win_pct": 53.93,
+          "mean_R": 0.1055,
+          "max_hourly_close_mtm_dd_pct": 2.1423,
+          "return_over_dd": 1.0957,
+          "fee_total": 0.025379,
+          "funding_total": 0.002452,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.010211,
+              "mean_R": 0.1453
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.020678,
+              "mean_R": 0.2704
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.007416,
+              "mean_R": -0.09
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        },
+        "40bp_cost_3bp_funding": {
+          "n": 89,
+          "net_return_pct": 1.8596,
+          "pf": 1.2329,
+          "win_pct": 53.93,
+          "mean_R": 0.084,
+          "max_hourly_close_mtm_dd_pct": 2.3313,
+          "return_over_dd": 0.7977,
+          "fee_total": 0.02532,
+          "funding_total": 0.007338,
+          "exposure_pct": 28.02,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 28,
+              "net_pnl": 0.008371,
+              "mean_R": 0.1195
+            },
+            "ETHUSDT": {
+              "n": 30,
+              "net_pnl": 0.018867,
+              "mean_R": 0.247
+            },
+            "ICPUSDT": {
+              "n": 31,
+              "net_pnl": -0.008642,
+              "mean_R": -0.1057
+            }
+          },
+          "skips": {
+            "same_symbol": 15,
+            "max_positions": 3
+          },
+          "attempts": {
+            "BTCUSDT": 32,
+            "ETHUSDT": 35,
+            "ICPUSDT": 40
+          }
+        }
+      }
+    },
+    "closed": {
+      "primary": {
+        "n": 83,
+        "net_return_pct": 3.7426,
+        "pf": 1.5875,
+        "win_pct": 55.42,
+        "mean_R": 0.1783,
+        "max_hourly_close_mtm_dd_pct": 1.2256,
+        "return_over_dd": 3.0536,
+        "fee_total": 0.00891,
+        "funding_total": 0.006944,
+        "exposure_pct": 26.74,
+        "by_asset": {
+          "BTCUSDT": {
+            "n": 30,
+            "net_pnl": 0.015332,
+            "mean_R": 0.202
+          },
+          "ETHUSDT": {
+            "n": 27,
+            "net_pnl": 0.017175,
+            "mean_R": 0.252
+          },
+          "ICPUSDT": {
+            "n": 26,
+            "net_pnl": 0.004918,
+            "mean_R": 0.0744
+          }
+        },
+        "skips": {
+          "same_symbol": 12,
+          "max_positions": 4
+        },
+        "attempts": {
+          "BTCUSDT": 35,
+          "ETHUSDT": 32,
+          "ICPUSDT": 32
+        }
+      },
+      "stress": {
+        "15bp_cost_0bp_funding": {
+          "n": 83,
+          "net_return_pct": 4.445,
+          "pf": 1.7342,
+          "win_pct": 57.83,
+          "mean_R": 0.2108,
+          "max_hourly_close_mtm_dd_pct": 1.141,
+          "return_over_dd": 3.8956,
+          "fee_total": 0.008938,
+          "funding_total": 0.0,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.018658,
+              "mean_R": 0.2448
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.019363,
+              "mean_R": 0.2831
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.00643,
+              "mean_R": 0.0965
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "15bp_cost_1bp_funding": {
+          "n": 83,
+          "net_return_pct": 4.2103,
+          "pf": 1.6841,
+          "win_pct": 56.63,
+          "mean_R": 0.2,
+          "max_hourly_close_mtm_dd_pct": 1.1684,
+          "return_over_dd": 3.6036,
+          "fee_total": 0.008929,
+          "funding_total": 0.00232,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.017547,
+              "mean_R": 0.2305
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.018632,
+              "mean_R": 0.2727
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.005925,
+              "mean_R": 0.0892
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "15bp_cost_3bp_funding": {
+          "n": 83,
+          "net_return_pct": 3.7426,
+          "pf": 1.5875,
+          "win_pct": 55.42,
+          "mean_R": 0.1783,
+          "max_hourly_close_mtm_dd_pct": 1.2256,
+          "return_over_dd": 3.0536,
+          "fee_total": 0.00891,
+          "funding_total": 0.006944,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.015332,
+              "mean_R": 0.202
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.017175,
+              "mean_R": 0.252
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.004918,
+              "mean_R": 0.0744
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "25bp_cost_0bp_funding": {
+          "n": 83,
+          "net_return_pct": 3.843,
+          "pf": 1.6098,
+          "win_pct": 55.42,
+          "mean_R": 0.1829,
+          "max_hourly_close_mtm_dd_pct": 1.2086,
+          "return_over_dd": 3.1797,
+          "fee_total": 0.014854,
+          "funding_total": 0.0,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.015858,
+              "mean_R": 0.2088
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.017443,
+              "mean_R": 0.2557
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.005129,
+              "mean_R": 0.0775
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "25bp_cost_1bp_funding": {
+          "n": 83,
+          "net_return_pct": 3.6096,
+          "pf": 1.5631,
+          "win_pct": 55.42,
+          "mean_R": 0.1721,
+          "max_hourly_close_mtm_dd_pct": 1.2372,
+          "return_over_dd": 2.9176,
+          "fee_total": 0.014838,
+          "funding_total": 0.002313,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.014754,
+              "mean_R": 0.1946
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.016716,
+              "mean_R": 0.2453
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.004626,
+              "mean_R": 0.0701
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "25bp_cost_3bp_funding": {
+          "n": 83,
+          "net_return_pct": 3.1445,
+          "pf": 1.474,
+          "win_pct": 53.01,
+          "mean_R": 0.1504,
+          "max_hourly_close_mtm_dd_pct": 1.2944,
+          "return_over_dd": 2.4293,
+          "fee_total": 0.014807,
+          "funding_total": 0.006924,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.012552,
+              "mean_R": 0.166
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.015268,
+              "mean_R": 0.2246
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.003625,
+              "mean_R": 0.0554
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "40bp_cost_0bp_funding": {
+          "n": 83,
+          "net_return_pct": 2.9463,
+          "pf": 1.4404,
+          "win_pct": 54.22,
+          "mean_R": 0.1411,
+          "max_hourly_close_mtm_dd_pct": 1.3117,
+          "return_over_dd": 2.2461,
+          "fee_total": 0.023665,
+          "funding_total": 0.0,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.01169,
+              "mean_R": 0.1549
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.014583,
+              "mean_R": 0.2146
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.003191,
+              "mean_R": 0.0489
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "40bp_cost_1bp_funding": {
+          "n": 83,
+          "net_return_pct": 2.715,
+          "pf": 1.399,
+          "win_pct": 53.01,
+          "mean_R": 0.1303,
+          "max_hourly_close_mtm_dd_pct": 1.3778,
+          "return_over_dd": 1.9706,
+          "fee_total": 0.02364,
+          "funding_total": 0.002303,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.010595,
+              "mean_R": 0.1406
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.013862,
+              "mean_R": 0.2042
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.002693,
+              "mean_R": 0.0416
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        },
+        "40bp_cost_3bp_funding": {
+          "n": 83,
+          "net_return_pct": 2.2538,
+          "pf": 1.3205,
+          "win_pct": 53.01,
+          "mean_R": 0.1086,
+          "max_hourly_close_mtm_dd_pct": 1.5289,
+          "return_over_dd": 1.4742,
+          "fee_total": 0.023589,
+          "funding_total": 0.006892,
+          "exposure_pct": 26.74,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 30,
+              "net_pnl": 0.008411,
+              "mean_R": 0.1121
+            },
+            "ETHUSDT": {
+              "n": 27,
+              "net_pnl": 0.012427,
+              "mean_R": 0.1835
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": 0.0017,
+              "mean_R": 0.0268
+            }
+          },
+          "skips": {
+            "same_symbol": 12,
+            "max_positions": 4
+          },
+          "attempts": {
+            "BTCUSDT": 35,
+            "ETHUSDT": 32,
+            "ICPUSDT": 32
+          }
+        }
+      }
+    },
+    "frozen_turn": {
+      "primary": {
+        "n": 309,
+        "net_return_pct": 1.8722,
+        "pf": 1.0746,
+        "win_pct": 50.49,
+        "mean_R": 0.0249,
+        "max_hourly_close_mtm_dd_pct": 3.3238,
+        "return_over_dd": 0.5633,
+        "fee_total": 0.031018,
+        "funding_total": 0.027467,
+        "exposure_pct": 78.13,
+        "by_asset": {
+          "BTCUSDT": {
+            "n": 123,
+            "net_pnl": 0.012487,
+            "mean_R": 0.0421
+          },
+          "ETHUSDT": {
+            "n": 97,
+            "net_pnl": 0.024348,
+            "mean_R": 0.1009
+          },
+          "ICPUSDT": {
+            "n": 89,
+            "net_pnl": -0.018113,
+            "mean_R": -0.0816
+          }
+        },
+        "skips": {
+          "max_positions": 194,
+          "same_symbol": 259
+        },
+        "attempts": {
+          "BTCUSDT": 255,
+          "ETHUSDT": 233,
+          "ICPUSDT": 274
+        }
+      },
+      "stress": {
+        "15bp_cost_0bp_funding": {
+          "n": 309,
+          "net_return_pct": 4.7203,
+          "pf": 1.1959,
+          "win_pct": 52.43,
+          "mean_R": 0.0606,
+          "max_hourly_close_mtm_dd_pct": 2.8573,
+          "return_over_dd": 1.652,
+          "fee_total": 0.031449,
+          "funding_total": 0.0,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.026772,
+              "mean_R": 0.0866
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.033439,
+              "mean_R": 0.137
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.013008,
+              "mean_R": -0.0585
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "15bp_cost_1bp_funding": {
+          "n": 309,
+          "net_return_pct": 3.7622,
+          "pf": 1.154,
+          "win_pct": 52.1,
+          "mean_R": 0.0487,
+          "max_hourly_close_mtm_dd_pct": 2.9312,
+          "return_over_dd": 1.2835,
+          "fee_total": 0.031304,
+          "funding_total": 0.00924,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.021969,
+              "mean_R": 0.0717
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.030379,
+              "mean_R": 0.125
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.014725,
+              "mean_R": -0.0662
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "15bp_cost_3bp_funding": {
+          "n": 309,
+          "net_return_pct": 1.8722,
+          "pf": 1.0746,
+          "win_pct": 50.49,
+          "mean_R": 0.0249,
+          "max_hourly_close_mtm_dd_pct": 3.3238,
+          "return_over_dd": 0.5633,
+          "fee_total": 0.031018,
+          "funding_total": 0.027467,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.012487,
+              "mean_R": 0.0421
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.024348,
+              "mean_R": 0.1009
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.018113,
+              "mean_R": -0.0816
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "25bp_cost_0bp_funding": {
+          "n": 309,
+          "net_return_pct": 2.5694,
+          "pf": 1.1034,
+          "win_pct": 51.46,
+          "mean_R": 0.0337,
+          "max_hourly_close_mtm_dd_pct": 3.0976,
+          "return_over_dd": 0.8295,
+          "fee_total": 0.051873,
+          "funding_total": 0.0,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.015545,
+              "mean_R": 0.0516
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.0266,
+              "mean_R": 0.11
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.016452,
+              "mean_R": -0.0741
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "25bp_cost_1bp_funding": {
+          "n": 309,
+          "net_return_pct": 1.6309,
+          "pf": 1.0647,
+          "win_pct": 50.81,
+          "mean_R": 0.0218,
+          "max_hourly_close_mtm_dd_pct": 3.4406,
+          "return_over_dd": 0.474,
+          "fee_total": 0.051635,
+          "funding_total": 0.009145,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.010838,
+              "mean_R": 0.0368
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.023607,
+              "mean_R": 0.098
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.018136,
+              "mean_R": -0.0818
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "25bp_cost_3bp_funding": {
+          "n": 309,
+          "net_return_pct": -0.2205,
+          "pf": 0.9915,
+          "win_pct": 49.51,
+          "mean_R": -0.002,
+          "max_hourly_close_mtm_dd_pct": 4.2654,
+          "return_over_dd": -0.0517,
+          "fee_total": 0.051164,
+          "funding_total": 0.027185,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": 0.001547,
+              "mean_R": 0.0072
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.017706,
+              "mean_R": 0.0739
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.021457,
+              "mean_R": -0.0973
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "40bp_cost_0bp_funding": {
+          "n": 309,
+          "net_return_pct": -0.5748,
+          "pf": 0.9779,
+          "win_pct": 49.84,
+          "mean_R": -0.0066,
+          "max_hourly_close_mtm_dd_pct": 4.5033,
+          "return_over_dd": -0.1276,
+          "fee_total": 0.081719,
+          "funding_total": 0.0,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.000879,
+              "mean_R": -0.0007
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.016617,
+              "mean_R": 0.0695
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.021486,
+              "mean_R": -0.0975
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "40bp_cost_1bp_funding": {
+          "n": 309,
+          "net_return_pct": -1.4846,
+          "pf": 0.9437,
+          "win_pct": 49.51,
+          "mean_R": -0.0185,
+          "max_hourly_close_mtm_dd_pct": 5.192,
+          "return_over_dd": -0.2859,
+          "fee_total": 0.081347,
+          "funding_total": 0.009004,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.005445,
+              "mean_R": -0.0156
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.01372,
+              "mean_R": 0.0574
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.023121,
+              "mean_R": -0.1052
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        },
+        "40bp_cost_3bp_funding": {
+          "n": 309,
+          "net_return_pct": -3.2795,
+          "pf": 0.8788,
+          "win_pct": 47.9,
+          "mean_R": -0.0423,
+          "max_hourly_close_mtm_dd_pct": 6.5551,
+          "return_over_dd": -0.5003,
+          "fee_total": 0.080608,
+          "funding_total": 0.026769,
+          "exposure_pct": 78.13,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 123,
+              "net_pnl": -0.014459,
+              "mean_R": -0.0452
+            },
+            "ETHUSDT": {
+              "n": 97,
+              "net_pnl": 0.00801,
+              "mean_R": 0.0334
+            },
+            "ICPUSDT": {
+              "n": 89,
+              "net_pnl": -0.026346,
+              "mean_R": -0.1207
+            }
+          },
+          "skips": {
+            "max_positions": 194,
+            "same_symbol": 259
+          },
+          "attempts": {
+            "BTCUSDT": 255,
+            "ETHUSDT": 233,
+            "ICPUSDT": 274
+          }
+        }
+      }
+    }
+  },
+  "windows": [
+    {
+      "index": 1,
+      "start_utc": "2025-10-26T13:00:00+00:00",
+      "end_utc": "2026-02-25T04:00:00+00:00",
+      "modes": {
+        "forming": {
+          "n": 23,
+          "net_return_pct": 2.1161,
+          "pf": 2.3931,
+          "win_pct": 65.22,
+          "mean_R": 0.3661,
+          "max_hourly_close_mtm_dd_pct": 0.8779,
+          "return_over_dd": 2.4105,
+          "fee_total": 0.00233,
+          "funding_total": 0.001606,
+          "exposure_pct": 18.12,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 9,
+              "net_pnl": 0.008807,
+              "mean_R": 0.39
+            },
+            "ETHUSDT": {
+              "n": 8,
+              "net_pnl": 0.008245,
+              "mean_R": 0.4107
+            },
+            "ICPUSDT": {
+              "n": 6,
+              "net_pnl": 0.004109,
+              "mean_R": 0.2708
+            }
+          },
+          "skips": {
+            "same_symbol": 1,
+            "max_positions": 1
+          },
+          "attempts": {
+            "BTCUSDT": 10,
+            "ETHUSDT": 8,
+            "ICPUSDT": 7
+          }
+        },
+        "closed": {
+          "n": 27,
+          "net_return_pct": 1.5839,
+          "pf": 1.7497,
+          "win_pct": 62.96,
+          "mean_R": 0.2344,
+          "max_hourly_close_mtm_dd_pct": 1.1662,
+          "return_over_dd": 1.3581,
+          "fee_total": 0.002707,
+          "funding_total": 0.001803,
+          "exposure_pct": 21.65,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 12,
+              "net_pnl": 0.007245,
+              "mean_R": 0.2413
+            },
+            "ETHUSDT": {
+              "n": 8,
+              "net_pnl": 0.007586,
+              "mean_R": 0.3788
+            },
+            "ICPUSDT": {
+              "n": 7,
+              "net_pnl": 0.001008,
+              "mean_R": 0.0577
+            }
+          },
+          "skips": {
+            "same_symbol": 3
+          },
+          "attempts": {
+            "BTCUSDT": 14,
+            "ETHUSDT": 9,
+            "ICPUSDT": 7
+          }
+        },
+        "frozen_turn": {
+          "n": 84,
+          "net_return_pct": -0.974,
+          "pf": 0.879,
+          "win_pct": 46.43,
+          "mean_R": -0.0457,
+          "max_hourly_close_mtm_dd_pct": 3.0907,
+          "return_over_dd": -0.3151,
+          "fee_total": 0.00762,
+          "funding_total": 0.00614,
+          "exposure_pct": 57.76,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 36,
+              "net_pnl": -0.011732,
+              "mean_R": -0.1295
+            },
+            "ETHUSDT": {
+              "n": 22,
+              "net_pnl": 0.013481,
+              "mean_R": 0.2471
+            },
+            "ICPUSDT": {
+              "n": 26,
+              "net_pnl": -0.011488,
+              "mean_R": -0.1773
+            }
+          },
+          "skips": {
+            "max_positions": 48,
+            "same_symbol": 62
+          },
+          "attempts": {
+            "BTCUSDT": 73,
+            "ETHUSDT": 54,
+            "ICPUSDT": 67
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "start_utc": "2026-02-25T04:00:00+00:00",
+      "end_utc": "2026-06-26T20:00:00+00:00",
+      "modes": {
+        "forming": {
+          "n": 31,
+          "net_return_pct": 2.6516,
+          "pf": 2.3527,
+          "win_pct": 70.97,
+          "mean_R": 0.3391,
+          "max_hourly_close_mtm_dd_pct": 0.8713,
+          "return_over_dd": 3.0432,
+          "fee_total": 0.00296,
+          "funding_total": 0.002307,
+          "exposure_pct": 31.71,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 8,
+              "net_pnl": 0.010291,
+              "mean_R": 0.5093
+            },
+            "ETHUSDT": {
+              "n": 12,
+              "net_pnl": 0.017557,
+              "mean_R": 0.5791
+            },
+            "ICPUSDT": {
+              "n": 11,
+              "net_pnl": -0.001332,
+              "mean_R": -0.0465
+            }
+          },
+          "skips": {
+            "same_symbol": 6,
+            "max_positions": 1
+          },
+          "attempts": {
+            "BTCUSDT": 9,
+            "ETHUSDT": 15,
+            "ICPUSDT": 14
+          }
+        },
+        "closed": {
+          "n": 29,
+          "net_return_pct": 2.7221,
+          "pf": 2.5428,
+          "win_pct": 68.97,
+          "mean_R": 0.3718,
+          "max_hourly_close_mtm_dd_pct": 1.0263,
+          "return_over_dd": 2.6522,
+          "fee_total": 0.002798,
+          "funding_total": 0.00206,
+          "exposure_pct": 27.81,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 7,
+              "net_pnl": 0.012233,
+              "mean_R": 0.6897
+            },
+            "ETHUSDT": {
+              "n": 12,
+              "net_pnl": 0.015289,
+              "mean_R": 0.5047
+            },
+            "ICPUSDT": {
+              "n": 10,
+              "net_pnl": -0.000302,
+              "mean_R": -0.0101
+            }
+          },
+          "skips": {
+            "same_symbol": 4,
+            "max_positions": 2
+          },
+          "attempts": {
+            "BTCUSDT": 10,
+            "ETHUSDT": 15,
+            "ICPUSDT": 10
+          }
+        },
+        "frozen_turn": {
+          "n": 111,
+          "net_return_pct": 0.5687,
+          "pf": 1.0623,
+          "win_pct": 53.15,
+          "mean_R": 0.0213,
+          "max_hourly_close_mtm_dd_pct": 2.6879,
+          "return_over_dd": 0.2116,
+          "fee_total": 0.010436,
+          "funding_total": 0.009724,
+          "exposure_pct": 87.91,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 47,
+              "net_pnl": 0.004648,
+              "mean_R": 0.0415
+            },
+            "ETHUSDT": {
+              "n": 36,
+              "net_pnl": 0.003377,
+              "mean_R": 0.0378
+            },
+            "ICPUSDT": {
+              "n": 28,
+              "net_pnl": -0.002338,
+              "mean_R": -0.0337
+            }
+          },
+          "skips": {
+            "max_positions": 75,
+            "same_symbol": 98
+          },
+          "attempts": {
+            "BTCUSDT": 95,
+            "ICPUSDT": 98,
+            "ETHUSDT": 91
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "start_utc": "2026-06-26T20:00:00+00:00",
+      "end_utc": "2026-10-26T12:00:00+00:00",
+      "modes": {
+        "forming": {
+          "n": 35,
+          "net_return_pct": -1.3141,
+          "pf": 0.6331,
+          "win_pct": 31.43,
+          "mean_R": -0.1505,
+          "max_hourly_close_mtm_dd_pct": 1.7352,
+          "return_over_dd": -0.7573,
+          "fee_total": 0.004022,
+          "funding_total": 0.003275,
+          "exposure_pct": 34.21,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 11,
+              "net_pnl": -0.004283,
+              "mean_R": -0.1564
+            },
+            "ETHUSDT": {
+              "n": 10,
+              "net_pnl": -0.001568,
+              "mean_R": -0.0644
+            },
+            "ICPUSDT": {
+              "n": 14,
+              "net_pnl": -0.00729,
+              "mean_R": -0.2073
+            }
+          },
+          "skips": {
+            "same_symbol": 8,
+            "max_positions": 1
+          },
+          "attempts": {
+            "ICPUSDT": 19,
+            "BTCUSDT": 13,
+            "ETHUSDT": 12
+          }
+        },
+        "closed": {
+          "n": 27,
+          "net_return_pct": -0.5812,
+          "pf": 0.754,
+          "win_pct": 33.33,
+          "mean_R": -0.0858,
+          "max_hourly_close_mtm_dd_pct": 1.2256,
+          "return_over_dd": -0.4742,
+          "fee_total": 0.00322,
+          "funding_total": 0.002922,
+          "exposure_pct": 30.75,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 11,
+              "net_pnl": -0.004158,
+              "mean_R": -0.1512
+            },
+            "ETHUSDT": {
+              "n": 7,
+              "net_pnl": -0.005694,
+              "mean_R": -0.3264
+            },
+            "ICPUSDT": {
+              "n": 9,
+              "net_pnl": 0.004041,
+              "mean_R": 0.1813
+            }
+          },
+          "skips": {
+            "same_symbol": 5,
+            "max_positions": 2
+          },
+          "attempts": {
+            "ICPUSDT": 15,
+            "BTCUSDT": 11,
+            "ETHUSDT": 8
+          }
+        },
+        "frozen_turn": {
+          "n": 117,
+          "net_return_pct": 2.1375,
+          "pf": 1.2566,
+          "win_pct": 51.28,
+          "mean_R": 0.0732,
+          "max_hourly_close_mtm_dd_pct": 2.1007,
+          "return_over_dd": 1.0175,
+          "fee_total": 0.01338,
+          "funding_total": 0.011646,
+          "exposure_pct": 87.91,
+          "by_asset": {
+            "BTCUSDT": {
+              "n": 42,
+              "net_pnl": 0.015833,
+              "mean_R": 0.1513
+            },
+            "ETHUSDT": {
+              "n": 38,
+              "net_pnl": 0.006864,
+              "mean_R": 0.0714
+            },
+            "ICPUSDT": {
+              "n": 37,
+              "net_pnl": -0.001322,
+              "mean_R": -0.0135
+            }
+          },
+          "skips": {
+            "max_positions": 70,
+            "same_symbol": 97
+          },
+          "attempts": {
+            "ICPUSDT": 109,
+            "BTCUSDT": 87,
+            "ETHUSDT": 88
+          }
+        }
+      }
+    }
+  ]
+}
