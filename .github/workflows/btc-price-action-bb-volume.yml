@@ -1,0 +1,25 @@
+name: BTC Price Action BB Volume Study
+on:
+  push:
+    paths:
+      - btc_price_action_bb_volume_study.py
+      - .github/workflows/btc-price-action-bb-volume.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python btc_price_action_bb_volume_study.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/btc_price_action_bb_volume_study.json
+          if test -f data/BTCUSDT_1h_volume_bybit.csv; then git add data/BTCUSDT_1h_volume_bybit.csv; fi
+          git diff --cached --quiet || (git commit -m "Save BTC price action Bollinger and volume study" && git pull --rebase origin main && git push)
