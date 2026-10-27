@@ -1,0 +1,800 @@
+{
+  "title": "Redacted 42-trade BTC 1H execution discrepancy ledger — observational QA only",
+  "schema_version": "1.0.0",
+  "scope": "all 42 complete self-reported BTC trades; never assert that all market opportunities were traded",
+  "source": {
+    "trade_labels": "data/manual_btc_trades_2025_2026.csv",
+    "labels_git_blob_sha": "83dc9050b4481f6378798e086e0c3ffec6dd305a",
+    "cached_1h": "data/BTCUSDT_1h.csv",
+    "cached_1h_git_blob_sha": "4ab8fc2645ce097de6a5b8b256229a1858f16979",
+    "cached_1h_sha256_from_cycle18": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "first_utc": "2025-10-26T13:00:00Z",
+    "last_utc": "2026-10-26T13:00:00Z",
+    "n_1h": 8761
+  },
+  "rules": {
+    "timezone": "MSK UTC+03:00; timestamps are user annotations, not verified exchange fills",
+    "price_containment": "annotated price inside [low,high] in marked or preceding 1H candle; exact equality allowed",
+    "nearby_candidate": "up to three nearest containing 1H bars within ±12h; not evidence of actual fill",
+    "static_stop": "test only clean records, on whole 1H bars strictly after entry hour and strictly before first exit hour; assume initial SL never revised",
+    "privacy": "only opaque row IDs, public cached market OHLC, relative distance and source-quality category; no original annotated entry/exit/stop prices"
+  },
+  "summary": {
+    "n_source_trades": 42,
+    "n_inside_cache": 34,
+    "n_clean_inside_cache": 31,
+    "n_outside_cache": 8,
+    "n_entry_price_outside_marked_and_prior_hour": 5,
+    "n_clean_exit1_price_outside_marked_and_prior_hour": 8,
+    "n_clean_static_stop_touch_before_exit": 1,
+    "n_source_quality_flags": 4,
+    "n_distinct_flagged_ledger_rows": 13
+  },
+  "quality_counts": {
+    "second_exit_time_incomplete": 1,
+    "suspect_first_exit_price": 1,
+    "exit_before_entry_suspect_month": 1,
+    "entry_date_suspect_month": 1
+  },
+  "discrepancies": [
+    {
+      "opaque_id": "R10",
+      "side": "SHORT",
+      "flags": [
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "first_exit": {
+        "marked_utc": "2025-11-11T00:00:00Z",
+        "marked_market_ohlc": {
+          "open": 106011.13,
+          "high": 106139.84,
+          "low": 105500,
+          "close": 106139.83
+        },
+        "previous_market_ohlc": {
+          "open": 106062.81,
+          "high": 106275.16,
+          "low": 105893.36,
+          "close": 106011.13
+        },
+        "annotated_price_vs_marked": "above_high",
+        "annotated_price_vs_previous": "above_high",
+        "min_outside_distance_pct": 0.5033,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2025-11-11T01:00:00Z",
+            "offset_hours": 1,
+            "market_ohlc": {
+              "open": 106139.82,
+              "high": 107500,
+              "low": 106026.79,
+              "close": 106110.36
+            }
+          },
+          {
+            "utc": "2025-11-11T02:00:00Z",
+            "offset_hours": 2,
+            "market_ohlc": {
+              "open": 106110.36,
+              "high": 107130,
+              "low": 105610,
+              "close": 106655.02
+            }
+          },
+          {
+            "utc": "2025-11-11T03:00:00Z",
+            "offset_hours": 3,
+            "market_ohlc": {
+              "open": 106655.02,
+              "high": 107100,
+              "low": 106363.04,
+              "close": 106456
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R12",
+      "side": "LONG",
+      "flags": [
+        "first_exit_price_not_in_marked_or_prior_1h",
+        "initial_static_stop_touched_before_annotated_exit"
+      ],
+      "first_exit": {
+        "marked_utc": "2025-11-19T16:00:00Z",
+        "marked_market_ohlc": {
+          "open": 89951.7,
+          "high": 90232.56,
+          "low": 89453.88,
+          "close": 89905.78
+        },
+        "previous_market_ohlc": {
+          "open": 91713.45,
+          "high": 92384.61,
+          "low": 89880,
+          "close": 89951.7
+        },
+        "annotated_price_vs_marked": "above_high",
+        "annotated_price_vs_previous": "above_high",
+        "min_outside_distance_pct": 1.5104,
+        "plausible_nearby_hours_within_12h": []
+      },
+      "stop": {
+        "first_touch_hour_utc": "2025-11-16T17:00:00Z",
+        "market_ohlc": {
+          "open": 94224.47,
+          "high": 94540.64,
+          "low": 93770.48,
+          "close": 94357.67
+        },
+        "assumption": "initial stop remained active and OHLC touch implies execution; unverified"
+      }
+    },
+    {
+      "opaque_id": "R13",
+      "side": "LONG",
+      "flags": [
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "first_exit": {
+        "marked_utc": "2025-11-25T12:00:00Z",
+        "marked_market_ohlc": {
+          "open": 87361.71,
+          "high": 87792.2,
+          "low": 87361.71,
+          "close": 87509.99
+        },
+        "previous_market_ohlc": {
+          "open": 87411,
+          "high": 87535.98,
+          "low": 87310,
+          "close": 87361.71
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 0.1947,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2025-11-25T13:00:00Z",
+            "offset_hours": 1,
+            "market_ohlc": {
+              "open": 87510,
+              "high": 87731.2,
+              "low": 86870.5,
+              "close": 87083.01
+            }
+          },
+          {
+            "utc": "2025-11-25T10:00:00Z",
+            "offset_hours": -2,
+            "market_ohlc": {
+              "open": 87231.76,
+              "high": 87430,
+              "low": 86950.01,
+              "close": 87411.01
+            }
+          },
+          {
+            "utc": "2025-11-25T14:00:00Z",
+            "offset_hours": 2,
+            "market_ohlc": {
+              "open": 87083,
+              "high": 87298.35,
+              "low": 86116,
+              "close": 86741.55
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R14",
+      "side": "SHORT",
+      "flags": [
+        "entry_price_not_in_marked_or_prior_1h"
+      ],
+      "entry": {
+        "marked_utc": "2025-11-28T20:00:00Z",
+        "marked_market_ohlc": {
+          "open": 91157.44,
+          "high": 91225.45,
+          "low": 90867.89,
+          "close": 91201.1
+        },
+        "previous_market_ohlc": {
+          "open": 90830.57,
+          "high": 91202.55,
+          "low": 90821.6,
+          "close": 91157.44
+        },
+        "annotated_price_vs_marked": "above_high",
+        "annotated_price_vs_previous": "above_high",
+        "min_outside_distance_pct": 0.017,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2025-11-28T21:00:00Z",
+            "offset_hours": 1,
+            "market_ohlc": {
+              "open": 91201.09,
+              "high": 91247.16,
+              "low": 90888,
+              "close": 90888.01
+            }
+          },
+          {
+            "utc": "2025-11-28T16:00:00Z",
+            "offset_hours": -4,
+            "market_ohlc": {
+              "open": 92362.5,
+              "high": 92376,
+              "low": 90880,
+              "close": 90936.23
+            }
+          },
+          {
+            "utc": "2025-11-28T11:00:00Z",
+            "offset_hours": -9,
+            "market_ohlc": {
+              "open": 91850.49,
+              "high": 92030,
+              "low": 91065.13,
+              "close": 91437.64
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R16",
+      "side": "LONG",
+      "flags": [
+        "entry_price_not_in_marked_or_prior_1h",
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "entry": {
+        "marked_utc": "2025-12-16T04:00:00Z",
+        "marked_market_ohlc": {
+          "open": 85875.91,
+          "high": 85925.77,
+          "low": 85266,
+          "close": 85838.51
+        },
+        "previous_market_ohlc": {
+          "open": 85944.01,
+          "high": 86019.76,
+          "low": 85386,
+          "close": 85875.92
+        },
+        "annotated_price_vs_marked": "above_high",
+        "annotated_price_vs_previous": "above_high",
+        "min_outside_distance_pct": 0.0468,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2025-12-16T05:00:00Z",
+            "offset_hours": 1,
+            "market_ohlc": {
+              "open": 85838.5,
+              "high": 86200,
+              "low": 85812.61,
+              "close": 86028.11
+            }
+          },
+          {
+            "utc": "2025-12-16T02:00:00Z",
+            "offset_hours": -2,
+            "market_ohlc": {
+              "open": 85891.02,
+              "high": 86227.99,
+              "low": 85800,
+              "close": 85944.01
+            }
+          },
+          {
+            "utc": "2025-12-16T06:00:00Z",
+            "offset_hours": 2,
+            "market_ohlc": {
+              "open": 86028.12,
+              "high": 86611.69,
+              "low": 86028.12,
+              "close": 86508
+            }
+          }
+        ]
+      },
+      "first_exit": {
+        "marked_utc": "2025-12-18T16:00:00Z",
+        "marked_market_ohlc": {
+          "open": 88513.43,
+          "high": 88533.61,
+          "low": 87852,
+          "close": 88014
+        },
+        "previous_market_ohlc": {
+          "open": 88345.19,
+          "high": 89362.79,
+          "low": 87966.24,
+          "close": 88513.44
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 3.474,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2025-12-18T19:00:00Z",
+            "offset_hours": 3,
+            "market_ohlc": {
+              "open": 85970,
+              "high": 86010,
+              "low": 84481.31,
+              "close": 84483.79
+            }
+          },
+          {
+            "utc": "2025-12-18T20:00:00Z",
+            "offset_hours": 4,
+            "market_ohlc": {
+              "open": 84483.8,
+              "high": 85268.41,
+              "low": 84450.01,
+              "close": 84582.65
+            }
+          },
+          {
+            "utc": "2025-12-18T21:00:00Z",
+            "offset_hours": 5,
+            "market_ohlc": {
+              "open": 84582.64,
+              "high": 85835.9,
+              "low": 84559.21,
+              "close": 85630.95
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R21",
+      "side": "SHORT",
+      "flags": [
+        "original_source_quality_flag"
+      ],
+      "quality_category": "suspect_first_exit_price",
+      "quality_time_fields": {
+        "entry_utc": "2026-01-29T00:00:00Z",
+        "exit1_utc": "2026-01-30T20:00:00Z",
+        "exit2_utc": "2026-02-02T08:00:00Z",
+        "exit2_time_status": "present_or_not_applicable"
+      }
+    },
+    {
+      "opaque_id": "R24",
+      "side": "LONG",
+      "flags": [
+        "original_source_quality_flag"
+      ],
+      "quality_category": "exit_before_entry_suspect_month",
+      "quality_time_fields": {
+        "entry_utc": "2026-03-02T12:00:00Z",
+        "exit1_utc": "2026-02-05T20:00:00Z",
+        "exit2_utc": null,
+        "exit2_time_status": "present_or_not_applicable"
+      }
+    },
+    {
+      "opaque_id": "R25",
+      "side": "SHORT",
+      "flags": [
+        "entry_price_not_in_marked_or_prior_1h",
+        "original_source_quality_flag"
+      ],
+      "entry": {
+        "marked_utc": "2026-02-05T20:00:00Z",
+        "marked_market_ohlc": {
+          "open": 65265.66,
+          "high": 65700,
+          "low": 62345,
+          "close": 63775.67
+        },
+        "previous_market_ohlc": {
+          "open": 66347.01,
+          "high": 66637.46,
+          "low": 65200,
+          "close": 65265.65
+        },
+        "annotated_price_vs_marked": "above_high",
+        "annotated_price_vs_previous": "above_high",
+        "min_outside_distance_pct": 6.2465,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-02-05T14:00:00Z",
+            "offset_hours": -6,
+            "market_ohlc": {
+              "open": 69688.94,
+              "high": 70872.04,
+              "low": 69285.71,
+              "close": 69404.76
+            }
+          },
+          {
+            "utc": "2026-02-05T11:00:00Z",
+            "offset_hours": -9,
+            "market_ohlc": {
+              "open": 70858.13,
+              "high": 71063.94,
+              "low": 69922,
+              "close": 70318.35
+            }
+          },
+          {
+            "utc": "2026-02-05T10:00:00Z",
+            "offset_hours": -10,
+            "market_ohlc": {
+              "open": 71549.99,
+              "high": 71726.79,
+              "low": 70656.59,
+              "close": 70858.13
+            }
+          }
+        ]
+      },
+      "quality_category": "entry_date_suspect_month",
+      "quality_time_fields": {
+        "entry_utc": "2026-02-05T20:00:00Z",
+        "exit1_utc": "2026-03-08T08:00:00Z",
+        "exit2_utc": null,
+        "exit2_time_status": "present_or_not_applicable"
+      }
+    },
+    {
+      "opaque_id": "R26",
+      "side": "LONG",
+      "flags": [
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "first_exit": {
+        "marked_utc": "2026-03-08T20:00:00Z",
+        "marked_market_ohlc": {
+          "open": 67337.41,
+          "high": 67609.08,
+          "low": 67028.45,
+          "close": 67238.8
+        },
+        "previous_market_ohlc": {
+          "open": 66803.99,
+          "high": 67485.24,
+          "low": 66779.82,
+          "close": 67337.42
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 0.4939,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-03-08T22:00:00Z",
+            "offset_hours": 2,
+            "market_ohlc": {
+              "open": 67020.01,
+              "high": 67020.01,
+              "low": 65618.49,
+              "close": 66236.8
+            }
+          },
+          {
+            "utc": "2026-03-08T23:00:00Z",
+            "offset_hours": 3,
+            "market_ohlc": {
+              "open": 66236.8,
+              "high": 66569.24,
+              "low": 65930.3,
+              "close": 65971.2
+            }
+          },
+          {
+            "utc": "2026-03-09T00:00:00Z",
+            "offset_hours": 4,
+            "market_ohlc": {
+              "open": 65971.2,
+              "high": 66773,
+              "low": 65821.97,
+              "close": 66370.01
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R30",
+      "side": "LONG",
+      "flags": [
+        "entry_price_not_in_marked_or_prior_1h",
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "entry": {
+        "marked_utc": "2026-04-30T20:00:00Z",
+        "marked_market_ohlc": {
+          "open": 76412.8,
+          "high": 76568.9,
+          "low": 76318.31,
+          "close": 76492.46
+        },
+        "previous_market_ohlc": {
+          "open": 76350,
+          "high": 76514.8,
+          "low": 76308.33,
+          "close": 76412.8
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 0.1026,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-04-30T18:00:00Z",
+            "offset_hours": -2,
+            "market_ohlc": {
+              "open": 76250,
+              "high": 76468.84,
+              "low": 76204.4,
+              "close": 76350
+            }
+          },
+          {
+            "utc": "2026-04-30T22:00:00Z",
+            "offset_hours": 2,
+            "market_ohlc": {
+              "open": 76241.77,
+              "high": 76449.16,
+              "low": 76206.02,
+              "close": 76237.06
+            }
+          },
+          {
+            "utc": "2026-04-30T17:00:00Z",
+            "offset_hours": -3,
+            "market_ohlc": {
+              "open": 76261.04,
+              "high": 76328.71,
+              "low": 76111,
+              "close": 76250.01
+            }
+          }
+        ]
+      },
+      "first_exit": {
+        "marked_utc": "2026-05-02T08:00:00Z",
+        "marked_market_ohlc": {
+          "open": 78220,
+          "high": 78356.51,
+          "low": 78165.3,
+          "close": 78315.37
+        },
+        "previous_market_ohlc": {
+          "open": 78327.8,
+          "high": 78342.18,
+          "low": 78207.2,
+          "close": 78220
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 0.0835,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-05-02T05:00:00Z",
+            "offset_hours": -3,
+            "market_ohlc": {
+              "open": 78175.5,
+              "high": 78235.25,
+              "low": 78040,
+              "close": 78174
+            }
+          },
+          {
+            "utc": "2026-05-02T11:00:00Z",
+            "offset_hours": 3,
+            "market_ohlc": {
+              "open": 78249.31,
+              "high": 78249.31,
+              "low": 78094.43,
+              "close": 78143.08
+            }
+          },
+          {
+            "utc": "2026-05-01T23:00:00Z",
+            "offset_hours": -9,
+            "market_ohlc": {
+              "open": 78153.37,
+              "high": 78249.6,
+              "low": 78043.28,
+              "close": 78231.13
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R32",
+      "side": "LONG",
+      "flags": [
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "first_exit": {
+        "marked_utc": "2026-05-12T04:00:00Z",
+        "marked_market_ohlc": {
+          "open": 81058.79,
+          "high": 81303.99,
+          "low": 81000,
+          "close": 81240.01
+        },
+        "previous_market_ohlc": {
+          "open": 81249.93,
+          "high": 81294.42,
+          "low": 81024.41,
+          "close": 81058.8
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 0.2469,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-05-12T01:00:00Z",
+            "offset_hours": -3,
+            "market_ohlc": {
+              "open": 81545.2,
+              "high": 81615.67,
+              "low": 80714.28,
+              "close": 81199.18
+            }
+          },
+          {
+            "utc": "2026-05-12T08:00:00Z",
+            "offset_hours": 4,
+            "market_ohlc": {
+              "open": 80865.4,
+              "high": 80964.13,
+              "low": 80760.53,
+              "close": 80843.31
+            }
+          },
+          {
+            "utc": "2026-05-12T09:00:00Z",
+            "offset_hours": 5,
+            "market_ohlc": {
+              "open": 80843.3,
+              "high": 80963.35,
+              "low": 80720,
+              "close": 80837.15
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R33",
+      "side": "SHORT",
+      "flags": [
+        "entry_price_not_in_marked_or_prior_1h"
+      ],
+      "entry": {
+        "marked_utc": "2026-05-12T04:00:00Z",
+        "marked_market_ohlc": {
+          "open": 81058.79,
+          "high": 81303.99,
+          "low": 81000,
+          "close": 81240.01
+        },
+        "previous_market_ohlc": {
+          "open": 81249.93,
+          "high": 81294.42,
+          "low": 81024.41,
+          "close": 81058.8
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 0.2469,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-05-12T01:00:00Z",
+            "offset_hours": -3,
+            "market_ohlc": {
+              "open": 81545.2,
+              "high": 81615.67,
+              "low": 80714.28,
+              "close": 81199.18
+            }
+          },
+          {
+            "utc": "2026-05-12T08:00:00Z",
+            "offset_hours": 4,
+            "market_ohlc": {
+              "open": 80865.4,
+              "high": 80964.13,
+              "low": 80760.53,
+              "close": 80843.31
+            }
+          },
+          {
+            "utc": "2026-05-12T09:00:00Z",
+            "offset_hours": 5,
+            "market_ohlc": {
+              "open": 80843.3,
+              "high": 80963.35,
+              "low": 80720,
+              "close": 80837.15
+            }
+          }
+        ]
+      }
+    },
+    {
+      "opaque_id": "R41",
+      "side": "LONG",
+      "flags": [
+        "first_exit_price_not_in_marked_or_prior_1h"
+      ],
+      "first_exit": {
+        "marked_utc": "2026-06-25T12:00:00Z",
+        "marked_market_ohlc": {
+          "open": 61282,
+          "high": 61761.35,
+          "low": 61080,
+          "close": 61244.01
+        },
+        "previous_market_ohlc": {
+          "open": 61269.95,
+          "high": 61422.52,
+          "low": 61066,
+          "close": 61282.01
+        },
+        "annotated_price_vs_marked": "below_low",
+        "annotated_price_vs_previous": "below_low",
+        "min_outside_distance_pct": 3.3013,
+        "plausible_nearby_hours_within_12h": [
+          {
+            "utc": "2026-06-25T13:00:00Z",
+            "offset_hours": 1,
+            "market_ohlc": {
+              "open": 61244.01,
+              "high": 61369.18,
+              "low": 58115.01,
+              "close": 58290.17
+            }
+          },
+          {
+            "utc": "2026-06-25T14:00:00Z",
+            "offset_hours": 2,
+            "market_ohlc": {
+              "open": 58291.7,
+              "high": 60485.51,
+              "low": 58291.7,
+              "close": 59471.5
+            }
+          },
+          {
+            "utc": "2026-06-25T15:00:00Z",
+            "offset_hours": 3,
+            "market_ohlc": {
+              "open": 59471.49,
+              "high": 59655.86,
+              "low": 58874.85,
+              "close": 59557.99
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "provenance_gaps": [
+    "Venue, instrument type, contract, mark/last trigger, chart timezone, order fill IDs and stop modifications are not evidenced by the cache.",
+    "Original source values remain unchanged; a nearby containing candle is only a candidate timing explanation.",
+    "Eight pre-cache annotations cannot be tested; no cross-venue splicing or backfilling.",
+    "The complete journal is not a random sample of all market signal opportunities; all historical periods have been inspected."
+  ],
+  "decisions": {
+    "reconciled": 0,
+    "unresolved_ledger_rows": 13,
+    "live_or_paper_orders": 0,
+    "funding": "excluded by owner research instruction",
+    "roundtrip_cost_assumption": "0.15% used for annotated PnL elsewhere; no PnL recomputed here",
+    "strategy_promotion": "NONE"
+  }
+}
