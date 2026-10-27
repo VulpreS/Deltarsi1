@@ -1,8 +1,8 @@
 {
   "title": "Causal true-wave vs peak-bar vs ATR stop: matched-entry exploratory audit",
-  "generated_utc": "2026-10-27T05:55:15.854450+00:00",
-  "producer_sha": "48ca73ff3f99812f5b98d8fa208b51410136a434",
-  "ci_run": "40458041229",
+  "generated_utc": "2026-10-27T05:55:43.672641+00:00",
+  "producer_sha": "89be0b1e74c1ecc9b0f2428582f58304f9b1a802",
+  "ci_run": "40458088927",
   "source_sha256": {
     "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
     "ETHUSDT": "9c16b69b2232705bb303fdb153cba6e92417d7ac9493873dcae523636e36d866",
@@ -339,27 +339,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 262,
-          "win_pct": 58.4,
-          "mean_R": 0.16215,
-          "pf": 1.6013,
-          "avg_win_R": 0.7395,
-          "avg_loss_R": -0.64824,
-          "median_stop_pct": 4.4309,
-          "median_fee_R": 0.0,
-          "pseudo_dd_pct": 2.0105
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
-            "matched_core_n": 262,
-            "mean_delta_R": -0.194493,
-            "win_fraction": 0.3359
+            "matched_core_n": 267,
+            "mean_delta_R": -0.200933,
+            "win_fraction": 0.3296,
+            "matched_baseline": {
+              "n": 267,
+              "win_pct": 57.3,
+              "mean_R": 0.15396,
+              "pf": 1.5707,
+              "avg_win_R": 0.7395,
+              "avg_loss_R": -0.63188,
+              "median_stop_pct": 4.4548,
+              "median_fee_R": 0.0336,
+              "pseudo_dd_pct": 2.0105
+            },
+            "matched_challenger": {
+              "n": 267,
+              "win_pct": 49.44,
+              "mean_R": -0.04697,
+              "pf": 0.9094,
+              "avg_win_R": 0.95326,
+              "avg_loss_R": -1.02497,
+              "median_stop_pct": 1.713,
+              "median_fee_R": 0.0884,
+              "pseudo_dd_pct": 4.9406
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 108,
+                "mean_delta_R": -0.26247
+              },
+              "ETHUSDT": {
+                "n": 87,
+                "mean_delta_R": -0.194695
+              },
+              "ICPUSDT": {
+                "n": 72,
+                "mean_delta_R": -0.116165
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 130,
+                "mean_delta_R": -0.258715
+              },
+              "SHORT": {
+                "n": 137,
+                "mean_delta_R": -0.146104
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 262,
-            "mean_delta_R": -0.106188,
-            "win_fraction": 0.3626
+            "matched_core_n": 334,
+            "mean_delta_R": -0.098494,
+            "win_fraction": 0.3563,
+            "matched_baseline": {
+              "n": 334,
+              "win_pct": 56.29,
+              "mean_R": 0.10052,
+              "pf": 1.328,
+              "avg_win_R": 0.723,
+              "avg_loss_R": -0.70103,
+              "median_stop_pct": 4.5488,
+              "median_fee_R": 0.033,
+              "pseudo_dd_pct": 3.1452
+            },
+            "matched_challenger": {
+              "n": 334,
+              "win_pct": 50.3,
+              "mean_R": 0.00202,
+              "pf": 1.0043,
+              "avg_win_R": 0.93276,
+              "avg_loss_R": -0.93992,
+              "median_stop_pct": 2.4749,
+              "median_fee_R": 0.0613,
+              "pseudo_dd_pct": 5.0076
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 125,
+                "mean_delta_R": -0.213027
+              },
+              "ETHUSDT": {
+                "n": 101,
+                "mean_delta_R": -0.115051
+              },
+              "ICPUSDT": {
+                "n": 108,
+                "mean_delta_R": 0.049552
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 178,
+                "mean_delta_R": -0.135156
+              },
+              "SHORT": {
+                "n": 156,
+                "mean_delta_R": -0.056662
+              }
+            }
           }
         }
       },
@@ -642,27 +723,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 43,
-          "win_pct": 65.12,
-          "mean_R": 0.2757,
-          "pf": 1.8956,
-          "avg_win_R": 0.89612,
-          "avg_loss_R": -0.88243,
-          "median_stop_pct": 4.3407,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 0.5327
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 43,
             "mean_delta_R": -0.561741,
-            "win_fraction": 0.1628
+            "win_fraction": 0.1628,
+            "matched_baseline": {
+              "n": 43,
+              "win_pct": 65.12,
+              "mean_R": 0.2757,
+              "pf": 1.8956,
+              "avg_win_R": 0.89612,
+              "avg_loss_R": -0.88243,
+              "median_stop_pct": 4.3407,
+              "median_fee_R": 0.034,
+              "pseudo_dd_pct": 0.5327
+            },
+            "matched_challenger": {
+              "n": 43,
+              "win_pct": 46.51,
+              "mean_R": -0.28605,
+              "pf": 0.5979,
+              "avg_win_R": 0.91465,
+              "avg_loss_R": -1.33013,
+              "median_stop_pct": 0.6427,
+              "median_fee_R": 0.2325,
+              "pseudo_dd_pct": 3.2487
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 13,
+                "mean_delta_R": -0.776527
+              },
+              "ETHUSDT": {
+                "n": 17,
+                "mean_delta_R": -0.574307
+              },
+              "ICPUSDT": {
+                "n": 13,
+                "mean_delta_R": -0.33052
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 23,
+                "mean_delta_R": -0.494211
+              },
+              "SHORT": {
+                "n": 20,
+                "mean_delta_R": -0.6394
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 43,
-            "mean_delta_R": -0.391443,
-            "win_fraction": 0.2093
+            "matched_core_n": 47,
+            "mean_delta_R": -0.432215,
+            "win_fraction": 0.2128,
+            "matched_baseline": {
+              "n": 47,
+              "win_pct": 65.96,
+              "mean_R": 0.27517,
+              "pf": 1.9725,
+              "avg_win_R": 0.84619,
+              "avg_loss_R": -0.83118,
+              "median_stop_pct": 4.3407,
+              "median_fee_R": 0.0345,
+              "pseudo_dd_pct": 0.5327
+            },
+            "matched_challenger": {
+              "n": 47,
+              "win_pct": 48.94,
+              "mean_R": -0.15704,
+              "pf": 0.7507,
+              "avg_win_R": 0.9661,
+              "avg_loss_R": -1.23339,
+              "median_stop_pct": 1.0959,
+              "median_fee_R": 0.1378,
+              "pseudo_dd_pct": 2.0076
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 15,
+                "mean_delta_R": -0.611873
+              },
+              "ETHUSDT": {
+                "n": 17,
+                "mean_delta_R": -0.225723
+              },
+              "ICPUSDT": {
+                "n": 15,
+                "mean_delta_R": -0.486581
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 26,
+                "mean_delta_R": -0.297354
+              },
+              "SHORT": {
+                "n": 21,
+                "mean_delta_R": -0.599186
+              }
+            }
           }
         }
       },
@@ -945,27 +1107,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 45,
-          "win_pct": 64.44,
-          "mean_R": 0.31795,
-          "pf": 2.2696,
-          "avg_win_R": 0.88196,
-          "avg_loss_R": -0.70433,
-          "median_stop_pct": 4.2912,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 0.6124
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 45,
             "mean_delta_R": -0.252258,
-            "win_fraction": 0.3333
+            "win_fraction": 0.3333,
+            "matched_baseline": {
+              "n": 45,
+              "win_pct": 64.44,
+              "mean_R": 0.31795,
+              "pf": 2.2696,
+              "avg_win_R": 0.88196,
+              "avg_loss_R": -0.70433,
+              "median_stop_pct": 4.2912,
+              "median_fee_R": 0.0348,
+              "pseudo_dd_pct": 0.6124
+            },
+            "matched_challenger": {
+              "n": 45,
+              "win_pct": 57.78,
+              "mean_R": 0.06569,
+              "pf": 1.1303,
+              "avg_win_R": 0.98605,
+              "avg_loss_R": -1.19376,
+              "median_stop_pct": 1.4232,
+              "median_fee_R": 0.1046,
+              "pseudo_dd_pct": 1.67
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 17,
+                "mean_delta_R": 0.020126
+              },
+              "ETHUSDT": {
+                "n": 16,
+                "mean_delta_R": -0.518224
+              },
+              "ICPUSDT": {
+                "n": 12,
+                "mean_delta_R": -0.283517
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 23,
+                "mean_delta_R": -0.328813
+              },
+              "SHORT": {
+                "n": 22,
+                "mean_delta_R": -0.172224
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 45,
-            "mean_delta_R": -0.18526,
-            "win_fraction": 0.3111
+            "matched_core_n": 51,
+            "mean_delta_R": -0.211,
+            "win_fraction": 0.3137,
+            "matched_baseline": {
+              "n": 51,
+              "win_pct": 64.71,
+              "mean_R": 0.30306,
+              "pf": 2.1563,
+              "avg_win_R": 0.8734,
+              "avg_loss_R": -0.74257,
+              "median_stop_pct": 4.137,
+              "median_fee_R": 0.0359,
+              "pseudo_dd_pct": 0.6124
+            },
+            "matched_challenger": {
+              "n": 51,
+              "win_pct": 56.86,
+              "mean_R": 0.09206,
+              "pf": 1.1993,
+              "avg_win_R": 0.97441,
+              "avg_loss_R": -1.07104,
+              "median_stop_pct": 1.5609,
+              "median_fee_R": 0.0955,
+              "pseudo_dd_pct": 1.5797
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 19,
+                "mean_delta_R": -0.297199
+              },
+              "ETHUSDT": {
+                "n": 19,
+                "mean_delta_R": -0.084409
+              },
+              "ICPUSDT": {
+                "n": 13,
+                "mean_delta_R": -0.270034
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 26,
+                "mean_delta_R": -0.389279
+              },
+              "SHORT": {
+                "n": 25,
+                "mean_delta_R": -0.02559
+              }
+            }
           }
         }
       }
@@ -1256,27 +1499,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 141,
-          "win_pct": 59.57,
-          "mean_R": 0.11398,
-          "pf": 1.412,
-          "avg_win_R": 0.65565,
-          "avg_loss_R": -0.68427,
-          "median_stop_pct": 3.7246,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 1.2694
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
-            "matched_core_n": 141,
-            "mean_delta_R": -0.126811,
-            "win_fraction": 0.3475
+            "matched_core_n": 142,
+            "mean_delta_R": -0.120795,
+            "win_fraction": 0.3521,
+            "matched_baseline": {
+              "n": 142,
+              "win_pct": 59.86,
+              "mean_R": 0.11343,
+              "pf": 1.413,
+              "avg_win_R": 0.64835,
+              "avg_loss_R": -0.68427,
+              "median_stop_pct": 3.7436,
+              "median_fee_R": 0.0403,
+              "pseudo_dd_pct": 1.2694
+            },
+            "matched_challenger": {
+              "n": 142,
+              "win_pct": 52.82,
+              "mean_R": -0.00737,
+              "pf": 0.9853,
+              "avg_win_R": 0.93446,
+              "avg_loss_R": -1.06165,
+              "median_stop_pct": 1.5772,
+              "median_fee_R": 0.0951,
+              "pseudo_dd_pct": 4.2465
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 45,
+                "mean_delta_R": 0.055362
+              },
+              "ETHUSDT": {
+                "n": 52,
+                "mean_delta_R": -0.270325
+              },
+              "ICPUSDT": {
+                "n": 45,
+                "mean_delta_R": -0.124163
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 76,
+                "mean_delta_R": -0.157581
+              },
+              "SHORT": {
+                "n": 66,
+                "mean_delta_R": -0.078437
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 141,
-            "mean_delta_R": -0.00982,
-            "win_fraction": 0.3972
+            "matched_core_n": 190,
+            "mean_delta_R": -0.031573,
+            "win_fraction": 0.3684,
+            "matched_baseline": {
+              "n": 190,
+              "win_pct": 55.79,
+              "mean_R": 0.04242,
+              "pf": 1.1318,
+              "avg_win_R": 0.65276,
+              "avg_loss_R": -0.72778,
+              "median_stop_pct": 3.6346,
+              "median_fee_R": 0.0408,
+              "pseudo_dd_pct": 2.4099
+            },
+            "matched_challenger": {
+              "n": 190,
+              "win_pct": 51.58,
+              "mean_R": 0.01084,
+              "pf": 1.0234,
+              "avg_win_R": 0.91772,
+              "avg_loss_R": -0.95517,
+              "median_stop_pct": 2.1757,
+              "median_fee_R": 0.0698,
+              "pseudo_dd_pct": 3.7566
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 62,
+                "mean_delta_R": -0.02077
+              },
+              "ETHUSDT": {
+                "n": 61,
+                "mean_delta_R": -0.096844
+              },
+              "ICPUSDT": {
+                "n": 67,
+                "mean_delta_R": 0.017855
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 104,
+                "mean_delta_R": -0.058335
+              },
+              "SHORT": {
+                "n": 86,
+                "mean_delta_R": 0.000789
+              }
+            }
           }
         }
       },
@@ -1565,27 +1889,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 20,
-          "win_pct": 70.0,
-          "mean_R": 0.46612,
-          "pf": 4.8174,
-          "avg_win_R": 0.84032,
-          "avg_loss_R": -0.40701,
-          "median_stop_pct": 3.6615,
-          "median_fee_R": 0.0,
-          "pseudo_dd_pct": 0.264
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 20,
             "mean_delta_R": -0.181083,
-            "win_fraction": 0.35
+            "win_fraction": 0.35,
+            "matched_baseline": {
+              "n": 20,
+              "win_pct": 70.0,
+              "mean_R": 0.46612,
+              "pf": 4.8174,
+              "avg_win_R": 0.84032,
+              "avg_loss_R": -0.40701,
+              "median_stop_pct": 3.6615,
+              "median_fee_R": 0.0409,
+              "pseudo_dd_pct": 0.264
+            },
+            "matched_challenger": {
+              "n": 20,
+              "win_pct": 65.0,
+              "mean_R": 0.28503,
+              "pf": 1.7793,
+              "avg_win_R": 1.00123,
+              "avg_loss_R": -1.04505,
+              "median_stop_pct": 1.3832,
+              "median_fee_R": 0.1075,
+              "pseudo_dd_pct": 0.6667
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 5,
+                "mean_delta_R": -0.116677
+              },
+              "ETHUSDT": {
+                "n": 5,
+                "mean_delta_R": -0.60089
+              },
+              "ICPUSDT": {
+                "n": 10,
+                "mean_delta_R": -0.003382
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 7,
+                "mean_delta_R": -0.42319
+              },
+              "SHORT": {
+                "n": 13,
+                "mean_delta_R": -0.050717
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 20,
-            "mean_delta_R": 0.08934,
-            "win_fraction": 0.35
+            "matched_core_n": 22,
+            "mean_delta_R": 0.004178,
+            "win_fraction": 0.3182,
+            "matched_baseline": {
+              "n": 22,
+              "win_pct": 72.73,
+              "mean_R": 0.49427,
+              "pf": 5.4527,
+              "avg_win_R": 0.83225,
+              "avg_loss_R": -0.40701,
+              "median_stop_pct": 3.6615,
+              "median_fee_R": 0.0409,
+              "pseudo_dd_pct": 0.264
+            },
+            "matched_challenger": {
+              "n": 22,
+              "win_pct": 72.73,
+              "mean_R": 0.49844,
+              "pf": 3.3055,
+              "avg_win_R": 0.98264,
+              "avg_loss_R": -0.79274,
+              "median_stop_pct": 1.6938,
+              "median_fee_R": 0.0886,
+              "pseudo_dd_pct": 0.3579
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 5,
+                "mean_delta_R": 0.367328
+              },
+              "ETHUSDT": {
+                "n": 5,
+                "mean_delta_R": -0.064883
+              },
+              "ICPUSDT": {
+                "n": 12,
+                "mean_delta_R": -0.118358
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_delta_R": -0.140328
+              },
+              "SHORT": {
+                "n": 13,
+                "mean_delta_R": 0.104221
+              }
+            }
           }
         }
       },
@@ -1874,27 +2279,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 19,
-          "win_pct": 57.89,
-          "mean_R": 0.217,
-          "pf": 1.8603,
-          "avg_win_R": 0.81053,
-          "avg_loss_R": -0.5991,
-          "median_stop_pct": 3.6742,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 0.4306
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 19,
             "mean_delta_R": -0.137995,
-            "win_fraction": 0.4211
+            "win_fraction": 0.4211,
+            "matched_baseline": {
+              "n": 19,
+              "win_pct": 57.89,
+              "mean_R": 0.217,
+              "pf": 1.8603,
+              "avg_win_R": 0.81053,
+              "avg_loss_R": -0.5991,
+              "median_stop_pct": 3.6742,
+              "median_fee_R": 0.0416,
+              "pseudo_dd_pct": 0.4306
+            },
+            "matched_challenger": {
+              "n": 19,
+              "win_pct": 52.63,
+              "mean_R": 0.07901,
+              "pf": 1.166,
+              "avg_win_R": 1.05418,
+              "avg_loss_R": -1.00452,
+              "median_stop_pct": 2.3684,
+              "median_fee_R": 0.0632,
+              "pseudo_dd_pct": 0.8692
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 5,
+                "mean_delta_R": 0.537595
+              },
+              "ETHUSDT": {
+                "n": 4,
+                "mean_delta_R": 0.151932
+              },
+              "ICPUSDT": {
+                "n": 10,
+                "mean_delta_R": -0.591761
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 8,
+                "mean_delta_R": -0.628717
+              },
+              "SHORT": {
+                "n": 11,
+                "mean_delta_R": 0.218893
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 19,
-            "mean_delta_R": 0.06275,
-            "win_fraction": 0.4211
+            "matched_core_n": 22,
+            "mean_delta_R": 0.039043,
+            "win_fraction": 0.3636,
+            "matched_baseline": {
+              "n": 22,
+              "win_pct": 59.09,
+              "mean_R": 0.24436,
+              "pf": 1.9223,
+              "avg_win_R": 0.8619,
+              "avg_loss_R": -0.64765,
+              "median_stop_pct": 3.558,
+              "median_fee_R": 0.0427,
+              "pseudo_dd_pct": 0.5849
+            },
+            "matched_challenger": {
+              "n": 22,
+              "win_pct": 63.64,
+              "mean_R": 0.2834,
+              "pf": 1.9015,
+              "avg_win_R": 0.93937,
+              "avg_loss_R": -0.86454,
+              "median_stop_pct": 2.4801,
+              "median_fee_R": 0.0598,
+              "pseudo_dd_pct": 0.5807
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 6,
+                "mean_delta_R": 0.403277
+              },
+              "ETHUSDT": {
+                "n": 5,
+                "mean_delta_R": -0.04982
+              },
+              "ICPUSDT": {
+                "n": 11,
+                "mean_delta_R": -0.119237
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 9,
+                "mean_delta_R": -0.229604
+              },
+              "SHORT": {
+                "n": 13,
+                "mean_delta_R": 0.22503
+              }
+            }
           }
         }
       }
@@ -2185,27 +2671,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 151,
-          "win_pct": 43.05,
-          "mean_R": -0.02776,
-          "pf": 0.9239,
-          "avg_win_R": 0.7834,
-          "avg_loss_R": -0.64084,
-          "median_stop_pct": 3.644,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 3.5749
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
-            "matched_core_n": 151,
-            "mean_delta_R": -0.213527,
-            "win_fraction": 0.2517
+            "matched_core_n": 152,
+            "mean_delta_R": -0.213625,
+            "win_fraction": 0.25,
+            "matched_baseline": {
+              "n": 152,
+              "win_pct": 42.76,
+              "mean_R": -0.03426,
+              "pf": 0.9072,
+              "avg_win_R": 0.7834,
+              "avg_loss_R": -0.64516,
+              "median_stop_pct": 3.6479,
+              "median_fee_R": 0.0417,
+              "pseudo_dd_pct": 3.5749
+            },
+            "matched_challenger": {
+              "n": 152,
+              "win_pct": 40.79,
+              "mean_R": -0.24789,
+              "pf": 0.6069,
+              "avg_win_R": 0.93842,
+              "avg_loss_R": -1.06512,
+              "median_stop_pct": 1.3855,
+              "median_fee_R": 0.1083,
+              "pseudo_dd_pct": 9.8569
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 40,
+                "mean_delta_R": -0.08617
+              },
+              "ETHUSDT": {
+                "n": 54,
+                "mean_delta_R": -0.230572
+              },
+              "ICPUSDT": {
+                "n": 58,
+                "mean_delta_R": -0.285747
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 83,
+                "mean_delta_R": -0.234087
+              },
+              "SHORT": {
+                "n": 69,
+                "mean_delta_R": -0.189011
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 151,
-            "mean_delta_R": -0.085234,
-            "win_fraction": 0.3179
+            "matched_core_n": 214,
+            "mean_delta_R": -0.144498,
+            "win_fraction": 0.3037,
+            "matched_baseline": {
+              "n": 214,
+              "win_pct": 44.86,
+              "mean_R": -5e-05,
+              "pf": 0.9998,
+              "avg_win_R": 0.79257,
+              "avg_loss_R": -0.6449,
+              "median_stop_pct": 3.539,
+              "median_fee_R": 0.0425,
+              "pseudo_dd_pct": 3.8297
+            },
+            "matched_challenger": {
+              "n": 214,
+              "win_pct": 42.99,
+              "mean_R": -0.14455,
+              "pf": 0.7218,
+              "avg_win_R": 0.87236,
+              "avg_loss_R": -0.91141,
+              "median_stop_pct": 2.0428,
+              "median_fee_R": 0.0734,
+              "pseudo_dd_pct": 7.7794
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 68,
+                "mean_delta_R": -0.201033
+              },
+              "ETHUSDT": {
+                "n": 70,
+                "mean_delta_R": -0.042876
+              },
+              "ICPUSDT": {
+                "n": 76,
+                "mean_delta_R": -0.187514
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 112,
+                "mean_delta_R": -0.093906
+              },
+              "SHORT": {
+                "n": 102,
+                "mean_delta_R": -0.200051
+              }
+            }
           }
         }
       },
@@ -2494,27 +3061,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 25,
-          "win_pct": 28.0,
-          "mean_R": -0.20703,
-          "pf": 0.5725,
-          "avg_win_R": 0.99031,
-          "avg_loss_R": -0.67266,
-          "median_stop_pct": 3.1075,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 1.6912
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 25,
             "mean_delta_R": -0.426466,
-            "win_fraction": 0.04
+            "win_fraction": 0.04,
+            "matched_baseline": {
+              "n": 25,
+              "win_pct": 28.0,
+              "mean_R": -0.20703,
+              "pf": 0.5725,
+              "avg_win_R": 0.99031,
+              "avg_loss_R": -0.67266,
+              "median_stop_pct": 3.1075,
+              "median_fee_R": 0.048,
+              "pseudo_dd_pct": 1.6912
+            },
+            "matched_challenger": {
+              "n": 25,
+              "win_pct": 24.0,
+              "mean_R": -0.63349,
+              "pf": 0.267,
+              "avg_win_R": 0.96163,
+              "avg_loss_R": -1.13722,
+              "median_stop_pct": 1.2436,
+              "median_fee_R": 0.1199,
+              "pseudo_dd_pct": 4.1879
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 7,
+                "mean_delta_R": -0.45364
+              },
+              "ETHUSDT": {
+                "n": 8,
+                "mean_delta_R": -0.391557
+              },
+              "ICPUSDT": {
+                "n": 10,
+                "mean_delta_R": -0.435372
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 16,
+                "mean_delta_R": -0.477456
+              },
+              "SHORT": {
+                "n": 9,
+                "mean_delta_R": -0.335818
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 25,
-            "mean_delta_R": -0.121455,
-            "win_fraction": 0.2
+            "matched_core_n": 32,
+            "mean_delta_R": -0.18788,
+            "win_fraction": 0.2188,
+            "matched_baseline": {
+              "n": 32,
+              "win_pct": 28.12,
+              "mean_R": -0.19585,
+              "pf": 0.5506,
+              "avg_win_R": 0.85332,
+              "avg_loss_R": -0.6064,
+              "median_stop_pct": 3.0905,
+              "median_fee_R": 0.0485,
+              "pseudo_dd_pct": 1.7513
+            },
+            "matched_challenger": {
+              "n": 32,
+              "win_pct": 31.25,
+              "mean_R": -0.38373,
+              "pf": 0.4448,
+              "avg_win_R": 0.98369,
+              "avg_loss_R": -1.00529,
+              "median_stop_pct": 1.7665,
+              "median_fee_R": 0.0849,
+              "pseudo_dd_pct": 3.2065
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 11,
+                "mean_delta_R": -0.388788
+              },
+              "ETHUSDT": {
+                "n": 11,
+                "mean_delta_R": -0.055861
+              },
+              "ICPUSDT": {
+                "n": 10,
+                "mean_delta_R": -0.1121
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 19,
+                "mean_delta_R": -0.00571
+              },
+              "SHORT": {
+                "n": 13,
+                "mean_delta_R": -0.454127
+              }
+            }
           }
         }
       },
@@ -2803,27 +3451,108 @@
             }
           }
         },
-        "matched_core": {
-          "n": 15,
-          "win_pct": 40.0,
-          "mean_R": 0.04879,
-          "pf": 1.2127,
-          "avg_win_R": 0.69549,
-          "avg_loss_R": -0.38234,
-          "median_stop_pct": 3.3529,
-          "median_fee_R": 0,
-          "pseudo_dd_pct": 0.548
-        },
         "paired_vs_atr": {
           "true_peak_bar": {
             "matched_core_n": 15,
             "mean_delta_R": -0.330545,
-            "win_fraction": 0.1333
+            "win_fraction": 0.1333,
+            "matched_baseline": {
+              "n": 15,
+              "win_pct": 40.0,
+              "mean_R": 0.04879,
+              "pf": 1.2127,
+              "avg_win_R": 0.69549,
+              "avg_loss_R": -0.38234,
+              "median_stop_pct": 3.3529,
+              "median_fee_R": 0.0446,
+              "pseudo_dd_pct": 0.548
+            },
+            "matched_challenger": {
+              "n": 15,
+              "win_pct": 40.0,
+              "mean_R": -0.28176,
+              "pf": 0.5836,
+              "avg_win_R": 0.98718,
+              "avg_loss_R": -1.12771,
+              "median_stop_pct": 1.3992,
+              "median_fee_R": 0.1065,
+              "pseudo_dd_pct": 1.7347
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 3,
+                "mean_delta_R": -0.753737
+              },
+              "ETHUSDT": {
+                "n": 6,
+                "mean_delta_R": -0.237374
+              },
+              "ICPUSDT": {
+                "n": 6,
+                "mean_delta_R": -0.212121
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 7,
+                "mean_delta_R": -0.208089
+              },
+              "SHORT": {
+                "n": 8,
+                "mean_delta_R": -0.437695
+              }
+            }
           },
           "true_whole_wave": {
-            "matched_core_n": 15,
-            "mean_delta_R": -0.052644,
-            "win_fraction": 0.2
+            "matched_core_n": 26,
+            "mean_delta_R": -0.077189,
+            "win_fraction": 0.2692,
+            "matched_baseline": {
+              "n": 26,
+              "win_pct": 38.46,
+              "mean_R": -0.00144,
+              "pf": 0.9949,
+              "avg_win_R": 0.72233,
+              "avg_loss_R": -0.45379,
+              "median_stop_pct": 3.131,
+              "median_fee_R": 0.048,
+              "pseudo_dd_pct": 1.1979
+            },
+            "matched_challenger": {
+              "n": 26,
+              "win_pct": 50.0,
+              "mean_R": -0.07862,
+              "pf": 0.8389,
+              "avg_win_R": 0.81884,
+              "avg_loss_R": -0.97608,
+              "median_stop_pct": 1.5582,
+              "median_fee_R": 0.0971,
+              "pseudo_dd_pct": 1.4896
+            },
+            "by_asset": {
+              "BTCUSDT": {
+                "n": 10,
+                "mean_delta_R": -0.052504
+              },
+              "ETHUSDT": {
+                "n": 8,
+                "mean_delta_R": -0.025187
+              },
+              "ICPUSDT": {
+                "n": 8,
+                "mean_delta_R": -0.160046
+              }
+            },
+            "by_side": {
+              "LONG": {
+                "n": 14,
+                "mean_delta_R": 0.193259
+              },
+              "SHORT": {
+                "n": 12,
+                "mean_delta_R": -0.392711
+              }
+            }
           }
         }
       }
