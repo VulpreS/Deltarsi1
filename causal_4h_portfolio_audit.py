@@ -61,7 +61,7 @@ def simulate(data,times,mode,cost=.0015,rate=.0003,starting_cash=1.):
   net=gross-p["entry_fee"]-exit_fee-f
   cash+=gross-exit_fee-f
   ledger.append({"symbol":s,"side":p["side"],"entry_ms":p["entry_ms"],"exit_ms":latest,
-   "reason":reason,"entry_price":p["entry"],"exit_price":price,"gross":gross,"fees":p["entry_fee"]+exit_fee,
+   "reason":reason,"entry_price":p["entry"],"exit_price":price,"quantity":p["qty"],"gross":gross,"fees":p["entry_fee"]+exit_fee,
    "funding":f,"net":net,"R":net/p["risk"],"risk":p["risk"],
    "signal_ms":p["signal_ms"],"stop":p["stop"],"target":p["target"]})
  for t in times:
@@ -193,10 +193,19 @@ def main():
    if abs(a["exit"]-b["exit_price"])>1e-8 or a["exit_reason"]!=b["reason"]:
     differences.append({"symbol":k[0],"entry_utc":k[1],"4h_exit":a["exit"],
       "1h_exit":b["exit_price"],"4h_reason":a["exit_reason"],"1h_reason":b["reason"]})
+  oldsum=lambda field:sum(x[field] for x in old)
+  newsum=lambda field:sum(x[field] for x in new)
   out["frozen_turn_4h_reconciliation"]={
    "4h_n":len(old),"1h_n":len(new),"shared_entry_ids":len(shared),
    "only_4h":len(set(byold)-set(bynew)),"only_1h":len(set(bynew)-set(byold)),
    "different_exit_fill_or_reason":len(differences),
+   "quantity_differences":sum(abs(byold[k]["quantity"]-bynew[k]["quantity"])>1e-10 for k in shared),
+   "funding_differences":sum(abs(byold[k]["funding_max"]-bynew[k]["funding"])>1e-10 for k in shared),
+   "fee_differences":sum(abs(byold[k]["fees"]-bynew[k]["fees"])>1e-10 for k in shared),
+   "sums_4h":{"gross":round(oldsum("gross_pnl"),7),"fees":round(oldsum("fees"),7),
+    "funding":round(oldsum("funding_max"),7),"net":round(oldsum("net_pnl"),7)},
+   "sums_1h":{"gross":round(newsum("gross"),7),"fees":round(newsum("fees"),7),
+    "funding":round(newsum("funding"),7),"net":round(newsum("net"),7)},
    "sample_differences":differences[:20],
    "4h_report_net_return_pct":ref["full_common_history"]["baseline"]["metrics"]["net_return_pct"],
    "1h_report_net_return_pct":out["full"]["frozen_turn"]["primary"]["net_return_pct"],
