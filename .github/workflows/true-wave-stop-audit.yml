@@ -1,0 +1,36 @@
+name: DeltaRSI true causal wave-stop audit
+on:
+  push:
+    paths:
+      - true_wave_stop_audit.py
+      - test_true_wave_stop_audit.py
+      - .github/workflows/true-wave-stop-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: true-wave-stop-audit
+  cancel-in-progress: false
+jobs:
+  cached-wave-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Causal stop and existing indicator regression tests
+        run: python -m unittest -v test_true_wave_stop_audit test_pattern_edge_search test_causal_4h_parity test_completed_candles
+      - name: Frozen entry matched stop backtests (cached data only)
+        run: python -u true_wave_stop_audit.py
+      - name: Persist full event catalog and matched results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/true_wave_stop_audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record true causal DeltaRSI wave stop audit"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
