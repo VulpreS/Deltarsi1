@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - deltapulse_4h_v1_robustness.py
+      - reports/deltapulse_4h_v1_primary_trades.csv
       - .github/workflows/deltapulse-4h-robustness.yml
   workflow_dispatch:
 permissions:
