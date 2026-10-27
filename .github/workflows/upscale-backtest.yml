@@ -1,0 +1,31 @@
+name: Upscale Crypto Backtester
+on:
+  push:
+    paths:
+      - 'upscale/**'
+      - 'tests_upscale/**'
+      - '.github/workflows/upscale-backtest.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy==2.2.6 pandas==2.2.3
+      - run: python -m unittest discover -s tests_upscale -v
+      - run: python -m upscale.backtest --out reports/upscale
+      - name: Publish research summary
+        run: cat reports/upscale/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: upscale-research-${{ github.sha }}
+          path: reports/upscale/
+          retention-days: 90
