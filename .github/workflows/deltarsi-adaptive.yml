@@ -1,0 +1,46 @@
+name: DeltaRSI adaptive exits 1H 4H 6H 8H
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_adaptive.py'
+      - '.github/workflows/deltarsi-adaptive.yml'
+permissions:
+  contents: write
+jobs:
+  adaptive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Load candles for runner
+        run: |
+          set -e
+          for tf in 1 4 6 8; do
+            for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
+              python -u download_delta_6h_8h.py "$tf" "$sym"
+            done
+          done
+      - name: Evaluate adaptive profiles
+        run: |
+          set -e
+          for tf in 1 4 6 8; do
+            python -u deltarsi_adaptive.py "$tf"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deltarsi-adaptive-reports
+          path: reports/deltarsi_adaptive_*h.json
+      - name: Commit adaptive reports
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_adaptive_*h.json
+          git commit -m 'Update adaptive DeltaRSI research' || exit 0
+          git stash push -u -m 'runner candles' || true
+          git pull --rebase origin main
+          git push
