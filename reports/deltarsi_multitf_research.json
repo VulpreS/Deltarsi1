@@ -1,0 +1,821 @@
+{
+  "start": "2025-10-28T00:00:00+00:00",
+  "end": "2026-06-30T03:00:00+00:00",
+  "results": [
+    {
+      "entry_tf": 1,
+      "profile": "baseline",
+      "final": 6204.95,
+      "return_pct": 24.099,
+      "max_dd_pct": 12.035,
+      "pf": 1.232,
+      "trades": 301,
+      "win_pct": 41.2,
+      "breach": null,
+      "counts": {
+        "confirmed": 23,
+        "opposed": 29,
+        "switched": 0,
+        "stops": 167,
+        "takes": 95,
+        "timed": 39,
+        "skipped": 105
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "confirm_target",
+      "final": 6263.77,
+      "return_pct": 25.275,
+      "max_dd_pct": 12.035,
+      "pf": 1.245,
+      "trades": 298,
+      "win_pct": 40.27,
+      "breach": null,
+      "counts": {
+        "confirmed": 25,
+        "opposed": 30,
+        "switched": 22,
+        "stops": 168,
+        "takes": 84,
+        "timed": 46,
+        "skipped": 105
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "confirm_time",
+      "final": 6311.02,
+      "return_pct": 26.22,
+      "max_dd_pct": 12.035,
+      "pf": 1.253,
+      "trades": 300,
+      "win_pct": 41.33,
+      "breach": null,
+      "counts": {
+        "confirmed": 23,
+        "opposed": 30,
+        "switched": 22,
+        "stops": 168,
+        "takes": 98,
+        "timed": 34,
+        "skipped": 105
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "confirm_both",
+      "final": 6304.98,
+      "return_pct": 26.1,
+      "max_dd_pct": 12.035,
+      "pf": 1.259,
+      "trades": 293,
+      "win_pct": 40.61,
+      "breach": null,
+      "counts": {
+        "confirmed": 29,
+        "opposed": 32,
+        "switched": 23,
+        "stops": 166,
+        "takes": 86,
+        "timed": 41,
+        "skipped": 108
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "opp_close",
+      "final": 5515.03,
+      "return_pct": 10.301,
+      "max_dd_pct": 12.035,
+      "pf": 1.095,
+      "trades": 322,
+      "win_pct": 39.13,
+      "breach": null,
+      "counts": {
+        "confirmed": 24,
+        "opposed": 24,
+        "switched": 0,
+        "stops": 175,
+        "takes": 90,
+        "timed": 33,
+        "skipped": 92
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "opp_breakeven",
+      "final": 5702.33,
+      "return_pct": 14.047,
+      "max_dd_pct": 12.035,
+      "pf": 1.131,
+      "trades": 317,
+      "win_pct": 37.54,
+      "breach": null,
+      "counts": {
+        "confirmed": 22,
+        "opposed": 28,
+        "switched": 0,
+        "stops": 191,
+        "takes": 93,
+        "timed": 33,
+        "skipped": 94
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "opp_half",
+      "final": 5890.79,
+      "return_pct": 17.816,
+      "max_dd_pct": 12.035,
+      "pf": 1.173,
+      "trades": 325,
+      "win_pct": 41.54,
+      "breach": null,
+      "counts": {
+        "confirmed": 23,
+        "opposed": 29,
+        "switched": 0,
+        "stops": 167,
+        "takes": 95,
+        "timed": 39,
+        "skipped": 105
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "opp_tighten",
+      "final": 5982.65,
+      "return_pct": 19.653,
+      "max_dd_pct": 12.035,
+      "pf": 1.186,
+      "trades": 305,
+      "win_pct": 40.33,
+      "breach": null,
+      "counts": {
+        "confirmed": 22,
+        "opposed": 29,
+        "switched": 0,
+        "stops": 176,
+        "takes": 93,
+        "timed": 36,
+        "skipped": 102
+      }
+    },
+    {
+      "entry_tf": 1,
+      "profile": "hybrid",
+      "final": 5826.28,
+      "return_pct": 16.526,
+      "max_dd_pct": 12.035,
+      "pf": 1.159,
+      "trades": 306,
+      "win_pct": 37.58,
+      "breach": null,
+      "counts": {
+        "confirmed": 28,
+        "opposed": 31,
+        "switched": 22,
+        "stops": 186,
+        "takes": 85,
+        "timed": 35,
+        "skipped": 99
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "baseline",
+      "final": 7384.84,
+      "return_pct": 47.697,
+      "max_dd_pct": 6.946,
+      "pf": 2.325,
+      "trades": 96,
+      "win_pct": 58.33,
+      "breach": null,
+      "counts": {
+        "confirmed": 59,
+        "opposed": 55,
+        "switched": 0,
+        "stops": 24,
+        "takes": 13,
+        "timed": 59,
+        "skipped": 6
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "confirm_target",
+      "final": 7320.58,
+      "return_pct": 46.412,
+      "max_dd_pct": 6.946,
+      "pf": 2.29,
+      "trades": 96,
+      "win_pct": 58.33,
+      "breach": null,
+      "counts": {
+        "confirmed": 59,
+        "opposed": 55,
+        "switched": 22,
+        "stops": 24,
+        "takes": 13,
+        "timed": 59,
+        "skipped": 6
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "confirm_time",
+      "final": 7192.79,
+      "return_pct": 43.856,
+      "max_dd_pct": 6.946,
+      "pf": 2.185,
+      "trades": 94,
+      "win_pct": 58.51,
+      "breach": null,
+      "counts": {
+        "confirmed": 73,
+        "opposed": 58,
+        "switched": 23,
+        "stops": 26,
+        "takes": 12,
+        "timed": 56,
+        "skipped": 7
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "confirm_both",
+      "final": 7406.26,
+      "return_pct": 48.125,
+      "max_dd_pct": 6.946,
+      "pf": 2.365,
+      "trades": 94,
+      "win_pct": 59.57,
+      "breach": null,
+      "counts": {
+        "confirmed": 69,
+        "opposed": 58,
+        "switched": 23,
+        "stops": 25,
+        "takes": 17,
+        "timed": 52,
+        "skipped": 6
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "opp_close",
+      "final": 6267.36,
+      "return_pct": 25.347,
+      "max_dd_pct": 6.32,
+      "pf": 1.792,
+      "trades": 101,
+      "win_pct": 49.5,
+      "breach": null,
+      "counts": {
+        "confirmed": 41,
+        "opposed": 45,
+        "switched": 0,
+        "stops": 19,
+        "takes": 8,
+        "timed": 29,
+        "skipped": 5
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "opp_breakeven",
+      "final": 6637.11,
+      "return_pct": 32.742,
+      "max_dd_pct": 6.266,
+      "pf": 2.051,
+      "trades": 99,
+      "win_pct": 44.44,
+      "breach": null,
+      "counts": {
+        "confirmed": 44,
+        "opposed": 47,
+        "switched": 0,
+        "stops": 51,
+        "takes": 10,
+        "timed": 38,
+        "skipped": 5
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "opp_half",
+      "final": 6882.58,
+      "return_pct": 37.652,
+      "max_dd_pct": 6.339,
+      "pf": 2.146,
+      "trades": 138,
+      "win_pct": 56.52,
+      "breach": null,
+      "counts": {
+        "confirmed": 59,
+        "opposed": 55,
+        "switched": 0,
+        "stops": 24,
+        "takes": 13,
+        "timed": 59,
+        "skipped": 6
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "opp_tighten",
+      "final": 6982.88,
+      "return_pct": 39.658,
+      "max_dd_pct": 6.274,
+      "pf": 2.186,
+      "trades": 97,
+      "win_pct": 50.52,
+      "breach": null,
+      "counts": {
+        "confirmed": 48,
+        "opposed": 49,
+        "switched": 0,
+        "stops": 42,
+        "takes": 11,
+        "timed": 44,
+        "skipped": 6
+      }
+    },
+    {
+      "entry_tf": 4,
+      "profile": "hybrid",
+      "final": 6706.03,
+      "return_pct": 34.121,
+      "max_dd_pct": 6.257,
+      "pf": 2.107,
+      "trades": 97,
+      "win_pct": 45.36,
+      "breach": null,
+      "counts": {
+        "confirmed": 51,
+        "opposed": 48,
+        "switched": 16,
+        "stops": 52,
+        "takes": 13,
+        "timed": 32,
+        "skipped": 5
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "baseline",
+      "final": 6141.28,
+      "return_pct": 22.826,
+      "max_dd_pct": 6.361,
+      "pf": 2.261,
+      "trades": 61,
+      "win_pct": 54.1,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 23,
+        "takes": 4,
+        "timed": 34,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "confirm_target",
+      "final": 6141.28,
+      "return_pct": 22.826,
+      "max_dd_pct": 6.361,
+      "pf": 2.261,
+      "trades": 61,
+      "win_pct": 54.1,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 3,
+        "stops": 23,
+        "takes": 4,
+        "timed": 34,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "confirm_time",
+      "final": 6164.85,
+      "return_pct": 23.297,
+      "max_dd_pct": 6.364,
+      "pf": 2.287,
+      "trades": 61,
+      "win_pct": 54.1,
+      "breach": null,
+      "counts": {
+        "confirmed": 40,
+        "opposed": 31,
+        "switched": 3,
+        "stops": 23,
+        "takes": 4,
+        "timed": 34,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "confirm_both",
+      "final": 6216.0,
+      "return_pct": 24.32,
+      "max_dd_pct": 6.308,
+      "pf": 2.344,
+      "trades": 61,
+      "win_pct": 54.1,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 3,
+        "stops": 23,
+        "takes": 6,
+        "timed": 32,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "opp_close",
+      "final": 5941.54,
+      "return_pct": 18.831,
+      "max_dd_pct": 7.17,
+      "pf": 2.061,
+      "trades": 63,
+      "win_pct": 47.62,
+      "breach": null,
+      "counts": {
+        "confirmed": 29,
+        "opposed": 23,
+        "switched": 0,
+        "stops": 19,
+        "takes": 3,
+        "timed": 18,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "opp_breakeven",
+      "final": 5983.7,
+      "return_pct": 19.674,
+      "max_dd_pct": 7.474,
+      "pf": 2.109,
+      "trades": 62,
+      "win_pct": 45.16,
+      "breach": null,
+      "counts": {
+        "confirmed": 33,
+        "opposed": 27,
+        "switched": 0,
+        "stops": 33,
+        "takes": 3,
+        "timed": 26,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "opp_half",
+      "final": 6058.68,
+      "return_pct": 21.174,
+      "max_dd_pct": 6.553,
+      "pf": 2.205,
+      "trades": 83,
+      "win_pct": 55.42,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 23,
+        "takes": 4,
+        "timed": 34,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "opp_tighten",
+      "final": 6104.26,
+      "return_pct": 22.085,
+      "max_dd_pct": 6.881,
+      "pf": 2.238,
+      "trades": 62,
+      "win_pct": 51.61,
+      "breach": null,
+      "counts": {
+        "confirmed": 35,
+        "opposed": 28,
+        "switched": 0,
+        "stops": 27,
+        "takes": 4,
+        "timed": 31,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 6,
+      "profile": "hybrid",
+      "final": 5983.7,
+      "return_pct": 19.674,
+      "max_dd_pct": 7.474,
+      "pf": 2.109,
+      "trades": 62,
+      "win_pct": 45.16,
+      "breach": null,
+      "counts": {
+        "confirmed": 33,
+        "opposed": 27,
+        "switched": 3,
+        "stops": 33,
+        "takes": 3,
+        "timed": 26,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "baseline",
+      "final": 5481.71,
+      "return_pct": 9.634,
+      "max_dd_pct": 4.165,
+      "pf": 1.893,
+      "trades": 33,
+      "win_pct": 60.61,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 7,
+        "takes": 14,
+        "timed": 12,
+        "skipped": 1
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "confirm_target",
+      "final": 5481.71,
+      "return_pct": 9.634,
+      "max_dd_pct": 4.165,
+      "pf": 1.893,
+      "trades": 33,
+      "win_pct": 60.61,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 7,
+        "takes": 14,
+        "timed": 12,
+        "skipped": 1
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "confirm_time",
+      "final": 5481.71,
+      "return_pct": 9.634,
+      "max_dd_pct": 4.165,
+      "pf": 1.893,
+      "trades": 33,
+      "win_pct": 60.61,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 7,
+        "takes": 14,
+        "timed": 12,
+        "skipped": 1
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "confirm_both",
+      "final": 5481.71,
+      "return_pct": 9.634,
+      "max_dd_pct": 4.165,
+      "pf": 1.893,
+      "trades": 33,
+      "win_pct": 60.61,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 7,
+        "takes": 14,
+        "timed": 12,
+        "skipped": 1
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "opp_close",
+      "final": 5383.97,
+      "return_pct": 7.679,
+      "max_dd_pct": 4.165,
+      "pf": 1.728,
+      "trades": 36,
+      "win_pct": 55.56,
+      "breach": null,
+      "counts": {
+        "confirmed": 29,
+        "opposed": 17,
+        "switched": 0,
+        "stops": 5,
+        "takes": 9,
+        "timed": 5,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "opp_breakeven",
+      "final": 5278.96,
+      "return_pct": 5.579,
+      "max_dd_pct": 5.137,
+      "pf": 1.529,
+      "trades": 35,
+      "win_pct": 51.43,
+      "breach": null,
+      "counts": {
+        "confirmed": 29,
+        "opposed": 17,
+        "switched": 0,
+        "stops": 19,
+        "takes": 11,
+        "timed": 5,
+        "skipped": 0
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "opp_half",
+      "final": 5388.24,
+      "return_pct": 7.765,
+      "max_dd_pct": 4.165,
+      "pf": 1.774,
+      "trades": 50,
+      "win_pct": 56.0,
+      "breach": null,
+      "counts": {
+        "confirmed": 38,
+        "opposed": 31,
+        "switched": 0,
+        "stops": 7,
+        "takes": 14,
+        "timed": 12,
+        "skipped": 1
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "opp_tighten",
+      "final": 5253.77,
+      "return_pct": 5.075,
+      "max_dd_pct": 4.439,
+      "pf": 1.427,
+      "trades": 34,
+      "win_pct": 50.0,
+      "breach": null,
+      "counts": {
+        "confirmed": 33,
+        "opposed": 21,
+        "switched": 0,
+        "stops": 15,
+        "takes": 12,
+        "timed": 7,
+        "skipped": 1
+      }
+    },
+    {
+      "entry_tf": 8,
+      "profile": "hybrid",
+      "final": 5278.96,
+      "return_pct": 5.579,
+      "max_dd_pct": 5.137,
+      "pf": 1.529,
+      "trades": 35,
+      "win_pct": 51.43,
+      "breach": null,
+      "counts": {
+        "confirmed": 29,
+        "opposed": 17,
+        "switched": 0,
+        "stops": 19,
+        "takes": 11,
+        "timed": 5,
+        "skipped": 0
+      }
+    }
+  ],
+  "transitions": {
+    "1>4:agree": {
+      "n": 28,
+      "mean_delay_h": 12.57
+    },
+    "1>4:oppose": {
+      "n": 32,
+      "mean_delay_h": 11.12
+    },
+    "1>6:agree": {
+      "n": 16,
+      "mean_delay_h": 13.0
+    },
+    "1>6:oppose": {
+      "n": 16,
+      "mean_delay_h": 10.94
+    },
+    "1>8:agree": {
+      "n": 12,
+      "mean_delay_h": 10.5
+    },
+    "4>1:oppose": {
+      "n": 28,
+      "mean_delay_h": 10.21
+    },
+    "4>1:agree": {
+      "n": 16,
+      "mean_delay_h": 13.5
+    },
+    "4>6:agree": {
+      "n": 10,
+      "mean_delay_h": 9.0
+    },
+    "4>8:oppose": {
+      "n": 9,
+      "mean_delay_h": 15.56
+    },
+    "4>8:agree": {
+      "n": 4,
+      "mean_delay_h": 14.0
+    },
+    "6>1:oppose": {
+      "n": 15,
+      "mean_delay_h": 12.33
+    },
+    "6>1:agree": {
+      "n": 10,
+      "mean_delay_h": 19.2
+    },
+    "6>4:agree": {
+      "n": 4,
+      "mean_delay_h": 11.5
+    },
+    "8>1:agree": {
+      "n": 8,
+      "mean_delay_h": 18.88
+    },
+    "1>8:oppose": {
+      "n": 14,
+      "mean_delay_h": 10.14
+    },
+    "4>6:oppose": {
+      "n": 5,
+      "mean_delay_h": 12.4
+    },
+    "6>8:agree": {
+      "n": 2,
+      "mean_delay_h": 1.0
+    },
+    "8>1:oppose": {
+      "n": 7,
+      "mean_delay_h": 6.14
+    },
+    "8>6:agree": {
+      "n": 3,
+      "mean_delay_h": 8.67
+    },
+    "6>4:oppose": {
+      "n": 4,
+      "mean_delay_h": 12.5
+    },
+    "8>4:oppose": {
+      "n": 3,
+      "mean_delay_h": 6.67
+    },
+    "8>4:agree": {
+      "n": 2,
+      "mean_delay_h": 10.0
+    },
+    "8>6:oppose": {
+      "n": 1,
+      "mean_delay_h": 4.0
+    }
+  },
+  "notes": "Exploratory in-sample. All signals effective at following candle open. No future bars. 1h OHLC execution, stop first, UTC prop limits, fees .095% per side. No funding/slippage. Compare with baseline within same entry TF."
+}
