@@ -1,6 +1,10 @@
 name: DeltaRSI wave peak vs area study
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_wave_peak_area_study.py'
+      - '.github/workflows/deltarsi-wave-peak-area.yml'
 permissions:
   contents: read
 jobs:
