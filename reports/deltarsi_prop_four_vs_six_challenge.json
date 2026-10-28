@@ -1,0 +1,4811 @@
+{
+  "description": "Research: same historical start windows; BNB/ZEC default no trailing, SL/TP 5 ATR; 3 concurrent positions; no slippage; weekly rolling overlapping windows; targets 5/8%; 14/30 days.",
+  "shared_start": "2025-10-28T07:00:00+00:00",
+  "shared_end": "2026-06-30T03:00:00+00:00",
+  "models": {
+    "upscale_basic": {
+      "14d_target_5pct": {
+        "four": {
+          "trials": 33,
+          "counts": {
+            "pass": 4,
+            "breach": 0,
+            "timeout": 29
+          },
+          "pass_rate_pct": 12.12,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.151,
+              "max_dd_pct": 0.806,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.227,
+              "max_dd_pct": 1.598,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.257,
+              "max_dd_pct": 2.015,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.829,
+              "max_dd_pct": 2.867,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.968,
+              "max_dd_pct": 4.614,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.563,
+              "max_dd_pct": 2.18,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.902,
+              "max_dd_pct": 5.571,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.987,
+              "max_dd_pct": 5.08,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.225,
+              "max_dd_pct": 0.822,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 5.29,
+              "max_dd_pct": 0.677,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.21,
+              "return_pct": 5.034,
+              "max_dd_pct": 1.21,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.5,
+              "return_pct": 5.164,
+              "max_dd_pct": 1.568,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.518,
+              "max_dd_pct": 6.361,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.621,
+              "max_dd_pct": 1.332,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.79,
+              "return_pct": 5.008,
+              "max_dd_pct": 1.63,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.339,
+              "max_dd_pct": 2.132,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.47,
+              "max_dd_pct": 0.854,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.41,
+              "max_dd_pct": 0.846,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.544,
+              "max_dd_pct": 0.68,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.698,
+              "max_dd_pct": 3.755,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.704,
+              "max_dd_pct": 3.812,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.061,
+              "max_dd_pct": 2.298,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.742,
+              "max_dd_pct": 4.872,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.078,
+              "max_dd_pct": 2.044,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.173,
+              "max_dd_pct": 0.543,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.406,
+              "max_dd_pct": 1.665,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.187,
+              "max_dd_pct": 1.681,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.995,
+              "max_dd_pct": 3.377,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.268,
+              "max_dd_pct": 1.65,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 33,
+          "counts": {
+            "pass": 9,
+            "breach": 0,
+            "timeout": 24
+          },
+          "pass_rate_pct": 27.27,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.151,
+              "max_dd_pct": 0.806,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.204,
+              "max_dd_pct": 3.541,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.04,
+              "max_dd_pct": 3.969,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.627,
+              "max_dd_pct": 3.244,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.093,
+              "max_dd_pct": 4.614,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.914,
+              "max_dd_pct": 5.142,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.904,
+              "max_dd_pct": 8.948,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -5.201,
+              "max_dd_pct": 7.761,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.963,
+              "max_dd_pct": 4.7,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.38,
+              "return_pct": 5.144,
+              "max_dd_pct": 0.649,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.21,
+              "return_pct": 5.034,
+              "max_dd_pct": 1.21,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.329,
+              "max_dd_pct": 4.744,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.901,
+              "max_dd_pct": 6.395,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 10.08,
+              "return_pct": 5.065,
+              "max_dd_pct": 2.638,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.79,
+              "return_pct": 5.066,
+              "max_dd_pct": 3.579,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.25,
+              "return_pct": 5.027,
+              "max_dd_pct": 1.962,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.47,
+              "max_dd_pct": 0.854,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 13.96,
+              "return_pct": 5.006,
+              "max_dd_pct": 1.114,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.62,
+              "return_pct": 5.327,
+              "max_dd_pct": 1.132,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.781,
+              "max_dd_pct": 3.716,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.908,
+              "max_dd_pct": 6.34,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.004,
+              "max_dd_pct": 4.822,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.435,
+              "max_dd_pct": 4.872,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.601,
+              "max_dd_pct": 2.136,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.244,
+              "max_dd_pct": 3.817,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.723,
+              "max_dd_pct": 2.465,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.67,
+              "return_pct": 5.157,
+              "max_dd_pct": 1.725,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 3.12,
+              "return_pct": 7.178,
+              "max_dd_pct": 1.757,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.268,
+              "max_dd_pct": 1.65,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        }
+      },
+      "14d_target_8pct": {
+        "four": {
+          "trials": 33,
+          "counts": {
+            "pass": 1,
+            "breach": 0,
+            "timeout": 32
+          },
+          "pass_rate_pct": 3.03,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.151,
+              "max_dd_pct": 0.806,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.227,
+              "max_dd_pct": 1.598,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.257,
+              "max_dd_pct": 2.015,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.829,
+              "max_dd_pct": 2.867,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.968,
+              "max_dd_pct": 4.614,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.563,
+              "max_dd_pct": 2.18,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.902,
+              "max_dd_pct": 5.571,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.987,
+              "max_dd_pct": 5.08,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.225,
+              "max_dd_pct": 0.822,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 6.47,
+              "max_dd_pct": 1.192,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 6.378,
+              "max_dd_pct": 1.527,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 12.79,
+              "return_pct": 8.325,
+              "max_dd_pct": 1.568,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.518,
+              "max_dd_pct": 6.361,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.621,
+              "max_dd_pct": 1.332,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.96,
+              "max_dd_pct": 2.059,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.339,
+              "max_dd_pct": 2.132,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.47,
+              "max_dd_pct": 0.854,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.41,
+              "max_dd_pct": 0.846,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.544,
+              "max_dd_pct": 0.68,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.698,
+              "max_dd_pct": 3.755,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.704,
+              "max_dd_pct": 3.812,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.061,
+              "max_dd_pct": 2.298,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.742,
+              "max_dd_pct": 4.872,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.078,
+              "max_dd_pct": 2.044,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.173,
+              "max_dd_pct": 0.543,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.406,
+              "max_dd_pct": 1.665,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.187,
+              "max_dd_pct": 1.681,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.995,
+              "max_dd_pct": 3.377,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.268,
+              "max_dd_pct": 1.65,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 33,
+          "counts": {
+            "pass": 4,
+            "breach": 0,
+            "timeout": 29
+          },
+          "pass_rate_pct": 12.12,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.151,
+              "max_dd_pct": 0.806,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.204,
+              "max_dd_pct": 3.541,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.04,
+              "max_dd_pct": 3.969,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.627,
+              "max_dd_pct": 3.244,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.093,
+              "max_dd_pct": 4.614,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.914,
+              "max_dd_pct": 5.142,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.904,
+              "max_dd_pct": 8.948,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -5.201,
+              "max_dd_pct": 7.761,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.963,
+              "max_dd_pct": 4.7,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 8.19,
+              "max_dd_pct": 0.658,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.37,
+              "max_dd_pct": 5.222,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.329,
+              "max_dd_pct": 4.744,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.901,
+              "max_dd_pct": 6.395,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 13.33,
+              "return_pct": 8.004,
+              "max_dd_pct": 2.638,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.061,
+              "max_dd_pct": 6.468,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 6.54,
+              "max_dd_pct": 1.962,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.47,
+              "max_dd_pct": 0.854,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 5.051,
+              "max_dd_pct": 1.114,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 7.765,
+              "max_dd_pct": 1.132,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.781,
+              "max_dd_pct": 3.716,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.908,
+              "max_dd_pct": 6.34,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.004,
+              "max_dd_pct": 4.822,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.435,
+              "max_dd_pct": 4.872,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.601,
+              "max_dd_pct": 2.136,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.244,
+              "max_dd_pct": 3.817,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.723,
+              "max_dd_pct": 2.465,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.62,
+              "return_pct": 8.735,
+              "max_dd_pct": 1.725,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 3.58,
+              "return_pct": 8.342,
+              "max_dd_pct": 3.513,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.268,
+              "max_dd_pct": 1.65,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        }
+      },
+      "30d_target_5pct": {
+        "four": {
+          "trials": 31,
+          "counts": {
+            "pass": 19,
+            "breach": 0,
+            "timeout": 12
+          },
+          "pass_rate_pct": 61.29,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.084,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.69,
+              "max_dd_pct": 0.806,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.227,
+              "max_dd_pct": 1.598,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.35,
+              "max_dd_pct": 1.598,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.643,
+              "max_dd_pct": 4.404,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.374,
+              "max_dd_pct": 4.91,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 28.38,
+              "return_pct": 5.301,
+              "max_dd_pct": 4.146,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.38,
+              "return_pct": 5.528,
+              "max_dd_pct": 4.614,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.58,
+              "return_pct": 5.05,
+              "max_dd_pct": 2.18,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.509,
+              "max_dd_pct": 5.571,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.46,
+              "return_pct": 5.41,
+              "max_dd_pct": 5.08,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.38,
+              "return_pct": 5.374,
+              "max_dd_pct": 0.822,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 5.29,
+              "max_dd_pct": 0.677,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.21,
+              "return_pct": 5.034,
+              "max_dd_pct": 1.21,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.5,
+              "return_pct": 5.164,
+              "max_dd_pct": 1.568,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 22.0,
+              "return_pct": 5.524,
+              "max_dd_pct": 6.361,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.12,
+              "return_pct": 5.154,
+              "max_dd_pct": 1.332,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.79,
+              "return_pct": 5.008,
+              "max_dd_pct": 1.63,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.5,
+              "return_pct": 5.005,
+              "max_dd_pct": 2.132,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 27.54,
+              "return_pct": 5.138,
+              "max_dd_pct": 0.854,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.67,
+              "return_pct": 5.259,
+              "max_dd_pct": 0.846,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 17.29,
+              "return_pct": 5.193,
+              "max_dd_pct": 0.795,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.044,
+              "max_dd_pct": 5.761,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.307,
+              "max_dd_pct": 5.85,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.267,
+              "max_dd_pct": 4.844,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.873,
+              "max_dd_pct": 4.872,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 28.42,
+              "return_pct": 5.146,
+              "max_dd_pct": 2.044,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.21,
+              "return_pct": 5.13,
+              "max_dd_pct": 1.646,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.42,
+              "return_pct": 5.224,
+              "max_dd_pct": 1.665,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.38,
+              "return_pct": 5.513,
+              "max_dd_pct": 3.24,
+              "closed_trades": 3,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 31,
+          "counts": {
+            "pass": 15,
+            "breach": 0,
+            "timeout": 16
+          },
+          "pass_rate_pct": 48.39,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.084,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.8,
+              "max_dd_pct": 1.9,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.677,
+              "max_dd_pct": 3.541,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.774,
+              "max_dd_pct": 4.824,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -5.361,
+              "max_dd_pct": 9.64,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.0,
+              "max_dd_pct": 8.783,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.385,
+              "max_dd_pct": 5.9,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.519,
+              "max_dd_pct": 9.646,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.581,
+              "max_dd_pct": 9.863,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.779,
+              "max_dd_pct": 9.058,
+              "closed_trades": 12,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 28.92,
+              "return_pct": 5.068,
+              "max_dd_pct": 7.835,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.0,
+              "return_pct": 5.089,
+              "max_dd_pct": 4.7,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.38,
+              "return_pct": 5.144,
+              "max_dd_pct": 0.649,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.21,
+              "return_pct": 5.034,
+              "max_dd_pct": 1.21,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 17.21,
+              "return_pct": 5.05,
+              "max_dd_pct": 4.744,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 18.67,
+              "return_pct": 5.203,
+              "max_dd_pct": 6.395,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 10.08,
+              "return_pct": 5.065,
+              "max_dd_pct": 2.638,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.79,
+              "return_pct": 5.066,
+              "max_dd_pct": 3.579,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.25,
+              "return_pct": 5.027,
+              "max_dd_pct": 1.962,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.12,
+              "return_pct": 5.297,
+              "max_dd_pct": 0.854,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 13.96,
+              "return_pct": 5.006,
+              "max_dd_pct": 1.114,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.62,
+              "return_pct": 5.327,
+              "max_dd_pct": 1.132,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.261,
+              "max_dd_pct": 8.951,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -3.901,
+              "max_dd_pct": 9.411,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -7.741,
+              "max_dd_pct": 8.105,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -3.695,
+              "max_dd_pct": 5.677,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.722,
+              "max_dd_pct": 4.499,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.29,
+              "return_pct": 5.143,
+              "max_dd_pct": 4.481,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.67,
+              "return_pct": 5.093,
+              "max_dd_pct": 2.465,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.67,
+              "return_pct": 5.157,
+              "max_dd_pct": 1.725,
+              "closed_trades": 3,
+              "first_breach": null
+            }
+          ]
+        }
+      },
+      "30d_target_8pct": {
+        "four": {
+          "trials": 31,
+          "counts": {
+            "pass": 9,
+            "breach": 0,
+            "timeout": 22
+          },
+          "pass_rate_pct": 29.03,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.084,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.69,
+              "max_dd_pct": 0.806,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.227,
+              "max_dd_pct": 1.598,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.35,
+              "max_dd_pct": 1.598,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.643,
+              "max_dd_pct": 4.404,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.374,
+              "max_dd_pct": 4.91,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.664,
+              "max_dd_pct": 4.831,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.125,
+              "max_dd_pct": 5.363,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.38,
+              "max_dd_pct": 5.422,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.509,
+              "max_dd_pct": 5.571,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 28.88,
+              "return_pct": 8.028,
+              "max_dd_pct": 5.08,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.17,
+              "return_pct": 8.122,
+              "max_dd_pct": 0.822,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 19.29,
+              "return_pct": 8.031,
+              "max_dd_pct": 1.427,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 15.54,
+              "return_pct": 8.286,
+              "max_dd_pct": 1.527,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 12.79,
+              "return_pct": 8.325,
+              "max_dd_pct": 1.568,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 22.96,
+              "return_pct": 8.085,
+              "max_dd_pct": 6.361,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 15.42,
+              "return_pct": 8.088,
+              "max_dd_pct": 1.573,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.21,
+              "return_pct": 8.185,
+              "max_dd_pct": 2.059,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 28.38,
+              "return_pct": 8.027,
+              "max_dd_pct": 2.132,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 6.763,
+              "max_dd_pct": 0.854,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.807,
+              "max_dd_pct": 3.625,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.357,
+              "max_dd_pct": 4.158,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.044,
+              "max_dd_pct": 5.761,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.307,
+              "max_dd_pct": 5.85,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.267,
+              "max_dd_pct": 4.844,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.873,
+              "max_dd_pct": 4.872,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 5.146,
+              "max_dd_pct": 2.044,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 6.509,
+              "max_dd_pct": 1.646,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 5.409,
+              "max_dd_pct": 3.211,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 6.99,
+              "max_dd_pct": 3.24,
+              "closed_trades": 6,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 31,
+          "counts": {
+            "pass": 13,
+            "breach": 0,
+            "timeout": 18
+          },
+          "pass_rate_pct": 41.94,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.084,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.8,
+              "max_dd_pct": 1.9,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.677,
+              "max_dd_pct": 3.541,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.774,
+              "max_dd_pct": 4.824,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -5.361,
+              "max_dd_pct": 9.64,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.0,
+              "max_dd_pct": 8.783,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.385,
+              "max_dd_pct": 5.9,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.519,
+              "max_dd_pct": 9.646,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.581,
+              "max_dd_pct": 9.863,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.779,
+              "max_dd_pct": 9.058,
+              "closed_trades": 12,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.861,
+              "max_dd_pct": 7.835,
+              "closed_trades": 15,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.08,
+              "return_pct": 8.162,
+              "max_dd_pct": 4.7,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 8.19,
+              "max_dd_pct": 0.658,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 24.25,
+              "return_pct": 8.025,
+              "max_dd_pct": 5.222,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.38,
+              "return_pct": 8.051,
+              "max_dd_pct": 4.744,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 22.08,
+              "return_pct": 8.77,
+              "max_dd_pct": 6.395,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 13.33,
+              "return_pct": 8.004,
+              "max_dd_pct": 2.638,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 5.641,
+              "max_dd_pct": 6.468,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.42,
+              "return_pct": 8.077,
+              "max_dd_pct": 1.962,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.67,
+              "return_pct": 8.309,
+              "max_dd_pct": 1.106,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.5,
+              "return_pct": 8.0,
+              "max_dd_pct": 1.114,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.29,
+              "return_pct": 8.102,
+              "max_dd_pct": 1.132,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.261,
+              "max_dd_pct": 8.951,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -3.901,
+              "max_dd_pct": 9.411,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -7.741,
+              "max_dd_pct": 8.105,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -3.695,
+              "max_dd_pct": 5.677,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.722,
+              "max_dd_pct": 4.499,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 24.12,
+              "return_pct": 9.829,
+              "max_dd_pct": 4.481,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.62,
+              "return_pct": 8.671,
+              "max_dd_pct": 2.465,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.62,
+              "return_pct": 8.735,
+              "max_dd_pct": 1.725,
+              "closed_trades": 3,
+              "first_breach": null
+            }
+          ]
+        }
+      }
+    },
+    "prior": {
+      "14d_target_5pct": {
+        "four": {
+          "trials": 33,
+          "counts": {
+            "pass": 4,
+            "breach": 0,
+            "timeout": 29
+          },
+          "pass_rate_pct": 12.12,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.03,
+              "max_dd_pct": 0.818,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.956,
+              "max_dd_pct": 1.685,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.503,
+              "max_dd_pct": 2.158,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -2.042,
+              "max_dd_pct": 2.993,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.67,
+              "max_dd_pct": 4.722,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.302,
+              "max_dd_pct": 2.258,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -2.231,
+              "max_dd_pct": 5.654,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.656,
+              "max_dd_pct": 5.101,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.048,
+              "max_dd_pct": 0.85,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 5.186,
+              "max_dd_pct": 0.678,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.88,
+              "return_pct": 5.07,
+              "max_dd_pct": 1.218,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.54,
+              "return_pct": 5.243,
+              "max_dd_pct": 1.589,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.097,
+              "max_dd_pct": 6.546,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.384,
+              "max_dd_pct": 1.339,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.96,
+              "return_pct": 5.093,
+              "max_dd_pct": 1.639,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.044,
+              "max_dd_pct": 2.223,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.318,
+              "max_dd_pct": 0.891,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.168,
+              "max_dd_pct": 0.852,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.344,
+              "max_dd_pct": 0.69,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.488,
+              "max_dd_pct": 3.854,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -2.009,
+              "max_dd_pct": 3.912,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.323,
+              "max_dd_pct": 2.479,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.081,
+              "max_dd_pct": 5.13,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.222,
+              "max_dd_pct": 2.072,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.045,
+              "max_dd_pct": 0.553,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.263,
+              "max_dd_pct": 1.672,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.039,
+              "max_dd_pct": 1.687,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.139,
+              "max_dd_pct": 3.465,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.158,
+              "max_dd_pct": 1.657,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 33,
+          "counts": {
+            "pass": 8,
+            "breach": 0,
+            "timeout": 25
+          },
+          "pass_rate_pct": 24.24,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.03,
+              "max_dd_pct": 0.818,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.83,
+              "max_dd_pct": 3.592,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.62,
+              "max_dd_pct": 4.122,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.936,
+              "max_dd_pct": 3.404,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.765,
+              "max_dd_pct": 4.722,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.221,
+              "max_dd_pct": 5.294,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -5.341,
+              "max_dd_pct": 9.098,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -5.664,
+              "max_dd_pct": 8.104,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.683,
+              "max_dd_pct": 4.746,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.38,
+              "return_pct": 5.004,
+              "max_dd_pct": 0.676,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.88,
+              "return_pct": 5.07,
+              "max_dd_pct": 1.218,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.899,
+              "max_dd_pct": 4.795,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.36,
+              "max_dd_pct": 6.61,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 10.25,
+              "return_pct": 5.042,
+              "max_dd_pct": 2.648,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.83,
+              "return_pct": 5.049,
+              "max_dd_pct": 3.595,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 11.71,
+              "return_pct": 5.185,
+              "max_dd_pct": 2.025,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.318,
+              "max_dd_pct": 0.891,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.802,
+              "max_dd_pct": 1.115,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.62,
+              "return_pct": 5.151,
+              "max_dd_pct": 1.133,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.487,
+              "max_dd_pct": 3.817,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.351,
+              "max_dd_pct": 6.665,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.352,
+              "max_dd_pct": 5.129,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.815,
+              "max_dd_pct": 5.13,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.834,
+              "max_dd_pct": 2.148,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.449,
+              "max_dd_pct": 3.871,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.509,
+              "max_dd_pct": 2.516,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.67,
+              "return_pct": 5.016,
+              "max_dd_pct": 1.728,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 3.12,
+              "return_pct": 7.105,
+              "max_dd_pct": 1.759,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.158,
+              "max_dd_pct": 1.657,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        }
+      },
+      "14d_target_8pct": {
+        "four": {
+          "trials": 33,
+          "counts": {
+            "pass": 1,
+            "breach": 0,
+            "timeout": 32
+          },
+          "pass_rate_pct": 3.03,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.03,
+              "max_dd_pct": 0.818,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.956,
+              "max_dd_pct": 1.685,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.503,
+              "max_dd_pct": 2.158,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -2.042,
+              "max_dd_pct": 2.993,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.67,
+              "max_dd_pct": 4.722,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.302,
+              "max_dd_pct": 2.258,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -2.231,
+              "max_dd_pct": 5.654,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.656,
+              "max_dd_pct": 5.101,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.048,
+              "max_dd_pct": 0.85,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 6.283,
+              "max_dd_pct": 1.2,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 6.09,
+              "max_dd_pct": 1.549,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 13.79,
+              "return_pct": 8.072,
+              "max_dd_pct": 1.589,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.097,
+              "max_dd_pct": 6.546,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.384,
+              "max_dd_pct": 1.339,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.712,
+              "max_dd_pct": 2.149,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.044,
+              "max_dd_pct": 2.223,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.318,
+              "max_dd_pct": 0.891,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.168,
+              "max_dd_pct": 0.852,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.344,
+              "max_dd_pct": 0.69,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.488,
+              "max_dd_pct": 3.854,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -2.009,
+              "max_dd_pct": 3.912,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.323,
+              "max_dd_pct": 2.479,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.081,
+              "max_dd_pct": 5.13,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.222,
+              "max_dd_pct": 2.072,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.045,
+              "max_dd_pct": 0.553,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.263,
+              "max_dd_pct": 1.672,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.039,
+              "max_dd_pct": 1.687,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.139,
+              "max_dd_pct": 3.465,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.158,
+              "max_dd_pct": 1.657,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 33,
+          "counts": {
+            "pass": 3,
+            "breach": 0,
+            "timeout": 30
+          },
+          "pass_rate_pct": 9.09,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.03,
+              "max_dd_pct": 0.818,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.83,
+              "max_dd_pct": 3.592,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.62,
+              "max_dd_pct": 4.122,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.936,
+              "max_dd_pct": 3.404,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.765,
+              "max_dd_pct": 4.722,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.221,
+              "max_dd_pct": 5.294,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -5.341,
+              "max_dd_pct": 9.098,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -5.664,
+              "max_dd_pct": 8.104,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 3.683,
+              "max_dd_pct": 4.746,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 8.04,
+              "max_dd_pct": 0.676,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.043,
+              "max_dd_pct": 5.303,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.899,
+              "max_dd_pct": 4.795,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.36,
+              "max_dd_pct": 6.61,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 7.925,
+              "max_dd_pct": 2.648,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.336,
+              "max_dd_pct": 6.613,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 6.191,
+              "max_dd_pct": 2.025,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.318,
+              "max_dd_pct": 0.891,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 4.802,
+              "max_dd_pct": 1.115,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 7.498,
+              "max_dd_pct": 1.133,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 1.487,
+              "max_dd_pct": 3.817,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.351,
+              "max_dd_pct": 6.665,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -4.352,
+              "max_dd_pct": 5.129,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -3.815,
+              "max_dd_pct": 5.13,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -0.834,
+              "max_dd_pct": 2.148,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": -1.449,
+              "max_dd_pct": 3.871,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 2.509,
+              "max_dd_pct": 2.516,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.62,
+              "return_pct": 8.578,
+              "max_dd_pct": 1.728,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-02T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 3.58,
+              "return_pct": 8.265,
+              "max_dd_pct": 3.513,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-06-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 14.0,
+              "return_pct": 0.158,
+              "max_dd_pct": 1.657,
+              "closed_trades": 1,
+              "first_breach": null
+            }
+          ]
+        }
+      },
+      "30d_target_5pct": {
+        "four": {
+          "trials": 31,
+          "counts": {
+            "pass": 16,
+            "breach": 0,
+            "timeout": 15
+          },
+          "pass_rate_pct": 51.61,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.027,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.512,
+              "max_dd_pct": 0.818,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.956,
+              "max_dd_pct": 1.685,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.931,
+              "max_dd_pct": 1.793,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.176,
+              "max_dd_pct": 4.721,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.801,
+              "max_dd_pct": 5.21,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 28.54,
+              "return_pct": 5.022,
+              "max_dd_pct": 4.287,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.38,
+              "return_pct": 5.044,
+              "max_dd_pct": 4.722,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.804,
+              "max_dd_pct": 5.509,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.969,
+              "max_dd_pct": 5.654,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.54,
+              "return_pct": 5.297,
+              "max_dd_pct": 5.101,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.38,
+              "return_pct": 5.163,
+              "max_dd_pct": 0.85,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 5.186,
+              "max_dd_pct": 0.678,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.88,
+              "return_pct": 5.07,
+              "max_dd_pct": 1.218,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.54,
+              "return_pct": 5.243,
+              "max_dd_pct": 1.589,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 22.0,
+              "return_pct": 5.002,
+              "max_dd_pct": 6.546,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.33,
+              "return_pct": 5.11,
+              "max_dd_pct": 1.339,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.96,
+              "return_pct": 5.093,
+              "max_dd_pct": 1.639,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 17.17,
+              "return_pct": 5.15,
+              "max_dd_pct": 2.223,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 27.67,
+              "return_pct": 5.662,
+              "max_dd_pct": 0.891,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.29,
+              "return_pct": 5.037,
+              "max_dd_pct": 0.852,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.82,
+              "max_dd_pct": 4.434,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.44,
+              "max_dd_pct": 6.14,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.868,
+              "max_dd_pct": 6.232,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.681,
+              "max_dd_pct": 5.103,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.286,
+              "max_dd_pct": 5.13,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.851,
+              "max_dd_pct": 2.072,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.29,
+              "return_pct": 5.226,
+              "max_dd_pct": 1.654,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.42,
+              "return_pct": 5.074,
+              "max_dd_pct": 1.672,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.38,
+              "return_pct": 5.216,
+              "max_dd_pct": 3.328,
+              "closed_trades": 3,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 31,
+          "counts": {
+            "pass": 15,
+            "breach": 0,
+            "timeout": 16
+          },
+          "pass_rate_pct": 48.39,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.027,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.578,
+              "max_dd_pct": 1.947,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.268,
+              "max_dd_pct": 3.592,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.397,
+              "max_dd_pct": 5.131,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -6.166,
+              "max_dd_pct": 10.194,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.882,
+              "max_dd_pct": 9.185,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -3.185,
+              "max_dd_pct": 6.209,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -5.326,
+              "max_dd_pct": 10.051,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -5.373,
+              "max_dd_pct": 10.493,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.497,
+              "max_dd_pct": 9.45,
+              "closed_trades": 12,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 29.17,
+              "return_pct": 5.036,
+              "max_dd_pct": 8.227,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.17,
+              "return_pct": 5.103,
+              "max_dd_pct": 4.746,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.38,
+              "return_pct": 5.004,
+              "max_dd_pct": 0.676,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.88,
+              "return_pct": 5.07,
+              "max_dd_pct": 1.218,
+              "closed_trades": 1,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 17.5,
+              "return_pct": 5.149,
+              "max_dd_pct": 4.795,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 19.96,
+              "return_pct": 5.127,
+              "max_dd_pct": 6.61,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 10.25,
+              "return_pct": 5.042,
+              "max_dd_pct": 2.648,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 8.83,
+              "return_pct": 5.049,
+              "max_dd_pct": 3.595,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 11.71,
+              "return_pct": 5.185,
+              "max_dd_pct": 2.025,
+              "closed_trades": 2,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.12,
+              "return_pct": 5.029,
+              "max_dd_pct": 0.891,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.08,
+              "return_pct": 5.101,
+              "max_dd_pct": 1.115,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.62,
+              "return_pct": 5.151,
+              "max_dd_pct": 1.133,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.938,
+              "max_dd_pct": 9.438,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.684,
+              "max_dd_pct": 9.923,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -8.342,
+              "max_dd_pct": 8.677,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.254,
+              "max_dd_pct": 6.154,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.218,
+              "max_dd_pct": 4.663,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.62,
+              "return_pct": 6.06,
+              "max_dd_pct": 4.64,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.0,
+              "return_pct": 5.073,
+              "max_dd_pct": 2.516,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 7.67,
+              "return_pct": 5.016,
+              "max_dd_pct": 1.728,
+              "closed_trades": 3,
+              "first_breach": null
+            }
+          ]
+        }
+      },
+      "30d_target_8pct": {
+        "four": {
+          "trials": 31,
+          "counts": {
+            "pass": 7,
+            "breach": 0,
+            "timeout": 24
+          },
+          "pass_rate_pct": 22.58,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.027,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.512,
+              "max_dd_pct": 0.818,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.956,
+              "max_dd_pct": 1.685,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.931,
+              "max_dd_pct": 1.793,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.176,
+              "max_dd_pct": 4.721,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.801,
+              "max_dd_pct": 5.21,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.034,
+              "max_dd_pct": 4.884,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.496,
+              "max_dd_pct": 5.458,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.804,
+              "max_dd_pct": 5.509,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.969,
+              "max_dd_pct": 5.654,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 29.0,
+              "return_pct": 8.26,
+              "max_dd_pct": 5.101,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 21.88,
+              "return_pct": 8.118,
+              "max_dd_pct": 1.183,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 19.5,
+              "return_pct": 8.061,
+              "max_dd_pct": 1.467,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 15.62,
+              "return_pct": 8.073,
+              "max_dd_pct": 1.549,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 13.79,
+              "return_pct": 8.072,
+              "max_dd_pct": 1.589,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 7.122,
+              "max_dd_pct": 6.546,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 15.46,
+              "return_pct": 8.005,
+              "max_dd_pct": 1.584,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 23.42,
+              "return_pct": 8.044,
+              "max_dd_pct": 2.149,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 7.335,
+              "max_dd_pct": 2.223,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 6.368,
+              "max_dd_pct": 0.891,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.303,
+              "max_dd_pct": 3.729,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.82,
+              "max_dd_pct": 4.434,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.44,
+              "max_dd_pct": 6.14,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -0.868,
+              "max_dd_pct": 6.232,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.681,
+              "max_dd_pct": 5.103,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.286,
+              "max_dd_pct": 5.13,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.851,
+              "max_dd_pct": 2.072,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 6.216,
+              "max_dd_pct": 1.654,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 5.08,
+              "max_dd_pct": 3.298,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 6.589,
+              "max_dd_pct": 3.328,
+              "closed_trades": 6,
+              "first_breach": null
+            }
+          ]
+        },
+        "six": {
+          "trials": 31,
+          "counts": {
+            "pass": 13,
+            "breach": 0,
+            "timeout": 18
+          },
+          "pass_rate_pct": 41.94,
+          "results": [
+            {
+              "start_utc": "2025-10-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.0,
+              "max_dd_pct": 0.0,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-04T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.027,
+              "max_dd_pct": 0.297,
+              "closed_trades": 0,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-11T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 1.578,
+              "max_dd_pct": 1.947,
+              "closed_trades": 3,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-18T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 0.268,
+              "max_dd_pct": 3.592,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-11-25T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.397,
+              "max_dd_pct": 5.131,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-02T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -6.166,
+              "max_dd_pct": 10.194,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-09T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.882,
+              "max_dd_pct": 9.185,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-16T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -3.185,
+              "max_dd_pct": 6.209,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-23T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -5.326,
+              "max_dd_pct": 10.051,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2025-12-30T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -5.373,
+              "max_dd_pct": 10.493,
+              "closed_trades": 13,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-06T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -1.497,
+              "max_dd_pct": 9.45,
+              "closed_trades": 12,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-13T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.145,
+              "max_dd_pct": 8.227,
+              "closed_trades": 15,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-20T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.12,
+              "return_pct": 8.044,
+              "max_dd_pct": 4.746,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-01-27T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.58,
+              "return_pct": 8.04,
+              "max_dd_pct": 0.676,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-03T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 24.54,
+              "return_pct": 8.081,
+              "max_dd_pct": 5.303,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 26.96,
+              "return_pct": 8.334,
+              "max_dd_pct": 4.795,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 22.08,
+              "return_pct": 8.057,
+              "max_dd_pct": 6.61,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-02-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 14.04,
+              "return_pct": 8.079,
+              "max_dd_pct": 2.648,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-03T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 4.998,
+              "max_dd_pct": 6.613,
+              "closed_trades": 8,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-10T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 17.17,
+              "return_pct": 8.298,
+              "max_dd_pct": 2.025,
+              "closed_trades": 4,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-17T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 24.33,
+              "return_pct": 8.095,
+              "max_dd_pct": 1.108,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-24T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 20.54,
+              "return_pct": 8.048,
+              "max_dd_pct": 1.115,
+              "closed_trades": 6,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-03-31T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 15.83,
+              "return_pct": 8.06,
+              "max_dd_pct": 1.133,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-07T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -2.938,
+              "max_dd_pct": 9.438,
+              "closed_trades": 7,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-14T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.684,
+              "max_dd_pct": 9.923,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-21T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -8.342,
+              "max_dd_pct": 8.677,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-04-28T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": -4.254,
+              "max_dd_pct": 6.154,
+              "closed_trades": 10,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-05T07:00:00+00:00",
+              "outcome": "timeout",
+              "days_elapsed": 30.0,
+              "return_pct": 2.218,
+              "max_dd_pct": 4.663,
+              "closed_trades": 11,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-12T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 24.12,
+              "return_pct": 9.396,
+              "max_dd_pct": 4.64,
+              "closed_trades": 9,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-19T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 16.62,
+              "return_pct": 8.41,
+              "max_dd_pct": 2.516,
+              "closed_trades": 5,
+              "first_breach": null
+            },
+            {
+              "start_utc": "2026-05-26T07:00:00+00:00",
+              "outcome": "pass",
+              "days_elapsed": 9.62,
+              "return_pct": 8.578,
+              "max_dd_pct": 1.728,
+              "closed_trades": 3,
+              "first_breach": null
+            }
+          ]
+        }
+      }
+    }
+  }
+}
