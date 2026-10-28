@@ -47,7 +47,7 @@ def simulate(fee=.00008,funding=.00015,max_positions=3):
   worst=equity(adverse)
   dd=max(dd,(peak-worst)/peak*100);min_equity=min(min_equity,worst)
   worst_daily=max(worst_daily,daybase-worst)
-  if worst<=daybase-250:
+  if worst<=daybase*0.95:
    breachdays.add(day)
    if firstbreach is None:firstbreach={"utc":dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat(),"type":"daily"}
   if worst<=4500:
