@@ -1,5 +1,5 @@
 {
-  "notes": "Single chronological account, no stage resets, 1x fixed notional, 1h conservative adverse excursion; daily threshold 5% of $5000 day-start and static $4500 total; continue trading after breach for diagnostic purposes. Milestones are NOT formal challenge stage passes. Synthetic funding and 15bp roundtrip fees; overlapping candles of two assets treated as simultaneous adverse, conservative.",
+  "notes": "Single chronological account, no stage resets, 1x fixed notional, 1h conservative adverse excursion; daily threshold 5% of actual day-start equity and static $4500 total; continue trading after breach for diagnostic purposes. Milestones are NOT formal challenge stage passes. Synthetic funding and 15bp roundtrip fees; overlapping candles of two assets treated as simultaneous adverse, conservative.",
   "window": [
     1761523200000,
     1793023200000
