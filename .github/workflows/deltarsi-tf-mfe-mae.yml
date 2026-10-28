@@ -1,0 +1,45 @@
+name: DeltaRSI matched 1H 4H 6H 8H signal study
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_tf_mfe_mae_matched.py'
+      - '.github/workflows/deltarsi-tf-mfe-mae.yml'
+permissions:
+  contents: write
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch hourly and higher timeframe OHLC
+        run: |
+          set -e
+          for tf in 1 4 6 8; do
+            for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
+              python -u download_delta_6h_8h.py "$tf" "$sym"
+            done
+          done
+      - name: Matched signal excursion study
+        run: python -u deltarsi_tf_mfe_mae_matched.py
+      - name: One-hour prop simulation
+        run: python -u deltarsi_prop_one_year_6h_8h.py 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matched-timeframe-research
+          path: |
+            reports/deltarsi_tf_mfe_mae_matched.json
+            reports/deltarsi_prop_one_year_1h.json
+      - name: Commit reports
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_tf_mfe_mae_matched.json reports/deltarsi_prop_one_year_1h.json
+          git commit -m 'Update matched timeframe MFE MAE and 1H prop research' || exit 0
+          git pull --rebase origin main
+          git push
