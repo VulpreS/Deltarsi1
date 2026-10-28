@@ -34,7 +34,8 @@ for sym in SYMS:
 start=max(int(dt.datetime(2025,10,28,tzinfo=dt.timezone.utc).timestamp()*1000),min(first))
 end=min(last)
 times=range(start,end+H,H)
-def run(policy):\n sl=2.5;tp=5;mode="time";act=None;dist=None;hold=72;confirm=0;opp=0;switch=0
+def run(policy):
+ sl=2.5;tp=5;mode="time";act=None;dist=None;hold=72;confirm=0;opp=0;switch=0
  cash=START;pos={};peak=START;min_eq=START;maxdd=0.;day=None;daybase=START;trades=[];breach=None;amb=0;skipped=0
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices.get(s,z["entry"])-z["entry"])-z["qty"]*prices.get(s,z["entry"])*COST for s,z in pos.items())
@@ -47,7 +48,8 @@ def run(policy):\n sl=2.5;tp=5;mode="time";act=None;dist=None;hold=72;confirm=0;
   for sym in SYMS:
    if sym in pos or sym not in bars or t not in signals[sym]:continue
    if len(pos)>=3:skipped+=1;continue
-   side,a=signals[sym][t];o=opens[sym]\n   if policy=="filter" and not any(v[0]==side and 0<=t-k<=8*H for k,v in higher[sym].items()):continue
+   side,a=signals[sym][t];o=opens[sym]
+   if policy=="filter" and not any(v[0]==side and 0<=t-k<=8*H for k,v in higher[sym].items()):continue
    if o-side*sl*a<=0:continue
    q=NOTIONAL/o;cash-=NOTIONAL*COST
    pos[sym]=dict(side=side,qty=q,entry=o,stop=o-side*sl*a,target=o+side*tp*a,atr=a,best=o,fee=NOTIONAL*COST,entry_ms=t,active=False,confirmed=False,hold=hold)
