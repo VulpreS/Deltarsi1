@@ -3,12 +3,14 @@ import json,os,urllib.request,urllib.error
 BASE="https://api.upscale.trade"
 key=os.environ.get("UPSCALE_API_KEY","").strip()
 if not key:raise SystemExit("Missing UPSCALE_API_KEY secret")
+if key.lower().startswith("bearer "):raise SystemExit("Secret must contain raw API key, not Bearer prefix")
+if not key.startswith("usk_"):raise SystemExit("API key format unexpected: expected usk_ prefix (key hidden)")
 def get(path):
  req=urllib.request.Request(BASE+path,headers={"Authorization":"Bearer "+key,"Accept":"application/json"})
  try:
   with urllib.request.urlopen(req,timeout=25) as response:return json.load(response)
  except urllib.error.HTTPError as e:
-  raise RuntimeError(f"Upscale GET {path}: HTTP {e.code} (body hidden to protect account data)") from None
+  raise RuntimeError(f"Upscale GET {path}: HTTP {e.code}; check key permissions, account API Trading, and IP restrictions (body hidden)") from None
 accounts=get("/accounts/with-risk-status")
 if not isinstance(accounts,list):raise RuntimeError("Unexpected accounts payload")
 demos=[a for a in accounts if a.get("type")=="demo" and a.get("apiTrading") and a.get("status")=="active"]
