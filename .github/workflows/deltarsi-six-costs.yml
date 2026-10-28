@@ -4,20 +4,24 @@ on:
   push:
     paths:
       - 'deltarsi_prop_six_full_history_costs.py'
+      - 'download_bnb_zec_1h.py'
       - '.github/workflows/deltarsi-six-costs.yml'
 permissions:
   contents: write
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -u download_bnb_zec_1h.py BNBUSDT
-      - run: python -u download_bnb_zec_1h.py ZECUSDT
+      - name: Download five-year hourly histories
+        run: |
+          for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
+            python -u download_bnb_zec_1h.py "$sym"
+          done
       - run: python -u deltarsi_prop_six_full_history_costs.py
       - uses: actions/upload-artifact@v4
         if: always()
