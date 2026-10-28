@@ -20,6 +20,25 @@ if not shared:raise ValueError("No common six-asset hourly history")
 start=min(shared);end=max(shared)
 if any(t not in shared for t in range(start,end+H,H)):raise ValueError("Six-asset history has gaps")
 out=dict(description="Research: same historical start windows; BNB/ZEC default no trailing, SL/TP 5 ATR; 3 concurrent positions; no slippage; weekly rolling overlapping windows; targets 5/8%; 14/30 days.",shared_start=dt.datetime.fromtimestamp(start/1000,dt.timezone.utc).isoformat(),shared_end=dt.datetime.fromtimestamp((end+H)/1000,dt.timezone.utc).isoformat(),models={})
+# Compare all selection rules on the same six-coin windows.
+base.SYMS=SIX
+base.COMMON=shared
+out["priority_comparison"]={}
+for fee_name,fee,funding in [("upscale_basic",.00008,.00015),("prior",.00075,.0003)]:
+ out["priority_comparison"][fee_name]={}
+ for days in (14,30):
+  for target in (5,8):
+   scenario=f"{days}d_target_{target}pct"
+   out["priority_comparison"][fee_name][scenario]={}
+   for mode in ("baseline","peak","decay","combined"):
+    trials=[]
+    for t in range(start,end-days*DAY+2*H,7*DAY):
+     if any(x not in shared for x in range(t,t+days*DAY,H)):continue
+     z=base.simulate(t,t+days*DAY-H,target,fee,funding,priority=mode)
+     trials.append({k:z[k] for k in ("start_utc","outcome","days_elapsed","return_pct","max_dd_pct","closed_trades","first_breach")})
+    counts={k:sum(z["outcome"]==k for z in trials) for k in ("pass","breach","timeout")}
+    out["priority_comparison"][fee_name][scenario][mode]={"trials":len(trials),"counts":counts,"pass_rate_pct":round(100*counts["pass"]/len(trials),2) if trials else None,"results":trials}
+    print("PRIORITY",fee_name,scenario,mode,counts,flush=True)
 for fee_name,fee,funding in [("upscale_basic",.00008,.00015),("prior",.00075,.0003)]:
  out["models"][fee_name]={}
  for days in (14,30):
