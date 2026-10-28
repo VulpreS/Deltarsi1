@@ -1,6 +1,6 @@
 """One-year native 6H/8H conservative OHLC comparison."""
 import sys
-TF=int(sys.argv[1]);assert TF in (6,8)
+TF=int(sys.argv[1]);assert TF in (1,4,6,8)
 import csv,datetime as dt,hashlib,json,math
 from pathlib import Path
 from causal_4h_parity_audit import CausalDelta,qualifying
