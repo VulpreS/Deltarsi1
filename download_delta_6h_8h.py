@@ -1,7 +1,7 @@
 import csv,datetime as dt,json,time,urllib.parse,urllib.request,sys
 from pathlib import Path
 TF=int(sys.argv[1]); SYMBOL=sys.argv[2].upper()
-if TF not in (6,8):raise ValueError('TF must be 6 or 8')
+if TF not in (1,4,6,8):raise ValueError('TF must be 6 or 8')
 if SYMBOL not in ('BTCUSDT','ETHUSDT','ICPUSDT','TONUSDT','BNBUSDT','ZECUSDT'):raise ValueError('Unsupported symbol')
 H=TF*3600000
 INTERVAL=str(TF*60)
@@ -61,7 +61,7 @@ if len(times)<int(180*24/TF):raise RuntimeError(f"{SYMBOL} history shorter than 
 gaps=[(a,b,(b-a)//H-1) for a,b in zip(times,times[1:]) if b-a!=H]
 if gaps:
  print("GAPS",SYMBOL,"count",len(gaps),"first",gaps[:12],flush=True)
- raise RuntimeError(f"{SYMBOL} 4H OHLC gaps detected: {len(gaps)}; first={gaps[:3]}")
+ raise RuntimeError(f"{SYMBOL} OHLC gaps detected: {len(gaps)}; first={gaps[:3]}")
 path=Path(f"data/{SYMBOL}_{TF}h.csv");path.parent.mkdir(exist_ok=True)
 with path.open("w",newline="") as f:
  w=csv.writer(f);w.writerow(["timestamp_utc","open","high","low","close"])
