@@ -14,5 +14,5 @@ jobs:
           python-version: '3.11'
       - name: Verify API access without trading
         env:
-          UPSCALE_API_KEY: ${{ secrets.UPSCALE_API_KEY }}
+          UPSCALE_API_KEY: ${{ secrets.UPSCALE }}
         run: python -u upscale_readonly_check.py
