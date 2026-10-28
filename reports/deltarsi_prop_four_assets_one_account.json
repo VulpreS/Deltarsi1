@@ -20,7 +20,7 @@
   },
   "models": {
     "upscale_basic": {
-      "start_utc": "2025-10-28T06:00:00+00:00",
+      "start_utc": "2025-10-28T07:00:00+00:00",
       "end_utc": "2026-06-30T03:00:00+00:00",
       "initial": 5000,
       "final": 7127.67,
@@ -1046,11 +1046,11 @@
         "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
         "ETHUSDT": "0962b27fc0459cca0355721adccaa89aee63fead1cf6be33cae4f214e78ee0a6",
         "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b",
-        "TONUSDT": "56c0eb7d70ed26e61a4099f327010a1ee77d3f24008391559810fff3dfcc84da"
+        "TONUSDT": "76cd2de23ae74a52efa7a3731fb0c1bdfc94e84cc06fea3d02b5b86ef0613c0a"
       }
     },
     "prior": {
-      "start_utc": "2025-10-28T06:00:00+00:00",
+      "start_utc": "2025-10-28T07:00:00+00:00",
       "end_utc": "2026-06-30T03:00:00+00:00",
       "initial": 5000,
       "final": 6954.17,
@@ -2076,7 +2076,7 @@
         "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
         "ETHUSDT": "0962b27fc0459cca0355721adccaa89aee63fead1cf6be33cae4f214e78ee0a6",
         "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b",
-        "TONUSDT": "56c0eb7d70ed26e61a4099f327010a1ee77d3f24008391559810fff3dfcc84da"
+        "TONUSDT": "76cd2de23ae74a52efa7a3731fb0c1bdfc94e84cc06fea3d02b5b86ef0613c0a"
       }
     }
   }
