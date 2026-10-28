@@ -1,0 +1,49 @@
+{
+  "notes": "One account $5000. split: BTC $1500 + ETH $1500 simultaneous; mono: one $3000 position, BTC priority. 1x. 1h conservative simultaneous adverse excursion, fixed day limit $250 and total $500. Stages reset; censored at history end; overlapping windows not independent.",
+  "window": [
+    1761523200000,
+    1793023200000
+  ],
+  "results": {
+    "split": {
+      "windows": 351,
+      "counts": {
+        "funded_eligible": 39,
+        "censored": 312,
+        "breach_daily": 0,
+        "breach_total": 0
+      },
+      "stage_passes": {
+        "1": 225,
+        "2": 125,
+        "3": 39
+      },
+      "median_stage_days": {
+        "1": 98.0,
+        "2": 178.0,
+        "3": 90.0
+      },
+      "max_dd_pct": 3.47
+    },
+    "mono": {
+      "windows": 351,
+      "counts": {
+        "funded_eligible": 149,
+        "censored": 202,
+        "breach_daily": 0,
+        "breach_total": 0
+      },
+      "stage_passes": {
+        "1": 292,
+        "2": 149,
+        "3": 149
+      },
+      "median_stage_days": {
+        "1": 58.0,
+        "2": 66.0,
+        "3": 42.0
+      },
+      "max_dd_pct": 6.56
+    }
+  }
+}
