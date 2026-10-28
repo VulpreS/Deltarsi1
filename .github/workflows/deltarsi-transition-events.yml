@@ -1,0 +1,44 @@
+name: DeltaRSI transition MFE MAE event study
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_transition_events.py'
+      - '.github/workflows/deltarsi-transition-events.yml'
+permissions:
+  contents: write
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax validation
+        run: python -m py_compile deltarsi_transition_events.py
+      - name: Prepare candle data
+        run: |
+          set -e
+          for tf in 1 4 6 8; do
+            for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
+              python -u download_delta_6h_8h.py "$tf" "$sym"
+            done
+          done
+      - name: Event study and audit
+        run: python -u deltarsi_transition_events.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deltarsi-transition-events
+          path: reports/deltarsi_transition_events.json
+      - name: Save report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_transition_events.json
+          git commit -m 'Update DeltaRSI transition event study' || exit 0
+          git stash push -u -m 'runner candles' || true
+          git pull --rebase origin main
+          git push
