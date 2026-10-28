@@ -1,0 +1,30 @@
+name: DeltaRSI trailing all assets
+on: [push, workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  trailing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download TON if missing
+        run: |
+          if [ ! -f data/TONUSDT_1h.csv ]; then python -u download_ton_1h.py; fi
+      - run: python -u deltarsi_btc_trailing_1000.py
+      - run: python -u deltarsi_eth_trailing_1000.py
+      - run: python -u deltarsi_icp_trailing_1000.py
+      - run: python -u deltarsi_ton_trailing_1000.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: all-assets-trailing
+          path: reports/deltarsi_*_trailing_1000.json
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_*_trailing_1000.json
+          git add data/TONUSDT_1h.csv
+          git commit -m 'DeltaRSI trailing all assets results' || exit 0
+          git push
