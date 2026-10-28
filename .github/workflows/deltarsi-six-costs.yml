@@ -1,0 +1,34 @@
+name: DeltaRSI realistic fees and spread full history
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_prop_six_full_history_costs.py'
+      - '.github/workflows/deltarsi-six-costs.yml'
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u download_bnb_zec_1h.py BNBUSDT
+      - run: python -u download_bnb_zec_1h.py ZECUSDT
+      - run: python -u deltarsi_prop_six_full_history_costs.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: six-assets-costs
+          path: reports/deltarsi_prop_six_full_history_costs.json
+      - name: Commit results
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_prop_six_full_history_costs.json
+          git commit -m 'Update realistic fee and spread results' || exit 0
+          git pull --rebase origin main
+          git push
