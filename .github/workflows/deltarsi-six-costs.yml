@@ -5,6 +5,7 @@ on:
     paths:
       - 'deltarsi_prop_six_full_history_costs.py'
       - 'download_bnb_zec_1h.py'
+      - 'deltarsi_prop_five_year_4h.py'
       - '.github/workflows/deltarsi-six-costs.yml'
 permissions:
   contents: write
@@ -22,17 +23,17 @@ jobs:
           for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
             python -u download_bnb_zec_1h.py "$sym"
           done
-      - run: python -u deltarsi_prop_six_full_history_costs.py
+      - run: python -u deltarsi_prop_five_year_4h.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: six-assets-costs
-          path: reports/deltarsi_prop_six_full_history_costs.json
+          path: reports/deltarsi_prop_five_year_4h.json
       - name: Commit results
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
-          git add reports/deltarsi_prop_six_full_history_costs.json
-          git commit -m 'Update realistic fee and spread results' || exit 0
+          git add reports/deltarsi_prop_five_year_4h.json
+          git commit -m 'Update five-year conservative 4H results' || exit 0
           git pull --rebase origin main
           git push
