@@ -1,9 +1,45 @@
 # Upscale Crypto Backtester
 
+## Current experiment: owner DeltaRSI journal color rules
+
+Actions runs `python -m upscale.rsi_study --out reports/upscale_rsi`.
+Uses the current root `Delta`: SMA21 -> Wilder RSI12 -> EMA7 -> mirrored signed
+log delta. The Pine display multiplier 1.5 does not modify raw color threshold 60.
+The four intensity branches are preserved; equality is gray rather than weak.
+
+Mechanical reconstruction from the owner's journal: LONG medium/faint red ->
+weak red; SHORT first weak blue after strong/medium/faint blue. Entry after a
+fully closed 4H candle at next 1H open, exit on the unfiltered opposite journal
+signal at next open. No fixed TP or arbitrary 24/48-hour cap; protective stops,
+account guards and challenge/sample-end closures remain. Long-only entries still
+retain short signals for exiting longs. Historical indicators are reconstructed
+from the SAME complete cached 1H bars used for execution, without source splicing.
+
+Stop is not uniquely specified by the journal. Two disclosed assumptions are
+compared: extreme of actual peak-|delta| candle in known same-sign wave, and
+extreme of the whole known same-sign wave. No added buffer. Invalid or >5%
+price-stop geometry rejects entry. Margin 10/15%, leverage 1/2/3, 30-day both-stage
+goal, costs and extra safeguards remain as documented below.
+
+This is NOT a claim that every fade is the owner's full entry rule. Manual
+price-context selection, exceptional bright-to-medium + buybacks entry,
+forming-candle timing and partial exits are not fully formalized. The 42 manual
+annotations provide textual rule context, not replayed verified fills or training
+labels. Indicator, source/journal hashes, all eligible signals, every trade and
+all attempted profiles are exported. No winner is selected on inspected history.
+
+Prior study commands remain available separately:
+- `python -m upscale.margin_study --days 30 --out reports/upscale_margin_30d`
+- `python -m upscale.margin_study --days 14 --out reports/upscale_margin`
+- `python -m upscale.fortnight --out reports/upscale_14d`
+
+## Previous experiments
+
+
 ## Current position model: fixed margin, leverage at most 3
 
-Actions now runs `python -m upscale.margin_study --days 30 --out reports/upscale_margin_30d`.
-The user now allows **30 calendar days total for both stages**. The comparison
+The previous margin-only workflow ran `python -m upscale.margin_study --days 30 --out reports/upscale_margin_30d`.
+The margin comparison allows **30 calendar days total for both stages**. The comparison
 reruns the 14-day baseline on exactly the same eligible weekly start dates, with
 all sizing, entry/exit rules, costs and research safeguards unchanged. Prior
 14-day reports remain in their original folder. Reproduce the old horizon with
@@ -30,7 +66,7 @@ loss percent. Monthly or weekly overlapping windows are dependent observations.
 
 ## Previous experiment: fixed risk, both stages in 14 days
 
-The current Actions experiment is `python -m upscale.fortnight`. It evaluates
+The previous fixed-risk experiment is `python -m upscale.fortnight`. It evaluates
 both stages within **14 calendar days total**, including the 3/5 profitable-day
 requirements and strict API 30% consistency. Weekly UTC starts use only full
 windows; 4h and 1h histories are evaluated separately. Fixed variants: trend

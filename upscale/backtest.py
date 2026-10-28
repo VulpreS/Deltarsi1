@@ -109,7 +109,10 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
     if challenge and len(idx): idx=idx[idx<idx[0]+pd.Timedelta(days=days)]
     # NumPy arrays keep repeated challenge starts inexpensive.
     rows={s:d.loc[idx].to_numpy() for s,d in frames.items()}
-    fs={s:f.loc[idx].to_numpy() for s,f in feat.items()}
+    base_columns=['signal','kind','atr','mid','exit_low','exit_high']
+    fs={s:f.loc[idx,base_columns].to_numpy() for s,f in feat.items()}
+    extras={s:{key:f.loc[idx,key].to_numpy() for key in ('stop_price','reverse_signal','delta','rsi','stop_source_time') if key in f} for s,f in feat.items()}
+    previous_closes={s:d.close.shift(1).loc[idx].to_numpy() for s,d in frames.items()}
     cash=1.; pos={}; trades=[]; curve=[]; daily=[]; day=None; day_base=1.; halted=False
     peak=1.; maxdd=0.; min_equity=1.; worst_day=0.; breach=None
     phase=1; phase_initial=1.; phase_base=1.; phase_daily=[]; phase1_date=None; outcome='timeout' if challenge else 'complete'
@@ -124,7 +127,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
         gross=adjusted_gross(raw,0 if ambiguous else (t-p['time']).total_seconds())
         fee=p['qty']*fill*cfg.fee
         cash+=gross-fee
-        trades.append(dict(symbol=s,side=p['side'],kind=p['kind'],entry_time=str(p['time']),exit_time=str(t),entry=p['entry'],exit=fill,raw_gross=raw,gross=gross,net=gross-fee-p['entry_fee']-p['funding'],funding=p['funding'],entry_equity=p['entry_equity'],entry_notional=p['qty']*p['entry'],entry_margin=p['margin'],planned_stop_pct=p['stop_pct'],planned_loss_pct=p['planned_loss_pct'],reason=reason,api_60s_ambiguous=bool(ambiguous and raw>0)))
+        trades.append(dict(symbol=s,side=p['side'],kind=p['kind'],entry_time=str(p['time']),exit_time=str(t),entry=p['entry'],exit=fill,raw_gross=raw,gross=gross,net=gross-fee-p['entry_fee']-p['funding'],funding=p['funding'],stop=p['stop'],entry_delta=p.get('delta'),entry_rsi=p.get('rsi'),stop_source_time=p.get('stop_source_time'),entry_equity=p['entry_equity'],entry_notional=p['qty']*p['entry'],entry_margin=p['margin'],planned_stop_pct=p['stop_pct'],planned_loss_pct=p['planned_loss_pct'],reason=reason,api_60s_ambiguous=bool(ambiguous and raw>0)))
     def finish_day(eq):
         gain=eq-day_base
         daily.append(dict(day=str(day),equity=eq,pnl=gain,return_on_day_start=gain/day_base,phase=phase))
@@ -153,7 +156,10 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
             if stop_all or halted:
                 close(s,op,t,'account_guard'); continue
             sig,kind,atr,mid,exitlo,exithi=row
-            exit_signal=(p['kind']=='trend' and ((p['side']==1 and frames[s].close.loc[:t].iloc[-2]<exitlo) or (p['side']==-1 and frames[s].close.loc[:t].iloc[-2]>exithi)))
+            exit_signal=(p['kind']=='trend' and ((p['side']==1 and previous_closes[s][i]<exitlo) or (p['side']==-1 and previous_closes[s][i]>exithi)))
+            if p['kind']=='delta':
+                reverse=extras[s].get('reverse_signal')
+                exit_signal=reverse is not None and reverse[i]==-p['side']
             if exit_signal or (t-p['time']).total_seconds()>=p['max_hours']*3600:
                 close(s,op,t,'channel_or_time')
         if not stop_all and not halted:
@@ -163,6 +169,10 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
                 if not np.isfinite(float(sig)) or not sig or not np.isfinite(float(atr)): continue
                 side=int(sig); entry=opens[s]*(1+side*cfg.slippage)
                 distance=float(atr)*(2. if kind=='trend' else 1.5)
+                if kind=='delta':
+                    structural=extras[s].get('stop_price')
+                    if structural is None or not np.isfinite(float(structural[i])): continue
+                    distance=side*(entry-float(structural[i]))
                 if distance<=0: continue
                 if cfg.sizing_mode=='margin' and distance/entry>cfg.max_stop_pct+1e-12:
                     rejected_stop_cap+=1; continue
@@ -195,7 +205,7 @@ def simulate(frames, cfg, start=None, end=None, challenge=False, days=14, prepar
                 target=float(mid) if kind=='range' else None
                 if target is not None and side*(target-entry)<=0:
                     cash+=entry_fee; continue
-                pos[s]=dict(side=side,entry=entry,qty=qty,stop=entry-side*distance,target=target,time=t,kind=kind,max_hours=120 if kind=='trend' else 24,entry_fee=entry_fee,funding=0.,reserved=qty*budget_per_unit,entry_equity=eq,margin=qty*entry/cfg.position_leverage if cfg.sizing_mode=='margin' else 0.,stop_pct=distance/entry,planned_loss_pct=qty*budget_per_unit/eq*100)
+                pos[s]=dict(side=side,entry=entry,qty=qty,stop=entry-side*distance,target=target,time=t,kind=kind,max_hours=math.inf if kind=='delta' else (120 if kind=='trend' else 24),entry_fee=entry_fee,funding=0.,reserved=qty*budget_per_unit,entry_equity=eq,margin=qty*entry/cfg.position_leverage if cfg.sizing_mode=='margin' else 0.,stop_pct=distance/entry,planned_loss_pct=qty*budget_per_unit/eq*100,delta=float(extras[s]['delta'][i]) if 'delta' in extras[s] else None,rsi=float(extras[s]['rsi'][i]) if 'rsi' in extras[s] else None,stop_source_time=str(extras[s]['stop_source_time'][i]) if 'stop_source_time' in extras[s] else None)
         # Bound intrabar equity at jointly adverse extrema (not claimed synchronous).
         adverse={s:(bars[s][2] if p['side']==1 else bars[s][1]) for s,p in pos.items()}
         # Stop execution limits excursion unless the open gapped across the stop.
