@@ -26,7 +26,7 @@ start=max(int(dt.datetime(2025,10,28,tzinfo=dt.timezone.utc).timestamp()*1000),m
 end=min(last)
 times=range(start,end+H,H)
 def run(sl,tp,mode,act=None,dist=None,hold=None):
- cash=START;pos={};peak=START.;min_eq=START.;maxdd=0.;day=None;daybase=START.;trades=[];breach=None;amb=0;skipped=0
+ cash=START;pos={};peak=START;min_eq=START;maxdd=0.;day=None;daybase=START;trades=[];breach=None;amb=0;skipped=0
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices.get(s,z["entry"])-z["entry"])-z["qty"]*prices.get(s,z["entry"])*COST for s,z in pos.items())
  for t in times:
