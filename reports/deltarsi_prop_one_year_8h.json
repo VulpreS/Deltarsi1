@@ -1,6 +1,6 @@
 {
   "description": "Native 8H closed-bar DeltaRSI; 8H stop-first conservative fills; trail updates after current bar; 5ATR stop/take; $1000 nominal, max 3 positions; 0.08% fee per side + 0.03% full spread; no funding/slippage; continuous $5000; assets eligible after their own data starts; approximate daily/intrabar risk on 8H OHLC; in-sample.",
-  "start": "2025-10-28T00:00:00+00:00",
+  "start": "2025-10-28T08:00:00+00:00",
   "end": "2026-06-30T08:00:00+00:00",
   "initial": 5000,
   "final": 4465.33,
@@ -23,46 +23,46 @@
   "open_positions_end": [],
   "sources": {
     "BTCUSDT": {
-      "first": "2025-10-28T00:00:00+00:00",
-      "last": "2026-10-27T16:00:00+00:00",
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
       "bars": 1095,
       "signals": 12,
-      "sha256": "1cb6072e4df4ae811f1bad86e9969cabbb6e2d3cb15dcb12361b7465252e9c59"
+      "sha256": "8bbda70c52a08aaf6bd40db80a6fe47876992433649619fa56117f2ad2fedebc"
     },
     "ETHUSDT": {
-      "first": "2025-10-28T00:00:00+00:00",
-      "last": "2026-10-27T16:00:00+00:00",
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
       "bars": 1095,
       "signals": 16,
-      "sha256": "5741b26422ba816c884d195008395b1d488fd080356230e857c851189985ccda"
+      "sha256": "ef97488f4a2a4929b7b60f3c133134c5818c192210c71a7d1f8fae9348051365"
     },
     "ICPUSDT": {
-      "first": "2025-10-28T00:00:00+00:00",
-      "last": "2026-10-27T16:00:00+00:00",
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
       "bars": 1095,
       "signals": 15,
-      "sha256": "96b9a2d275fc7215247cf1ffa48b8246303c7cc1829618a2b524c46d3aee4583"
+      "sha256": "3b598baab44ad15b6505683649a4fa8d0416cbbf70637c24841f37f95c0eec3d"
     },
     "TONUSDT": {
-      "first": "2025-10-28T00:00:00+00:00",
+      "first": "2025-10-28T08:00:00+00:00",
       "last": "2026-06-30T00:00:00+00:00",
-      "bars": 736,
+      "bars": 735,
       "signals": 2,
-      "sha256": "073b1ed2ba434bce45cdcc74dc48fb1ff9c8957e574efe706ed73208017de3a8"
+      "sha256": "9fc17fbf123b9bb13423db015839dcff70c83c8ef49046a1545c7b6987b2ddda"
     },
     "BNBUSDT": {
-      "first": "2025-10-28T00:00:00+00:00",
-      "last": "2026-10-27T16:00:00+00:00",
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
       "bars": 1095,
       "signals": 17,
-      "sha256": "6d35650159fe0a434b36999a8fb8daa089376bf54abbd7c94e352ad1fbd3c2ed"
+      "sha256": "0433d72999ad4534413bfe54784b8af948753395e6e553d47832bd61ece3b941"
     },
     "ZECUSDT": {
-      "first": "2025-10-28T00:00:00+00:00",
-      "last": "2026-10-27T16:00:00+00:00",
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
       "bars": 1095,
       "signals": 7,
-      "sha256": "819ed01246f085ee5abeb1468f7aea799c97be6988c45613a77be920dfde28ba"
+      "sha256": "9726d04a4ff1494273471137a212e31a333c08355844f9f8d79efd9c189d3a94"
     }
   },
   "by_symbol": {
