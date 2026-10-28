@@ -1,0 +1,2882 @@
+{
+  "description": "Native 1H closed-bar DeltaRSI; 1H stop-first conservative fills; trail updates after current bar; 5ATR stop/take; $1000 nominal, max 3 positions; 0.08% fee per side + 0.03% full spread; no funding/slippage; continuous $5000; assets eligible after their own data starts; approximate daily/intrabar risk on 1H OHLC; in-sample.",
+  "start": "2025-10-28T08:00:00+00:00",
+  "end": "2026-06-30T03:00:00+00:00",
+  "initial": 5000,
+  "final": 5154.31,
+  "return_pct": 3.086,
+  "max_dd_pct": 16.372,
+  "min_intrabar_equity": 4377.93,
+  "max_intrabar_daily_loss": 308.87,
+  "daily_breach_days": 4,
+  "total_breach": true,
+  "first_breach": {
+    "time": "2025-11-09T03:00:00+00:00",
+    "type": "daily"
+  },
+  "closed_trades": 225,
+  "win_pct": 59.11,
+  "pf": 1.028,
+  "ambiguous_stop_take_bars": 2,
+  "skipped_signals": 127,
+  "max_open": 3,
+  "open_positions_end": [
+    "TONUSDT",
+    "BTCUSDT",
+    "ICPUSDT"
+  ],
+  "sources": {
+    "BTCUSDT": {
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T07:00:00+00:00",
+      "bars": 8760,
+      "signals": 142,
+      "sha256": "eb18024f60b7ba0dd23b5b339a78dd0bc9c51ec15401f7568adbee3d10854700"
+    },
+    "ETHUSDT": {
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T07:00:00+00:00",
+      "bars": 8760,
+      "signals": 151,
+      "sha256": "e4de9d6463471ed86bed6128797cdc5c272e7e56a607c217c6832c6be45fba39"
+    },
+    "ICPUSDT": {
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T07:00:00+00:00",
+      "bars": 8760,
+      "signals": 167,
+      "sha256": "99e36fc47b712acbfd074582663cf31d621beb9bccd546ea3fefb7948960e15c"
+    },
+    "TONUSDT": {
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-06-30T02:00:00+00:00",
+      "bars": 5875,
+      "signals": 102,
+      "sha256": "abe45be7d1a404a55241ff41eb09015a9a95fc3a2ad756ed5fe79c0b149e8e51"
+    },
+    "BNBUSDT": {
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T07:00:00+00:00",
+      "bars": 8760,
+      "signals": 125,
+      "sha256": "b0026660f736dc55d22a6329b863457a977917012e754aa100d5b96a61f19000"
+    },
+    "ZECUSDT": {
+      "first": "2025-10-28T08:00:00+00:00",
+      "last": "2026-10-28T07:00:00+00:00",
+      "bars": 8760,
+      "signals": 147,
+      "sha256": "415df2fa1fdc4d794075d8b0091e5dedefc2012f4649b707a8b1780c750d5f90"
+    }
+  },
+  "by_symbol": {
+    "BTCUSDT": {
+      "trades": 48,
+      "pnl": -180.47
+    },
+    "ETHUSDT": {
+      "trades": 34,
+      "pnl": -37.54
+    },
+    "ICPUSDT": {
+      "trades": 34,
+      "pnl": -275.7
+    },
+    "TONUSDT": {
+      "trades": 38,
+      "pnl": -88.31
+    },
+    "BNBUSDT": {
+      "trades": 35,
+      "pnl": -97.69
+    },
+    "ZECUSDT": {
+      "trades": 36,
+      "pnl": 839.33
+    }
+  },
+  "trades": [
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-06T17:00:00+00:00",
+      "exit": "2025-11-07T19:00:00+00:00",
+      "pnl": 12.447,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-11-06T15:00:00+00:00",
+      "exit": "2025-11-07T21:00:00+00:00",
+      "pnl": 50.3572,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-11-06T17:00:00+00:00",
+      "exit": "2025-11-07T23:00:00+00:00",
+      "pnl": 50.2231,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-11-09T01:00:00+00:00",
+      "exit": "2025-11-11T06:00:00+00:00",
+      "pnl": -302.1429,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-11-09T02:00:00+00:00",
+      "exit": "2025-11-12T16:00:00+00:00",
+      "pnl": -45.9276,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-11-11T09:00:00+00:00",
+      "exit": "2025-11-13T20:00:00+00:00",
+      "pnl": -63.3662,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-13T16:00:00+00:00",
+      "exit": "2025-11-13T20:00:00+00:00",
+      "pnl": 25.654,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-11-08T13:00:00+00:00",
+      "exit": "2025-11-15T04:00:00+00:00",
+      "pnl": 335.8696,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-11-15T19:00:00+00:00",
+      "exit": "2025-11-16T18:00:00+00:00",
+      "pnl": 37.976,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-15T12:00:00+00:00",
+      "exit": "2025-11-16T19:00:00+00:00",
+      "pnl": 12.1075,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-11-15T12:00:00+00:00",
+      "exit": "2025-11-17T01:00:00+00:00",
+      "pnl": 16.271,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-17T14:00:00+00:00",
+      "exit": "2025-11-17T21:00:00+00:00",
+      "pnl": 19.7941,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-11-17T01:00:00+00:00",
+      "exit": "2025-11-18T14:00:00+00:00",
+      "pnl": -220.6872,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-11-16T18:00:00+00:00",
+      "exit": "2025-11-19T19:00:00+00:00",
+      "pnl": -48.8283,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-11-18T12:00:00+00:00",
+      "exit": "2025-11-19T19:00:00+00:00",
+      "pnl": 41.7098,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-11-19T01:00:00+00:00",
+      "exit": "2025-11-22T05:00:00+00:00",
+      "pnl": 191.4833,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-11-22T14:00:00+00:00",
+      "exit": "2025-11-24T18:00:00+00:00",
+      "pnl": -74.342,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-22T14:00:00+00:00",
+      "exit": "2025-11-24T19:00:00+00:00",
+      "pnl": -57.3547,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-11-22T06:00:00+00:00",
+      "exit": "2025-11-27T19:00:00+00:00",
+      "pnl": -94.3556,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-28T03:00:00+00:00",
+      "exit": "2025-11-28T13:00:00+00:00",
+      "pnl": 1.989,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-11-28T14:00:00+00:00",
+      "exit": "2025-11-30T06:00:00+00:00",
+      "pnl": -50.6127,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-11-30T11:00:00+00:00",
+      "exit": "2025-11-30T15:00:00+00:00",
+      "pnl": -25.2477,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-11-26T07:00:00+00:00",
+      "exit": "2025-11-30T21:00:00+00:00",
+      "pnl": 145.8427,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-11-24T21:00:00+00:00",
+      "exit": "2025-12-01T01:00:00+00:00",
+      "pnl": 111.6048,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-11-30T16:00:00+00:00",
+      "exit": "2025-12-01T01:00:00+00:00",
+      "pnl": 29.1844,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-01T02:00:00+00:00",
+      "exit": "2025-12-01T16:00:00+00:00",
+      "pnl": -38.0829,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-12-01T02:00:00+00:00",
+      "exit": "2025-12-02T16:00:00+00:00",
+      "pnl": 50.3922,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-12-01T03:00:00+00:00",
+      "exit": "2025-12-02T18:00:00+00:00",
+      "pnl": 49.5382,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-02T16:00:00+00:00",
+      "exit": "2025-12-03T21:00:00+00:00",
+      "pnl": -55.0808,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-12-03T08:00:00+00:00",
+      "exit": "2025-12-05T07:00:00+00:00",
+      "pnl": -233.2867,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-04T16:00:00+00:00",
+      "exit": "2025-12-05T17:00:00+00:00",
+      "pnl": -37.8561,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-04T16:00:00+00:00",
+      "exit": "2025-12-05T17:00:00+00:00",
+      "pnl": -45.5623,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-07T20:00:00+00:00",
+      "exit": "2025-12-07T23:00:00+00:00",
+      "pnl": 11.1744,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-12-08T19:00:00+00:00",
+      "exit": "2025-12-09T17:00:00+00:00",
+      "pnl": 52.7674,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-09T07:00:00+00:00",
+      "exit": "2025-12-09T18:00:00+00:00",
+      "pnl": 37.65,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-09T17:00:00+00:00",
+      "exit": "2025-12-09T22:00:00+00:00",
+      "pnl": 9.4822,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-09T19:00:00+00:00",
+      "exit": "2025-12-09T23:00:00+00:00",
+      "pnl": 11.5615,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-12-06T13:00:00+00:00",
+      "exit": "2025-12-10T00:00:00+00:00",
+      "pnl": -68.3081,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-11T03:00:00+00:00",
+      "exit": "2025-12-11T23:00:00+00:00",
+      "pnl": 28.9831,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-12-10T01:00:00+00:00",
+      "exit": "2025-12-15T16:00:00+00:00",
+      "pnl": 41.7247,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-12-12T16:00:00+00:00",
+      "exit": "2025-12-15T17:00:00+00:00",
+      "pnl": 17.7938,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-12-10T14:00:00+00:00",
+      "exit": "2025-12-16T08:00:00+00:00",
+      "pnl": -109.2117,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-12-17T16:00:00+00:00",
+      "exit": "2025-12-17T21:00:00+00:00",
+      "pnl": 27.1741,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-18T16:00:00+00:00",
+      "exit": "2025-12-18T19:00:00+00:00",
+      "pnl": 21.0547,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-12-17T01:00:00+00:00",
+      "exit": "2025-12-19T20:00:00+00:00",
+      "pnl": -112.2367,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-12-20T19:00:00+00:00",
+      "exit": "2025-12-23T04:00:00+00:00",
+      "pnl": -74.234,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-17T17:00:00+00:00",
+      "exit": "2025-12-25T06:00:00+00:00",
+      "pnl": 19.8171,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-12-27T00:00:00+00:00",
+      "exit": "2025-12-28T12:00:00+00:00",
+      "pnl": -27.983,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-12-28T14:00:00+00:00",
+      "exit": "2025-12-29T18:00:00+00:00",
+      "pnl": 66.7453,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-12-24T02:00:00+00:00",
+      "exit": "2025-12-31T09:00:00+00:00",
+      "pnl": 64.833,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-12-30T16:00:00+00:00",
+      "exit": "2026-01-02T16:00:00+00:00",
+      "pnl": -23.9295,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-12-19T06:00:00+00:00",
+      "exit": "2026-01-02T17:00:00+00:00",
+      "pnl": -72.7359,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-03T21:00:00+00:00",
+      "exit": "2026-01-04T02:00:00+00:00",
+      "pnl": 8.813,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-02T17:00:00+00:00",
+      "exit": "2026-01-05T01:00:00+00:00",
+      "pnl": 66.019,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-05T00:00:00+00:00",
+      "exit": "2026-01-05T02:00:00+00:00",
+      "pnl": 6.304,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-06T14:00:00+00:00",
+      "exit": "2026-01-06T18:00:00+00:00",
+      "pnl": -23.2827,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-01-04T15:00:00+00:00",
+      "exit": "2026-01-07T20:00:00+00:00",
+      "pnl": -68.9788,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-01-06T10:00:00+00:00",
+      "exit": "2026-01-08T07:00:00+00:00",
+      "pnl": -27.8272,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-10T13:00:00+00:00",
+      "exit": "2026-01-12T03:00:00+00:00",
+      "pnl": -19.8334,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-09T02:00:00+00:00",
+      "exit": "2026-01-13T13:00:00+00:00",
+      "pnl": -73.2027,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-01-13T00:00:00+00:00",
+      "exit": "2026-01-13T19:00:00+00:00",
+      "pnl": -27.4494,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-01-09T05:00:00+00:00",
+      "exit": "2026-01-13T23:00:00+00:00",
+      "pnl": -45.4846,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-01-13T18:00:00+00:00",
+      "exit": "2026-01-14T17:00:00+00:00",
+      "pnl": 102.0626,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-01-14T21:00:00+00:00",
+      "exit": "2026-01-19T01:00:00+00:00",
+      "pnl": -34.4207,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-15T16:00:00+00:00",
+      "exit": "2026-01-19T01:00:00+00:00",
+      "pnl": -194.7175,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-19T00:00:00+00:00",
+      "exit": "2026-01-19T01:00:00+00:00",
+      "pnl": 8.243,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-19T10:00:00+00:00",
+      "exit": "2026-01-21T17:00:00+00:00",
+      "pnl": 169.9566,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-01-21T17:00:00+00:00",
+      "exit": "2026-01-21T20:00:00+00:00",
+      "pnl": -56.5227,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-01-22T12:00:00+00:00",
+      "exit": "2026-01-22T16:00:00+00:00",
+      "pnl": 8.3877,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-21T17:00:00+00:00",
+      "exit": "2026-01-23T18:00:00+00:00",
+      "pnl": -37.413,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-23T19:00:00+00:00",
+      "exit": "2026-01-23T22:00:00+00:00",
+      "pnl": 9.4525,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-23T22:00:00+00:00",
+      "exit": "2026-01-25T18:00:00+00:00",
+      "pnl": 12.358,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-01-23T10:00:00+00:00",
+      "exit": "2026-01-25T19:00:00+00:00",
+      "pnl": -25.7558,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-21T17:00:00+00:00",
+      "exit": "2026-01-29T02:00:00+00:00",
+      "pnl": 109.6188,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-01-28T02:00:00+00:00",
+      "exit": "2026-01-29T12:00:00+00:00",
+      "pnl": 11.3705,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-01-30T14:00:00+00:00",
+      "exit": "2026-01-31T10:00:00+00:00",
+      "pnl": 12.246,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-30T14:00:00+00:00",
+      "exit": "2026-01-31T15:00:00+00:00",
+      "pnl": 74.106,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-01-31T05:00:00+00:00",
+      "exit": "2026-01-31T15:00:00+00:00",
+      "pnl": 87.7338,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-02T15:00:00+00:00",
+      "exit": "2026-02-03T20:00:00+00:00",
+      "pnl": 52.4336,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-02-02T09:00:00+00:00",
+      "exit": "2026-02-04T23:00:00+00:00",
+      "pnl": 143.0309,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-02-03T14:00:00+00:00",
+      "exit": "2026-02-05T12:00:00+00:00",
+      "pnl": -78.674,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-03T20:00:00+00:00",
+      "exit": "2026-02-05T21:00:00+00:00",
+      "pnl": -72.8013,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-08T02:00:00+00:00",
+      "exit": "2026-02-08T13:00:00+00:00",
+      "pnl": 18.3592,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-02-08T19:00:00+00:00",
+      "exit": "2026-02-11T05:00:00+00:00",
+      "pnl": -69.9045,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-02-07T16:00:00+00:00",
+      "exit": "2026-02-11T09:00:00+00:00",
+      "pnl": -71.9513,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-12T05:00:00+00:00",
+      "exit": "2026-02-12T18:00:00+00:00",
+      "pnl": 14.5527,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-02-08T20:00:00+00:00",
+      "exit": "2026-02-13T19:00:00+00:00",
+      "pnl": 101.1698,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-02-11T05:00:00+00:00",
+      "exit": "2026-02-14T16:00:00+00:00",
+      "pnl": -60.519,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-15T09:00:00+00:00",
+      "exit": "2026-02-15T14:00:00+00:00",
+      "pnl": 10.8056,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-02-13T16:00:00+00:00",
+      "exit": "2026-02-15T19:00:00+00:00",
+      "pnl": 29.3938,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-17T02:00:00+00:00",
+      "exit": "2026-02-17T16:00:00+00:00",
+      "pnl": 21.6221,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-02-18T00:00:00+00:00",
+      "exit": "2026-02-18T22:00:00+00:00",
+      "pnl": -96.2127,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-02-17T15:00:00+00:00",
+      "exit": "2026-02-19T06:00:00+00:00",
+      "pnl": 53.5784,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-02-20T14:00:00+00:00",
+      "exit": "2026-02-21T10:00:00+00:00",
+      "pnl": -56.8284,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-02-13T23:00:00+00:00",
+      "exit": "2026-02-23T02:00:00+00:00",
+      "pnl": 46.5703,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-02-19T23:00:00+00:00",
+      "exit": "2026-02-23T02:00:00+00:00",
+      "pnl": 79.0041,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-22T17:00:00+00:00",
+      "exit": "2026-02-23T03:00:00+00:00",
+      "pnl": 17.7309,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-23T03:00:00+00:00",
+      "exit": "2026-02-23T13:00:00+00:00",
+      "pnl": -50.4509,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-24T00:00:00+00:00",
+      "exit": "2026-02-24T03:00:00+00:00",
+      "pnl": 5.7748,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-02-24T02:00:00+00:00",
+      "exit": "2026-02-25T03:00:00+00:00",
+      "pnl": -51.081,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-02-25T11:00:00+00:00",
+      "exit": "2026-02-25T18:00:00+00:00",
+      "pnl": -43.9337,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-26T06:00:00+00:00",
+      "exit": "2026-02-28T08:00:00+00:00",
+      "pnl": 25.7824,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-02-27T13:00:00+00:00",
+      "exit": "2026-02-28T10:00:00+00:00",
+      "pnl": -40.967,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-03-02T15:00:00+00:00",
+      "exit": "2026-03-02T17:00:00+00:00",
+      "pnl": 32.2032,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-03-02T18:00:00+00:00",
+      "exit": "2026-03-03T11:00:00+00:00",
+      "pnl": 39.7933,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-03-01T23:00:00+00:00",
+      "exit": "2026-03-04T04:00:00+00:00",
+      "pnl": 85.3264,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-03-04T06:00:00+00:00",
+      "exit": "2026-03-04T11:00:00+00:00",
+      "pnl": 50.8619,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-03-01T00:00:00+00:00",
+      "exit": "2026-03-04T15:00:00+00:00",
+      "pnl": -102.2987,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-03-07T16:00:00+00:00",
+      "exit": "2026-03-07T23:00:00+00:00",
+      "pnl": 61.5072,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-08T21:00:00+00:00",
+      "exit": "2026-03-09T00:00:00+00:00",
+      "pnl": 13.0161,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-09T05:00:00+00:00",
+      "exit": "2026-03-10T03:00:00+00:00",
+      "pnl": -47.8553,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-03-06T12:00:00+00:00",
+      "exit": "2026-03-11T00:00:00+00:00",
+      "pnl": 70.4196,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-03-11T00:00:00+00:00",
+      "exit": "2026-03-11T07:00:00+00:00",
+      "pnl": 68.3134,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-11T01:00:00+00:00",
+      "exit": "2026-03-13T02:00:00+00:00",
+      "pnl": 18.5065,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-03-14T08:00:00+00:00",
+      "exit": "2026-03-15T23:00:00+00:00",
+      "pnl": 29.1778,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-17T12:00:00+00:00",
+      "exit": "2026-03-18T16:00:00+00:00",
+      "pnl": -42.5019,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-03-09T11:00:00+00:00",
+      "exit": "2026-03-19T08:00:00+00:00",
+      "pnl": -56.4071,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-03-21T00:00:00+00:00",
+      "exit": "2026-03-22T22:00:00+00:00",
+      "pnl": 28.4279,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-03-23T03:00:00+00:00",
+      "exit": "2026-03-23T13:00:00+00:00",
+      "pnl": 25.0158,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-03-11T10:00:00+00:00",
+      "exit": "2026-03-26T17:00:00+00:00",
+      "pnl": 150.349,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-03-24T09:00:00+00:00",
+      "exit": "2026-03-27T11:00:00+00:00",
+      "pnl": 34.1592,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-03-20T17:00:00+00:00",
+      "exit": "2026-03-28T02:00:00+00:00",
+      "pnl": 103.0555,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-29T21:00:00+00:00",
+      "exit": "2026-03-29T23:00:00+00:00",
+      "pnl": -22.9166,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-03-29T23:00:00+00:00",
+      "exit": "2026-03-30T05:00:00+00:00",
+      "pnl": -55.5089,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-03-29T16:00:00+00:00",
+      "exit": "2026-03-30T06:00:00+00:00",
+      "pnl": 7.9233,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-03-30T02:00:00+00:00",
+      "exit": "2026-03-30T09:00:00+00:00",
+      "pnl": 22.4943,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-30T06:00:00+00:00",
+      "exit": "2026-03-30T21:00:00+00:00",
+      "pnl": 12.0763,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-31T11:00:00+00:00",
+      "exit": "2026-03-31T16:00:00+00:00",
+      "pnl": 1.4734,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-01T06:00:00+00:00",
+      "exit": "2026-04-02T14:00:00+00:00",
+      "pnl": -46.3314,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-04-01T11:00:00+00:00",
+      "exit": "2026-04-03T06:00:00+00:00",
+      "pnl": -35.3159,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-04-04T02:00:00+00:00",
+      "exit": "2026-04-05T23:00:00+00:00",
+      "pnl": -21.2772,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-06T00:00:00+00:00",
+      "exit": "2026-04-07T16:00:00+00:00",
+      "pnl": 17.4201,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-01T10:00:00+00:00",
+      "exit": "2026-04-07T21:00:00+00:00",
+      "pnl": 98.9791,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-04T08:00:00+00:00",
+      "exit": "2026-04-07T23:00:00+00:00",
+      "pnl": 33.0492,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-08T00:00:00+00:00",
+      "exit": "2026-04-08T07:00:00+00:00",
+      "pnl": -58.1812,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-04-08T00:00:00+00:00",
+      "exit": "2026-04-08T16:00:00+00:00",
+      "pnl": 10.9178,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-07T23:00:00+00:00",
+      "exit": "2026-04-09T01:00:00+00:00",
+      "pnl": 30.7164,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-09T01:00:00+00:00",
+      "exit": "2026-04-09T19:00:00+00:00",
+      "pnl": 111.6698,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-04-09T16:00:00+00:00",
+      "exit": "2026-04-10T00:00:00+00:00",
+      "pnl": -4.6141,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-09T16:00:00+00:00",
+      "exit": "2026-04-11T18:00:00+00:00",
+      "pnl": 16.4234,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-10T22:00:00+00:00",
+      "exit": "2026-04-12T02:00:00+00:00",
+      "pnl": 22.6978,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-11T23:00:00+00:00",
+      "exit": "2026-04-13T16:00:00+00:00",
+      "pnl": -79.8782,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-12T04:00:00+00:00",
+      "exit": "2026-04-13T23:00:00+00:00",
+      "pnl": 29.5945,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-13T21:00:00+00:00",
+      "exit": "2026-04-13T23:00:00+00:00",
+      "pnl": -47.3358,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-04-14T08:00:00+00:00",
+      "exit": "2026-04-14T22:00:00+00:00",
+      "pnl": 34.8752,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-11T04:00:00+00:00",
+      "exit": "2026-04-15T03:00:00+00:00",
+      "pnl": -47.3162,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-14T10:00:00+00:00",
+      "exit": "2026-04-16T03:00:00+00:00",
+      "pnl": 94.6933,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-14T22:00:00+00:00",
+      "exit": "2026-04-16T19:00:00+00:00",
+      "pnl": 28.5758,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-15T21:00:00+00:00",
+      "exit": "2026-04-16T19:00:00+00:00",
+      "pnl": -46.4076,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-04-16T14:00:00+00:00",
+      "exit": "2026-04-17T09:00:00+00:00",
+      "pnl": -29.4697,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-17T12:00:00+00:00",
+      "exit": "2026-04-17T15:00:00+00:00",
+      "pnl": -42.6239,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-04-17T14:00:00+00:00",
+      "exit": "2026-04-18T21:00:00+00:00",
+      "pnl": -59.1173,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-17T23:00:00+00:00",
+      "exit": "2026-04-19T01:00:00+00:00",
+      "pnl": -61.1108,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-17T03:00:00+00:00",
+      "exit": "2026-04-19T18:00:00+00:00",
+      "pnl": 76.4253,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-20T09:00:00+00:00",
+      "exit": "2026-04-22T06:00:00+00:00",
+      "pnl": -49.3213,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-20T17:00:00+00:00",
+      "exit": "2026-04-22T06:00:00+00:00",
+      "pnl": -49.537,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-20T19:00:00+00:00",
+      "exit": "2026-04-22T14:00:00+00:00",
+      "pnl": -30.4363,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-22T11:00:00+00:00",
+      "exit": "2026-04-23T22:00:00+00:00",
+      "pnl": 81.6093,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-04-27T03:00:00+00:00",
+      "exit": "2026-04-27T09:00:00+00:00",
+      "pnl": 6.4592,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-24T10:00:00+00:00",
+      "exit": "2026-04-27T16:00:00+00:00",
+      "pnl": 20.1005,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-25T14:00:00+00:00",
+      "exit": "2026-04-28T12:00:00+00:00",
+      "pnl": -70.5263,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-28T13:00:00+00:00",
+      "exit": "2026-04-29T06:00:00+00:00",
+      "pnl": 19.627,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-04-27T17:00:00+00:00",
+      "exit": "2026-04-29T11:00:00+00:00",
+      "pnl": 10.5298,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-29T07:00:00+00:00",
+      "exit": "2026-04-29T16:00:00+00:00",
+      "pnl": 46.5028,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-27T10:00:00+00:00",
+      "exit": "2026-04-29T19:00:00+00:00",
+      "pnl": -39.3501,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-29T21:00:00+00:00",
+      "exit": "2026-05-01T15:00:00+00:00",
+      "pnl": 30.7822,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-05-02T16:00:00+00:00",
+      "exit": "2026-05-02T23:00:00+00:00",
+      "pnl": 5.2126,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-29T17:00:00+00:00",
+      "exit": "2026-05-04T05:00:00+00:00",
+      "pnl": 19.257,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-29T20:00:00+00:00",
+      "exit": "2026-05-05T11:00:00+00:00",
+      "pnl": 49.136,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-05-04T21:00:00+00:00",
+      "exit": "2026-05-05T21:00:00+00:00",
+      "pnl": 93.4344,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-05T08:00:00+00:00",
+      "exit": "2026-05-06T09:00:00+00:00",
+      "pnl": 21.0011,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-07T00:00:00+00:00",
+      "exit": "2026-05-08T03:00:00+00:00",
+      "pnl": -27.8221,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-08T14:00:00+00:00",
+      "exit": "2026-05-10T18:00:00+00:00",
+      "pnl": -25.404,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-10T19:00:00+00:00",
+      "exit": "2026-05-11T10:00:00+00:00",
+      "pnl": 40.1649,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-07T11:00:00+00:00",
+      "exit": "2026-05-11T23:00:00+00:00",
+      "pnl": 28.0711,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-11T20:00:00+00:00",
+      "exit": "2026-05-12T03:00:00+00:00",
+      "pnl": 7.4157,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-11T21:00:00+00:00",
+      "exit": "2026-05-12T15:00:00+00:00",
+      "pnl": 24.3901,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-12T14:00:00+00:00",
+      "exit": "2026-05-13T03:00:00+00:00",
+      "pnl": 4.793,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-14T14:00:00+00:00",
+      "exit": "2026-05-15T18:00:00+00:00",
+      "pnl": 42.8819,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-05-12T14:00:00+00:00",
+      "exit": "2026-05-16T04:00:00+00:00",
+      "pnl": 76.9913,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-14T11:00:00+00:00",
+      "exit": "2026-05-16T11:00:00+00:00",
+      "pnl": -34.6379,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-05-17T02:00:00+00:00",
+      "exit": "2026-05-17T21:00:00+00:00",
+      "pnl": -71.8194,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-17T22:00:00+00:00",
+      "exit": "2026-05-18T01:00:00+00:00",
+      "pnl": 35.3213,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-18T00:00:00+00:00",
+      "exit": "2026-05-18T15:00:00+00:00",
+      "pnl": 19.6587,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-18T20:00:00+00:00",
+      "exit": "2026-05-19T06:00:00+00:00",
+      "pnl": 21.2472,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-19T09:00:00+00:00",
+      "exit": "2026-05-19T16:00:00+00:00",
+      "pnl": 6.6259,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-05-18T20:00:00+00:00",
+      "exit": "2026-05-20T15:00:00+00:00",
+      "pnl": 86.9541,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-20T22:00:00+00:00",
+      "exit": "2026-05-22T13:00:00+00:00",
+      "pnl": 20.1504,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-05-19T17:00:00+00:00",
+      "exit": "2026-05-22T21:00:00+00:00",
+      "pnl": 24.0578,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-23T22:00:00+00:00",
+      "exit": "2026-05-24T12:00:00+00:00",
+      "pnl": 15.9393,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-25T13:00:00+00:00",
+      "exit": "2026-05-25T16:00:00+00:00",
+      "pnl": -69.7828,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-05-25T19:00:00+00:00",
+      "exit": "2026-05-26T18:00:00+00:00",
+      "pnl": -93.6357,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-05-26T11:00:00+00:00",
+      "exit": "2026-05-26T18:00:00+00:00",
+      "pnl": -27.5483,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-05-16T14:00:00+00:00",
+      "exit": "2026-05-27T05:00:00+00:00",
+      "pnl": -82.8209,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-29T03:00:00+00:00",
+      "exit": "2026-05-30T02:00:00+00:00",
+      "pnl": -28.4923,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-05-29T12:00:00+00:00",
+      "exit": "2026-05-31T01:00:00+00:00",
+      "pnl": -67.0349,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-05-28T20:00:00+00:00",
+      "exit": "2026-06-01T15:00:00+00:00",
+      "pnl": 19.6241,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-05-30T13:00:00+00:00",
+      "exit": "2026-06-01T17:00:00+00:00",
+      "pnl": -80.0546,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-06-02T00:00:00+00:00",
+      "exit": "2026-06-02T15:00:00+00:00",
+      "pnl": 36.73,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-06-01T22:00:00+00:00",
+      "exit": "2026-06-02T18:00:00+00:00",
+      "pnl": 114.3888,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-03T16:00:00+00:00",
+      "exit": "2026-06-03T22:00:00+00:00",
+      "pnl": 62.0165,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-06-02T17:00:00+00:00",
+      "exit": "2026-06-04T10:00:00+00:00",
+      "pnl": -148.6925,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-06-04T01:00:00+00:00",
+      "exit": "2026-06-04T11:00:00+00:00",
+      "pnl": -154.9385,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-05T00:00:00+00:00",
+      "exit": "2026-06-05T08:00:00+00:00",
+      "pnl": 28.4864,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-06-05T00:00:00+00:00",
+      "exit": "2026-06-05T19:00:00+00:00",
+      "pnl": 61.4988,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-06-06T17:00:00+00:00",
+      "exit": "2026-06-07T23:00:00+00:00",
+      "pnl": -91.4961,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-06-06T22:00:00+00:00",
+      "exit": "2026-06-07T23:00:00+00:00",
+      "pnl": -55.2841,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-08T07:00:00+00:00",
+      "exit": "2026-06-08T18:00:00+00:00",
+      "pnl": 19.6916,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-06-08T06:00:00+00:00",
+      "exit": "2026-06-13T16:00:00+00:00",
+      "pnl": 89.9719,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-06T14:00:00+00:00",
+      "exit": "2026-06-14T22:00:00+00:00",
+      "pnl": -68.4639,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-06-09T02:00:00+00:00",
+      "exit": "2026-06-14T23:00:00+00:00",
+      "pnl": 27.8319,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-17T02:00:00+00:00",
+      "exit": "2026-06-17T20:00:00+00:00",
+      "pnl": -28.3823,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-06-16T12:00:00+00:00",
+      "exit": "2026-06-17T23:00:00+00:00",
+      "pnl": -31.6037,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-06-14T08:00:00+00:00",
+      "exit": "2026-06-18T16:00:00+00:00",
+      "pnl": -97.513,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-18T04:00:00+00:00",
+      "exit": "2026-06-18T17:00:00+00:00",
+      "pnl": 14.1577,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-18T17:00:00+00:00",
+      "exit": "2026-06-19T03:00:00+00:00",
+      "pnl": 18.8896,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-06-21T23:00:00+00:00",
+      "exit": "2026-06-22T03:00:00+00:00",
+      "pnl": 13.3332,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-06-19T14:00:00+00:00",
+      "exit": "2026-06-22T12:00:00+00:00",
+      "pnl": -34.1449,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-22T21:00:00+00:00",
+      "exit": "2026-06-23T05:00:00+00:00",
+      "pnl": 18.2255,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-23T01:00:00+00:00",
+      "exit": "2026-06-23T09:00:00+00:00",
+      "pnl": -32.491,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-06-23T07:00:00+00:00",
+      "exit": "2026-06-24T16:00:00+00:00",
+      "pnl": -38.5211,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-06-22T23:00:00+00:00",
+      "exit": "2026-06-24T17:00:00+00:00",
+      "pnl": 50.3637,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-06-25T08:00:00+00:00",
+      "exit": "2026-06-25T14:00:00+00:00",
+      "pnl": 69.1468,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-25T14:00:00+00:00",
+      "exit": "2026-06-26T08:00:00+00:00",
+      "pnl": -40.6984,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-06-24T16:00:00+00:00",
+      "exit": "2026-06-28T22:00:00+00:00",
+      "pnl": 83.6287,
+      "reason": "take",
+      "ambiguous": false
+    }
+  ],
+  "daily_equity": [
+    [
+      "2025-10-29T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-10-30T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-10-31T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-01T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-02T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-03T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-04T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-05T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-06T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2025-11-07T00:00:00+00:00",
+      5025.19
+    ],
+    [
+      "2025-11-08T00:00:00+00:00",
+      5113.03
+    ],
+    [
+      "2025-11-09T00:00:00+00:00",
+      5202.79
+    ],
+    [
+      "2025-11-10T00:00:00+00:00",
+      5070.22
+    ],
+    [
+      "2025-11-11T00:00:00+00:00",
+      4813.32
+    ],
+    [
+      "2025-11-12T00:00:00+00:00",
+      4551.06
+    ],
+    [
+      "2025-11-13T00:00:00+00:00",
+      4644.7
+    ],
+    [
+      "2025-11-14T00:00:00+00:00",
+      4669.48
+    ],
+    [
+      "2025-11-15T00:00:00+00:00",
+      4831.37
+    ],
+    [
+      "2025-11-16T00:00:00+00:00",
+      5051.43
+    ],
+    [
+      "2025-11-17T00:00:00+00:00",
+      5139.44
+    ],
+    [
+      "2025-11-18T00:00:00+00:00",
+      5003.41
+    ],
+    [
+      "2025-11-19T00:00:00+00:00",
+      4944.0
+    ],
+    [
+      "2025-11-20T00:00:00+00:00",
+      4810.42
+    ],
+    [
+      "2025-11-21T00:00:00+00:00",
+      4841.49
+    ],
+    [
+      "2025-11-22T00:00:00+00:00",
+      5014.34
+    ],
+    [
+      "2025-11-23T00:00:00+00:00",
+      5056.48
+    ],
+    [
+      "2025-11-24T00:00:00+00:00",
+      5062.47
+    ],
+    [
+      "2025-11-25T00:00:00+00:00",
+      4964.15
+    ],
+    [
+      "2025-11-26T00:00:00+00:00",
+      4922.17
+    ],
+    [
+      "2025-11-27T00:00:00+00:00",
+      4865.66
+    ],
+    [
+      "2025-11-28T00:00:00+00:00",
+      4966.29
+    ],
+    [
+      "2025-11-29T00:00:00+00:00",
+      5013.01
+    ],
+    [
+      "2025-11-30T00:00:00+00:00",
+      5000.6
+    ],
+    [
+      "2025-12-01T00:00:00+00:00",
+      5073.35
+    ],
+    [
+      "2025-12-02T00:00:00+00:00",
+      5028.39
+    ],
+    [
+      "2025-12-03T00:00:00+00:00",
+      5158.96
+    ],
+    [
+      "2025-12-04T00:00:00+00:00",
+      5072.27
+    ],
+    [
+      "2025-12-05T00:00:00+00:00",
+      4958.48
+    ],
+    [
+      "2025-12-06T00:00:00+00:00",
+      4789.71
+    ],
+    [
+      "2025-12-07T00:00:00+00:00",
+      4782.06
+    ],
+    [
+      "2025-12-08T00:00:00+00:00",
+      4813.95
+    ],
+    [
+      "2025-12-09T00:00:00+00:00",
+      4830.88
+    ],
+    [
+      "2025-12-10T00:00:00+00:00",
+      4844.04
+    ],
+    [
+      "2025-12-11T00:00:00+00:00",
+      4772.91
+    ],
+    [
+      "2025-12-12T00:00:00+00:00",
+      4917.64
+    ],
+    [
+      "2025-12-13T00:00:00+00:00",
+      4925.69
+    ],
+    [
+      "2025-12-14T00:00:00+00:00",
+      4871.41
+    ],
+    [
+      "2025-12-15T00:00:00+00:00",
+      4820.44
+    ],
+    [
+      "2025-12-16T00:00:00+00:00",
+      4886.78
+    ],
+    [
+      "2025-12-17T00:00:00+00:00",
+      4823.33
+    ],
+    [
+      "2025-12-18T00:00:00+00:00",
+      4890.54
+    ],
+    [
+      "2025-12-19T00:00:00+00:00",
+      4858.67
+    ],
+    [
+      "2025-12-20T00:00:00+00:00",
+      4732.05
+    ],
+    [
+      "2025-12-21T00:00:00+00:00",
+      4721.35
+    ],
+    [
+      "2025-12-22T00:00:00+00:00",
+      4680.92
+    ],
+    [
+      "2025-12-23T00:00:00+00:00",
+      4662.79
+    ],
+    [
+      "2025-12-24T00:00:00+00:00",
+      4658.77
+    ],
+    [
+      "2025-12-25T00:00:00+00:00",
+      4669.23
+    ],
+    [
+      "2025-12-26T00:00:00+00:00",
+      4716.5
+    ],
+    [
+      "2025-12-27T00:00:00+00:00",
+      4706.6
+    ],
+    [
+      "2025-12-28T00:00:00+00:00",
+      4655.84
+    ],
+    [
+      "2025-12-29T00:00:00+00:00",
+      4672.27
+    ],
+    [
+      "2025-12-30T00:00:00+00:00",
+      4774.57
+    ],
+    [
+      "2025-12-31T00:00:00+00:00",
+      4779.03
+    ],
+    [
+      "2026-01-01T00:00:00+00:00",
+      4786.18
+    ],
+    [
+      "2026-01-02T00:00:00+00:00",
+      4774.93
+    ],
+    [
+      "2026-01-03T00:00:00+00:00",
+      4733.9
+    ],
+    [
+      "2026-01-04T00:00:00+00:00",
+      4724.79
+    ],
+    [
+      "2026-01-05T00:00:00+00:00",
+      4763.83
+    ],
+    [
+      "2026-01-06T00:00:00+00:00",
+      4780.33
+    ],
+    [
+      "2026-01-07T00:00:00+00:00",
+      4757.53
+    ],
+    [
+      "2026-01-08T00:00:00+00:00",
+      4685.17
+    ],
+    [
+      "2026-01-09T00:00:00+00:00",
+      4672.88
+    ],
+    [
+      "2026-01-10T00:00:00+00:00",
+      4672.14
+    ],
+    [
+      "2026-01-11T00:00:00+00:00",
+      4678.03
+    ],
+    [
+      "2026-01-12T00:00:00+00:00",
+      4671.31
+    ],
+    [
+      "2026-01-13T00:00:00+00:00",
+      4677.94
+    ],
+    [
+      "2026-01-14T00:00:00+00:00",
+      4543.21
+    ],
+    [
+      "2026-01-15T00:00:00+00:00",
+      4611.21
+    ],
+    [
+      "2026-01-16T00:00:00+00:00",
+      4583.37
+    ],
+    [
+      "2026-01-17T00:00:00+00:00",
+      4570.97
+    ],
+    [
+      "2026-01-18T00:00:00+00:00",
+      4535.57
+    ],
+    [
+      "2026-01-19T00:00:00+00:00",
+      4499.19
+    ],
+    [
+      "2026-01-20T00:00:00+00:00",
+      4482.4
+    ],
+    [
+      "2026-01-21T00:00:00+00:00",
+      4525.6
+    ],
+    [
+      "2026-01-22T00:00:00+00:00",
+      4453.98
+    ],
+    [
+      "2026-01-23T00:00:00+00:00",
+      4471.33
+    ],
+    [
+      "2026-01-24T00:00:00+00:00",
+      4498.82
+    ],
+    [
+      "2026-01-25T00:00:00+00:00",
+      4499.41
+    ],
+    [
+      "2026-01-26T00:00:00+00:00",
+      4555.48
+    ],
+    [
+      "2026-01-27T00:00:00+00:00",
+      4525.59
+    ],
+    [
+      "2026-01-28T00:00:00+00:00",
+      4536.02
+    ],
+    [
+      "2026-01-29T00:00:00+00:00",
+      4545.82
+    ],
+    [
+      "2026-01-30T00:00:00+00:00",
+      4589.53
+    ],
+    [
+      "2026-01-31T00:00:00+00:00",
+      4582.17
+    ],
+    [
+      "2026-02-01T00:00:00+00:00",
+      4763.62
+    ],
+    [
+      "2026-02-02T00:00:00+00:00",
+      4763.62
+    ],
+    [
+      "2026-02-03T00:00:00+00:00",
+      4755.58
+    ],
+    [
+      "2026-02-04T00:00:00+00:00",
+      4884.23
+    ],
+    [
+      "2026-02-05T00:00:00+00:00",
+      4925.4
+    ],
+    [
+      "2026-02-06T00:00:00+00:00",
+      4807.6
+    ],
+    [
+      "2026-02-07T00:00:00+00:00",
+      4807.6
+    ],
+    [
+      "2026-02-08T00:00:00+00:00",
+      4813.05
+    ],
+    [
+      "2026-02-09T00:00:00+00:00",
+      4795.98
+    ],
+    [
+      "2026-02-10T00:00:00+00:00",
+      4799.48
+    ],
+    [
+      "2026-02-11T00:00:00+00:00",
+      4708.28
+    ],
+    [
+      "2026-02-12T00:00:00+00:00",
+      4676.28
+    ],
+    [
+      "2026-02-13T00:00:00+00:00",
+      4654.14
+    ],
+    [
+      "2026-02-14T00:00:00+00:00",
+      4768.75
+    ],
+    [
+      "2026-02-15T00:00:00+00:00",
+      4689.63
+    ],
+    [
+      "2026-02-16T00:00:00+00:00",
+      4785.57
+    ],
+    [
+      "2026-02-17T00:00:00+00:00",
+      4766.15
+    ],
+    [
+      "2026-02-18T00:00:00+00:00",
+      4790.51
+    ],
+    [
+      "2026-02-19T00:00:00+00:00",
+      4775.93
+    ],
+    [
+      "2026-02-20T00:00:00+00:00",
+      4775.37
+    ],
+    [
+      "2026-02-21T00:00:00+00:00",
+      4731.12
+    ],
+    [
+      "2026-02-22T00:00:00+00:00",
+      4698.42
+    ],
+    [
+      "2026-02-23T00:00:00+00:00",
+      4770.02
+    ],
+    [
+      "2026-02-24T00:00:00+00:00",
+      4794.52
+    ],
+    [
+      "2026-02-25T00:00:00+00:00",
+      4792.42
+    ],
+    [
+      "2026-02-26T00:00:00+00:00",
+      4705.28
+    ],
+    [
+      "2026-02-27T00:00:00+00:00",
+      4701.06
+    ],
+    [
+      "2026-02-28T00:00:00+00:00",
+      4695.1
+    ],
+    [
+      "2026-03-01T00:00:00+00:00",
+      4690.1
+    ],
+    [
+      "2026-03-02T00:00:00+00:00",
+      4720.28
+    ],
+    [
+      "2026-03-03T00:00:00+00:00",
+      4721.98
+    ],
+    [
+      "2026-03-04T00:00:00+00:00",
+      4798.58
+    ],
+    [
+      "2026-03-05T00:00:00+00:00",
+      4795.99
+    ],
+    [
+      "2026-03-06T00:00:00+00:00",
+      4795.99
+    ],
+    [
+      "2026-03-07T00:00:00+00:00",
+      4826.05
+    ],
+    [
+      "2026-03-08T00:00:00+00:00",
+      4902.37
+    ],
+    [
+      "2026-03-09T00:00:00+00:00",
+      4924.74
+    ],
+    [
+      "2026-03-10T00:00:00+00:00",
+      4884.61
+    ],
+    [
+      "2026-03-11T00:00:00+00:00",
+      4876.97
+    ],
+    [
+      "2026-03-12T00:00:00+00:00",
+      4954.79
+    ],
+    [
+      "2026-03-13T00:00:00+00:00",
+      4928.0
+    ],
+    [
+      "2026-03-14T00:00:00+00:00",
+      4983.57
+    ],
+    [
+      "2026-03-15T00:00:00+00:00",
+      4944.5
+    ],
+    [
+      "2026-03-16T00:00:00+00:00",
+      4984.71
+    ],
+    [
+      "2026-03-17T00:00:00+00:00",
+      4966.39
+    ],
+    [
+      "2026-03-18T00:00:00+00:00",
+      5003.2
+    ],
+    [
+      "2026-03-19T00:00:00+00:00",
+      4976.23
+    ],
+    [
+      "2026-03-20T00:00:00+00:00",
+      4976.69
+    ],
+    [
+      "2026-03-21T00:00:00+00:00",
+      4973.53
+    ],
+    [
+      "2026-03-22T00:00:00+00:00",
+      5075.7
+    ],
+    [
+      "2026-03-23T00:00:00+00:00",
+      5135.18
+    ],
+    [
+      "2026-03-24T00:00:00+00:00",
+      5086.9
+    ],
+    [
+      "2026-03-25T00:00:00+00:00",
+      5027.34
+    ],
+    [
+      "2026-03-26T00:00:00+00:00",
+      5049.63
+    ],
+    [
+      "2026-03-27T00:00:00+00:00",
+      5175.14
+    ],
+    [
+      "2026-03-28T00:00:00+00:00",
+      5229.33
+    ],
+    [
+      "2026-03-29T00:00:00+00:00",
+      5251.17
+    ],
+    [
+      "2026-03-30T00:00:00+00:00",
+      5207.17
+    ],
+    [
+      "2026-03-31T00:00:00+00:00",
+      5215.24
+    ],
+    [
+      "2026-04-01T00:00:00+00:00",
+      5216.71
+    ],
+    [
+      "2026-04-02T00:00:00+00:00",
+      5194.96
+    ],
+    [
+      "2026-04-03T00:00:00+00:00",
+      5123.55
+    ],
+    [
+      "2026-04-04T00:00:00+00:00",
+      5075.0
+    ],
+    [
+      "2026-04-05T00:00:00+00:00",
+      5124.3
+    ],
+    [
+      "2026-04-06T00:00:00+00:00",
+      5086.88
+    ],
+    [
+      "2026-04-07T00:00:00+00:00",
+      5113.2
+    ],
+    [
+      "2026-04-08T00:00:00+00:00",
+      5260.3
+    ],
+    [
+      "2026-04-09T00:00:00+00:00",
+      5243.64
+    ],
+    [
+      "2026-04-10T00:00:00+00:00",
+      5339.32
+    ],
+    [
+      "2026-04-11T00:00:00+00:00",
+      5365.37
+    ],
+    [
+      "2026-04-12T00:00:00+00:00",
+      5362.46
+    ],
+    [
+      "2026-04-13T00:00:00+00:00",
+      5308.77
+    ],
+    [
+      "2026-04-14T00:00:00+00:00",
+      5290.18
+    ],
+    [
+      "2026-04-15T00:00:00+00:00",
+      5341.86
+    ],
+    [
+      "2026-04-16T00:00:00+00:00",
+      5369.82
+    ],
+    [
+      "2026-04-17T00:00:00+00:00",
+      5339.23
+    ],
+    [
+      "2026-04-18T00:00:00+00:00",
+      5286.07
+    ],
+    [
+      "2026-04-19T00:00:00+00:00",
+      5204.24
+    ],
+    [
+      "2026-04-20T00:00:00+00:00",
+      5243.77
+    ],
+    [
+      "2026-04-21T00:00:00+00:00",
+      5222.01
+    ],
+    [
+      "2026-04-22T00:00:00+00:00",
+      5210.26
+    ],
+    [
+      "2026-04-23T00:00:00+00:00",
+      5108.96
+    ],
+    [
+      "2026-04-24T00:00:00+00:00",
+      5196.08
+    ],
+    [
+      "2026-04-25T00:00:00+00:00",
+      5190.65
+    ],
+    [
+      "2026-04-26T00:00:00+00:00",
+      5203.22
+    ],
+    [
+      "2026-04-27T00:00:00+00:00",
+      5181.23
+    ],
+    [
+      "2026-04-28T00:00:00+00:00",
+      5220.02
+    ],
+    [
+      "2026-04-29T00:00:00+00:00",
+      5137.03
+    ],
+    [
+      "2026-04-30T00:00:00+00:00",
+      5203.2
+    ],
+    [
+      "2026-05-01T00:00:00+00:00",
+      5199.88
+    ],
+    [
+      "2026-05-02T00:00:00+00:00",
+      5211.69
+    ],
+    [
+      "2026-05-03T00:00:00+00:00",
+      5227.21
+    ],
+    [
+      "2026-05-04T00:00:00+00:00",
+      5218.75
+    ],
+    [
+      "2026-05-05T00:00:00+00:00",
+      5262.5
+    ],
+    [
+      "2026-05-06T00:00:00+00:00",
+      5389.94
+    ],
+    [
+      "2026-05-07T00:00:00+00:00",
+      5408.25
+    ],
+    [
+      "2026-05-08T00:00:00+00:00",
+      5370.36
+    ],
+    [
+      "2026-05-09T00:00:00+00:00",
+      5372.4
+    ],
+    [
+      "2026-05-10T00:00:00+00:00",
+      5366.9
+    ],
+    [
+      "2026-05-11T00:00:00+00:00",
+      5351.37
+    ],
+    [
+      "2026-05-12T00:00:00+00:00",
+      5423.34
+    ],
+    [
+      "2026-05-13T00:00:00+00:00",
+      5412.76
+    ],
+    [
+      "2026-05-14T00:00:00+00:00",
+      5503.94
+    ],
+    [
+      "2026-05-15T00:00:00+00:00",
+      5429.05
+    ],
+    [
+      "2026-05-16T00:00:00+00:00",
+      5560.41
+    ],
+    [
+      "2026-05-17T00:00:00+00:00",
+      5550.1
+    ],
+    [
+      "2026-05-18T00:00:00+00:00",
+      5531.64
+    ],
+    [
+      "2026-05-19T00:00:00+00:00",
+      5555.9
+    ],
+    [
+      "2026-05-20T00:00:00+00:00",
+      5639.09
+    ],
+    [
+      "2026-05-21T00:00:00+00:00",
+      5664.11
+    ],
+    [
+      "2026-05-22T00:00:00+00:00",
+      5637.33
+    ],
+    [
+      "2026-05-23T00:00:00+00:00",
+      5734.13
+    ],
+    [
+      "2026-05-24T00:00:00+00:00",
+      5685.9
+    ],
+    [
+      "2026-05-25T00:00:00+00:00",
+      5719.75
+    ],
+    [
+      "2026-05-26T00:00:00+00:00",
+      5592.47
+    ],
+    [
+      "2026-05-27T00:00:00+00:00",
+      5492.33
+    ],
+    [
+      "2026-05-28T00:00:00+00:00",
+      5429.44
+    ],
+    [
+      "2026-05-29T00:00:00+00:00",
+      5429.85
+    ],
+    [
+      "2026-05-30T00:00:00+00:00",
+      5411.52
+    ],
+    [
+      "2026-05-31T00:00:00+00:00",
+      5375.23
+    ],
+    [
+      "2026-06-01T00:00:00+00:00",
+      5329.43
+    ],
+    [
+      "2026-06-02T00:00:00+00:00",
+      5267.06
+    ],
+    [
+      "2026-06-03T00:00:00+00:00",
+      5392.02
+    ],
+    [
+      "2026-06-04T00:00:00+00:00",
+      5488.27
+    ],
+    [
+      "2026-06-05T00:00:00+00:00",
+      5182.99
+    ],
+    [
+      "2026-06-06T00:00:00+00:00",
+      5272.97
+    ],
+    [
+      "2026-06-07T00:00:00+00:00",
+      5262.83
+    ],
+    [
+      "2026-06-08T00:00:00+00:00",
+      5082.63
+    ],
+    [
+      "2026-06-09T00:00:00+00:00",
+      5107.05
+    ],
+    [
+      "2026-06-10T00:00:00+00:00",
+      5087.51
+    ],
+    [
+      "2026-06-11T00:00:00+00:00",
+      5050.79
+    ],
+    [
+      "2026-06-12T00:00:00+00:00",
+      5074.47
+    ],
+    [
+      "2026-06-13T00:00:00+00:00",
+      5077.87
+    ],
+    [
+      "2026-06-14T00:00:00+00:00",
+      5179.14
+    ],
+    [
+      "2026-06-15T00:00:00+00:00",
+      5215.61
+    ],
+    [
+      "2026-06-16T00:00:00+00:00",
+      5175.1
+    ],
+    [
+      "2026-06-17T00:00:00+00:00",
+      5132.47
+    ],
+    [
+      "2026-06-18T00:00:00+00:00",
+      5083.51
+    ],
+    [
+      "2026-06-19T00:00:00+00:00",
+      5070.2
+    ],
+    [
+      "2026-06-20T00:00:00+00:00",
+      5062.48
+    ],
+    [
+      "2026-06-21T00:00:00+00:00",
+      5051.03
+    ],
+    [
+      "2026-06-22T00:00:00+00:00",
+      5049.49
+    ],
+    [
+      "2026-06-23T00:00:00+00:00",
+      5042.57
+    ],
+    [
+      "2026-06-24T00:00:00+00:00",
+      5023.4
+    ],
+    [
+      "2026-06-25T00:00:00+00:00",
+      5023.86
+    ],
+    [
+      "2026-06-26T00:00:00+00:00",
+      5054.78
+    ],
+    [
+      "2026-06-27T00:00:00+00:00",
+      5016.43
+    ],
+    [
+      "2026-06-28T00:00:00+00:00",
+      5082.21
+    ],
+    [
+      "2026-06-29T00:00:00+00:00",
+      5161.94
+    ],
+    [
+      "2026-06-30T00:00:00+00:00",
+      5171.69
+    ]
+  ]
+}
