@@ -74,7 +74,7 @@ def summarize(es):
    decided=[e["reversal_first"] for e in subset if e["reversal_first"] is not None]
    result[group+":"+area]=dict(n=len(subset),resolved=len(decided),reversal_first_rate_pct=rate(decided),fourth_wave_rate_pct=rate([e["fourth_wave"] for e in subset]),median_reversal_mfe_pct=med([e["rev_mfe_pct"] for e in subset]))
  for key in sorted({k for e in es for k in e["outcomes"]}):
-  vals=[e["outcomes"][key] for e in es if e["group"]=="fade" and e["outcomes"][key] is not None]
+  vals=[e["outcomes"][key] for e in es if e["group"]=="fade" and key in e["outcomes"] and e["outcomes"][key] is not None]
   result["fade_threshold:"+key]=dict(resolved=len(vals),reversal_first_rate_pct=rate(vals))
  return result
 all_events=[];by_market={}
