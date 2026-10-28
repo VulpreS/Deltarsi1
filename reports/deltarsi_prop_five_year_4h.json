@@ -1,0 +1,9708 @@
+{
+  "description": "Native 4H closed-bar DeltaRSI; 4H stop-first conservative fills; trail updates after current bar; 5ATR stop/take; $1000 nominal, max 3 positions; 0.08% fee per side + 0.03% full spread; no funding/slippage; continuous $5000; assets eligible after their own data starts; approximate daily/intrabar risk on 4H OHLC; in-sample.",
+  "start": "2021-10-28T00:00:00+00:00",
+  "end": "2026-06-30T04:00:00+00:00",
+  "initial": 5000,
+  "final": 7908.13,
+  "return_pct": 58.163,
+  "max_dd_pct": 56.388,
+  "min_intrabar_equity": 2396.23,
+  "max_intrabar_daily_loss": 469.77,
+  "daily_breach_days": 23,
+  "total_breach": true,
+  "first_breach": {
+    "time": "2022-02-05T00:00:00+00:00",
+    "type": "total"
+  },
+  "closed_trades": 348,
+  "win_pct": 61.21,
+  "pf": 1.174,
+  "ambiguous_stop_take_bars": 7,
+  "skipped_signals": 174,
+  "max_open": 3,
+  "open_positions_end": [
+    "ICPUSDT"
+  ],
+  "sources": {
+    "BTCUSDT": {
+      "first": "2021-10-28T00:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
+      "bars": 10957,
+      "signals": 180,
+      "sha256": "b9adb2c0ce4cf88e62e576a98bf9824c0523caf274273918fe6552592fa01372"
+    },
+    "ETHUSDT": {
+      "first": "2021-10-28T00:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
+      "bars": 10957,
+      "signals": 161,
+      "sha256": "60e65493fea67b3f45323f61e81f917db3cf84163022a4efa10a3b628902486c"
+    },
+    "ICPUSDT": {
+      "first": "2021-10-28T00:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
+      "bars": 10957,
+      "signals": 182,
+      "sha256": "efdbbd5a8181a12ed6dee4c92f75aa4f1d8ea249311008cdc36739c3c36ba7a4"
+    },
+    "TONUSDT": {
+      "first": "2024-08-08T08:00:00+00:00",
+      "last": "2026-06-30T00:00:00+00:00",
+      "bars": 4145,
+      "signals": 75,
+      "sha256": "38d2a16042a4a06641ea1d02232bf225a29ca026f1d11f3507e3b1a3e72d2a80"
+    },
+    "BNBUSDT": {
+      "first": "2021-10-28T00:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
+      "bars": 10957,
+      "signals": 162,
+      "sha256": "041f8e40d08d2ba9f231ed2199334cdf79aec04c0a053f917ca437bab74abf37"
+    },
+    "ZECUSDT": {
+      "first": "2021-10-28T00:00:00+00:00",
+      "last": "2026-10-28T00:00:00+00:00",
+      "bars": 10957,
+      "signals": 192,
+      "sha256": "f962ec30593cfec47f571c5fdca74be1103fc93e1dccfaeeab3ba594bb71aa4e"
+    }
+  },
+  "by_symbol": {
+    "BTCUSDT": {
+      "trades": 77,
+      "pnl": -233.32
+    },
+    "ETHUSDT": {
+      "trades": 60,
+      "pnl": 121.15
+    },
+    "ICPUSDT": {
+      "trades": 57,
+      "pnl": 953.74
+    },
+    "TONUSDT": {
+      "trades": 36,
+      "pnl": -324.18
+    },
+    "BNBUSDT": {
+      "trades": 54,
+      "pnl": 1560.55
+    },
+    "ZECUSDT": {
+      "trades": 64,
+      "pnl": 833.02
+    }
+  },
+  "trades": [
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2021-12-04T00:00:00+00:00",
+      "exit": "2021-12-04T08:00:00+00:00",
+      "pnl": -119.6347,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2021-12-08T12:00:00+00:00",
+      "exit": "2021-12-20T08:00:00+00:00",
+      "pnl": 300.1405,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2021-12-22T16:00:00+00:00",
+      "exit": "2021-12-23T20:00:00+00:00",
+      "pnl": -167.4327,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2021-12-23T20:00:00+00:00",
+      "exit": "2022-01-04T16:00:00+00:00",
+      "pnl": -197.3043,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-01-04T16:00:00+00:00",
+      "exit": "2022-01-06T00:00:00+00:00",
+      "pnl": 81.1858,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2021-12-04T08:00:00+00:00",
+      "exit": "2022-01-07T08:00:00+00:00",
+      "pnl": -157.4437,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2021-12-08T04:00:00+00:00",
+      "exit": "2022-01-21T04:00:00+00:00",
+      "pnl": 317.6281,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-01-18T00:00:00+00:00",
+      "exit": "2022-01-21T04:00:00+00:00",
+      "pnl": -99.4438,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-01-18T00:00:00+00:00",
+      "exit": "2022-01-21T04:00:00+00:00",
+      "pnl": -99.3869,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-01-26T00:00:00+00:00",
+      "exit": "2022-02-05T08:00:00+00:00",
+      "pnl": -283.9633,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-02-11T04:00:00+00:00",
+      "exit": "2022-02-20T16:00:00+00:00",
+      "pnl": -184.6882,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-02-18T12:00:00+00:00",
+      "exit": "2022-02-24T04:00:00+00:00",
+      "pnl": -102.374,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-03-13T00:00:00+00:00",
+      "exit": "2022-03-16T08:00:00+00:00",
+      "pnl": 7.1786,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-03-11T12:00:00+00:00",
+      "exit": "2022-03-22T04:00:00+00:00",
+      "pnl": -135.4811,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-03-16T20:00:00+00:00",
+      "exit": "2022-03-28T00:00:00+00:00",
+      "pnl": -117.7853,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-03-23T08:00:00+00:00",
+      "exit": "2022-03-28T00:00:00+00:00",
+      "pnl": 71.364,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-03-29T12:00:00+00:00",
+      "exit": "2022-04-04T16:00:00+00:00",
+      "pnl": -156.2398,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-04-05T04:00:00+00:00",
+      "exit": "2022-04-06T08:00:00+00:00",
+      "pnl": 28.7846,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-04-11T00:00:00+00:00",
+      "exit": "2022-04-11T16:00:00+00:00",
+      "pnl": 44.2139,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-04-08T20:00:00+00:00",
+      "exit": "2022-04-18T00:00:00+00:00",
+      "pnl": 195.827,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-04-17T04:00:00+00:00",
+      "exit": "2022-04-18T12:00:00+00:00",
+      "pnl": 30.7184,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-04-20T08:00:00+00:00",
+      "exit": "2022-04-25T04:00:00+00:00",
+      "pnl": 67.5483,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-01-26T00:00:00+00:00",
+      "exit": "2022-04-30T16:00:00+00:00",
+      "pnl": 322.6957,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-04-25T12:00:00+00:00",
+      "exit": "2022-04-30T20:00:00+00:00",
+      "pnl": -184.4568,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-04-26T16:00:00+00:00",
+      "exit": "2022-05-05T20:00:00+00:00",
+      "pnl": 41.0376,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-05-05T00:00:00+00:00",
+      "exit": "2022-05-05T20:00:00+00:00",
+      "pnl": 60.3684,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-05-13T16:00:00+00:00",
+      "exit": "2022-06-12T16:00:00+00:00",
+      "pnl": 78.258,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-05-13T16:00:00+00:00",
+      "exit": "2022-06-14T04:00:00+00:00",
+      "pnl": 322.1408,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-06-17T16:00:00+00:00",
+      "exit": "2022-07-09T00:00:00+00:00",
+      "pnl": -338.9867,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-06-20T04:00:00+00:00",
+      "exit": "2022-07-18T08:00:00+00:00",
+      "pnl": -322.8629,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-07-15T20:00:00+00:00",
+      "exit": "2022-07-18T16:00:00+00:00",
+      "pnl": -96.9452,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-07-23T04:00:00+00:00",
+      "exit": "2022-07-28T20:00:00+00:00",
+      "pnl": 96.9412,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-07-25T16:00:00+00:00",
+      "exit": "2022-07-29T12:00:00+00:00",
+      "pnl": 103.7835,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-07-28T20:00:00+00:00",
+      "exit": "2022-08-21T04:00:00+00:00",
+      "pnl": 85.0607,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-08-04T12:00:00+00:00",
+      "exit": "2022-08-26T20:00:00+00:00",
+      "pnl": -259.007,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-08-24T04:00:00+00:00",
+      "exit": "2022-08-27T12:00:00+00:00",
+      "pnl": 64.0802,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-08-28T12:00:00+00:00",
+      "exit": "2022-10-11T04:00:00+00:00",
+      "pnl": -192.67,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-05-14T12:00:00+00:00",
+      "exit": "2022-10-13T08:00:00+00:00",
+      "pnl": 449.7792,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-10-17T08:00:00+00:00",
+      "exit": "2022-10-21T20:00:00+00:00",
+      "pnl": 4.6953,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2022-10-17T04:00:00+00:00",
+      "exit": "2022-10-25T16:00:00+00:00",
+      "pnl": -76.378,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-10-23T04:00:00+00:00",
+      "exit": "2022-10-29T20:00:00+00:00",
+      "pnl": -101.5544,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-08-27T00:00:00+00:00",
+      "exit": "2022-10-30T08:00:00+00:00",
+      "pnl": 103.9684,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-10-30T08:00:00+00:00",
+      "exit": "2022-11-01T16:00:00+00:00",
+      "pnl": -93.3097,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-10-30T08:00:00+00:00",
+      "exit": "2022-11-05T12:00:00+00:00",
+      "pnl": 21.8948,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-10-31T12:00:00+00:00",
+      "exit": "2022-11-08T20:00:00+00:00",
+      "pnl": -128.8275,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-11-04T04:00:00+00:00",
+      "exit": "2022-11-08T20:00:00+00:00",
+      "pnl": -116.0312,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-11-08T08:00:00+00:00",
+      "exit": "2022-11-08T20:00:00+00:00",
+      "pnl": -156.5158,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-11-13T16:00:00+00:00",
+      "exit": "2022-12-17T04:00:00+00:00",
+      "pnl": 209.4637,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2022-12-23T16:00:00+00:00",
+      "exit": "2022-12-29T04:00:00+00:00",
+      "pnl": 15.0379,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2022-12-30T00:00:00+00:00",
+      "exit": "2023-01-04T04:00:00+00:00",
+      "pnl": -49.8405,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2022-11-13T20:00:00+00:00",
+      "exit": "2023-01-14T08:00:00+00:00",
+      "pnl": -247.9495,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2022-11-15T20:00:00+00:00",
+      "exit": "2023-01-14T08:00:00+00:00",
+      "pnl": -182.8917,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-01-22T12:00:00+00:00",
+      "exit": "2023-02-02T08:00:00+00:00",
+      "pnl": -89.9393,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-02-01T20:00:00+00:00",
+      "exit": "2023-02-02T08:00:00+00:00",
+      "pnl": 17.8627,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-02-05T08:00:00+00:00",
+      "exit": "2023-02-06T00:00:00+00:00",
+      "pnl": 18.84,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-02-14T08:00:00+00:00",
+      "exit": "2023-02-15T20:00:00+00:00",
+      "pnl": -55.3798,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-01-27T08:00:00+00:00",
+      "exit": "2023-02-17T16:00:00+00:00",
+      "pnl": 159.1283,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-02-06T00:00:00+00:00",
+      "exit": "2023-02-19T16:00:00+00:00",
+      "pnl": 115.0129,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-02-20T12:00:00+00:00",
+      "exit": "2023-02-24T20:00:00+00:00",
+      "pnl": -81.565,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-02-23T08:00:00+00:00",
+      "exit": "2023-03-03T04:00:00+00:00",
+      "pnl": -163.4102,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-03-02T04:00:00+00:00",
+      "exit": "2023-03-09T00:00:00+00:00",
+      "pnl": 156.8199,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-02-22T16:00:00+00:00",
+      "exit": "2023-03-09T20:00:00+00:00",
+      "pnl": -75.4407,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-03-03T12:00:00+00:00",
+      "exit": "2023-03-10T00:00:00+00:00",
+      "pnl": -93.5793,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-03-09T20:00:00+00:00",
+      "exit": "2023-03-13T08:00:00+00:00",
+      "pnl": -65.9668,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-03-21T04:00:00+00:00",
+      "exit": "2023-04-04T16:00:00+00:00",
+      "pnl": 60.0011,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-03-18T16:00:00+00:00",
+      "exit": "2023-04-14T04:00:00+00:00",
+      "pnl": -173.7143,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-03-20T16:00:00+00:00",
+      "exit": "2023-04-16T20:00:00+00:00",
+      "pnl": -180.6798,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-04-26T20:00:00+00:00",
+      "exit": "2023-04-28T08:00:00+00:00",
+      "pnl": -147.5607,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-04-26T20:00:00+00:00",
+      "exit": "2023-05-05T20:00:00+00:00",
+      "pnl": -92.2549,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-05-07T12:00:00+00:00",
+      "exit": "2023-05-08T08:00:00+00:00",
+      "pnl": 20.3246,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-04-26T04:00:00+00:00",
+      "exit": "2023-05-08T20:00:00+00:00",
+      "pnl": 113.9978,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-05-08T12:00:00+00:00",
+      "exit": "2023-05-12T20:00:00+00:00",
+      "pnl": -72.714,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-05-18T16:00:00+00:00",
+      "exit": "2023-05-19T00:00:00+00:00",
+      "pnl": 11.1361,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-05-19T08:00:00+00:00",
+      "exit": "2023-05-23T08:00:00+00:00",
+      "pnl": 29.3461,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-05-24T04:00:00+00:00",
+      "exit": "2023-05-24T20:00:00+00:00",
+      "pnl": 15.7125,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-05-25T12:00:00+00:00",
+      "exit": "2023-05-28T08:00:00+00:00",
+      "pnl": 31.5388,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-04-28T20:00:00+00:00",
+      "exit": "2023-06-05T16:00:00+00:00",
+      "pnl": -81.8483,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-05-13T08:00:00+00:00",
+      "exit": "2023-06-05T20:00:00+00:00",
+      "pnl": 112.7115,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-05-28T08:00:00+00:00",
+      "exit": "2023-06-06T00:00:00+00:00",
+      "pnl": 20.4721,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-06-06T00:00:00+00:00",
+      "exit": "2023-06-07T00:00:00+00:00",
+      "pnl": 40.8611,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-06-18T16:00:00+00:00",
+      "exit": "2023-06-23T20:00:00+00:00",
+      "pnl": -97.3079,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-06-30T04:00:00+00:00",
+      "exit": "2023-07-08T20:00:00+00:00",
+      "pnl": -120.9645,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-07-21T16:00:00+00:00",
+      "exit": "2023-08-15T20:00:00+00:00",
+      "pnl": -117.169,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-06-16T00:00:00+00:00",
+      "exit": "2023-08-18T00:00:00+00:00",
+      "pnl": 163.9426,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-06-24T20:00:00+00:00",
+      "exit": "2023-08-21T12:00:00+00:00",
+      "pnl": -110.2351,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-08-22T12:00:00+00:00",
+      "exit": "2023-08-23T04:00:00+00:00",
+      "pnl": -2.1444,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-08-21T16:00:00+00:00",
+      "exit": "2023-08-29T16:00:00+00:00",
+      "pnl": -102.0369,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-08-23T04:00:00+00:00",
+      "exit": "2023-08-29T16:00:00+00:00",
+      "pnl": -54.314,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-08-29T20:00:00+00:00",
+      "exit": "2023-08-31T20:00:00+00:00",
+      "pnl": 24.7954,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-08-21T16:00:00+00:00",
+      "exit": "2023-09-10T08:00:00+00:00",
+      "pnl": 94.6687,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-09-10T08:00:00+00:00",
+      "exit": "2023-09-11T12:00:00+00:00",
+      "pnl": -68.3575,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-09-02T08:00:00+00:00",
+      "exit": "2023-09-12T00:00:00+00:00",
+      "pnl": -61.5913,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-09-07T08:00:00+00:00",
+      "exit": "2023-09-20T12:00:00+00:00",
+      "pnl": -76.0524,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-09-21T16:00:00+00:00",
+      "exit": "2023-09-28T16:00:00+00:00",
+      "pnl": 23.3784,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-09-23T04:00:00+00:00",
+      "exit": "2023-09-28T20:00:00+00:00",
+      "pnl": 13.8378,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-09-15T12:00:00+00:00",
+      "exit": "2023-10-01T12:00:00+00:00",
+      "pnl": -104.4433,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-09-29T12:00:00+00:00",
+      "exit": "2023-10-02T04:00:00+00:00",
+      "pnl": -61.7878,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-10-05T20:00:00+00:00",
+      "exit": "2023-10-09T12:00:00+00:00",
+      "pnl": -72.9944,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-10-08T08:00:00+00:00",
+      "exit": "2023-10-09T20:00:00+00:00",
+      "pnl": 30.4849,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-10-09T12:00:00+00:00",
+      "exit": "2023-10-10T00:00:00+00:00",
+      "pnl": 3.8893,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-10-09T12:00:00+00:00",
+      "exit": "2023-10-15T04:00:00+00:00",
+      "pnl": -83.9676,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-10-20T04:00:00+00:00",
+      "exit": "2023-10-22T00:00:00+00:00",
+      "pnl": 28.612,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-10-15T00:00:00+00:00",
+      "exit": "2023-10-23T04:00:00+00:00",
+      "pnl": -61.5366,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-10-21T20:00:00+00:00",
+      "exit": "2023-10-24T00:00:00+00:00",
+      "pnl": -83.0041,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-10-28T04:00:00+00:00",
+      "exit": "2023-10-29T20:00:00+00:00",
+      "pnl": 133.8271,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-10-26T20:00:00+00:00",
+      "exit": "2023-11-05T08:00:00+00:00",
+      "pnl": 96.3216,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-11-07T12:00:00+00:00",
+      "exit": "2023-11-09T04:00:00+00:00",
+      "pnl": -54.4844,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-10-28T04:00:00+00:00",
+      "exit": "2023-11-09T16:00:00+00:00",
+      "pnl": 121.0387,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-11-02T12:00:00+00:00",
+      "exit": "2023-11-13T00:00:00+00:00",
+      "pnl": 140.263,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-11-13T08:00:00+00:00",
+      "exit": "2023-11-14T20:00:00+00:00",
+      "pnl": -56.0747,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-11-13T16:00:00+00:00",
+      "exit": "2023-11-14T20:00:00+00:00",
+      "pnl": -76.9137,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-11-13T08:00:00+00:00",
+      "exit": "2023-11-20T20:00:00+00:00",
+      "pnl": 81.8266,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-11-21T00:00:00+00:00",
+      "exit": "2023-11-22T00:00:00+00:00",
+      "pnl": 98.6365,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-11-15T20:00:00+00:00",
+      "exit": "2023-12-01T16:00:00+00:00",
+      "pnl": 26.8774,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-11-15T12:00:00+00:00",
+      "exit": "2023-12-09T04:00:00+00:00",
+      "pnl": 193.6767,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-12-09T16:00:00+00:00",
+      "exit": "2023-12-11T04:00:00+00:00",
+      "pnl": -62.5533,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2023-12-06T20:00:00+00:00",
+      "exit": "2023-12-18T12:00:00+00:00",
+      "pnl": -122.727,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2023-11-22T16:00:00+00:00",
+      "exit": "2023-12-26T12:00:00+00:00",
+      "pnl": 202.1881,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2023-12-27T16:00:00+00:00",
+      "exit": "2023-12-30T16:00:00+00:00",
+      "pnl": 250.9388,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2023-12-30T16:00:00+00:00",
+      "exit": "2024-01-02T04:00:00+00:00",
+      "pnl": 64.108,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2023-12-22T04:00:00+00:00",
+      "exit": "2024-01-03T20:00:00+00:00",
+      "pnl": 1.9763,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-01-04T04:00:00+00:00",
+      "exit": "2024-01-10T08:00:00+00:00",
+      "pnl": 56.5052,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-01-18T08:00:00+00:00",
+      "exit": "2024-02-06T20:00:00+00:00",
+      "pnl": -129.9333,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-01-06T20:00:00+00:00",
+      "exit": "2024-02-15T04:00:00+00:00",
+      "pnl": 117.7602,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-02-19T08:00:00+00:00",
+      "exit": "2024-02-22T04:00:00+00:00",
+      "pnl": 81.5913,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-02-24T04:00:00+00:00",
+      "exit": "2024-02-26T04:00:00+00:00",
+      "pnl": 54.026,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-02-18T08:00:00+00:00",
+      "exit": "2024-02-27T04:00:00+00:00",
+      "pnl": 52.3414,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-02-26T04:00:00+00:00",
+      "exit": "2024-03-02T20:00:00+00:00",
+      "pnl": 151.0518,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-03-03T16:00:00+00:00",
+      "exit": "2024-03-04T08:00:00+00:00",
+      "pnl": 18.8972,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-03-04T04:00:00+00:00",
+      "exit": "2024-03-05T08:00:00+00:00",
+      "pnl": 54.8331,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-03-06T00:00:00+00:00",
+      "exit": "2024-03-06T16:00:00+00:00",
+      "pnl": 44.4863,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-03-06T00:00:00+00:00",
+      "exit": "2024-03-06T16:00:00+00:00",
+      "pnl": 79.9533,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-03-08T20:00:00+00:00",
+      "exit": "2024-03-11T16:00:00+00:00",
+      "pnl": 35.5278,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-03-13T20:00:00+00:00",
+      "exit": "2024-03-16T20:00:00+00:00",
+      "pnl": -185.9389,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-03-15T00:00:00+00:00",
+      "exit": "2024-03-19T08:00:00+00:00",
+      "pnl": -99.5917,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-01-05T04:00:00+00:00",
+      "exit": "2024-03-26T04:00:00+00:00",
+      "pnl": 373.068,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-03-29T12:00:00+00:00",
+      "exit": "2024-04-02T04:00:00+00:00",
+      "pnl": -128.3614,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-04-02T08:00:00+00:00",
+      "exit": "2024-04-05T00:00:00+00:00",
+      "pnl": 28.8357,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-04-05T16:00:00+00:00",
+      "exit": "2024-04-12T20:00:00+00:00",
+      "pnl": -198.8361,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-03-22T12:00:00+00:00",
+      "exit": "2024-04-14T00:00:00+00:00",
+      "pnl": 92.1579,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-04-13T00:00:00+00:00",
+      "exit": "2024-04-17T16:00:00+00:00",
+      "pnl": -101.5876,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-04-17T12:00:00+00:00",
+      "exit": "2024-04-20T16:00:00+00:00",
+      "pnl": -271.4248,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-04-21T08:00:00+00:00",
+      "exit": "2024-04-29T12:00:00+00:00",
+      "pnl": 36.6805,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-05-01T00:00:00+00:00",
+      "exit": "2024-05-06T16:00:00+00:00",
+      "pnl": 42.9108,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-05-14T16:00:00+00:00",
+      "exit": "2024-05-18T08:00:00+00:00",
+      "pnl": -123.6251,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-05-20T04:00:00+00:00",
+      "exit": "2024-05-21T00:00:00+00:00",
+      "pnl": 42.5957,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-04-18T08:00:00+00:00",
+      "exit": "2024-05-24T00:00:00+00:00",
+      "pnl": -237.1257,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-05-27T04:00:00+00:00",
+      "exit": "2024-05-27T20:00:00+00:00",
+      "pnl": 16.5418,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-03-17T04:00:00+00:00",
+      "exit": "2024-06-05T04:00:00+00:00",
+      "pnl": 214.9282,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-06-07T12:00:00+00:00",
+      "exit": "2024-06-07T20:00:00+00:00",
+      "pnl": 95.4555,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-05-27T04:00:00+00:00",
+      "exit": "2024-06-11T08:00:00+00:00",
+      "pnl": -95.8542,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-06-07T20:00:00+00:00",
+      "exit": "2024-06-11T16:00:00+00:00",
+      "pnl": 104.4311,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-05-28T04:00:00+00:00",
+      "exit": "2024-06-11T20:00:00+00:00",
+      "pnl": 21.0216,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-06-12T20:00:00+00:00",
+      "exit": "2024-06-18T04:00:00+00:00",
+      "pnl": 128.0144,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-06-18T12:00:00+00:00",
+      "exit": "2024-06-21T16:00:00+00:00",
+      "pnl": 20.215,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-06-22T12:00:00+00:00",
+      "exit": "2024-06-24T12:00:00+00:00",
+      "pnl": 25.3698,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-06-21T20:00:00+00:00",
+      "exit": "2024-07-04T04:00:00+00:00",
+      "pnl": 169.0354,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-06-22T12:00:00+00:00",
+      "exit": "2024-07-04T04:00:00+00:00",
+      "pnl": 64.2791,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-06-27T20:00:00+00:00",
+      "exit": "2024-07-04T16:00:00+00:00",
+      "pnl": 98.6773,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-07-11T12:00:00+00:00",
+      "exit": "2024-07-12T08:00:00+00:00",
+      "pnl": 27.3408,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-07-07T16:00:00+00:00",
+      "exit": "2024-07-14T00:00:00+00:00",
+      "pnl": -203.7733,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-07-13T20:00:00+00:00",
+      "exit": "2024-07-15T08:00:00+00:00",
+      "pnl": -77.0859,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-07-11T08:00:00+00:00",
+      "exit": "2024-07-15T20:00:00+00:00",
+      "pnl": -96.1236,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-07-19T16:00:00+00:00",
+      "exit": "2024-07-22T04:00:00+00:00",
+      "pnl": 29.074,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-07-19T16:00:00+00:00",
+      "exit": "2024-07-25T04:00:00+00:00",
+      "pnl": -82.6003,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-07-23T12:00:00+00:00",
+      "exit": "2024-07-27T20:00:00+00:00",
+      "pnl": 30.5846,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-07-19T16:00:00+00:00",
+      "exit": "2024-08-01T20:00:00+00:00",
+      "pnl": -163.048,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-07-29T00:00:00+00:00",
+      "exit": "2024-08-02T16:00:00+00:00",
+      "pnl": 58.964,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-07-27T00:00:00+00:00",
+      "exit": "2024-08-05T08:00:00+00:00",
+      "pnl": 157.5578,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-08-05T16:00:00+00:00",
+      "exit": "2024-08-09T20:00:00+00:00",
+      "pnl": 299.7942,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-08-19T00:00:00+00:00",
+      "exit": "2024-08-22T12:00:00+00:00",
+      "pnl": -105.3367,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-08-19T00:00:00+00:00",
+      "exit": "2024-08-23T20:00:00+00:00",
+      "pnl": -77.2584,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-08-25T12:00:00+00:00",
+      "exit": "2024-08-28T00:00:00+00:00",
+      "pnl": -87.0627,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-08-15T20:00:00+00:00",
+      "exit": "2024-09-04T08:00:00+00:00",
+      "pnl": 67.4318,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-09-14T16:00:00+00:00",
+      "exit": "2024-09-18T16:00:00+00:00",
+      "pnl": -127.2735,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-09-18T20:00:00+00:00",
+      "exit": "2024-09-21T08:00:00+00:00",
+      "pnl": 67.7658,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-09-10T00:00:00+00:00",
+      "exit": "2024-09-22T00:00:00+00:00",
+      "pnl": -99.1406,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2024-09-22T12:00:00+00:00",
+      "exit": "2024-09-27T16:00:00+00:00",
+      "pnl": -83.9789,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-09-14T16:00:00+00:00",
+      "exit": "2024-09-30T16:00:00+00:00",
+      "pnl": -93.9514,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-09-27T12:00:00+00:00",
+      "exit": "2024-10-01T00:00:00+00:00",
+      "pnl": -74.5317,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-09-30T08:00:00+00:00",
+      "exit": "2024-10-01T20:00:00+00:00",
+      "pnl": -48.7933,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2024-09-30T20:00:00+00:00",
+      "exit": "2024-10-01T20:00:00+00:00",
+      "pnl": -93.6474,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-10-05T20:00:00+00:00",
+      "exit": "2024-10-10T08:00:00+00:00",
+      "pnl": -130.8693,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-10-10T08:00:00+00:00",
+      "exit": "2024-10-12T00:00:00+00:00",
+      "pnl": 33.1967,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-10-13T12:00:00+00:00",
+      "exit": "2024-10-14T16:00:00+00:00",
+      "pnl": -56.1229,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-10-14T20:00:00+00:00",
+      "exit": "2024-10-17T20:00:00+00:00",
+      "pnl": 92.6347,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-10-18T08:00:00+00:00",
+      "exit": "2024-10-21T08:00:00+00:00",
+      "pnl": 31.836,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2024-10-12T00:00:00+00:00",
+      "exit": "2024-10-24T00:00:00+00:00",
+      "pnl": 15.9672,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-10-23T08:00:00+00:00",
+      "exit": "2024-11-03T04:00:00+00:00",
+      "pnl": -98.5448,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-10-27T12:00:00+00:00",
+      "exit": "2024-11-03T16:00:00+00:00",
+      "pnl": 55.4422,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-10-17T16:00:00+00:00",
+      "exit": "2024-11-07T00:00:00+00:00",
+      "pnl": 193.0485,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2024-11-08T16:00:00+00:00",
+      "exit": "2024-11-10T12:00:00+00:00",
+      "pnl": -120.094,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-11-06T12:00:00+00:00",
+      "exit": "2024-11-11T04:00:00+00:00",
+      "pnl": -99.4248,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-11-13T16:00:00+00:00",
+      "exit": "2024-11-23T00:00:00+00:00",
+      "pnl": 222.8902,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2024-11-23T04:00:00+00:00",
+      "exit": "2024-11-23T16:00:00+00:00",
+      "pnl": 116.6702,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-11-14T04:00:00+00:00",
+      "exit": "2024-11-25T16:00:00+00:00",
+      "pnl": 77.171,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-11-27T08:00:00+00:00",
+      "exit": "2024-11-28T04:00:00+00:00",
+      "pnl": 62.0412,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-11-27T00:00:00+00:00",
+      "exit": "2024-12-02T20:00:00+00:00",
+      "pnl": 260.1812,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-11-13T16:00:00+00:00",
+      "exit": "2024-12-04T00:00:00+00:00",
+      "pnl": 139.0837,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-11-29T04:00:00+00:00",
+      "exit": "2024-12-05T04:00:00+00:00",
+      "pnl": 74.9377,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2024-12-05T08:00:00+00:00",
+      "exit": "2024-12-10T00:00:00+00:00",
+      "pnl": -162.4241,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-12-08T04:00:00+00:00",
+      "exit": "2024-12-10T00:00:00+00:00",
+      "pnl": -130.9284,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2024-12-09T20:00:00+00:00",
+      "exit": "2024-12-19T20:00:00+00:00",
+      "pnl": -260.4745,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-12-14T08:00:00+00:00",
+      "exit": "2024-12-20T00:00:00+00:00",
+      "pnl": 105.8318,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-12-19T04:00:00+00:00",
+      "exit": "2024-12-20T12:00:00+00:00",
+      "pnl": -116.7187,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2024-12-27T08:00:00+00:00",
+      "exit": "2024-12-30T20:00:00+00:00",
+      "pnl": 27.6772,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2024-12-30T20:00:00+00:00",
+      "exit": "2025-01-03T16:00:00+00:00",
+      "pnl": 155.3952,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2024-12-24T04:00:00+00:00",
+      "exit": "2025-01-13T20:00:00+00:00",
+      "pnl": 100.6245,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-01-07T20:00:00+00:00",
+      "exit": "2025-01-16T12:00:00+00:00",
+      "pnl": 20.9276,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-01-15T12:00:00+00:00",
+      "exit": "2025-01-27T04:00:00+00:00",
+      "pnl": 154.9664,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-01-27T12:00:00+00:00",
+      "exit": "2025-01-27T20:00:00+00:00",
+      "pnl": 21.8814,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-01-31T00:00:00+00:00",
+      "exit": "2025-02-01T04:00:00+00:00",
+      "pnl": 20.0203,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-02-01T16:00:00+00:00",
+      "exit": "2025-02-02T04:00:00+00:00",
+      "pnl": 38.1761,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-01-19T16:00:00+00:00",
+      "exit": "2025-02-02T20:00:00+00:00",
+      "pnl": -123.7886,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2024-12-23T16:00:00+00:00",
+      "exit": "2025-02-03T04:00:00+00:00",
+      "pnl": 129.9997,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-02-02T08:00:00+00:00",
+      "exit": "2025-02-03T04:00:00+00:00",
+      "pnl": -69.4325,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-02-06T20:00:00+00:00",
+      "exit": "2025-02-12T12:00:00+00:00",
+      "pnl": -135.4706,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-02-18T00:00:00+00:00",
+      "exit": "2025-02-20T20:00:00+00:00",
+      "pnl": 9.8215,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-02-21T00:00:00+00:00",
+      "exit": "2025-02-25T00:00:00+00:00",
+      "pnl": 88.2589,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-02-06T20:00:00+00:00",
+      "exit": "2025-02-25T16:00:00+00:00",
+      "pnl": 65.6472,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-02-25T00:00:00+00:00",
+      "exit": "2025-02-28T04:00:00+00:00",
+      "pnl": -120.0278,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-03-02T12:00:00+00:00",
+      "exit": "2025-03-04T04:00:00+00:00",
+      "pnl": 90.7389,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-03-03T20:00:00+00:00",
+      "exit": "2025-03-04T08:00:00+00:00",
+      "pnl": 51.2051,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-03-06T08:00:00+00:00",
+      "exit": "2025-03-07T08:00:00+00:00",
+      "pnl": 45.8234,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-03-07T20:00:00+00:00",
+      "exit": "2025-03-10T00:00:00+00:00",
+      "pnl": 98.3321,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-02-06T20:00:00+00:00",
+      "exit": "2025-03-10T20:00:00+00:00",
+      "pnl": 244.0728,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-03-13T16:00:00+00:00",
+      "exit": "2025-03-25T16:00:00+00:00",
+      "pnl": -202.8199,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-03-13T16:00:00+00:00",
+      "exit": "2025-03-26T12:00:00+00:00",
+      "pnl": -171.525,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-03-27T04:00:00+00:00",
+      "exit": "2025-03-31T12:00:00+00:00",
+      "pnl": -55.5413,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-03-31T16:00:00+00:00",
+      "exit": "2025-04-04T04:00:00+00:00",
+      "pnl": -132.7423,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-04-02T04:00:00+00:00",
+      "exit": "2025-04-06T20:00:00+00:00",
+      "pnl": 68.1218,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-03-07T08:00:00+00:00",
+      "exit": "2025-04-07T08:00:00+00:00",
+      "pnl": -154.7858,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-04-10T16:00:00+00:00",
+      "exit": "2025-04-23T16:00:00+00:00",
+      "pnl": -221.8312,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-04-14T04:00:00+00:00",
+      "exit": "2025-05-09T00:00:00+00:00",
+      "pnl": 262.6673,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-04-25T00:00:00+00:00",
+      "exit": "2025-05-09T08:00:00+00:00",
+      "pnl": 52.1494,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-04-10T16:00:00+00:00",
+      "exit": "2025-05-11T00:00:00+00:00",
+      "pnl": -207.4904,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-05-13T20:00:00+00:00",
+      "exit": "2025-05-25T16:00:00+00:00",
+      "pnl": 189.2443,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-05-27T20:00:00+00:00",
+      "exit": "2025-05-31T00:00:00+00:00",
+      "pnl": 40.2307,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-05-14T20:00:00+00:00",
+      "exit": "2025-05-31T04:00:00+00:00",
+      "pnl": -168.3005,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-06-04T08:00:00+00:00",
+      "exit": "2025-06-06T04:00:00+00:00",
+      "pnl": 39.6312,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-06-06T16:00:00+00:00",
+      "exit": "2025-06-10T08:00:00+00:00",
+      "pnl": 69.4653,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-06-03T12:00:00+00:00",
+      "exit": "2025-06-13T20:00:00+00:00",
+      "pnl": 170.2805,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-06-17T12:00:00+00:00",
+      "exit": "2025-06-21T00:00:00+00:00",
+      "pnl": 51.9639,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-06-13T08:00:00+00:00",
+      "exit": "2025-06-23T00:00:00+00:00",
+      "pnl": -121.8564,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-06-25T16:00:00+00:00",
+      "exit": "2025-07-06T08:00:00+00:00",
+      "pnl": 20.02,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-07-06T20:00:00+00:00",
+      "exit": "2025-07-08T20:00:00+00:00",
+      "pnl": 37.5533,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-06-24T16:00:00+00:00",
+      "exit": "2025-07-14T04:00:00+00:00",
+      "pnl": -147.773,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-07-15T12:00:00+00:00",
+      "exit": "2025-07-16T08:00:00+00:00",
+      "pnl": 43.3018,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-07-15T12:00:00+00:00",
+      "exit": "2025-07-16T08:00:00+00:00",
+      "pnl": 31.8811,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-05-15T12:00:00+00:00",
+      "exit": "2025-07-16T20:00:00+00:00",
+      "pnl": 81.1643,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-07-19T20:00:00+00:00",
+      "exit": "2025-07-25T08:00:00+00:00",
+      "pnl": -139.224,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-07-24T04:00:00+00:00",
+      "exit": "2025-07-25T08:00:00+00:00",
+      "pnl": 19.1659,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-07-25T08:00:00+00:00",
+      "exit": "2025-07-28T00:00:00+00:00",
+      "pnl": 28.6659,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-07-25T08:00:00+00:00",
+      "exit": "2025-07-28T04:00:00+00:00",
+      "pnl": 114.5973,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-07-28T20:00:00+00:00",
+      "exit": "2025-07-31T00:00:00+00:00",
+      "pnl": 7.8663,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-07-31T16:00:00+00:00",
+      "exit": "2025-08-01T20:00:00+00:00",
+      "pnl": -44.5484,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-08-05T04:00:00+00:00",
+      "exit": "2025-08-12T20:00:00+00:00",
+      "pnl": -109.0524,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-08-13T12:00:00+00:00",
+      "exit": "2025-08-20T00:00:00+00:00",
+      "pnl": -149.6116,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-08-04T12:00:00+00:00",
+      "exit": "2025-08-29T16:00:00+00:00",
+      "pnl": -151.5912,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-07-17T16:00:00+00:00",
+      "exit": "2025-08-31T12:00:00+00:00",
+      "pnl": 139.1498,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-08-30T16:00:00+00:00",
+      "exit": "2025-09-07T00:00:00+00:00",
+      "pnl": 133.9259,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-08-20T20:00:00+00:00",
+      "exit": "2025-09-13T12:00:00+00:00",
+      "pnl": 72.8204,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-08-31T12:00:00+00:00",
+      "exit": "2025-09-13T16:00:00+00:00",
+      "pnl": 21.9534,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-09-15T20:00:00+00:00",
+      "exit": "2025-09-17T04:00:00+00:00",
+      "pnl": 9.0985,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-09-08T16:00:00+00:00",
+      "exit": "2025-09-22T04:00:00+00:00",
+      "pnl": 68.0943,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-09-20T00:00:00+00:00",
+      "exit": "2025-09-24T08:00:00+00:00",
+      "pnl": -40.8913,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-09-22T04:00:00+00:00",
+      "exit": "2025-09-24T20:00:00+00:00",
+      "pnl": -124.0695,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-09-23T00:00:00+00:00",
+      "exit": "2025-10-03T00:00:00+00:00",
+      "pnl": 104.1236,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-10-07T08:00:00+00:00",
+      "exit": "2025-10-09T20:00:00+00:00",
+      "pnl": 455.1914,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-10-06T16:00:00+00:00",
+      "exit": "2025-10-10T16:00:00+00:00",
+      "pnl": -71.5009,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-10-01T16:00:00+00:00",
+      "exit": "2025-10-11T00:00:00+00:00",
+      "pnl": 89.1161,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-10-14T12:00:00+00:00",
+      "exit": "2025-10-26T16:00:00+00:00",
+      "pnl": 561.3396,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-10-30T08:00:00+00:00",
+      "exit": "2025-11-01T12:00:00+00:00",
+      "pnl": 120.2338,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-10-16T12:00:00+00:00",
+      "exit": "2025-11-03T16:00:00+00:00",
+      "pnl": -186.5838,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-10-22T00:00:00+00:00",
+      "exit": "2025-11-03T20:00:00+00:00",
+      "pnl": 26.6451,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-03T12:00:00+00:00",
+      "exit": "2025-11-04T00:00:00+00:00",
+      "pnl": 4.5765,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-11-04T04:00:00+00:00",
+      "exit": "2025-11-08T08:00:00+00:00",
+      "pnl": 34.4185,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-11-10T00:00:00+00:00",
+      "exit": "2025-11-14T16:00:00+00:00",
+      "pnl": 100.8265,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-13T20:00:00+00:00",
+      "exit": "2025-11-18T04:00:00+00:00",
+      "pnl": -80.1829,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-11-13T20:00:00+00:00",
+      "exit": "2025-11-21T08:00:00+00:00",
+      "pnl": -140.0169,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-11-20T16:00:00+00:00",
+      "exit": "2025-12-05T20:00:00+00:00",
+      "pnl": 284.3262,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2025-12-04T04:00:00+00:00",
+      "exit": "2025-12-06T00:00:00+00:00",
+      "pnl": 51.613,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-11-24T12:00:00+00:00",
+      "exit": "2025-12-09T20:00:00+00:00",
+      "pnl": -98.3301,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-10T00:00:00+00:00",
+      "exit": "2025-12-11T08:00:00+00:00",
+      "pnl": 26.1248,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-07T20:00:00+00:00",
+      "exit": "2025-12-15T16:00:00+00:00",
+      "pnl": -87.1645,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2025-12-21T12:00:00+00:00",
+      "exit": "2025-12-24T20:00:00+00:00",
+      "pnl": 15.6284,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2025-12-09T08:00:00+00:00",
+      "exit": "2025-12-27T20:00:00+00:00",
+      "pnl": -259.0593,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2025-12-25T12:00:00+00:00",
+      "exit": "2025-12-28T00:00:00+00:00",
+      "pnl": -85.1607,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-01-01T00:00:00+00:00",
+      "exit": "2026-01-02T20:00:00+00:00",
+      "pnl": 100.7878,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2025-12-30T04:00:00+00:00",
+      "exit": "2026-01-04T12:00:00+00:00",
+      "pnl": 113.5267,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-01-06T00:00:00+00:00",
+      "exit": "2026-01-08T08:00:00+00:00",
+      "pnl": -124.4129,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-13T08:00:00+00:00",
+      "exit": "2026-01-13T16:00:00+00:00",
+      "pnl": 124.6307,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2025-12-11T12:00:00+00:00",
+      "exit": "2026-01-13T20:00:00+00:00",
+      "pnl": 84.527,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-08T00:00:00+00:00",
+      "exit": "2026-01-14T04:00:00+00:00",
+      "pnl": 42.3841,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-01-13T20:00:00+00:00",
+      "exit": "2026-01-14T16:00:00+00:00",
+      "pnl": -158.8397,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-01-15T16:00:00+00:00",
+      "exit": "2026-01-16T04:00:00+00:00",
+      "pnl": 24.8015,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-01-18T16:00:00+00:00",
+      "exit": "2026-01-19T04:00:00+00:00",
+      "pnl": -49.2377,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-01-13T20:00:00+00:00",
+      "exit": "2026-01-20T16:00:00+00:00",
+      "pnl": 31.1018,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-01-19T08:00:00+00:00",
+      "exit": "2026-01-21T04:00:00+00:00",
+      "pnl": -61.2685,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-01-18T08:00:00+00:00",
+      "exit": "2026-01-25T20:00:00+00:00",
+      "pnl": -157.8809,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-01-25T04:00:00+00:00",
+      "exit": "2026-01-26T00:00:00+00:00",
+      "pnl": 24.6115,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-01-24T16:00:00+00:00",
+      "exit": "2026-01-29T20:00:00+00:00",
+      "pnl": 49.3401,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-01-28T00:00:00+00:00",
+      "exit": "2026-01-30T04:00:00+00:00",
+      "pnl": 144.4177,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-01-29T20:00:00+00:00",
+      "exit": "2026-01-31T16:00:00+00:00",
+      "pnl": 54.2063,
+      "reason": "stop",
+      "ambiguous": true
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-02-04T12:00:00+00:00",
+      "exit": "2026-02-06T00:00:00+00:00",
+      "pnl": 185.1066,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-09T00:00:00+00:00",
+      "exit": "2026-02-11T16:00:00+00:00",
+      "pnl": 40.9218,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-08T08:00:00+00:00",
+      "exit": "2026-02-12T04:00:00+00:00",
+      "pnl": 38.8307,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-02-14T00:00:00+00:00",
+      "exit": "2026-02-15T00:00:00+00:00",
+      "pnl": -201.8897,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-02-15T00:00:00+00:00",
+      "exit": "2026-02-19T12:00:00+00:00",
+      "pnl": 128.3419,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-13T20:00:00+00:00",
+      "exit": "2026-02-20T20:00:00+00:00",
+      "pnl": 70.2283,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-02-22T16:00:00+00:00",
+      "exit": "2026-02-23T08:00:00+00:00",
+      "pnl": 38.7681,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-02-15T20:00:00+00:00",
+      "exit": "2026-02-24T20:00:00+00:00",
+      "pnl": 46.8689,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-02-26T00:00:00+00:00",
+      "exit": "2026-02-28T16:00:00+00:00",
+      "pnl": 22.263,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-03-01T20:00:00+00:00",
+      "exit": "2026-03-02T20:00:00+00:00",
+      "pnl": 43.5211,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-02-26T12:00:00+00:00",
+      "exit": "2026-03-08T00:00:00+00:00",
+      "pnl": 185.0915,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-03-10T04:00:00+00:00",
+      "exit": "2026-03-11T12:00:00+00:00",
+      "pnl": 123.6486,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-02-20T20:00:00+00:00",
+      "exit": "2026-03-13T16:00:00+00:00",
+      "pnl": 77.7565,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-03-02T20:00:00+00:00",
+      "exit": "2026-03-16T12:00:00+00:00",
+      "pnl": 98.5105,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-03-14T04:00:00+00:00",
+      "exit": "2026-03-16T20:00:00+00:00",
+      "pnl": 159.3353,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-03-19T16:00:00+00:00",
+      "exit": "2026-03-23T20:00:00+00:00",
+      "pnl": 37.7743,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-03-11T12:00:00+00:00",
+      "exit": "2026-03-26T20:00:00+00:00",
+      "pnl": 160.2992,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-03-24T16:00:00+00:00",
+      "exit": "2026-03-27T16:00:00+00:00",
+      "pnl": 58.3855,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-03-27T20:00:00+00:00",
+      "exit": "2026-03-29T00:00:00+00:00",
+      "pnl": 20.0514,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-05T00:00:00+00:00",
+      "exit": "2026-04-06T16:00:00+00:00",
+      "pnl": 39.7063,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-05T12:00:00+00:00",
+      "exit": "2026-04-08T00:00:00+00:00",
+      "pnl": 76.2822,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-05T16:00:00+00:00",
+      "exit": "2026-04-08T00:00:00+00:00",
+      "pnl": 138.794,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-13T12:00:00+00:00",
+      "exit": "2026-04-14T00:00:00+00:00",
+      "pnl": 76.1141,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-04-10T12:00:00+00:00",
+      "exit": "2026-04-16T20:00:00+00:00",
+      "pnl": 55.2028,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-04-20T04:00:00+00:00",
+      "exit": "2026-04-21T00:00:00+00:00",
+      "pnl": 16.7645,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-04-17T16:00:00+00:00",
+      "exit": "2026-04-29T20:00:00+00:00",
+      "pnl": -80.3171,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-04-22T20:00:00+00:00",
+      "exit": "2026-05-01T20:00:00+00:00",
+      "pnl": -167.4095,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-04-30T12:00:00+00:00",
+      "exit": "2026-05-04T16:00:00+00:00",
+      "pnl": -89.4229,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-04-14T12:00:00+00:00",
+      "exit": "2026-05-06T00:00:00+00:00",
+      "pnl": 86.6437,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-08T12:00:00+00:00",
+      "exit": "2026-05-11T04:00:00+00:00",
+      "pnl": 20.4992,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-05-11T20:00:00+00:00",
+      "exit": "2026-05-12T20:00:00+00:00",
+      "pnl": 28.1359,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-10T12:00:00+00:00",
+      "exit": "2026-05-13T04:00:00+00:00",
+      "pnl": 43.4951,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-05-14T04:00:00+00:00",
+      "exit": "2026-05-15T00:00:00+00:00",
+      "pnl": 28.1163,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-05-18T04:00:00+00:00",
+      "exit": "2026-05-20T16:00:00+00:00",
+      "pnl": -171.4498,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ETHUSDT",
+      "entry": "2026-05-22T00:00:00+00:00",
+      "exit": "2026-05-23T12:00:00+00:00",
+      "pnl": 47.4446,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-26T04:00:00+00:00",
+      "exit": "2026-05-30T16:00:00+00:00",
+      "pnl": -51.5804,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BNBUSDT",
+      "entry": "2026-05-30T20:00:00+00:00",
+      "exit": "2026-06-01T20:00:00+00:00",
+      "pnl": 63.0578,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-01T08:00:00+00:00",
+      "exit": "2026-06-01T20:00:00+00:00",
+      "pnl": 17.8962,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ICPUSDT",
+      "entry": "2026-06-01T00:00:00+00:00",
+      "exit": "2026-06-02T20:00:00+00:00",
+      "pnl": 166.2232,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-06-02T20:00:00+00:00",
+      "exit": "2026-06-05T00:00:00+00:00",
+      "pnl": 221.6281,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "ZECUSDT",
+      "entry": "2026-06-05T08:00:00+00:00",
+      "exit": "2026-06-15T12:00:00+00:00",
+      "pnl": 682.1935,
+      "reason": "take",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-14T04:00:00+00:00",
+      "exit": "2026-06-20T16:00:00+00:00",
+      "pnl": 52.156,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "TONUSDT",
+      "entry": "2026-06-23T04:00:00+00:00",
+      "exit": "2026-06-23T16:00:00+00:00",
+      "pnl": 47.634,
+      "reason": "stop",
+      "ambiguous": false
+    },
+    {
+      "symbol": "BTCUSDT",
+      "entry": "2026-06-08T04:00:00+00:00",
+      "exit": "2026-06-25T00:00:00+00:00",
+      "pnl": 48.3903,
+      "reason": "stop",
+      "ambiguous": false
+    }
+  ],
+  "daily_equity": [
+    [
+      "2021-10-29T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-10-30T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-10-31T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-01T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-02T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-03T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-04T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-05T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-06T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-07T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-08T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-09T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-10T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-11T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-12T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-13T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-14T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-15T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-16T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-17T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-18T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-19T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-20T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-21T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-22T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-23T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-24T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-25T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-26T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-27T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-28T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-29T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-11-30T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-12-01T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-12-02T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-12-03T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-12-04T00:00:00+00:00",
+      5000.0
+    ],
+    [
+      "2021-12-05T00:00:00+00:00",
+      4939.62
+    ],
+    [
+      "2021-12-06T00:00:00+00:00",
+      4919.49
+    ],
+    [
+      "2021-12-07T00:00:00+00:00",
+      4974.86
+    ],
+    [
+      "2021-12-08T00:00:00+00:00",
+      4958.46
+    ],
+    [
+      "2021-12-09T00:00:00+00:00",
+      4923.18
+    ],
+    [
+      "2021-12-10T00:00:00+00:00",
+      5047.7
+    ],
+    [
+      "2021-12-11T00:00:00+00:00",
+      5093.45
+    ],
+    [
+      "2021-12-12T00:00:00+00:00",
+      5025.03
+    ],
+    [
+      "2021-12-13T00:00:00+00:00",
+      5009.44
+    ],
+    [
+      "2021-12-14T00:00:00+00:00",
+      5157.26
+    ],
+    [
+      "2021-12-15T00:00:00+00:00",
+      5133.68
+    ],
+    [
+      "2021-12-16T00:00:00+00:00",
+      5097.85
+    ],
+    [
+      "2021-12-17T00:00:00+00:00",
+      5163.64
+    ],
+    [
+      "2021-12-18T00:00:00+00:00",
+      5212.65
+    ],
+    [
+      "2021-12-19T00:00:00+00:00",
+      5170.74
+    ],
+    [
+      "2021-12-20T00:00:00+00:00",
+      5195.23
+    ],
+    [
+      "2021-12-21T00:00:00+00:00",
+      5238.94
+    ],
+    [
+      "2021-12-22T00:00:00+00:00",
+      5214.79
+    ],
+    [
+      "2021-12-23T00:00:00+00:00",
+      5208.17
+    ],
+    [
+      "2021-12-24T00:00:00+00:00",
+      5056.89
+    ],
+    [
+      "2021-12-25T00:00:00+00:00",
+      5036.35
+    ],
+    [
+      "2021-12-26T00:00:00+00:00",
+      5032.83
+    ],
+    [
+      "2021-12-27T00:00:00+00:00",
+      5064.07
+    ],
+    [
+      "2021-12-28T00:00:00+00:00",
+      5027.05
+    ],
+    [
+      "2021-12-29T00:00:00+00:00",
+      5218.16
+    ],
+    [
+      "2021-12-30T00:00:00+00:00",
+      5224.29
+    ],
+    [
+      "2021-12-31T00:00:00+00:00",
+      5163.64
+    ],
+    [
+      "2022-01-01T00:00:00+00:00",
+      5206.18
+    ],
+    [
+      "2022-01-02T00:00:00+00:00",
+      5168.57
+    ],
+    [
+      "2022-01-03T00:00:00+00:00",
+      5097.3
+    ],
+    [
+      "2022-01-04T00:00:00+00:00",
+      5004.34
+    ],
+    [
+      "2022-01-05T00:00:00+00:00",
+      4912.16
+    ],
+    [
+      "2022-01-06T00:00:00+00:00",
+      4978.77
+    ],
+    [
+      "2022-01-07T00:00:00+00:00",
+      4972.46
+    ],
+    [
+      "2022-01-08T00:00:00+00:00",
+      4921.89
+    ],
+    [
+      "2022-01-09T00:00:00+00:00",
+      4898.49
+    ],
+    [
+      "2022-01-10T00:00:00+00:00",
+      4895.56
+    ],
+    [
+      "2022-01-11T00:00:00+00:00",
+      4911.94
+    ],
+    [
+      "2022-01-12T00:00:00+00:00",
+      4911.94
+    ],
+    [
+      "2022-01-13T00:00:00+00:00",
+      4893.22
+    ],
+    [
+      "2022-01-14T00:00:00+00:00",
+      4900.24
+    ],
+    [
+      "2022-01-15T00:00:00+00:00",
+      4905.51
+    ],
+    [
+      "2022-01-16T00:00:00+00:00",
+      4893.81
+    ],
+    [
+      "2022-01-17T00:00:00+00:00",
+      4912.53
+    ],
+    [
+      "2022-01-18T00:00:00+00:00",
+      4925.98
+    ],
+    [
+      "2022-01-19T00:00:00+00:00",
+      4940.43
+    ],
+    [
+      "2022-01-20T00:00:00+00:00",
+      4931.36
+    ],
+    [
+      "2022-01-21T00:00:00+00:00",
+      4901.58
+    ],
+    [
+      "2022-01-22T00:00:00+00:00",
+      4858.31
+    ],
+    [
+      "2022-01-23T00:00:00+00:00",
+      4858.31
+    ],
+    [
+      "2022-01-24T00:00:00+00:00",
+      4858.31
+    ],
+    [
+      "2022-01-25T00:00:00+00:00",
+      4858.31
+    ],
+    [
+      "2022-01-26T00:00:00+00:00",
+      4858.31
+    ],
+    [
+      "2022-01-27T00:00:00+00:00",
+      4873.13
+    ],
+    [
+      "2022-01-28T00:00:00+00:00",
+      4896.3
+    ],
+    [
+      "2022-01-29T00:00:00+00:00",
+      4833.17
+    ],
+    [
+      "2022-01-30T00:00:00+00:00",
+      4783.19
+    ],
+    [
+      "2022-01-31T00:00:00+00:00",
+      4865.55
+    ],
+    [
+      "2022-02-01T00:00:00+00:00",
+      4821.59
+    ],
+    [
+      "2022-02-02T00:00:00+00:00",
+      4754.9
+    ],
+    [
+      "2022-02-03T00:00:00+00:00",
+      4690.15
+    ],
+    [
+      "2022-02-04T00:00:00+00:00",
+      4701.3
+    ],
+    [
+      "2022-02-05T00:00:00+00:00",
+      4559.27
+    ],
+    [
+      "2022-02-06T00:00:00+00:00",
+      4463.11
+    ],
+    [
+      "2022-02-07T00:00:00+00:00",
+      4407.2
+    ],
+    [
+      "2022-02-08T00:00:00+00:00",
+      4374.25
+    ],
+    [
+      "2022-02-09T00:00:00+00:00",
+      4425.17
+    ],
+    [
+      "2022-02-10T00:00:00+00:00",
+      4421.68
+    ],
+    [
+      "2022-02-11T00:00:00+00:00",
+      4496.56
+    ],
+    [
+      "2022-02-12T00:00:00+00:00",
+      4500.87
+    ],
+    [
+      "2022-02-13T00:00:00+00:00",
+      4500.13
+    ],
+    [
+      "2022-02-14T00:00:00+00:00",
+      4508.31
+    ],
+    [
+      "2022-02-15T00:00:00+00:00",
+      4486.96
+    ],
+    [
+      "2022-02-16T00:00:00+00:00",
+      4477.59
+    ],
+    [
+      "2022-02-17T00:00:00+00:00",
+      4457.38
+    ],
+    [
+      "2022-02-18T00:00:00+00:00",
+      4476.53
+    ],
+    [
+      "2022-02-19T00:00:00+00:00",
+      4444.78
+    ],
+    [
+      "2022-02-20T00:00:00+00:00",
+      4452.84
+    ],
+    [
+      "2022-02-21T00:00:00+00:00",
+      4408.69
+    ],
+    [
+      "2022-02-22T00:00:00+00:00",
+      4420.84
+    ],
+    [
+      "2022-02-23T00:00:00+00:00",
+      4443.74
+    ],
+    [
+      "2022-02-24T00:00:00+00:00",
+      4449.82
+    ],
+    [
+      "2022-02-25T00:00:00+00:00",
+      4457.62
+    ],
+    [
+      "2022-02-26T00:00:00+00:00",
+      4404.2
+    ],
+    [
+      "2022-02-27T00:00:00+00:00",
+      4400.7
+    ],
+    [
+      "2022-02-28T00:00:00+00:00",
+      4426.16
+    ],
+    [
+      "2022-03-01T00:00:00+00:00",
+      4281.39
+    ],
+    [
+      "2022-03-02T00:00:00+00:00",
+      4319.83
+    ],
+    [
+      "2022-03-03T00:00:00+00:00",
+      4322.33
+    ],
+    [
+      "2022-03-04T00:00:00+00:00",
+      4289.38
+    ],
+    [
+      "2022-03-05T00:00:00+00:00",
+      4407.19
+    ],
+    [
+      "2022-03-06T00:00:00+00:00",
+      4404.2
+    ],
+    [
+      "2022-03-07T00:00:00+00:00",
+      4456.62
+    ],
+    [
+      "2022-03-08T00:00:00+00:00",
+      4466.6
+    ],
+    [
+      "2022-03-09T00:00:00+00:00",
+      4444.64
+    ],
+    [
+      "2022-03-10T00:00:00+00:00",
+      4414.68
+    ],
+    [
+      "2022-03-11T00:00:00+00:00",
+      4457.62
+    ],
+    [
+      "2022-03-12T00:00:00+00:00",
+      4521.81
+    ],
+    [
+      "2022-03-13T00:00:00+00:00",
+      4513.81
+    ],
+    [
+      "2022-03-14T00:00:00+00:00",
+      4521.42
+    ],
+    [
+      "2022-03-15T00:00:00+00:00",
+      4521.88
+    ],
+    [
+      "2022-03-16T00:00:00+00:00",
+      4517.1
+    ],
+    [
+      "2022-03-17T00:00:00+00:00",
+      4415.53
+    ],
+    [
+      "2022-03-18T00:00:00+00:00",
+      4401.96
+    ],
+    [
+      "2022-03-19T00:00:00+00:00",
+      4317.01
+    ],
+    [
+      "2022-03-20T00:00:00+00:00",
+      4266.7
+    ],
+    [
+      "2022-03-21T00:00:00+00:00",
+      4363.89
+    ],
+    [
+      "2022-03-22T00:00:00+00:00",
+      4350.95
+    ],
+    [
+      "2022-03-23T00:00:00+00:00",
+      4220.19
+    ],
+    [
+      "2022-03-24T00:00:00+00:00",
+      4175.58
+    ],
+    [
+      "2022-03-25T00:00:00+00:00",
+      4140.4
+    ],
+    [
+      "2022-03-26T00:00:00+00:00",
+      4155.77
+    ],
+    [
+      "2022-03-27T00:00:00+00:00",
+      4131.65
+    ],
+    [
+      "2022-03-28T00:00:00+00:00",
+      4018.3
+    ],
+    [
+      "2022-03-29T00:00:00+00:00",
+      4025.29
+    ],
+    [
+      "2022-03-30T00:00:00+00:00",
+      3990.87
+    ],
+    [
+      "2022-03-31T00:00:00+00:00",
+      3984.28
+    ],
+    [
+      "2022-04-01T00:00:00+00:00",
+      3956.51
+    ],
+    [
+      "2022-04-02T00:00:00+00:00",
+      3965.68
+    ],
+    [
+      "2022-04-03T00:00:00+00:00",
+      3953.0
+    ],
+    [
+      "2022-04-04T00:00:00+00:00",
+      3880.66
+    ],
+    [
+      "2022-04-05T00:00:00+00:00",
+      3862.56
+    ],
+    [
+      "2022-04-06T00:00:00+00:00",
+      3927.74
+    ],
+    [
+      "2022-04-07T00:00:00+00:00",
+      4049.1
+    ],
+    [
+      "2022-04-08T00:00:00+00:00",
+      4021.15
+    ],
+    [
+      "2022-04-09T00:00:00+00:00",
+      4141.15
+    ],
+    [
+      "2022-04-10T00:00:00+00:00",
+      4101.18
+    ],
+    [
+      "2022-04-11T00:00:00+00:00",
+      4200.29
+    ],
+    [
+      "2022-04-12T00:00:00+00:00",
+      4410.6
+    ],
+    [
+      "2022-04-13T00:00:00+00:00",
+      4359.95
+    ],
+    [
+      "2022-04-14T00:00:00+00:00",
+      4310.8
+    ],
+    [
+      "2022-04-15T00:00:00+00:00",
+      4383.16
+    ],
+    [
+      "2022-04-16T00:00:00+00:00",
+      4354.02
+    ],
+    [
+      "2022-04-17T00:00:00+00:00",
+      4331.45
+    ],
+    [
+      "2022-04-18T00:00:00+00:00",
+      4416.82
+    ],
+    [
+      "2022-04-19T00:00:00+00:00",
+      4406.73
+    ],
+    [
+      "2022-04-20T00:00:00+00:00",
+      4384.76
+    ],
+    [
+      "2022-04-21T00:00:00+00:00",
+      4406.02
+    ],
+    [
+      "2022-04-22T00:00:00+00:00",
+      4469.56
+    ],
+    [
+      "2022-04-23T00:00:00+00:00",
+      4459.03
+    ],
+    [
+      "2022-04-24T00:00:00+00:00",
+      4478.1
+    ],
+    [
+      "2022-04-25T00:00:00+00:00",
+      4496.55
+    ],
+    [
+      "2022-04-26T00:00:00+00:00",
+      4611.15
+    ],
+    [
+      "2022-04-27T00:00:00+00:00",
+      4547.06
+    ],
+    [
+      "2022-04-28T00:00:00+00:00",
+      4523.55
+    ],
+    [
+      "2022-04-29T00:00:00+00:00",
+      4504.06
+    ],
+    [
+      "2022-04-30T00:00:00+00:00",
+      4458.49
+    ],
+    [
+      "2022-05-01T00:00:00+00:00",
+      4483.97
+    ],
+    [
+      "2022-05-02T00:00:00+00:00",
+      4462.23
+    ],
+    [
+      "2022-05-03T00:00:00+00:00",
+      4460.76
+    ],
+    [
+      "2022-05-04T00:00:00+00:00",
+      4481.42
+    ],
+    [
+      "2022-05-05T00:00:00+00:00",
+      4430.52
+    ],
+    [
+      "2022-05-06T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-07T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-08T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-09T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-10T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-11T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-12T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-13T00:00:00+00:00",
+      4563.06
+    ],
+    [
+      "2022-05-14T00:00:00+00:00",
+      4631.46
+    ],
+    [
+      "2022-05-15T00:00:00+00:00",
+      4412.69
+    ],
+    [
+      "2022-05-16T00:00:00+00:00",
+      4244.95
+    ],
+    [
+      "2022-05-17T00:00:00+00:00",
+      4449.75
+    ],
+    [
+      "2022-05-18T00:00:00+00:00",
+      4269.17
+    ],
+    [
+      "2022-05-19T00:00:00+00:00",
+      4553.84
+    ],
+    [
+      "2022-05-20T00:00:00+00:00",
+      4381.18
+    ],
+    [
+      "2022-05-21T00:00:00+00:00",
+      4405.5
+    ],
+    [
+      "2022-05-22T00:00:00+00:00",
+      4394.67
+    ],
+    [
+      "2022-05-23T00:00:00+00:00",
+      4317.96
+    ],
+    [
+      "2022-05-24T00:00:00+00:00",
+      4447.47
+    ],
+    [
+      "2022-05-25T00:00:00+00:00",
+      4382.7
+    ],
+    [
+      "2022-05-26T00:00:00+00:00",
+      4446.02
+    ],
+    [
+      "2022-05-27T00:00:00+00:00",
+      4622.31
+    ],
+    [
+      "2022-05-28T00:00:00+00:00",
+      4661.33
+    ],
+    [
+      "2022-05-29T00:00:00+00:00",
+      4621.87
+    ],
+    [
+      "2022-05-30T00:00:00+00:00",
+      4549.91
+    ],
+    [
+      "2022-05-31T00:00:00+00:00",
+      4351.16
+    ],
+    [
+      "2022-06-01T00:00:00+00:00",
+      4412.91
+    ],
+    [
+      "2022-06-02T00:00:00+00:00",
+      4588.82
+    ],
+    [
+      "2022-06-03T00:00:00+00:00",
+      4521.34
+    ],
+    [
+      "2022-06-04T00:00:00+00:00",
+      4599.38
+    ],
+    [
+      "2022-06-05T00:00:00+00:00",
+      4582.81
+    ],
+    [
+      "2022-06-06T00:00:00+00:00",
+      4590.5
+    ],
+    [
+      "2022-06-07T00:00:00+00:00",
+      4505.91
+    ],
+    [
+      "2022-06-08T00:00:00+00:00",
+      4541.09
+    ],
+    [
+      "2022-06-09T00:00:00+00:00",
+      4580.75
+    ],
+    [
+      "2022-06-10T00:00:00+00:00",
+      4594.76
+    ],
+    [
+      "2022-06-11T00:00:00+00:00",
+      4693.15
+    ],
+    [
+      "2022-06-12T00:00:00+00:00",
+      4845.25
+    ],
+    [
+      "2022-06-13T00:00:00+00:00",
+      4917.82
+    ],
+    [
+      "2022-06-14T00:00:00+00:00",
+      5171.79
+    ],
+    [
+      "2022-06-15T00:00:00+00:00",
+      5251.97
+    ],
+    [
+      "2022-06-16T00:00:00+00:00",
+      5204.31
+    ],
+    [
+      "2022-06-17T00:00:00+00:00",
+      5308.51
+    ],
+    [
+      "2022-06-18T00:00:00+00:00",
+      5265.59
+    ],
+    [
+      "2022-06-19T00:00:00+00:00",
+      5354.42
+    ],
+    [
+      "2022-06-20T00:00:00+00:00",
+      5203.19
+    ],
+    [
+      "2022-06-21T00:00:00+00:00",
+      5129.82
+    ],
+    [
+      "2022-06-22T00:00:00+00:00",
+      5113.24
+    ],
+    [
+      "2022-06-23T00:00:00+00:00",
+      5285.05
+    ],
+    [
+      "2022-06-24T00:00:00+00:00",
+      5102.38
+    ],
+    [
+      "2022-06-25T00:00:00+00:00",
+      4933.23
+    ],
+    [
+      "2022-06-26T00:00:00+00:00",
+      4890.33
+    ],
+    [
+      "2022-06-27T00:00:00+00:00",
+      5084.56
+    ],
+    [
+      "2022-06-28T00:00:00+00:00",
+      5101.29
+    ],
+    [
+      "2022-06-29T00:00:00+00:00",
+      5237.25
+    ],
+    [
+      "2022-06-30T00:00:00+00:00",
+      5305.17
+    ],
+    [
+      "2022-07-01T00:00:00+00:00",
+      5379.48
+    ],
+    [
+      "2022-07-02T00:00:00+00:00",
+      5421.26
+    ],
+    [
+      "2022-07-03T00:00:00+00:00",
+      5408.97
+    ],
+    [
+      "2022-07-04T00:00:00+00:00",
+      5396.71
+    ],
+    [
+      "2022-07-05T00:00:00+00:00",
+      5221.28
+    ],
+    [
+      "2022-07-06T00:00:00+00:00",
+      5264.23
+    ],
+    [
+      "2022-07-07T00:00:00+00:00",
+      5179.85
+    ],
+    [
+      "2022-07-08T00:00:00+00:00",
+      4999.73
+    ],
+    [
+      "2022-07-09T00:00:00+00:00",
+      4838.96
+    ],
+    [
+      "2022-07-10T00:00:00+00:00",
+      4816.24
+    ],
+    [
+      "2022-07-11T00:00:00+00:00",
+      4876.86
+    ],
+    [
+      "2022-07-12T00:00:00+00:00",
+      4989.0
+    ],
+    [
+      "2022-07-13T00:00:00+00:00",
+      5082.49
+    ],
+    [
+      "2022-07-14T00:00:00+00:00",
+      4978.41
+    ],
+    [
+      "2022-07-15T00:00:00+00:00",
+      4876.91
+    ],
+    [
+      "2022-07-16T00:00:00+00:00",
+      4845.85
+    ],
+    [
+      "2022-07-17T00:00:00+00:00",
+      4629.28
+    ],
+    [
+      "2022-07-18T00:00:00+00:00",
+      4695.62
+    ],
+    [
+      "2022-07-19T00:00:00+00:00",
+      4476.55
+    ],
+    [
+      "2022-07-20T00:00:00+00:00",
+      4486.53
+    ],
+    [
+      "2022-07-21T00:00:00+00:00",
+      4515.35
+    ],
+    [
+      "2022-07-22T00:00:00+00:00",
+      4516.46
+    ],
+    [
+      "2022-07-23T00:00:00+00:00",
+      4538.63
+    ],
+    [
+      "2022-07-24T00:00:00+00:00",
+      4531.39
+    ],
+    [
+      "2022-07-25T00:00:00+00:00",
+      4564.78
+    ],
+    [
+      "2022-07-26T00:00:00+00:00",
+      4469.97
+    ],
+    [
+      "2022-07-27T00:00:00+00:00",
+      4477.35
+    ],
+    [
+      "2022-07-28T00:00:00+00:00",
+      4618.31
+    ],
+    [
+      "2022-07-29T00:00:00+00:00",
+      4673.49
+    ],
+    [
+      "2022-07-30T00:00:00+00:00",
+      4701.15
+    ],
+    [
+      "2022-07-31T00:00:00+00:00",
+      4697.73
+    ],
+    [
+      "2022-08-01T00:00:00+00:00",
+      4715.33
+    ],
+    [
+      "2022-08-02T00:00:00+00:00",
+      4761.91
+    ],
+    [
+      "2022-08-03T00:00:00+00:00",
+      4775.96
+    ],
+    [
+      "2022-08-04T00:00:00+00:00",
+      4778.92
+    ],
+    [
+      "2022-08-05T00:00:00+00:00",
+      4766.62
+    ],
+    [
+      "2022-08-06T00:00:00+00:00",
+      4690.45
+    ],
+    [
+      "2022-08-07T00:00:00+00:00",
+      4721.21
+    ],
+    [
+      "2022-08-08T00:00:00+00:00",
+      4680.65
+    ],
+    [
+      "2022-08-09T00:00:00+00:00",
+      4559.91
+    ],
+    [
+      "2022-08-10T00:00:00+00:00",
+      4520.68
+    ],
+    [
+      "2022-08-11T00:00:00+00:00",
+      4512.52
+    ],
+    [
+      "2022-08-12T00:00:00+00:00",
+      4467.64
+    ],
+    [
+      "2022-08-13T00:00:00+00:00",
+      4471.11
+    ],
+    [
+      "2022-08-14T00:00:00+00:00",
+      4443.33
+    ],
+    [
+      "2022-08-15T00:00:00+00:00",
+      4476.38
+    ],
+    [
+      "2022-08-16T00:00:00+00:00",
+      4468.28
+    ],
+    [
+      "2022-08-17T00:00:00+00:00",
+      4455.61
+    ],
+    [
+      "2022-08-18T00:00:00+00:00",
+      4449.52
+    ],
+    [
+      "2022-08-19T00:00:00+00:00",
+      4425.88
+    ],
+    [
+      "2022-08-20T00:00:00+00:00",
+      4590.33
+    ],
+    [
+      "2022-08-21T00:00:00+00:00",
+      4589.19
+    ],
+    [
+      "2022-08-22T00:00:00+00:00",
+      4588.08
+    ],
+    [
+      "2022-08-23T00:00:00+00:00",
+      4577.16
+    ],
+    [
+      "2022-08-24T00:00:00+00:00",
+      4559.1
+    ],
+    [
+      "2022-08-25T00:00:00+00:00",
+      4522.85
+    ],
+    [
+      "2022-08-26T00:00:00+00:00",
+      4489.14
+    ],
+    [
+      "2022-08-27T00:00:00+00:00",
+      4617.19
+    ],
+    [
+      "2022-08-28T00:00:00+00:00",
+      4605.99
+    ],
+    [
+      "2022-08-29T00:00:00+00:00",
+      4579.56
+    ],
+    [
+      "2022-08-30T00:00:00+00:00",
+      4644.92
+    ],
+    [
+      "2022-08-31T00:00:00+00:00",
+      4606.42
+    ],
+    [
+      "2022-09-01T00:00:00+00:00",
+      4595.84
+    ],
+    [
+      "2022-09-02T00:00:00+00:00",
+      4615.03
+    ],
+    [
+      "2022-09-03T00:00:00+00:00",
+      4592.0
+    ],
+    [
+      "2022-09-04T00:00:00+00:00",
+      4600.2
+    ],
+    [
+      "2022-09-05T00:00:00+00:00",
+      4621.07
+    ],
+    [
+      "2022-09-06T00:00:00+00:00",
+      4627.62
+    ],
+    [
+      "2022-09-07T00:00:00+00:00",
+      4553.02
+    ],
+    [
+      "2022-09-08T00:00:00+00:00",
+      4638.71
+    ],
+    [
+      "2022-09-09T00:00:00+00:00",
+      4625.59
+    ],
+    [
+      "2022-09-10T00:00:00+00:00",
+      4712.59
+    ],
+    [
+      "2022-09-11T00:00:00+00:00",
+      4735.69
+    ],
+    [
+      "2022-09-12T00:00:00+00:00",
+      4750.65
+    ],
+    [
+      "2022-09-13T00:00:00+00:00",
+      4721.93
+    ],
+    [
+      "2022-09-14T00:00:00+00:00",
+      4626.91
+    ],
+    [
+      "2022-09-15T00:00:00+00:00",
+      4582.25
+    ],
+    [
+      "2022-09-16T00:00:00+00:00",
+      4567.55
+    ],
+    [
+      "2022-09-17T00:00:00+00:00",
+      4605.52
+    ],
+    [
+      "2022-09-18T00:00:00+00:00",
+      4618.11
+    ],
+    [
+      "2022-09-19T00:00:00+00:00",
+      4560.85
+    ],
+    [
+      "2022-09-20T00:00:00+00:00",
+      4592.34
+    ],
+    [
+      "2022-09-21T00:00:00+00:00",
+      4569.42
+    ],
+    [
+      "2022-09-22T00:00:00+00:00",
+      4561.2
+    ],
+    [
+      "2022-09-23T00:00:00+00:00",
+      4592.52
+    ],
+    [
+      "2022-09-24T00:00:00+00:00",
+      4627.03
+    ],
+    [
+      "2022-09-25T00:00:00+00:00",
+      4595.73
+    ],
+    [
+      "2022-09-26T00:00:00+00:00",
+      4566.52
+    ],
+    [
+      "2022-09-27T00:00:00+00:00",
+      4595.85
+    ],
+    [
+      "2022-09-28T00:00:00+00:00",
+      4581.58
+    ],
+    [
+      "2022-09-29T00:00:00+00:00",
+      4623.23
+    ],
+    [
+      "2022-09-30T00:00:00+00:00",
+      4633.29
+    ],
+    [
+      "2022-10-01T00:00:00+00:00",
+      4637.1
+    ],
+    [
+      "2022-10-02T00:00:00+00:00",
+      4639.86
+    ],
+    [
+      "2022-10-03T00:00:00+00:00",
+      4634.06
+    ],
+    [
+      "2022-10-04T00:00:00+00:00",
+      4633.51
+    ],
+    [
+      "2022-10-05T00:00:00+00:00",
+      4680.07
+    ],
+    [
+      "2022-10-06T00:00:00+00:00",
+      4652.28
+    ],
+    [
+      "2022-10-07T00:00:00+00:00",
+      4635.42
+    ],
+    [
+      "2022-10-08T00:00:00+00:00",
+      4619.5
+    ],
+    [
+      "2022-10-09T00:00:00+00:00",
+      4579.99
+    ],
+    [
+      "2022-10-10T00:00:00+00:00",
+      4588.21
+    ],
+    [
+      "2022-10-11T00:00:00+00:00",
+      4505.2
+    ],
+    [
+      "2022-10-12T00:00:00+00:00",
+      4499.84
+    ],
+    [
+      "2022-10-13T00:00:00+00:00",
+      4494.72
+    ],
+    [
+      "2022-10-14T00:00:00+00:00",
+      4522.14
+    ],
+    [
+      "2022-10-15T00:00:00+00:00",
+      4514.28
+    ],
+    [
+      "2022-10-16T00:00:00+00:00",
+      4509.99
+    ],
+    [
+      "2022-10-17T00:00:00+00:00",
+      4525.36
+    ],
+    [
+      "2022-10-18T00:00:00+00:00",
+      4496.51
+    ],
+    [
+      "2022-10-19T00:00:00+00:00",
+      4515.03
+    ],
+    [
+      "2022-10-20T00:00:00+00:00",
+      4541.36
+    ],
+    [
+      "2022-10-21T00:00:00+00:00",
+      4536.83
+    ],
+    [
+      "2022-10-22T00:00:00+00:00",
+      4520.99
+    ],
+    [
+      "2022-10-23T00:00:00+00:00",
+      4511.4
+    ],
+    [
+      "2022-10-24T00:00:00+00:00",
+      4472.37
+    ],
+    [
+      "2022-10-25T00:00:00+00:00",
+      4523.96
+    ],
+    [
+      "2022-10-26T00:00:00+00:00",
+      4477.37
+    ],
+    [
+      "2022-10-27T00:00:00+00:00",
+      4482.6
+    ],
+    [
+      "2022-10-28T00:00:00+00:00",
+      4486.31
+    ],
+    [
+      "2022-10-29T00:00:00+00:00",
+      4497.96
+    ],
+    [
+      "2022-10-30T00:00:00+00:00",
+      4466.1
+    ],
+    [
+      "2022-10-31T00:00:00+00:00",
+      4436.46
+    ],
+    [
+      "2022-11-01T00:00:00+00:00",
+      4393.32
+    ],
+    [
+      "2022-11-02T00:00:00+00:00",
+      4333.31
+    ],
+    [
+      "2022-11-03T00:00:00+00:00",
+      4270.9
+    ],
+    [
+      "2022-11-04T00:00:00+00:00",
+      4355.44
+    ],
+    [
+      "2022-11-05T00:00:00+00:00",
+      4486.19
+    ],
+    [
+      "2022-11-06T00:00:00+00:00",
+      4470.58
+    ],
+    [
+      "2022-11-07T00:00:00+00:00",
+      4370.46
+    ],
+    [
+      "2022-11-08T00:00:00+00:00",
+      4362.24
+    ],
+    [
+      "2022-11-09T00:00:00+00:00",
+      4010.57
+    ],
+    [
+      "2022-11-10T00:00:00+00:00",
+      4010.57
+    ],
+    [
+      "2022-11-11T00:00:00+00:00",
+      4010.57
+    ],
+    [
+      "2022-11-12T00:00:00+00:00",
+      4010.57
+    ],
+    [
+      "2022-11-13T00:00:00+00:00",
+      4010.57
+    ],
+    [
+      "2022-11-14T00:00:00+00:00",
+      4034.21
+    ],
+    [
+      "2022-11-15T00:00:00+00:00",
+      4027.68
+    ],
+    [
+      "2022-11-16T00:00:00+00:00",
+      4019.96
+    ],
+    [
+      "2022-11-17T00:00:00+00:00",
+      4110.66
+    ],
+    [
+      "2022-11-18T00:00:00+00:00",
+      4136.94
+    ],
+    [
+      "2022-11-19T00:00:00+00:00",
+      4107.55
+    ],
+    [
+      "2022-11-20T00:00:00+00:00",
+      4065.66
+    ],
+    [
+      "2022-11-21T00:00:00+00:00",
+      4229.65
+    ],
+    [
+      "2022-11-22T00:00:00+00:00",
+      4270.99
+    ],
+    [
+      "2022-11-23T00:00:00+00:00",
+      4142.63
+    ],
+    [
+      "2022-11-24T00:00:00+00:00",
+      3902.4
+    ],
+    [
+      "2022-11-25T00:00:00+00:00",
+      3892.19
+    ],
+    [
+      "2022-11-26T00:00:00+00:00",
+      3934.01
+    ],
+    [
+      "2022-11-27T00:00:00+00:00",
+      3906.37
+    ],
+    [
+      "2022-11-28T00:00:00+00:00",
+      3935.36
+    ],
+    [
+      "2022-11-29T00:00:00+00:00",
+      4024.46
+    ],
+    [
+      "2022-11-30T00:00:00+00:00",
+      3979.33
+    ],
+    [
+      "2022-12-01T00:00:00+00:00",
+      3843.57
+    ],
+    [
+      "2022-12-02T00:00:00+00:00",
+      3831.65
+    ],
+    [
+      "2022-12-03T00:00:00+00:00",
+      3757.5
+    ],
+    [
+      "2022-12-04T00:00:00+00:00",
+      3821.42
+    ],
+    [
+      "2022-12-05T00:00:00+00:00",
+      3751.85
+    ],
+    [
+      "2022-12-06T00:00:00+00:00",
+      3730.96
+    ],
+    [
+      "2022-12-07T00:00:00+00:00",
+      3741.95
+    ],
+    [
+      "2022-12-08T00:00:00+00:00",
+      3875.51
+    ],
+    [
+      "2022-12-09T00:00:00+00:00",
+      3795.95
+    ],
+    [
+      "2022-12-10T00:00:00+00:00",
+      3771.21
+    ],
+    [
+      "2022-12-11T00:00:00+00:00",
+      3760.26
+    ],
+    [
+      "2022-12-12T00:00:00+00:00",
+      3836.79
+    ],
+    [
+      "2022-12-13T00:00:00+00:00",
+      3848.5
+    ],
+    [
+      "2022-12-14T00:00:00+00:00",
+      3855.82
+    ],
+    [
+      "2022-12-15T00:00:00+00:00",
+      3916.68
+    ],
+    [
+      "2022-12-16T00:00:00+00:00",
+      3972.34
+    ],
+    [
+      "2022-12-17T00:00:00+00:00",
+      4285.65
+    ],
+    [
+      "2022-12-18T00:00:00+00:00",
+      4240.34
+    ],
+    [
+      "2022-12-19T00:00:00+00:00",
+      4232.52
+    ],
+    [
+      "2022-12-20T00:00:00+00:00",
+      4310.21
+    ],
+    [
+      "2022-12-21T00:00:00+00:00",
+      4255.91
+    ],
+    [
+      "2022-12-22T00:00:00+00:00",
+      4271.58
+    ],
+    [
+      "2022-12-23T00:00:00+00:00",
+      4315.39
+    ],
+    [
+      "2022-12-24T00:00:00+00:00",
+      4335.95
+    ],
+    [
+      "2022-12-25T00:00:00+00:00",
+      4306.15
+    ],
+    [
+      "2022-12-26T00:00:00+00:00",
+      4294.97
+    ],
+    [
+      "2022-12-27T00:00:00+00:00",
+      4257.2
+    ],
+    [
+      "2022-12-28T00:00:00+00:00",
+      4311.92
+    ],
+    [
+      "2022-12-29T00:00:00+00:00",
+      4324.94
+    ],
+    [
+      "2022-12-30T00:00:00+00:00",
+      4295.46
+    ],
+    [
+      "2022-12-31T00:00:00+00:00",
+      4272.02
+    ],
+    [
+      "2023-01-01T00:00:00+00:00",
+      4332.0
+    ],
+    [
+      "2023-01-02T00:00:00+00:00",
+      4320.16
+    ],
+    [
+      "2023-01-03T00:00:00+00:00",
+      4262.48
+    ],
+    [
+      "2023-01-04T00:00:00+00:00",
+      4268.88
+    ],
+    [
+      "2023-01-05T00:00:00+00:00",
+      4197.65
+    ],
+    [
+      "2023-01-06T00:00:00+00:00",
+      4251.76
+    ],
+    [
+      "2023-01-07T00:00:00+00:00",
+      4191.23
+    ],
+    [
+      "2023-01-08T00:00:00+00:00",
+      4160.75
+    ],
+    [
+      "2023-01-09T00:00:00+00:00",
+      4106.04
+    ],
+    [
+      "2023-01-10T00:00:00+00:00",
+      4063.45
+    ],
+    [
+      "2023-01-11T00:00:00+00:00",
+      4022.85
+    ],
+    [
+      "2023-01-12T00:00:00+00:00",
+      4009.98
+    ],
+    [
+      "2023-01-13T00:00:00+00:00",
+      3943.41
+    ],
+    [
+      "2023-01-14T00:00:00+00:00",
+      3917.19
+    ],
+    [
+      "2023-01-15T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-16T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-17T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-18T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-19T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-20T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-21T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-22T00:00:00+00:00",
+      3754.39
+    ],
+    [
+      "2023-01-23T00:00:00+00:00",
+      3751.5
+    ],
+    [
+      "2023-01-24T00:00:00+00:00",
+      3744.55
+    ],
+    [
+      "2023-01-25T00:00:00+00:00",
+      3760.43
+    ],
+    [
+      "2023-01-26T00:00:00+00:00",
+      3738.6
+    ],
+    [
+      "2023-01-27T00:00:00+00:00",
+      3745.88
+    ],
+    [
+      "2023-01-28T00:00:00+00:00",
+      3776.73
+    ],
+    [
+      "2023-01-29T00:00:00+00:00",
+      3787.14
+    ],
+    [
+      "2023-01-30T00:00:00+00:00",
+      3776.23
+    ],
+    [
+      "2023-01-31T00:00:00+00:00",
+      3729.69
+    ],
+    [
+      "2023-02-01T00:00:00+00:00",
+      3730.15
+    ],
+    [
+      "2023-02-02T00:00:00+00:00",
+      3758.68
+    ],
+    [
+      "2023-02-03T00:00:00+00:00",
+      3675.6
+    ],
+    [
+      "2023-02-04T00:00:00+00:00",
+      3689.7
+    ],
+    [
+      "2023-02-05T00:00:00+00:00",
+      3677.66
+    ],
+    [
+      "2023-02-06T00:00:00+00:00",
+      3666.59
+    ],
+    [
+      "2023-02-07T00:00:00+00:00",
+      3614.3
+    ],
+    [
+      "2023-02-08T00:00:00+00:00",
+      3760.27
+    ],
+    [
+      "2023-02-09T00:00:00+00:00",
+      3705.12
+    ],
+    [
+      "2023-02-10T00:00:00+00:00",
+      3540.1
+    ],
+    [
+      "2023-02-11T00:00:00+00:00",
+      3554.52
+    ],
+    [
+      "2023-02-12T00:00:00+00:00",
+      3635.57
+    ],
+    [
+      "2023-02-13T00:00:00+00:00",
+      3690.71
+    ],
+    [
+      "2023-02-14T00:00:00+00:00",
+      3601.45
+    ],
+    [
+      "2023-02-15T00:00:00+00:00",
+      3611.82
+    ],
+    [
+      "2023-02-16T00:00:00+00:00",
+      3724.9
+    ],
+    [
+      "2023-02-17T00:00:00+00:00",
+      3645.42
+    ],
+    [
+      "2023-02-18T00:00:00+00:00",
+      3825.55
+    ],
+    [
+      "2023-02-19T00:00:00+00:00",
+      3843.6
+    ],
+    [
+      "2023-02-20T00:00:00+00:00",
+      3919.91
+    ],
+    [
+      "2023-02-21T00:00:00+00:00",
+      3911.89
+    ],
+    [
+      "2023-02-22T00:00:00+00:00",
+      3886.52
+    ],
+    [
+      "2023-02-23T00:00:00+00:00",
+      3900.52
+    ],
+    [
+      "2023-02-24T00:00:00+00:00",
+      3893.66
+    ],
+    [
+      "2023-02-25T00:00:00+00:00",
+      3774.75
+    ],
+    [
+      "2023-02-26T00:00:00+00:00",
+      3758.36
+    ],
+    [
+      "2023-02-27T00:00:00+00:00",
+      3793.66
+    ],
+    [
+      "2023-02-28T00:00:00+00:00",
+      3759.31
+    ],
+    [
+      "2023-03-01T00:00:00+00:00",
+      3723.73
+    ],
+    [
+      "2023-03-02T00:00:00+00:00",
+      3757.26
+    ],
+    [
+      "2023-03-03T00:00:00+00:00",
+      3735.16
+    ],
+    [
+      "2023-03-04T00:00:00+00:00",
+      3689.01
+    ],
+    [
+      "2023-03-05T00:00:00+00:00",
+      3716.85
+    ],
+    [
+      "2023-03-06T00:00:00+00:00",
+      3722.59
+    ],
+    [
+      "2023-03-07T00:00:00+00:00",
+      3723.8
+    ],
+    [
+      "2023-03-08T00:00:00+00:00",
+      3723.39
+    ],
+    [
+      "2023-03-09T00:00:00+00:00",
+      3750.01
+    ],
+    [
+      "2023-03-10T00:00:00+00:00",
+      3671.56
+    ],
+    [
+      "2023-03-11T00:00:00+00:00",
+      3670.49
+    ],
+    [
+      "2023-03-12T00:00:00+00:00",
+      3675.49
+    ],
+    [
+      "2023-03-13T00:00:00+00:00",
+      3632.25
+    ],
+    [
+      "2023-03-14T00:00:00+00:00",
+      3596.77
+    ],
+    [
+      "2023-03-15T00:00:00+00:00",
+      3596.77
+    ],
+    [
+      "2023-03-16T00:00:00+00:00",
+      3596.77
+    ],
+    [
+      "2023-03-17T00:00:00+00:00",
+      3596.77
+    ],
+    [
+      "2023-03-18T00:00:00+00:00",
+      3596.77
+    ],
+    [
+      "2023-03-19T00:00:00+00:00",
+      3600.42
+    ],
+    [
+      "2023-03-20T00:00:00+00:00",
+      3581.01
+    ],
+    [
+      "2023-03-21T00:00:00+00:00",
+      3667.73
+    ],
+    [
+      "2023-03-22T00:00:00+00:00",
+      3610.45
+    ],
+    [
+      "2023-03-23T00:00:00+00:00",
+      3651.24
+    ],
+    [
+      "2023-03-24T00:00:00+00:00",
+      3581.59
+    ],
+    [
+      "2023-03-25T00:00:00+00:00",
+      3653.83
+    ],
+    [
+      "2023-03-26T00:00:00+00:00",
+      3670.65
+    ],
+    [
+      "2023-03-27T00:00:00+00:00",
+      3649.38
+    ],
+    [
+      "2023-03-28T00:00:00+00:00",
+      3670.69
+    ],
+    [
+      "2023-03-29T00:00:00+00:00",
+      3678.31
+    ],
+    [
+      "2023-03-30T00:00:00+00:00",
+      3604.44
+    ],
+    [
+      "2023-03-31T00:00:00+00:00",
+      3612.58
+    ],
+    [
+      "2023-04-01T00:00:00+00:00",
+      3570.71
+    ],
+    [
+      "2023-04-02T00:00:00+00:00",
+      3571.83
+    ],
+    [
+      "2023-04-03T00:00:00+00:00",
+      3637.57
+    ],
+    [
+      "2023-04-04T00:00:00+00:00",
+      3678.08
+    ],
+    [
+      "2023-04-05T00:00:00+00:00",
+      3652.29
+    ],
+    [
+      "2023-04-06T00:00:00+00:00",
+      3642.16
+    ],
+    [
+      "2023-04-07T00:00:00+00:00",
+      3671.98
+    ],
+    [
+      "2023-04-08T00:00:00+00:00",
+      3657.55
+    ],
+    [
+      "2023-04-09T00:00:00+00:00",
+      3650.57
+    ],
+    [
+      "2023-04-10T00:00:00+00:00",
+      3592.63
+    ],
+    [
+      "2023-04-11T00:00:00+00:00",
+      3566.44
+    ],
+    [
+      "2023-04-12T00:00:00+00:00",
+      3535.38
+    ],
+    [
+      "2023-04-13T00:00:00+00:00",
+      3522.38
+    ],
+    [
+      "2023-04-14T00:00:00+00:00",
+      3466.45
+    ],
+    [
+      "2023-04-15T00:00:00+00:00",
+      3431.07
+    ],
+    [
+      "2023-04-16T00:00:00+00:00",
+      3361.87
+    ],
+    [
+      "2023-04-17T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-18T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-19T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-20T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-21T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-22T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-23T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-24T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-25T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-26T00:00:00+00:00",
+      3302.38
+    ],
+    [
+      "2023-04-27T00:00:00+00:00",
+      3273.77
+    ],
+    [
+      "2023-04-28T00:00:00+00:00",
+      3125.53
+    ],
+    [
+      "2023-04-29T00:00:00+00:00",
+      3093.13
+    ],
+    [
+      "2023-04-30T00:00:00+00:00",
+      3055.41
+    ],
+    [
+      "2023-05-01T00:00:00+00:00",
+      3151.38
+    ],
+    [
+      "2023-05-02T00:00:00+00:00",
+      3177.66
+    ],
+    [
+      "2023-05-03T00:00:00+00:00",
+      3126.35
+    ],
+    [
+      "2023-05-04T00:00:00+00:00",
+      3112.63
+    ],
+    [
+      "2023-05-05T00:00:00+00:00",
+      3140.49
+    ],
+    [
+      "2023-05-06T00:00:00+00:00",
+      3063.23
+    ],
+    [
+      "2023-05-07T00:00:00+00:00",
+      3081.56
+    ],
+    [
+      "2023-05-08T00:00:00+00:00",
+      3107.39
+    ],
+    [
+      "2023-05-09T00:00:00+00:00",
+      3154.24
+    ],
+    [
+      "2023-05-10T00:00:00+00:00",
+      3147.54
+    ],
+    [
+      "2023-05-11T00:00:00+00:00",
+      3153.28
+    ],
+    [
+      "2023-05-12T00:00:00+00:00",
+      3109.73
+    ],
+    [
+      "2023-05-13T00:00:00+00:00",
+      3076.54
+    ],
+    [
+      "2023-05-14T00:00:00+00:00",
+      3087.52
+    ],
+    [
+      "2023-05-15T00:00:00+00:00",
+      3082.72
+    ],
+    [
+      "2023-05-16T00:00:00+00:00",
+      3089.78
+    ],
+    [
+      "2023-05-17T00:00:00+00:00",
+      3077.51
+    ],
+    [
+      "2023-05-18T00:00:00+00:00",
+      3062.14
+    ],
+    [
+      "2023-05-19T00:00:00+00:00",
+      3066.95
+    ],
+    [
+      "2023-05-20T00:00:00+00:00",
+      3070.57
+    ],
+    [
+      "2023-05-21T00:00:00+00:00",
+      3088.88
+    ],
+    [
+      "2023-05-22T00:00:00+00:00",
+      3101.34
+    ],
+    [
+      "2023-05-23T00:00:00+00:00",
+      3119.3
+    ],
+    [
+      "2023-05-24T00:00:00+00:00",
+      3148.83
+    ],
+    [
+      "2023-05-25T00:00:00+00:00",
+      3180.91
+    ],
+    [
+      "2023-05-26T00:00:00+00:00",
+      3174.15
+    ],
+    [
+      "2023-05-27T00:00:00+00:00",
+      3157.13
+    ],
+    [
+      "2023-05-28T00:00:00+00:00",
+      3151.03
+    ],
+    [
+      "2023-05-29T00:00:00+00:00",
+      3105.27
+    ],
+    [
+      "2023-05-30T00:00:00+00:00",
+      3124.49
+    ],
+    [
+      "2023-05-31T00:00:00+00:00",
+      3113.76
+    ],
+    [
+      "2023-06-01T00:00:00+00:00",
+      3162.52
+    ],
+    [
+      "2023-06-02T00:00:00+00:00",
+      3184.37
+    ],
+    [
+      "2023-06-03T00:00:00+00:00",
+      3145.86
+    ],
+    [
+      "2023-06-04T00:00:00+00:00",
+      3151.92
+    ],
+    [
+      "2023-06-05T00:00:00+00:00",
+      3157.21
+    ],
+    [
+      "2023-06-06T00:00:00+00:00",
+      3263.24
+    ],
+    [
+      "2023-06-07T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-08T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-09T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-10T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-11T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-12T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-13T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-14T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-15T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-16T00:00:00+00:00",
+      3304.1
+    ],
+    [
+      "2023-06-17T00:00:00+00:00",
+      3293.61
+    ],
+    [
+      "2023-06-18T00:00:00+00:00",
+      3297.15
+    ],
+    [
+      "2023-06-19T00:00:00+00:00",
+      3315.98
+    ],
+    [
+      "2023-06-20T00:00:00+00:00",
+      3298.12
+    ],
+    [
+      "2023-06-21T00:00:00+00:00",
+      3237.79
+    ],
+    [
+      "2023-06-22T00:00:00+00:00",
+      3195.52
+    ],
+    [
+      "2023-06-23T00:00:00+00:00",
+      3255.19
+    ],
+    [
+      "2023-06-24T00:00:00+00:00",
+      3112.13
+    ],
+    [
+      "2023-06-25T00:00:00+00:00",
+      3125.39
+    ],
+    [
+      "2023-06-26T00:00:00+00:00",
+      3118.84
+    ],
+    [
+      "2023-06-27T00:00:00+00:00",
+      3125.14
+    ],
+    [
+      "2023-06-28T00:00:00+00:00",
+      3112.09
+    ],
+    [
+      "2023-06-29T00:00:00+00:00",
+      3156.02
+    ],
+    [
+      "2023-06-30T00:00:00+00:00",
+      3166.57
+    ],
+    [
+      "2023-07-01T00:00:00+00:00",
+      3239.69
+    ],
+    [
+      "2023-07-02T00:00:00+00:00",
+      3247.41
+    ],
+    [
+      "2023-07-03T00:00:00+00:00",
+      3207.48
+    ],
+    [
+      "2023-07-04T00:00:00+00:00",
+      3154.67
+    ],
+    [
+      "2023-07-05T00:00:00+00:00",
+      3164.17
+    ],
+    [
+      "2023-07-06T00:00:00+00:00",
+      3131.98
+    ],
+    [
+      "2023-07-07T00:00:00+00:00",
+      3107.75
+    ],
+    [
+      "2023-07-08T00:00:00+00:00",
+      3083.78
+    ],
+    [
+      "2023-07-09T00:00:00+00:00",
+      3057.09
+    ],
+    [
+      "2023-07-10T00:00:00+00:00",
+      3052.6
+    ],
+    [
+      "2023-07-11T00:00:00+00:00",
+      3093.31
+    ],
+    [
+      "2023-07-12T00:00:00+00:00",
+      3093.33
+    ],
+    [
+      "2023-07-13T00:00:00+00:00",
+      3070.97
+    ],
+    [
+      "2023-07-14T00:00:00+00:00",
+      3058.51
+    ],
+    [
+      "2023-07-15T00:00:00+00:00",
+      3056.09
+    ],
+    [
+      "2023-07-16T00:00:00+00:00",
+      3079.87
+    ],
+    [
+      "2023-07-17T00:00:00+00:00",
+      3074.07
+    ],
+    [
+      "2023-07-18T00:00:00+00:00",
+      3079.39
+    ],
+    [
+      "2023-07-19T00:00:00+00:00",
+      3067.99
+    ],
+    [
+      "2023-07-20T00:00:00+00:00",
+      3074.06
+    ],
+    [
+      "2023-07-21T00:00:00+00:00",
+      3085.03
+    ],
+    [
+      "2023-07-22T00:00:00+00:00",
+      3082.95
+    ],
+    [
+      "2023-07-23T00:00:00+00:00",
+      3051.93
+    ],
+    [
+      "2023-07-24T00:00:00+00:00",
+      3050.01
+    ],
+    [
+      "2023-07-25T00:00:00+00:00",
+      3027.21
+    ],
+    [
+      "2023-07-26T00:00:00+00:00",
+      3017.64
+    ],
+    [
+      "2023-07-27T00:00:00+00:00",
+      3012.67
+    ],
+    [
+      "2023-07-28T00:00:00+00:00",
+      2989.49
+    ],
+    [
+      "2023-07-29T00:00:00+00:00",
+      2987.5
+    ],
+    [
+      "2023-07-30T00:00:00+00:00",
+      2975.65
+    ],
+    [
+      "2023-07-31T00:00:00+00:00",
+      2977.32
+    ],
+    [
+      "2023-08-01T00:00:00+00:00",
+      2997.53
+    ],
+    [
+      "2023-08-02T00:00:00+00:00",
+      3023.9
+    ],
+    [
+      "2023-08-03T00:00:00+00:00",
+      2995.08
+    ],
+    [
+      "2023-08-04T00:00:00+00:00",
+      3022.11
+    ],
+    [
+      "2023-08-05T00:00:00+00:00",
+      3009.44
+    ],
+    [
+      "2023-08-06T00:00:00+00:00",
+      3025.09
+    ],
+    [
+      "2023-08-07T00:00:00+00:00",
+      3000.77
+    ],
+    [
+      "2023-08-08T00:00:00+00:00",
+      2996.86
+    ],
+    [
+      "2023-08-09T00:00:00+00:00",
+      3018.91
+    ],
+    [
+      "2023-08-10T00:00:00+00:00",
+      3018.18
+    ],
+    [
+      "2023-08-11T00:00:00+00:00",
+      3020.1
+    ],
+    [
+      "2023-08-12T00:00:00+00:00",
+      3016.32
+    ],
+    [
+      "2023-08-13T00:00:00+00:00",
+      3003.36
+    ],
+    [
+      "2023-08-14T00:00:00+00:00",
+      3029.23
+    ],
+    [
+      "2023-08-15T00:00:00+00:00",
+      3014.72
+    ],
+    [
+      "2023-08-16T00:00:00+00:00",
+      2997.21
+    ],
+    [
+      "2023-08-17T00:00:00+00:00",
+      3010.24
+    ],
+    [
+      "2023-08-18T00:00:00+00:00",
+      3052.2
+    ],
+    [
+      "2023-08-19T00:00:00+00:00",
+      3043.76
+    ],
+    [
+      "2023-08-20T00:00:00+00:00",
+      3046.71
+    ],
+    [
+      "2023-08-21T00:00:00+00:00",
+      3045.44
+    ],
+    [
+      "2023-08-22T00:00:00+00:00",
+      2989.11
+    ],
+    [
+      "2023-08-23T00:00:00+00:00",
+      3000.25
+    ],
+    [
+      "2023-08-24T00:00:00+00:00",
+      2910.32
+    ],
+    [
+      "2023-08-25T00:00:00+00:00",
+      2948.29
+    ],
+    [
+      "2023-08-26T00:00:00+00:00",
+      2968.08
+    ],
+    [
+      "2023-08-27T00:00:00+00:00",
+      2963.42
+    ],
+    [
+      "2023-08-28T00:00:00+00:00",
+      2970.29
+    ],
+    [
+      "2023-08-29T00:00:00+00:00",
+      2960.22
+    ],
+    [
+      "2023-08-30T00:00:00+00:00",
+      2803.87
+    ],
+    [
+      "2023-08-31T00:00:00+00:00",
+      2864.04
+    ],
+    [
+      "2023-09-01T00:00:00+00:00",
+      2916.99
+    ],
+    [
+      "2023-09-02T00:00:00+00:00",
+      2946.35
+    ],
+    [
+      "2023-09-03T00:00:00+00:00",
+      2943.06
+    ],
+    [
+      "2023-09-04T00:00:00+00:00",
+      2941.75
+    ],
+    [
+      "2023-09-05T00:00:00+00:00",
+      2934.13
+    ],
+    [
+      "2023-09-06T00:00:00+00:00",
+      2930.15
+    ],
+    [
+      "2023-09-07T00:00:00+00:00",
+      2907.26
+    ],
+    [
+      "2023-09-08T00:00:00+00:00",
+      2907.51
+    ],
+    [
+      "2023-09-09T00:00:00+00:00",
+      2934.66
+    ],
+    [
+      "2023-09-10T00:00:00+00:00",
+      2932.26
+    ],
+    [
+      "2023-09-11T00:00:00+00:00",
+      2965.47
+    ],
+    [
+      "2023-09-12T00:00:00+00:00",
+      2875.32
+    ],
+    [
+      "2023-09-13T00:00:00+00:00",
+      2868.17
+    ],
+    [
+      "2023-09-14T00:00:00+00:00",
+      2846.32
+    ],
+    [
+      "2023-09-15T00:00:00+00:00",
+      2846.72
+    ],
+    [
+      "2023-09-16T00:00:00+00:00",
+      2795.3
+    ],
+    [
+      "2023-09-17T00:00:00+00:00",
+      2795.42
+    ],
+    [
+      "2023-09-18T00:00:00+00:00",
+      2843.23
+    ],
+    [
+      "2023-09-19T00:00:00+00:00",
+      2829.46
+    ],
+    [
+      "2023-09-20T00:00:00+00:00",
+      2795.31
+    ],
+    [
+      "2023-09-21T00:00:00+00:00",
+      2756.05
+    ],
+    [
+      "2023-09-22T00:00:00+00:00",
+      2788.01
+    ],
+    [
+      "2023-09-23T00:00:00+00:00",
+      2786.97
+    ],
+    [
+      "2023-09-24T00:00:00+00:00",
+      2772.25
+    ],
+    [
+      "2023-09-25T00:00:00+00:00",
+      2766.24
+    ],
+    [
+      "2023-09-26T00:00:00+00:00",
+      2746.31
+    ],
+    [
+      "2023-09-27T00:00:00+00:00",
+      2761.38
+    ],
+    [
+      "2023-09-28T00:00:00+00:00",
+      2778.5
+    ],
+    [
+      "2023-09-29T00:00:00+00:00",
+      2766.06
+    ],
+    [
+      "2023-09-30T00:00:00+00:00",
+      2741.94
+    ],
+    [
+      "2023-10-01T00:00:00+00:00",
+      2726.88
+    ],
+    [
+      "2023-10-02T00:00:00+00:00",
+      2655.65
+    ],
+    [
+      "2023-10-03T00:00:00+00:00",
+      2648.32
+    ],
+    [
+      "2023-10-04T00:00:00+00:00",
+      2648.32
+    ],
+    [
+      "2023-10-05T00:00:00+00:00",
+      2648.32
+    ],
+    [
+      "2023-10-06T00:00:00+00:00",
+      2646.42
+    ],
+    [
+      "2023-10-07T00:00:00+00:00",
+      2632.42
+    ],
+    [
+      "2023-10-08T00:00:00+00:00",
+      2642.37
+    ],
+    [
+      "2023-10-09T00:00:00+00:00",
+      2613.14
+    ],
+    [
+      "2023-10-10T00:00:00+00:00",
+      2613.93
+    ],
+    [
+      "2023-10-11T00:00:00+00:00",
+      2597.59
+    ],
+    [
+      "2023-10-12T00:00:00+00:00",
+      2610.18
+    ],
+    [
+      "2023-10-13T00:00:00+00:00",
+      2612.57
+    ],
+    [
+      "2023-10-14T00:00:00+00:00",
+      2566.96
+    ],
+    [
+      "2023-10-15T00:00:00+00:00",
+      2553.01
+    ],
+    [
+      "2023-10-16T00:00:00+00:00",
+      2516.61
+    ],
+    [
+      "2023-10-17T00:00:00+00:00",
+      2497.76
+    ],
+    [
+      "2023-10-18T00:00:00+00:00",
+      2537.47
+    ],
+    [
+      "2023-10-19T00:00:00+00:00",
+      2531.05
+    ],
+    [
+      "2023-10-20T00:00:00+00:00",
+      2521.43
+    ],
+    [
+      "2023-10-21T00:00:00+00:00",
+      2520.31
+    ],
+    [
+      "2023-10-22T00:00:00+00:00",
+      2528.33
+    ],
+    [
+      "2023-10-23T00:00:00+00:00",
+      2516.11
+    ],
+    [
+      "2023-10-24T00:00:00+00:00",
+      2409.8
+    ],
+    [
+      "2023-10-25T00:00:00+00:00",
+      2409.8
+    ],
+    [
+      "2023-10-26T00:00:00+00:00",
+      2409.8
+    ],
+    [
+      "2023-10-27T00:00:00+00:00",
+      2411.05
+    ],
+    [
+      "2023-10-28T00:00:00+00:00",
+      2415.09
+    ],
+    [
+      "2023-10-29T00:00:00+00:00",
+      2456.45
+    ],
+    [
+      "2023-10-30T00:00:00+00:00",
+      2588.14
+    ],
+    [
+      "2023-10-31T00:00:00+00:00",
+      2602.0
+    ],
+    [
+      "2023-11-01T00:00:00+00:00",
+      2587.73
+    ],
+    [
+      "2023-11-02T00:00:00+00:00",
+      2607.74
+    ],
+    [
+      "2023-11-03T00:00:00+00:00",
+      2560.19
+    ],
+    [
+      "2023-11-04T00:00:00+00:00",
+      2540.98
+    ],
+    [
+      "2023-11-05T00:00:00+00:00",
+      2607.3
+    ],
+    [
+      "2023-11-06T00:00:00+00:00",
+      2667.65
+    ],
+    [
+      "2023-11-07T00:00:00+00:00",
+      2760.08
+    ],
+    [
+      "2023-11-08T00:00:00+00:00",
+      2697.39
+    ],
+    [
+      "2023-11-09T00:00:00+00:00",
+      2737.49
+    ],
+    [
+      "2023-11-10T00:00:00+00:00",
+      2700.23
+    ],
+    [
+      "2023-11-11T00:00:00+00:00",
+      2771.02
+    ],
+    [
+      "2023-11-12T00:00:00+00:00",
+      2790.96
+    ],
+    [
+      "2023-11-13T00:00:00+00:00",
+      2846.77
+    ],
+    [
+      "2023-11-14T00:00:00+00:00",
+      2784.44
+    ],
+    [
+      "2023-11-15T00:00:00+00:00",
+      2698.06
+    ],
+    [
+      "2023-11-16T00:00:00+00:00",
+      2800.93
+    ],
+    [
+      "2023-11-17T00:00:00+00:00",
+      2637.0
+    ],
+    [
+      "2023-11-18T00:00:00+00:00",
+      2643.53
+    ],
+    [
+      "2023-11-19T00:00:00+00:00",
+      2637.47
+    ],
+    [
+      "2023-11-20T00:00:00+00:00",
+      2723.6
+    ],
+    [
+      "2023-11-21T00:00:00+00:00",
+      2796.43
+    ],
+    [
+      "2023-11-22T00:00:00+00:00",
+      2748.93
+    ],
+    [
+      "2023-11-23T00:00:00+00:00",
+      2890.44
+    ],
+    [
+      "2023-11-24T00:00:00+00:00",
+      2912.73
+    ],
+    [
+      "2023-11-25T00:00:00+00:00",
+      2921.15
+    ],
+    [
+      "2023-11-26T00:00:00+00:00",
+      2955.77
+    ],
+    [
+      "2023-11-27T00:00:00+00:00",
+      2920.17
+    ],
+    [
+      "2023-11-28T00:00:00+00:00",
+      2856.5
+    ],
+    [
+      "2023-11-29T00:00:00+00:00",
+      2905.26
+    ],
+    [
+      "2023-11-30T00:00:00+00:00",
+      2881.0
+    ],
+    [
+      "2023-12-01T00:00:00+00:00",
+      2889.67
+    ],
+    [
+      "2023-12-02T00:00:00+00:00",
+      2944.75
+    ],
+    [
+      "2023-12-03T00:00:00+00:00",
+      2979.05
+    ],
+    [
+      "2023-12-04T00:00:00+00:00",
+      2947.68
+    ],
+    [
+      "2023-12-05T00:00:00+00:00",
+      3063.43
+    ],
+    [
+      "2023-12-06T00:00:00+00:00",
+      3049.96
+    ],
+    [
+      "2023-12-07T00:00:00+00:00",
+      2975.76
+    ],
+    [
+      "2023-12-08T00:00:00+00:00",
+      3053.85
+    ],
+    [
+      "2023-12-09T00:00:00+00:00",
+      3159.7
+    ],
+    [
+      "2023-12-10T00:00:00+00:00",
+      3183.68
+    ],
+    [
+      "2023-12-11T00:00:00+00:00",
+      3199.18
+    ],
+    [
+      "2023-12-12T00:00:00+00:00",
+      3071.32
+    ],
+    [
+      "2023-12-13T00:00:00+00:00",
+      3125.28
+    ],
+    [
+      "2023-12-14T00:00:00+00:00",
+      3103.98
+    ],
+    [
+      "2023-12-15T00:00:00+00:00",
+      3108.33
+    ],
+    [
+      "2023-12-16T00:00:00+00:00",
+      3036.8
+    ],
+    [
+      "2023-12-17T00:00:00+00:00",
+      3049.77
+    ],
+    [
+      "2023-12-18T00:00:00+00:00",
+      3018.36
+    ],
+    [
+      "2023-12-19T00:00:00+00:00",
+      2971.19
+    ],
+    [
+      "2023-12-20T00:00:00+00:00",
+      3019.5
+    ],
+    [
+      "2023-12-21T00:00:00+00:00",
+      3051.42
+    ],
+    [
+      "2023-12-22T00:00:00+00:00",
+      3102.32
+    ],
+    [
+      "2023-12-23T00:00:00+00:00",
+      3062.54
+    ],
+    [
+      "2023-12-24T00:00:00+00:00",
+      3069.38
+    ],
+    [
+      "2023-12-25T00:00:00+00:00",
+      3060.99
+    ],
+    [
+      "2023-12-26T00:00:00+00:00",
+      3068.09
+    ],
+    [
+      "2023-12-27T00:00:00+00:00",
+      3137.92
+    ],
+    [
+      "2023-12-28T00:00:00+00:00",
+      3100.67
+    ],
+    [
+      "2023-12-29T00:00:00+00:00",
+      3176.23
+    ],
+    [
+      "2023-12-30T00:00:00+00:00",
+      3154.33
+    ],
+    [
+      "2023-12-31T00:00:00+00:00",
+      3354.36
+    ],
+    [
+      "2024-01-01T00:00:00+00:00",
+      3362.11
+    ],
+    [
+      "2024-01-02T00:00:00+00:00",
+      3375.58
+    ],
+    [
+      "2024-01-03T00:00:00+00:00",
+      3397.57
+    ],
+    [
+      "2024-01-04T00:00:00+00:00",
+      3448.73
+    ],
+    [
+      "2024-01-05T00:00:00+00:00",
+      3462.97
+    ],
+    [
+      "2024-01-06T00:00:00+00:00",
+      3440.79
+    ],
+    [
+      "2024-01-07T00:00:00+00:00",
+      3336.1
+    ],
+    [
+      "2024-01-08T00:00:00+00:00",
+      3257.05
+    ],
+    [
+      "2024-01-09T00:00:00+00:00",
+      3489.16
+    ],
+    [
+      "2024-01-10T00:00:00+00:00",
+      3415.57
+    ],
+    [
+      "2024-01-11T00:00:00+00:00",
+      3523.67
+    ],
+    [
+      "2024-01-12T00:00:00+00:00",
+      3471.9
+    ],
+    [
+      "2024-01-13T00:00:00+00:00",
+      3371.1
+    ],
+    [
+      "2024-01-14T00:00:00+00:00",
+      3439.81
+    ],
+    [
+      "2024-01-15T00:00:00+00:00",
+      3407.47
+    ],
+    [
+      "2024-01-16T00:00:00+00:00",
+      3487.57
+    ],
+    [
+      "2024-01-17T00:00:00+00:00",
+      3465.14
+    ],
+    [
+      "2024-01-18T00:00:00+00:00",
+      3408.64
+    ],
+    [
+      "2024-01-19T00:00:00+00:00",
+      3336.04
+    ],
+    [
+      "2024-01-20T00:00:00+00:00",
+      3369.75
+    ],
+    [
+      "2024-01-21T00:00:00+00:00",
+      3394.09
+    ],
+    [
+      "2024-01-22T00:00:00+00:00",
+      3363.95
+    ],
+    [
+      "2024-01-23T00:00:00+00:00",
+      3228.37
+    ],
+    [
+      "2024-01-24T00:00:00+00:00",
+      3170.09
+    ],
+    [
+      "2024-01-25T00:00:00+00:00",
+      3250.21
+    ],
+    [
+      "2024-01-26T00:00:00+00:00",
+      3238.2
+    ],
+    [
+      "2024-01-27T00:00:00+00:00",
+      3358.76
+    ],
+    [
+      "2024-01-28T00:00:00+00:00",
+      3412.03
+    ],
+    [
+      "2024-01-29T00:00:00+00:00",
+      3359.48
+    ],
+    [
+      "2024-01-30T00:00:00+00:00",
+      3427.95
+    ],
+    [
+      "2024-01-31T00:00:00+00:00",
+      3339.85
+    ],
+    [
+      "2024-02-01T00:00:00+00:00",
+      3259.8
+    ],
+    [
+      "2024-02-02T00:00:00+00:00",
+      3273.73
+    ],
+    [
+      "2024-02-03T00:00:00+00:00",
+      3372.21
+    ],
+    [
+      "2024-02-04T00:00:00+00:00",
+      3367.0
+    ],
+    [
+      "2024-02-05T00:00:00+00:00",
+      3354.68
+    ],
+    [
+      "2024-02-06T00:00:00+00:00",
+      3304.79
+    ],
+    [
+      "2024-02-07T00:00:00+00:00",
+      3254.69
+    ],
+    [
+      "2024-02-08T00:00:00+00:00",
+      3282.51
+    ],
+    [
+      "2024-02-09T00:00:00+00:00",
+      3311.67
+    ],
+    [
+      "2024-02-10T00:00:00+00:00",
+      3376.44
+    ],
+    [
+      "2024-02-11T00:00:00+00:00",
+      3393.32
+    ],
+    [
+      "2024-02-12T00:00:00+00:00",
+      3374.56
+    ],
+    [
+      "2024-02-13T00:00:00+00:00",
+      3418.99
+    ],
+    [
+      "2024-02-14T00:00:00+00:00",
+      3383.88
+    ],
+    [
+      "2024-02-15T00:00:00+00:00",
+      3462.43
+    ],
+    [
+      "2024-02-16T00:00:00+00:00",
+      3484.47
+    ],
+    [
+      "2024-02-17T00:00:00+00:00",
+      3456.84
+    ],
+    [
+      "2024-02-18T00:00:00+00:00",
+      3460.58
+    ],
+    [
+      "2024-02-19T00:00:00+00:00",
+      3502.99
+    ],
+    [
+      "2024-02-20T00:00:00+00:00",
+      3555.65
+    ],
+    [
+      "2024-02-21T00:00:00+00:00",
+      3509.15
+    ],
+    [
+      "2024-02-22T00:00:00+00:00",
+      3530.28
+    ],
+    [
+      "2024-02-23T00:00:00+00:00",
+      3500.61
+    ],
+    [
+      "2024-02-24T00:00:00+00:00",
+      3462.6
+    ],
+    [
+      "2024-02-25T00:00:00+00:00",
+      3509.38
+    ],
+    [
+      "2024-02-26T00:00:00+00:00",
+      3550.89
+    ],
+    [
+      "2024-02-27T00:00:00+00:00",
+      3628.72
+    ],
+    [
+      "2024-02-28T00:00:00+00:00",
+      3659.51
+    ],
+    [
+      "2024-02-29T00:00:00+00:00",
+      3615.64
+    ],
+    [
+      "2024-03-01T00:00:00+00:00",
+      3597.75
+    ],
+    [
+      "2024-03-02T00:00:00+00:00",
+      3682.57
+    ],
+    [
+      "2024-03-03T00:00:00+00:00",
+      3808.12
+    ],
+    [
+      "2024-03-04T00:00:00+00:00",
+      3813.32
+    ],
+    [
+      "2024-03-05T00:00:00+00:00",
+      3875.94
+    ],
+    [
+      "2024-03-06T00:00:00+00:00",
+      3938.74
+    ],
+    [
+      "2024-03-07T00:00:00+00:00",
+      4157.19
+    ],
+    [
+      "2024-03-08T00:00:00+00:00",
+      4125.29
+    ],
+    [
+      "2024-03-09T00:00:00+00:00",
+      4093.33
+    ],
+    [
+      "2024-03-10T00:00:00+00:00",
+      4104.45
+    ],
+    [
+      "2024-03-11T00:00:00+00:00",
+      4067.76
+    ],
+    [
+      "2024-03-12T00:00:00+00:00",
+      4169.93
+    ],
+    [
+      "2024-03-13T00:00:00+00:00",
+      4147.0
+    ],
+    [
+      "2024-03-14T00:00:00+00:00",
+      4127.21
+    ],
+    [
+      "2024-03-15T00:00:00+00:00",
+      4062.55
+    ],
+    [
+      "2024-03-16T00:00:00+00:00",
+      3883.79
+    ],
+    [
+      "2024-03-17T00:00:00+00:00",
+      3691.01
+    ],
+    [
+      "2024-03-18T00:00:00+00:00",
+      3730.55
+    ],
+    [
+      "2024-03-19T00:00:00+00:00",
+      3676.74
+    ],
+    [
+      "2024-03-20T00:00:00+00:00",
+      3443.83
+    ],
+    [
+      "2024-03-21T00:00:00+00:00",
+      3601.24
+    ],
+    [
+      "2024-03-22T00:00:00+00:00",
+      3656.04
+    ],
+    [
+      "2024-03-23T00:00:00+00:00",
+      3719.5
+    ],
+    [
+      "2024-03-24T00:00:00+00:00",
+      3727.61
+    ],
+    [
+      "2024-03-25T00:00:00+00:00",
+      3838.88
+    ],
+    [
+      "2024-03-26T00:00:00+00:00",
+      4017.54
+    ],
+    [
+      "2024-03-27T00:00:00+00:00",
+      4083.56
+    ],
+    [
+      "2024-03-28T00:00:00+00:00",
+      4098.51
+    ],
+    [
+      "2024-03-29T00:00:00+00:00",
+      4096.54
+    ],
+    [
+      "2024-03-30T00:00:00+00:00",
+      4145.55
+    ],
+    [
+      "2024-03-31T00:00:00+00:00",
+      4106.48
+    ],
+    [
+      "2024-04-01T00:00:00+00:00",
+      4087.18
+    ],
+    [
+      "2024-04-02T00:00:00+00:00",
+      4028.11
+    ],
+    [
+      "2024-04-03T00:00:00+00:00",
+      3979.74
+    ],
+    [
+      "2024-04-04T00:00:00+00:00",
+      3995.04
+    ],
+    [
+      "2024-04-05T00:00:00+00:00",
+      4069.11
+    ],
+    [
+      "2024-04-06T00:00:00+00:00",
+      4036.09
+    ],
+    [
+      "2024-04-07T00:00:00+00:00",
+      4049.42
+    ],
+    [
+      "2024-04-08T00:00:00+00:00",
+      4022.63
+    ],
+    [
+      "2024-04-09T00:00:00+00:00",
+      3994.4
+    ],
+    [
+      "2024-04-10T00:00:00+00:00",
+      3939.4
+    ],
+    [
+      "2024-04-11T00:00:00+00:00",
+      3971.76
+    ],
+    [
+      "2024-04-12T00:00:00+00:00",
+      3949.18
+    ],
+    [
+      "2024-04-13T00:00:00+00:00",
+      3913.89
+    ],
+    [
+      "2024-04-14T00:00:00+00:00",
+      3836.97
+    ],
+    [
+      "2024-04-15T00:00:00+00:00",
+      3885.44
+    ],
+    [
+      "2024-04-16T00:00:00+00:00",
+      3828.78
+    ],
+    [
+      "2024-04-17T00:00:00+00:00",
+      3808.67
+    ],
+    [
+      "2024-04-18T00:00:00+00:00",
+      3759.55
+    ],
+    [
+      "2024-04-19T00:00:00+00:00",
+      3646.31
+    ],
+    [
+      "2024-04-20T00:00:00+00:00",
+      3529.27
+    ],
+    [
+      "2024-04-21T00:00:00+00:00",
+      3417.28
+    ],
+    [
+      "2024-04-22T00:00:00+00:00",
+      3458.08
+    ],
+    [
+      "2024-04-23T00:00:00+00:00",
+      3395.53
+    ],
+    [
+      "2024-04-24T00:00:00+00:00",
+      3420.63
+    ],
+    [
+      "2024-04-25T00:00:00+00:00",
+      3509.02
+    ],
+    [
+      "2024-04-26T00:00:00+00:00",
+      3492.47
+    ],
+    [
+      "2024-04-27T00:00:00+00:00",
+      3500.09
+    ],
+    [
+      "2024-04-28T00:00:00+00:00",
+      3485.3
+    ],
+    [
+      "2024-04-29T00:00:00+00:00",
+      3533.21
+    ],
+    [
+      "2024-04-30T00:00:00+00:00",
+      3533.8
+    ],
+    [
+      "2024-05-01T00:00:00+00:00",
+      3558.23
+    ],
+    [
+      "2024-05-02T00:00:00+00:00",
+      3471.72
+    ],
+    [
+      "2024-05-03T00:00:00+00:00",
+      3448.39
+    ],
+    [
+      "2024-05-04T00:00:00+00:00",
+      3519.44
+    ],
+    [
+      "2024-05-05T00:00:00+00:00",
+      3518.2
+    ],
+    [
+      "2024-05-06T00:00:00+00:00",
+      3535.75
+    ],
+    [
+      "2024-05-07T00:00:00+00:00",
+      3544.68
+    ],
+    [
+      "2024-05-08T00:00:00+00:00",
+      3546.1
+    ],
+    [
+      "2024-05-09T00:00:00+00:00",
+      3514.85
+    ],
+    [
+      "2024-05-10T00:00:00+00:00",
+      3530.25
+    ],
+    [
+      "2024-05-11T00:00:00+00:00",
+      3540.75
+    ],
+    [
+      "2024-05-12T00:00:00+00:00",
+      3568.91
+    ],
+    [
+      "2024-05-13T00:00:00+00:00",
+      3580.11
+    ],
+    [
+      "2024-05-14T00:00:00+00:00",
+      3583.08
+    ],
+    [
+      "2024-05-15T00:00:00+00:00",
+      3551.21
+    ],
+    [
+      "2024-05-16T00:00:00+00:00",
+      3456.46
+    ],
+    [
+      "2024-05-17T00:00:00+00:00",
+      3441.35
+    ],
+    [
+      "2024-05-18T00:00:00+00:00",
+      3387.87
+    ],
+    [
+      "2024-05-19T00:00:00+00:00",
+      3373.24
+    ],
+    [
+      "2024-05-20T00:00:00+00:00",
+      3378.88
+    ],
+    [
+      "2024-05-21T00:00:00+00:00",
+      3377.95
+    ],
+    [
+      "2024-05-22T00:00:00+00:00",
+      3429.93
+    ],
+    [
+      "2024-05-23T00:00:00+00:00",
+      3419.77
+    ],
+    [
+      "2024-05-24T00:00:00+00:00",
+      3353.35
+    ],
+    [
+      "2024-05-25T00:00:00+00:00",
+      3355.05
+    ],
+    [
+      "2024-05-26T00:00:00+00:00",
+      3358.62
+    ],
+    [
+      "2024-05-27T00:00:00+00:00",
+      3354.88
+    ],
+    [
+      "2024-05-28T00:00:00+00:00",
+      3369.34
+    ],
+    [
+      "2024-05-29T00:00:00+00:00",
+      3345.96
+    ],
+    [
+      "2024-05-30T00:00:00+00:00",
+      3327.04
+    ],
+    [
+      "2024-05-31T00:00:00+00:00",
+      3310.75
+    ],
+    [
+      "2024-06-01T00:00:00+00:00",
+      3323.98
+    ],
+    [
+      "2024-06-02T00:00:00+00:00",
+      3348.23
+    ],
+    [
+      "2024-06-03T00:00:00+00:00",
+      3341.05
+    ],
+    [
+      "2024-06-04T00:00:00+00:00",
+      3362.11
+    ],
+    [
+      "2024-06-05T00:00:00+00:00",
+      3448.5
+    ],
+    [
+      "2024-06-06T00:00:00+00:00",
+      3504.56
+    ],
+    [
+      "2024-06-07T00:00:00+00:00",
+      3495.71
+    ],
+    [
+      "2024-06-08T00:00:00+00:00",
+      3574.04
+    ],
+    [
+      "2024-06-09T00:00:00+00:00",
+      3652.9
+    ],
+    [
+      "2024-06-10T00:00:00+00:00",
+      3623.24
+    ],
+    [
+      "2024-06-11T00:00:00+00:00",
+      3622.25
+    ],
+    [
+      "2024-06-12T00:00:00+00:00",
+      3692.05
+    ],
+    [
+      "2024-06-13T00:00:00+00:00",
+      3686.75
+    ],
+    [
+      "2024-06-14T00:00:00+00:00",
+      3722.5
+    ],
+    [
+      "2024-06-15T00:00:00+00:00",
+      3722.5
+    ],
+    [
+      "2024-06-16T00:00:00+00:00",
+      3727.18
+    ],
+    [
+      "2024-06-17T00:00:00+00:00",
+      3718.24
+    ],
+    [
+      "2024-06-18T00:00:00+00:00",
+      3766.75
+    ],
+    [
+      "2024-06-19T00:00:00+00:00",
+      3821.09
+    ],
+    [
+      "2024-06-20T00:00:00+00:00",
+      3824.16
+    ],
+    [
+      "2024-06-21T00:00:00+00:00",
+      3825.76
+    ],
+    [
+      "2024-06-22T00:00:00+00:00",
+      3828.75
+    ],
+    [
+      "2024-06-23T00:00:00+00:00",
+      3842.92
+    ],
+    [
+      "2024-06-24T00:00:00+00:00",
+      3918.73
+    ],
+    [
+      "2024-06-25T00:00:00+00:00",
+      3929.57
+    ],
+    [
+      "2024-06-26T00:00:00+00:00",
+      3880.68
+    ],
+    [
+      "2024-06-27T00:00:00+00:00",
+      3908.82
+    ],
+    [
+      "2024-06-28T00:00:00+00:00",
+      3872.1
+    ],
+    [
+      "2024-06-29T00:00:00+00:00",
+      3949.21
+    ],
+    [
+      "2024-06-30T00:00:00+00:00",
+      3960.55
+    ],
+    [
+      "2024-07-01T00:00:00+00:00",
+      3878.23
+    ],
+    [
+      "2024-07-02T00:00:00+00:00",
+      3909.3
+    ],
+    [
+      "2024-07-03T00:00:00+00:00",
+      3922.39
+    ],
+    [
+      "2024-07-04T00:00:00+00:00",
+      4030.2
+    ],
+    [
+      "2024-07-05T00:00:00+00:00",
+      4197.64
+    ],
+    [
+      "2024-07-06T00:00:00+00:00",
+      4197.64
+    ],
+    [
+      "2024-07-07T00:00:00+00:00",
+      4197.64
+    ],
+    [
+      "2024-07-08T00:00:00+00:00",
+      4209.58
+    ],
+    [
+      "2024-07-09T00:00:00+00:00",
+      4222.55
+    ],
+    [
+      "2024-07-10T00:00:00+00:00",
+      4164.37
+    ],
+    [
+      "2024-07-11T00:00:00+00:00",
+      4167.79
+    ],
+    [
+      "2024-07-12T00:00:00+00:00",
+      4172.97
+    ],
+    [
+      "2024-07-13T00:00:00+00:00",
+      4166.5
+    ],
+    [
+      "2024-07-14T00:00:00+00:00",
+      3998.41
+    ],
+    [
+      "2024-07-15T00:00:00+00:00",
+      3947.67
+    ],
+    [
+      "2024-07-16T00:00:00+00:00",
+      3848.0
+    ],
+    [
+      "2024-07-17T00:00:00+00:00",
+      3848.0
+    ],
+    [
+      "2024-07-18T00:00:00+00:00",
+      3848.0
+    ],
+    [
+      "2024-07-19T00:00:00+00:00",
+      3848.0
+    ],
+    [
+      "2024-07-20T00:00:00+00:00",
+      3882.92
+    ],
+    [
+      "2024-07-21T00:00:00+00:00",
+      3913.66
+    ],
+    [
+      "2024-07-22T00:00:00+00:00",
+      3972.47
+    ],
+    [
+      "2024-07-23T00:00:00+00:00",
+      3882.97
+    ],
+    [
+      "2024-07-24T00:00:00+00:00",
+      3830.5
+    ],
+    [
+      "2024-07-25T00:00:00+00:00",
+      3766.99
+    ],
+    [
+      "2024-07-26T00:00:00+00:00",
+      3771.64
+    ],
+    [
+      "2024-07-27T00:00:00+00:00",
+      3782.2
+    ],
+    [
+      "2024-07-28T00:00:00+00:00",
+      3815.75
+    ],
+    [
+      "2024-07-29T00:00:00+00:00",
+      3772.67
+    ],
+    [
+      "2024-07-30T00:00:00+00:00",
+      3717.75
+    ],
+    [
+      "2024-07-31T00:00:00+00:00",
+      3707.24
+    ],
+    [
+      "2024-08-01T00:00:00+00:00",
+      3695.63
+    ],
+    [
+      "2024-08-02T00:00:00+00:00",
+      3674.53
+    ],
+    [
+      "2024-08-03T00:00:00+00:00",
+      3713.22
+    ],
+    [
+      "2024-08-04T00:00:00+00:00",
+      3740.95
+    ],
+    [
+      "2024-08-05T00:00:00+00:00",
+      3771.45
+    ],
+    [
+      "2024-08-06T00:00:00+00:00",
+      3853.26
+    ],
+    [
+      "2024-08-07T00:00:00+00:00",
+      3910.39
+    ],
+    [
+      "2024-08-08T00:00:00+00:00",
+      3932.46
+    ],
+    [
+      "2024-08-09T00:00:00+00:00",
+      4040.87
+    ],
+    [
+      "2024-08-10T00:00:00+00:00",
+      4178.33
+    ],
+    [
+      "2024-08-11T00:00:00+00:00",
+      4178.33
+    ],
+    [
+      "2024-08-12T00:00:00+00:00",
+      4178.33
+    ],
+    [
+      "2024-08-13T00:00:00+00:00",
+      4178.33
+    ],
+    [
+      "2024-08-14T00:00:00+00:00",
+      4178.33
+    ],
+    [
+      "2024-08-15T00:00:00+00:00",
+      4178.33
+    ],
+    [
+      "2024-08-16T00:00:00+00:00",
+      4168.46
+    ],
+    [
+      "2024-08-17T00:00:00+00:00",
+      4159.49
+    ],
+    [
+      "2024-08-18T00:00:00+00:00",
+      4150.94
+    ],
+    [
+      "2024-08-19T00:00:00+00:00",
+      4151.87
+    ],
+    [
+      "2024-08-20T00:00:00+00:00",
+      4110.88
+    ],
+    [
+      "2024-08-21T00:00:00+00:00",
+      4136.52
+    ],
+    [
+      "2024-08-22T00:00:00+00:00",
+      4018.0
+    ],
+    [
+      "2024-08-23T00:00:00+00:00",
+      4007.04
+    ],
+    [
+      "2024-08-24T00:00:00+00:00",
+      3910.25
+    ],
+    [
+      "2024-08-25T00:00:00+00:00",
+      3908.09
+    ],
+    [
+      "2024-08-26T00:00:00+00:00",
+      3914.6
+    ],
+    [
+      "2024-08-27T00:00:00+00:00",
+      3895.64
+    ],
+    [
+      "2024-08-28T00:00:00+00:00",
+      3942.99
+    ],
+    [
+      "2024-08-29T00:00:00+00:00",
+      3915.12
+    ],
+    [
+      "2024-08-30T00:00:00+00:00",
+      3915.4
+    ],
+    [
+      "2024-08-31T00:00:00+00:00",
+      3916.03
+    ],
+    [
+      "2024-09-01T00:00:00+00:00",
+      3921.13
+    ],
+    [
+      "2024-09-02T00:00:00+00:00",
+      3955.4
+    ],
+    [
+      "2024-09-03T00:00:00+00:00",
+      3911.32
+    ],
+    [
+      "2024-09-04T00:00:00+00:00",
+      3955.57
+    ],
+    [
+      "2024-09-05T00:00:00+00:00",
+      3976.1
+    ],
+    [
+      "2024-09-06T00:00:00+00:00",
+      3976.1
+    ],
+    [
+      "2024-09-07T00:00:00+00:00",
+      3976.1
+    ],
+    [
+      "2024-09-08T00:00:00+00:00",
+      3976.1
+    ],
+    [
+      "2024-09-09T00:00:00+00:00",
+      3976.1
+    ],
+    [
+      "2024-09-10T00:00:00+00:00",
+      3976.1
+    ],
+    [
+      "2024-09-11T00:00:00+00:00",
+      3961.89
+    ],
+    [
+      "2024-09-12T00:00:00+00:00",
+      3982.24
+    ],
+    [
+      "2024-09-13T00:00:00+00:00",
+      3973.25
+    ],
+    [
+      "2024-09-14T00:00:00+00:00",
+      3940.4
+    ],
+    [
+      "2024-09-15T00:00:00+00:00",
+      3934.11
+    ],
+    [
+      "2024-09-16T00:00:00+00:00",
+      3895.88
+    ],
+    [
+      "2024-09-17T00:00:00+00:00",
+      3867.86
+    ],
+    [
+      "2024-09-18T00:00:00+00:00",
+      3856.68
+    ],
+    [
+      "2024-09-19T00:00:00+00:00",
+      3859.67
+    ],
+    [
+      "2024-09-20T00:00:00+00:00",
+      3867.88
+    ],
+    [
+      "2024-09-21T00:00:00+00:00",
+      3819.69
+    ],
+    [
+      "2024-09-22T00:00:00+00:00",
+      3835.72
+    ],
+    [
+      "2024-09-23T00:00:00+00:00",
+      3785.43
+    ],
+    [
+      "2024-09-24T00:00:00+00:00",
+      3763.62
+    ],
+    [
+      "2024-09-25T00:00:00+00:00",
+      3759.16
+    ],
+    [
+      "2024-09-26T00:00:00+00:00",
+      3705.36
+    ],
+    [
+      "2024-09-27T00:00:00+00:00",
+      3756.09
+    ],
+    [
+      "2024-09-28T00:00:00+00:00",
+      3717.62
+    ],
+    [
+      "2024-09-29T00:00:00+00:00",
+      3678.01
+    ],
+    [
+      "2024-09-30T00:00:00+00:00",
+      3655.32
+    ],
+    [
+      "2024-10-01T00:00:00+00:00",
+      3518.67
+    ],
+    [
+      "2024-10-02T00:00:00+00:00",
+      3422.55
+    ],
+    [
+      "2024-10-03T00:00:00+00:00",
+      3422.55
+    ],
+    [
+      "2024-10-04T00:00:00+00:00",
+      3422.55
+    ],
+    [
+      "2024-10-05T00:00:00+00:00",
+      3422.55
+    ],
+    [
+      "2024-10-06T00:00:00+00:00",
+      3415.51
+    ],
+    [
+      "2024-10-07T00:00:00+00:00",
+      3346.45
+    ],
+    [
+      "2024-10-08T00:00:00+00:00",
+      3356.74
+    ],
+    [
+      "2024-10-09T00:00:00+00:00",
+      3356.0
+    ],
+    [
+      "2024-10-10T00:00:00+00:00",
+      3353.43
+    ],
+    [
+      "2024-10-11T00:00:00+00:00",
+      3280.37
+    ],
+    [
+      "2024-10-12T00:00:00+00:00",
+      3324.88
+    ],
+    [
+      "2024-10-13T00:00:00+00:00",
+      3317.02
+    ],
+    [
+      "2024-10-14T00:00:00+00:00",
+      3319.6
+    ],
+    [
+      "2024-10-15T00:00:00+00:00",
+      3245.88
+    ],
+    [
+      "2024-10-16T00:00:00+00:00",
+      3290.17
+    ],
+    [
+      "2024-10-17T00:00:00+00:00",
+      3317.38
+    ],
+    [
+      "2024-10-18T00:00:00+00:00",
+      3372.55
+    ],
+    [
+      "2024-10-19T00:00:00+00:00",
+      3347.96
+    ],
+    [
+      "2024-10-20T00:00:00+00:00",
+      3382.42
+    ],
+    [
+      "2024-10-21T00:00:00+00:00",
+      3397.2
+    ],
+    [
+      "2024-10-22T00:00:00+00:00",
+      3438.28
+    ],
+    [
+      "2024-10-23T00:00:00+00:00",
+      3447.22
+    ],
+    [
+      "2024-10-24T00:00:00+00:00",
+      3466.47
+    ],
+    [
+      "2024-10-25T00:00:00+00:00",
+      3468.38
+    ],
+    [
+      "2024-10-26T00:00:00+00:00",
+      3360.39
+    ],
+    [
+      "2024-10-27T00:00:00+00:00",
+      3324.53
+    ],
+    [
+      "2024-10-28T00:00:00+00:00",
+      3425.41
+    ],
+    [
+      "2024-10-29T00:00:00+00:00",
+      3405.51
+    ],
+    [
+      "2024-10-30T00:00:00+00:00",
+      3440.03
+    ],
+    [
+      "2024-10-31T00:00:00+00:00",
+      3459.05
+    ],
+    [
+      "2024-11-01T00:00:00+00:00",
+      3410.65
+    ],
+    [
+      "2024-11-02T00:00:00+00:00",
+      3440.95
+    ],
+    [
+      "2024-11-03T00:00:00+00:00",
+      3385.9
+    ],
+    [
+      "2024-11-04T00:00:00+00:00",
+      3404.11
+    ],
+    [
+      "2024-11-05T00:00:00+00:00",
+      3396.01
+    ],
+    [
+      "2024-11-06T00:00:00+00:00",
+      3431.74
+    ],
+    [
+      "2024-11-07T00:00:00+00:00",
+      3539.72
+    ],
+    [
+      "2024-11-08T00:00:00+00:00",
+      3535.87
+    ],
+    [
+      "2024-11-09T00:00:00+00:00",
+      3534.04
+    ],
+    [
+      "2024-11-10T00:00:00+00:00",
+      3468.13
+    ],
+    [
+      "2024-11-11T00:00:00+00:00",
+      3354.96
+    ],
+    [
+      "2024-11-12T00:00:00+00:00",
+      3339.62
+    ],
+    [
+      "2024-11-13T00:00:00+00:00",
+      3339.62
+    ],
+    [
+      "2024-11-14T00:00:00+00:00",
+      3291.79
+    ],
+    [
+      "2024-11-15T00:00:00+00:00",
+      3182.18
+    ],
+    [
+      "2024-11-16T00:00:00+00:00",
+      3266.02
+    ],
+    [
+      "2024-11-17T00:00:00+00:00",
+      3348.65
+    ],
+    [
+      "2024-11-18T00:00:00+00:00",
+      3295.67
+    ],
+    [
+      "2024-11-19T00:00:00+00:00",
+      3386.27
+    ],
+    [
+      "2024-11-20T00:00:00+00:00",
+      3318.2
+    ],
+    [
+      "2024-11-21T00:00:00+00:00",
+      3254.96
+    ],
+    [
+      "2024-11-22T00:00:00+00:00",
+      3414.18
+    ],
+    [
+      "2024-11-23T00:00:00+00:00",
+      3599.7
+    ],
+    [
+      "2024-11-24T00:00:00+00:00",
+      3764.58
+    ],
+    [
+      "2024-11-25T00:00:00+00:00",
+      3769.09
+    ],
+    [
+      "2024-11-26T00:00:00+00:00",
+      3766.19
+    ],
+    [
+      "2024-11-27T00:00:00+00:00",
+      3730.14
+    ],
+    [
+      "2024-11-28T00:00:00+00:00",
+      3944.66
+    ],
+    [
+      "2024-11-29T00:00:00+00:00",
+      3942.12
+    ],
+    [
+      "2024-11-30T00:00:00+00:00",
+      3926.36
+    ],
+    [
+      "2024-12-01T00:00:00+00:00",
+      4006.74
+    ],
+    [
+      "2024-12-02T00:00:00+00:00",
+      4034.06
+    ],
+    [
+      "2024-12-03T00:00:00+00:00",
+      4097.22
+    ],
+    [
+      "2024-12-04T00:00:00+00:00",
+      4208.1
+    ],
+    [
+      "2024-12-05T00:00:00+00:00",
+      4236.41
+    ],
+    [
+      "2024-12-06T00:00:00+00:00",
+      4271.93
+    ],
+    [
+      "2024-12-07T00:00:00+00:00",
+      4272.66
+    ],
+    [
+      "2024-12-08T00:00:00+00:00",
+      4272.37
+    ],
+    [
+      "2024-12-09T00:00:00+00:00",
+      4252.25
+    ],
+    [
+      "2024-12-10T00:00:00+00:00",
+      3916.1
+    ],
+    [
+      "2024-12-11T00:00:00+00:00",
+      3919.39
+    ],
+    [
+      "2024-12-12T00:00:00+00:00",
+      3998.13
+    ],
+    [
+      "2024-12-13T00:00:00+00:00",
+      3930.37
+    ],
+    [
+      "2024-12-14T00:00:00+00:00",
+      3939.94
+    ],
+    [
+      "2024-12-15T00:00:00+00:00",
+      3929.41
+    ],
+    [
+      "2024-12-16T00:00:00+00:00",
+      3935.85
+    ],
+    [
+      "2024-12-17T00:00:00+00:00",
+      3892.56
+    ],
+    [
+      "2024-12-18T00:00:00+00:00",
+      3878.18
+    ],
+    [
+      "2024-12-19T00:00:00+00:00",
+      3849.22
+    ],
+    [
+      "2024-12-20T00:00:00+00:00",
+      3774.11
+    ],
+    [
+      "2024-12-21T00:00:00+00:00",
+      3727.88
+    ],
+    [
+      "2024-12-22T00:00:00+00:00",
+      3727.88
+    ],
+    [
+      "2024-12-23T00:00:00+00:00",
+      3727.88
+    ],
+    [
+      "2024-12-24T00:00:00+00:00",
+      3692.7
+    ],
+    [
+      "2024-12-25T00:00:00+00:00",
+      3658.36
+    ],
+    [
+      "2024-12-26T00:00:00+00:00",
+      3648.56
+    ],
+    [
+      "2024-12-27T00:00:00+00:00",
+      3716.13
+    ],
+    [
+      "2024-12-28T00:00:00+00:00",
+      3719.51
+    ],
+    [
+      "2024-12-29T00:00:00+00:00",
+      3643.09
+    ],
+    [
+      "2024-12-30T00:00:00+00:00",
+      3714.38
+    ],
+    [
+      "2024-12-31T00:00:00+00:00",
+      3681.87
+    ],
+    [
+      "2025-01-01T00:00:00+00:00",
+      3679.48
+    ],
+    [
+      "2025-01-02T00:00:00+00:00",
+      3724.49
+    ],
+    [
+      "2025-01-03T00:00:00+00:00",
+      3716.69
+    ],
+    [
+      "2025-01-04T00:00:00+00:00",
+      3780.51
+    ],
+    [
+      "2025-01-05T00:00:00+00:00",
+      3768.6
+    ],
+    [
+      "2025-01-06T00:00:00+00:00",
+      3780.89
+    ],
+    [
+      "2025-01-07T00:00:00+00:00",
+      3735.74
+    ],
+    [
+      "2025-01-08T00:00:00+00:00",
+      3863.75
+    ],
+    [
+      "2025-01-09T00:00:00+00:00",
+      3881.31
+    ],
+    [
+      "2025-01-10T00:00:00+00:00",
+      3908.54
+    ],
+    [
+      "2025-01-11T00:00:00+00:00",
+      3916.7
+    ],
+    [
+      "2025-01-12T00:00:00+00:00",
+      3910.39
+    ],
+    [
+      "2025-01-13T00:00:00+00:00",
+      3902.62
+    ],
+    [
+      "2025-01-14T00:00:00+00:00",
+      3972.27
+    ],
+    [
+      "2025-01-15T00:00:00+00:00",
+      3968.94
+    ],
+    [
+      "2025-01-16T00:00:00+00:00",
+      3883.81
+    ],
+    [
+      "2025-01-17T00:00:00+00:00",
+      3908.3
+    ],
+    [
+      "2025-01-18T00:00:00+00:00",
+      3834.43
+    ],
+    [
+      "2025-01-19T00:00:00+00:00",
+      3923.66
+    ],
+    [
+      "2025-01-20T00:00:00+00:00",
+      3984.19
+    ],
+    [
+      "2025-01-21T00:00:00+00:00",
+      4014.82
+    ],
+    [
+      "2025-01-22T00:00:00+00:00",
+      4006.21
+    ],
+    [
+      "2025-01-23T00:00:00+00:00",
+      4051.84
+    ],
+    [
+      "2025-01-24T00:00:00+00:00",
+      4075.94
+    ],
+    [
+      "2025-01-25T00:00:00+00:00",
+      4099.45
+    ],
+    [
+      "2025-01-26T00:00:00+00:00",
+      4077.75
+    ],
+    [
+      "2025-01-27T00:00:00+00:00",
+      4120.16
+    ],
+    [
+      "2025-01-28T00:00:00+00:00",
+      4134.34
+    ],
+    [
+      "2025-01-29T00:00:00+00:00",
+      4130.91
+    ],
+    [
+      "2025-01-30T00:00:00+00:00",
+      4131.63
+    ],
+    [
+      "2025-01-31T00:00:00+00:00",
+      4156.81
+    ],
+    [
+      "2025-02-01T00:00:00+00:00",
+      4192.74
+    ],
+    [
+      "2025-02-02T00:00:00+00:00",
+      4220.44
+    ],
+    [
+      "2025-02-03T00:00:00+00:00",
+      4200.97
+    ],
+    [
+      "2025-02-04T00:00:00+00:00",
+      4204.33
+    ],
+    [
+      "2025-02-05T00:00:00+00:00",
+      4204.33
+    ],
+    [
+      "2025-02-06T00:00:00+00:00",
+      4204.33
+    ],
+    [
+      "2025-02-07T00:00:00+00:00",
+      4198.77
+    ],
+    [
+      "2025-02-08T00:00:00+00:00",
+      4182.44
+    ],
+    [
+      "2025-02-09T00:00:00+00:00",
+      4083.35
+    ],
+    [
+      "2025-02-10T00:00:00+00:00",
+      4067.45
+    ],
+    [
+      "2025-02-11T00:00:00+00:00",
+      4051.79
+    ],
+    [
+      "2025-02-12T00:00:00+00:00",
+      4018.23
+    ],
+    [
+      "2025-02-13T00:00:00+00:00",
+      3932.54
+    ],
+    [
+      "2025-02-14T00:00:00+00:00",
+      4005.29
+    ],
+    [
+      "2025-02-15T00:00:00+00:00",
+      3953.08
+    ],
+    [
+      "2025-02-16T00:00:00+00:00",
+      3986.3
+    ],
+    [
+      "2025-02-17T00:00:00+00:00",
+      4006.68
+    ],
+    [
+      "2025-02-18T00:00:00+00:00",
+      4001.53
+    ],
+    [
+      "2025-02-19T00:00:00+00:00",
+      4066.72
+    ],
+    [
+      "2025-02-20T00:00:00+00:00",
+      4097.49
+    ],
+    [
+      "2025-02-21T00:00:00+00:00",
+      4041.71
+    ],
+    [
+      "2025-02-22T00:00:00+00:00",
+      4100.83
+    ],
+    [
+      "2025-02-23T00:00:00+00:00",
+      3985.9
+    ],
+    [
+      "2025-02-24T00:00:00+00:00",
+      3977.63
+    ],
+    [
+      "2025-02-25T00:00:00+00:00",
+      4293.4
+    ],
+    [
+      "2025-02-26T00:00:00+00:00",
+      4272.51
+    ],
+    [
+      "2025-02-27T00:00:00+00:00",
+      4201.24
+    ],
+    [
+      "2025-02-28T00:00:00+00:00",
+      4148.63
+    ],
+    [
+      "2025-03-01T00:00:00+00:00",
+      4135.24
+    ],
+    [
+      "2025-03-02T00:00:00+00:00",
+      4124.15
+    ],
+    [
+      "2025-03-03T00:00:00+00:00",
+      4000.45
+    ],
+    [
+      "2025-03-04T00:00:00+00:00",
+      4250.54
+    ],
+    [
+      "2025-03-05T00:00:00+00:00",
+      4349.88
+    ],
+    [
+      "2025-03-06T00:00:00+00:00",
+      4298.62
+    ],
+    [
+      "2025-03-07T00:00:00+00:00",
+      4338.9
+    ],
+    [
+      "2025-03-08T00:00:00+00:00",
+      4383.42
+    ],
+    [
+      "2025-03-09T00:00:00+00:00",
+      4406.42
+    ],
+    [
+      "2025-03-10T00:00:00+00:00",
+      4496.09
+    ],
+    [
+      "2025-03-11T00:00:00+00:00",
+      4530.38
+    ],
+    [
+      "2025-03-12T00:00:00+00:00",
+      4579.41
+    ],
+    [
+      "2025-03-13T00:00:00+00:00",
+      4587.86
+    ],
+    [
+      "2025-03-14T00:00:00+00:00",
+      4521.55
+    ],
+    [
+      "2025-03-15T00:00:00+00:00",
+      4472.25
+    ],
+    [
+      "2025-03-16T00:00:00+00:00",
+      4446.19
+    ],
+    [
+      "2025-03-17T00:00:00+00:00",
+      4457.29
+    ],
+    [
+      "2025-03-18T00:00:00+00:00",
+      4365.83
+    ],
+    [
+      "2025-03-19T00:00:00+00:00",
+      4402.84
+    ],
+    [
+      "2025-03-20T00:00:00+00:00",
+      4379.37
+    ],
+    [
+      "2025-03-21T00:00:00+00:00",
+      4406.61
+    ],
+    [
+      "2025-03-22T00:00:00+00:00",
+      4523.82
+    ],
+    [
+      "2025-03-23T00:00:00+00:00",
+      4494.25
+    ],
+    [
+      "2025-03-24T00:00:00+00:00",
+      4506.53
+    ],
+    [
+      "2025-03-25T00:00:00+00:00",
+      4435.65
+    ],
+    [
+      "2025-03-26T00:00:00+00:00",
+      4284.83
+    ],
+    [
+      "2025-03-27T00:00:00+00:00",
+      4250.02
+    ],
+    [
+      "2025-03-28T00:00:00+00:00",
+      4268.85
+    ],
+    [
+      "2025-03-29T00:00:00+00:00",
+      4209.13
+    ],
+    [
+      "2025-03-30T00:00:00+00:00",
+      4162.23
+    ],
+    [
+      "2025-03-31T00:00:00+00:00",
+      4158.05
+    ],
+    [
+      "2025-04-01T00:00:00+00:00",
+      4157.85
+    ],
+    [
+      "2025-04-02T00:00:00+00:00",
+      4175.01
+    ],
+    [
+      "2025-04-03T00:00:00+00:00",
+      4106.3
+    ],
+    [
+      "2025-04-04T00:00:00+00:00",
+      4050.92
+    ],
+    [
+      "2025-04-05T00:00:00+00:00",
+      4031.83
+    ],
+    [
+      "2025-04-06T00:00:00+00:00",
+      4035.47
+    ],
+    [
+      "2025-04-07T00:00:00+00:00",
+      4034.0
+    ],
+    [
+      "2025-04-08T00:00:00+00:00",
+      3993.44
+    ],
+    [
+      "2025-04-09T00:00:00+00:00",
+      3993.44
+    ],
+    [
+      "2025-04-10T00:00:00+00:00",
+      3993.44
+    ],
+    [
+      "2025-04-11T00:00:00+00:00",
+      3958.48
+    ],
+    [
+      "2025-04-12T00:00:00+00:00",
+      3925.16
+    ],
+    [
+      "2025-04-13T00:00:00+00:00",
+      3853.58
+    ],
+    [
+      "2025-04-14T00:00:00+00:00",
+      3942.76
+    ],
+    [
+      "2025-04-15T00:00:00+00:00",
+      3839.62
+    ],
+    [
+      "2025-04-16T00:00:00+00:00",
+      3864.58
+    ],
+    [
+      "2025-04-17T00:00:00+00:00",
+      3868.66
+    ],
+    [
+      "2025-04-18T00:00:00+00:00",
+      3836.25
+    ],
+    [
+      "2025-04-19T00:00:00+00:00",
+      3817.7
+    ],
+    [
+      "2025-04-20T00:00:00+00:00",
+      3835.17
+    ],
+    [
+      "2025-04-21T00:00:00+00:00",
+      3822.16
+    ],
+    [
+      "2025-04-22T00:00:00+00:00",
+      3869.22
+    ],
+    [
+      "2025-04-23T00:00:00+00:00",
+      3740.23
+    ],
+    [
+      "2025-04-24T00:00:00+00:00",
+      3697.93
+    ],
+    [
+      "2025-04-25T00:00:00+00:00",
+      3695.01
+    ],
+    [
+      "2025-04-26T00:00:00+00:00",
+      3684.56
+    ],
+    [
+      "2025-04-27T00:00:00+00:00",
+      3623.93
+    ],
+    [
+      "2025-04-28T00:00:00+00:00",
+      3617.17
+    ],
+    [
+      "2025-04-29T00:00:00+00:00",
+      3712.67
+    ],
+    [
+      "2025-04-30T00:00:00+00:00",
+      3702.38
+    ],
+    [
+      "2025-05-01T00:00:00+00:00",
+      3755.82
+    ],
+    [
+      "2025-05-02T00:00:00+00:00",
+      3777.21
+    ],
+    [
+      "2025-05-03T00:00:00+00:00",
+      3759.78
+    ],
+    [
+      "2025-05-04T00:00:00+00:00",
+      3773.25
+    ],
+    [
+      "2025-05-05T00:00:00+00:00",
+      3769.73
+    ],
+    [
+      "2025-05-06T00:00:00+00:00",
+      3835.17
+    ],
+    [
+      "2025-05-07T00:00:00+00:00",
+      3872.6
+    ],
+    [
+      "2025-05-08T00:00:00+00:00",
+      3944.67
+    ],
+    [
+      "2025-05-09T00:00:00+00:00",
+      3959.04
+    ],
+    [
+      "2025-05-10T00:00:00+00:00",
+      3942.87
+    ],
+    [
+      "2025-05-11T00:00:00+00:00",
+      3878.93
+    ],
+    [
+      "2025-05-12T00:00:00+00:00",
+      3878.93
+    ],
+    [
+      "2025-05-13T00:00:00+00:00",
+      3878.93
+    ],
+    [
+      "2025-05-14T00:00:00+00:00",
+      3877.95
+    ],
+    [
+      "2025-05-15T00:00:00+00:00",
+      3834.09
+    ],
+    [
+      "2025-05-16T00:00:00+00:00",
+      3784.49
+    ],
+    [
+      "2025-05-17T00:00:00+00:00",
+      3718.42
+    ],
+    [
+      "2025-05-18T00:00:00+00:00",
+      3689.5
+    ],
+    [
+      "2025-05-19T00:00:00+00:00",
+      3762.15
+    ],
+    [
+      "2025-05-20T00:00:00+00:00",
+      3720.99
+    ],
+    [
+      "2025-05-21T00:00:00+00:00",
+      3741.86
+    ],
+    [
+      "2025-05-22T00:00:00+00:00",
+      3833.71
+    ],
+    [
+      "2025-05-23T00:00:00+00:00",
+      4053.13
+    ],
+    [
+      "2025-05-24T00:00:00+00:00",
+      3877.86
+    ],
+    [
+      "2025-05-25T00:00:00+00:00",
+      3949.43
+    ],
+    [
+      "2025-05-26T00:00:00+00:00",
+      4016.28
+    ],
+    [
+      "2025-05-27T00:00:00+00:00",
+      4016.48
+    ],
+    [
+      "2025-05-28T00:00:00+00:00",
+      4062.31
+    ],
+    [
+      "2025-05-29T00:00:00+00:00",
+      4074.06
+    ],
+    [
+      "2025-05-30T00:00:00+00:00",
+      4042.77
+    ],
+    [
+      "2025-05-31T00:00:00+00:00",
+      3951.76
+    ],
+    [
+      "2025-06-01T00:00:00+00:00",
+      3945.3
+    ],
+    [
+      "2025-06-02T00:00:00+00:00",
+      3949.52
+    ],
+    [
+      "2025-06-03T00:00:00+00:00",
+      3957.41
+    ],
+    [
+      "2025-06-04T00:00:00+00:00",
+      3924.17
+    ],
+    [
+      "2025-06-05T00:00:00+00:00",
+      4008.43
+    ],
+    [
+      "2025-06-06T00:00:00+00:00",
+      4057.53
+    ],
+    [
+      "2025-06-07T00:00:00+00:00",
+      4036.97
+    ],
+    [
+      "2025-06-08T00:00:00+00:00",
+      4029.67
+    ],
+    [
+      "2025-06-09T00:00:00+00:00",
+      4054.06
+    ],
+    [
+      "2025-06-10T00:00:00+00:00",
+      4088.12
+    ],
+    [
+      "2025-06-11T00:00:00+00:00",
+      4098.45
+    ],
+    [
+      "2025-06-12T00:00:00+00:00",
+      4123.85
+    ],
+    [
+      "2025-06-13T00:00:00+00:00",
+      4143.31
+    ],
+    [
+      "2025-06-14T00:00:00+00:00",
+      4234.48
+    ],
+    [
+      "2025-06-15T00:00:00+00:00",
+      4195.43
+    ],
+    [
+      "2025-06-16T00:00:00+00:00",
+      4206.42
+    ],
+    [
+      "2025-06-17T00:00:00+00:00",
+      4207.64
+    ],
+    [
+      "2025-06-18T00:00:00+00:00",
+      4216.22
+    ],
+    [
+      "2025-06-19T00:00:00+00:00",
+      4201.23
+    ],
+    [
+      "2025-06-20T00:00:00+00:00",
+      4209.95
+    ],
+    [
+      "2025-06-21T00:00:00+00:00",
+      4236.24
+    ],
+    [
+      "2025-06-22T00:00:00+00:00",
+      4189.73
+    ],
+    [
+      "2025-06-23T00:00:00+00:00",
+      4090.26
+    ],
+    [
+      "2025-06-24T00:00:00+00:00",
+      4128.0
+    ],
+    [
+      "2025-06-25T00:00:00+00:00",
+      4120.34
+    ],
+    [
+      "2025-06-26T00:00:00+00:00",
+      4151.29
+    ],
+    [
+      "2025-06-27T00:00:00+00:00",
+      4169.51
+    ],
+    [
+      "2025-06-28T00:00:00+00:00",
+      4155.95
+    ],
+    [
+      "2025-06-29T00:00:00+00:00",
+      4140.03
+    ],
+    [
+      "2025-06-30T00:00:00+00:00",
+      4083.05
+    ],
+    [
+      "2025-07-01T00:00:00+00:00",
+      4122.96
+    ],
+    [
+      "2025-07-02T00:00:00+00:00",
+      4193.57
+    ],
+    [
+      "2025-07-03T00:00:00+00:00",
+      4119.79
+    ],
+    [
+      "2025-07-04T00:00:00+00:00",
+      4132.71
+    ],
+    [
+      "2025-07-05T00:00:00+00:00",
+      4202.58
+    ],
+    [
+      "2025-07-06T00:00:00+00:00",
+      4206.57
+    ],
+    [
+      "2025-07-07T00:00:00+00:00",
+      4216.74
+    ],
+    [
+      "2025-07-08T00:00:00+00:00",
+      4260.53
+    ],
+    [
+      "2025-07-09T00:00:00+00:00",
+      4228.95
+    ],
+    [
+      "2025-07-10T00:00:00+00:00",
+      4177.01
+    ],
+    [
+      "2025-07-11T00:00:00+00:00",
+      4150.37
+    ],
+    [
+      "2025-07-12T00:00:00+00:00",
+      4169.83
+    ],
+    [
+      "2025-07-13T00:00:00+00:00",
+      4162.09
+    ],
+    [
+      "2025-07-14T00:00:00+00:00",
+      4150.67
+    ],
+    [
+      "2025-07-15T00:00:00+00:00",
+      4112.16
+    ],
+    [
+      "2025-07-16T00:00:00+00:00",
+      4197.9
+    ],
+    [
+      "2025-07-17T00:00:00+00:00",
+      4215.74
+    ],
+    [
+      "2025-07-18T00:00:00+00:00",
+      4186.29
+    ],
+    [
+      "2025-07-19T00:00:00+00:00",
+      4198.63
+    ],
+    [
+      "2025-07-20T00:00:00+00:00",
+      4174.51
+    ],
+    [
+      "2025-07-21T00:00:00+00:00",
+      4149.6
+    ],
+    [
+      "2025-07-22T00:00:00+00:00",
+      4110.61
+    ],
+    [
+      "2025-07-23T00:00:00+00:00",
+      4103.78
+    ],
+    [
+      "2025-07-24T00:00:00+00:00",
+      4135.64
+    ],
+    [
+      "2025-07-25T00:00:00+00:00",
+      4129.47
+    ],
+    [
+      "2025-07-26T00:00:00+00:00",
+      4136.94
+    ],
+    [
+      "2025-07-27T00:00:00+00:00",
+      4145.05
+    ],
+    [
+      "2025-07-28T00:00:00+00:00",
+      4192.44
+    ],
+    [
+      "2025-07-29T00:00:00+00:00",
+      4245.93
+    ],
+    [
+      "2025-07-30T00:00:00+00:00",
+      4260.11
+    ],
+    [
+      "2025-07-31T00:00:00+00:00",
+      4267.27
+    ],
+    [
+      "2025-08-01T00:00:00+00:00",
+      4287.01
+    ],
+    [
+      "2025-08-02T00:00:00+00:00",
+      4304.28
+    ],
+    [
+      "2025-08-03T00:00:00+00:00",
+      4316.27
+    ],
+    [
+      "2025-08-04T00:00:00+00:00",
+      4286.4
+    ],
+    [
+      "2025-08-05T00:00:00+00:00",
+      4208.89
+    ],
+    [
+      "2025-08-06T00:00:00+00:00",
+      4217.72
+    ],
+    [
+      "2025-08-07T00:00:00+00:00",
+      4224.1
+    ],
+    [
+      "2025-08-08T00:00:00+00:00",
+      4138.15
+    ],
+    [
+      "2025-08-09T00:00:00+00:00",
+      4103.93
+    ],
+    [
+      "2025-08-10T00:00:00+00:00",
+      4043.46
+    ],
+    [
+      "2025-08-11T00:00:00+00:00",
+      4050.7
+    ],
+    [
+      "2025-08-12T00:00:00+00:00",
+      4182.5
+    ],
+    [
+      "2025-08-13T00:00:00+00:00",
+      4056.96
+    ],
+    [
+      "2025-08-14T00:00:00+00:00",
+      3970.95
+    ],
+    [
+      "2025-08-15T00:00:00+00:00",
+      3971.41
+    ],
+    [
+      "2025-08-16T00:00:00+00:00",
+      3985.23
+    ],
+    [
+      "2025-08-17T00:00:00+00:00",
+      3987.75
+    ],
+    [
+      "2025-08-18T00:00:00+00:00",
+      4005.98
+    ],
+    [
+      "2025-08-19T00:00:00+00:00",
+      3942.18
+    ],
+    [
+      "2025-08-20T00:00:00+00:00",
+      3945.03
+    ],
+    [
+      "2025-08-21T00:00:00+00:00",
+      3916.24
+    ],
+    [
+      "2025-08-22T00:00:00+00:00",
+      3922.1
+    ],
+    [
+      "2025-08-23T00:00:00+00:00",
+      3942.71
+    ],
+    [
+      "2025-08-24T00:00:00+00:00",
+      3924.3
+    ],
+    [
+      "2025-08-25T00:00:00+00:00",
+      3929.06
+    ],
+    [
+      "2025-08-26T00:00:00+00:00",
+      3903.86
+    ],
+    [
+      "2025-08-27T00:00:00+00:00",
+      3915.13
+    ],
+    [
+      "2025-08-28T00:00:00+00:00",
+      3904.66
+    ],
+    [
+      "2025-08-29T00:00:00+00:00",
+      3914.83
+    ],
+    [
+      "2025-08-30T00:00:00+00:00",
+      3904.16
+    ],
+    [
+      "2025-08-31T00:00:00+00:00",
+      3914.54
+    ],
+    [
+      "2025-09-01T00:00:00+00:00",
+      3932.61
+    ],
+    [
+      "2025-09-02T00:00:00+00:00",
+      3903.73
+    ],
+    [
+      "2025-09-03T00:00:00+00:00",
+      3955.7
+    ],
+    [
+      "2025-09-04T00:00:00+00:00",
+      3961.33
+    ],
+    [
+      "2025-09-05T00:00:00+00:00",
+      3903.7
+    ],
+    [
+      "2025-09-06T00:00:00+00:00",
+      3916.9
+    ],
+    [
+      "2025-09-07T00:00:00+00:00",
+      4025.4
+    ],
+    [
+      "2025-09-08T00:00:00+00:00",
+      4058.6
+    ],
+    [
+      "2025-09-09T00:00:00+00:00",
+      4060.24
+    ],
+    [
+      "2025-09-10T00:00:00+00:00",
+      4067.62
+    ],
+    [
+      "2025-09-11T00:00:00+00:00",
+      4103.25
+    ],
+    [
+      "2025-09-12T00:00:00+00:00",
+      4101.73
+    ],
+    [
+      "2025-09-13T00:00:00+00:00",
+      4136.09
+    ],
+    [
+      "2025-09-14T00:00:00+00:00",
+      4132.55
+    ],
+    [
+      "2025-09-15T00:00:00+00:00",
+      4172.79
+    ],
+    [
+      "2025-09-16T00:00:00+00:00",
+      4208.85
+    ],
+    [
+      "2025-09-17T00:00:00+00:00",
+      4200.8
+    ],
+    [
+      "2025-09-18T00:00:00+00:00",
+      4184.74
+    ],
+    [
+      "2025-09-19T00:00:00+00:00",
+      4165.43
+    ],
+    [
+      "2025-09-20T00:00:00+00:00",
+      4208.31
+    ],
+    [
+      "2025-09-21T00:00:00+00:00",
+      4204.03
+    ],
+    [
+      "2025-09-22T00:00:00+00:00",
+      4207.02
+    ],
+    [
+      "2025-09-23T00:00:00+00:00",
+      4235.12
+    ],
+    [
+      "2025-09-24T00:00:00+00:00",
+      4120.46
+    ],
+    [
+      "2025-09-25T00:00:00+00:00",
+      4095.94
+    ],
+    [
+      "2025-09-26T00:00:00+00:00",
+      4022.9
+    ],
+    [
+      "2025-09-27T00:00:00+00:00",
+      4037.89
+    ],
+    [
+      "2025-09-28T00:00:00+00:00",
+      4045.59
+    ],
+    [
+      "2025-09-29T00:00:00+00:00",
+      4070.3
+    ],
+    [
+      "2025-09-30T00:00:00+00:00",
+      4107.31
+    ],
+    [
+      "2025-10-01T00:00:00+00:00",
+      4085.89
+    ],
+    [
+      "2025-10-02T00:00:00+00:00",
+      4075.33
+    ],
+    [
+      "2025-10-03T00:00:00+00:00",
+      4127.18
+    ],
+    [
+      "2025-10-04T00:00:00+00:00",
+      4109.34
+    ],
+    [
+      "2025-10-05T00:00:00+00:00",
+      4146.17
+    ],
+    [
+      "2025-10-06T00:00:00+00:00",
+      4139.99
+    ],
+    [
+      "2025-10-07T00:00:00+00:00",
+      4117.75
+    ],
+    [
+      "2025-10-08T00:00:00+00:00",
+      3997.83
+    ],
+    [
+      "2025-10-09T00:00:00+00:00",
+      4331.93
+    ],
+    [
+      "2025-10-10T00:00:00+00:00",
+      4590.78
+    ],
+    [
+      "2025-10-11T00:00:00+00:00",
+      4649.02
+    ],
+    [
+      "2025-10-12T00:00:00+00:00",
+      4649.02
+    ],
+    [
+      "2025-10-13T00:00:00+00:00",
+      4649.02
+    ],
+    [
+      "2025-10-14T00:00:00+00:00",
+      4649.02
+    ],
+    [
+      "2025-10-15T00:00:00+00:00",
+      4738.91
+    ],
+    [
+      "2025-10-16T00:00:00+00:00",
+      4660.68
+    ],
+    [
+      "2025-10-17T00:00:00+00:00",
+      4517.83
+    ],
+    [
+      "2025-10-18T00:00:00+00:00",
+      4511.58
+    ],
+    [
+      "2025-10-19T00:00:00+00:00",
+      4545.24
+    ],
+    [
+      "2025-10-20T00:00:00+00:00",
+      4623.43
+    ],
+    [
+      "2025-10-21T00:00:00+00:00",
+      4759.82
+    ],
+    [
+      "2025-10-22T00:00:00+00:00",
+      4698.43
+    ],
+    [
+      "2025-10-23T00:00:00+00:00",
+      4614.2
+    ],
+    [
+      "2025-10-24T00:00:00+00:00",
+      4676.15
+    ],
+    [
+      "2025-10-25T00:00:00+00:00",
+      4758.13
+    ],
+    [
+      "2025-10-26T00:00:00+00:00",
+      4800.58
+    ],
+    [
+      "2025-10-27T00:00:00+00:00",
+      5128.14
+    ],
+    [
+      "2025-10-28T00:00:00+00:00",
+      5125.45
+    ],
+    [
+      "2025-10-29T00:00:00+00:00",
+      5091.75
+    ],
+    [
+      "2025-10-30T00:00:00+00:00",
+      5109.38
+    ],
+    [
+      "2025-10-31T00:00:00+00:00",
+      5061.45
+    ],
+    [
+      "2025-11-01T00:00:00+00:00",
+      5025.84
+    ],
+    [
+      "2025-11-02T00:00:00+00:00",
+      5174.03
+    ],
+    [
+      "2025-11-03T00:00:00+00:00",
+      5163.55
+    ],
+    [
+      "2025-11-04T00:00:00+00:00",
+      5175.23
+    ],
+    [
+      "2025-11-05T00:00:00+00:00",
+      5116.84
+    ],
+    [
+      "2025-11-06T00:00:00+00:00",
+      5144.59
+    ],
+    [
+      "2025-11-07T00:00:00+00:00",
+      5144.59
+    ],
+    [
+      "2025-11-08T00:00:00+00:00",
+      5210.5
+    ],
+    [
+      "2025-11-09T00:00:00+00:00",
+      5209.65
+    ],
+    [
+      "2025-11-10T00:00:00+00:00",
+      5209.65
+    ],
+    [
+      "2025-11-11T00:00:00+00:00",
+      5212.42
+    ],
+    [
+      "2025-11-12T00:00:00+00:00",
+      5246.46
+    ],
+    [
+      "2025-11-13T00:00:00+00:00",
+      5251.71
+    ],
+    [
+      "2025-11-14T00:00:00+00:00",
+      5294.53
+    ],
+    [
+      "2025-11-15T00:00:00+00:00",
+      5238.64
+    ],
+    [
+      "2025-11-16T00:00:00+00:00",
+      5266.12
+    ],
+    [
+      "2025-11-17T00:00:00+00:00",
+      5229.93
+    ],
+    [
+      "2025-11-18T00:00:00+00:00",
+      5189.26
+    ],
+    [
+      "2025-11-19T00:00:00+00:00",
+      5205.26
+    ],
+    [
+      "2025-11-20T00:00:00+00:00",
+      5174.59
+    ],
+    [
+      "2025-11-21T00:00:00+00:00",
+      5157.87
+    ],
+    [
+      "2025-11-22T00:00:00+00:00",
+      5197.5
+    ],
+    [
+      "2025-11-23T00:00:00+00:00",
+      5253.2
+    ],
+    [
+      "2025-11-24T00:00:00+00:00",
+      5250.71
+    ],
+    [
+      "2025-11-25T00:00:00+00:00",
+      5194.55
+    ],
+    [
+      "2025-11-26T00:00:00+00:00",
+      5174.08
+    ],
+    [
+      "2025-11-27T00:00:00+00:00",
+      5160.51
+    ],
+    [
+      "2025-11-28T00:00:00+00:00",
+      5192.69
+    ],
+    [
+      "2025-11-29T00:00:00+00:00",
+      5198.66
+    ],
+    [
+      "2025-11-30T00:00:00+00:00",
+      5206.31
+    ],
+    [
+      "2025-12-01T00:00:00+00:00",
+      5247.26
+    ],
+    [
+      "2025-12-02T00:00:00+00:00",
+      5318.35
+    ],
+    [
+      "2025-12-03T00:00:00+00:00",
+      5250.07
+    ],
+    [
+      "2025-12-04T00:00:00+00:00",
+      5229.86
+    ],
+    [
+      "2025-12-05T00:00:00+00:00",
+      5288.11
+    ],
+    [
+      "2025-12-06T00:00:00+00:00",
+      5388.75
+    ],
+    [
+      "2025-12-07T00:00:00+00:00",
+      5389.83
+    ],
+    [
+      "2025-12-08T00:00:00+00:00",
+      5349.77
+    ],
+    [
+      "2025-12-09T00:00:00+00:00",
+      5348.8
+    ],
+    [
+      "2025-12-10T00:00:00+00:00",
+      5294.2
+    ],
+    [
+      "2025-12-11T00:00:00+00:00",
+      5363.02
+    ],
+    [
+      "2025-12-12T00:00:00+00:00",
+      5285.89
+    ],
+    [
+      "2025-12-13T00:00:00+00:00",
+      5249.99
+    ],
+    [
+      "2025-12-14T00:00:00+00:00",
+      5300.82
+    ],
+    [
+      "2025-12-15T00:00:00+00:00",
+      5327.65
+    ],
+    [
+      "2025-12-16T00:00:00+00:00",
+      5265.64
+    ],
+    [
+      "2025-12-17T00:00:00+00:00",
+      5306.7
+    ],
+    [
+      "2025-12-18T00:00:00+00:00",
+      5336.11
+    ],
+    [
+      "2025-12-19T00:00:00+00:00",
+      5292.83
+    ],
+    [
+      "2025-12-20T00:00:00+00:00",
+      5190.01
+    ],
+    [
+      "2025-12-21T00:00:00+00:00",
+      5180.34
+    ],
+    [
+      "2025-12-22T00:00:00+00:00",
+      5196.77
+    ],
+    [
+      "2025-12-23T00:00:00+00:00",
+      5220.51
+    ],
+    [
+      "2025-12-24T00:00:00+00:00",
+      5250.67
+    ],
+    [
+      "2025-12-25T00:00:00+00:00",
+      5183.46
+    ],
+    [
+      "2025-12-26T00:00:00+00:00",
+      5188.69
+    ],
+    [
+      "2025-12-27T00:00:00+00:00",
+      5136.48
+    ],
+    [
+      "2025-12-28T00:00:00+00:00",
+      4911.5
+    ],
+    [
+      "2025-12-29T00:00:00+00:00",
+      4927.96
+    ],
+    [
+      "2025-12-30T00:00:00+00:00",
+      4920.05
+    ],
+    [
+      "2025-12-31T00:00:00+00:00",
+      4910.42
+    ],
+    [
+      "2026-01-01T00:00:00+00:00",
+      4914.86
+    ],
+    [
+      "2026-01-02T00:00:00+00:00",
+      4989.8
+    ],
+    [
+      "2026-01-03T00:00:00+00:00",
+      5144.77
+    ],
+    [
+      "2026-01-04T00:00:00+00:00",
+      5131.04
+    ],
+    [
+      "2026-01-05T00:00:00+00:00",
+      5183.9
+    ],
+    [
+      "2026-01-06T00:00:00+00:00",
+      5201.06
+    ],
+    [
+      "2026-01-07T00:00:00+00:00",
+      5204.65
+    ],
+    [
+      "2026-01-08T00:00:00+00:00",
+      5120.23
+    ],
+    [
+      "2026-01-09T00:00:00+00:00",
+      5051.05
+    ],
+    [
+      "2026-01-10T00:00:00+00:00",
+      5051.33
+    ],
+    [
+      "2026-01-11T00:00:00+00:00",
+      5062.6
+    ],
+    [
+      "2026-01-12T00:00:00+00:00",
+      5064.01
+    ],
+    [
+      "2026-01-13T00:00:00+00:00",
+      5068.78
+    ],
+    [
+      "2026-01-14T00:00:00+00:00",
+      5224.84
+    ],
+    [
+      "2026-01-15T00:00:00+00:00",
+      5075.69
+    ],
+    [
+      "2026-01-16T00:00:00+00:00",
+      5119.96
+    ],
+    [
+      "2026-01-17T00:00:00+00:00",
+      5118.74
+    ],
+    [
+      "2026-01-18T00:00:00+00:00",
+      5114.3
+    ],
+    [
+      "2026-01-19T00:00:00+00:00",
+      5052.26
+    ],
+    [
+      "2026-01-20T00:00:00+00:00",
+      5028.33
+    ],
+    [
+      "2026-01-21T00:00:00+00:00",
+      4961.56
+    ],
+    [
+      "2026-01-22T00:00:00+00:00",
+      4963.67
+    ],
+    [
+      "2026-01-23T00:00:00+00:00",
+      4988.37
+    ],
+    [
+      "2026-01-24T00:00:00+00:00",
+      4994.4
+    ],
+    [
+      "2026-01-25T00:00:00+00:00",
+      4968.73
+    ],
+    [
+      "2026-01-26T00:00:00+00:00",
+      4948.07
+    ],
+    [
+      "2026-01-27T00:00:00+00:00",
+      4935.66
+    ],
+    [
+      "2026-01-28T00:00:00+00:00",
+      4938.27
+    ],
+    [
+      "2026-01-29T00:00:00+00:00",
+      4997.92
+    ],
+    [
+      "2026-01-30T00:00:00+00:00",
+      5085.54
+    ],
+    [
+      "2026-01-31T00:00:00+00:00",
+      5157.1
+    ],
+    [
+      "2026-02-01T00:00:00+00:00",
+      5180.95
+    ],
+    [
+      "2026-02-02T00:00:00+00:00",
+      5180.95
+    ],
+    [
+      "2026-02-03T00:00:00+00:00",
+      5180.95
+    ],
+    [
+      "2026-02-04T00:00:00+00:00",
+      5180.95
+    ],
+    [
+      "2026-02-05T00:00:00+00:00",
+      5210.79
+    ],
+    [
+      "2026-02-06T00:00:00+00:00",
+      5366.05
+    ],
+    [
+      "2026-02-07T00:00:00+00:00",
+      5366.05
+    ],
+    [
+      "2026-02-08T00:00:00+00:00",
+      5366.05
+    ],
+    [
+      "2026-02-09T00:00:00+00:00",
+      5362.72
+    ],
+    [
+      "2026-02-10T00:00:00+00:00",
+      5392.92
+    ],
+    [
+      "2026-02-11T00:00:00+00:00",
+      5426.41
+    ],
+    [
+      "2026-02-12T00:00:00+00:00",
+      5464.5
+    ],
+    [
+      "2026-02-13T00:00:00+00:00",
+      5445.81
+    ],
+    [
+      "2026-02-14T00:00:00+00:00",
+      5454.79
+    ],
+    [
+      "2026-02-15T00:00:00+00:00",
+      5222.96
+    ],
+    [
+      "2026-02-16T00:00:00+00:00",
+      5277.91
+    ],
+    [
+      "2026-02-17T00:00:00+00:00",
+      5274.95
+    ],
+    [
+      "2026-02-18T00:00:00+00:00",
+      5308.96
+    ],
+    [
+      "2026-02-19T00:00:00+00:00",
+      5391.73
+    ],
+    [
+      "2026-02-20T00:00:00+00:00",
+      5436.37
+    ],
+    [
+      "2026-02-21T00:00:00+00:00",
+      5424.6
+    ],
+    [
+      "2026-02-22T00:00:00+00:00",
+      5421.81
+    ],
+    [
+      "2026-02-23T00:00:00+00:00",
+      5411.27
+    ],
+    [
+      "2026-02-24T00:00:00+00:00",
+      5474.31
+    ],
+    [
+      "2026-02-25T00:00:00+00:00",
+      5458.36
+    ],
+    [
+      "2026-02-26T00:00:00+00:00",
+      5531.47
+    ],
+    [
+      "2026-02-27T00:00:00+00:00",
+      5524.52
+    ],
+    [
+      "2026-02-28T00:00:00+00:00",
+      5583.87
+    ],
+    [
+      "2026-03-01T00:00:00+00:00",
+      5621.67
+    ],
+    [
+      "2026-03-02T00:00:00+00:00",
+      5646.78
+    ],
+    [
+      "2026-03-03T00:00:00+00:00",
+      5673.5
+    ],
+    [
+      "2026-03-04T00:00:00+00:00",
+      5657.06
+    ],
+    [
+      "2026-03-05T00:00:00+00:00",
+      5673.19
+    ],
+    [
+      "2026-03-06T00:00:00+00:00",
+      5700.92
+    ],
+    [
+      "2026-03-07T00:00:00+00:00",
+      5689.89
+    ],
+    [
+      "2026-03-08T00:00:00+00:00",
+      5729.67
+    ],
+    [
+      "2026-03-09T00:00:00+00:00",
+      5700.58
+    ],
+    [
+      "2026-03-10T00:00:00+00:00",
+      5764.05
+    ],
+    [
+      "2026-03-11T00:00:00+00:00",
+      5753.05
+    ],
+    [
+      "2026-03-12T00:00:00+00:00",
+      5948.52
+    ],
+    [
+      "2026-03-13T00:00:00+00:00",
+      5947.98
+    ],
+    [
+      "2026-03-14T00:00:00+00:00",
+      6034.85
+    ],
+    [
+      "2026-03-15T00:00:00+00:00",
+      6011.14
+    ],
+    [
+      "2026-03-16T00:00:00+00:00",
+      6142.47
+    ],
+    [
+      "2026-03-17T00:00:00+00:00",
+      6210.05
+    ],
+    [
+      "2026-03-18T00:00:00+00:00",
+      6242.65
+    ],
+    [
+      "2026-03-19T00:00:00+00:00",
+      6286.36
+    ],
+    [
+      "2026-03-20T00:00:00+00:00",
+      6296.22
+    ],
+    [
+      "2026-03-21T00:00:00+00:00",
+      6320.3
+    ],
+    [
+      "2026-03-22T00:00:00+00:00",
+      6338.01
+    ],
+    [
+      "2026-03-23T00:00:00+00:00",
+      6373.51
+    ],
+    [
+      "2026-03-24T00:00:00+00:00",
+      6381.18
+    ],
+    [
+      "2026-03-25T00:00:00+00:00",
+      6374.96
+    ],
+    [
+      "2026-03-26T00:00:00+00:00",
+      6362.67
+    ],
+    [
+      "2026-03-27T00:00:00+00:00",
+      6469.45
+    ],
+    [
+      "2026-03-28T00:00:00+00:00",
+      6496.1
+    ],
+    [
+      "2026-03-29T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-03-30T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-03-31T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-04-01T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-04-02T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-04-03T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-04-04T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-04-05T00:00:00+00:00",
+      6514.76
+    ],
+    [
+      "2026-04-06T00:00:00+00:00",
+      6560.16
+    ],
+    [
+      "2026-04-07T00:00:00+00:00",
+      6607.76
+    ],
+    [
+      "2026-04-08T00:00:00+00:00",
+      6769.54
+    ],
+    [
+      "2026-04-09T00:00:00+00:00",
+      6769.54
+    ],
+    [
+      "2026-04-10T00:00:00+00:00",
+      6769.54
+    ],
+    [
+      "2026-04-11T00:00:00+00:00",
+      6772.57
+    ],
+    [
+      "2026-04-12T00:00:00+00:00",
+      6775.07
+    ],
+    [
+      "2026-04-13T00:00:00+00:00",
+      6750.43
+    ],
+    [
+      "2026-04-14T00:00:00+00:00",
+      6863.89
+    ],
+    [
+      "2026-04-15T00:00:00+00:00",
+      6840.63
+    ],
+    [
+      "2026-04-16T00:00:00+00:00",
+      6883.52
+    ],
+    [
+      "2026-04-17T00:00:00+00:00",
+      6970.35
+    ],
+    [
+      "2026-04-18T00:00:00+00:00",
+      6942.92
+    ],
+    [
+      "2026-04-19T00:00:00+00:00",
+      6864.41
+    ],
+    [
+      "2026-04-20T00:00:00+00:00",
+      6796.13
+    ],
+    [
+      "2026-04-21T00:00:00+00:00",
+      6854.15
+    ],
+    [
+      "2026-04-22T00:00:00+00:00",
+      6861.61
+    ],
+    [
+      "2026-04-23T00:00:00+00:00",
+      6901.18
+    ],
+    [
+      "2026-04-24T00:00:00+00:00",
+      6800.26
+    ],
+    [
+      "2026-04-25T00:00:00+00:00",
+      6729.66
+    ],
+    [
+      "2026-04-26T00:00:00+00:00",
+      6723.88
+    ],
+    [
+      "2026-04-27T00:00:00+00:00",
+      6760.59
+    ],
+    [
+      "2026-04-28T00:00:00+00:00",
+      6726.48
+    ],
+    [
+      "2026-04-29T00:00:00+00:00",
+      6768.96
+    ],
+    [
+      "2026-04-30T00:00:00+00:00",
+      6773.28
+    ],
+    [
+      "2026-05-01T00:00:00+00:00",
+      6675.68
+    ],
+    [
+      "2026-05-02T00:00:00+00:00",
+      6603.72
+    ],
+    [
+      "2026-05-03T00:00:00+00:00",
+      6592.53
+    ],
+    [
+      "2026-05-04T00:00:00+00:00",
+      6578.02
+    ],
+    [
+      "2026-05-05T00:00:00+00:00",
+      6532.19
+    ],
+    [
+      "2026-05-06T00:00:00+00:00",
+      6667.12
+    ],
+    [
+      "2026-05-07T00:00:00+00:00",
+      6667.12
+    ],
+    [
+      "2026-05-08T00:00:00+00:00",
+      6667.12
+    ],
+    [
+      "2026-05-09T00:00:00+00:00",
+      6664.75
+    ],
+    [
+      "2026-05-10T00:00:00+00:00",
+      6670.79
+    ],
+    [
+      "2026-05-11T00:00:00+00:00",
+      6709.43
+    ],
+    [
+      "2026-05-12T00:00:00+00:00",
+      6716.38
+    ],
+    [
+      "2026-05-13T00:00:00+00:00",
+      6737.48
+    ],
+    [
+      "2026-05-14T00:00:00+00:00",
+      6759.25
+    ],
+    [
+      "2026-05-15T00:00:00+00:00",
+      6787.37
+    ],
+    [
+      "2026-05-16T00:00:00+00:00",
+      6787.37
+    ],
+    [
+      "2026-05-17T00:00:00+00:00",
+      6787.37
+    ],
+    [
+      "2026-05-18T00:00:00+00:00",
+      6787.37
+    ],
+    [
+      "2026-05-19T00:00:00+00:00",
+      6722.84
+    ],
+    [
+      "2026-05-20T00:00:00+00:00",
+      6703.02
+    ],
+    [
+      "2026-05-21T00:00:00+00:00",
+      6615.92
+    ],
+    [
+      "2026-05-22T00:00:00+00:00",
+      6615.92
+    ],
+    [
+      "2026-05-23T00:00:00+00:00",
+      6645.88
+    ],
+    [
+      "2026-05-24T00:00:00+00:00",
+      6663.36
+    ],
+    [
+      "2026-05-25T00:00:00+00:00",
+      6663.36
+    ],
+    [
+      "2026-05-26T00:00:00+00:00",
+      6663.36
+    ],
+    [
+      "2026-05-27T00:00:00+00:00",
+      6663.94
+    ],
+    [
+      "2026-05-28T00:00:00+00:00",
+      6675.48
+    ],
+    [
+      "2026-05-29T00:00:00+00:00",
+      6691.61
+    ],
+    [
+      "2026-05-30T00:00:00+00:00",
+      6684.22
+    ],
+    [
+      "2026-05-31T00:00:00+00:00",
+      6613.2
+    ],
+    [
+      "2026-06-01T00:00:00+00:00",
+      6624.57
+    ],
+    [
+      "2026-06-02T00:00:00+00:00",
+      6774.39
+    ],
+    [
+      "2026-06-03T00:00:00+00:00",
+      6838.92
+    ],
+    [
+      "2026-06-04T00:00:00+00:00",
+      6820.79
+    ],
+    [
+      "2026-06-05T00:00:00+00:00",
+      7080.59
+    ],
+    [
+      "2026-06-06T00:00:00+00:00",
+      7339.59
+    ],
+    [
+      "2026-06-07T00:00:00+00:00",
+      7252.0
+    ],
+    [
+      "2026-06-08T00:00:00+00:00",
+      7505.14
+    ],
+    [
+      "2026-06-09T00:00:00+00:00",
+      7563.6
+    ],
+    [
+      "2026-06-10T00:00:00+00:00",
+      7491.21
+    ],
+    [
+      "2026-06-11T00:00:00+00:00",
+      7425.41
+    ],
+    [
+      "2026-06-12T00:00:00+00:00",
+      7455.45
+    ],
+    [
+      "2026-06-13T00:00:00+00:00",
+      7403.45
+    ],
+    [
+      "2026-06-14T00:00:00+00:00",
+      7418.77
+    ],
+    [
+      "2026-06-15T00:00:00+00:00",
+      7538.36
+    ],
+    [
+      "2026-06-16T00:00:00+00:00",
+      7703.58
+    ],
+    [
+      "2026-06-17T00:00:00+00:00",
+      7753.73
+    ],
+    [
+      "2026-06-18T00:00:00+00:00",
+      7762.85
+    ],
+    [
+      "2026-06-19T00:00:00+00:00",
+      7789.2
+    ],
+    [
+      "2026-06-20T00:00:00+00:00",
+      7813.26
+    ],
+    [
+      "2026-06-21T00:00:00+00:00",
+      7794.52
+    ],
+    [
+      "2026-06-22T00:00:00+00:00",
+      7810.15
+    ],
+    [
+      "2026-06-23T00:00:00+00:00",
+      7798.93
+    ],
+    [
+      "2026-06-24T00:00:00+00:00",
+      7866.94
+    ],
+    [
+      "2026-06-25T00:00:00+00:00",
+      7910.96
+    ],
+    [
+      "2026-06-26T00:00:00+00:00",
+      7910.96
+    ],
+    [
+      "2026-06-27T00:00:00+00:00",
+      7910.96
+    ],
+    [
+      "2026-06-28T00:00:00+00:00",
+      7910.96
+    ],
+    [
+      "2026-06-29T00:00:00+00:00",
+      7912.32
+    ],
+    [
+      "2026-06-30T00:00:00+00:00",
+      7887.2
+    ]
+  ]
+}
