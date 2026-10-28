@@ -1,0 +1,263 @@
+{
+  "data_sha": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+  "notes": [
+    "1H intrabar extremes conservatively checked before take profit",
+    "5% daily from 00 UTC equity; 10% static from starting 5000; qualifying days at UTC day close",
+    "5000 fixed notional at 1x; 5x scenario means 25000 notional, not an assumption about user intent",
+    "No actual exchange fills, intrahour timing, prop platform mark price, or withdrawal verification"
+  ],
+  "scenarios": {
+    "stage1_1x": {
+      "count": 335,
+      "status": {
+        "pass": 65,
+        "timeout": 261,
+        "breach_daily": 9,
+        "breach_total": 0
+      },
+      "pass_rate_pct": 19.4,
+      "median_pass_days": 20.0,
+      "sample_pass": [
+        {
+          "start_utc": "2025-11-15T00:00:00+00:00",
+          "status": "pass",
+          "days": 30.0,
+          "trades": 3,
+          "qualifying_days": 3,
+          "final_equity": 5306.72,
+          "max_dd_pct": 2.8,
+          "fees": 22.24,
+          "funding": 21.0
+        },
+        {
+          "start_utc": "2025-11-16T00:00:00+00:00",
+          "status": "pass",
+          "days": 29.0,
+          "trades": 3,
+          "qualifying_days": 3,
+          "final_equity": 5306.72,
+          "max_dd_pct": 2.8,
+          "fees": 22.24,
+          "funding": 21.0
+        },
+        {
+          "start_utc": "2025-11-17T00:00:00+00:00",
+          "status": "pass",
+          "days": 28.0,
+          "trades": 3,
+          "qualifying_days": 3,
+          "final_equity": 5306.72,
+          "max_dd_pct": 2.8,
+          "fees": 22.24,
+          "funding": 21.0
+        }
+      ],
+      "sample_fail": {
+        "start_utc": "2026-02-10T00:00:00+00:00",
+        "status": "breach_daily",
+        "days": 13.75,
+        "trades": 2,
+        "qualifying_days": 3,
+        "final_equity": 4878.81,
+        "max_dd_pct": 6.41,
+        "fees": 11.15,
+        "funding": 27.0
+      }
+    },
+    "stage2_1x": {
+      "count": 335,
+      "status": {
+        "pass": 1,
+        "timeout": 309,
+        "breach_daily": 25,
+        "breach_total": 0
+      },
+      "pass_rate_pct": 0.3,
+      "median_pass_days": 30.0,
+      "sample_pass": [
+        {
+          "start_utc": "2025-12-04T00:00:00+00:00",
+          "status": "pass",
+          "days": 30.0,
+          "trades": 5,
+          "qualifying_days": 5,
+          "final_equity": 5426.47,
+          "max_dd_pct": 3.16,
+          "fees": 37.22,
+          "funding": 31.5
+        }
+      ],
+      "sample_fail": {
+        "start_utc": "2026-01-25T00:00:00+00:00",
+        "status": "breach_daily",
+        "days": 29.75,
+        "trades": 4,
+        "qualifying_days": 6,
+        "final_equity": 5124.08,
+        "max_dd_pct": 6.12,
+        "fees": 25.95,
+        "funding": 39.0
+      }
+    },
+    "funded_14d_1x": {
+      "count": 351,
+      "status": {
+        "pass": 3,
+        "timeout": 339,
+        "breach_daily": 9,
+        "breach_total": 0
+      },
+      "pass_rate_pct": 0.85,
+      "median_pass_days": 14.0,
+      "sample_pass": [
+        {
+          "start_utc": "2026-02-07T00:00:00+00:00",
+          "status": "pass",
+          "days": 14.0,
+          "trades": 3,
+          "qualifying_days": 5,
+          "final_equity": 5314.42,
+          "max_dd_pct": 3.58,
+          "fees": 18.5,
+          "funding": 24.0
+        },
+        {
+          "start_utc": "2026-02-08T00:00:00+00:00",
+          "status": "pass",
+          "days": 14.0,
+          "trades": 3,
+          "qualifying_days": 5,
+          "final_equity": 5306.66,
+          "max_dd_pct": 3.58,
+          "fees": 18.5,
+          "funding": 28.5
+        },
+        {
+          "start_utc": "2026-02-09T00:00:00+00:00",
+          "status": "pass",
+          "days": 14.0,
+          "trades": 3,
+          "qualifying_days": 5,
+          "final_equity": 5277.6,
+          "max_dd_pct": 3.58,
+          "fees": 18.5,
+          "funding": 33.0
+        }
+      ],
+      "sample_fail": {
+        "start_utc": "2026-02-10T00:00:00+00:00",
+        "status": "breach_daily",
+        "days": 13.75,
+        "trades": 2,
+        "qualifying_days": 3,
+        "final_equity": 4878.81,
+        "max_dd_pct": 6.41,
+        "fees": 11.15,
+        "funding": 27.0
+      }
+    },
+    "stage1_5x": {
+      "count": 335,
+      "status": {
+        "pass": 59,
+        "timeout": 52,
+        "breach_daily": 224,
+        "breach_total": 0
+      },
+      "pass_rate_pct": 17.61,
+      "median_pass_days": 18.0,
+      "sample_pass": [
+        {
+          "start_utc": "2026-02-19T00:00:00+00:00",
+          "status": "pass",
+          "days": 10.0,
+          "trades": 2,
+          "qualifying_days": 3,
+          "final_equity": 5986.85,
+          "max_dd_pct": 4.86,
+          "fees": 74.18,
+          "funding": 30.0
+        },
+        {
+          "start_utc": "2026-02-20T00:00:00+00:00",
+          "status": "pass",
+          "days": 9.0,
+          "trades": 2,
+          "qualifying_days": 3,
+          "final_equity": 5986.85,
+          "max_dd_pct": 4.86,
+          "fees": 74.18,
+          "funding": 30.0
+        },
+        {
+          "start_utc": "2026-02-21T00:00:00+00:00",
+          "status": "pass",
+          "days": 8.0,
+          "trades": 2,
+          "qualifying_days": 3,
+          "final_equity": 5986.85,
+          "max_dd_pct": 4.86,
+          "fees": 74.18,
+          "funding": 30.0
+        }
+      ],
+      "sample_fail": {
+        "start_utc": "2025-11-11T00:00:00+00:00",
+        "status": "breach_daily",
+        "days": 29.875,
+        "trades": 2,
+        "qualifying_days": 1,
+        "final_equity": 5553.24,
+        "max_dd_pct": 12.59,
+        "fees": 55.79,
+        "funding": 45.0
+      }
+    },
+    "stage2_5x": {
+      "count": 335,
+      "status": {
+        "pass": 0,
+        "timeout": 73,
+        "breach_daily": 262,
+        "breach_total": 0
+      },
+      "pass_rate_pct": 0.0,
+      "median_pass_days": null,
+      "sample_pass": [],
+      "sample_fail": {
+        "start_utc": "2025-11-11T00:00:00+00:00",
+        "status": "breach_daily",
+        "days": 29.875,
+        "trades": 2,
+        "qualifying_days": 1,
+        "final_equity": 5553.24,
+        "max_dd_pct": 12.59,
+        "fees": 55.79,
+        "funding": 45.0
+      }
+    },
+    "funded_14d_5x": {
+      "count": 351,
+      "status": {
+        "pass": 0,
+        "timeout": 196,
+        "breach_daily": 155,
+        "breach_total": 0
+      },
+      "pass_rate_pct": 0.0,
+      "median_pass_days": null,
+      "sample_pass": [],
+      "sample_fail": {
+        "start_utc": "2025-11-27T00:00:00+00:00",
+        "status": "breach_daily",
+        "days": 13.875,
+        "trades": 2,
+        "qualifying_days": 1,
+        "final_equity": 5553.24,
+        "max_dd_pct": 12.59,
+        "fees": 55.79,
+        "funding": 45.0
+      }
+    }
+  }
+}
