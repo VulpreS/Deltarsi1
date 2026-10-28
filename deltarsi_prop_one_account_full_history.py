@@ -37,7 +37,7 @@ def run(mode):
    adverse[s]=(min(o,sl) if side==1 else max(o,sl)) if hit else (l if side==1 else h)
   worst=eq(adverse)
   maxdd=max(maxdd,(peak-worst)/peak*100)
-  if worst<=daybase-250 and (not violations or violations[-1][0]!=today):
+  if worst<=daybase*.95 and not any(v[0]==today and v[1]=='daily' for v in violations):
    violations.append((today,"daily"))
   if worst<=4500 and not any(v[1]=="total" for v in violations):
    violations.append((today,"total"))
@@ -63,7 +63,7 @@ def run(mode):
   if len(prices)==len(coins):last=eq(prices)
  wins=sum(x["pnl"]>0 for x in trades);losses=sum(x["pnl"]<0 for x in trades)
  return dict(start_equity=5000,end_equity=round(last,2),return_pct=round((last/5000-1)*100,2),max_drawdown_pct=round(maxdd,2),closed_trades=len(trades),wins=wins,losses=losses,win_rate_pct=round(100*wins/len(trades),2) if trades else None,profit_factor=round(sum(max(0,x["pnl"]) for x in trades)/(-sum(min(0,x["pnl"]) for x in trades)),3) if losses else None,daily_breach_days=sum(x[1]=="daily" for x in violations),total_breach=any(x[1]=="total" for x in violations),first_breach=next((dict(day=round((v[0]*DAY-start)/DAY,1),kind=v[1]) for v in violations),None),milestones=milestones,qualifying_days=len(qual),equity_curve=equity_curve,trades=trades)
-out=dict(notes="Single chronological account, no stage resets, 1x fixed notional, 1h conservative adverse excursion; daily threshold 5% of $5000 day-start and static $4500 total; continue trading after breach for diagnostic purposes. Milestones are NOT formal challenge stage passes. Synthetic funding and 15bp roundtrip fees; overlapping candles of two assets treated as simultaneous adverse, conservative.",window=[start,end],results={})
+out=dict(notes="Single chronological account, no stage resets, 1x fixed notional, 1h conservative adverse excursion; daily threshold 5% of actual day-start equity and static $4500 total; continue trading after breach for diagnostic purposes. Milestones are NOT formal challenge stage passes. Synthetic funding and 15bp roundtrip fees; overlapping candles of two assets treated as simultaneous adverse, conservative.",window=[start,end],results={})
 for mode in ("btc","eth","split","mono"):
  out["results"][mode]=run(mode)
  print(mode,{k:v for k,v in out["results"][mode].items() if k not in ("trades","equity_curve")},flush=True)
