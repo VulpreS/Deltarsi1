@@ -37,7 +37,14 @@ def run(wicks,exit_mode,tp_pct):
     exit=stop;reason="BE" if be else "SL";break
    # Stop-first if target and stop share an hourly bar; never assume favorable intrabar ordering.
    target=entry*(1+side*tp_pct/100) if tp_pct else None
-   if target is not None and (h>=target if side==1 else l<=target):
+   target_hit=target is not None and (h>=target if side==1 else l<=target)
+   # When a new BE trigger, target, and entry retest coexist within one 1H bar,
+   # use the conservative BE-first assumption rather than an optimistic target fill.
+   new_be=(not be) and (h>entry*1.01 if side==1 else l<entry*.99)
+   retest=(l<=entry if side==1 else h>=entry)
+   if target_hit and new_be and retest:
+    exit=entry;reason="BE_same_hour_ambiguous";break
+   if target_hit:
     exit=target;reason="TP";break
    trigger=entry*(1.01 if side==1 else .99)
    if not be and (h>trigger if side==1 else l<trigger):
