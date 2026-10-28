@@ -1,0 +1,44 @@
+name: DeltaRSI 4 vs 6 assets challenge
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'download_bnb_zec_1h.py'
+      - 'deltarsi_prop_four_vs_six_challenge.py'
+      - '.github/workflows/deltarsi-four-vs-six-challenge.yml'
+permissions:
+  contents: write
+concurrency:
+  group: deltarsi-four-vs-six
+  cancel-in-progress: false
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch BNB candles
+        run: python -u download_bnb_zec_1h.py BNBUSDT
+      - name: Fetch ZEC candles
+        run: python -u download_bnb_zec_1h.py ZECUSDT
+      - name: Run four versus six challenge windows
+        run: python -u deltarsi_prop_four_vs_six_challenge.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: four-vs-six-challenge
+          path: |
+            reports/deltarsi_prop_four_vs_six_challenge.json
+            data/BNBUSDT_1h_source.json
+            data/ZECUSDT_1h_source.json
+      - name: Commit report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_prop_four_vs_six_challenge.json
+          git commit -m 'Four versus six coin challenge results' || exit 0
+          git pull --rebase origin main
+          git push
