@@ -10,7 +10,14 @@ def get(path):
  try:
   with urllib.request.urlopen(req,timeout=25) as response:return json.load(response)
  except urllib.error.HTTPError as e:
-  raise RuntimeError(f"Upscale GET {path}: HTTP {e.code}; check key permissions, account API Trading, and IP restrictions (body hidden)") from None
+  raw=e.read(4096).decode("utf-8","replace")
+  try:
+   body=json.loads(raw)
+   err=body.get("error") if isinstance(body,dict) else None
+   code=err if isinstance(err,str) and len(err)<80 and all(c.isalnum() or c in "_-." for c in err) else "unavailable"
+  except ValueError:
+   code="non_json_response"
+  raise RuntimeError(f"Upscale GET {path}: HTTP {e.code}; server_error_code={code}; response details hidden") from None
 accounts=get("/accounts/with-risk-status")
 if not isinstance(accounts,list):raise RuntimeError("Unexpected accounts payload")
 demos=[a for a in accounts if a.get("type")=="demo" and a.get("apiTrading") and a.get("status")=="active"]
