@@ -1,0 +1,24 @@
+name: TON DeltaRSI grid
+on: [push, workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u download_ton_1h.py
+      - run: python -u deltarsi_ton_sl_tp_grid_1000.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ton-grid
+          path: reports/deltarsi_ton_sl_tp_grid_1000.json
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add data/TONUSDT_1h.csv reports/deltarsi_ton_sl_tp_grid_1000.json
+          git commit -m 'TON research candles and grid' || exit 0
+          git push
