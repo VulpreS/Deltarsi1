@@ -1,0 +1,18 @@
+name: Upscale demo API read-only check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify API access without trading
+        env:
+          UPSCALE_API_KEY: ${{ secrets.UPSCALE_API_KEY }}
+        run: python -u upscale_readonly_check.py
