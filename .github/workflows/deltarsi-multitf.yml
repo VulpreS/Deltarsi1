@@ -1,0 +1,42 @@
+name: DeltaRSI 1H 4H signal interaction
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_multitf.py'
+      - '.github/workflows/deltarsi-multitf.yml'
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare candles
+        run: |
+          set -e
+          for tf in 1 4; do
+            for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
+              python -u download_delta_6h_8h.py "$tf" "$sym"
+            done
+          done
+      - name: Compare policies
+        run: python -u deltarsi_multitf.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deltarsi-multitf
+          path: reports/deltarsi_multitf_1h4h.json
+      - name: Commit report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_multitf_1h4h.json
+          git commit -m 'Update 1H 4H interaction results' || exit 0
+          git stash push -u -m 'runner candles' || true
+          git pull --rebase origin main
+          git push
