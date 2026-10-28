@@ -46,7 +46,7 @@ def run(syms,fee,funding,priority):
   return {"closed":list(signals[sym].values())},None
  scope["events"]=getevents
  return ranked(fee,funding,priority=priority)
-out={"description":"Continuous account, no funding; spread represented as half of quoted full spread on each side. Fee 0.08% per side or 0.08% round trip scenarios; OHLC fills without additional slippage. In-sample research.","models":{}}
+out={"description":"Dynamic daily 5% of start-of-day equity; static total 10% initial; continuous account, no funding; spread represented as half of quoted full spread on each side. Fee 0.08% per side or 0.08% round trip scenarios; OHLC fills without additional slippage. In-sample research.","models":{}}
 for model,commission_side,spread_full in (("fee_008_each_spread_0015",.0008,.00015),("fee_008_each_spread_003",.0008,.0003),("fee_008_each_spread_004",.0008,.0004),("fee_008_roundtrip_spread_003",.0004,.0003)):
  fee=commission_side+spread_full/2
  out["models"][model]={}
