@@ -18,7 +18,7 @@ BASE_START=min(COMMON);BASE_END=max(COMMON)
 def simulate(start,end,target_pct,fee=.00008,funding=.00015,max_positions=3):
  data=DATA;signals=SIGNALS;hashes=HASHES
  times=list(range(start,end+H,H))
- if len(times)!=len(common):raise ValueError("Noncontinuous common history")
+ if any(t not in COMMON for t in times):raise ValueError("Noncontinuous common history")
  cash=5000.;p={};peak=5000.;dd=0.;day=None;daybase=5000.;firstbreach=None;breachdays=set();totalbreach=False
  trades=[];fundpaid=0.;maxopen=0;skipped=0;daily=[];min_equity=5000.;worst_daily=0.;outcome="timeout";finish=t if False else start
  def equity(prices):
