@@ -1,10 +1,10 @@
 import csv,datetime as dt,json,time,urllib.parse,urllib.request,sys
 from pathlib import Path
 SYMBOL=sys.argv[1].upper() if len(sys.argv)>1 else 'BNBUSDT'
-if SYMBOL not in ('BNBUSDT','ZECUSDT'):raise ValueError('Only BNBUSDT and ZECUSDT allowed')
+if SYMBOL not in ('BTCUSDT','ETHUSDT','ICPUSDT','TONUSDT','BNBUSDT','ZECUSDT'):raise ValueError('Unsupported symbol')
 H=3600000
 end=int(dt.datetime.now(dt.timezone.utc).timestamp()*1000)//H*H
-start=end-365*24*H
+start=max(int(dt.datetime(2021,10,28,tzinfo=dt.timezone.utc).timestamp()*1000),end-5*365*24*H)
 def request(url):
  req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; research downloader)"})
  with urllib.request.urlopen(req,timeout=40) as response:return json.load(response)
@@ -55,8 +55,8 @@ except Exception as ex:
  print("Bybit unavailable:",repr(ex),"trying Binance fallback",flush=True)
  rows=binance();source="binance_futures_or_spot"
 times=sorted(rows)
-if len(times)<24*180:raise RuntimeError("TON history shorter than 180 days")
-if any(b-a!=H for a,b in zip(times,times[1:])):raise RuntimeError("TON OHLC gaps detected")
+if len(times)<24*180:raise RuntimeError(f"{SYMBOL} history shorter than 180 days")
+if any(b-a!=H for a,b in zip(times,times[1:])):raise RuntimeError(f"{SYMBOL} OHLC gaps detected")
 path=Path(f"data/{SYMBOL}_1h.csv");path.parent.mkdir(exist_ok=True)
 with path.open("w",newline="") as f:
  w=csv.writer(f);w.writerow(["timestamp_utc","open","high","low","close"])
