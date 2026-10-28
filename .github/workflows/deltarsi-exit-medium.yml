@@ -1,0 +1,31 @@
+name: DeltaRSI exit medium comparison
+on:
+  push:
+    paths:
+      - 'deltarsi_exit_medium_comparison.py'
+      - '.github/workflows/deltarsi-exit-medium.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u deltarsi_exit_medium_comparison.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-exit-medium-comparison
+          path: reports/deltarsi_exit_medium_comparison.json
+      - name: Persist report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --ff-only origin main
+          git add reports/deltarsi_exit_medium_comparison.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research: exit-medium comparison report'
+          git push origin HEAD:main
