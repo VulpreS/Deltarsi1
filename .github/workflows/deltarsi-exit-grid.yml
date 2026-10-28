@@ -1,4 +1,4 @@
-name: DeltaRSI ATR exit grid 1H 6H 8H
+name: DeltaRSI ATR exit grid 1H 4H 6H 8H
 on:
   workflow_dispatch:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Download required historical candles
         run: |
           set -e
-          for tf in 1 6 8; do
+          for tf in 1 4 6 8; do
             for sym in BTCUSDT ETHUSDT ICPUSDT TONUSDT BNBUSDT ZECUSDT; do
               python -u download_delta_6h_8h.py "$tf" "$sym"
             done
@@ -27,7 +27,7 @@ jobs:
       - name: Run parameter grids
         run: |
           set -e
-          for tf in 1 6 8; do
+          for tf in 1 4 6 8; do
             python -u deltarsi_exit_grid.py "$tf"
           done
       - uses: actions/upload-artifact@v4
@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
-          git add reports/deltarsi_exit_grid_1h.json reports/deltarsi_exit_grid_6h.json reports/deltarsi_exit_grid_8h.json
+          git add reports/deltarsi_exit_grid_1h.json reports/deltarsi_exit_grid_4h.json reports/deltarsi_exit_grid_6h.json reports/deltarsi_exit_grid_8h.json
           git commit -m 'Update DeltaRSI ATR exit grids' || exit 0
           git stash push -u -m 'downloaded market candles' || true
           git pull --rebase origin main
