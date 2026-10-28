@@ -34,6 +34,8 @@ import inspect
 src=inspect.getsource(b.simulate)
 src=src.replace("def simulate(fee=.00008,funding=.00015,max_positions=3):","def ranked_simulate(fee=.00008,funding=.00015,max_positions=3,priority='baseline'):")
 src=src.replace("  for sym in SYMS:\n   if sym in p or t not in signals[sym]:continue","  candidates=[sym for sym in SYMS if sym not in p and t in signals[sym]]\n  if priority!='baseline':\n   def score(sym):\n    e=signals[sym][t];peak=abs(e['prior_4h_delta']);decay=max(0.,1.-e['ratio'])\n    return peak if priority=='peak' else decay if priority=='decay' else __import__('math').log1p(peak)*decay\n   candidates.sort(key=lambda sym:(-score(sym),sym))\n  for sym in candidates:")
+src=src.replace("  dd=max(dd,(peak-worst)/peak*100);min_equity=min(min_equity,worst)", "  current_dd=(peak-worst)/peak*100\\n  if current_dd>dd:\\n   dd_detail=dict(time_utc=dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat(),peak_equity=round(peak,2),adverse_equity=round(worst,2),positions={sym:dict(side=z['side'],entry=z['entry'],stop=z['stop'],qty=z['qty'],entry_utc=dt.datetime.fromtimestamp(z['entry_ms']/1000,dt.timezone.utc).isoformat(),adverse_price=adverse[sym],unrealized_pnl=round(z['side']*z['qty']*(adverse[sym]-z['entry']),2)) for sym,z in p.items()})\\n  dd=max(dd,current_dd);min_equity=min(min_equity,worst)")
+src=src.replace(" return dict(start_utc=", " return dict(max_drawdown_detail=locals().get('dd_detail'),start_utc=")
 scope=dict(b.__dict__);exec(src,scope)
 ranked=scope["ranked_simulate"]
 def run(syms,fee,funding,priority):
