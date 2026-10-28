@@ -35,28 +35,36 @@ def evaluate(rows,tf):
   if not(fade or third_rebound):continue
   # A wave is only known at the FIRST following opposite-sign closed candle.
   signal=end+1
-  if signal+12>=len(rows):continue
+  if signal+1>=len(rows):continue
   entry=rows[signal+1][1]
   if entry<=0:continue
-  horizon=12 if tf==1 else 6
-  if signal+1+horizon>len(rows):continue
-  future=rows[signal+1:signal+1+horizon]
-  # Reversal: countertrend excursion >=1% before a trend-continuation excursion >=1%.
-  rev=max(((r[2]/entry-1) if side<0 else (1-r[3]/entry)) for r in future)
-  cont=max(((1-r[3]/entry) if side<0 else (r[2]/entry-1)) for r in future)
-  reversal_first=None
-  for r in future:
-   hit_rev=(r[2]>=entry*1.01 if side<0 else r[3]<=entry*.99)
-   hit_cont=(r[3]<=entry*.99 if side<0 else r[2]>=entry*1.01)
-   if hit_rev or hit_cont:
-    reversal_first=bool(hit_rev and not hit_cont)
-    break
+  horizons=(12,24,48,72,120) if tf==1 else (6,12,24,42,60)
+  outcomes={}
+  for horizon in horizons:
+   if signal+1+horizon>len(rows):continue
+   future=rows[signal+1:signal+1+horizon]
+   rev=max(((r[2]/entry-1) if side<0 else (1-r[3]/entry)) for r in future)
+   cont=max(((1-r[3]/entry) if side<0 else (r[2]/entry-1)) for r in future)
+   for threshold in (1,2,3,4,5,7,10):
+    first=None
+    for r in future:
+     hit_rev=(r[2]>=entry*(1+threshold/100) if side<0 else r[3]<=entry*(1-threshold/100))
+     hit_cont=(r[3]<=entry*(1-threshold/100) if side<0 else r[2]>=entry*(1+threshold/100))
+     if hit_rev or hit_cont:
+      first=bool(hit_rev and not hit_cont)
+      break
+    outcomes[f"{horizon*tf}h_{threshold}pct"]=first
+  if not outcomes:continue
+  horizon=horizons[0]
+  rev=max(((r[2]/entry-1) if side<0 else (1-r[3]/entry)) for r in rows[signal+1:signal+1+horizon])
+  cont=max(((1-r[3]/entry) if side<0 else (r[2]/entry-1)) for r in rows[signal+1:signal+1+horizon])
+  reversal_first=outcomes.get(f"{horizon*tf}h_1pct")
   # Fourth same-side wave is defined only after the next opposite wave has closed.
   fourth=False
   if j+2<len(segments):
    z=segments[j+2]
    fourth=z["sign"]==side and z["start"]<=signal+1+horizon
-  events.append(dict(time=rows[signal][0],side=side,group="fade" if fade else "third_rebound",area_fade=a["area"]>b["area"]>c["area"],peak=[round(z["peak"],4) for z in (a,b,c)],area=[round(z["area"],4) for z in (a,b,c)],reversal_first=reversal_first,rev_mfe_pct=round(100*rev,4),cont_mfe_pct=round(100*cont,4),fourth_wave=fourth))
+  events.append(dict(time=rows[signal][0],side=side,group="fade" if fade else "third_rebound",area_fade=a["area"]>b["area"]>c["area"],peak=[round(z["peak"],4) for z in (a,b,c)],area=[round(z["area"],4) for z in (a,b,c)],reversal_first=reversal_first,rev_mfe_pct=round(100*rev,4),cont_mfe_pct=round(100*cont,4),fourth_wave=fourth,outcomes=outcomes))
  return events
 def summarize(es):
  result={}
@@ -65,6 +73,9 @@ def summarize(es):
    subset=[e for e in es if e["group"]==group and (area=="all" or e["area_fade"]==(area=="area_fade"))]
    decided=[e["reversal_first"] for e in subset if e["reversal_first"] is not None]
    result[group+":"+area]=dict(n=len(subset),resolved=len(decided),reversal_first_rate_pct=rate(decided),fourth_wave_rate_pct=rate([e["fourth_wave"] for e in subset]),median_reversal_mfe_pct=med([e["rev_mfe_pct"] for e in subset]))
+ for key in sorted({k for e in es for k in e["outcomes"]}):
+  vals=[e["outcomes"][key] for e in es if e["group"]=="fade" and e["outcomes"][key] is not None]
+  result["fade_threshold:"+key]=dict(resolved=len(vals),reversal_first_rate_pct=rate(vals))
  return result
 all_events=[];by_market={}
 for sym in SYMS:
