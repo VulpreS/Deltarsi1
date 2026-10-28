@@ -1,0 +1,148 @@
+{
+  "notes": "Exploratory, 1x $3000 fixed notional (60% of $5000 equity), single position; 1H stop-first, synthetic fees/funding; 00 UTC daily 5% and static total 10%; sequential reset stages; no 30-day deadline; right-censored at data end; overlapping starts not independent.",
+  "window": [
+    1761523200000,
+    1793023200000
+  ],
+  "sha": {
+    "BTCUSDT": "444d07cc16e428aac22355db2e5423b58bd10cdaa621713a40a6b6233297c7ea",
+    "ETHUSDT": "0962b27fc0459cca0355721adccaa89aee63fead1cf6be33cae4f214e78ee0a6",
+    "ICPUSDT": "1a04cc428aa1d27a420cd5efc6c41f13640ea20a436740022c1adb07c6fe728b"
+  },
+  "results": {
+    "BTC": {
+      "windows": 351,
+      "counts": {
+        "funded_eligible": 55,
+        "censored": 296,
+        "breach_daily": 0,
+        "breach_total": 0
+      },
+      "stage_passes": {
+        "1": 225,
+        "2": 73,
+        "3": 55
+      },
+      "median_stage_days": {
+        "1": 91.0,
+        "2": 158.0,
+        "3": 86.0
+      },
+      "max_dd_pct": 4.24,
+      "example": {
+        "status": "funded_eligible",
+        "completed": [
+          {
+            "phase": 1,
+            "days": 68.0,
+            "equity": 5255.88,
+            "days_ge_25": 4
+          },
+          {
+            "phase": 2,
+            "days": 158.0,
+            "equity": 5435.35,
+            "days_ge_25": 14
+          },
+          {
+            "phase": 3,
+            "days": 86.0,
+            "equity": 5205.82,
+            "days_ge_25": 5
+          }
+        ],
+        "days": 312.0,
+        "trades": 25,
+        "max_dd_pct": 4.04
+      }
+    },
+    "ETH": {
+      "windows": 351,
+      "counts": {
+        "funded_eligible": 0,
+        "censored": 351,
+        "breach_daily": 0,
+        "breach_total": 0
+      },
+      "stage_passes": {
+        "1": 218,
+        "2": 127,
+        "3": 0
+      },
+      "median_stage_days": {
+        "1": 89.5,
+        "2": 159.0,
+        "3": null
+      },
+      "max_dd_pct": 5.17,
+      "example": null
+    },
+    "ICP": {
+      "windows": 351,
+      "counts": {
+        "funded_eligible": 0,
+        "censored": 115,
+        "breach_daily": 184,
+        "breach_total": 52
+      },
+      "stage_passes": {
+        "1": 82,
+        "2": 0,
+        "3": 0
+      },
+      "median_stage_days": {
+        "1": 29.0,
+        "2": null,
+        "3": null
+      },
+      "max_dd_pct": 13.32,
+      "example": null
+    },
+    "ALL": {
+      "windows": 351,
+      "counts": {
+        "funded_eligible": 120,
+        "censored": 155,
+        "breach_daily": 66,
+        "breach_total": 10
+      },
+      "stage_passes": {
+        "1": 258,
+        "2": 169,
+        "3": 120
+      },
+      "median_stage_days": {
+        "1": 28.0,
+        "2": 62.0,
+        "3": 32.0
+      },
+      "max_dd_pct": 11.32,
+      "example": {
+        "status": "funded_eligible",
+        "completed": [
+          {
+            "phase": 1,
+            "days": 60.0,
+            "equity": 5349.46,
+            "days_ge_25": 5
+          },
+          {
+            "phase": 2,
+            "days": 69.0,
+            "equity": 5476.93,
+            "days_ge_25": 12
+          },
+          {
+            "phase": 3,
+            "days": 32.0,
+            "equity": 5245.91,
+            "days_ge_25": 5
+          }
+        ],
+        "days": 161.0,
+        "trades": 25,
+        "max_dd_pct": 8.82
+      }
+    }
+  }
+}
