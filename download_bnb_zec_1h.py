@@ -56,7 +56,10 @@ except Exception as ex:
  rows=binance();source="binance_futures_or_spot"
 times=sorted(rows)
 if len(times)<24*180:raise RuntimeError(f"{SYMBOL} history shorter than 180 days")
-if any(b-a!=H for a,b in zip(times,times[1:])):raise RuntimeError(f"{SYMBOL} OHLC gaps detected")
+gaps=[(a,b,(b-a)//H-1) for a,b in zip(times,times[1:]) if b-a!=H]
+if gaps:
+ print("GAPS",SYMBOL,"count",len(gaps),"first",gaps[:12],flush=True)
+ raise RuntimeError(f"{SYMBOL} OHLC gaps detected: {len(gaps)}; first={gaps[:3]}")
 path=Path(f"data/{SYMBOL}_1h.csv");path.parent.mkdir(exist_ok=True)
 with path.open("w",newline="") as f:
  w=csv.writer(f);w.writerow(["timestamp_utc","open","high","low","close"])
