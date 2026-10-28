@@ -1,0 +1,35 @@
+name: DeltaRSI four assets one prop account
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_prop_four_assets_one_account.py'
+      - '.github/workflows/deltarsi-four-assets-one-account.yml'
+permissions:
+  contents: write
+concurrency:
+  group: deltarsi-four-assets-one-account
+  cancel-in-progress: false
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run portfolio simulation
+        run: python -u deltarsi_prop_four_assets_one_account.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: four-assets-one-account
+          path: reports/deltarsi_prop_four_assets_one_account.json
+      - name: Commit report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_prop_four_assets_one_account.json
+          git commit -m 'Four-asset prop account backtest results' || exit 0
+          git pull --rebase origin main
+          git push
