@@ -15,7 +15,7 @@ for sym in SYMS:
  ev,_=events(raw);SIGNALS[sym]={e["entry_ms"]:e for e in ev["closed"]}
 COMMON=set.intersection(*(set(v) for v in DATA.values()))
 BASE_START=min(COMMON);BASE_END=max(COMMON)
-def simulate(start,end,target_pct,fee=.00008,funding=.00015,max_positions=3):
+def simulate(start,end,target_pct,fee=.00008,funding=.00015,max_positions=3,priority='baseline'):
  data=DATA;signals=SIGNALS;hashes=HASHES
  times=list(range(start,end+H,H))
  if any(t not in COMMON for t in times):raise ValueError("Noncontinuous common history")
@@ -29,8 +29,16 @@ def simulate(start,end,target_pct,fee=.00008,funding=.00015,max_positions=3):
   closes={sym:b[3] for sym,b in bars.items()}
   if t//DAY!=day:
    day=t//DAY;daybase=equity(opens)
-  for sym in SYMS:
-   if sym in p or t not in signals[sym]:continue
+  candidates=[sym for sym in SYMS if sym not in p and t in signals[sym]]
+  if priority!='baseline':
+   def score(sym):
+    e=signals[sym][t];peak=abs(e['prior_4h_delta']);ratio=e['ratio'];decay=max(0.,1.-ratio)
+    if priority=='peak':return peak
+    if priority=='decay':return decay
+    if priority=='combined':return math.log1p(peak)*decay
+    raise ValueError('Unknown priority '+priority)
+   candidates.sort(key=lambda sym:(-score(sym),sym))
+  for sym in candidates:
    if len(p)>=max_positions:
     skipped+=1;continue
    e=signals[sym][t];a=e["atr_4h"];side=e["side"];o=opens[sym]
