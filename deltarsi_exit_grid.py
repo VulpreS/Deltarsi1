@@ -1,12 +1,13 @@
-"""DeltaRSI ATR exit grid, 1H/6H/8H. Research only, strict prop first-breach stop."""
+"""DeltaRSI ATR exit grid, 1H/4H/6H/8H. Research only, strict prop first-breach stop."""
 import csv,datetime as dt,itertools,json,math,sys
 from pathlib import Path
 from causal_4h_parity_audit import CausalDelta,qualifying
 from research_multiasset import atr
-TF=int(sys.argv[1]);assert TF in (1,6,8)
+TF=int(sys.argv[1]);assert TF in (1,4,6,8)
 H=TF*3600000;DAY=86400000;SYMS=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","BNBUSDT","ZECUSDT")
 COST=.00095;START=5000.;NOTIONAL=1000.
 GRID={1:dict(sl=[1.5,2,2.5,3],tp=[2,3,4,5],act=[1,1.5,2],dist=[.5,1],hold=[24,48,72]),
+4:dict(sl=[1.5,2,2.5,3,3.5,4,5],tp=[2,3,4,5,6,7],act=[1.5,2,3],dist=[.5,1,1.5],hold=[48,72,120]),
 6:dict(sl=[1.5,2,2.5,3],tp=[2,3,4,5],act=[1.5,2,3],dist=[.5,1,1.5],hold=[48,72,120]),
 8:dict(sl=[1.5,2,2.5,3.5],tp=[2.5,4,5,6],act=[2,3,4],dist=[.75,1.5,2],hold=[72,120,168])}[TF]
 def iso(t):return dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat()
@@ -21,7 +22,7 @@ for sym in SYMS:
   if i>=210 and qualifying(p,pp,c) and i+1<len(rr) and math.isfinite(a[i-1]) and a[i-1]>0:ev[rr[i+1][0]]=(1 if p<0 else -1,a[i-1])
   state.step(r[4],commit=True)
  data[sym]={r[0]:r[1:] for r in rr};signals[sym]=ev;first.append(rr[0][0]);last.append(rr[-1][0])
-# Match exactly the previous 1H/6H/8H portfolio window, excluding unpriced post-TON candles.
+# Match exactly the previous 1H/4H/6H/8H portfolio window, excluding unpriced post-TON candles.
 start=max(int(dt.datetime(2025,10,28,tzinfo=dt.timezone.utc).timestamp()*1000),min(first))
 end=min(last)
 times=range(start,end+H,H)
