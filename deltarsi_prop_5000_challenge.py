@@ -38,7 +38,7 @@ def replay(start,leverage=1,days=30,goal=.05,min_days=3,required=.005):
    hitstop=(l<=stop if side==1 else h>=stop)
    hittp=(h>=target if side==1 else l<=target)
    # Adverse low/high is checked before target and before final close.
-   worst=l if side==1 else h
+   worst=(min(o,stop) if side==1 else max(o,stop)) if hitstop else (l if side==1 else h)
    adverse=mark(worst)
    peak=max(peak,day0)
    max_dd=max(max_dd,(peak-adverse)/peak)
@@ -64,7 +64,7 @@ def replay(start,leverage=1,days=30,goal=.05,min_days=3,required=.005):
   # Count completed days ONLY at UTC midnight; current day cannot qualify early.
   if (t+H)//DAY>d:
    finish_day()
-   if eq>=START*(1+goal) and day_wins>=min_days:
+   if eq>=START*(1+goal) and day_wins>=min_days and (goal!=0 or i-start+1>=14*24):
     completed=i;break
    dayid=None;day0=None
  if not breach and completed is None and dayid is not None:finish_day()
@@ -72,7 +72,7 @@ def replay(start,leverage=1,days=30,goal=.05,min_days=3,required=.005):
 # Start on each UTC midnight, only with enough full history for the requested horizon.
 out={"data_sha":sha,"notes":["1H intrabar extremes conservatively checked before take profit","5% daily from 00 UTC equity; 10% static from starting 5000; qualifying days at UTC day close","5000 fixed notional at 1x; 5x scenario means 25000 notional, not an assumption about user intent","No actual exchange fills, intrahour timing, prop platform mark price, or withdrawal verification"],"scenarios":{}}
 for lev in (1,5):
- for goal,minimum,tag in ((.05,3,"stage1"),(.08,5,"stage2"),(.005,5,"funded_14d")):
+ for goal,minimum,tag in ((.05,3,"stage1"),(.08,5,"stage2"),(0.,5,"funded_14d")):
   horizon=14 if tag=="funded_14d" else 30
   starts=[i for i,r in enumerate(raw) if r[0]%DAY==0 and i+24*horizon<=len(raw)]
   runs=[replay(i,lev,horizon,goal,minimum) for i in starts]
