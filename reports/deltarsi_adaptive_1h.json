@@ -1,0 +1,59 @@
+{
+  "tf": 1,
+  "start": "2025-10-28T08:00:00+00:00",
+  "end": "2026-06-30T03:00:00+00:00",
+  "profiles": [
+    {
+      "profile": "balanced",
+      "final": 3628.7,
+      "return_pct": -27.426,
+      "max_dd_pct": 6.266,
+      "min_equity": 4898.57,
+      "trades": 3,
+      "win_pct": 100.0,
+      "pf": null,
+      "breach": {
+        "time": "2025-11-09T03:00:00+00:00",
+        "type": "daily",
+        "equity": 4898.57
+      },
+      "ambiguous": 0,
+      "skipped": 0
+    },
+    {
+      "profile": "conservative",
+      "final": 4650.79,
+      "return_pct": -6.984,
+      "max_dd_pct": 5.65,
+      "min_equity": 4883.21,
+      "trades": 6,
+      "win_pct": 33.33,
+      "pf": 0.547,
+      "breach": {
+        "time": "2025-11-09T04:00:00+00:00",
+        "type": "daily",
+        "equity": 4883.21
+      },
+      "ambiguous": 0,
+      "skipped": 0
+    },
+    {
+      "profile": "momentum",
+      "final": 3614.29,
+      "return_pct": -27.714,
+      "max_dd_pct": 6.547,
+      "min_equity": 4870.41,
+      "trades": 3,
+      "win_pct": 100.0,
+      "pf": null,
+      "breach": {
+        "time": "2025-11-09T03:00:00+00:00",
+        "type": "daily",
+        "equity": 4870.41
+      },
+      "ambiguous": 0,
+      "skipped": 0
+    }
+  ],
+  "rules": "Causal adaptive delta-strength ATR exits; exploratory in-sample evaluation; closed candle, next open, conservative OHLC, 5% daily/10% total."
+}
