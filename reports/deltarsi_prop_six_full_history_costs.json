@@ -1,8 +1,24 @@
 {
-  "description": "Continuous account, no funding; spread represented as half of quoted full spread on each side. Fee 0.08% per side or 0.08% round trip scenarios; OHLC fills without additional slippage. In-sample research.",
+  "description": "Dynamic daily 5% of start-of-day equity; static total 10% initial; continuous account, no funding; spread represented as half of quoted full spread on each side. Fee 0.08% per side or 0.08% round trip scenarios; OHLC fills without additional slippage. In-sample research.",
   "models": {
     "fee_008_each_spread_0015": {
       "four_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-18T18:00:00+00:00",
+          "peak_equity": 5359.6,
+          "adverse_equity": 5078.13,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3368.82,
+              "unrealized_pnl": -47.55
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -1033,6 +1049,31 @@
         }
       },
       "six_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2025-12-31T18:00:00+00:00",
+          "peak_equity": 5136.21,
+          "adverse_equity": 4659.17,
+          "positions": {
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 866.6,
+              "stop": 791.6311118453524,
+              "qty": 1.1539349180706209,
+              "entry_utc": "2025-12-11T12:00:00+00:00",
+              "adverse_price": 861.72,
+              "unrealized_pnl": -5.63
+            },
+            "ICPUSDT": {
+              "side": 1,
+              "entry": 2.991,
+              "stop": 2.554925050697972,
+              "qty": 334.33634236041456,
+              "entry_utc": "2025-12-24T16:00:00+00:00",
+              "adverse_price": 2.662,
+              "unrealized_pnl": -110.0
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -2073,6 +2114,40 @@
         }
       },
       "six_decay": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-19T00:00:00+00:00",
+          "peak_equity": 5136.21,
+          "adverse_equity": 4518.0,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3284.58,
+              "unrealized_pnl": -21.35
+            },
+            "ZECUSDT": {
+              "side": 1,
+              "entry": 395.61,
+              "stop": 333.84371855942277,
+              "qty": 2.5277419680998965,
+              "entry_utc": "2026-01-18T08:00:00+00:00",
+              "adverse_price": 336.0,
+              "unrealized_pnl": -150.68
+            },
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 950.14,
+              "stop": 905.1198305427997,
+              "qty": 1.0524764771507358,
+              "entry_utc": "2026-01-18T16:00:00+00:00",
+              "adverse_price": 905.1198305427997,
+              "unrealized_pnl": -47.38
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -3113,6 +3188,40 @@
         }
       },
       "six_combined": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-28T12:00:00+00:00",
+          "peak_equity": 5136.21,
+          "adverse_equity": 4554.51,
+          "positions": {
+            "TONUSDT": {
+              "side": -1,
+              "entry": 1.532,
+              "stop": 1.6698730587073827,
+              "qty": 652.7415143603133,
+              "entry_utc": "2026-01-24T16:00:00+00:00",
+              "adverse_price": 1.54,
+              "unrealized_pnl": -5.22
+            },
+            "BNBUSDT": {
+              "side": -1,
+              "entry": 881.24,
+              "stop": 921.1588075052914,
+              "qty": 1.134764649811629,
+              "entry_utc": "2026-01-25T04:00:00+00:00",
+              "adverse_price": 907.76,
+              "unrealized_pnl": -30.09
+            },
+            "ZECUSDT": {
+              "side": -1,
+              "entry": 399.82,
+              "stop": 458.26522155640384,
+              "qty": 2.501125506477915,
+              "entry_utc": "2026-01-28T00:00:00+00:00",
+              "adverse_price": 400.0,
+              "unrealized_pnl": -0.45
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -4155,6 +4264,22 @@
     },
     "fee_008_each_spread_003": {
       "four_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-18T18:00:00+00:00",
+          "peak_equity": 5357.34,
+          "adverse_equity": 5075.85,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3368.82,
+              "unrealized_pnl": -47.55
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -5185,6 +5310,31 @@
         }
       },
       "six_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2025-12-31T18:00:00+00:00",
+          "peak_equity": 5135.48,
+          "adverse_equity": 4657.98,
+          "positions": {
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 866.6,
+              "stop": 791.6311118453524,
+              "qty": 1.1539349180706209,
+              "entry_utc": "2025-12-11T12:00:00+00:00",
+              "adverse_price": 861.72,
+              "unrealized_pnl": -5.63
+            },
+            "ICPUSDT": {
+              "side": 1,
+              "entry": 2.991,
+              "stop": 2.554925050697972,
+              "qty": 334.33634236041456,
+              "entry_utc": "2025-12-24T16:00:00+00:00",
+              "adverse_price": 2.662,
+              "unrealized_pnl": -110.0
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -6225,6 +6375,40 @@
         }
       },
       "six_decay": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-19T00:00:00+00:00",
+          "peak_equity": 5135.48,
+          "adverse_equity": 4515.44,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3284.58,
+              "unrealized_pnl": -21.35
+            },
+            "ZECUSDT": {
+              "side": 1,
+              "entry": 395.61,
+              "stop": 333.84371855942277,
+              "qty": 2.5277419680998965,
+              "entry_utc": "2026-01-18T08:00:00+00:00",
+              "adverse_price": 336.0,
+              "unrealized_pnl": -150.68
+            },
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 950.14,
+              "stop": 905.1198305427997,
+              "qty": 1.0524764771507358,
+              "entry_utc": "2026-01-18T16:00:00+00:00",
+              "adverse_price": 905.1198305427997,
+              "unrealized_pnl": -47.38
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -7265,6 +7449,40 @@
         }
       },
       "six_combined": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-28T12:00:00+00:00",
+          "peak_equity": 5135.48,
+          "adverse_equity": 4551.66,
+          "positions": {
+            "TONUSDT": {
+              "side": -1,
+              "entry": 1.532,
+              "stop": 1.6698730587073827,
+              "qty": 652.7415143603133,
+              "entry_utc": "2026-01-24T16:00:00+00:00",
+              "adverse_price": 1.54,
+              "unrealized_pnl": -5.22
+            },
+            "BNBUSDT": {
+              "side": -1,
+              "entry": 881.24,
+              "stop": 921.1588075052914,
+              "qty": 1.134764649811629,
+              "entry_utc": "2026-01-25T04:00:00+00:00",
+              "adverse_price": 907.76,
+              "unrealized_pnl": -30.09
+            },
+            "ZECUSDT": {
+              "side": -1,
+              "entry": 399.82,
+              "stop": 458.26522155640384,
+              "qty": 2.501125506477915,
+              "entry_utc": "2026-01-28T00:00:00+00:00",
+              "adverse_price": 400.0,
+              "unrealized_pnl": -0.45
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -8307,6 +8525,22 @@
     },
     "fee_008_each_spread_004": {
       "four_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-18T18:00:00+00:00",
+          "peak_equity": 5355.84,
+          "adverse_equity": 5074.34,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3368.82,
+              "unrealized_pnl": -47.55
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -9337,6 +9571,31 @@
         }
       },
       "six_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2025-12-31T18:00:00+00:00",
+          "peak_equity": 5134.99,
+          "adverse_equity": 4657.18,
+          "positions": {
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 866.6,
+              "stop": 791.6311118453524,
+              "qty": 1.1539349180706209,
+              "entry_utc": "2025-12-11T12:00:00+00:00",
+              "adverse_price": 861.72,
+              "unrealized_pnl": -5.63
+            },
+            "ICPUSDT": {
+              "side": 1,
+              "entry": 2.991,
+              "stop": 2.554925050697972,
+              "qty": 334.33634236041456,
+              "entry_utc": "2025-12-24T16:00:00+00:00",
+              "adverse_price": 2.662,
+              "unrealized_pnl": -110.0
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -10377,6 +10636,40 @@
         }
       },
       "six_decay": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-19T00:00:00+00:00",
+          "peak_equity": 5134.99,
+          "adverse_equity": 4513.74,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3284.58,
+              "unrealized_pnl": -21.35
+            },
+            "ZECUSDT": {
+              "side": 1,
+              "entry": 395.61,
+              "stop": 333.84371855942277,
+              "qty": 2.5277419680998965,
+              "entry_utc": "2026-01-18T08:00:00+00:00",
+              "adverse_price": 336.0,
+              "unrealized_pnl": -150.68
+            },
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 950.14,
+              "stop": 905.1198305427997,
+              "qty": 1.0524764771507358,
+              "entry_utc": "2026-01-18T16:00:00+00:00",
+              "adverse_price": 905.1198305427997,
+              "unrealized_pnl": -47.38
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -11417,6 +11710,40 @@
         }
       },
       "six_combined": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-28T12:00:00+00:00",
+          "peak_equity": 5134.99,
+          "adverse_equity": 4549.77,
+          "positions": {
+            "TONUSDT": {
+              "side": -1,
+              "entry": 1.532,
+              "stop": 1.6698730587073827,
+              "qty": 652.7415143603133,
+              "entry_utc": "2026-01-24T16:00:00+00:00",
+              "adverse_price": 1.54,
+              "unrealized_pnl": -5.22
+            },
+            "BNBUSDT": {
+              "side": -1,
+              "entry": 881.24,
+              "stop": 921.1588075052914,
+              "qty": 1.134764649811629,
+              "entry_utc": "2026-01-25T04:00:00+00:00",
+              "adverse_price": 907.76,
+              "unrealized_pnl": -30.09
+            },
+            "ZECUSDT": {
+              "side": -1,
+              "entry": 399.82,
+              "stop": 458.26522155640384,
+              "qty": 2.501125506477915,
+              "entry_utc": "2026-01-28T00:00:00+00:00",
+              "adverse_price": 400.0,
+              "unrealized_pnl": -0.45
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -12459,6 +12786,22 @@
     },
     "fee_008_roundtrip_spread_003": {
       "four_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-18T18:00:00+00:00",
+          "peak_equity": 5369.41,
+          "adverse_equity": 5087.99,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3368.82,
+              "unrealized_pnl": -47.55
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -13489,6 +13832,31 @@
         }
       },
       "six_baseline": {
+        "max_drawdown_detail": {
+          "time_utc": "2025-12-31T18:00:00+00:00",
+          "peak_equity": 5139.4,
+          "adverse_equity": 4664.35,
+          "positions": {
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 866.6,
+              "stop": 791.6311118453524,
+              "qty": 1.1539349180706209,
+              "entry_utc": "2025-12-11T12:00:00+00:00",
+              "adverse_price": 861.72,
+              "unrealized_pnl": -5.63
+            },
+            "ICPUSDT": {
+              "side": 1,
+              "entry": 2.991,
+              "stop": 2.554925050697972,
+              "qty": 334.33634236041456,
+              "entry_utc": "2025-12-24T16:00:00+00:00",
+              "adverse_price": 2.662,
+              "unrealized_pnl": -110.0
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -14529,6 +14897,40 @@
         }
       },
       "six_decay": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-19T00:00:00+00:00",
+          "peak_equity": 5139.4,
+          "adverse_equity": 4529.08,
+          "positions": {
+            "ETHUSDT": {
+              "side": -1,
+              "entry": 3215.91,
+              "stop": 3415.9965939413128,
+              "qty": 0.31095397570205635,
+              "entry_utc": "2026-01-13T20:00:00+00:00",
+              "adverse_price": 3284.58,
+              "unrealized_pnl": -21.35
+            },
+            "ZECUSDT": {
+              "side": 1,
+              "entry": 395.61,
+              "stop": 333.84371855942277,
+              "qty": 2.5277419680998965,
+              "entry_utc": "2026-01-18T08:00:00+00:00",
+              "adverse_price": 336.0,
+              "unrealized_pnl": -150.68
+            },
+            "BNBUSDT": {
+              "side": 1,
+              "entry": 950.14,
+              "stop": 905.1198305427997,
+              "qty": 1.0524764771507358,
+              "entry_utc": "2026-01-18T16:00:00+00:00",
+              "adverse_price": 905.1198305427997,
+              "unrealized_pnl": -47.38
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
@@ -15569,6 +15971,40 @@
         }
       },
       "six_combined": {
+        "max_drawdown_detail": {
+          "time_utc": "2026-01-28T12:00:00+00:00",
+          "peak_equity": 5139.4,
+          "adverse_equity": 4566.83,
+          "positions": {
+            "TONUSDT": {
+              "side": -1,
+              "entry": 1.532,
+              "stop": 1.6698730587073827,
+              "qty": 652.7415143603133,
+              "entry_utc": "2026-01-24T16:00:00+00:00",
+              "adverse_price": 1.54,
+              "unrealized_pnl": -5.22
+            },
+            "BNBUSDT": {
+              "side": -1,
+              "entry": 881.24,
+              "stop": 921.1588075052914,
+              "qty": 1.134764649811629,
+              "entry_utc": "2026-01-25T04:00:00+00:00",
+              "adverse_price": 907.76,
+              "unrealized_pnl": -30.09
+            },
+            "ZECUSDT": {
+              "side": -1,
+              "entry": 399.82,
+              "stop": 458.26522155640384,
+              "qty": 2.501125506477915,
+              "entry_utc": "2026-01-28T00:00:00+00:00",
+              "adverse_price": 400.0,
+              "unrealized_pnl": -0.45
+            }
+          }
+        },
         "start_utc": "2025-10-28T07:00:00+00:00",
         "end_utc": "2026-06-30T03:00:00+00:00",
         "initial": 5000,
