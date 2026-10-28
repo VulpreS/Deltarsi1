@@ -1,0 +1,31 @@
+name: DeltaRSI Upscale challenge 14 30 days
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'deltarsi_prop_four_assets_challenge_windows.py'
+      - '.github/workflows/deltarsi-challenge-windows.yml'
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u deltarsi_prop_four_assets_challenge_windows.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upscale-challenge-14-30-days
+          path: reports/deltarsi_prop_four_assets_challenge_windows.json
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add reports/deltarsi_prop_four_assets_challenge_windows.json
+          git commit -m 'Upscale challenge window results' || exit 0
+          git pull --rebase origin main
+          git push
