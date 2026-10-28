@@ -55,7 +55,9 @@ def simulate(start,end,target_pct,fee=.00008,funding=.00015,max_positions=3):
   if worst<=4500:
    totalbreach=True
    if firstbreach is None:firstbreach={"utc":dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat(),"type":"total"}
-  if worst<=4500 or worst<=daybase-250:\n   outcome="breach";finish=t;break\n  for sym in list(p):
+  if worst<=4500 or worst<=daybase-250:
+   outcome="breach";finish=t;break
+  for sym in list(p):
    o,h,l,c=bars[sym];z=p[sym];side=z["side"];stop=z["stop"];target=z["target"]
    stophit=l<=stop if side==1 else h>=stop
    takehit=h>=target if side==1 else l<=target
@@ -76,7 +78,9 @@ def simulate(start,end,target_pct,fee=.00008,funding=.00015,max_positions=3):
     if t%(8*H)==0:
      cost=z["qty"]*z["entry"]*funding;cash-=cost;z["funding"]+=cost;fundpaid+=cost
   now=equity(closes);peak=max(peak,now)
-  if (t+H)%DAY==0:daily.append([t+H,round(now,2)])\n  if now>=5000*(1+target_pct/100):\n   outcome="pass";finish=t+H;break
+  if (t+H)%DAY==0:daily.append([t+H,round(now,2)])
+  if now>=5000*(1+target_pct/100):
+   outcome="pass";finish=t+H;break
  final=equity({sym:data[sym][min(finish if outcome=="breach" else (finish-H if outcome=="pass" else end),end)][3] for sym in SYMS})
  gains=sum(max(0,x["pnl"]) for x in trades);losses=-sum(min(0,x["pnl"]) for x in trades)
  mid=daily[len(daily)//2-1][1] if daily else 5000
