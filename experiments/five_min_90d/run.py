@@ -27,12 +27,15 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48):
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False):
+ if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
+ if step not in (M,3*M):raise ValueError('step must be 5m or 15m')
+ if exit_by_symbol is None:exit_by_symbol={}
  if params is None:params=PARAMS
  cash=INITIAL;pos={};phase=1;phase_start=start;phases=[];daybase=INITIAL;day=None;qual=0;profitdays=[];peak=INITIAL;breach=None;trades=[];fees=0.;funding=0.;skipped=0;maxdd=0.;pending=False
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+SPREAD/2) for s,z in pos.items())
- for t in range(start,end,M):
+ for t in range(start,end,step):
   bars={s:raw[s][t] for s in group};opens={s:b[1] for s,b in bars.items()};closes={s:b[4] for s,b in bars.items()}
   if pending and not pos:
    phase+=1;phase_start=t;cash=INITIAL;peak=INITIAL;qual=0;profitdays=[];pending=False;daybase=INITIAL
@@ -42,7 +45,7 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    if pending or s in pos or len(pos)>=3:skipped+=1;continue
    e=signals[s][t];side=e["side"];atr=e["atr_4h"];sl,tp,_,_=params[s];o=opens[s]
    stop=o-side*sl*atr;target=o+side*tp*atr
-   if stop<=0 or target<=0:continue
+   if stop<=0 or target<=0 or (cap_price_stop and abs(o-stop)/o>.05):continue
    qty=1000/o;fee=1000*(FEE+SPREAD/2);cash-=fee;fees+=fee
    pos[s]=dict(side=side,qty=qty,entry=o,stop=stop,target=target,entry_t=t,phase=phase)
   if t%(8*H)==0:
@@ -56,31 +59,32 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
   for s in list(pos):
    z=pos[s];o,h,l,c=bars[s][1:];side=z["side"];stop=z["stop"];target=z["target"]
    if side*(o-stop)<=0:price=o;reason="stop_gap"
-   elif side*(o-target)>=0:price=o;reason="take_gap"
+   elif side*(o-target)>=0 and (t>z['entry_t'] or entry_profit_policy=='zero'):price=o;reason="take_gap"
    elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
-   elif (h>=target if side==1 else l<=target):price=target;reason="take"
-   elif t-z["entry_t"]>=max_hold*H-M:price=c;reason="time"
+   elif (h>=target if side==1 else l<=target) and (t>z['entry_t'] or entry_profit_policy=='zero'):price=target;reason="take"
+   elif t-z["entry_t"]>=exit_by_symbol.get(s,{}).get('hold',max_hold)*H-step:price=c;reason="time"
    else:
-    if be_trigger is not None and t>z["entry_t"]:
-     if side*(h-z["entry"])>=be_trigger*z["entry"] if side==1 else side*(l-z["entry"])>=be_trigger*z["entry"]:
+    be=exit_by_symbol.get(s,{}).get('be',be_trigger)
+    if be is not None and t>z["entry_t"]:
+     if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be_trigger*z["entry"]:
       z["stop"]=max(stop,z["entry"]) if side==1 else min(stop,z["entry"])
     continue
    gross=side*z["qty"]*(price-z["entry"])
-   if t==z["entry_t"] and gross>0:gross=0.;reason="60sec_conservative"
+   if entry_profit_policy=='zero' and t==z["entry_t"] and gross>0:gross=0.;reason="60sec_legacy_zero"
    fee=z["qty"]*price*(FEE+SPREAD/2);cash+=gross-fee;fees+=fee
-   trades.append(dict(symbol=s,phase=phase,pnl=round(gross-fee-1000*(FEE+SPREAD/2),5),reason=reason,entry=iso(z["entry_t"]),exit=iso(t+M)))
+   trades.append(dict(symbol=s,phase=phase,pnl=round(gross-fee-1000*(FEE+SPREAD/2),5),reason=reason,entry=iso(z["entry_t"]),exit=iso(t+step)))
    del pos[s]
   last=equity(closes);peak=max(peak,last)
   if last<=daybase*.95 or last<=INITIAL*.90:
-   breach=dict(time=iso(t+M),kind="daily" if last<=daybase*.95 else "total",equity=round(last,2));break
-  if (t+M)%DAY==0:
+   breach=dict(time=iso(t+step),kind="daily" if last<=daybase*.95 else "total",equity=round(last,2));break
+  if (t+step)%DAY==0:
    pnl=last-daybase
    if pnl>0:profitdays.append(pnl)
    if phase<=2 and pnl>=INITIAL*.005:qual+=1
    if phase<=2 and not pending and not pos and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and max(profitdays,default=0)<.30*(last-INITIAL):
-    phases.append(dict(phase=phase,completed=iso(t+M),days=round((t+M-phase_start)/DAY,2),qualifying_days=qual))
+    phases.append(dict(phase=phase,completed=iso(t+step),days=round((t+step-phase_start)/DAY,2),qualifying_days=qual))
     pending=True
- return dict(group=group,phases=phases,phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x["phase"]==3 for x in trades))
+ return dict(group=group,phases=phases,phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
 def main():
  raw={};signals={}
  for s in SYMS:
