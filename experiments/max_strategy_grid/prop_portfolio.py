@@ -44,7 +44,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48):
    elif side*(o-target)>=0:price=o;reason="take_gap"
    elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
    elif (h>=target if side==1 else l<=target):price=target;reason="take"
-   elif max_hours is not None and t-z["entry_t"]>=(max_hours-1)*H:price=c;reason="time"
+   elif (max_hours[s] if isinstance(max_hours,dict) else max_hours) is not None and t-z["entry_t"]>=((max_hours[s] if isinstance(max_hours,dict) else max_hours)-1)*H:price=c;reason="time"
    else:price=None
    if price is not None:
     gross=side*z["qty"]*(price-z["entry"]);exitfee=z["qty"]*price*(FEE+SPREAD/2)
