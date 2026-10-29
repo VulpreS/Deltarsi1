@@ -313,7 +313,7 @@ def main():
     save["portfolio_comparisons"][key][period]=summarize(res)
     if period=="final_test":
      save["portfolio_comparisons"][key]["final_test_trade_ledger"]=res["trade_details"]
-     if period in ("train_validation","final_test","full_year"):
+    if period in ("train_validation","final_test","full_year"):
      print("FINAL_REPORT",key,period,json.dumps(summarize(res),ensure_ascii=False),flush=True)
    jsonwrite("annual_checkpoint_comparisons.json",save)
   # Portfolio-by-asset secondary check, freeze nothing per-coin yet.
