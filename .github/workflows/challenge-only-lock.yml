@@ -1,0 +1,22 @@
+name: Challenge-only daily profit lock
+on:
+  push:
+    paths:
+      - 'experiments/challenge_only_lock/**'
+      - '.github/workflows/challenge-only-lock.yml'
+  workflow_dispatch:
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/challenge_only_lock/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: challenge-only-results
+          path: experiments/challenge_only_lock/results.json
