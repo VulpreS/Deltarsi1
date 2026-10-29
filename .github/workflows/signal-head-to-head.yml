@@ -1,0 +1,23 @@
+name: Matched two-signal annual portfolio comparison
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/signal_head_to_head/run.py'
+      - '.github/workflows/signal-head-to-head.yml'
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compare two signal families on matched history
+        run: python experiments/signal_head_to_head/run.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: two-signal-matched-comparison
+          path: experiments/signal_head_to_head/results.json
