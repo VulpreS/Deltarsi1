@@ -5,7 +5,7 @@ if SYMBOL not in ('BTCUSDT','ETHUSDT','ICPUSDT','TONUSDT','BNBUSDT','ZECUSDT'):r
 H=3600000
 INTERVAL='60'
 end=int(dt.datetime.now(dt.timezone.utc).timestamp()*1000)//H*H
-start=max(int(dt.datetime(2021,10,28,tzinfo=dt.timezone.utc).timestamp()*1000),end-5*365*24*H)
+start=max(int(dt.datetime(2021,10,28,tzinfo=dt.timezone.utc).timestamp()*1000),end-365*24*H)
 def request(url):
  req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; research downloader)"})
  with urllib.request.urlopen(req,timeout=40) as response:return json.load(response)
@@ -60,10 +60,10 @@ if len(times)<24*180:raise RuntimeError(f"{SYMBOL} history shorter than 180 days
 gaps=[(a,b,(b-a)//H-1) for a,b in zip(times,times[1:]) if b-a!=H]
 if gaps:
  print("GAPS",SYMBOL,"count",len(gaps),"first",gaps[:12],flush=True)
- raise RuntimeError(f"{SYMBOL} 4H OHLC gaps detected: {len(gaps)}; first={gaps[:3]}")
-path=Path(f"data/{SYMBOL}_4h.csv");path.parent.mkdir(exist_ok=True)
+ raise RuntimeError(f"{SYMBOL} 1H OHLC gaps detected: {len(gaps)}; first={gaps[:3]}")
+path=Path(f"data/{SYMBOL}_1h.csv");path.parent.mkdir(exist_ok=True)
 with path.open("w",newline="") as f:
  w=csv.writer(f);w.writerow(["timestamp_utc","open","high","low","close"])
  for t in times:w.writerow([dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat(),*rows[t][1:]])
-Path(f"data/{SYMBOL}_4h_source.json").write_text(json.dumps(dict(source=source,start_ms=times[0],end_ms=times[-1],candles=len(times)),indent=2))
+Path(f"data/{SYMBOL}_1h_source.json").write_text(json.dumps(dict(source=source,start_ms=times[0],end_ms=times[-1],candles=len(times)),indent=2))
 print("SAVED",path,len(times),"source",source,flush=True)
