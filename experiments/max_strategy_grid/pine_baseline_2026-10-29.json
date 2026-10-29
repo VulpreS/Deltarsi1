@@ -1,0 +1,45 @@
+{
+  "signal": "pine",
+  "source": "train-selected grid 2026-10-29",
+  "sl_tp_units": "ATR",
+  "trailing_units": "ATR",
+  "parameters": {
+    "BTCUSDT": [
+      2.5,
+      5,
+      null,
+      null
+    ],
+    "ETHUSDT": [
+      1.5,
+      5,
+      null,
+      null
+    ],
+    "ICPUSDT": [
+      5,
+      2.5,
+      null,
+      null
+    ],
+    "TONUSDT": [
+      2.5,
+      5,
+      3,
+      0.5
+    ],
+    "BNBUSDT": [
+      1.5,
+      2.5,
+      null,
+      null
+    ],
+    "ZECUSDT": [
+      1.5,
+      1.5,
+      null,
+      null
+    ]
+  },
+  "disclaimer": "In-sample selection, not validated for live prop trading"
+}
