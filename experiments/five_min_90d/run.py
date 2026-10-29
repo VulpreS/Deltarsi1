@@ -80,7 +80,11 @@ def main():
  raw={};signals={}
  for s in SYMS:
   rows=download(s);raw[s]={r[0]:r for r in rows}
-  hourly=aggregate_completed(rows,12,asof_ms=END)
+  hourly=[]
+  for i in range(0,len(rows),12):
+   chunk=rows[i:i+12]
+   if len(chunk)==12 and chunk[0][0]%H==0 and chunk[-1][0]-chunk[0][0]==11*M:
+    hourly.append((chunk[0][0],chunk[0][1],max(b[2] for b in chunk),min(b[3] for b in chunk),chunk[-1][4]))
   signals[s]=pine_events(hourly)
   print("DATA",s,len(rows),"4h_signals",sum(START<=t<END for t in signals[s]),flush=True)
  common=set.intersection(*(set(v) for v in raw.values()))
