@@ -100,7 +100,7 @@ def main():
   data={s:raw[s] for s in group}
   params={s:tuple(baseline[s]) for s in group}
   signals={s:sig[s]["pine"] for s in group}
-  for hours in (48,240,None):
+  for hours in (24,36,48,60,72):
    label=str(hours)+"h" if hours is not None else "unlimited"
    continuous=run(data,signals,params,times,max_hours=hours)
    phases=run(data,signals,params,times,reset=True,max_hours=hours)
