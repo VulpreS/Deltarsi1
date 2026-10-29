@@ -1,0 +1,22 @@
+name: Prop phase Pine vs Codex
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/prop_phase_comparison/run.py'
+      - '.github/workflows/prop-phase-pine-codex.yml'
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python experiments/prop_phase_comparison/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prop-phase-comparison
+          path: experiments/prop_phase_comparison/results.json
