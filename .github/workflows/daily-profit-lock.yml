@@ -1,0 +1,22 @@
+name: Daily profit lock comparison
+on:
+  push:
+    paths:
+      - 'experiments/daily_profit_lock/**'
+      - '.github/workflows/daily-profit-lock.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/daily_profit_lock/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-profit-lock-results
+          path: experiments/daily_profit_lock/results.json
