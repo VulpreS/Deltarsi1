@@ -175,7 +175,7 @@ def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=Fa
   p["last_increase_t"]=t
   cash-=cost;fees+=cost
   assert p["stop"]==oldstop and p["take"]==oldtake
-  assert p["initial_stop"]==oldstop if p["activate"] is None else True
+  assert p["initial_stop"]==oldstop or p["activate"] is not None
   adds.append(dict(asset=s,at=iso(t),underwater=underwater,
     original_entry=nice(orig),second_price=nice(price),
     average_after=nice(p["avg"]),sl_price=nice(p["stop"]),
@@ -211,7 +211,10 @@ def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=Fa
   # Transition between Basic stages only on a FLAT portfolio, when both
   # realized profit and UTC qualified days already satisfy phase rules.
   if account["kind"]=="basic" and phase<3 and not positions:
-   transfer_if_eligible(t,opens)
+   if transfer_if_eligible(t,opens):
+    # Phase reset can happen mid-UTC-day at first flat moment. Discard
+    # pre-transfer day profit in the NEW stage accounting baseline.
+    daybase=eq(opens)
   if t%DAY==0:
    daybase=eq(opens)
   # Funding for EXISTING exposure only at 00:00/08:00/16:00 UTC
