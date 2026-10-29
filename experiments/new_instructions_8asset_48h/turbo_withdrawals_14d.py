@@ -1,0 +1,362 @@
+"""Upscale Turbo: *immediate Funded* with trailing 6% of ALL-TIME equity peak.
+
+Frozen canonical source: 'новые инструкции/README.md'; same 8 symbols,
+4h Delta signal, ATR(14) from PRE-SIGNAL 4h bar, 1h TON trailing and
+48h max hold. Sole size comparisons: 16.8%/16.9% of $5000 or $10000.
+Turbo Crypto fees 0.06% each SIDE (not Basic's 0.008%),
+funding 0.015% notional every 8h, dynamic spread proxies 0.02/0.04%.
+
+See:
+https://docs.upscale.trade/how-to-join-upscale/participation_requirements
+https://docs.upscale.trade/trading-mechanics/fees
+https://docs.upscale.trade/trading-mechanics/funding
+https://docs.upscale.trade/how-upscale-works/withdrawal_rules
+
+Two equity paths to bound unknown 5m intrabar order:
+ CLOSE_5M: update equity HWM after 5m executions at 5m closes; checks each
+   bar open and close and immediately after position entry/funding. This
+   is optimistic: intrabar drawdowns and temporary equity highs missed.
+ STRESS_5M: first assume all favorable extremes in a 5m bar are simultaneous,
+   record peak; then ALL adverse extremes simultaneously, test 6% floor,
+   BEFORE fills. This is intentionally overly conservative; cannot prove
+   a real account would fail because stops may fill before adverse low and
+   multi-asset extrema are asynchronous.
+
+No payouts or manual risk reduction, even if payout eligibility achieved.
+Payout would change the trailing base; MUST be modelled as a separate strategy.
+"""
+import sys,os,math,json,datetime as dt
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
+from experiments.new_instructions_8asset_48h.backtest import check_document,SYMS,START,VALID_END,END,H
+from experiments.five_min_90d.optimize_partial_take_4h import source_load
+from experiments.five_min_90d.compare_three_timeframes import ohlc_from_5m
+from experiments.pine_vs_codex.run import pine_events
+
+OUT=Path("experiments/new_instructions_8asset_48h/turbo_6pct/payouts_14day")
+DAY=24*H; M=5*60*1000
+FEE_TURBO=.0006
+FUNDING=.00015
+RISK_FLOOR_FACTOR=.94
+PAYOUT_DAYS=14
+PROFIT_DAYS=5
+CONSISTENCY=.30
+MAX_POSITIONS=3
+LIMIT_HOURS=48
+
+def iso(x):return dt.datetime.fromtimestamp(x/1000,dt.timezone.utc).isoformat()
+def price_eq(cash,pos,prices,spread):
+ return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-
+    z["qty"]*prices[s]*(FEE_TURBO+spread/2) for s,z in pos.items())
+
+def test_small():
+ assert abs(5000*.169-845)<1e-8
+ assert abs(10000*.169-1690)<1e-8
+ assert abs(1000*FEE_TURBO-.6)<1e-8
+ assert abs(5000*.94-4700)<1e-8
+ assert abs(5500*.94-5170)<1e-8
+ # In a no-withdrawal Turbo, moving the all-time high up cannot lower floor.
+ peak=5000
+ for equity in (5050,5230,5100,5500,5400):
+  prev=peak*.94
+  peak=max(peak,equity)
+  assert peak*.94>=prev
+ assert peak==5500
+ print("TURBO_RULE_UNITS_PASS",flush=True)
+
+def replay(data,signals,params,initial,start,end,pct,spread,stress,enable_payouts=False):
+ cash=initial;pos={};peak=initial;breach=None;maxdd=0.
+ last_prices={s:data[s][start][1] for s in SYMS}
+ fees=0.;funding=0.;trades=[];daily=[];skipped=0
+ max_conc=0;max_hour_hold=0.;funding_events=0
+ hour_peaks={};mark_samples=0
+ first_eligible=None;last_day_equity=initial;gain_days=0;positive_days=[]
+ iteration_start=start;iteration_baseline=initial;payouts=[]
+ paid_to_wallet=0.;payout_requested=0.
+ first_five_days=None;first_candidate_without_30=None;first_eligible_intraday=None
+ max_cash_profit=0.;first_cash_breakeven=None;num_qualifying_cash_snapshots=0
+ lowest_ratio_at_payout_candidate=None
+ alltime_equity_max_event=None
+ final_t=start
+ def eq(prices):return price_eq(cash,pos,prices,spread)
+ def breach_obj(t,equity,kind,details=None):
+  return dict(at=iso(t),kind=kind,equity=round(equity,4),
+    trailing_peak_equity=round(peak,4),
+    trailing_floor_equity=round(peak*RISK_FLOOR_FACTOR,4),
+    deficit_usd=round(peak*RISK_FLOOR_FACTOR-equity,4),
+    drawdown_pct=round(100*(peak-equity)/peak,4),
+    trades_closed_before_breach=len(trades),open_positions=list(pos),
+    details=details or {})
+ def observe(t,cur,kind,mark_peak=True):
+  nonlocal peak,breach,maxdd,alltime_equity_max_event,mark_samples
+  mark_samples+=1
+  # The current equity can first increase high-water mark, then be compared
+  # to that peak. Use exact <= per challenge rules.
+  if mark_peak and cur>peak:
+   peak=cur;alltime_equity_max_event=iso(t)
+  maxdd=max(maxdd,100*max(0,peak-cur)/peak)
+  if cur<=peak*RISK_FLOOR_FACTOR+1e-10:
+   breach=breach_obj(t,cur,kind)
+   return True
+  return False
+ for t in range(start,end,M):
+  final_t=t
+  b={s:data[s][t] for s in SYMS}
+  opens={s:v[1] for s,v in b.items()}
+  closes={s:v[4] for s,v in b.items()}
+  last_prices.update(opens)
+  # The account starts funded, so NO phase reset and no daily 5% rule.
+  # Funding on positions already opened BEFORE the scheduled timestamp.
+  if t%(8*H)==0 and pos:
+   for z in pos.values():
+    f=z["notional"]*FUNDING
+    cash-=f;funding+=f;z["funding"]+=f
+    funding_events+=1
+  # Signals from the closed 4h only. Intrabar 5m fills follow fixed stops.
+  for s in SYMS:
+   ev=signals[s].get(t)
+   if ev is None:continue
+   if s in pos or len(pos)>=MAX_POSITIONS:
+    skipped+=1
+    continue
+   side=ev["side"];atr=ev["atr_4h"];entry=opens[s]
+   if not (atr>0 and math.isfinite(atr) and entry>0):continue
+   sl,tp,act,dist=params[s]
+   stop=entry-side*sl*atr
+   target=entry+side*tp*atr
+   if min(stop,target)<=0:continue
+   notional=initial*pct
+   qty=notional/entry
+   cost=notional*(FEE_TURBO+spread/2)
+   cash-=cost;fees+=cost
+   pos[s]=dict(side=side,entry=entry,qty=qty,notional=notional,
+       stop=stop,target=target,entry_t=t,
+       atr=atr,activation=act,distance=dist,
+       best=entry,active=False,fees=cost,funding=0.,qty_closed=0.,
+       peak_hour_high=entry,peak_hour_low=entry)
+  max_conc=max(max_conc,len(pos))
+  if observe(t,eq(opens),"opening_equity"):
+   break
+  if stress and pos:
+   # Deliberately worst-case path: asynchronous multi-asset price extremes
+   # treated simultaneous, and all highs assumed before all lows.
+   good=dict(opens);bad=dict(opens)
+   for s,z in pos.items():
+    good[s]=b[s][2] if z["side"]==1 else b[s][3]
+    bad[s]=b[s][3] if z["side"]==1 else b[s][2]
+   if observe(t,eq(good),"hypothetical_5m_favorable_high"):
+    break
+   if observe(t,eq(bad),"hypothetical_5m_adverse_low",False):
+    break
+  # Fill the stop/TP as soon as a 5m bar hits it; stop priority on ties.
+  # Trailing changes only at 1h bar CLOSE (after this 5m fills).
+  for s in list(pos):
+   z=pos[s];side=z["side"];_,o,h,l,c=b[s]
+   stop=z["stop"];target=z["target"]
+   if side*(o-stop)<=0:price=o;reason="stop_gap"
+   elif side*(o-target)>=0:price=o;reason="take_gap"
+   elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
+   elif (h>=target if side==1 else l<=target):price=target;reason="take"
+   elif t+M>=z["entry_t"]+LIMIT_HOURS*H:
+    price=c;reason="time"
+   else:price=None
+   if price is not None:
+    gross=side*z["qty"]*(price-z["entry"])
+    cost=z["qty"]*price*(FEE_TURBO+spread/2)
+    cash+=gross-cost;fees+=cost
+    held=(t+M-z["entry_t"])/H
+    max_hour_hold=max(max_hour_hold,held)
+    trades.append(dict(symbol=s,entered=iso(z["entry_t"]),
+     exited=iso(t+M),holding_hours=round(held,3),reason=reason,
+     gross_usd=round(gross,4),net_usd=round(gross-z["fees"]-cost-z["funding"],4),
+     fees_usd=round(z["fees"]+cost,4),funding_usd=round(z["funding"],4)))
+    del pos[s]
+   else:
+    z["peak_hour_high"]=max(z["peak_hour_high"],h)
+    z["peak_hour_low"]=min(z["peak_hour_low"],l)
+  # After processed trades, evaluate observed 5m CLOSE. Genuine BTC spot
+  # mark is UNKNOWN; Binance 5m close proxy, not Upscale oracle.
+  last_prices.update(closes)
+  max_cash_profit=max(max_cash_profit,cash-initial)
+  if cash-initial>=229/.8 and first_cash_breakeven is None and initial==5000:
+   first_cash_breakeven=iso(t+M)
+  if observe(t+M,eq(closes),"five_min_close"):
+   break
+  # Update trailing ONLY on closed 1H candle, with that hour's extremes.
+  if (t+M)%H==0:
+   for z in pos.values():
+    side=z["side"]
+    new_ext=z["peak_hour_high"] if side==1 else z["peak_hour_low"]
+    z["best"]=max(z["best"],new_ext) if side==1 else min(z["best"],new_ext)
+    if z["activation"] is not None:
+     if side*(z["best"]-z["entry"])>=z["activation"]*z["atr"]:
+      z["active"]=True
+     if z["active"]:
+      candidate=z["best"]-side*z["distance"]*z["atr"]
+      z["stop"]=max(z["stop"],candidate) if side==1 else min(z["stop"],candidate)
+    z["peak_hour_high"]=z["peak_hour_low"]=closes[next(s for s,x in pos.items() if x is z)]
+  if (t+M)%DAY==0:
+   day_eq=eq(closes)
+   daily_profit=day_eq-last_day_equity
+   if daily_profit>=initial*.005:gain_days+=1
+   if gain_days>=5 and first_five_days is None:first_five_days=iso(t+M)
+   if daily_profit>0:positive_days.append(daily_profit)
+   last_day_equity=day_eq
+   max_day=max(positive_days,default=0.)
+   realized_profit=cash-initial
+   period_profit=cash-iteration_baseline
+   ratio=max_day/period_profit if period_profit>0 else None
+   # No payouts are performed, so this is a prospective right to request
+   # first payout only, not proven available margin (use flat as conservative).
+   eligible=(t+M-iteration_start>=PAYOUT_DAYS*DAY and gain_days>=PROFIT_DAYS
+     and realized_profit>=1 and period_profit>0 and ratio is not None
+     and ratio<CONSISTENCY and not pos)
+   snapshot=dict(date=iso(t+M)[:10],equity=round(day_eq,2),realized=round(realized_profit,2),
+     hwm=round(peak,2),floor=round(peak*RISK_FLOOR_FACTOR,2),
+     current_buffer=round(day_eq-peak*RISK_FLOOR_FACTOR,2),
+     profit_days=gain_days,max_positive_day=round(max_day,2),
+     consistency_ratio_pct=round(ratio*100,2) if ratio else None,
+     consistency_ok=ratio is not None and ratio<CONSISTENCY,
+     eligible_if_flat=eligible,flat=not bool(pos))
+   daily.append(snapshot)
+   if eligible and first_eligible is None:
+    first_eligible=dict(snapshot)
+    print("TURBO_FIRST_WITHDRAWABLE_DATE",initial,pct,spread,stress,
+       json.dumps(first_eligible),flush=True)
+  # Earliest payout check on EVERY 5m close when positions are FLAT.
+  # Positive days are counted only at UTC daily boundaries.
+  now=t+M
+  period_profit=cash-iteration_baseline
+  available=max(0.,cash-initial)
+  best=max(positive_days,default=0.)
+  period_ratio=best/period_profit if period_profit>0 else None
+  enough_age=now-iteration_start>=PAYOUT_DAYS*DAY
+  if enough_age and gain_days>=PROFIT_DAYS and not pos and available>=1 and period_profit>0:
+   num_qualifying_cash_snapshots+=1
+   if first_candidate_without_30 is None:
+    first_candidate_without_30=dict(time=iso(now),available_gross=round(available,2),
+      profit_days=gain_days,best_day=round(best,2),
+      consistency_pct=round(100*period_ratio,3))
+   if lowest_ratio_at_payout_candidate is None or period_ratio<lowest_ratio_at_payout_candidate:
+    lowest_ratio_at_payout_candidate=period_ratio
+   if period_ratio<CONSISTENCY:
+    if first_eligible_intraday is None:
+     first_eligible_intraday=dict(time=iso(now),available_gross=round(available,2),
+       profit_days=gain_days,best_day=round(best,2),
+       consistency_pct=round(period_ratio*100,3))
+    if enable_payouts:
+     limit=initial*(.5 if initial==5000 else .4)
+     requested=min(available,limit)
+     if requested>=1:
+      old_peak=peak;previous_gain_days=gain_days
+      cash-=requested
+      wallet=.8*requested
+      paid_to_wallet+=wallet;payout_requested+=requested
+      # Official example lowers reference peak to post-payout balance.
+      peak=cash;iteration_baseline=cash;iteration_start=now
+      gain_days=0;positive_days=[];last_day_equity=cash
+      payout=dict(time=iso(now),gross_requested_usd=round(requested,2),
+       wallet_net_usd=round(wallet,2),platform_share_usd=round(.2*requested,2),
+       profit_days=previous_gain_days,consistency_pct=round(period_ratio*100,3),
+       previous_peak_usd=round(old_peak,2),
+       new_peak_usd=round(peak,2),new_floor_usd=round(.94*peak,2))
+      payouts.append(payout)
+      print("TURBO_PAYOUT_EXECUTED_SIMULATION",initial,pct,json.dumps(payout),flush=True)
+ ending_equity=eq(last_prices)
+ real_gain=cash-initial
+ sum_wins=sum(max(z["net_usd"],0.) for z in trades)
+ sum_losses=-sum(min(z["net_usd"],0.) for z in trades)
+ result=dict(initial_usd=initial,allocation_pct=100*pct,
+    nominal_per_position_usd=round(initial*pct,2),max_simultaneous_positions=MAX_POSITIONS,
+    spread_proxy_pct_roundtrip=spread*100,
+    intrabar_mode="stress_high_then_low_5m" if stress else "observed_5m_close_only",
+    no_withdrawals=not enable_payouts,
+    payouts=payouts,payout_count=len(payouts),
+    payout_requested_gross_usd=round(payout_requested,2),
+    wallet_received_usd=round(paid_to_wallet,2),
+    account_purchase_price_usd=229 if initial==5000 else 449,
+    wallet_net_after_purchase_usd=round(paid_to_wallet-(229 if initial==5000 else 449),2),
+    recouped_account_purchase=paid_to_wallet>=(229 if initial==5000 else 449),
+    first_five_profit_days=first_five_days,
+    first_payout_candidate_without_30pct=first_candidate_without_30,
+    first_intraday_eligible_payout=first_eligible_intraday,
+    earliest_time_realized_profit_could_cover_229_fee=first_cash_breakeven,
+    max_realized_profit_before_end=round(max_cash_profit,2),
+    number_candidate_5m_flat_snapshots=num_qualifying_cash_snapshots,
+    best_30pct_ratio_at_candidate_pct=(round(100*lowest_ratio_at_payout_candidate,3) if lowest_ratio_at_payout_candidate is not None else None),
+    start=iso(start),requested_end=iso(end),tested_to=iso(final_t+M),
+    account_survived_to_end=breach is None,
+    breach=breach,
+    final_equity_usd=round(ending_equity,2),
+    end_realized_balance_usd=round(cash,2),
+    high_water_mark_usd=round(peak,2),
+    final_drawdown_floor_usd=round(peak*RISK_FLOOR_FACTOR,2),
+    remaining_risk_buffer_usd=round(ending_equity-peak*RISK_FLOOR_FACTOR,2),
+    max_peak_drawdown_pct=round(maxdd,3),
+    first_hwm_peak_time=alltime_equity_max_event,
+    gross_closed_profit_usd=round(sum(z["gross_usd"] for z in trades),2),
+    net_closed_pnl_after_costs_usd=round(sum(z["net_usd"] for z in trades),2),
+    commission_and_spread_usd=round(fees,2),funding_usd=round(funding,2),
+    funding_events=funding_events,mark_samples=mark_samples,
+    trades_closed=len(trades),win_rate_pct=round(sum(z["net_usd"]>0 for z in trades)/len(trades)*100,2) if trades else None,
+    profit_factor=round(sum_wins/sum_losses,3) if sum_losses else None,
+    exits=dict(stop=sum(z["reason"].startswith("stop") for z in trades),
+       take=sum(z["reason"].startswith("take") for z in trades),
+       time=sum(z["reason"]=="time" for z in trades)),
+    max_holding_hours=round(max_hour_hold,2),max_open_positions_observed=max_conc,
+    missed_signals=skipped,
+    num_profit_days=gain_days,
+    first_withdrawal_eligible_without_reset=first_eligible,
+    time_until_failure_days=round((final_t+M-start)/DAY,3) if breach is not None else None,
+    by_symbol={s:dict(closed_trades=sum(z["symbol"]==s for z in trades),
+       net_usd=round(sum(z["net_usd"] for z in trades if z["symbol"]==s),2))
+       for s in SYMS})
+ return result,daily,trades
+
+def main():
+ test_small()
+ params=check_document()
+ raw5,_,manifest=source_load()
+ assert set(raw5)==set(SYMS)
+ signals={}
+ for symbol in SYMS:
+  hourly=ohlc_from_5m(sorted(raw5[symbol].values()),H)
+  signals[symbol]=pine_events(hourly,expanded=False,atr_basis="prior")
+  print("PAYOUT_SOURCE",symbol,len(hourly),flush=True)
+ out=dict(strategy="новые инструкции",withdraw_every_eligible_period=True,
+   initial_crypto_turbo_cost_usd_5k=229,standard_profit_split_pct=80,
+   official_rule_sources=[
+    "https://docs.upscale.trade/ru/kak-rabotaet-upscale/pravila-vyvoda-sredstv",
+    "https://docs.upscale.trade/how-to-join-upscale/participation_requirements"],
+   assumptions=[
+    "An approved payout is instant at first 5-minute FLAT account close after at least 14 days and at least 5 0.5pct profitable days, with consistency less than 30pct.",
+    "Each payout requests all realized profit above ORIGINAL $5000 nominal (up to 50pct nominal per period).",
+    "Successful payout restarts the 14-day period and profit-day counter, and resets max equity to balance after payout.",
+    "Cost price of $5000 Turbo Crypto from official pricing page is $229 (before discounts).",
+    "80pct of requested withdrawal reaches trader wallet; 20pct platform retained.",
+    "No real Upscale fill/mark data; all trade exits and equity are modeled Binance 5-minute OHLC.",
+    "Risk path 5m-close proxy can miss intrabar breaches; stress path evaluated in separate baseline.",
+    "Active legacy ETH/TON positions are not reconstructed; only new entries as in canonical README.",
+    "This is research, not actual transactions, withdrawal request, or approval."],experiments={})
+ for key,initial,pct,spread in [
+   ("5k_16p9_sp002",5000,.169,.0002),
+   ("5k_16p9_sp004",5000,.169,.0004),
+   ("5k_16p8_sp002",5000,.168,.0002),
+   ("10k_16p9_sp002",10000,.169,.0002)]:
+  periods=(("annual",START,END),("quarter",VALID_END,END)) if key=="5k_16p9_sp002" else (("annual",START,END),)
+  for period,st,en in periods:
+   for take in (False,True):
+    label=key+"/"+period+("/every_eligible_payout" if take else "/never_payout")
+    summary,daily,trades=replay(raw5,signals,params,initial,st,en,pct,spread,False,enable_payouts=take)
+    out["experiments"][label]=dict(summary=summary,daily=daily,trades=trades)
+    print("TURBO_PAYOUT_AUDIT_RESULT",label,json.dumps(summary,ensure_ascii=False),flush=True)
+    if label=="5k_16p9_sp002/annual/never_payout":
+     assert summary["breach"]["at"]=="2025-10-04T18:15:00+00:00",summary
+     assert abs(summary["net_closed_pnl_after_costs_usd"]+158.82)<.02,summary
+    if label=="5k_16p9_sp002/quarter/never_payout":
+     assert summary["breach"] is None and abs(summary["net_closed_pnl_after_costs_usd"]-919.82)<.02,summary
+ OUT.mkdir(parents=True,exist_ok=True)
+ path=OUT/"results.json"
+ path.write_text(json.dumps(out,indent=2,ensure_ascii=False,allow_nan=False))
+ print("TURBO_PAYOUT_AUDIT_COMPLETE",str(path),path.stat().st_size,flush=True)
+if __name__=="__main__":main()
