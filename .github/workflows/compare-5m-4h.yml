@@ -1,0 +1,22 @@
+name: Compare native 5m and 4h Delta signals
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/compare_timeframes.py'
+      - '.github/workflows/compare-5m-4h.yml'
+  workflow_dispatch:
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/five_min_90d/compare_timeframes.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-5m-versus-4h
+          path: experiments/five_min_90d/timeframe_comparison.json
