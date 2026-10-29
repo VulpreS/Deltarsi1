@@ -1,0 +1,23 @@
+name: Upscale annual 3-position portfolio study
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/upscale_year_portfolio/run.py'
+      - '.github/workflows/upscale-year-portfolio.yml'
+jobs:
+  annual:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run annual portfolio simulation
+        run: python experiments/upscale_year_portfolio/run.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: upscale-annual-portfolio-report
+          path: experiments/upscale_year_portfolio/results.json
