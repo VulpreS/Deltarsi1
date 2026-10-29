@@ -30,7 +30,7 @@ def download(s):
 def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject'):
  if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
  if stop_cap_mode not in ('reject','clamp'):raise ValueError('stop_cap_mode')
- if step not in (M,3*M):raise ValueError('step must be 5m or 15m')
+ if step not in (M,3*M,48*M):raise ValueError('step must be 5m, 15m or 4h')
  if exit_by_symbol is None:exit_by_symbol={}
  if params is None:params=PARAMS
  cash=INITIAL;pos={};phase=1;phase_start=start;phases=[];daybase=INITIAL;day=None;qual=0;profitdays=[];peak=INITIAL;breach=None;trades=[];fees=0.;funding=0.;skipped=0;maxdd=0.;pending=False
