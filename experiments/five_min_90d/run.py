@@ -27,9 +27,10 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False):
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.):
  if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
  if stop_cap_mode not in ('reject','clamp'):raise ValueError('stop_cap_mode')
+ if not 0<=be_stop_lock_pct<=.04:raise ValueError('Invalid BE profit-lock pct')
  if step not in (M,3*M,48*M):raise ValueError('step must be 5m, 15m or 4h')
  if exit_by_symbol is None:exit_by_symbol={}
  if params is None:params=PARAMS
@@ -76,7 +77,8 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
     be=exit_by_symbol.get(s,{}).get('be',be_trigger)
     if be is not None and t>z["entry_t"]:
      if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be*z["entry"]:
-      new_stop=max(stop,z["entry"]) if side==1 else min(stop,z["entry"])
+      lock=exit_by_symbol.get(s,{}).get('lock_pct',be_stop_lock_pct)
+      new_stop=max(stop,z['entry']*(1+lock)) if side==1 else min(stop,z['entry']*(1-lock))
       if new_stop!=z['stop']:z['stop_updates']+=1
       z['stop']=new_stop
     continue
