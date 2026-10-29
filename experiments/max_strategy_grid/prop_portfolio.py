@@ -7,7 +7,7 @@ from experiments.pine_vs_codex.run import pine_events
 DAY=24*H;INITIAL=5000.;NOTIONAL=1000.;FEE=.0008;SPREAD=.0002
 SYMS=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","BNBUSDT","ZECUSDT")
 def iso(t):return dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat()
-def run(raw,sig,params,times,reset=False):
+def run(raw,sig,params,times,reset=False,max_hours=48):
  cash=INITIAL;positions={};closed=[];breach=None;peak=INITIAL;maxdd=0.;maxdayloss=0.;day=None;daybase=INITIAL
  phase=1;phase_start=times[0];qual=0;phases=[];pending=False;daily=[];maxpos=0;skipped=0
  def equity(prices):
@@ -44,7 +44,7 @@ def run(raw,sig,params,times,reset=False):
    elif side*(o-target)>=0:price=o;reason="take_gap"
    elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
    elif (h>=target if side==1 else l<=target):price=target;reason="take"
-   elif t-z["entry_t"]>=47*H:price=c;reason="time"
+   elif max_hours is not None and t-z["entry_t"]>=(max_hours-1)*H:price=c;reason="time"
    else:price=None
    if price is not None:
     gross=side*z["qty"]*(price-z["entry"]);exitfee=z["qty"]*price*(FEE+SPREAD/2)
@@ -81,31 +81,31 @@ def run(raw,sig,params,times,reset=False):
   by_symbol={s:dict(trades=sum(z["symbol"]==s for z in closed),stops=sum(z["symbol"]==s and z["reason"].startswith("stop") for z in closed),
    pnl=round(sum(z["net_usd"] for z in closed if z["symbol"]==s),2)) for s in raw})
 def main():
- grid=json.loads(Path("experiments/max_strategy_grid/results.json").read_text())
+ # Reuse frozen Pine configurations; do not re-optimize for different holding periods.
  raw={};sig={};sha={}
  for s in SYMS:
   rows,sha[s]=load(s);raw[s]={x[0]:x for x in rows}
-  ev,_=events(rows);sig[s]=dict(codex={x["entry_ms"]:x for x in ev["closed"]},pine=pine_events(rows))
+  sig[s]=dict(pine=pine_events(rows))
  out=dict(title="Prop portfolio selected exits",config=dict(initial=INITIAL,notional=NOTIONAL,max_positions=3,
   daily_limit_pct=5,overall_limit_pct=10,fee_side=FEE,spread_roundtrip=SPREAD),
-  warnings=["Selection is based on first 70% of common six-symbol history; 30% OOS is not used to choose parameters.",
+  warnings=["Frozen configurations were selected on original 48H training; longer holds are sensitivity tests.",
    "Full-year five-symbol run uses settings trained on common shorter window; TON excluded where history ends early.",
    "Prop phase bookkeeping approximates Upscale; no live orders, funding or tick-level path."],results={})
  groups={"five_year":tuple(s for s in SYMS if s!="TONUSDT"),"six_common":SYMS}
+ baseline=json.loads(Path("experiments/max_strategy_grid/pine_baseline_2026-10-29.json").read_text())["parameters"]
  for group_name,group in groups.items():
   common=set.intersection(*(set(raw[s]) for s in group));end=max(common)+H;start=max(min(common),end-365*DAY)
   times=list(range(start,end,H))
   if any(t not in common for t in times):raise ValueError("Noncontiguous "+group_name)
   data={s:raw[s] for s in group}
-  for signal in ("pine","codex"):
-   modes={"trained":{s:tuple(grid["selected"][s][signal]["params"]) for s in group},
-          "atr5":{s:(5.,5.,None,None) for s in group}}
-   for mode_name,params in modes.items():
-    signals={s:sig[s][signal] for s in group}
-    continuous=run(data,signals,params,times)
-    phases=run(data,signals,params,times,reset=True)
-    key=group_name+"_"+signal+"_"+mode_name
-    out["results"][key]=dict(params=params,continuous=continuous,challenge=phases)
-    print("PROP_FINAL",key,json.dumps(out["results"][key]),flush=True)
+  params={s:tuple(baseline[s]) for s in group}
+  signals={s:sig[s]["pine"] for s in group}
+  for hours in (48,240,None):
+   label=str(hours)+"h" if hours is not None else "unlimited"
+   continuous=run(data,signals,params,times,max_hours=hours)
+   phases=run(data,signals,params,times,reset=True,max_hours=hours)
+   key=group_name+"_pine_"+label
+   out["results"][key]=dict(params=params,continuous=continuous,challenge=phases)
+   print("PROP_FINAL",key,json.dumps(out["results"][key]),flush=True)
  p=Path("experiments/max_strategy_grid/prop_portfolio.json");p.write_text(json.dumps(out,indent=2))
 if __name__=="__main__":main()
