@@ -1,0 +1,22 @@
+name: Three Upscale account risk models
+on:
+  push:
+    paths:
+      - 'experiments/three_account_models/**'
+      - '.github/workflows/three-account-models.yml'
+  workflow_dispatch:
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/three_account_models/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: three-account-models
+          path: experiments/three_account_models/results.json
