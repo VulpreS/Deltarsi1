@@ -1,0 +1,26 @@
+name: Validate train-only lower TF asset subsets
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/validate_lower_tf_subsets.py'
+      - '.github/workflows/validate-lower-tf-subsets.yml'
+  workflow_dispatch:
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate asset subsets
+        run: python -u experiments/five_min_90d/validate_lower_tf_subsets.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lower-tf-train-only-subsets
+          path: experiments/five_min_90d/lower_tf_subsets_results.json
+          retention-days: 90
