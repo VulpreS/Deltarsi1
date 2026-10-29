@@ -1,0 +1,47 @@
+name: Annual 4h Delta partial take optimization 8 assets
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/optimize_partial_take_4h.py'
+      - '.github/workflows/optimize-partial-take-annual.yml'
+  workflow_dispatch:
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore downloaded 5m data ZIPs
+        uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Validate proportional fills and run 365-day search
+        run: python -u experiments/five_min_90d/optimize_partial_take_4h.py
+      - name: Summarize successful year study
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads(Path("experiments/five_min_90d/partial_annual/annual_partial_take_results.json").read_text())
+          f=os.environ['GITHUB_STEP_SUMMARY']
+          with open(f,"a") as out:
+            out.write("# One-year partial profit-taking optimization\n")
+            out.write(f"Candidates (train): {len(r['train_rankings'])}\n")
+            out.write(f"Winner from train + validation: {r['selection']['winner']['label']}\n")
+            out.write("Final period: 2026-04-01 through 2026-06-30 (previously inspected, not truly unseen).\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta4h-annual-partial-profit-optimizer
+          path: experiments/five_min_90d/partial_annual/
+          retention-days: 90
