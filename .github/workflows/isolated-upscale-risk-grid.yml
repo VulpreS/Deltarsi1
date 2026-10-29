@@ -1,0 +1,23 @@
+name: Isolated Upscale risk audit full grid
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/full_exit_grid/upscale_risk.py'
+      - '.github/workflows/isolated-upscale-risk-grid.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run prop risk audit
+        run: python experiments/full_exit_grid/upscale_risk.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: upscale-risk-grid-results
+          path: experiments/full_exit_grid/upscale_risk_results.json
