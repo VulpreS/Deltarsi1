@@ -6,7 +6,7 @@ from causal_4h_parity_audit import load,events,H,CausalDelta
 from completed_candles import aggregate_completed
 from research_multiasset import atr
 import experiments.upscale_year_portfolio.run as engine
-SYMS=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","HYPEUSDT")
+SYMS=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT")
 DAY=24*H
 MODE=(("atr",2.5),("atr",3.),False)
 def pine_shade(d,prev):
@@ -27,8 +27,9 @@ def pine_events(raw,expanded=False):
  bars=aggregate_completed(raw,4,asof_ms=raw[-1][0]+H)
  av=atr(bars);state=CausalDelta();previous_shade=None;out={}
  for i,b in enumerate(bars):
+  prior=state.delta
   d,_,_=state.step(b[4],commit=True)
-  shade=pine_shade(d,state.prev_delta)
+  shade=pine_shade(d,prior)
   if i>=210 and shade and previous_shade and math.isfinite(av[i-1]) and av[i-1]>0:
    source=("medium_red","midweak_red") if expanded else ("medium_red",)
    source_b=("medium_blue","midweak_blue") if expanded else ("medium_blue",)
@@ -51,10 +52,10 @@ def main():
   caveats=["Pine uses default symmetric mode, threshold 60, color 45 to color 80; second diagnostic includes 55/60 to 80.",
   "Original Pine indicator only paints colors; trading direction assigned from red fade=long and blue fade=short.",
   "Codex closed-4H peak>=15 and ratio<=0.7; same indicator mathematical core.",
-  "1H cached history only; no BNB or ZEC 1H cache confirmed.",
+  "1H cached history only; BNB and ZEC missing 1H cache; GRAM absent. TON included as separate research asset.",
   "Portfolio 20% initial notional, max 3, hourly stop-first, 48h hold; no OOS or live orders.",
   "Prop phase bookkeeping prototype is not contract-verified; focus on PnL and breach."],results=[])
- groups=[(s,) for s in SYMS]+[SYMS[:3],SYMS[:4],SYMS]
+ groups=[(s,) for s in SYMS]+[SYMS[:3],SYMS]
  for group in groups:
   common=set.intersection(*(set(raw[s]) for s in group))
   end=max(common);start=max(min(common),end-365*DAY+H)
