@@ -1,4 +1,4 @@
-"""Exact saved Pine Delta shade transitions vs Codex closed-4H fade, cached 1H only."""
+"""Exact saved Pine Delta shade transitions vs Codex closed-4H fade, cached 1H only.\n\natr_basis=prior reproduces prior historical results (one-bar-lagged ATR).\natr_basis=signal_close uses ATR from the fully closed 4h SIGNAL candle,\navailable before entering next 4h bar; recommended for future controlled research.\nNever silently mix baselines with different ATR reference.\n"""
 import sys,json,math,hashlib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
@@ -23,19 +23,21 @@ def pine_shade(d,prev):
   if a<=60 and a>abs(prev):return "midweak_red"
   if a<=60 and a<abs(prev):return "weak_red"
  return None
-def pine_events(raw,expanded=False):
+def pine_events(raw,expanded=False,atr_basis='prior'):
+ if atr_basis not in ('prior','signal_close'):raise ValueError('atr_basis must be prior or signal_close')
  bars=aggregate_completed(raw,4,asof_ms=raw[-1][0]+H)
  av=atr(bars);state=CausalDelta();previous_shade=None;out={}
  for i,b in enumerate(bars):
   prior=state.delta
   d,_,_=state.step(b[4],commit=True)
   shade=pine_shade(d,prior)
-  if i>=210 and shade and previous_shade and math.isfinite(av[i-1]) and av[i-1]>0:
+  atr_index=i if atr_basis=='signal_close' else i-1
+  if i>=210 and shade and previous_shade and math.isfinite(av[atr_index]) and av[atr_index]>0:
    source=("medium_red","midweak_red") if expanded else ("medium_red",)
    source_b=("medium_blue","midweak_blue") if expanded else ("medium_blue",)
    side=1 if previous_shade in source and shade=="weak_red" else (-1 if previous_shade in source_b and shade=="weak_blue" else 0)
    entry=b[0]+4*H
-   if side and entry<=raw[-1][0]:out[entry]=dict(side=side,atr_4h=av[i-1],entry_ms=entry)
+   if side and entry<=raw[-1][0]:out[entry]=dict(side=side,atr_4h=av[atr_index],entry_ms=entry)
   previous_shade=shade
  return out
 def main():
