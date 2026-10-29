@@ -39,6 +39,7 @@ WINDOWS={"train":(START,TRAIN_END),"validation":(TRAIN_END,VALID_END),
 SYMS=tuple(e.SYMS)
 COST_PER_SIDE=.0008
 SPREAD_ROUNDTRIP=.0004
+POSITION_NOTIONAL=875.  # AGREED: 17.5% of initial $5000, NOT former 20% / $1000
 # Only experiment user-requested exit allocation: thresholds are PRICE changes,
 # and fractions are of INITIAL $1k qty, not remaining qty.
 def generate_ladders():
@@ -168,7 +169,7 @@ def tiny_unit_tests():
        2*m:(2*m,101,102,94,100),3*m:(3*m,100,100,100,100)}
  data={"BTCUSDT":rows};signals={"BTCUSDT":{0:{"side":1,"atr_4h":4.}}}
  kwargs=dict(params={"BTCUSDT":(5.,5.,None,None)},start=0,end=4*m,
-  cap_price_stop=True,stop_cap_mode="clamp",collect_trades=True)
+  cap_price_stop=True,stop_cap_mode="clamp",collect_trades=True,position_notional=POSITION_NOTIONAL)
  prev_fee,prev_spread=e.FEE,e.SPREAD
  e.FEE=COST_PER_SIDE;e.SPREAD=SPREAD_ROUNDTRIP
  try:
@@ -195,7 +196,7 @@ def test(data,signals,params,exits,period,ladder,group=SYMS,ledger=False):
  r=e.simulate(data,signals,group,params=params,start=start,end=end,
     exit_by_symbol=exits,step=e.M,entry_profit_policy="defer",
     cap_price_stop=True,stop_cap_mode="clamp",
-    collect_trades=ledger,partials=ladder)
+    collect_trades=ledger,partials=ladder,position_notional=POSITION_NOTIONAL)
  return r
 
 def main():
@@ -206,6 +207,7 @@ def main():
  params={s:(sl,tp,None,None) for s,(sl,tp,be,hold) in SELECTED.items()}
  exits={s:{"be":be,"hold":hold} for s,(sl,tp,be,hold) in SELECTED.items()}
  save={"head_sha":os.getenv("GITHUB_SHA"),"run_id":os.getenv("GITHUB_RUN_ID"),
+   "position_sizing_revision":"USER AGREED 17.5% per deal; supersedes $1000/20% earlier tests",
    "periods_utc":{"train":"2025-07-01..2025-12-31",
      "validation":"2026-01-01..2026-03-31",
      "final_test":"2026-04-01..2026-06-30",
@@ -215,7 +217,8 @@ def main():
    "test_source":"Binance monthly USD-M 5m archives May 2025..Jun 2026",
    "costs":{"fee_per_side":COST_PER_SIDE,"spread_roundtrip":SPREAD_ROUNDTRIP,
     "funding_8h":e.FUNDING,"initial_account":e.INITIAL,
-    "notional_per_position":1000,"max_positions":3},
+    "notional_per_position":POSITION_NOTIONAL,"allocation_of_initial_deposit_pct":17.5,
+    "max_total_notional_usd":3*POSITION_NOTIONAL,"max_positions":3},
    "rule":"Partial fills: price % above/below entry, fractions of original qty; 5m stop and full TP checked before partial fills. No partial fill during entry candle, all legs charged costs; leftover follows frozen per-asset BE, SL, ATR TP, max hold.",
    "stop_cap":"5% of entry price, clamp",
    "train_objective":"cumulative phase profit minus 30*DD plus phase pass reward and time penalty; no breached candidates",
@@ -223,6 +226,7 @@ def main():
    "selection":{},"portfolio_comparisons":{},
    "limitations":[
     "All assets and 5m execution same baseline; partial exits only independent variable.",
+    "Position notional $875 = 17.5% of initial $5000 challenge; earlier $1000 tests are superseded for agreed sizing.",
     "Train Jul-Dec 2025, validation Jan-Mar 2026, test Apr-Jun 2026. Apr-Jun had been inspected in earlier experiments, thus not a truly new untouched OOS.",
     "Underlying Python CausalDelta not fully parity-verified with user's Pine body.",
     "If both stop and partial target touch same OHLC bar, stop-first assumed; true order unobservable.",
