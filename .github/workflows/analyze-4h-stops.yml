@@ -1,0 +1,39 @@
+name: Diagnose 4h Delta stop losses and next 12 candles
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/analyze_4h_stops.py'
+      - '.github/workflows/analyze-4h-stops.yml'
+  workflow_dispatch:
+jobs:
+  stop-investigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Investigate complete 4h portfolio stop loss ledger
+        run: python -u experiments/five_min_90d/analyze_4h_stops.py
+      - name: Show summary
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          p='experiments/five_min_90d/stops_4h/summary.json'
+          d=json.load(open(p))
+          a=d['aggregate']
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('## Full 4h Delta stop audit\n')
+            f.write(f'Trades: {a["total_trades"]}; initial stops: {a["stop_loss"]}; BE stops: {a["breakeven_stops"]}\n')
+            f.write('See CSV+JSON artifact for each stop and 1–12 subsequent complete 4h candles.\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-4h-stop-loss-histogram-investigation
+          path: experiments/five_min_90d/stops_4h/
+          retention-days: 90
