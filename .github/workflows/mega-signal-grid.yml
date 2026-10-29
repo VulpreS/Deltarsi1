@@ -1,0 +1,25 @@
+name: Mega two-signal exit grid 864 scenarios
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/mega_signal_grid/run.py'
+      - '.github/workflows/mega-signal-grid.yml'
+jobs:
+  grid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run 864 matched signal and exit portfolio scenarios
+        run: python experiments/mega_signal_grid/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mega-two-signal-grid-results
+          path: experiments/mega_signal_grid/results.json
