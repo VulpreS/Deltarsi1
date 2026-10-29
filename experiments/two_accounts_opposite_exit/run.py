@@ -107,7 +107,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
   takes=sum(z["reason"].startswith("take") for z in closed),time_exits=sum(z["reason"]=="time" for z in closed),
   win_rate=round(100*wins/len(closed),2) if closed else None,profit_factor=round(g/loss,3) if loss else None,
   max_intrahour_dd=round(maxdd,3),worst_day_drop_usd=round(maxdayloss,2),
-  breach=breach,phases=phases,phase_now=phase,max_concurrent=maxpos,skipped=skipped,
+  breach=breach,phases=phases,phase_now=phase,max_concurrent=maxpos,skipped=skipped,opposite_exits=opposite_exits,confirm_exits=confirm_exits,
   by_symbol={s:dict(trades=sum(z["symbol"]==s for z in closed),stops=sum(z["symbol"]==s and z["reason"].startswith("stop") for z in closed),
    pnl=round(sum(z["net_usd"] for z in closed if z["symbol"]==s),2)) for s in raw})
 def main():
