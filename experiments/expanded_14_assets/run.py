@@ -1,4 +1,4 @@
-"""Add XRP SOL DOGE TRX LINK NEAR LTC UNI to frozen Pine portfolio; research only."""
+"""Add XRP and LINK to frozen Pine portfolio; research only."""
 import sys,json
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
@@ -7,7 +7,7 @@ from experiments.pine_vs_codex.run import pine_events
 from experiments.new_assets_2026.run import download,PARAMS
 from experiments.max_strategy_grid.prop_portfolio import run,H,DAY,iso
 OLD=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","BNBUSDT","ZECUSDT")
-NEW=("XRPUSDT","SOLUSDT","DOGEUSDT","TRXUSDT","LINKUSDT","NEARUSDT","LTCUSDT","UNIUSDT")
+NEW=("XRPUSDT","LINKUSDT")
 def main():
  raw={};sig={};meta={}
  baseline=json.loads(Path("experiments/max_strategy_grid/pine_baseline_2026-10-29.json").read_text())["parameters"]
@@ -33,7 +33,7 @@ def main():
   meta[s]["chosen"]=chosen
   print("NEW_PARAM",s,json.dumps(dict(params=chosen["params"],train_pnl=chosen["train"]["closed_net_pnl"],test_pnl=chosen["test"]["closed_net_pnl"],test_trades=chosen["test"]["trades"])),flush=True)
  out=dict(meta=meta,comparison={},notes=["Historical tested pine_events RSI12/SMA21 transform, not final RSI27.","New symbol exits selected on first 70% and evaluated on last 30%; exploratory in-sample selection.","Each group uses identical common 1h timestamps and fixed $1000 position, max 3, 48h, 0.08% per-side fee, 0.02% roundtrip spread.","Cached old assets and downloaded Binance futures new assets; exchange differences may affect comparability."])
- for name,group in (("old_six",OLD),("old_plus_new",OLD+NEW),("old_five",tuple(s for s in OLD if s!="TONUSDT")),("five_plus_new",tuple(s for s in OLD if s!="TONUSDT")+NEW)):
+ for name,group in (("old_six",OLD),("old_plus_xrp_link",OLD+NEW),("old_five",tuple(s for s in OLD if s!="TONUSDT")),("five_plus_xrp_link",tuple(s for s in OLD if s!="TONUSDT")+NEW)):
   if any(s not in raw for s in group):
    print("SKIP_GROUP",name,"missing assets",flush=True);continue
   common=set.intersection(*(set(raw[s]) for s in group))
