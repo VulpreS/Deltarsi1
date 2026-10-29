@@ -66,7 +66,7 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    else:
     be=exit_by_symbol.get(s,{}).get('be',be_trigger)
     if be is not None and t>z["entry_t"]:
-     if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be_trigger*z["entry"]:
+     if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be*z["entry"]:
       z["stop"]=max(stop,z["entry"]) if side==1 else min(stop,z["entry"])
     continue
    gross=side*z["qty"]*(price-z["entry"])
@@ -82,9 +82,9 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    if pnl>0:profitdays.append(pnl)
    if phase<=2 and pnl>=INITIAL*.005:qual+=1
    if phase<=2 and not pending and not pos and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and max(profitdays,default=0)<.30*(last-INITIAL):
-    phases.append(dict(phase=phase,completed=iso(t+step),days=round((t+step-phase_start)/DAY,2),qualifying_days=qual))
+    phases.append(dict(phase=phase,completed=iso(t+step),days=round((t+step-phase_start)/DAY,2),qualifying_days=qual,phase_equity_usd=round(last,2),phase_profit_usd=round(last-INITIAL,2)))
     pending=True
- return dict(group=group,phases=phases,phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
+ return dict(group=group,phases=phases,cumulative_phase_profit_usd=round(sum(p['phase_profit_usd'] for p in phases)+last-INITIAL,2),phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
 def main():
  raw={};signals={}
  for s in SYMS:
