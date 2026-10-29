@@ -1,0 +1,22 @@
+name: Prop tighter risk limits baseline
+on:
+  push:
+    paths:
+      - 'experiments/prop_tighter_limits/**'
+      - '.github/workflows/prop-tighter-limits.yml'
+  workflow_dispatch:
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/prop_tighter_limits/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prop-tighter-limits
+          path: experiments/prop_tighter_limits/results.json
