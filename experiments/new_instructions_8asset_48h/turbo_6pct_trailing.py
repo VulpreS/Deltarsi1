@@ -295,7 +295,7 @@ def main():
    ("turbo_10k_16p9_sp002",10000,.169,.0002)]
  for label,initial,pct,spread in cases:
   output["experiments"][label]={}
-  for period,start,end in (("annual",(START,END)),("quarter_apr_jun",(VALID_END,END))):
+  for period,start,end in (("annual",START,END),("quarter_apr_jun",VALID_END,END)):
    output["experiments"][label][period]={}
    for stress in (False,True):
     r,days,trades=replay(raw5,signals,params,initial,start,end,pct,spread,stress)
