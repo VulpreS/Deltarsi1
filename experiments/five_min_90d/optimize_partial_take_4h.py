@@ -34,6 +34,7 @@ YEARMONTHS=[f"{y}-{m:02d}" for y,m in MONTHS]
 OUT=Path("experiments/five_min_90d/partial_annual")
 CACHE=Path(os.getenv("BINANCE_MONTH_CACHE","/tmp/delta_binance_5m_cache"))
 WINDOWS={"train":(START,TRAIN_END),"validation":(TRAIN_END,VALID_END),
+         "train_validation":(START,VALID_END),
          "final_test":(VALID_END,END),"full_year":(START,END)}
 SYMS=tuple(e.SYMS)
 COST_PER_SIDE=.0008
@@ -255,10 +256,12 @@ def main():
    if idx%10==0:print("TRAIN_CANDIDATE",idx,len(ladders),row["score"],row["label"],flush=True)
   train.sort(key=lambda row:(row["score"],row["metrics"]["cumulative_phase_profit_usd"]),reverse=True)
   save["train_rankings"]=train
+  print("TRAIN_TOP15",json.dumps(train[:15],ensure_ascii=False),flush=True)
   # Always take 15 train-best, user-proposed 0.5/1.5 15%/20% ladder and
   # baseline into the validation stage, without examining final-test.
   proposed=((.005,.15),(.015,.20))
-  shortlist={row["id"] for row in train[:15]}
+  eligible={row["id"] for row in train if row["metrics"]["breach"] is None}
+  shortlist={row["id"] for row in train[:15] if row["id"] in eligible}
   shortlist.add(ladders.index(proposed));shortlist.add(0)
   valid=[]
   for idx in sorted(shortlist):
@@ -271,28 +274,46 @@ def main():
       {k:row["metrics"][k] for k in ("cumulative_phase_profit_usd","max_dd_pct","breach","phases")},ensure_ascii=False),flush=True)
   valid.sort(key=lambda row:(row["score"],row["metrics"]["cumulative_phase_profit_usd"]),reverse=True)
   save["validation_rankings"]=valid
-  winner=valid[0]
-  # Keep the baseline as a competitor; never replace it with a bad chosen
-  # validation strategy just because optimizer produced a ranking.
-  final_ids={winner["id"],ladders.index(proposed),0}
+  # Exclude models with a TRAIN breach. A standalone profitable validation
+  # cannot rescue a train-breached strategy under prop risk rules.
+  for row in valid:
+   row["train_eligible"]=(row["id"] in eligible)
+   nine=test(data,signals,params,exits,"train_validation",ladders[row["id"]])
+   row["contiguous_train_val"]=summarize(nine)
+   row["eligible_for_selection"]=(row["train_eligible"] and nine["breach"] is None
+                                 and row["metrics"]["breach"] is None)
+   print("NINE_MONTH_SCREEN",row["id"],row["eligible_for_selection"],
+        json.dumps(row["contiguous_train_val"],ensure_ascii=False),flush=True)
+  pool=[row for row in valid if row["eligible_for_selection"]]
+  if not pool:
+   winner=None
+   print("NO_ELIGIBLE_PARTIAL_ON_TRAIN_VALIDATION",flush=True)
+  else:
+   winner=max(pool,key=lambda row:row["score"])
+   print("FROZEN_PRE_FINAL_WINNER",json.dumps(winner,ensure_ascii=False),flush=True)
+  # Baseline is reported for comparison even if it breaches in training.
+
+  final_ids={ladders.index(proposed),0,*shortlist}
+  if winner is not None:final_ids.add(winner["id"])
   # Predeclared other structures for interpretability, with no final-test ranking.
   simple=((.005,.15),)
   final_ids.add(ladders.index(simple))
   final_ids.add(ladders.index(((.005,.15),(.015,.20),(.03,.20))))
-  save["selection"]={"winner_id":winner["id"],"winner":winner,
+  save["selection"]={"winner_id":winner["id"] if winner else None,"winner":winner,
     "user_proposed_id":ladders.index(proposed),
     "train_size":len(train),"validation_size":len(valid),
+    "contiguous_9month_risk_screen":True,
     "selection_freeze_before_final_test":True}
   for idx in sorted(final_ids):
    ladder=ladders[idx];key=f"candidate_{idx}_{label(ladder)}"
    save["ladders"][key]=ladder
    save["portfolio_comparisons"][key]={}
-   for period in WINDOWS:
+   for period in ("train","validation","train_validation","final_test","full_year"):
     res=test(data,signals,params,exits,period,ladder,ledger=period=="final_test")
     save["portfolio_comparisons"][key][period]=summarize(res)
     if period=="final_test":
      save["portfolio_comparisons"][key]["final_test_trade_ledger"]=res["trade_details"]
-    if period in ("final_test","full_year"):
+     if period in ("train_validation","final_test","full_year"):
      print("FINAL_REPORT",key,period,json.dumps(summarize(res),ensure_ascii=False),flush=True)
    jsonwrite("annual_checkpoint_comparisons.json",save)
   # Portfolio-by-asset secondary check, freeze nothing per-coin yet.
