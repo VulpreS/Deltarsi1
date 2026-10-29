@@ -359,9 +359,8 @@ def test_synthetic():
  assert a["trades_with_add"]==1
  assert a["max_duration_h"]==48, a
  assert b["max_duration_h"]==52, b
- assert c["max_duration_h"]>55 and c["exits"]["take"]==1,c
+ assert c["max_duration_h"]>55 and c["exits"]["take"]+c["exits"]["take_gap"]==1,c
  assert d["actual_adds"]==0 and d["max_notional_observed"]==1000.,d
- assert a["stops"]==b["stops"] if False else True
  print("MONO_SYNTHETIC_ADD_AND_HOLD_TESTS_PASSED",
        json.dumps({k:v["max_duration_h"] for k,v in
          [("original_48",a),("reset_48",b),("no_time",c),("baseline",d)]}),flush=True)
