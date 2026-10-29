@@ -1,0 +1,22 @@
+name: Expanded 14 asset Pine portfolio
+on:
+  push:
+    paths:
+      - 'experiments/expanded_14_assets/**'
+      - '.github/workflows/expanded-14-assets.yml'
+  workflow_dispatch:
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/expanded_14_assets/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: expanded-14-assets-results
+          path: experiments/expanded_14_assets/results.json
