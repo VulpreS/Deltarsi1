@@ -1,0 +1,46 @@
+name: Audit Delta against official Upscale 2026 fees funding API phase and payouts
+on:
+  push:
+    paths:
+      - 'experiments/new_instructions_8asset_48h/upscale_official_rules_sensitivity.py'
+      - '.github/workflows/audit-upscale-official-rules.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Replay original eight coins with official fee, funding, realized targets, API and payout conditions
+        run: python -u experiments/new_instructions_8asset_48h/upscale_official_rules_sensitivity.py
+      - name: Write summary
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          d=json.loads(Path('experiments/new_instructions_8asset_48h/official_rules_sensitivity/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Closer official Upscale rules: 16.9 percent original eight-asset Delta\n')
+            for name,v in d['experiments'].items():
+              for key,p in v.items():
+                m=p['summary']
+                f.write(f"\n{name} {key}: phases={m['phases']}, breach={m['breach']}, closedPnL=${m['closed_pnl_usd']}, funded_realized=${m['funded_profit_realized_usd']}, eligible={m['possible_payout_eligibility']}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-8assets-upscale-official-rules-sensitivity
+          path: experiments/new_instructions_8asset_48h/official_rules_sensitivity/results.json
+          retention-days: 90
