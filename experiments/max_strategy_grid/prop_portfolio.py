@@ -7,7 +7,7 @@ from experiments.pine_vs_codex.run import pine_events
 DAY=24*H;INITIAL=5000.;NOTIONAL=1000.;FEE=.0008;SPREAD=.0002
 SYMS=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","BNBUSDT","ZECUSDT")
 def iso(t):return dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat()
-def run(raw,sig,params,times,reset=False,max_hours=48):
+def run(raw,sig,params,times,reset=False,max_hours=48,include_daily=False):
  cash=INITIAL;positions={};closed=[];breach=None;peak=INITIAL;maxdd=0.;maxdayloss=0.;day=None;daybase=INITIAL
  phase=1;phase_start=times[0];qual=0;phases=[];pending=False;daily=[];maxpos=0;skipped=0
  def equity(prices):
@@ -78,6 +78,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48):
   win_rate=round(100*wins/len(closed),2) if closed else None,profit_factor=round(g/loss,3) if loss else None,
   max_intrahour_dd=round(maxdd,3),worst_day_drop_usd=round(maxdayloss,2),
   breach=breach,phases=phases,phase_now=phase,max_concurrent=maxpos,skipped=skipped,
+  daily_trace=daily if include_daily else None,
   by_symbol={s:dict(trades=sum(z["symbol"]==s for z in closed),stops=sum(z["symbol"]==s and z["reason"].startswith("stop") for z in closed),
    pnl=round(sum(z["net_usd"] for z in closed if z["symbol"]==s),2)) for s in raw})
 def main():
