@@ -1,0 +1,51 @@
+name: Six-coin portfolio require prior bright bar in current Delta wave
+on:
+  push:
+    paths:
+      - 'experiments/portfolio_six_no_icp_zec_20pct/compare_bright_wave_filter.py'
+      - '.github/workflows/test-six-portfolio-bright-wave.yml'
+  workflow_dispatch:
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Reconstruct original Delta 4h shade waves and compare prior-bright gate
+        run: python -u experiments/portfolio_six_no_icp_zec_20pct/compare_bright_wave_filter.py
+      - name: Summarize six-coin signal attrition and funded/challenge performance
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          d=json.loads(Path('experiments/portfolio_six_no_icp_zec_20pct/bright_wave_filter/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Requiring a bright earlier histogram bar in the same 4h Delta wave\n\n')
+            for s,c in d['asset_filter_stats'].items():
+              f.write(f"{s}: raw={c['original_signals']} kept={c['filtered_signals']} blocked={c['blocked_missing_bright']} ({c['pct_retained']}% kept)\n\n")
+            for period in ('annual','q2'):
+              for filt in ('no_wave_filter','bright_current_wave'):
+                for acct in ('Basic_5000_noAPI','Basic_10000_API','Turbo_5000'):
+                  for mode in ('baseline_48','add_loss_second_48','add_any_second_48'):
+                    k='/'.join((period,filt,acct,mode,'observed_5m_close'))
+                    r=d['results'][k]['summary']
+                    f.write(f"{k}: alive={r['survived_full_period']} n={r['number_closed']} pnl=${r['closed_pnl_usd']} pf={r['profit_factor']} dd={r['max_peak_to_trough_dd_pct']} phases={r['phases']} adds={r['actual_adds']}\n\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: six-coin-delta-bright-current-wave-entry-filter-year-q2
+          path: experiments/portfolio_six_no_icp_zec_20pct/bright_wave_filter/results.json
+          retention-days: 90
