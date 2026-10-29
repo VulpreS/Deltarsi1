@@ -1,0 +1,22 @@
+name: Eight assets capacity 3 vs 4 vs 5
+on:
+  push:
+    paths:
+      - 'experiments/capacity_8_assets/**'
+      - '.github/workflows/capacity-8-assets.yml'
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/capacity_8_assets/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: capacity-eight-assets-results
+          path: experiments/capacity_8_assets/results.json
