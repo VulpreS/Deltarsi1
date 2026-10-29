@@ -1,0 +1,23 @@
+name: Canonical DeltaRSI expanded portfolio research
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/canonical_delta_portfolio/run.py'
+      - '.github/workflows/canonical-delta-portfolio.yml'
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Backtest canonical DeltaRSI
+        run: python experiments/canonical_delta_portfolio/run.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canonical-delta-portfolio-results
+          path: experiments/canonical_delta_portfolio/results.json
