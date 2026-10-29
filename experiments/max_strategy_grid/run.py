@@ -75,6 +75,7 @@ def main():
     test=replay(raw[s],signal,p,split,end)
     top.append(dict(params=p,train_pnl=pnl,train_trades=n,test_pnl=test["pnl"],test_trades=test["n"],test_pf=test["pf"],test_wr=test["wr"]))
    report["by_symbol"][s][name]=top
+   report.setdefault("selected",{}).setdefault(s,{})[name]=dict(params=ranked[0][2],train_pnl=ranked[0][0],train_trades=ranked[0][1])
    print("GRID",s,name,json.dumps(top[:3]),flush=True)
  # Portfolio comparison uses same common timeline and fixed per-asset top TRAIN params.
  # Existing engine supports no trailing: separately evaluate common 5/5 and best fixed-only configs.
