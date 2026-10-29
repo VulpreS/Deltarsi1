@@ -1,0 +1,50 @@
+name: Check DeltaRSI annual 15pct 750usd position
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/check_15_percent_annual.py'
+      - '.github/workflows/check-delta-15pct-annual.yml'
+  workflow_dispatch:
+jobs:
+  annual-15pct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Cache Binance 5m archives
+        uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Optimize and check one-year 15% scenario
+        run: python -u experiments/five_min_90d/check_15_percent_annual.py
+      - name: Publish portfolio comparison
+        if: success()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path("experiments/five_min_90d/partial_annual_15pct/annual_partial_take_results.json")
+          d=json.loads(p.read_text())
+          assert d["costs"]["notional_per_position"]==750
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+            f.write("## Annual 4h Delta $750 / 15% test\n")
+            f.write(f"Position size: ${d['costs']['notional_per_position']} (15% initial deposit)\n")
+            b=d['portfolio_comparisons']['baseline']['full_year']
+            f.write(f"Base strategy annual breach: {b['breach']}\n")
+            win=d['selection']['winner']
+            f.write(f"Selected train/validation ladder: {win['label'] if win else 'none'}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta4h-annual-15pct-750usd
+          path: experiments/five_min_90d/partial_annual_15pct/
+          retention-days: 90
