@@ -1,3 +1,5 @@
+> **ВАЖНО: лаг ATR в этом историческом прогоне.** Результаты ниже воспроизводят старый режим SL/TP на **ATR предыдущей 4h-свечи** (`av[i-1]`). На ATR самой закрытой сигнальной свечи (`av[i]`) при $875/17,5% модельное нарушение **исчезло** (DD9,889%), а при $750/15% DD снизилась до 8,479%. Подробнее: [критический аудит SL/TP](../sl_tp_per_asset_audit/CRITICAL_SL_TP_AUDIT_2026-10-29.md) и [GitHub Actions №40911665399](https://github.com/VulpreS/Deltarsi1/actions/runs/40911665399). Не переносить вывод о неизбежном breach с `av[i-1]` на `av[i]`.
+
 # Годовой контроль размера позиции: 15% / $750 (DeltaRSI 4h)
 
 **Дата теста:** 2026-10-29. **Статус:** GitHub Actions `completed/success`. Запуск: https://github.com/VulpreS/Deltarsi1/actions/runs/40908755832, SHA `e6458309fd56ba6fcf436898adf37d9de853025c`. Полный JSON-артефакт: https://github.com/VulpreS/Deltarsi1/actions/runs/40908755832/artifacts/12912957340 (имя `delta4h-annual-15pct-750usd`, папка `partial_annual_15pct`). Оригинальный `17.5%/$875` сценарий НЕ перезаписан.
