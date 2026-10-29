@@ -56,9 +56,9 @@ def run(raw,sig,params,times,policy,target=.0055):
      new=z["best"]-side*z["distance"]*z["atr"]
      z["stop"]=max(stop,new) if side==1 else min(stop,new)
   # Evaluate at known hourly close; require REALIZED PNL after forced exit to exceed threshold.
-  if not locked and policy!="baseline" and pos:
+  if not locked and policy!="baseline":
    estimated=eq(closes);enough=estimated>=daybase*(1+target)
-   challenge_need=stage<2 and cash>=stage_start*(1+STAGES[stage][0]) and stage_days<STAGES[stage][1]
+   challenge_need=stage<2 and estimated>=stage_start*(1+STAGES[stage][0]) and stage_days<STAGES[stage][1]
    payout_need=payout_days<5
    should_lock=policy=="always_daily" or (policy=="challenge_target" and challenge_need) or (policy=="payout_target" and payout_need)
    if enough and should_lock:
