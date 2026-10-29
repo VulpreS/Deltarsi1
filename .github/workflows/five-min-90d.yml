@@ -1,0 +1,22 @@
+name: Five minute 90 day prop experiment
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/**'
+      - '.github/workflows/five-min-90d.yml'
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/five_min_90d/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: five-min-90d-results
+          path: experiments/five_min_90d/results.json
