@@ -1,0 +1,48 @@
+name: Compare canonical 16.9pct vs 16.8pct Delta 8 coins 48h
+on:
+  push:
+    paths:
+      - 'experiments/new_instructions_8asset_48h/check_16p9.py'
+      - '.github/workflows/backtest-new-instructions-16p9.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore 5m archives
+        uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Validate original settings and compare 16.8% vs 16.9% on same market history
+        run: python -u experiments/new_instructions_8asset_48h/check_16p9.py
+      - name: Summary
+        if: success()
+        run: |
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          d=json.loads(Path('experiments/new_instructions_8asset_48h/scenario_16p9/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# 16.9% ($845) vs 16.8% ($840) — canonical eight-asset Delta, 48h\n')
+            for name in ('full_year_with_phase_reset','apr_jun_new_account'):
+              f.write(f'## {name}\n')
+              for p in ('16.8pct','16.9pct'):
+                r=d['results'][p][name]
+                f.write(f"{p}: trades={r['trades']}, net closed PnL=${r['closed_net_pnl']}, PF={r['profit_factor']}, DD={r['max_intrahour_dd']}%, breach={r['breach']}, phases={r['phases']}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-canonical-16p9-vs-16p8-year-quarter
+          path: experiments/new_instructions_8asset_48h/scenario_16p9/results.json
+          retention-days: 90
