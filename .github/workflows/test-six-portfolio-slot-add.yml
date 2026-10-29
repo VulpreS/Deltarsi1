@@ -1,0 +1,56 @@
+name: Six-coin portfolio 20+20 second signal max three slots Basic Turbo
+on:
+  push:
+    paths:
+      - 'experiments/portfolio_six_no_icp_zec_20pct/compare_add_second_signal.py'
+      - '.github/workflows/test-six-portfolio-slot-add.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Run independent 6-asset portfolio full year and Q2 for Basic and Turbo
+        run: python -u experiments/portfolio_six_no_icp_zec_20pct/compare_add_second_signal.py
+      - name: Compare controls, losing-repeat and any-repeat add
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          o=json.loads(Path('experiments/portfolio_six_no_icp_zec_20pct/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Six assets, portfolio max three 20% slots, original 48h\n')
+            f.write('ICP and ZEC excluded. Add prioritised to the first same-direction 4h repeat before fresh entries.\n\n')
+            for period in ('annual','q2'):
+              for account in ('Basic_5000_noAPI','Basic_10000_API','Turbo_5000'):
+                f.write(f'## {period} — {account}\n')
+                for mode in ('baseline_48','add_loss_second_48','add_any_second_48'):
+                  key='/'.join((period,account,mode,'observed_5m_close'))
+                  r=o['scenarios'][key]['summary']
+                  f.write(
+                    f"{mode}: survived={r['survived_full_period']}, "
+                    f"breach={r['breach']}, closedPnL=${r['closed_pnl_usd']}, "
+                    f"WR={r['win_rate_pct']}, PF={r['profit_factor']}, "
+                    f"n={r['number_closed']}, slots={r['max_slots_occupied']}, "
+                    f"adds={r['actual_adds']}, blocked={r['add_rejected_full_slots']}, "
+                    f"stages={r['phases']}\n\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: six-asset-portfolio-20plus20-slots3-basic-turbo-year-q2
+          path: experiments/portfolio_six_no_icp_zec_20pct/results.json
+          retention-days: 90
