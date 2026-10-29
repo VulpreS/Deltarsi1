@@ -1,0 +1,27 @@
+name: Download BNB ZEC hourly history
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'download_bnb_zec_hourly.py'
+      - '.github/workflows/download-bnb-zec-hourly.yml'
+permissions:
+  contents: write
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python download_bnb_zec_hourly.py BNBUSDT
+      - run: python download_bnb_zec_hourly.py ZECUSDT
+      - name: Save validated history
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add data/BNBUSDT_1h.csv data/BNBUSDT_1h_source.json data/ZECUSDT_1h.csv data/ZECUSDT_1h_source.json
+          git commit -m 'Cache BNB and ZEC 1h candles for matched prop comparison' || exit 0
+          git push
