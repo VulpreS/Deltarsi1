@@ -1,0 +1,48 @@
+name: Backtest canonical new instructions 8 assets 48h 16.8pct
+on:
+  push:
+    paths:
+      - 'experiments/new_instructions_8asset_48h/backtest.py'
+      - '.github/workflows/backtest-canonical-new-instructions.yml'
+  workflow_dispatch:
+jobs:
+  original-parameters:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore year source archives
+        uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Audit README table and run original 48 hour strategy
+        run: python -u experiments/new_instructions_8asset_48h/backtest.py
+      - name: Publish metrics
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          d=json.loads(Path('experiments/new_instructions_8asset_48h/results.json').read_text())
+          a=d['results']['eight_annual_challenge_reset']
+          q=d['results']['eight_apr_jun_challenge_reset']
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Canonical new instructions test\n\n')
+            f.write('8 assets, 16.8% / $840 each, up to 3, identical original SL/TP and TON trailing, 48h all\n\n')
+            f.write(f"Annual: {a['trades']} trades; breach: {a['breach']}; phases: {a['phases']}; DD: {a['max_intrahour_dd']}%\n\n")
+            f.write(f"Apr–Jun: {q['trades']} trades; breach: {q['breach']}; phases: {q['phases']}; DD: {q['max_intrahour_dd']}%\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canonical-8asset-48h-16p8-original-atr-exits
+          path: experiments/new_instructions_8asset_48h/results.json
+          retention-days: 90
