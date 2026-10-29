@@ -1,0 +1,31 @@
+name: Eight-asset DeltaRSI 5m vs 15m OOS execution
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/followup_execution.py'
+      - '.github/workflows/followup-execution.yml'
+  workflow_dispatch:
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run eight asset execution study
+        run: python -u experiments/five_min_90d/followup_execution.py
+      - name: Publish research checkpoints
+        if: always()
+        run: |
+          echo '### Eight-asset follow-up' >> "$GITHUB_STEP_SUMMARY"
+          test -f experiments/five_min_90d/followup_execution_results.json && echo 'Comparison completed; download JSON artifact.' >> "$GITHUB_STEP_SUMMARY" || echo 'Comparison did not write results; inspect logs.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eight-asset-5m-15m-oos
+          path: experiments/five_min_90d/followup_execution_results.json
+          retention-days: 90
