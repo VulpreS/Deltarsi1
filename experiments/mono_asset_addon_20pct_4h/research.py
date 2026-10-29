@@ -102,7 +102,7 @@ def simulate(data,events,parameters,mode,case,start,end,stress=False,details=Fal
  def breach_check(t,price,label,mark_peak=True):
   nonlocal peak,maxdd,breach,entry_peak_date
   current=eq(price)
-  if case["kind"]=="turbo" and mark_peak and current>peak:
+  if mark_peak and current>peak:
    peak=current;entry_peak_date=iso(t)
   maxdd=max(maxdd,100*max(0,peak-current)/peak)
   lim=floor()
