@@ -27,10 +27,11 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.,partials=()):
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.,partials=(),position_notional=1000.):
  if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
  if stop_cap_mode not in ('reject','clamp'):raise ValueError('stop_cap_mode')
  if not 0<=be_stop_lock_pct<=.04:raise ValueError('Invalid BE profit-lock pct')
+ if not 0<position_notional<=INITIAL:raise ValueError('Invalid position_notional')
  if any(th<=0 or frac<=0 or frac>=1 for th,frac in partials) or sum(frac for _,frac in partials)>=.95 or any(a[0]>=b[0] for a,b in zip(partials,partials[1:])):raise ValueError('Invalid partial profit levels')
  if step not in (M,3*M,48*M):raise ValueError('step must be 5m, 15m or 4h')
  if exit_by_symbol is None:exit_by_symbol={}
@@ -52,7 +53,7 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    if cap_price_stop and abs(o-stop)/o>.05:
     if stop_cap_mode=='reject':continue
     stop=o*(1-side*.05)
-   qty=1000/o;fee=1000*(FEE+SPREAD/2);cash-=fee;fees+=fee
+   qty=position_notional/o;fee=position_notional*(FEE+SPREAD/2);cash-=fee;fees+=fee
    pos[s]=dict(side=side,qty=qty,entry=o,stop=stop,target=target,entry_t=t,phase=phase,
                   initial_stop=stop,signal_atr=atr,entry_fee=fee,raw_stop=o-side*sl*atr,
                   original_qty=qty,partial_done=0,partial_pnl=0.,partial_events=[],partial_fees=0.,partial_qty_closed=0.,remaining_qty=qty,
