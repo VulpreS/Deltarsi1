@@ -1,0 +1,50 @@
+name: Mono Delta second-signal add 20pct 48h reset no-limit Basic Turbo
+on:
+  push:
+    paths:
+      - 'experiments/mono_asset_addon_20pct_4h/research.py'
+      - '.github/workflows/test-mono-delta-second-signal-add.yml'
+  workflow_dispatch:
+jobs:
+  mono-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Run mono 8 coins 3 account types 4 exits 2 windows 5m stress checks
+        run: python -u experiments/mono_asset_addon_20pct_4h/research.py
+      - name: Summarize 8-by-2 annual account survival
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          obj=json.loads(Path('experiments/mono_asset_addon_20pct_4h/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Mono second signal $20%+$20% Basic vs Turbo\n')
+            f.write('All eight independent mono assets; ATR stops/TP first-entry anchored, 4h repeat signal losing add, 5m exits; Q2 and full year.\n\n')
+            for symbol in obj['asset_counts']:
+              f.write(f'## {symbol}\n')
+              for account in ('Basic_5000_noAPI','Basic_10000_API','Turbo_5000'):
+                for mode in ('baseline_48','add_original_48','add_second_signal_48','add_no_time_limit'):
+                  k='/'.join((symbol,account,'year',mode,'close5m'))
+                  z=obj['results'][k]['summary']
+                  f.write(f"{account} {mode}: survived={z['survived_full_window']} breach={z['breach']} closed={z['count']} pnl=${z['net_closed_usd']} adds={z['actual_adds']} phases={z['phases']}\n\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mono-8-coins-20plus20-second-signal-48h-reset-no-time-basic-turbo
+          path: experiments/mono_asset_addon_20pct_4h/results.json
+          retention-days: 90
