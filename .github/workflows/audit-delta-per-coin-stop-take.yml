@@ -1,0 +1,32 @@
+name: Verify Delta 4h per coin stop take ATR and stop cap
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/audit_sl_tp_per_asset.py'
+      - '.github/workflows/audit-delta-per-coin-stop-take.yml'
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Check every symbol SL TP ATR signal mapping and capped stops
+        run: python -u experiments/five_min_90d/audit_sl_tp_per_asset.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta4h-stop-take-atr-eight-assets-audit
+          path: experiments/five_min_90d/sl_tp_per_asset_audit/
+          retention-days: 90
