@@ -31,7 +31,7 @@ END=ms(2026,7)
 WARM=ms(2025,5)
 MONTHS=[(2025,m) for m in range(5,13)]+[(2026,m) for m in range(1,7)]
 YEARMONTHS=[f"{y}-{m:02d}" for y,m in MONTHS]
-OUT=Path("experiments/five_min_90d/partial_annual")
+OUT=Path(os.getenv("DELTA_OUTPUT_DIR","experiments/five_min_90d/partial_annual"))
 CACHE=Path(os.getenv("BINANCE_MONTH_CACHE","/tmp/delta_binance_5m_cache"))
 WINDOWS={"train":(START,TRAIN_END),"validation":(TRAIN_END,VALID_END),
          "train_validation":(START,VALID_END),
@@ -39,9 +39,9 @@ WINDOWS={"train":(START,TRAIN_END),"validation":(TRAIN_END,VALID_END),
 SYMS=tuple(e.SYMS)
 COST_PER_SIDE=.0008
 SPREAD_ROUNDTRIP=.0004
-POSITION_NOTIONAL=875.  # AGREED: 17.5% of initial $5000, NOT former 20% / $1000
+POSITION_NOTIONAL=float(os.getenv("DELTA_POSITION_NOTIONAL","875"))  # USD notional; explicitly set for each scenario
 # Only experiment user-requested exit allocation: thresholds are PRICE changes,
-# and fractions are of INITIAL $1k qty, not remaining qty.
+# and fractions are of INITIAL POSITION qty, not remaining qty.
 def generate_ladders():
  ladders=[()]
  for level in (.005,.01,.015,.02):
@@ -200,6 +200,7 @@ def test(data,signals,params,exits,period,ladder,group=SYMS,ledger=False):
  return r
 
 def main():
+ print("ACTUAL_NOTIONAL_CONFIG",json.dumps({"position_notional":POSITION_NOTIONAL,"deposit":e.INITIAL,"pct":100*POSITION_NOTIONAL/e.INITIAL,"out":str(OUT)}),flush=True)
  tiny_unit_tests()
  data,signals,manifest=source_load()
  # Check exact 90d historic baseline as a diagnostic. Longer warm-up changes
@@ -207,7 +208,7 @@ def main():
  params={s:(sl,tp,None,None) for s,(sl,tp,be,hold) in SELECTED.items()}
  exits={s:{"be":be,"hold":hold} for s,(sl,tp,be,hold) in SELECTED.items()}
  save={"head_sha":os.getenv("GITHUB_SHA"),"run_id":os.getenv("GITHUB_RUN_ID"),
-   "position_sizing_revision":"USER AGREED 17.5% per deal; supersedes $1000/20% earlier tests",
+   "position_sizing_revision":f"SCENARIO {100*POSITION_NOTIONAL/e.INITIAL:g}% per deal (${POSITION_NOTIONAL:g} initial notional), superseding old $1000/20% backtest assumptions",
    "periods_utc":{"train":"2025-07-01..2025-12-31",
      "validation":"2026-01-01..2026-03-31",
      "final_test":"2026-04-01..2026-06-30",
@@ -217,7 +218,7 @@ def main():
    "test_source":"Binance monthly USD-M 5m archives May 2025..Jun 2026",
    "costs":{"fee_per_side":COST_PER_SIDE,"spread_roundtrip":SPREAD_ROUNDTRIP,
     "funding_8h":e.FUNDING,"initial_account":e.INITIAL,
-    "notional_per_position":POSITION_NOTIONAL,"allocation_of_initial_deposit_pct":17.5,
+    "notional_per_position":POSITION_NOTIONAL,"allocation_of_initial_deposit_pct":100*POSITION_NOTIONAL/e.INITIAL,
     "max_total_notional_usd":3*POSITION_NOTIONAL,"max_positions":3},
    "rule":"Partial fills: price % above/below entry, fractions of original qty; 5m stop and full TP checked before partial fills. No partial fill during entry candle, all legs charged costs; leftover follows frozen per-asset BE, SL, ATR TP, max hold.",
    "stop_cap":"5% of entry price, clamp",
@@ -226,7 +227,7 @@ def main():
    "selection":{},"portfolio_comparisons":{},
    "limitations":[
     "All assets and 5m execution same baseline; partial exits only independent variable.",
-    "Position notional $875 = 17.5% of initial $5000 challenge; earlier $1000 tests are superseded for agreed sizing.",
+    f"Scenario position notional ${POSITION_NOTIONAL:g} = {100*POSITION_NOTIONAL/e.INITIAL:g}% of initial $5000 challenge; earlier $1000 tests are not comparable without sizing adjustment.",
     "Train Jul-Dec 2025, validation Jan-Mar 2026, test Apr-Jun 2026. Apr-Jun had been inspected in earlier experiments, thus not a truly new untouched OOS.",
     "Underlying Python CausalDelta not fully parity-verified with user's Pine body.",
     "If both stop and partial target touch same OHLC bar, stop-first assumed; true order unobservable.",
