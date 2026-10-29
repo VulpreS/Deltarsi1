@@ -292,10 +292,16 @@ def main():
    ("turbo_5k_16p9_sp002",5000,.169,.0002),
    ("turbo_5k_16p9_sp004",5000,.169,.0004),
    ("turbo_5k_16p8_sp002",5000,.168,.0002),
+   ("turbo_5k_16p0_sp002",5000,.160,.0002),
+   ("turbo_5k_15p0_sp002",5000,.150,.0002),
+   ("turbo_5k_14p0_sp002",5000,.140,.0002),
+   ("turbo_5k_12p0_sp002",5000,.120,.0002),
+   ("turbo_5k_10p0_sp002",5000,.100,.0002),
    ("turbo_10k_16p9_sp002",10000,.169,.0002)]
  for label,initial,pct,spread in cases:
   output["experiments"][label]={}
-  for period,start,end in (("annual",START,END),("quarter_apr_jun",VALID_END,END)):
+  periods=(("annual",START,END),) if label in {"turbo_5k_16p0_sp002","turbo_5k_15p0_sp002","turbo_5k_14p0_sp002","turbo_5k_12p0_sp002","turbo_5k_10p0_sp002"} else (("annual",START,END),("quarter_apr_jun",VALID_END,END))
+  for period,start,end in periods:
    output["experiments"][label][period]={}
    for stress in (False,True):
     r,days,trades=replay(raw5,signals,params,initial,start,end,pct,spread,stress)
