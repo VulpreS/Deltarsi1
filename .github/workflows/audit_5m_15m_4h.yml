@@ -1,0 +1,22 @@
+name: Audit BTC ETH 5m 15m 4h benchmark data
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/audit_5m_15m_4h.py'
+      - '.github/workflows/audit_5m_15m_4h.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/audit_5m_15m_4h.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-data-audit
+          path: research/benchmark_data_audit.json
