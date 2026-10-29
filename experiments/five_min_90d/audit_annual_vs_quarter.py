@@ -44,7 +44,31 @@ def sim(data,signals,params,exits,start,end,notional):
  return e.simulate(data,signals,SYMS,start=start,end=end,params=params,
    exit_by_symbol=exits,step=e.M,entry_profit_policy="defer",
    cap_price_stop=True,stop_cap_mode="clamp",
-   collect_trades=True,partials=(),position_notional=notional)
+   collect_trades=True,collect_daily=True,partials=(),position_notional=notional)
+def phase_gates(daily):
+ first=[x for x in daily if x["phase"]==1]
+ rules={"goal_reached":"target_met","qualification_reached":"min_qualifying_days_met",
+       "consistency_passed":"30pct_consistency_met","positions_flat":"all_positions_closed",
+       "new_phase_pass":"phase_1_completed"}
+ out={}
+ for field,key in rules.items():
+  match=next((x for x in first if x[field]),None)
+  out[key]=match["time"] if match else None
+ # First time both goal+min days are satisfied, to discover which rule delayed passage
+ enough=[x for x in first if x["goal_reached"] and x["qualification_reached"]]
+ out["first_target_and_min_days"]=enough[0] if enough else None
+ out["first_target_and_min_days_and_flat"]=next((x for x in enough if x["positions_flat"]),None)
+ out["first_all_except_flat"]=next((x for x in enough if x["consistency_passed"]),None)
+ out["first_all_except_consistency"]=next((x for x in enough if x["positions_flat"]),None)
+ out["first_all_requirements"]=next((x for x in enough if x["positions_flat"] and x["consistency_passed"]),None)
+ # Days when profit target reached but 30pct formula would reject, after target.
+ out["goal_met_consistency_rejected_dates"]=[{
+   "date":x["time"][:10],"equity":x["equity_usd"],"best_day":x["best_day_usd"],
+   "ratio_pct":x["consistency_ratio_pct"],"flat":x["positions_flat"]
+  } for x in enough if not x["consistency_passed"]]
+ out["goal_met_positions_open_dates"]=[x["time"][:10] for x in enough
+   if x["consistency_passed"] and not x["positions_flat"]]
+ return out
 def main():
  data,signals,manifest=source_load()
  assert len(data)==8 and set(data)==set(SYMS)
@@ -70,13 +94,16 @@ def main():
    result["windows"][label]={}
    for name,(start,end) in windows.items():
     r=sim(data,signals,params,exits,start,end,notional)
+    daily=r["daily_snapshots"]
     a=by_asset(r["trade_details"])
     assert sum(v["closed"] for v in a.values())==r["trades"],(name,notional)
     assert all(v["closed"]>0 for v in a.values()),(name,notional,a)
     item={"account":phase_summary(r),"by_symbol":a,
-          "monthly_realized_ex_funding":monthly(r["trade_details"])}
+          "monthly_realized_ex_funding":monthly(r["trade_details"]),
+          "phase_gate_audit":phase_gates(daily),"daily_snapshots":daily}
     result["windows"][label][name]=item
-    print("WINDOW_AUDIT",label,name,json.dumps(item,ensure_ascii=False),flush=True)
+    slim={k:v for k,v in item.items() if k!="daily_snapshots"}
+    print("WINDOW_AUDIT",label,name,json.dumps(slim,ensure_ascii=False),flush=True)
  finally:e.FEE,e.SPREAD=old
  O.mkdir(parents=True,exist_ok=True)
  p=O/"audit.json";p.write_text(json.dumps(result,ensure_ascii=False,indent=2))
