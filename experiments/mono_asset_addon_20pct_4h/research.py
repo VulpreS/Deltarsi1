@@ -349,7 +349,7 @@ def test_synthetic():
  ev={0:dict(side=1,atr_4h=1.),4*H:dict(side=1,atr_4h=1.)}
  p=(10.,5.,None,None)
  case=dict(initial=5000.,kind="basic",api=False,fee=.00008,
-           name="unit")
+           name="unit",symbol="TESTUSDT")
  a,_=simulate(rows,ev,p,"add_original_48",case,start,end,False,True)
  b,_=simulate(rows,ev,p,"add_second_signal_48",case,start,end,False,True)
  c,_=simulate(rows,ev,p,"add_no_time_limit",case,start,end,False,True)
