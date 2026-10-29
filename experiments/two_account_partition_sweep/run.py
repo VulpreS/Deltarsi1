@@ -1,4 +1,4 @@
-"""Exhaustive 127 two-account partitions versus one competing 8-asset account."""
+"""Upscale API-constrained 127 two-account partitions versus one competing 8-asset account."""
 import sys,json,itertools
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
@@ -17,7 +17,7 @@ def main():
  params.update({"XRPUSDT":(5.,2.5,None,None),"LINKUSDT":(5.,5.,None,None)})
  common=set.intersection(*(set(raw[s]) for s in SYMS));times=sorted(common)
  if any(b-a!=engine.H for a,b in zip(times,times[1:])):raise ValueError("Timeline not contiguous")
- output={"notes":["All 127 unique two-account partitions of eight assets (A contains BTC), plus single account.","Each account has independent $5000 initial capital, 3 slots, $1000 notional per trade, stage resets, no withdrawal of challenge profits.","Single account uses $5000 initial, not $10000. Compare completion, not raw PnL.","Historical TONUSDT labeled GRAM; not a verified ticker migration.","Only baseline exit mode, closed 4h signals; model is research approximation.","Best grouping selected in sample: requires independent validation."],"results":{}}
+ output={"notes":["All 127 unique two-account partitions of eight assets (A contains BTC), plus single account.","Each account has independent $5000 initial capital, 3 slots, $1000 notional per trade, stage resets, no withdrawal of challenge profits.","Single account uses $5000 initial, not $10000. Compare completion, not raw PnL.","Historical TONUSDT labeled GRAM; not a verified ticker migration.","Upscale API 30% rule, 0.008% fee per operation and 0.015% eight-hour funding; hourly candle approximation for 60-second rule.","Best grouping selected in sample: requires independent validation."],"results":{}}
  for period,ts in (("common",times),("last_90d",times[-2160:]),("last_30d",times[-720:])):
   cache={}
   def simulate(group):
