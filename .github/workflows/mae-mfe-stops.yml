@@ -1,0 +1,23 @@
+name: MAE MFE stop and holding grid
+on:
+  push:
+    paths:
+      - 'experiments/mae_mfe_stops/**'
+      - '.github/workflows/mae-mfe-stops.yml'
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run sensitivity analysis
+        run: python -u experiments/mae_mfe_stops/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mae-mfe-stop-grid
+          path: experiments/mae_mfe_stops/results.json
