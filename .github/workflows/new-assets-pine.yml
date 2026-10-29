@@ -1,0 +1,23 @@
+name: New assets Pine 48h sweep
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/new_assets_2026/**'
+      - '.github/workflows/new-assets-pine.yml'
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download Binance futures candles and run Pine ATR grids
+        run: python -u experiments/new_assets_2026/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: new-assets-pine-results
+          path: experiments/new_assets_2026/results.json
