@@ -125,6 +125,33 @@ def run():
     summary={k:r.get(k) for k in ("phases","equity","cumulative_phase_profit_usd","breach",
       "max_dd_pct","trades","win_rate_pct","profit_factor","fees","funding","skipped")}
     print("COMPARE",mode,window,group,json.dumps(summary,ensure_ascii=False),flush=True)
+ # Prespecified sensitivity: hard <=5% price stop and 10x fee / wider spread.
+ # No OOS tuning or re-selection; selected asset parameters stay frozen.
+ output["stress"]={}
+ prev_fee,prev_spread=e.FEE,e.SPREAD
+ try:
+  for costs,fee,spread in (("documented",.00008,.0002),("high_cost",.0008,.0004)):
+   e.FEE,e.SPREAD=fee,spread
+   for capped in (False,True):
+    for tf in ("5m","15m"):
+     key=f"{tf}_{costs}_{'price_stop_cap5pct' if capped else 'uncapped'}"
+     output["stress"][key]={"fee_per_side":fee,"spread_roundtrip":spread,
+                            "cap_price_stop":capped,"groups":{}}
+     bars=raw5 if tf=="5m" else raw15
+     step=e.M if tf=="5m" else M15
+     for window in ("full90","oos30"):
+      start,end=windows[window]
+      output["stress"][key]["groups"][window]={}
+      for group in ("all_8","btc_eth"):
+       r=e.simulate(bars,signals,GROUPS[group],start=start,end=end,step=step,
+         params=selected,exit_by_symbol=exit_by_symbol,
+         entry_profit_policy="defer",cap_price_stop=capped)
+       output["stress"][key]["groups"][window][group]=r
+       result={k:r[k] for k in ("phases","cumulative_phase_profit_usd","breach",
+         "max_dd_pct","trades","win_rate_pct","profit_factor","fees","funding")}
+       print("STRESS",key,window,group,json.dumps(result,ensure_ascii=False),flush=True)
+ finally:
+  e.FEE,e.SPREAD=prev_fee,prev_spread
  p=Path("experiments/five_min_90d/followup_execution_results.json")
  p.write_text(json.dumps(output,indent=2,ensure_ascii=False))
  print("RESULT_FILE",str(p),p.stat().st_size,flush=True)
