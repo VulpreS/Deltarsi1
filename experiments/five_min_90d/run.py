@@ -27,8 +27,9 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False):
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject'):
  if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
+ if stop_cap_mode not in ('reject','clamp'):raise ValueError('stop_cap_mode')
  if step not in (M,3*M):raise ValueError('step must be 5m or 15m')
  if exit_by_symbol is None:exit_by_symbol={}
  if params is None:params=PARAMS
@@ -45,7 +46,10 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    if pending or s in pos or len(pos)>=3:skipped+=1;continue
    e=signals[s][t];side=e["side"];atr=e["atr_4h"];sl,tp,_,_=params[s];o=opens[s]
    stop=o-side*sl*atr;target=o+side*tp*atr
-   if stop<=0 or target<=0 or (cap_price_stop and abs(o-stop)/o>.05):continue
+   if stop<=0 or target<=0:continue
+   if cap_price_stop and abs(o-stop)/o>.05:
+    if stop_cap_mode=='reject':continue
+    stop=o*(1-side*.05)
    qty=1000/o;fee=1000*(FEE+SPREAD/2);cash-=fee;fees+=fee
    pos[s]=dict(side=side,qty=qty,entry=o,stop=stop,target=target,entry_t=t,phase=phase)
   if t%(8*H)==0:
@@ -84,7 +88,7 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    if phase<=2 and not pending and not pos and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and max(profitdays,default=0)<.30*(last-INITIAL):
     phases.append(dict(phase=phase,completed=iso(t+step),days=round((t+step-phase_start)/DAY,2),qualifying_days=qual,phase_equity_usd=round(last,2),phase_profit_usd=round(last-INITIAL,2)))
     pending=True
- return dict(group=group,phases=phases,cumulative_phase_profit_usd=round(sum(p['phase_profit_usd'] for p in phases)+last-INITIAL,2),phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
+ return dict(group=group,phases=phases,cumulative_phase_profit_usd=round(sum(p['phase_profit_usd'] for p in phases)+(0 if pending else last-INITIAL),2),phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
 def main():
  raw={};signals={}
  for s in SYMS:
