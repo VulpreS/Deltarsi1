@@ -1,0 +1,23 @@
+name: Isolated fixed TP full-exit five-run experiment
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/fixed_tp_grid/run.py'
+      - '.github/workflows/isolated-fixed-tp-grid.yml'
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run isolated research only
+        run: python experiments/fixed_tp_grid/run.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: isolated-fixed-tp-grid
+          path: experiments/fixed_tp_grid/results.json
