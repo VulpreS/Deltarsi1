@@ -1,0 +1,6 @@
+{
+  "source": "binance_futures_or_spot",
+  "start_ms": 1761717600000,
+  "end_ms": 1793250000000,
+  "candles": 8760
+}
