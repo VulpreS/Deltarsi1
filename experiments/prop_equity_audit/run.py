@@ -8,7 +8,7 @@ from experiments.max_strategy_grid.prop_portfolio import H,DAY,iso
 SYMS=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","BNBUSDT","ZECUSDT")
 INITIAL=5000.;FEE=.0008;HALF_SPREAD=.0001
 def replay(raw,sig,params,times,share):
- cash=INITIAL;pos={};day=None;daybase=None;minimum=(float("inf"),None);worstday=(float("inf"),None);closesttotal=(float("inf"),None)
+ cash=INITIAL;pos={};day=None;daybase=None;minimum=(float("inf"),None);worstday=(-float("inf"),None,None);closesttotal=(float("inf"),None)
  daily=[];breaches=[];events=[];maxpositions=0
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+HALF_SPREAD) for s,z in pos.items())
@@ -29,8 +29,7 @@ def replay(raw,sig,params,times,share):
   worst=equity(adverse)
   if worst<minimum[0]:minimum=(worst,t)
   daily_loss=(daybase-worst)/daybase*100
-  if daily_loss>worstday[0] if False else False:pass
-  if worstday[1] is None or daily_loss>worstday[0]:worstday=(daily_loss,t)
+  if worstday[1] is None or daily_loss>worstday[0]:worstday=(daily_loss,t,daybase-worst)
   total_margin=worst-INITIAL*.94
   if total_margin<closesttotal[0]:closesttotal=(total_margin,t)
   if worst<=daybase*.97 or worst<=INITIAL*.94:
@@ -52,7 +51,7 @@ def replay(raw,sig,params,times,share):
      new=z["best"]-side*z["distance"]*z["atr"]
      z["stop"]=max(stop,new) if side==1 else min(stop,new)
   if (t+H)%DAY==0:daily.append(dict(date=iso(t),start_equity=round(daybase,2),end_equity=round(equity(closes),2)))
- return dict(min_equity=round(minimum[0],2),min_equity_at=iso(minimum[1]),max_daily_drawdown_pct=round(worstday[0],3),max_daily_drawdown_at=iso(worstday[1]),max_daily_drawdown_usd=round(worstday[0]*INITIAL/100,2),closest_total_6pct_margin_usd=round(closesttotal[0],2),closest_total_at=iso(closesttotal[1]),hours_breaching_3_6=len(breaches),first_breaches=breaches[:8],max_positions=maxpositions,final_equity=round(equity({s:raw[s][times[-1]][4] for s in raw}),2))
+ return dict(min_equity=round(minimum[0],2),min_equity_at=iso(minimum[1]),max_daily_drawdown_pct=round(worstday[0],3),max_daily_drawdown_at=iso(worstday[1]),max_daily_drawdown_usd=round(worstday[2],2),closest_total_6pct_margin_usd=round(closesttotal[0],2),closest_total_at=iso(closesttotal[1]),hours_breaching_3_6=len(breaches),first_breaches=breaches[:8],max_positions=maxpositions,final_equity=round(equity({s:raw[s][times[-1]][4] for s in raw}),2))
 def main():
  baseline=json.loads(Path("experiments/max_strategy_grid/pine_baseline_2026-10-29.json").read_text())["parameters"]
  raw={};sig={}
