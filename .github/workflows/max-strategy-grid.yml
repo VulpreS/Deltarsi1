@@ -1,4 +1,4 @@
-name: Maximum strategy grid Pine Codex
+name: Pine individual hold sweep
 on:
   workflow_dispatch:
   push:
@@ -14,12 +14,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Pine-only time exit sensitivity and prop risk replay
-        run: python -u experiments/max_strategy_grid/prop_portfolio.py
+      - name: Individual holding periods 4 to 96 hours and portfolio OOS
+        run: python -u experiments/max_strategy_grid/individual_holds.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: full-strategy-grid
           path: |
             experiments/max_strategy_grid/results.json
-            experiments/max_strategy_grid/prop_portfolio.json
+            experiments/max_strategy_grid/individual_holds.json
