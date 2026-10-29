@@ -30,7 +30,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
   if pending and not positions:
    phase+=1;phase_start=t;qual=0;pending=False
    if reset:
-    cash=INITIAL;peak=INITIAL;daybase=INITIAL
+    cash=INITIAL;peak=INITIAL;daybase=INITIAL;maxdd=0.;maxdayloss=0.;closed=[];waiting.clear()
   exited=set()
   if mode!='baseline':
    for s in list(positions):
@@ -120,14 +120,14 @@ def main():
  params.update({"XRPUSDT":(5.,2.5,None,None),"LINKUSDT":(5.,5.,None,None)})
  common=set.intersection(*(set(raw[s]) for s in OLD+NEW));ts=sorted(common)
  if len(ts)<720 or any(b-a!=H for a,b in zip(ts,ts[1:])):raise ValueError("Common timeline gap")
- out=dict(groups=GROUPS,alias={"TONUSDT":"GRAM display name; TONUSDT historical candles"},notes=["Each account has independent $5000 equity, max 3 x $1000 positions; combined starting capital $10000.","Opposite signal uses original closed-4h pine_events, exit at next hourly open.","Confirmation compares Delta magnitude at next completed 4h candle and exits at its next open if same sign and not stronger.","Stop/take and 48h exit retain priority within previous hours; account simulations use same calendar dates.","No out-of-sample validation of all parameters, approximate prop constraints."],results={})
+ out=dict(groups=GROUPS,alias={"TONUSDT":"GRAM display name; TONUSDT historical candles"},notes=["Each account has independent $5000 equity, max 3 x $1000 positions; combined starting capital $10000. Resets at each stage transition. Current-phase equity is not cumulative earned profit.","Opposite signal uses original closed-4h pine_events, exit at next hourly open.","Confirmation compares Delta magnitude at next completed 4h candle and exits at its next open if same sign and not stronger.","Stop/take and 48h exit retain priority within previous hours; account simulations use same calendar dates.","No out-of-sample validation of all parameters, approximate prop constraints."],results={})
  for period,times in (("common",ts),("last_90d",ts[-2160:]),("last_30d",ts[-720:])):
   for mode in ("baseline","immediate","confirm"):
    accounts={}
    for label,group in GROUPS.items():
-    a=run({s:raw[s] for s in group},{s:sig[s] for s in group},{s:params[s] for s in group},times,mode=mode,deltas=delta)
+    a=run({s:raw[s] for s in group},{s:sig[s] for s in group},{s:params[s] for s in group},times,reset=True,mode=mode,deltas=delta)
     accounts[label]=a
-   combined=dict(starting_capital=10000,ending_equity=round(sum(a["equity"] for a in accounts.values()),2),combined_pnl=round(sum(a["equity"]-5000 for a in accounts.values()),2),combined_return_pct=round(sum(a["equity"]-5000 for a in accounts.values())/100,3),trades=sum(a["trades"] for a in accounts.values()),skipped=sum(a["skipped"] for a in accounts.values()),opposite_exits=sum(a["opposite_exits"] for a in accounts.values()),confirm_exits=sum(a["confirm_exits"] for a in accounts.values()),breaches={k:v["breach"] for k,v in accounts.items()},phase_dates={k:v["phases"] for k,v in accounts.items()})
+   combined=dict(starting_capital=10000,ending_equity=round(sum(a["equity"] for a in accounts.values()),2),current_phase_pnl=round(sum(a["equity"]-5000 for a in accounts.values()),2),current_phase_return_pct=round(sum(a["equity"]-5000 for a in accounts.values())/100,3),trades=sum(a["trades"] for a in accounts.values()),skipped=sum(a["skipped"] for a in accounts.values()),opposite_exits=sum(a["opposite_exits"] for a in accounts.values()),confirm_exits=sum(a["confirm_exits"] for a in accounts.values()),breaches={k:v["breach"] for k,v in accounts.items()},phase_dates={k:v["phases"] for k,v in accounts.items()})
    out["results"][period+"_"+mode]=dict(accounts=accounts,combined=combined)
    print("TWO_ACCOUNTS",period,mode,json.dumps(combined),flush=True)
  p=Path("experiments/two_accounts_opposite_exit/results.json");p.parent.mkdir(parents=True,exist_ok=True)
