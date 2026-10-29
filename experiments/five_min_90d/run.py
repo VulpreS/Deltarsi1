@@ -1,0 +1,93 @@
+"""90-day 5-minute execution experiment, 4h closed-candle signals, 8 symbols."""
+import sys,io,csv,zipfile,urllib.request,datetime as dt,json,math
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
+from completed_candles import aggregate_completed
+from experiments.pine_vs_codex.run import pine_events
+from experiments.two_accounts_opposite_exit.run import OLD,NEW
+from experiments.max_strategy_grid.prop_portfolio import iso
+SYMS=OLD+NEW;M=300000;H=3600000;DAY=24*H;INITIAL=5000.;FEE=.00008;SPREAD=.0002;FUNDING=.00015
+END=int(dt.datetime(2026,7,1,tzinfo=dt.timezone.utc).timestamp()*1000)
+START=END-90*DAY;WARMUP=START-60*DAY
+PARAMS=json.loads(Path("experiments/max_strategy_grid/pine_baseline_2026-10-29.json").read_text())["parameters"]
+PARAMS.update({"XRPUSDT":[5.,2.5,None,None],"LINKUSDT":[5.,5.,None,None]})
+def download(s):
+ out=[]
+ for y,m in [(2026,2),(2026,3),(2026,4),(2026,5),(2026,6)]:
+  url=f"https://data.binance.vision/data/futures/um/monthly/klines/{s}/5m/{s}-5m-{y}-{m:02d}.zip"
+  with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=120) as f:payload=f.read()
+  with zipfile.ZipFile(io.BytesIO(payload)) as z:
+   with z.open(z.namelist()[0]) as f:
+    for line in io.TextIOWrapper(f,encoding="utf-8"):
+     b=line.strip().split(",")
+     try:t=int(b[0])
+     except (ValueError,IndexError):continue
+     if WARMUP<=t<END:out.append((t,*map(float,b[1:5])))
+  print("ARCHIVE",s,y,m,len(out),flush=True)
+ out.sort()
+ if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
+ return out
+def simulate(raw,signals,group):
+ cash=INITIAL;pos={};phase=1;phase_start=START;phases=[];daybase=INITIAL;day=None;qual=0;profitdays=[];peak=INITIAL;breach=None;trades=[];fees=0.;funding=0.;skipped=0;maxdd=0.;pending=False
+ def equity(prices):
+  return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+SPREAD/2) for s,z in pos.items())
+ for t in range(START,END,M):
+  bars={s:raw[s][t] for s in group};opens={s:b[1] for s,b in bars.items()};closes={s:b[4] for s,b in bars.items()}
+  if pending and not pos:
+   phase+=1;phase_start=t;cash=INITIAL;peak=INITIAL;qual=0;profitdays=[];pending=False;daybase=INITIAL
+  if day!=t//DAY:day=t//DAY;daybase=equity(opens)
+  for s in sorted(group):
+   if t not in signals[s]:continue
+   if pending or s in pos or len(pos)>=3:skipped+=1;continue
+   e=signals[s][t];side=e["side"];atr=e["atr_4h"];sl,tp,_,_=PARAMS[s];o=opens[s]
+   stop=o-side*sl*atr;target=o+side*tp*atr
+   if stop<=0 or target<=0:continue
+   qty=1000/o;fee=1000*(FEE+SPREAD/2);cash-=fee;fees+=fee
+   pos[s]=dict(side=side,qty=qty,entry=o,stop=stop,target=target,entry_t=t,phase=phase)
+  if t%(8*H)==0:
+   for s,z in pos.items():
+    charge=z["qty"]*opens[s]*FUNDING;cash-=charge;funding+=charge
+  # Conservative worst mark before any intrabar stop; all assets' adverse extremes simultaneous.
+  adverse={s:(min(b[1],b[3]) if s in pos and pos[s]["side"]==1 else max(b[1],b[2]) if s in pos else b[4]) for s,b in bars.items()}
+  worst=equity(adverse);maxdd=max(maxdd,(peak-worst)/max(peak,1)*100)
+  if worst<=daybase*.95 or worst<=INITIAL*.90:
+   breach=dict(time=iso(t),kind="daily" if worst<=daybase*.95 else "total",equity=round(worst,2));break
+  for s in list(pos):
+   z=pos[s];o,h,l,c=bars[s][1:];side=z["side"];stop=z["stop"];target=z["target"]
+   if side*(o-stop)<=0:price=o;reason="stop_gap"
+   elif side*(o-target)>=0:price=o;reason="take_gap"
+   elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
+   elif (h>=target if side==1 else l<=target):price=target;reason="take"
+   elif t-z["entry_t"]>=48*H-M:price=c;reason="time"
+   else:continue
+   gross=side*z["qty"]*(price-z["entry"])
+   if t==z["entry_t"] and gross>0:gross=0.;reason="60sec_conservative"
+   fee=z["qty"]*price*(FEE+SPREAD/2);cash+=gross-fee;fees+=fee
+   trades.append(dict(symbol=s,phase=phase,pnl=round(gross-fee-1000*(FEE+SPREAD/2),5),reason=reason,entry=iso(z["entry_t"]),exit=iso(t+M)))
+   del pos[s]
+  last=equity(closes);peak=max(peak,last)
+  if last<=daybase*.95 or last<=INITIAL*.90:
+   breach=dict(time=iso(t+M),kind="daily" if last<=daybase*.95 else "total",equity=round(last,2));break
+  if (t+M)%DAY==0:
+   pnl=last-daybase
+   if pnl>0:profitdays.append(pnl)
+   if phase<=2 and pnl>=INITIAL*.005:qual+=1
+   if phase<=2 and not pending and not pos and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and max(profitdays,default=0)<.30*(last-INITIAL):
+    phases.append(dict(phase=phase,completed=iso(t+M),days=round((t+M-phase_start)/DAY,2),qualifying_days=qual))
+    pending=True
+ return dict(group=group,phases=phases,phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),funded_trades=sum(x["phase"]==3 for x in trades))
+def main():
+ raw={};signals={}
+ for s in SYMS:
+  rows=download(s);raw[s]={r[0]:r for r in rows}
+  hourly=aggregate_completed(rows,12,asof_ms=END)
+  signals[s]=pine_events(hourly)
+  print("DATA",s,len(rows),"4h_signals",sum(START<=t<END for t in signals[s]),flush=True)
+ common=set.intersection(*(set(v) for v in raw.values()))
+ if START not in common or END-M not in common or len([t for t in common if START<=t<END])!=90*288:raise ValueError("5m coverage gap")
+ groups={"one_account_all":SYMS,"account_A":("BTCUSDT","ETHUSDT","TONUSDT","ZECUSDT","XRPUSDT"),"account_B":("ICPUSDT","BNBUSDT","LINKUSDT")}
+ result={k:simulate(raw,signals,g) for k,g in groups.items()}
+ result["notes"]=["5m OHLC execution, closed 4h signals, 90 days 2026-04-02 to 2026-06-30.","Historical Pine proxy RSI12 SMA21 EMA7, NOT user final RSI27 EMA7.","60-second rule conservatively rejects same-5m-candle positive exit; 5m OHLC cannot resolve exact seconds.","5m adverse extremes across assets simultaneous; conservative risk check.","Upscale 30% consistency, 5% daily, 10% total, funding every 8h, phase resets.","Fixed 0.02% roundtrip spread; no slippage or actual bid/ask. Not exchange-exact.","No look-ahead: signals on completed 4h candles, 5m execution."] 
+ print("RESULT_5M",json.dumps(result,ensure_ascii=False),flush=True)
+ Path("experiments/five_min_90d/results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False))
+if __name__=="__main__":main()
