@@ -4,8 +4,9 @@ Selected per-asset SL/TP/BE/hold frozen from previous 60-day TRAIN. Last 30d
 is OOS and never used to reselect. 15m OHLC is aggregated from the exact same
 5m Binance UM source, not from a second venue. All fills are approximations.
 """
-import json
+import json,sys
 from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 from collections import defaultdict
 from experiments.five_min_90d import run as e
 from experiments.pine_vs_codex.run import pine_events
