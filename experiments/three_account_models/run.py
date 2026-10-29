@@ -87,9 +87,10 @@ def main():
      windows=[]
      for i in range(0,len(days)-13,14):
       d=days[i:i+14];qualified=sum(x["end_equity"]>=x["start_equity"]*1.005 for x in d)
+      qualified_closed=sum(x["closed_profit"]>=x["start_equity"]*.005 for x in d)
       gain=d[-1]["end_equity"]-d[0]["start_equity"]
       closed=sum(x["closed_profit"] for x in d)
-      windows.append(dict(start=d[0]["date"][:10],end=d[-1]["date"][:10],qualifying_days=qualified,eligible=qualified>=5,net_equity_gain=round(gain,2),closed_pnl=round(closed,2),potential_payout=round(max(0,closed),2) if qualified>=5 else 0))
+      windows.append(dict(start=d[0]["date"][:10],end=d[-1]["date"][:10],qualifying_days=qualified,qualifying_closed_days=qualified_closed,eligible=qualified>=5,eligible_closed=qualified_closed>=5,net_equity_gain=round(gain,2),closed_pnl=round(closed,2),potential_payout=round(max(0,closed),2) if qualified>=5 else 0))
      eligible=[w for w in windows if w["eligible"]]
      out.setdefault("payout_windows",{})[f"{group}_{share*100:g}pct"]=dict(windows=windows,total_windows=len(windows),eligible_windows=len(eligible),eligible_positive_windows=sum(w["potential_payout"]>0 for w in eligible),total_potential_payout=round(sum(w["potential_payout"] for w in windows),2),mean_payout_all_windows=round(sum(w["potential_payout"] for w in windows)/len(windows),2) if windows else None,mean_payout_eligible_windows=round(sum(w["potential_payout"] for w in eligible)/len(eligible),2) if eligible else None)
      print("PAYOUT_TEST",group,share,json.dumps({k:v for k,v in out["payout_windows"][f"{group}_{share*100:g}pct"].items() if k!="windows"}),flush=True)
