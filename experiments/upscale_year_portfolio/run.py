@@ -26,7 +26,7 @@ MODES={
  "fixed_sl2_atr_tp_be1":{s:(("fixed",2.),("atr",3.),True) for s in SYMS}
 }
 def iso(t):return dt.datetime.fromtimestamp(t/1000,dt.timezone.utc).isoformat()
-def simulate(data,signals,times,mode):
+def simulate(data,signals,times,mode,reset_phases=True):
  cash=INITIAL;pos={};day=None;daybase=INITIAL;peak=INITIAL;maxdd=0.;worstday=0.
  closed=[];daily=[];breach=None;qual_days=0;phase=1;phase_start=times[0];phases=[];maxopen=0
  skipped=0;consecutive=0;maxconsecutive=0;last=INITIAL;funding=0.
@@ -96,7 +96,9 @@ def simulate(data,signals,times,mode):
     if phase==1:
      # Separate virtual challenge phase with fresh $5k; flat only, defer reset if position open.
      if not pos:
-      phase=2;phase_start=t+H;cash=INITIAL;peak=INITIAL;qual_days=0;day=None
+      phase=2;phase_start=t+H;qual_days=0
+      if reset_phases:
+       cash=INITIAL;peak=INITIAL;day=None
     else:phase=3
  # Report both challenge status and continuous cash PnL; phase resets make PnL non-annualized.
  if not breach:
@@ -137,7 +139,9 @@ def main():
    "Annual continuous return cannot be inferred from phase-reset equity; closed PnL across phases is provided.",
    "No live/demo orders."],scenarios={})
  for name,mode in MODES.items():
-  result=simulate(raw,sig,times,mode)
+  result=simulate(raw,sig,times,mode,reset_phases=True)
+  continuous=simulate(raw,sig,times,mode,reset_phases=False)
+  result["continuous_annual"]=dict(end_equity_usd=continuous["balance_or_equity_usd"],return_pct=continuous["return_since_last_phase_reset_pct"],breach=continuous["breach"],closed_trades=continuous["closed_trades"],max_intrahour_dd_pct=continuous["max_intrahour_dd_pct"])
   out["scenarios"][name]=result
   print(name,json.dumps({k:v for k,v in result.items() if k not in ("trades","daily")}),flush=True)
  p=Path("experiments/upscale_year_portfolio/results.json");p.parent.mkdir(parents=True,exist_ok=True)
