@@ -58,6 +58,21 @@ def main():
             ("full_year_continuous",START,END,False),
             ("apr_jun_new_account",VALID_END,END,True)):
             value=simulate(hourly,signal,params,SYMS,start,end,reset)
+            if name=="apr_jun_new_account":
+                diagnostic=base.prop.run(
+                    {asset:hourly[asset] for asset in SYMS},
+                    {asset:signal[asset] for asset in SYMS},
+                    params,list(range(start,end,H)),reset=reset,max_hours=48,
+                    include_daily=True)
+                assert all(diagnostic[k]==v for k,v in value.items() if k!="daily_trace")
+                value["daily_trace"]=diagnostic["daily_trace"]
+                key_day="2026-04-23T00:00:00+00:00"
+                entry=next((d for d in diagnostic["daily_trace"] if d["time"]==key_day),None)
+                if entry is None:raise AssertionError("Missing April 23 daily snapshot")
+                print("PHASE_THRESHOLD_APR23",label,json.dumps({
+                    "equity":entry["equity"],"day_pnl":entry["day_pnl"],
+                    "phase":entry["phase"],"above_target_5250":entry["equity"]>=5250
+                }),flush=True)
             assert value["max_concurrent"]<=3
             assert sum(z["trades"] for z in value["by_symbol"].values())==value["trades"]
             assert set(value["by_symbol"])==set(SYMS)
