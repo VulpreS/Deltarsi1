@@ -74,7 +74,6 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    elif side*(o-target)>=0 and (t>z['entry_t'] or entry_profit_policy=='zero'):price=o;reason="take_gap"
    elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
    elif (h>=target if side==1 else l<=target) and (t>z['entry_t'] or entry_profit_policy=='zero'):price=target;reason="take"
-   elif t-z["entry_t"]>=exit_by_symbol.get(s,{}).get('hold',max_hold)*H-step:price=c;reason="time"
    else:
     # Confirm partial price targets using only the current 5m candle. Never fill a
     # positive partial in the entry bar (unknown 60-second hold compliance).
@@ -95,14 +94,17 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
       z['partial_qty_closed']+=q
       z['partial_done']+=1
       if collect_trades:z['partial_events'].append(dict(time=iso(t+step),level=level,threshold=threshold,fraction=fraction,realized=round(realized-exit_cost,5)))
-    be=exit_by_symbol.get(s,{}).get('be',be_trigger)
-    if be is not None and t>z["entry_t"]:
-     if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be*z["entry"]:
-      lock=exit_by_symbol.get(s,{}).get('lock_pct',be_stop_lock_pct)
-      new_stop=max(stop,z['entry']*(1+lock)) if side==1 else min(stop,z['entry']*(1-lock))
-      if new_stop!=z['stop']:z['stop_updates']+=1
-      z['stop']=new_stop
-    continue
+    if t-z["entry_t"]>=exit_by_symbol.get(s,{}).get('hold',max_hold)*H-step:
+     price=c;reason="time"
+    else:
+     be=exit_by_symbol.get(s,{}).get('be',be_trigger)
+     if be is not None and t>z["entry_t"]:
+      if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be*z["entry"]:
+       lock=exit_by_symbol.get(s,{}).get('lock_pct',be_stop_lock_pct)
+       new_stop=max(stop,z['entry']*(1+lock)) if side==1 else min(stop,z['entry']*(1-lock))
+       if new_stop!=z['stop']:z['stop_updates']+=1
+       z['stop']=new_stop
+     continue
    gross=side*z["qty"]*(price-z["entry"])
    if entry_profit_policy=='zero' and t==z["entry_t"] and gross>0:gross=0.;reason="60sec_legacy_zero"
    fee=z["qty"]*price*(FEE+SPREAD/2);cash+=gross-fee;fees+=fee
