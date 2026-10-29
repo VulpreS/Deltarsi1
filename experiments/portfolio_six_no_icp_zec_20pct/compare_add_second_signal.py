@@ -56,9 +56,10 @@ OUT=Path("experiments/portfolio_six_no_icp_zec_20pct")
 def iso(x):return dt.datetime.fromtimestamp(x/1000,dt.timezone.utc).isoformat()
 def nice(v):return round(float(v),4)
 
-def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=False):
+def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=False,payouts_enabled=False):
  assert mode in MODES
  assert account["kind"] in ("basic","turbo")
+ assert not payouts_enabled or account["kind"]=="turbo"
  initial=account["initial"];fee=account["fee"];api=account["api"]
  cash=initial;positions={};peak=initial
  max_dd=0.;max_cash_gain=0.;worst_day_loss=0.
@@ -78,6 +79,9 @@ def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=Fa
  first_payout_candidate=None;last_t=start;last_close={s:raw[s][start][1] for s in assets}
  fund_since=None
  daily_fee=0.;day_checks=0
+ payout_start=start;payout_baseline=initial;payout_log=[]
+ trader_wallet=0.;first_payout_eligible=None
+ best_consistency_at_payout_window=None
  assert (end-start)%M==0
  def slots():return sum(p["legs"] for p in positions.values())
  def eq(prices):
@@ -309,6 +313,43 @@ def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=Fa
      qualified_days=profitable_days if phase<3 else funded_days,
      stage_target_pct=(5 if phase==1 else 8 if phase==2 else 0),
      turbo_floor=nice(peak*.94) if account["kind"]=="turbo" else None))
+  # Turbo only: user's earliest available fortnightly withdrawal.
+  # Requires >=14 days since account/start of last successful cycle,
+  # >=5 qualifying 0.5%-of-initial USD-equity UTC days, best positive
+  # day <30% of this cycle's realized profit; flat portfolio only.
+  # Instant simulated settlement, not verified real venue availability.
+  if account["kind"]=="turbo":
+   now=t+M
+   gross_profit=cash-payout_baseline
+   available_cash=max(0.,cash-initial)
+   best=max(positive_daily,default=0.)
+   ratio=(best/gross_profit if gross_profit>0 else None)
+   if (now-payout_start>=14*DAY and funded_days>=5
+       and not positions and gross_profit>0 and available_cash>=1):
+    if best_consistency_at_payout_window is None or ratio<best_consistency_at_payout_window:
+     best_consistency_at_payout_window=ratio
+    if ratio<.30:
+     if first_payout_eligible is None:
+      first_payout_eligible=dict(at=iso(now),gross_cash_available=nice(available_cash),
+         consistency_pct=nice(100*ratio),qualified_days=funded_days)
+     if payouts_enabled:
+      gross=min(available_cash,.5*initial)
+      before_peak=peak
+      before_equity=eq(closes)
+      cash-=gross
+      to_wallet=.80*gross
+      trader_wallet+=to_wallet
+      peak=eq(closes)
+      assert abs(peak-cash)<1e-7
+      payout_log.append(dict(at=iso(now),gross_requested=nice(gross),
+        net_to_wallet=nice(to_wallet),best_day_ratio_pct=nice(100*ratio),
+        qualifying_days=funded_days,old_peak=nice(before_peak),
+        equity_before=nice(before_equity),equity_after=nice(peak),
+        fresh_floor_94pct=nice(peak*.94)))
+      payout_start=now;payout_baseline=cash
+      funded_days=0;positive_daily=[];daybase=eq(closes)
+      print("SIX_ASSET_TURBO_FORTNIGHT_PAYOUT",mode,iso(start),
+       json.dumps(payout_log[-1],ensure_ascii=False),flush=True)
   max_cash_gain=max(max_cash_gain,cash-initial)
  # Attempt a flat portfolio phase transfer at period end if already qualified.
  if breach is None and account["kind"]=="basic" and not positions:
@@ -366,7 +407,14 @@ def sim(raw,signals,params,assets,account,start,end,mode,stress=False,details=Fa
    max_single_closed_hold_hours=nice(max((r["holding_hours"] for r in ledger),default=0)),
    max_realized_profit_unreset_phase_usd=nice(max_cash_gain),
    total_funded_qualified_days=funded_days,
-   no_payouts=True)
+   no_payouts=not payouts_enabled,
+   payout_policy="first permitted >=14d >=5 gain days <30pct ratio, flat-only" if payouts_enabled else "no real payouts; eligibility monitor",
+   payout_count=len(payout_log),payouts=payout_log,
+   first_cashout_eligible_if_requested=first_payout_eligible,
+   wallet_received_usd=nice(trader_wallet),
+   turbo_purchase_price_usd=229 if account["kind"]=="turbo" else None,
+   net_wallet_after_turbo_purchase_usd=nice(trader_wallet-229) if account["kind"]=="turbo" else None,
+   minimum_30pct_ratio_in_cashout_window_pct=nice(100*best_consistency_at_payout_window) if best_consistency_at_payout_window is not None else None)
  if details:return summary,dict(trades=ledger,adds=adds,daily=daily)
  return summary,None
 
@@ -449,7 +497,8 @@ def main():
      ton_trailing_updated_only_at_closed_1h=True,
      fees_basic_one_way_pct=.008,fees_turbo_one_way_pct=.06,
      funding_per8h_pct=.015,spread_proxy_roundtrip_pct=.02,
-     no_turbo_withdrawals=True),
+     no_turbo_withdrawals_in_core=True,
+     optional_turbo_earliest_fortnight_payout_replay=True),
    caveats=[
      "Same testable historical signal pine_events (SMA21 RSI12 EMA7), NOT exact user's RSI27 real Pine. No visual wick/wave/divergence.",
      "Second signal means first new confirmed closed-4h SAME SIDE indicator event during open position; no additions on opposite events.",
@@ -459,7 +508,10 @@ def main():
      "Basic noAPI 5k modeled for trade-comparison although not an API-enabled new Basic purchase; API Basic10k modeled separately.",
      "Basic target phase transfer only when FLAT and required realized gains and UTC days met, at earliest next 5-minute check, never force closing open positions to promote. Real Upscale may differ.",
      "Two profit-day targets and 30pct on Basic API phases; 60-sec profitable exit after API increase conservatively assumed only if SAME 5m bar, cannot know exact seconds.",
-     "Turbo no challenge; 6pct peak EQUITY including floating results; no daily limit. 30pct payout rule only, no payouts executed.",
+     "Turbo no challenge; 6pct peak EQUITY including floating results; no daily limit. 30pct payout rule only.",
+     "The optional Turbo payout modes request gross realized profit only at first flat five-minute event after 14d, 5 0.5pct UTC profit days and strict <30pct best-day ratio. Actual authorization/settlement can differ.",
+     "After each successful simulated payout, the 6pct HWM base resets to post-payout equity and the 14d/5day/30pct cycle restarts. The nominal $1000 per leg is still tied to original account balance.",
+     "Payout modeling treats all realized profit above initial capital as free/withdrawable when flat. No real venue data, taxes, networks, KYC, or transfer delays.",
      "Risk 5m close may miss intrabar breach; stop-bounded high-before-low path is conservative and may falsely assume synchronous coin extrema.",
      "Funding 0.015pct per 8h charged at bar start against CURRENT quote nominal of already-open positions; costs proxy, not exact Upscale.",
      "No 100-second early close order for 48h, close by 5m bar end exactly at 48h instead.",
@@ -480,6 +532,13 @@ def main():
      summary,detail=sim(data,signals,params,ASSETS,cfg,start,end,mode,stress,True)
      output["scenarios"][key]=dict(summary=summary,details=detail)
      print("SIX_ASSET_PORTFOLIO_RESULT",key,json.dumps(summary,ensure_ascii=False),flush=True)
+     if ac_name=="Turbo_5000":
+      cashkey="/".join((period,ac_name,mode,"fortnightly_payouts",
+        "stress_stopbounded" if stress else "observed_5m_close"))
+      cr,cd=sim(data,signals,params,ASSETS,cfg,start,end,mode,stress,True,
+        payouts_enabled=True)
+      output["scenarios"][cashkey]=dict(summary=cr,details=cd)
+      print("SIX_ASSET_PORTFOLIO_RESULT",cashkey,json.dumps(cr,ensure_ascii=False),flush=True)
  OUT.mkdir(parents=True,exist_ok=True)
  p=OUT/"results.json"
  p.write_text(json.dumps(output,ensure_ascii=False,indent=2,allow_nan=False),encoding="utf-8")
