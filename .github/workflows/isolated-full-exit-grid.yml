@@ -1,0 +1,23 @@
+name: Isolated full TP SL BE factorial grid
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/full_exit_grid/run.py'
+      - '.github/workflows/isolated-full-exit-grid.yml'
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run full research grid
+        run: python experiments/full_exit_grid/run.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: isolated-full-exit-grid-results
+          path: experiments/full_exit_grid/results.json
