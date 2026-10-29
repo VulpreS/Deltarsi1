@@ -1,0 +1,25 @@
+name: Exact Pine Delta vs Codex all cached assets
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'experiments/pine_vs_codex/run.py'
+      - '.github/workflows/pine-vs-codex.yml'
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compare two signal algorithms on identical candles and exits
+        run: python experiments/pine_vs_codex/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exact-pine-versus-codex-results
+          path: experiments/pine_vs_codex/results.json
