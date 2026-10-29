@@ -1,0 +1,22 @@
+name: Two accounts and opposite exit variants
+on:
+  push:
+    paths:
+      - 'experiments/two_accounts_opposite_exit/**'
+      - '.github/workflows/two-accounts-opposite-exit.yml'
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/two_accounts_opposite_exit/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: two-accounts-opposite-exit-results
+          path: experiments/two_accounts_opposite_exit/results.json
