@@ -26,7 +26,7 @@ def main():
     cache[key]=engine.run({s:raw[s] for s in key},{s:sig[s] for s in key},{s:params[s] for s in key},ts,reset=True)
    return cache[key]
   single=simulate(SYMS);records=[]
-  for mask in range(1,128):
+  for mask in range(128):
    a=tuple(SYMS[i] for i in range(8) if i==0 or mask & (1<<(i-1)))
    if len(a)==8:continue
    b=tuple(s for s in SYMS if s not in a)
