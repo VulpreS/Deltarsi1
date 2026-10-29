@@ -1,0 +1,22 @@
+name: Five minute stop take optimization
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/optimize.py'
+      - '.github/workflows/five-min-optimize.yml'
+  workflow_dispatch:
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/five_min_90d/optimize.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: five-min-optimized-results
+          path: experiments/five_min_90d/optimized_results.json
