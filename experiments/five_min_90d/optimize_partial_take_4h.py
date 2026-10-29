@@ -164,7 +164,7 @@ def tiny_unit_tests():
  # No 4h signal warmup needed, entry is explicit.
  t=0;m=e.M
  rows={0:(0,100,100,100,100),m:(m,100,102,100,101),
-       2*m:(2*m,101,102,99,100),3*m:(3*m,100,100,100,100)}
+       2*m:(2*m,101,102,94,100),3*m:(3*m,100,100,100,100)}
  data={"BTCUSDT":rows};signals={"BTCUSDT":{0:{"side":1,"atr_4h":4.}}}
  kwargs=dict(params={"BTCUSDT":(5.,5.,None,None)},start=0,end=4*m,
   cap_price_stop=True,stop_cap_mode="clamp",collect_trades=True)
@@ -180,7 +180,7 @@ def tiny_unit_tests():
   assert tr["remaining_qty_pct"]>64.99,tr
   assert b["net_pnl"]>a["net_pnl"],(a["net_pnl"],b["net_pnl"])
   # No positive exit allowed on entry 5m candle.
-  cdata={"BTCUSDT":{0:(0,100.,102.,100.,101.),m:(m,101,101,100,100)}}
+  cdata={"BTCUSDT":{0:(0,100.,102.,100.,101.),m:(m,101,101,94,100)}}
   c=e.simulate(cdata,signals,("BTCUSDT",),partials=((.005,.15),),**{
    **kwargs,"end":2*m})
   assert c["trade_details"][0]["partial_events"]==[],c
