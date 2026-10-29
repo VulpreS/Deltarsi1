@@ -13,6 +13,7 @@ from experiments.five_min_90d.optimize_partial_take_4h import (
     source_load,START,VALID_END,END,COST_PER_SIDE,SPREAD_ROUNDTRIP)
 from experiments.five_min_90d.compare_three_timeframes import SELECTED,ohlc_from_5m
 from research_multiasset import atr
+from experiments.pine_vs_codex.run import pine_events
 FOUR=4*e.H
 SYMS=tuple(e.SYMS)
 OUT=Path("experiments/five_min_90d/sl_tp_per_asset_audit")
@@ -90,11 +91,15 @@ def main():
     comparisons.append({"entry_ms":entry,
       "lagged_atr":oldatr,"closed_signal_atr":newatr,
       "pct_difference":100*(newatr/oldatr-1)})
+  hourly=ohlc_from_5m(rows,e.H)
+  exact_correct=pine_events(hourly,atr_basis="signal_close")
+  assert corrected[sym]==exact_correct, f"Explicit closed-signal ATR does not match manual correction for {sym}"
   audit["atr_entry_comparison"][sym]={
    "signal_count_year":len(comparisons),
    "avg_abs_atr_change_pct":rounded(statistics.mean(abs(x["pct_difference"]) for x in comparisons)) if comparisons else None,
    "max_abs_atr_change_pct":rounded(max(abs(x["pct_difference"]) for x in comparisons)) if comparisons else None,
    "sample":comparisons[:3]}
+  print("EXPLICIT_SIGNAL_CLOSED_ATR_API_VALIDATED",sym,len(exact_correct),flush=True)
   print("ATR_SOURCE_VERIFIED",sym,json.dumps(audit["atr_entry_comparison"][sym]),flush=True)
  prev=(e.FEE,e.SPREAD);e.FEE=COST_PER_SIDE;e.SPREAD=SPREAD_ROUNDTRIP
  try:
