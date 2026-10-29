@@ -35,7 +35,7 @@ def delta(closes):
         signal=rsi if signal is None else (2/8)*rsi+(6/8)*signal
         result[i]=rsi-signal
     return result
-def test(rows,tf,fee=.0008,spread=.0004,allocation=.3,sl=.015,tp=.03):
+def test(rows,tf,start_ts,fee=.0008,spread=.0004,allocation=.3,sl=.015,tp=.03):
     d=delta([r[4] for r in rows]); equity=5000.; peak=equity; dd=0.; pos=None; trades=[]; curve=[]
     # Fully specified research proxy: Delta crosses zero, long-only. No intrabar stop ambiguity ignored.
     for i in range(30,len(rows)-1):
@@ -50,7 +50,7 @@ def test(rows,tf,fee=.0008,spread=.0004,allocation=.3,sl=.015,tp=.03):
                 equity+=pnl
                 trades.append({"entry_utc":pos["time"],"exit_utc":datetime.fromtimestamp(t,timezone.utc).isoformat(),"pnl":round(pnl,4),"reason":"SL" if hit_sl else "TP"})
                 pos=None
-        if pos is None and d[i-1] is not None and d[i] is not None and d[i-1]<=0<d[i]:
+        if t>=start_ts and pos is None and d[i-1] is not None and d[i] is not None and d[i-1]<=0<d[i]:
             next_open=rows[i+1][1]*(1+spread/2)
             notional=equity*allocation
             qty=notional/next_open
@@ -81,8 +81,8 @@ def main():
             sample=[r for r in rows if r[0]<end]
             if not sample or sample[0][0]>start-30*86400: missing.append(f"{p}: insufficient warmup");continue
             sample=[r for r in sample if r[0]>=start-30*86400]
-            res,trades,curve=test(sample,tf)
-            res.update(symbol=sym,eval_start=datetime.fromtimestamp(start,timezone.utc).isoformat(),eval_end=datetime.fromtimestamp(end,timezone.utc).isoformat(),note="research zero-cross proxy, includes warmup trades in metrics")
+            res,trades,curve=test(sample,tf,start)
+            res.update(symbol=sym,eval_start=datetime.fromtimestamp(start,timezone.utc).isoformat(),eval_end=datetime.fromtimestamp(end,timezone.utc).isoformat(),note="research zero-cross proxy, no entries during warmup")
             summary.append(res)
             with open(out/f"{sym}_{tf}_trades.csv","w",newline="") as f:
                 w=csv.DictWriter(f,fieldnames=["entry_utc","exit_utc","pnl","reason"]);w.writeheader();w.writerows(trades)
