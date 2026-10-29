@@ -302,6 +302,83 @@ def main():
      "entry_utc":z["entry_utc"],"stop_exit_utc":z["exit_utc"],**b})
   for b in entrybars:
    entrypath.append({"id":z["id"],"symbol":sym,"side":t["side"],"category":cat,**b})
+ # Separate honest recovery cohorts: original stop vs BE stop.
+ recovery_by_cause={}
+ for cause in ("initial_stop","breakeven_stop"):
+  subset=[z for z in stops if z["category"]==cause]
+  by_n={}
+  for N in [1,2,3,4,5,6,8,10,12]:
+   eligible=[z for z in subset if z["measured_post_bars"]>=N]
+   def count_eligible(field):
+    hits=sum(z.get(field) is not None and z[field]<=N for z in eligible)
+    return {"numerator":hits,"denominator":len(eligible),
+            "pct":r(100*hits/len(eligible),1) if eligible else None}
+   by_n[str(N)]={"recover_original_entry":count_eligible("recover_entry_first_k"),
+     "touch_original_target":count_eligible("reach_original_tp_first_k"),
+     "histogram_flips_to_favorable_sign":count_eligible("favorable_delta_sign_first_k"),
+     "close_in_favorable_direction_from_entry_over_0p5pct":{
+       "numerator":sum(any(b["k"]<=N and b["close_move_from_entry_pct"]>=.5
+          for b in z["post_stop_bars"]) for z in eligible),
+       "denominator":len(eligible)}}
+  recovery_by_cause[cause]=by_n
+ post_event_diagnostics={
+  "by_category":recovery_by_cause,
+  "BE_MFE_ge_2pct":sum(z["mfe_pct"]>=2 for z in stops if z["category"]=="breakeven_stop"),
+  "BE_MFE_ge_3pct":sum(z["mfe_pct"]>=3 for z in stops if z["category"]=="breakeven_stop"),
+  "BE_MFE_ge_5pct":sum(z["mfe_pct"]>=5 for z in stops if z["category"]=="breakeven_stop"),
+  "BE_MFE_ge_7pct":sum(z["mfe_pct"]>=7 for z in stops if z["category"]=="breakeven_stop"),
+  "initial_stop_trade_ids":[z["id"] for z in stops if z["category"]=="initial_stop"],
+  "realized_total_BE_stop_pnl_usd":r(sum(z["pnl_usd"] for z in stops if z["category"]=="breakeven_stop")),
+  "realized_total_initial_stop_pnl_usd":r(sum(z["pnl_usd"] for z in stops if z["category"]=="initial_stop")),
+ }
+ print("STOP_CATEGORY_RECOVERY",json.dumps(post_event_diagnostics,ensure_ascii=False),flush=True)
+ # No tuning on OOS. This is a predeclared BE-only sensitivity check:
+ # identical 4h signals, same ATR SL/TP, 5m fills, same portfolio and costs.
+ sensitivity={}
+ first60=e.START+60*e.DAY
+ variants={
+  "original":exits,
+  "BE_off_all":{sym:{"be":None,"hold":row["hold"]} for sym,row in exits.items()},
+  "BE_threshold_1pct":{sym:{"be":(.01 if row["be"] is not None else None),
+      "hold":row["hold"]} for sym,row in exits.items()},
+  "BE_threshold_2pct":{sym:{"be":(.02 if row["be"] is not None else None),
+      "hold":row["hold"]} for sym,row in exits.items()},
+  "BE_threshold_3pct":{sym:{"be":(.03 if row["be"] is not None else None),
+      "hold":row["hold"]} for sym,row in exits.items()},
+  "BE_profit_lock_plus_0p5pct":{sym:{"be":row["be"],"hold":row["hold"],
+      "lock_pct":(.005 if row["be"] is not None else 0)} for sym,row in exits.items()}
+ }
+ try:
+  e.FEE,e.SPREAD=.0008,.0004
+  for name,policy in variants.items():
+   sensitivity[name]={}
+   for window,start,end in (
+       ("train60",e.START,first60),
+       ("oos30",first60,e.END),
+       ("full90",e.START,e.END)):
+    outcome=e.simulate(raw,sig,tuple(e.SYMS),start=start,end=end,
+      params=params,exit_by_symbol=policy,step=e.M,
+      entry_profit_policy="defer",cap_price_stop=True,
+      stop_cap_mode="clamp",collect_trades=True)
+    trades=outcome.pop("trade_details")
+    summary={k:outcome[k] for k in ("phases","cumulative_phase_profit_usd",
+      "breach","max_dd_pct","trades","win_rate_pct","profit_factor","fees","funding","skipped")}
+    summary["initial_stop_count"]=sum(z["reason"].startswith("stop") and z["stop_updates"]==0 for z in trades)
+    summary["moved_stop_count"]=sum(z["reason"].startswith("stop") and z["stop_updates"]>0 for z in trades)
+    sensitivity[name][window]=summary
+    print("BE_SENSITIVITY",name,window,json.dumps(summary,ensure_ascii=False),flush=True)
+ finally:
+  e.FEE,e.SPREAD=prev_fee,prev_spread
+ json_file(OUT/"be_policy_sensitivity.json",{
+  "model":"Descriptive fixed-variant sensitivity only, not OOS optimization",
+  "unchanged_signal":"pine_events/CausalDelta, 4h closed",
+  "variant_definition":variants,"results":sensitivity,
+  "assumptions":[
+   "No selection of best policy by OOS; all outcomes reported.",
+   "BE lock uses a 0.5% price stop beyond entry only after threshold on a prior 5m candle.",
+   "SL/TP and holding times fixed by the previous per-coin 4h optimization.",
+   "OOS previously inspected, venue risk exact rules unverified."
+ ]})
  aggregate=report_aggregates(records)
  json_file(OUT/"all_trades.json",records)
  json_file(OUT/"all_stop_trades.json",stops)
@@ -323,6 +400,8 @@ def main():
   "account_size":e.INITIAL,"notional_per_position":1000,
   "max_positions":3,
   "full_90d_backtest_summary":simulation,
+  "post_event_diagnostics":post_event_diagnostics,
+  "be_policy_sensitivity":sensitivity,
   "aggregate":aggregate,
   "limitations":[
    "All post-stop features descriptive, may not be knowable before entry or stop.",
@@ -342,6 +421,16 @@ def main():
  print("ENTRY_CONTRAST",json.dumps({k:aggregate[k] for k in ("initial_stop_metrics","breakeven_stop_metrics","non_stop_metrics")},ensure_ascii=False),flush=True)
  print("RECOVERY",json.dumps(aggregate["stop_recovery_by_horizon_4h_candles"],ensure_ascii=False),flush=True)
  print("POST_HIST_BY_K",json.dumps(aggregate["post_stop_histogram_by_k"],ensure_ascii=False),flush=True)
+ for z in stops:
+  if z["category"]=="initial_stop":
+   print("REAL_STOP_COMPLETE",json.dumps({
+    "id":z["id"],"symbol":z["symbol"],"side":z["side"],
+    "entry":z["entry_utc"],"stop":z["exit_utc"],
+    "entry_hist":z["entry_hist"],"last_before_stop":z["stop_last_visible_hist"],
+    "reacc_before":z["hist_reacceleration_before_stop_any"],
+    "recover_entry_first_k":z["recover_entry_first_k"],
+    "reach_original_tp_first_k":z["reach_original_tp_first_k"],
+    "post_stop_all_12":z["post_stop_bars"]},ensure_ascii=False),flush=True)
  for z in stops:
   brief={"id":z["id"],"symbol":z["symbol"],"side":"LONG" if z["side"]==1 else "SHORT",
    "entry":z["entry_utc"],"stop":z["exit_utc"],"pnl":z["pnl_usd"],
