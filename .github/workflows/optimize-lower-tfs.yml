@@ -1,0 +1,35 @@
+name: Optimize Delta 5m and 15m per asset OOS
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/optimize_lower_tfs.py'
+      - '.github/workflows/optimize-lower-tfs.yml'
+  workflow_dispatch:
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Train per asset and compare OOS portfolios
+        run: python -u experiments/five_min_90d/optimize_lower_tfs.py
+      - name: Summarize
+        if: always()
+        run: |
+          echo "### Optimized Delta 5m and 15m" >> "$GITHUB_STEP_SUMMARY"
+          if test -f experiments/five_min_90d/optimized_lower_tf_results.json; then
+            echo "Results saved as JSON artifact" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Optimization did not complete. Inspect logs." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-5m-15m-per-asset-optimized
+          path: experiments/five_min_90d/optimized_lower_tf_results.json
+          retention-days: 90
