@@ -1,0 +1,47 @@
+name: Test Upscale Turbo 6pct high water drawdown canonical Delta
+on:
+  push:
+    paths:
+      - 'experiments/new_instructions_8asset_48h/turbo_6pct_trailing.py'
+      - '.github/workflows/test-upscale-turbo-6pct.yml'
+  workflow_dispatch:
+jobs:
+  turbo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Validate 8-asset original parameters and simulate Turbo trailing equity 6pct
+        run: python -u experiments/new_instructions_8asset_48h/turbo_6pct_trailing.py
+      - name: Summary
+        if: success()
+        run: |
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          d=json.loads(Path('experiments/new_instructions_8asset_48h/turbo_6pct/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Turbo Funded from Day 1 — trailing equity DD 6%\n\n')
+            for name,v in d['experiments'].items():
+              for period,runs in v.items():
+                for method,detail in runs.items():
+                  r=detail['summary']
+                  f.write(f"{name} {period} {method}: survived={r['account_survived_to_end']}, breach={r['breach']}, n={r['trades_closed']}, fundedPnl={r['net_closed_pnl_after_costs_usd']}, first_payout={r['first_withdrawal_eligible_without_reset']}\n\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-turbo-6pct-trailing-hwm-5m-year
+          path: experiments/new_instructions_8asset_48h/turbo_6pct/results.json
+          retention-days: 90
