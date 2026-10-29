@@ -1,0 +1,33 @@
+name: Audit Delta annual vs quarterly 8 asset attribution
+on:
+  push:
+    paths:
+      - 'experiments/five_min_90d/audit_annual_vs_quarter.py'
+      - '.github/workflows/audit-delta-annual-vs-quarter.yml'
+  workflow_dispatch:
+jobs:
+  explain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reuse cached annual market archives
+        uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Verify all symbols and compare uninterrupted year vs fresh quarterly challenges
+        run: python -u experiments/five_min_90d/audit_annual_vs_quarter.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-annual-8asset-attribution-audit
+          path: experiments/five_min_90d/year_vs_quarter_audit/
+          retention-days: 90
