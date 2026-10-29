@@ -7,7 +7,7 @@ from completed_candles import aggregate_completed
 from experiments.new_assets_2026.run import download
 from experiments.pine_vs_codex.run import pine_events
 from experiments.max_strategy_grid.prop_portfolio import H,DAY,iso
-INITIAL=5000.;FEE=.0008;SPREAD=.0002;MAX_POS=3;NOTIONAL=1000.
+INITIAL=5000.;FEE=.00008;SPREAD=.0002;FUNDING=.00015;MAX_POS=3;NOTIONAL=1000.
 OLD=("BTCUSDT","ETHUSDT","ICPUSDT","TONUSDT","BNBUSDT","ZECUSDT")
 NEW=("XRPUSDT","LINKUSDT")
 GROUPS={"account_A":("BTCUSDT","ETHUSDT","BNBUSDT","XRPUSDT"),"account_B":("ICPUSDT","TONUSDT","ZECUSDT","LINKUSDT")}
@@ -19,7 +19,7 @@ def delta_at_decision(rows):
  return out
 def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=None):
  cash=INITIAL;positions={};closed=[];breach=None;peak=INITIAL;maxdd=0.;maxdayloss=0.;day=None;daybase=INITIAL
- phase=1;phase_start=times[0];qual=0;phases=[];pending=False;daily=[];maxpos=0;skipped=0;opposite_exits=0;confirm_exits=0;waiting={}
+ phase=1;phase_start=times[0];qual=0;phases=[];pending=False;daily=[];profit_days=[];funding_paid=0.;maxpos=0;skipped=0;opposite_exits=0;confirm_exits=0;waiting={}
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+SPREAD/2) for s,z in positions.items())
  for t in times:
@@ -30,7 +30,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
   if pending and not positions:
    phase+=1;phase_start=t;qual=0;pending=False
    if reset:
-    cash=INITIAL;peak=INITIAL;daybase=INITIAL;maxdd=0.;maxdayloss=0.;closed=[];waiting.clear()
+    cash=INITIAL;peak=INITIAL;daybase=INITIAL;maxdd=0.;maxdayloss=0.;closed=[];waiting.clear();profit_days=[]
   exited=set()
   if mode!='baseline':
    for s in list(positions):
@@ -62,6 +62,14 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
    positions[s]=dict(side=side,qty=qty,entry=o,atr=a,stop=stop,target=target,
     activation=activation,distance=distance,best=o,active=False,entry_t=t,entrycost=entrycost)
   maxpos=max(maxpos,len(positions))
+  # Upscale crypto funding: 00:00, 08:00, 16:00 UTC; charged on open notional.
+  if t%(8*H)==0:
+   for ss,zz in positions.items():
+    charge=zz["qty"]*opens[ss]*FUNDING
+    cash-=charge;funding_paid+=charge
+  # The historical feed is hourly: intrahour stop executions cannot be timestamped to 60 seconds.
+  # No position is permitted to count a positive result on the entry hourly candle.
+
   adverse=dict(closes)
   for s,z in positions.items():
    adverse[s]=min(opens[s],bars[s][3]) if z["side"]==1 else max(opens[s],bars[s][2])
@@ -77,7 +85,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
    elif (max_hours[s] if isinstance(max_hours,dict) else max_hours) is not None and t-z["entry_t"]>=((max_hours[s] if isinstance(max_hours,dict) else max_hours)-1)*H:price=c;reason="time"
    else:price=None
    if price is not None:
-    gross=side*z["qty"]*(price-z["entry"]);exitfee=z["qty"]*price*(FEE+SPREAD/2)
+    gross=side*z["qty"]*(price-z["entry"]);gross=0. if gross>0 and t==z["entry_t"] else gross;exitfee=z["qty"]*price*(FEE+SPREAD/2)
     cash+=gross-exitfee
     closed.append(dict(symbol=s,entry=iso(z["entry_t"]),exit=iso(t+H),net_usd=round(gross-z["entrycost"]-exitfee,5),reason=reason,phase=phase))
     del positions[s]
@@ -92,9 +100,10 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
    breach=dict(time=iso(t+H),kind="daily" if last<=daybase*.95 else "total",equity=round(last,2));break
   if (t+H)%DAY==0:
    daypnl=last-daybase
+   if daypnl>0:profit_days.append(round(daypnl,6))
    if phase<=2 and daypnl>=INITIAL*.005:qual+=1
    daily.append(dict(time=iso(t+H),equity=round(last,2),day_pnl=round(daypnl,2),phase=phase))
-   if phase<=2 and not pending and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5):
+   if phase<=2 and not pending and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and (max(profit_days,default=0)/max(last-INITIAL,1e-9))<.30:
     if not positions:
      phases.append(dict(phase=phase,completed=iso(t+H),days=round((t+H-phase_start)/DAY,2),qualifying_days=qual))
      pending=True
@@ -107,7 +116,7 @@ def run(raw,sig,params,times,reset=False,max_hours=48,mode='baseline',deltas=Non
   takes=sum(z["reason"].startswith("take") for z in closed),time_exits=sum(z["reason"]=="time" for z in closed),
   win_rate=round(100*wins/len(closed),2) if closed else None,profit_factor=round(g/loss,3) if loss else None,
   max_intrahour_dd=round(maxdd,3),worst_day_drop_usd=round(maxdayloss,2),
-  breach=breach,phases=phases,phase_now=phase,max_concurrent=maxpos,skipped=skipped,opposite_exits=opposite_exits,confirm_exits=confirm_exits,
+  breach=breach,funding_paid=round(funding_paid,2),api_30pct_ratio=round(max(profit_days,default=0)/max(last-INITIAL,1e-9),3),phases=phases,phase_now=phase,max_concurrent=maxpos,skipped=skipped,opposite_exits=opposite_exits,confirm_exits=confirm_exits,
   by_symbol={s:dict(trades=sum(z["symbol"]==s for z in closed),stops=sum(z["symbol"]==s and z["reason"].startswith("stop") for z in closed),
    pnl=round(sum(z["net_usd"] for z in closed if z["symbol"]==s),2)) for s in raw})
 def main():
