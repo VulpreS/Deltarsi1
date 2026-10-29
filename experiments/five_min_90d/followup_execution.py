@@ -132,11 +132,12 @@ def run():
  try:
   for costs,fee,spread in (("documented",.00008,.0002),("high_cost",.0008,.0004)):
    e.FEE,e.SPREAD=fee,spread
-   for capped in (False,True):
+   for stop_policy in ("uncapped","reject","clamp"):
+    capped=stop_policy!="uncapped"
     for tf in ("5m","15m"):
-     key=f"{tf}_{costs}_{'price_stop_cap5pct' if capped else 'uncapped'}"
+     key=f"{tf}_{costs}_{stop_policy}_stop5pct"
      output["stress"][key]={"fee_per_side":fee,"spread_roundtrip":spread,
-                            "cap_price_stop":capped,"groups":{}}
+                            "cap_price_stop":capped,"stop_cap_mode":stop_policy,"groups":{}}
      bars=raw5 if tf=="5m" else raw15
      step=e.M if tf=="5m" else M15
      for window in ("full90","oos30"):
@@ -145,7 +146,7 @@ def run():
       for group in ("all_8","btc_eth"):
        r=e.simulate(bars,signals,GROUPS[group],start=start,end=end,step=step,
          params=selected,exit_by_symbol=exit_by_symbol,
-         entry_profit_policy="defer",cap_price_stop=capped)
+         entry_profit_policy="defer",cap_price_stop=capped,stop_cap_mode=("clamp" if stop_policy=="clamp" else "reject"))
        output["stress"][key]["groups"][window][group]=r
        result={k:r[k] for k in ("phases","cumulative_phase_profit_usd","breach",
          "max_dd_pct","trades","win_rate_pct","profit_factor","fees","funding")}
