@@ -1,0 +1,45 @@
+name: Audit Turbo 14-day payouts and recoup purchase fee
+on:
+  push:
+    paths:
+      - 'experiments/new_instructions_8asset_48h/turbo_withdrawals_14d.py'
+      - '.github/workflows/audit-turbo-14day-payout.yml'
+  workflow_dispatch:
+jobs:
+  payouts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Validate risk and run eligible fortnight payout audit
+        run: python -u experiments/new_instructions_8asset_48h/turbo_withdrawals_14d.py
+      - name: Publish key findings
+        if: success()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          d=json.loads(Path('experiments/new_instructions_8asset_48h/turbo_6pct/payouts_14day/results.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Turbo 14-day earliest eligible withdrawals\n')
+            for key,v in d['experiments'].items():
+              r=v['summary']
+              f.write(f"\n{key}: wallet=${r['wallet_received_usd']}, netAfterPurchase=${r['wallet_net_after_purchase_usd']}, payoutCount={r['payout_count']}, payoutDates={r['payouts']}, breach={r['breach']}, fiveDaysFirst={r['first_five_profit_days']}, without30={r['first_payout_candidate_without_30pct']}, eligible={r['first_intraday_eligible_payout']}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: turbo-fortnight-payout-5profitdays-30rule-6pct-drawdown
+          path: experiments/new_instructions_8asset_48h/turbo_6pct/payouts_14day/results.json
+          retention-days: 90
