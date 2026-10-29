@@ -27,11 +27,12 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group):
- cash=INITIAL;pos={};phase=1;phase_start=START;phases=[];daybase=INITIAL;day=None;qual=0;profitdays=[];peak=INITIAL;breach=None;trades=[];fees=0.;funding=0.;skipped=0;maxdd=0.;pending=False
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48):
+ if params is None:params=PARAMS
+ cash=INITIAL;pos={};phase=1;phase_start=start;phases=[];daybase=INITIAL;day=None;qual=0;profitdays=[];peak=INITIAL;breach=None;trades=[];fees=0.;funding=0.;skipped=0;maxdd=0.;pending=False
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+SPREAD/2) for s,z in pos.items())
- for t in range(START,END,M):
+ for t in range(start,end,M):
   bars={s:raw[s][t] for s in group};opens={s:b[1] for s,b in bars.items()};closes={s:b[4] for s,b in bars.items()}
   if pending and not pos:
    phase+=1;phase_start=t;cash=INITIAL;peak=INITIAL;qual=0;profitdays=[];pending=False;daybase=INITIAL
@@ -39,7 +40,7 @@ def simulate(raw,signals,group):
   for s in sorted(group):
    if t not in signals[s]:continue
    if pending or s in pos or len(pos)>=3:skipped+=1;continue
-   e=signals[s][t];side=e["side"];atr=e["atr_4h"];sl,tp,_,_=PARAMS[s];o=opens[s]
+   e=signals[s][t];side=e["side"];atr=e["atr_4h"];sl,tp,_,_=params[s];o=opens[s]
    stop=o-side*sl*atr;target=o+side*tp*atr
    if stop<=0 or target<=0:continue
    qty=1000/o;fee=1000*(FEE+SPREAD/2);cash-=fee;fees+=fee
@@ -58,8 +59,12 @@ def simulate(raw,signals,group):
    elif side*(o-target)>=0:price=o;reason="take_gap"
    elif (l<=stop if side==1 else h>=stop):price=stop;reason="stop"
    elif (h>=target if side==1 else l<=target):price=target;reason="take"
-   elif t-z["entry_t"]>=48*H-M:price=c;reason="time"
-   else:continue
+   elif t-z["entry_t"]>=max_hold*H-M:price=c;reason="time"
+   else:
+    if be_trigger is not None and t>z["entry_t"]:
+     if side*(h-z["entry"])>=be_trigger*z["entry"] if side==1 else side*(l-z["entry"])>=be_trigger*z["entry"]:
+      z["stop"]=max(stop,z["entry"]) if side==1 else min(stop,z["entry"])
+    continue
    gross=side*z["qty"]*(price-z["entry"])
    if t==z["entry_t"] and gross>0:gross=0.;reason="60sec_conservative"
    fee=z["qty"]*price*(FEE+SPREAD/2);cash+=gross-fee;fees+=fee
@@ -75,7 +80,7 @@ def simulate(raw,signals,group):
    if phase<=2 and not pending and not pos and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and max(profitdays,default=0)<.30*(last-INITIAL):
     phases.append(dict(phase=phase,completed=iso(t+M),days=round((t+M-phase_start)/DAY,2),qualifying_days=qual))
     pending=True
- return dict(group=group,phases=phases,phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),funded_trades=sum(x["phase"]==3 for x in trades))
+ return dict(group=group,phases=phases,phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x["phase"]==3 for x in trades))
 def main():
  raw={};signals={}
  for s in SYMS:
