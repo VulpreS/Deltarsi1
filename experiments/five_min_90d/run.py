@@ -27,7 +27,7 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.,partials=(),position_notional=1000.):
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.,partials=(),position_notional=1000.,collect_daily=False):
  if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
  if stop_cap_mode not in ('reject','clamp'):raise ValueError('stop_cap_mode')
  if not 0<=be_stop_lock_pct<=.04:raise ValueError('Invalid BE profit-lock pct')
@@ -36,6 +36,7 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
  if step not in (M,3*M,48*M):raise ValueError('step must be 5m, 15m or 4h')
  if exit_by_symbol is None:exit_by_symbol={}
  if params is None:params=PARAMS
+ daily_snapshots=[]
  trade_details=[];cash=INITIAL;pos={};phase=1;phase_start=start;phases=[];daybase=INITIAL;day=None;qual=0;profitdays=[];peak=INITIAL;breach=None;trades=[];fees=0.;funding=0.;skipped=0;maxdd=0.;pending=False
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+SPREAD/2) for s,z in pos.items())
@@ -132,10 +133,25 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    pnl=last-daybase
    if pnl>0:profitdays.append(pnl)
    if phase<=2 and pnl>=INITIAL*.005:qual+=1
-   if phase<=2 and not pending and not pos and last>=INITIAL*(1.05 if phase==1 else 1.08) and qual>=(3 if phase==1 else 5) and max(profitdays,default=0)<.30*(last-INITIAL):
+   phase_before=phase
+   best_day=max(profitdays,default=0)
+   phase_profit=last-INITIAL
+   goal_reached=last>=INITIAL*(1.05 if phase==1 else 1.08)
+   qualifies=qual>=(3 if phase==1 else 5)
+   consistency=best_day<.30*phase_profit
+   no_positions=not pos
+   if phase<=2 and not pending and no_positions and goal_reached and qualifies and consistency:
     phases.append(dict(phase=phase,completed=iso(t+step),days=round((t+step-phase_start)/DAY,2),qualifying_days=qual,phase_equity_usd=round(last,2),phase_profit_usd=round(last-INITIAL,2)))
     pending=True
- return dict(group=group,trade_details=trade_details if collect_trades else None,phases=phases,cumulative_phase_profit_usd=round(sum(p['phase_profit_usd'] for p in phases)+(0 if pending else last-INITIAL),2),phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
+   if collect_daily:
+    daily_snapshots.append(dict(time=iso(t+step),phase=phase_before,
+      phase_profit_usd=round(phase_profit,2),equity_usd=round(last,2),
+      day_pnl_usd=round(pnl,2),best_day_usd=round(best_day,2),
+      consistency_ratio_pct=round(100*best_day/phase_profit,3) if phase_profit>0 else None,
+      goal_reached=goal_reached,qualifying_days=qual,qualification_reached=qualifies,
+      consistency_passed=consistency,positions_flat=no_positions,
+      positions_count=len(pos),new_phase_pass=bool(pending and len(phases)>0 and phases[-1]['phase']==phase)))
+ return dict(group=group,daily_snapshots=daily_snapshots if collect_daily else None,trade_details=trade_details if collect_trades else None,phases=phases,cumulative_phase_profit_usd=round(sum(p['phase_profit_usd'] for p in phases)+(0 if pending else last-INITIAL),2),phase_now=phase,equity=round(last,2),breach=breach,max_dd_pct=round(maxdd,3),trades=len(trades),wins=sum(x['pnl']>0 for x in trades),losses=sum(x['pnl']<=0 for x in trades),win_rate_pct=round(100*sum(x['pnl']>0 for x in trades)/len(trades),2) if trades else None,profit_factor=round(sum(max(x['pnl'],0) for x in trades)/-sum(min(x['pnl'],0) for x in trades),3) if sum(x['pnl']<0 for x in trades) else None,trade_pnl_by_symbol={s:round(sum(x['pnl'] for x in trades if x['symbol']==s),2) for s in group},skipped=skipped,fees=round(fees,2),funding=round(funding,2),phase_pnl=round(last-INITIAL,2),net_pnl=round(sum(x['pnl'] for x in trades)-funding,2),funded_trades=sum(x['phase']==3 for x in trades))
 def main():
  raw={};signals={}
  for s in SYMS:
