@@ -1,0 +1,22 @@
+name: Split accounts and missed signals
+on:
+  push:
+    paths:
+      - 'experiments/split_account_capacity/**'
+      - '.github/workflows/split-account-capacity.yml'
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -u experiments/split_account_capacity/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: split-account-capacity-results
+          path: experiments/split_account_capacity/results.json
