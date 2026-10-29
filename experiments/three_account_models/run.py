@@ -12,13 +12,13 @@ def replay(raw,sig,params,times,share,mode):
  daily_limit,total_limit,trailing=MODES[mode]
  cash=INITIAL;positions={};day=None;daybase=INITIAL;peak=INITIAL
  min_equity=(float("inf"),None);worst_day=(-float("inf"),None,None);closest=(float("inf"),None,None)
- breaches=[];trades=0;max_positions=0
+ breaches=[];trades=0;max_positions=0;daily_records=[];day_start_cash=INITIAL
  def equity(prices):
   return cash+sum(z["side"]*z["qty"]*(prices[s]-z["entry"])-z["qty"]*prices[s]*(FEE+SPREAD) for s,z in positions.items())
  for t in times:
   bars={s:raw[s][t] for s in raw};opens={s:b[1] for s,b in bars.items()};closes={s:b[4] for s,b in bars.items()}
   if day!=t//DAY:
-   day=t//DAY;daybase=equity(opens)
+   day=t//DAY;daybase=equity(opens);day_start_cash=cash
   # Record a conservative high-water mark from prior hour closes, not a fictional simultaneous favorable high.
   peak=max(peak,equity(opens))
   for s in sorted(raw):
@@ -63,7 +63,9 @@ def replay(raw,sig,params,times,share,mode):
      new=z["best"]-side*z["distance"]*z["atr"]
      z["stop"]=max(stop,new) if side==1 else min(stop,new)
   peak=max(peak,equity(closes))
- return dict(first_breach=breaches[0] if breaches else None,min_equity=round(min_equity[0],2),min_equity_at=iso(min_equity[1]),worst_daily_pct=round(worst_day[0],3),worst_daily_usd=round(worst_day[2],2),worst_daily_at=iso(worst_day[1]),min_total_buffer_usd=round(closest[0],2),min_total_buffer_at=iso(closest[1]),floor_at_min_buffer=round(closest[2],2),peak_equity=round(peak,2),final_equity=round(equity({s:raw[s][times[-1]][4] for s in raw}),2),trades=trades,max_positions=max_positions)
+  if (t+H)%DAY==0:
+   daily_records.append(dict(date=iso(t),start_equity=round(daybase,4),end_equity=round(equity(closes),4),closed_profit=round(cash-day_start_cash,4)))
+ return dict(daily_records=daily_records,first_breach=breaches[0] if breaches else None,min_equity=round(min_equity[0],2),min_equity_at=iso(min_equity[1]),worst_daily_pct=round(worst_day[0],3),worst_daily_usd=round(worst_day[2],2),worst_daily_at=iso(worst_day[1]),min_total_buffer_usd=round(closest[0],2),min_total_buffer_at=iso(closest[1]),floor_at_min_buffer=round(closest[2],2),peak_equity=round(peak,2),final_equity=round(equity({s:raw[s][times[-1]][4] for s in raw}),2),trades=trades,max_positions=max_positions)
 def main():
  baseline=json.loads(Path("experiments/max_strategy_grid/pine_baseline_2026-10-29.json").read_text())["parameters"]
  raw={};sig={}
@@ -79,7 +81,18 @@ def main():
    for mode in MODES:
     key=f"{group}_{share*100:g}pct_{mode}"
     result=replay({s:raw[s] for s in syms},{s:sig[s] for s in syms},{s:baseline[s] for s in syms},times,share,mode)
-    out["results"][key]=result
+    out["results"][key]={k:v for k,v in result.items() if k!="daily_records"}
+    if mode=="accelerated":
+     days=result["daily_records"]
+     windows=[]
+     for i in range(0,len(days)-13,14):
+      d=days[i:i+14];qualified=sum(x["end_equity"]>=x["start_equity"]*1.005 for x in d)
+      gain=d[-1]["end_equity"]-d[0]["start_equity"]
+      closed=sum(x["closed_profit"] for x in d)
+      windows.append(dict(start=d[0]["date"][:10],end=d[-1]["date"][:10],qualifying_days=qualified,eligible=qualified>=5,net_equity_gain=round(gain,2),closed_pnl=round(closed,2),potential_payout=round(max(0,closed),2) if qualified>=5 else 0))
+     eligible=[w for w in windows if w["eligible"]]
+     out.setdefault("payout_windows",{})[f"{group}_{share*100:g}pct"]=dict(windows=windows,total_windows=len(windows),eligible_windows=len(eligible),eligible_positive_windows=sum(w["potential_payout"]>0 for w in eligible),total_potential_payout=round(sum(w["potential_payout"] for w in windows),2),mean_payout_all_windows=round(sum(w["potential_payout"] for w in windows)/len(windows),2) if windows else None,mean_payout_eligible_windows=round(sum(w["potential_payout"] for w in eligible)/len(eligible),2) if eligible else None)
+     print("PAYOUT_TEST",group,share,json.dumps({k:v for k,v in out["payout_windows"][f"{group}_{share*100:g}pct"].items() if k!="windows"}),flush=True)
     print("ACCOUNT_TEST",key,json.dumps(result),flush=True)
  p=Path("experiments/three_account_models/results.json")
  p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(out,indent=2))
