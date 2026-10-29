@@ -1,4 +1,4 @@
-"""Research sweep on new Bybit USDT linear assets. Downloads 1h candles in CI, no live orders."""
+"""Research sweep on Binance public archive USDT-M assets. Downloads 1h candles in CI, no live orders."""
 import sys,json,time,datetime as dt,urllib.request,urllib.parse
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
@@ -10,27 +10,30 @@ START=int(dt.datetime(2025,10,29,tzinfo=dt.timezone.utc).timestamp()*1000)
 END=int(dt.datetime(2026,10,27,tzinfo=dt.timezone.utc).timestamp()*1000)
 PARAMS=[(1.5,1.5,None,None),(1.5,2.5,None,None),(1.5,5.,None,None),(2.5,2.5,None,None),(2.5,5.,None,None),(5.,2.5,None,None),(5.,5.,None,None)]
 def download(s):
- out=[];t=START
- while t<END:
-  url=API+"?"+urllib.parse.urlencode(dict(category="linear",symbol=s,interval="60",start=t,end=min(END-1,t+999*H),limit=1000))
-  for attempt in range(5):
-   try:
-    req=urllib.request.Request(url,headers={"User-Agent":"Deltarsi1-research/1.0"})
-    with urllib.request.urlopen(req,timeout=35) as f:batch=json.load(f)
-    if batch.get("retCode")!=0:raise ValueError(str(batch)[:300])
-    batch=batch["result"]["list"]
-    batch.sort(key=lambda b:int(b[0]))
-    break
-   except Exception:
-    if attempt==4:raise
-    time.sleep(2**attempt)
-  if not batch:break
-  out.extend((int(b[0]),float(b[1]),float(b[2]),float(b[3]),float(b[4])) for b in batch)
-  t=int(batch[-1][0])+H
-  if int(batch[-1][0])>=END-H:break
- if len(out)<500:raise ValueError("Insufficient candles for "+s)
+ import csv,io,zipfile,calendar
+ out=[]
+ for year,month in ((y,m) for y in (2025,2026) for m in range(1,13) if (y,m)>=(2025,10) and (y,m)<=(2026,10)):
+  name=f"{s}-1h-{year}-{month:02d}.zip"
+  url=f"https://data.binance.vision/data/futures/um/monthly/klines/{s}/1h/{name}"
+  try:
+   with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=55) as response:
+    payload=response.read()
+   with zipfile.ZipFile(io.BytesIO(payload)) as z:
+    rows=list(csv.reader(io.TextIOWrapper(z.open(z.namelist()[0]),encoding="utf-8")))
+   n=0
+   for b in rows:
+    try:t=int(b[0])
+    except (ValueError,IndexError):continue
+    if START<=t<END:
+     out.append((t,float(b[1]),float(b[2]),float(b[3]),float(b[4])));n+=1
+   print("ARCHIVE",s,name,n,flush=True)
+  except Exception as e:
+   print("ARCHIVE_ERROR",s,name,str(e),flush=True)
+ out.sort()
+ if len(out)<500:raise ValueError("Insufficient archive candles "+s)
  if any(b[0]-a[0]!=H for a,b in zip(out,out[1:])):raise ValueError("Missing/duplicate hourly candles "+s)
  return out
+
 def main():
  raw={};signals={};meta={}
  for s in ASSETS:
@@ -43,7 +46,7 @@ def main():
  if not raw:raise RuntimeError("No assets downloaded")
  results=dict(meta=meta,parameters=PARAMS,per_asset={},portfolio={},notes=[
   "Exact tested pine_events proxy, not final RSI27 variant.",
-  "Data from Bybit linear USDT futures public hourly klines, fetched at CI runtime.",
+  "Data from Binance public historical futures ZIP archives, fetched at CI runtime.",
   "Individual ATR grids are in-sample explorations; not validated out of sample.",
   "Fixed 48h max hold, 20% initial balance position, max three positions, fees 0.08% each side, spread 0.02% roundtrip.",
   "Prop risk checks approximate and must be audited before trading."])
