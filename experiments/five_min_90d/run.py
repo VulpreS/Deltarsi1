@@ -27,10 +27,11 @@ def download(s):
  out.sort()
  if not out or any(b[0]-a[0]!=M for a,b in zip(out,out[1:])):raise ValueError("Missing 5m candles "+s)
  return out
-def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.):
+def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,max_hold=48,exit_by_symbol=None,step=M,entry_profit_policy='defer',cap_price_stop=False,stop_cap_mode='reject',collect_trades=False,be_stop_lock_pct=0.,partials=()):
  if entry_profit_policy not in ('defer','zero'):raise ValueError('entry_profit_policy')
  if stop_cap_mode not in ('reject','clamp'):raise ValueError('stop_cap_mode')
  if not 0<=be_stop_lock_pct<=.04:raise ValueError('Invalid BE profit-lock pct')
+ if any(th<=0 or frac<=0 or frac>=1 for th,frac in partials) or sum(frac for _,frac in partials)>=.95 or any(a[0]>=b[0] for a,b in zip(partials,partials[1:])):raise ValueError('Invalid partial profit levels')
  if step not in (M,3*M,48*M):raise ValueError('step must be 5m, 15m or 4h')
  if exit_by_symbol is None:exit_by_symbol={}
  if params is None:params=PARAMS
@@ -54,6 +55,7 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    qty=1000/o;fee=1000*(FEE+SPREAD/2);cash-=fee;fees+=fee
    pos[s]=dict(side=side,qty=qty,entry=o,stop=stop,target=target,entry_t=t,phase=phase,
                   initial_stop=stop,signal_atr=atr,entry_fee=fee,raw_stop=o-side*sl*atr,
+                  original_qty=qty,partial_done=0,partial_pnl=0.,partial_events=[],partial_fees=0.,partial_qty_closed=0.,remaining_qty=qty,
                   max_fav_move=0.,max_adverse_move=0.,stop_updates=0)
   if t%(8*H)==0:
    for s,z in pos.items():
@@ -74,6 +76,25 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    elif (h>=target if side==1 else l<=target) and (t>z['entry_t'] or entry_profit_policy=='zero'):price=target;reason="take"
    elif t-z["entry_t"]>=exit_by_symbol.get(s,{}).get('hold',max_hold)*H-step:price=c;reason="time"
    else:
+    # Confirm partial price targets using only the current 5m candle. Never fill a
+    # positive partial in the entry bar (unknown 60-second hold compliance).
+    if partials and t>z['entry_t']:
+     while z['partial_done']<len(partials):
+      threshold,fraction=partials[z['partial_done']]
+      level=z['entry']*(1+side*threshold)
+      if not (h>=level if side==1 else l<=level):break
+      q=z['original_qty']*fraction
+      if q>z['qty']+1e-10:raise AssertionError('Partial qty exceeds live qty')
+      realized=side*q*(level-z['entry'])
+      exit_cost=q*level*(FEE+SPREAD/2)
+      cash+=realized-exit_cost
+      fees+=exit_cost
+      z['partial_pnl']+=realized-exit_cost
+      z['partial_fees']+=exit_cost
+      z['qty']-=q
+      z['partial_qty_closed']+=q
+      z['partial_done']+=1
+      if collect_trades:z['partial_events'].append(dict(time=iso(t+step),level=level,threshold=threshold,fraction=fraction,realized=round(realized-exit_cost,5)))
     be=exit_by_symbol.get(s,{}).get('be',be_trigger)
     if be is not None and t>z["entry_t"]:
      if side*(h-z["entry"]) >=be*z["entry"] if side==1 else side*(l-z["entry"])>=be*z["entry"]:
@@ -85,7 +106,8 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
    gross=side*z["qty"]*(price-z["entry"])
    if entry_profit_policy=='zero' and t==z["entry_t"] and gross>0:gross=0.;reason="60sec_legacy_zero"
    fee=z["qty"]*price*(FEE+SPREAD/2);cash+=gross-fee;fees+=fee
-   trades.append(dict(symbol=s,phase=phase,pnl=round(gross-fee-1000*(FEE+SPREAD/2),5),reason=reason,entry=iso(z["entry_t"]),exit=iso(t+step)))
+   total_trade_pnl=z['partial_pnl']+gross-fee-z['entry_fee']
+   trades.append(dict(symbol=s,phase=phase,pnl=round(total_trade_pnl,5),reason=reason,entry=iso(z["entry_t"]),exit=iso(t+step)))
    if collect_trades:
     trade_details.append(dict(symbol=s,side=side,phase=phase,
       entry_ms=z['entry_t'],exit_bar_open_ms=t,exit_known_ms=t+step,
@@ -95,8 +117,9 @@ def simulate(raw,signals,group,params=None,start=START,end=END,be_trigger=None,m
       initial_risk_price_pct=100*abs(z['entry']-z['initial_stop'])/z['entry'],
       stop_updates=z['stop_updates'],is_breakeven_stop=reason.startswith('stop') and z['stop_updates']>0,
       reason=reason,hold_hours=(t+step-z['entry_t'])/H,
-      gross_pnl_usd=gross,fees_usd=z['entry_fee']+fee,
-      pnl_usd=round(gross-fee-z['entry_fee'],5),
+      gross_pnl_usd=gross+z['partial_pnl']+z['partial_fees'],fees_usd=z['entry_fee']+fee+z['partial_fees'],
+      pnl_usd=round(total_trade_pnl,5),partial_events=z['partial_events'],
+      partial_qty_closed_pct=100*z['partial_qty_closed']/z['original_qty'],remaining_qty_pct=100*z['qty']/z['original_qty'],
       mfe_pct=100*z['max_fav_move'],mae_pct=100*z['max_adverse_move']))
    del pos[s]
   last=equity(closes);peak=max(peak,last)
