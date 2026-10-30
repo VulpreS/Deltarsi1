@@ -1,0 +1,31 @@
+name: Backtest exact manual DeltaRSI color entry 40-grid
+on:
+  push:
+    paths:
+      - 'experiments/manual_exact_delta_40grid/run.py'
+      - '.github/workflows/manual-exact-delta-40grid.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        account: [personal_120, basic_10k_api, basic_10k_manual_noapi, turbo_5k]
+        period: [annual, q2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run 40 stop and forced-exit variants with user's exact 4h color rule
+        run: python -u experiments/manual_exact_delta_40grid/run.py --account ${{ matrix.account }} --period ${{ matrix.period }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exact-manual-${{ matrix.account }}-${{ matrix.period }}
+          path: experiments/manual_exact_delta_40grid/${{ matrix.account }}/${{ matrix.period }}/strict/results.json
+          retention-days: 90
