@@ -1,0 +1,25 @@
+name: Forensic manual DeltaRSI entry fingerprint
+on:
+  push:
+    paths:
+      - 'experiments/manual_entry_delta_fingerprint/run.py'
+      - '.github/workflows/manual-delta-entry-fingerprint.yml'
+  workflow_dispatch:
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compare user entries with closed 1h and 4h Delta wave color state
+        run: python -u experiments/manual_entry_delta_fingerprint/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: manual-delta-entry-fingerprint
+          path: experiments/manual_entry_delta_fingerprint/result.json
+          retention-days: 90
