@@ -21,11 +21,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run 40 stop and forced-exit variants with user's exact 4h color rule
-        run: python -u experiments/manual_exact_delta_40grid/run.py --account ${{ matrix.account }} --period ${{ matrix.period }}
+      - name: Run exact Delta entries and opposite-signal exits with no time limit
+        run: python -u experiments/manual_exact_delta_opposite_exit/run.py --account ${{ matrix.account }} --period ${{ matrix.period }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: exact-manual-${{ matrix.account }}-${{ matrix.period }}
-          path: experiments/manual_exact_delta_40grid/${{ matrix.account }}/${{ matrix.period }}/strict/results.json
+          path: experiments/manual_exact_delta_opposite_exit/${{ matrix.account }}/${{ matrix.period }}/results.json
           retention-days: 90
