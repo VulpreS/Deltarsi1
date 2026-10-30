@@ -2,6 +2,7 @@ name: Backtest exact manual DeltaRSI color entry 40-grid
 on:
   push:
     paths:
+      - 'experiments/manual_exact_delta_opposite_exit/run.py'
       - 'experiments/manual_exact_delta_40grid/run.py'
       - '.github/workflows/manual-exact-delta-40grid.yml'
   workflow_dispatch:
