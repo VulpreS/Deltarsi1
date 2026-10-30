@@ -511,7 +511,7 @@ def main():
    stress_mode=opts.stress,
    grid_stops=STOPS,grid_hold_hours=HOURS,
    rule="no TP, stop beyond last N closed 4h candle highs/lows by 0.02pct, force exit H hours after entry, no trailing, no averaging",
-   signal_parity_warning="Historical pine_events uses old SMA21 RSI12 EMA7 log construction, user final RSI27-EMA7 RSI not verified",
+   signal_parity_warning="Repo Pine Delta executable code is SMA21 / RSI length 12 / EMA7 symmetric log despite RSI27 comment; historical pine_events uses this formula, bar-by-bar TradingView parity not yet certified; README prose RSI27 differs",
    funds_remain_user_owned=case["kind"]=="personal",
    assumptions=[
      "Canonical 6 crypto pairs BTC ETH TON BNB XRP LINK; exclude ICP/ZEC",
