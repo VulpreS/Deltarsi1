@@ -43,7 +43,7 @@ ACCOUNTS={
   "turbo_5k":dict(name="turbo_5k",kind="turbo",initial=5000.,api=False,fee=.0006,funding_rate=.00015)
 }
 
-def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payouts_enabled=False,details=False,stress=False):
+def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payouts_enabled=False,details=False,stress=False,exit_mode="opposite"):
  assert stop_bars in (5,10,15,20) and exit_hours in (12,16,20,24,32,40,48,52,56,60)
  assert account["kind"] in ("basic","personal","turbo")
  assert not payouts_enabled or account["kind"] in ("basic","turbo")
@@ -124,10 +124,12 @@ def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payout
   nonlocal cash,fees,opened
   if slots()>=MAX_SLOTS:return False
   side=event["side"]
-  stop=event["extreme_stops"][stop_bars]
+  atr=event["atr_4h"]
+  if exit_mode!="opposite" and (not math.isfinite(atr) or atr<=0):return False
+  stop=price-side*2.5*atr if exit_mode!="opposite" else event["extreme_stops"][stop_bars]
   if stop<=0 or price<=0 or side*(price-stop)<=0:return False
-  take=None;activate=None;distance=None;atr=event["atr_4h"]
-  assert abs(stop-event["extreme_stops"][stop_bars])<1e-12
+  take=(price+side*3*atr if exit_mode.startswith("atr") else price*(1+side*.01) if exit_mode=="fixed1" else None)
+  activate=None;distance=None
   usd=(max(0.,eq(opens))*POSITION_FRAC if compound else initial*POSITION_FRAC)
   if usd<=0:return False
   qty=usd/price
@@ -230,6 +232,8 @@ def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payout
    o=opens[s]
    if p["side"]*(o-p["stop"])<=0:
     close_position(s,t,o,"stop_gap");closed_at_open.add(s)
+   elif p["take"] is not None and p["side"]*(o-p["take"])>=0:
+    close_position(s,t,o,"take_gap");closed_at_open.add(s)
   # Critical ordering for simultaneous 4h signals: existing repeat
   # signals are considered FIRST, then fresh positions. Same order every
   # backtest, deterministic, not dependent on future profitability.
@@ -244,7 +248,7 @@ def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payout
      else:subsequent_repeat+=1
     else:
      opposite_signals+=1
-     close_position(s,t,opens[s],"opposite_delta_signal")
+     if exit_mode=="opposite":close_position(s,t,opens[s],"opposite_delta_signal")
    elif s not in closed_at_open:
     fresh.append((s,event))
   for s,event in fresh:
@@ -279,7 +283,11 @@ def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payout
    direction=p["side"]
    if (lo<=p["stop"] if direction==1 else hi>=p["stop"]):
     close_position(s,t,p["stop"],"stop")
+   elif p["take"] is not None and (hi>=p["take"] if direction==1 else lo<=p["take"]):
+    close_position(s,t,p["take"],"take")
    else:
+    if exit_mode=="atr_be" and (hi>=p["first_entry"]*(1+.01) if direction==1 else lo<=p["first_entry"]*(1-.01)):
+     p["stop"]=max(p["stop"],p["first_entry"]) if direction==1 else min(p["stop"],p["first_entry"])
     p["hour_best"]=max(p["hour_best"],hi) if direction==1 else min(p["hour_best"],lo)
     if False: # NO forced time exit; opposite Delta closes at next 4h opening
      close_position(s,t,c,"time")
@@ -362,7 +370,7 @@ def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payout
  summary=dict(account=account["name"],mode=mode,
    period_start=iso(start),period_end=iso(end),actually_tested_until=iso(last_t+M),
    stop_lookback_4h_bars=stop_bars,forced_close_hours=exit_hours,
-   no_take_profit=True,no_trailing_stop=True,
+   no_take_profit=exit_mode=="opposite",exit_mode=exit_mode,no_trailing_stop=True,
    survived_full_period=breach is None,breach=breach,
    assets=list(assets),
    number_closed=n,win_rate_pct=nice(sum(r["net"]>0 for r in ledger)*100/n) if n else None,
@@ -500,21 +508,29 @@ def main():
  for asset in ASSETS:
   bars=ohlc_from_5m(sorted(raw[asset].values()),4*H)
   ev=manual_color_events(bars)
+  atrs=[];atr=None;prev=None
+  for b in bars:
+   tr=max(b[2]-b[3],abs(b[2]-prev),abs(b[3]-prev)) if prev is not None else b[2]-b[3]
+   atr=tr if atr is None else (atr*13+tr)/14
+   atrs.append(atr);prev=b[4]
+  atr_by_end={b[0]+4*H:atrs[i] for i,b in enumerate(bars)}
+  for t,e in ev.items():e["atr_4h"]=atr_by_end[t]
   signals[asset]=make_extreme_signals(raw[asset],ev)
   print("OPPOSITE_INPUT",asset,len(ev),flush=True)
  start,end=(START,END) if a.period=="annual" else (VALID_END,END)
  acc=ACCOUNTS[a.account]
  result={}
- for n in STOPS:
+ for mode in ("atr","atr_be","fixed1"):
+  n=5
   s,details=sim_extrema(raw,signals,ASSETS,acc,start,end,n,60,
-    payouts_enabled=acc["kind"]!="personal",details=True)
-  result["stop"+str(n)]=dict(summary=s,details=details)
-  print("OPPOSITE_RESULT",a.account,a.period,"stop"+str(n),json.dumps(concise(s),ensure_ascii=False),flush=True)
+    payouts_enabled=acc["kind"]!="personal",details=True,exit_mode=mode)
+  result[mode]=dict(summary=s,details=details)
+  print("ATR_FIXED_RESULT",a.account,a.period,mode,json.dumps(concise(s),ensure_ascii=False),flush=True)
  dest=BASE/a.account/a.period/"results.json"
  dest.parent.mkdir(parents=True,exist_ok=True)
  dest.write_text(json.dumps(dict(account=a.account,period=a.period,stop_variants=list(STOPS),
-  entry="medium->weak closed 4h, no extra filters",exit="opposite medium->weak closed 4h",
+  entry="medium->weak closed 4h, no extra filters",exit="ATR 2.5 stop / ATR 3 take; ATR with BE +1pct; or ATR 2.5 stop and fixed +1pct take",
   stop="fixed 5/10/15/20 fully closed 4h candles, 0.02% buffer",no_ttl=True,
-  no_take=True,no_break_even=True,results=result),ensure_ascii=False,indent=2))
+  no_take=False,no_break_even=False,results=result),ensure_ascii=False,indent=2))
  print("OPPOSITE_DONE",dest,flush=True)
 if __name__=="__main__":main()
