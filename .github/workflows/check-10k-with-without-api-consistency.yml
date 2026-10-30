@@ -1,0 +1,46 @@
+name: Control 10k Basic noAPI manual vs API option six coin stage delays
+on:
+  push:
+    paths:
+      - 'experiments/portfolio_six_no_icp_zec_20pct/counterfactual_same_10k_api_vs_noapi.py'
+      - '.github/workflows/check-10k-with-without-api-consistency.yml'
+  workflow_dispatch:
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Run exact 10k controlled comparison for six coin portfolio
+        run: python -u experiments/portfolio_six_no_icp_zec_20pct/counterfactual_same_10k_api_vs_noapi.py
+      - name: Print annual stage deltas
+        if: success()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os
+          p=Path('experiments/portfolio_six_no_icp_zec_20pct/counterfactual_10k/results.json')
+          d=json.loads(p.read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Same 10k Basic: noAPI manual vs API option stage timing\n\n')
+            f.write('No browser automation is authorized by this research.\n\n')
+            for k,v in d['comparisons'].items():
+              f.write(f'**{k}** {v}\n\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: controlled-basic-10k-noapi-vs-api-consistency-six-coin
+          path: experiments/portfolio_six_no_icp_zec_20pct/counterfactual_10k/results.json
+          retention-days: 90
