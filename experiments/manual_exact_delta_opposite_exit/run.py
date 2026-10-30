@@ -242,7 +242,8 @@ def sim_extrema(raw,signals,assets,account,start,end,stop_bars,exit_hours,payout
     if event["side"]==p["side"]:
      if not p["second_seen"]:inspect_repeat(s,t,opens[s],event)
      else:subsequent_repeat+=1
-    else:opposite_signals+=1
+    else:
+     opposite_signals+=1
      close_position(s,t,opens[s],"opposite_delta_signal")
    elif s not in closed_at_open:
     fresh.append((s,event))
