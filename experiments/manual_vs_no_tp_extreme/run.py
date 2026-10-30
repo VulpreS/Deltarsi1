@@ -2,7 +2,8 @@
 No lookahead, no order execution, read-only. 1h BTC cache begins 2025-10-26;
 September/October trades outside cache cannot be backtested honestly.
 """
-import csv,datetime as dt,json,math,statistics,bisect,collections
+import csv,datetime as dt,json,math,statistics,bisect,collections,sys
+sys.path.insert(0,str(__import__("pathlib").Path(__file__).resolve().parents[2]))
 from pathlib import Path
 from causal_4h_parity_audit import load,events,H,FOUR
 from manual_trade_label_audit import normalize
