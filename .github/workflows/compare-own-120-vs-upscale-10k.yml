@@ -1,0 +1,46 @@
+name: Compare 120 USD owned compounded vs 10k Upscale Basic price 120
+on:
+  push:
+    paths:
+      - 'experiments/personal_120_vs_upscale_10k/research.py'
+      - '.github/workflows/compare-own-120-vs-upscale-10k.yml'
+  workflow_dispatch:
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Replay same six-coin strategy own 120 USD compounded and prop 10k
+        run: python -u experiments/personal_120_vs_upscale_10k/research.py
+      - name: Report outcome
+        if: success()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os,json
+          p=Path('experiments/personal_120_vs_upscale_10k/results.json')
+          d=json.loads(p.read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('# Equal $120 expense — personal trading vs $10000 prop challenge\n\n')
+            for key,scenario in d['scenarios'].items():
+              r=scenario['summary']
+              f.write(f"{key}: equity=${r['final_equity_usd']}, closedPnL=${r['closed_pnl_usd']}, phase={r['phase_now']}, phaseDates={r['phases']}, withdrawals={r['payouts']}, wallet=${r['wallet_received_usd']}, netWalletAfterFee=${r['wallet_received_usd']-120}, breach={r['breach']}\n\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: own-120-compounded-vs-upscale-basic-10k-api-fortnight-payout
+          path: experiments/personal_120_vs_upscale_10k/results.json
+          retention-days: 90
