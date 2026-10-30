@@ -1,0 +1,26 @@
+name: Compare 42 manual BTC entries against 40 no TP extreme exit rules
+on:
+  push:
+    paths:
+      - 'experiments/manual_vs_no_tp_extreme/run.py'
+      - '.github/workflows/manual-vs-no-tp-extreme.yml'
+  workflow_dispatch:
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Matched clean manual trades versus 40 no-TP stop/time alternatives
+        run: python -u experiments/manual_vs_no_tp_extreme/run.py
+      - name: Archive per-trade paired diagnostics and all 40 variants
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manual-vs-extreme-40grid-btc
+          path: experiments/manual_vs_no_tp_extreme/results.json
+          retention-days: 90
