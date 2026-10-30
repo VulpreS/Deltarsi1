@@ -494,7 +494,7 @@ def main():
  ap.add_argument("--account",required=True,choices=sorted(ACCOUNTS))
  ap.add_argument("--period",required=True,choices=("annual","q2"))
  a=ap.parse_args()
- synthetic_units();check_document()
+ check_document()
  raw,_,manifest=source_load()
  signals={}
  for asset in ASSETS:
