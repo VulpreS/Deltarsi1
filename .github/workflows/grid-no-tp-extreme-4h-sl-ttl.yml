@@ -1,0 +1,44 @@
+name: Grid NO TP 4h extreme SL 5 10 15 20 bars and 12-60h exit
+on:
+  push:
+    paths:
+      - 'experiments/no_take_extreme_stop_ttl_grid/run.py'
+      - '.github/workflows/grid-no-tp-extreme-4h-sl-ttl.yml'
+  workflow_dispatch:
+jobs:
+  grid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        account:
+          - personal_120
+          - basic_10k_api
+          - basic_10k_manual_noapi
+          - turbo_5k
+        period:
+          - annual
+          - q2
+    env:
+      BINANCE_MONTH_CACHE: /tmp/delta_binance_5m_cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/delta_binance_5m_cache
+          key: binance-um-8-assets-5m-monthly-2025-05-to-2026-06-v1
+      - name: Run 40 variants on account and period
+        run: python -u experiments/no_take_extreme_stop_ttl_grid/run.py --account ${{ matrix.account }} --period ${{ matrix.period }}
+      - name: Upload all 40 trade ledgers and scenario outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-tp-sl-lookback-${{ matrix.account }}-${{ matrix.period }}
+          path: experiments/no_take_extreme_stop_ttl_grid/${{ matrix.account }}/${{ matrix.period }}/close5m/results.json
+          retention-days: 90
