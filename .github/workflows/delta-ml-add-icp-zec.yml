@@ -1,0 +1,46 @@
+name: DeltaRSI add ICP ZEC historical 4h cache
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/download_icp_zec.py'
+      - '.github/workflows/delta-ml-add-icp-zec.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  new-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download ONLY ICP and ZEC 4h Binance Vision ZIP archives
+        run: python -u experiments/delta_ml_3y/download_icp_zec.py
+      - name: Publish immutable ICP ZEC candle archive alongside the existing six-asset Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd experiments/delta_ml_3y
+          zip -q "$RUNNER_TEMP/delta-ml-icp-zec-2026-10-27.zip" data/ICPUSDT.json data/ZECUSDT.json
+          cd "$GITHUB_WORKSPACE"
+          TAG=delta-ml-icp-zec-cache-2026-10-27
+          if gh release view "$TAG" --repo VulpreS/Deltarsi1 >/dev/null 2>&1; then
+            echo "Immutable release already present; preserving snapshot"
+          else
+            gh release create "$TAG" "$RUNNER_TEMP/delta-ml-icp-zec-2026-10-27.zip" \
+              --repo VulpreS/Deltarsi1 \
+              --title "DeltaRSI ICP+ZEC historical Binance Vision 4h candles" \
+              --notes "Only ICPUSDT and ZECUSDT 4h futures OHLCV. Existing six-asset snapshot is untouched. Strictly public market data. Research only."
+          fi
+      - name: Upload new-asset data (with complete source trace)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deltarsi-icp-zec-4h
+          path: |
+            experiments/delta_ml_3y/data/ICPUSDT.json
+            experiments/delta_ml_3y/data/ZECUSDT.json
+          retention-days: 90
