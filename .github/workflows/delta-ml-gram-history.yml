@@ -1,0 +1,44 @@
+name: DeltaRSI GRAMUSDT post-renaming 4h contract snapshot
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/download_gram.py'
+      - '.github/workflows/delta-ml-gram-history.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download ONLY GRAMUSDT 4h futures since listing 2 July 2026
+        run: python -u experiments/delta_ml_3y/download_gram.py
+      - name: Save immutable independent GRAM contract snapshot release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG=delta-ml-gram-4h-2026-10-27
+          cd experiments/delta_ml_3y
+          zip -q "$RUNNER_TEMP/delta-ml-gram-2026-10-27.zip" data/GRAMUSDT.json
+          cd "$GITHUB_WORKSPACE"
+          if gh release view "$TAG" --repo VulpreS/Deltarsi1 >/dev/null 2>&1; then
+             echo "Immutable GRAM release already exists; preserving"
+          else
+             gh release create "$TAG" "$RUNNER_TEMP/delta-ml-gram-2026-10-27.zip" \
+                --repo VulpreS/Deltarsi1 \
+                --title "GRAMUSDT USD-M 4h data (new contract since July 2026)" \
+                --notes "Separate from delisted TONUSDT; no 4h candle stitching. Research data only."
+          fi
+      - name: Upload GRAM contract candles
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-gram-contract-4h
+          path: experiments/delta_ml_3y/data/GRAMUSDT.json
+          retention-days: 90
