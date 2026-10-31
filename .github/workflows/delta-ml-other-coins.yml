@@ -1,0 +1,47 @@
+name: DeltaRSI per-coin rule search BTC BNB XRP TON (cached)
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/other_coins_rules.py'
+      - '.github/workflows/delta-ml-other-coins.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore saved historical Binance candles from GitHub Release (NO new market downloads)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y
+          mkdir -p "$RUNNER_TEMP/delta-ml-snapshot"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+             --repo VulpreS/Deltarsi1 --pattern 'delta-ml-3y-snapshot-2026-10-27.zip' \
+             --dir "$RUNNER_TEMP/delta-ml-snapshot"
+          unzip -q "$RUNNER_TEMP/delta-ml-snapshot/delta-ml-3y-snapshot-2026-10-27.zip" \
+             -d experiments/delta_ml_3y
+          for coin in BTC BNB XRP TON; do
+            test -s "experiments/delta_ml_3y/data/${coin}USDT.json" || exit 1
+          done
+          ls -lh experiments/delta_ml_3y/data/
+      - name: Install offline Python dependencies
+        run: python -m pip install --quiet numpy pandas scikit-learn xgboost
+      - name: Search separate explainable LONG SHORT and EXIT rules with nested chronological checks
+        run: python -u experiments/delta_ml_3y/other_coins_rules.py
+      - name: Upload per-coin results, trade logs and nested checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-other-coins-rules
+          path: |
+            experiments/delta_ml_3y/OTHER_COINS_RESEARCH.json
+            experiments/delta_ml_3y/OTHER_COINS_RESEARCH.md
+          retention-days: 90
