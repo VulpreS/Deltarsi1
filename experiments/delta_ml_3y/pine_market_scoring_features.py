@@ -102,7 +102,7 @@ def causal_daily_from_4h(rows):
     return z
 
 
-def scoring_features(rows):
+def scoring_features(rows,normalize_higher_tf=False):
     d=pd.DataFrame(rows,columns=["t","open","high","low","close","volume"])
     local=core_regime(d.close,d.high,d.low)
     day=causal_daily_from_4h(rows)
@@ -112,8 +112,8 @@ def scoring_features(rows):
     # Daily data unavailable for current day until after UTC close.
     htf=day.reindex(yesterday).reset_index(drop=True)
     short=df["short_score"]
-    long=htf["long_score_same_tf"].fillna(0)
-    local_bias=pd.Series(df["bias"],index=df.index)
+    long_raw=htf["long_score_same_tf"].fillna(0)
+    # EXPLICIT counterfactual: rescale 0..2 to 0..5 to make\n    # originally unreachable MATURE/AGING states reachable. Original is default.\n    long=long_raw*2.5 if normalize_higher_tf else long_raw\n    local_bias=pd.Series(df["bias"],index=df.index)
     daily_bias=pd.Series(htf["bias"].fillna("NEUTRAL"),index=df.index)
     align=(local_bias!="NEUTRAL")&(local_bias==daily_bias)
     conflict=(local_bias!="NEUTRAL")&(daily_bias!="NEUTRAL")&(local_bias!=daily_bias)
@@ -130,6 +130,7 @@ def scoring_features(rows):
     output=pd.DataFrame(dict(
         score_short_term=short.to_numpy(),
         score_higher_tf=long.to_numpy(),
+        score_higher_tf_raw=long_raw.to_numpy(),
         composite=composite.to_numpy(),
         bias_short_term=local_bias.to_numpy(),
         bias_higher_tf=daily_bias.to_numpy(),
