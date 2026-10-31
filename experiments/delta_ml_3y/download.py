@@ -1,5 +1,5 @@
 """Download 3 years of 4h OHLCV from Bybit public API; archive per symbol."""
-import json,time,datetime as dt,urllib.request, pathlib,sys
+import json,time,datetime as dt,urllib.request,urllib.error, pathlib,sys,io,zipfile,calendar
 SYMS=("BTCUSDT","ETHUSDT","TONUSDT","BNBUSDT","XRPUSDT","LINKUSDT")
 START=int(dt.datetime(2023,11,1,tzinfo=dt.timezone.utc).timestamp()*1000)
 END=int(dt.datetime(2026,11,1,tzinfo=dt.timezone.utc).timestamp()*1000)
@@ -14,6 +14,7 @@ def fetch(sym,end):
    if payload.get("retCode")!=0:raise RuntimeError(str(payload)[:300])
    return payload["result"]["list"]
   except Exception as exc:
+   if isinstance(exc, urllib.error.HTTPError) and exc.code == 403: raise RuntimeError("Bybit HTTP 403 from GitHub runner; use verified historical archive source or a permitted runner") from exc
    if attempt==6:raise
    time.sleep(2**attempt)
 for sym in SYMS:
