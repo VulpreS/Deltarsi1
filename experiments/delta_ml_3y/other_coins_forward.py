@@ -1,4 +1,4 @@
-"""Paper-only prospective forward for preselected BTC BNB XRP TON 4h DeltaRSI.
+"""Paper-only prospective forward for preselected BTC BNB XRP 4h DeltaRSI; TON retired, GRAM requires separate contract.
 
 Never retune on August-October 2026; it was previously inspected.
 Policy selection completed 2026-10-31 UTC, so genuine forward begins
@@ -16,7 +16,7 @@ import forward_frozen as frozen
 from train import ROOT, features
 
 FROZEN_DATE="2026-10-31"
-ASSETS=("BTCUSDT","BNBUSDT","XRPUSDT","TONUSDT")
+ASSETS=("BTCUSDT","BNBUSDT","XRPUSDT")
 START=frozen.FORWARD_MS
 COST=0.0018
 INIT=5000.
@@ -25,7 +25,6 @@ POLICIES={
     "BTCUSDT":dict(params=("strict_trend",4.0,5.0,(3.0,1.5),"zero_cross"),direction="both"),
     "BNBUSDT":dict(params=("strict",1.5,0.0,(3.0,1.5),"risk_only"),direction="both"),
     "XRPUSDT":dict(params=("expanded",2.5,5.0,(3.0,1.5),"risk_only"),direction="both"),
-    "TONUSDT":dict(params=("expanded",4.0,5.0,(3.0,1.5),"risk_only"),direction="short_only"),
 }
 
 
@@ -81,7 +80,7 @@ def main():
         sets[sym]=all_rows
         inputs[sym]=dict(baseline_sha256=hashlib.sha256(contents).hexdigest(),**diag)
     end=min(int(rows[-1][0]) for rows in sets.values())
-    result=dict(experiment="prospective_BTC_BNB_XRP_TON_frozen_delta_paper",
+    result=dict(experiment="prospective_BTC_BNB_XRP_frozen_delta_paper",
         as_of=now.isoformat(),run_id=os.environ.get("GITHUB_RUN_ID","local"),
         sha=os.environ.get("GITHUB_SHA","local"),policy_frozen_on=FROZEN_DATE,
         first_eligible_utc=frozen.iso(START),
@@ -93,6 +92,7 @@ def main():
         margin_notional_assumption="research fixed nominal USD, no leverage",
         starting_capital=INIT,not_a_combined_portfolio=True,
         rules={},reports={},data_quality=inputs,commissions_funding="0.18% RT fee + spread proxy; funding omitted",
+        excluded_contracts={"TONUSDT":"DELlSTED 2026-06-23; subsequent candles zero volume, GRAMUSDT is separate from July 2"},
         warnings=[
             "Any result before 2026-11-01 is forbidden as a new prospective out-of-sample score",
             "Previously inspected Aug-Oct performance and thousands of candidates selected; needs further future validation",
