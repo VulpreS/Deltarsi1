@@ -1,0 +1,26 @@
+name: Download 3 years Delta ML candles
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/download.py'
+      - '.github/workflows/delta-ml-3y.yml'
+  workflow_dispatch:
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download Bybit 4h candles and partition chronologically
+        run: python -u experiments/delta_ml_3y/download.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: delta-ml-3y-4h-candles
+          path: experiments/delta_ml_3y/data/*.json
+          retention-days: 90
