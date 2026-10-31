@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Restore ALL immutable historical 4h contracts: six old, ICP ZEC, new GRAM
+      - name: "Restore ALL immutable 4h contracts: six old, ICP ZEC, new GRAM"
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
