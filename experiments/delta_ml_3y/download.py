@@ -109,8 +109,17 @@ def process_symbol(sym):
         for row in rows:
             records[row[0]] = row
         print(sym, period, date, "rows", len(rows), "total", len(records), flush=True)
-    if missing_after_start:
-        raise RuntimeError(f"{sym}: missing archive(s) after listing: {missing_after_start[:8]}")
+    # The provider may omit a recent whole daily ZIP even while newer ZIPs exist.
+    # NEVER bridge such a gap with a fictitious candle or a multi-day price return.
+    # Instead use the last contiguous history prefix; report the truncation.
+    first_missing = min(missing_after_start) if missing_after_start else None
+    if first_missing:
+        if first_missing < "2026-10-25":
+            raise RuntimeError(f"{sym}: historical archive missing too early: {missing_after_start[:8]}")
+        stop = int(dt.datetime.fromisoformat(first_missing).replace(tzinfo=dt.timezone.utc).timestamp() * 1000)
+        records = {t: r for t, r in records.items() if t < stop}
+        print("DATA_WARNING", json.dumps({"symbol": sym, "missing_days": missing_after_start,
+                "action": "exclude all candles from first missing day onward; no interpolation"}), flush=True)
     rows = [records[k] for k in sorted(records)]
     if not rows:
         raise RuntimeError(f"{sym}: Binance Vision archive returned no candles")
@@ -123,7 +132,7 @@ def process_symbol(sym):
     min_start = int(dt.datetime(2024, 9, 1, tzinfo=dt.timezone.utc).timestamp() * 1000) if sym == "TONUSDT" else int(dt.datetime(2023, 11, 3, tzinfo=dt.timezone.utc).timestamp() * 1000)
     if first > min_start:
         raise RuntimeError(f"{sym}: history begins unexpectedly late ({first_archive})")
-    latest_allowed = int(dt.datetime(2026, 10, 28, tzinfo=dt.timezone.utc).timestamp() * 1000)
+    latest_allowed = int(dt.datetime(2026, 10, 25, tzinfo=dt.timezone.utc).timestamp() * 1000)
     if last < latest_allowed:
         raise RuntimeError(f"{sym}: recent history ends unexpectedly early: {last}")
     train = sum(r[0] < CUT for r in rows)
@@ -134,7 +143,7 @@ def process_symbol(sym):
     output.write_text(json.dumps(rows, separators=(",", ":")))
     result = dict(source="Binance Vision USD-M futures", symbol=sym, rows=len(rows),
                   train=train, test=test, first=first, last=last,
-                  missing_archives=0, output=str(output))
+                  missing_archives=missing_after_start, output=str(output))
     print("DATA_SUMMARY", json.dumps(result), flush=True)
     return result
 
