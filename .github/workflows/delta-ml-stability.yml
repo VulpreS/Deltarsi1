@@ -1,0 +1,46 @@
+name: DeltaRSI stability across 3 historical regimes (cached)
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/research_stability.py'
+      - '.github/workflows/delta-ml-stability.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  stability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore immutable historical 4h candles from run 41231907011 (NO Binance requests)
+        uses: actions/download-artifact@v4
+        with:
+          name: delta-ml-3y-4h-candles
+          run-id: 41231907011
+          github-token: ${{ github.token }}
+          repository: VulpreS/Deltarsi1
+          path: experiments/delta_ml_3y
+      - name: Ensure all six datasets available
+        run: |
+          for coin in BTC ETH TON BNB XRP LINK; do
+            test -s "experiments/delta_ml_3y/data/${coin}USDT.json" || exit 1
+          done
+      - name: Install dependencies
+        run: python -m pip install --quiet numpy pandas scikit-learn xgboost
+      - name: Search robust rules across calibration and TWO internal validation spans
+        run: python -u experiments/delta_ml_3y/research_stability.py
+      - name: Upload robust candidates, rule explanations, and trades
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: delta-ml-stability
+          path: |
+            experiments/delta_ml_3y/stability_report.json
+            experiments/delta_ml_3y/stability_trades.json
+            experiments/delta_ml_3y/STABILITY_RESEARCH_REPORT.md
+          retention-days: 90
