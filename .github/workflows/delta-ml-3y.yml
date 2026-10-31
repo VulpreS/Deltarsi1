@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'experiments/delta_ml_3y/download.py'
+      - 'experiments/delta_ml_3y/train.py'
       - '.github/workflows/delta-ml-3y.yml'
   workflow_dispatch:
 jobs:
@@ -18,9 +19,15 @@ jobs:
           python-version: '3.11'
       - name: Download Bybit 4h candles and partition chronologically
         run: python -u experiments/delta_ml_3y/download.py
+      - name: Install ML dependencies
+        run: python -m pip install --quiet numpy pandas scikit-learn xgboost
+      - name: Train XGBoost and evaluate held-out last three months
+        run: python -u experiments/delta_ml_3y/train.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: delta-ml-3y-4h-candles
-          path: experiments/delta_ml_3y/data/*.json
+          path: |
+            experiments/delta_ml_3y/data/*.json
+            experiments/delta_ml_3y/report.json
           retention-days: 90
