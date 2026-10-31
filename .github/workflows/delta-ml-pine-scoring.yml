@@ -1,0 +1,48 @@
+name: DeltaRSI experiment using user's original Pine market scoring model
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/pine_market_scoring_features.py'
+      - 'experiments/delta_ml_3y/pine_market_scoring_study.py'
+      - '.github/workflows/delta-ml-pine-scoring.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pine-scoring:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore eight prior historical 4h archives without new downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/archive"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip --dir "$RUNNER_TEMP/archive"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip --dir "$RUNNER_TEMP/archive"
+          for file in "$RUNNER_TEMP/archive/"*.zip; do
+            unzip -q "$file" -d experiments/delta_ml_3y
+          done
+          for asset in BTC ETH BNB XRP LINK TON ICP ZEC; do
+            test -s "experiments/delta_ml_3y/data/${asset}USDT.json"
+          done
+      - name: Install Python numeric dependencies
+        run: python -m pip install --quiet numpy pandas scikit-learn xgboost
+      - name: Test literal Pine REGIME and corrected-scale control with forward-chaining entry exit choices
+        run: python -u experiments/delta_ml_3y/pine_market_scoring_study.py
+      - name: Save scoring parity diagnostics, learned rule tables and trade ledgers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-original-pine-market-scoring
+          path: |
+            experiments/delta_ml_3y/PINE_MARKET_SCORING_STUDY.json
+            experiments/delta_ml_3y/PINE_MARKET_SCORING_STUDY.md
+          retention-days: 90
