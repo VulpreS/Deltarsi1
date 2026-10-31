@@ -1,4 +1,4 @@
-name: Download 3 years Delta ML candles
+name: DeltaRSI 3y ML independent entries exits
 on:
   push:
     paths:
@@ -17,11 +17,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Download Bybit 4h candles and partition chronologically
+      - name: Download Binance Vision USD-M historical 4h archives
         run: python -u experiments/delta_ml_3y/download.py
       - name: Install ML dependencies
         run: python -m pip install --quiet numpy pandas scikit-learn xgboost
-      - name: Train XGBoost and evaluate held-out last three months
+      - name: Train independent XGBoost entry and exit models; evaluate held-out last three months
         run: python -u experiments/delta_ml_3y/train.py
       - uses: actions/upload-artifact@v4
         if: always()
@@ -29,5 +29,5 @@ jobs:
           name: delta-ml-3y-4h-candles
           path: |
             experiments/delta_ml_3y/data/*.json
-            experiments/delta_ml_3y/report.json
+            experiments/delta_ml_3y/*.json
           retention-days: 90
