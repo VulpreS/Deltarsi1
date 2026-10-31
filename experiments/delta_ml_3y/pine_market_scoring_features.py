@@ -47,8 +47,9 @@ def core_regime(close,high,low,lookback=60):
     nw=weighted_nw_sma18(close)
     slope=nw.diff()
     slope_sign=np.sign(slope)
-    consistent=((((slope>0)&(slope.shift(1)>0)&(slope.shift(2)>0)&(slope.shift(3)>0)) |
-                ((slope<0)&(slope.shift(1)<0)&(slope.shift(2)<0)&(slope.shift(3)<0))).astype(float)
+    ups=(slope>0)&(slope.shift(1)>0)&(slope.shift(2)>0)&(slope.shift(3)>0)
+    downs=(slope<0)&(slope.shift(1)<0)&(slope.shift(2)<0)&(slope.shift(3)<0)
+    consistent=(ups|downs).astype(float)
     higher_lows=((low>low.shift(1))&(low.shift(1)>low.shift(2))&
                  (low.shift(2)>low.shift(3))&(low.shift(3)>low.shift(4)))
     lower_highs=((high<high.shift(1))&(high.shift(1)<high.shift(2))&
