@@ -1,0 +1,53 @@
+name: DeltaRSI cross-horizon regimes eight assets plus GRAM transition
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/cross_horizon_regimes.py'
+      - '.github/workflows/delta-ml-cross-horizons.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore ALL immutable historical 4h contracts: six old, ICP ZEC, new GRAM
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/market-data"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/market-data"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/market-data"
+          gh release download delta-ml-gram-4h-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-gram-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/market-data"
+          for archive in "$RUNNER_TEMP"/market-data/*.zip; do
+            unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+          for coin in BTC ETH BNB XRP LINK TON ICP ZEC GRAM; do
+            test -s "experiments/delta_ml_3y/data/${coin}USDT.json" || exit 1
+          done
+          echo "9 separate contracts ready, no extra exchange requests."
+      - name: Install numerical libraries
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Describe strict DeltaRSI events under 7d 30d 90d market disagreement
+        run: python -u experiments/delta_ml_3y/cross_horizon_regimes.py
+      - name: Save complete exit profiles and contemporaneous coin states
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-cross-horizon-regimes
+          path: |
+            experiments/delta_ml_3y/CROSS_HORIZON_REGIME_REPORT.json
+            experiments/delta_ml_3y/CROSS_HORIZON_REGIME_REPORT.md
+          retention-days: 90
