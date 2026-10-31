@@ -105,6 +105,17 @@ def classify_coins():
             raise FileNotFoundError(f"{sym} missing frozen cache {path}")
         payload=path.read_bytes()
         rows=json.loads(payload)
+        # TONUSDT USD-M ceased trading on Binance June 23, 2026 at 09:00 UTC.
+        # Binance Vision subsequently contains 759 constant-price ZERO-VOLUME
+        # placeholder bars. Never treat those as live tradable candles.
+        # The candle opening at 08:00 spans the 09:00 delisting, so only
+        # fully completed 4h candles up through 04:00 are eligible.
+        if sym=="TONUSDT":
+            delisted_open=int(dt.datetime(2026,6,23,8,tzinfo=dt.timezone.utc).timestamp()*1000)
+            tail=[r for r in rows if r[0]>=delisted_open]
+            if not tail or not all(r[5]==0 for r in tail[1:]):
+                raise RuntimeError("TONUSDT retired-contract data needs manual audit")
+            rows=[r for r in rows if r[0]<delisted_open]
         if len(rows)<3000:
             raise RuntimeError(f"Insufficient {sym} history: {len(rows)}")
         if any(b[0]-a[0]!=4*3600000 for a,b in zip(rows,rows[1:])):
@@ -426,7 +437,7 @@ def main():
          "Labels learned only from COMPLETED trades exiting prior to cutoff; cohorts with insufficient coin breadth fallback to symmetric",
          "No funding, slippage shocks, 1h/tick execution, full Upscale / Turbo risk compliance",
          "Aug-Oct inspected before this work and cannot be used to select rules",
-         "ICP/ZEC historical coverage may differ from TON; metrics show exact dates",
+         "ICP/ZEC historical coverage may differ; TONUSDT historical series truncated to the last fully tradable 4h bar before June 23 delisting; GRAMUSDT July 2 new listing is a separate research segment",
          "No manual trades used and no forced 48-hour exit",
        ])
     path=ROOT/"REGIME_EIGHT_ASSETS_REPORT.json"
@@ -446,7 +457,7 @@ def main():
 
     lines=["# DeltaRSI: восемь разных рынков — общие входы и зависящие от режима выходы","",
        "Это **эксперимент**, а не готовая стратегия. ETH/LINK и четыре индивидуальных правила не переписаны.",
-       "8 Binance USD-M 4H: BTC, ETH, BNB, XRP, LINK, TON, ICP, ZEC.",
+       "8 Binance USD-M 4H: BTC, ETH, BNB, XRP, LINK, TON only before its June-2026 delisting, ICP, ZEC.",
        "Источник: неизменяемые архивы GitHub Release; повторно загружались только ранее отсутствовавшие ICP/ZEC.",
        "Не использовать август–октябрь для подбора: период ранее просмотрен.",
        "Все признаки на закрытой 4h; никакого принудительного закрытия через 48ч.","",
