@@ -1,0 +1,49 @@
+name: DeltaRSI BTC BNB XRP TON paper forward from cached 3y release
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/other_coins_forward.py'
+      - '.github/workflows/delta-ml-other-coins-forward.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '45 7 * * *'
+permissions:
+  contents: read
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore permanent cached 3-year candle release (no historical exchange downloads)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y
+          mkdir -p "$RUNNER_TEMP/historic"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 \
+            --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/historic"
+          unzip -q "$RUNNER_TEMP/historic/delta-ml-3y-snapshot-2026-10-27.zip" \
+            -d experiments/delta_ml_3y
+          for symbol in BTC BNB XRP TON; do
+            test -s "experiments/delta_ml_3y/data/${symbol}USDT.json"
+          done
+      - name: Install numerical dependencies
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Test frozen BTC BNB XRP TON strategies on future CLOSED 4h only
+        run: python -u experiments/delta_ml_3y/other_coins_forward.py
+      - name: Upload forward diagnostic (paper only)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-other-coins-forward
+          path: |
+            experiments/delta_ml_3y/OTHER_COINS_FORWARD.json
+            experiments/delta_ml_3y/OTHER_COINS_FORWARD.md
+          retention-days: 90
