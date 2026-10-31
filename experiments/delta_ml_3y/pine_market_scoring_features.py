@@ -114,7 +114,10 @@ def scoring_features(rows,normalize_higher_tf=False):
     htf=day.reindex(yesterday).reset_index(drop=True)
     short=df["short_score"]
     long_raw=htf["long_score_same_tf"].fillna(0)
-    # EXPLICIT counterfactual: rescale 0..2 to 0..5 to make\n    # originally unreachable MATURE/AGING states reachable. Original is default.\n    long=long_raw*2.5 if normalize_higher_tf else long_raw\n    local_bias=pd.Series(df["bias"],index=df.index)
+    # EXPLICIT counterfactual: rescale 0..2 to 0..5, allowing states
+    # MATURE/AGING to appear. Original is the DEFAULT model.
+    long=long_raw*2.5 if normalize_higher_tf else long_raw
+    local_bias=pd.Series(df["bias"],index=df.index)
     daily_bias=pd.Series(htf["bias"].fillna("NEUTRAL"),index=df.index)
     align=(local_bias!="NEUTRAL")&(local_bias==daily_bias)
     conflict=(local_bias!="NEUTRAL")&(daily_bias!="NEUTRAL")&(local_bias!=daily_bias)
