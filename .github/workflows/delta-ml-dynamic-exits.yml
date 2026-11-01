@@ -1,0 +1,49 @@
+name: DeltaRSI dynamic intra-trade market regime exit research
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/dynamic_exit_regimes.py'
+      - '.github/workflows/delta-ml-dynamic-exits.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dynamic-exits:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore immutable eight-coin Binance 4h history (no historical re-download)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/archives"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          for archive in "$RUNNER_TEMP"/archives/*.zip; do
+            unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+          for symbol in BTC ETH BNB XRP LINK ICP ZEC TON; do
+            test -s "experiments/delta_ml_3y/data/${symbol}USDT.json" || exit 1
+          done
+      - name: Install research dependencies
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Run strict-entry, real-time score updated exit simulation with validation and transfer
+        run: python -u experiments/delta_ml_3y/dynamic_exit_regimes.py
+      - name: Upload complete dynamic-exit study and trades
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-dynamic-exit-market-regimes
+          path: |
+            experiments/delta_ml_3y/DYNAMIC_EXIT_REGIME_REPORT.json
+            experiments/delta_ml_3y/DYNAMIC_EXIT_REGIME_REPORT.md
+          retention-days: 90
