@@ -166,16 +166,20 @@ def one_trade(base,sc,signal_idx,side,last_exclusive,policy):
         baropen=float(base["op"][j])
         low=float(base["low"][j])
         high=float(base["high"][j])
-        mae=min(mae,side*((low if side>0 else high)-entry)/atr)
-        mfe=max(mfe,side*((high if side>0 else low)-entry)/atr)
         # Decision at opening of bar j reads ONLY bar j-1 (already closed).
+        # Do not include this bar's future high/low in the trade's MAE/MFE
+        # if the position exits immediately at the bar OPEN.
         if j>open_idx:
             reason=score_exit_trigger(policy,base,sc,j,side,entry,atr,
                  entry_regime,entry_score,score_high_water,entry_atr_pct)
             if reason is not None:
                 exit_at=baropen
                 exit_idx=j
+                mae=min(mae,side*(baropen-entry)/atr)
+                mfe=max(mfe,side*(baropen-entry)/atr)
                 break
+        mae=min(mae,side*((low if side>0 else high)-entry)/atr)
+        mfe=max(mfe,side*((high if side>0 else low)-entry)/atr)
         # Gap checks happen before this bar's high/low are consulted.
         if (side>0 and baropen<=stop) or (side<0 and baropen>=stop):
             exit_at=baropen
@@ -234,8 +238,9 @@ def one_trade(base,sc,signal_idx,side,last_exclusive,policy):
         mae_atr=round(float(mae),3),mfe_atr=round(float(mfe),3),
         hold_hours=4*(exit_idx-open_idx),
         entry_regime=entry_regime,entry_score=round(entry_score,3),
-        exit_score=round(float(sc["composite"][min(exit_idx,sc.shape[0]-1)]),3),
-        score_change=round(float(sc["composite"][min(exit_idx,sc.shape[0]-1)])-entry_score,3),
+        # Execution at bar OPEN cannot know this bar's closing market score.
+        exit_score=round(float(sc["composite"][max(0,min(exit_idx-1,sc.shape[0]-1))]),3),
+        score_change=round(float(sc["composite"][max(0,min(exit_idx-1,sc.shape[0]-1))])-entry_score,3),
         stop_updates=changes,reason=reason,
         realized=reason!="unrealized_mark_at_fold_boundary")
 
