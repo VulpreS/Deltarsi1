@@ -1,0 +1,49 @@
+name: DeltaRSI XGBoost dynamic exit with Pine market-score ablation
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/dynamic_exit_xgb.py'
+      - '.github/workflows/delta-ml-dynamic-xgb.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  train-test-dynamic-exit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore immutable historical 4h candles for eight coins without downloading them again
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/archives"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+             --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+             --dir "$RUNNER_TEMP/archives"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+             --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+             --dir "$RUNNER_TEMP/archives"
+          for archive in "$RUNNER_TEMP"/archives/*.zip; do
+             unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+          for symbol in BTC ETH BNB XRP LINK ICP ZEC TON; do
+             test -s "experiments/delta_ml_3y/data/${symbol}USDT.json" || exit 1
+          done
+      - name: Install XGBoost sklearn numeric libraries
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Train XGB early exit policy on training-only hindsight baseline labels and evaluate new time spans
+        run: python -u experiments/delta_ml_3y/dynamic_exit_xgb.py
+      - name: Save all learned-label diagnostics, chronological tests, raw-vs-Pine ablations and trade ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-dynamic-exit-xgb-comparison
+          path: |
+            experiments/delta_ml_3y/DYNAMIC_EXIT_XGB_REPORT.json
+            experiments/delta_ml_3y/DYNAMIC_EXIT_XGB_REPORT.md
+          retention-days: 90
