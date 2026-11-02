@@ -1,0 +1,49 @@
+name: DeltaRSI 48h under original per-coin ATR prop settings
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/cycle_48h_prop_controls.py'
+      - '.github/workflows/delta-ml-cycle-48h-prop.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-atr-settings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore original eight frozen futures histories (no Binance requests)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/archives"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          for archive in "$RUNNER_TEMP"/archives/*.zip; do
+            unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+          for sym in BTC ETH BNB ICP ZEC TON; do
+            test -s "experiments/delta_ml_3y/data/${sym}USDT.json" || exit 1
+          done
+      - name: Install Python dependencies
+        run: python -m pip install --quiet numpy pandas scikit-learn xgboost
+      - name: Test 4-hour hold caps from 4 to 96 hours, with and without opposite-signal exit
+        run: python -u experiments/delta_ml_3y/cycle_48h_prop_controls.py
+      - name: Upload per-coin original ATR time-horizon comparisons and market-regime paired signals
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-cycle-48h-historical-per-coin-settings
+          path: |
+            experiments/delta_ml_3y/DELTARSI_48H_PER_COIN_RULES.json
+            experiments/delta_ml_3y/DELTARSI_48H_PER_COIN_RULES.md
+          retention-days: 90
