@@ -1,0 +1,49 @@
+name: DeltaRSI compare RSI27 minus EMA7 vs executable Pine12 sign cycle lengths
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/rsi27_vs_pine12_cycles.py'
+      - '.github/workflows/delta-ml-rsi27-cycle-compare.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rsi-definition-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore old eight coin and new GRAM 4h archives (no new data downloads)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/archives"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          gh release download delta-ml-gram-4h-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-gram-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archives"
+          for archive in "$RUNNER_TEMP"/archives/*.zip; do
+            unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+      - name: Install numerical libraries
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Compare RSI27 RMA with EMA7 to executable SMA21 RSI12 Pine on identical completed 4h candles
+        run: python -u experiments/delta_ml_3y/rsi27_vs_pine12_cycles.py
+      - name: Preserve distinct formula cycles and no-future prefix checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-rsi27-vs-pine12-cycle-clocks
+          path: |
+            experiments/delta_ml_3y/RSI27_VS_PINE12_CYCLES.json
+            experiments/delta_ml_3y/RSI27_VS_PINE12_CYCLES.md
+          retention-days: 90
