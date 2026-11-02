@@ -9,8 +9,8 @@
       {
         "activation_atr": null,
         "distance_atr": null,
-        "equity": 5028.89,
-        "return_pct": 0.578,
+        "equity": 5003.55,
+        "return_pct": 0.071,
         "max_dd_pct": 6.492,
         "trades": 15,
         "win_pct": 60.0,
@@ -18,9 +18,9 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 0.46,
-        "half2_pct": 0.11,
-        "funding_paid": 116.7
+        "half1_pct": 0.13,
+        "half2_pct": -0.05,
+        "funding_paid": 118.8
       },
       {
         "activation_atr": 1.0,
@@ -34,8 +34,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 2.82,
-        "half2_pct": 0.16,
+        "half1_pct": 2.48,
+        "half2_pct": 0.49,
         "funding_paid": 46.2
       },
       {
@@ -50,8 +50,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 4.58,
-        "half2_pct": 0.64,
+        "half1_pct": 4.24,
+        "half2_pct": 0.97,
         "funding_paid": 52.2
       },
       {
@@ -66,8 +66,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 4.26,
-        "half2_pct": -0.08,
+        "half1_pct": 3.92,
+        "half2_pct": 0.24,
         "funding_paid": 54.3
       },
       {
@@ -82,8 +82,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 5.58,
-        "half2_pct": -0.45,
+        "half1_pct": 5.24,
+        "half2_pct": -0.13,
         "funding_paid": 58.2
       },
       {
@@ -98,8 +98,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 6.85,
-        "half2_pct": -0.12,
+        "half1_pct": 6.51,
+        "half2_pct": 0.2,
         "funding_paid": 61.5
       },
       {
@@ -114,8 +114,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 4.26,
-        "half2_pct": -0.86,
+        "half1_pct": 3.92,
+        "half2_pct": -0.54,
         "funding_paid": 62.1
       },
       {
@@ -130,8 +130,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 10.24,
-        "half2_pct": -2.6,
+        "half1_pct": 9.9,
+        "half2_pct": -2.3,
         "funding_paid": 71.7
       },
       {
@@ -146,8 +146,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 10.17,
-        "half2_pct": -2.74,
+        "half1_pct": 9.83,
+        "half2_pct": -2.45,
         "funding_paid": 73.2
       },
       {
@@ -162,8 +162,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 9.06,
-        "half2_pct": -3.36,
+        "half1_pct": 8.72,
+        "half2_pct": -3.06,
         "funding_paid": 75.6
       }
     ],
@@ -171,8 +171,8 @@
       {
         "activation_atr": null,
         "distance_atr": null,
-        "equity": 5108.68,
-        "return_pct": 2.174,
+        "equity": 5084.41,
+        "return_pct": 1.688,
         "max_dd_pct": 5.396,
         "trades": 15,
         "win_pct": 60.0,
@@ -180,9 +180,9 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 1.4,
-        "half2_pct": 0.77,
-        "funding_paid": 58.35
+        "half1_pct": 1.07,
+        "half2_pct": 0.62,
+        "funding_paid": 59.4
       },
       {
         "activation_atr": 1.0,
@@ -196,8 +196,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 3.5,
-        "half2_pct": 0.63,
+        "half1_pct": 3.17,
+        "half2_pct": 0.95,
         "funding_paid": 23.1
       },
       {
@@ -212,8 +212,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 5.26,
-        "half2_pct": 1.09,
+        "half1_pct": 4.93,
+        "half2_pct": 1.41,
         "funding_paid": 26.1
       },
       {
@@ -228,8 +228,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 4.91,
-        "half2_pct": 0.37,
+        "half1_pct": 4.59,
+        "half2_pct": 0.68,
         "funding_paid": 27.15
       },
       {
@@ -244,8 +244,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 6.28,
-        "half2_pct": 0.03,
+        "half1_pct": 5.95,
+        "half2_pct": 0.34,
         "funding_paid": 29.1
       },
       {
@@ -260,8 +260,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 7.54,
-        "half2_pct": 0.36,
+        "half1_pct": 7.21,
+        "half2_pct": 0.67,
         "funding_paid": 30.75
       },
       {
@@ -276,8 +276,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 4.91,
-        "half2_pct": -0.36,
+        "half1_pct": 4.59,
+        "half2_pct": -0.04,
         "funding_paid": 31.05
       },
       {
@@ -292,8 +292,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 10.96,
-        "half2_pct": -2.06,
+        "half1_pct": 10.63,
+        "half2_pct": -1.77,
         "funding_paid": 35.85
       },
       {
@@ -308,8 +308,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 10.88,
-        "half2_pct": -2.2,
+        "half1_pct": 10.55,
+        "half2_pct": -1.91,
         "funding_paid": 36.6
       },
       {
@@ -324,8 +324,8 @@
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
-        "half1_pct": 9.79,
-        "half2_pct": -2.8,
+        "half1_pct": 9.46,
+        "half2_pct": -2.51,
         "funding_paid": 37.8
       }
     ]
