@@ -1,6 +1,6 @@
 # ETHUSDT 1H — DeltaRSI exploratory report
 
-Closed candles: **8925**; from 2025-10-26T12:00:00+00:00 to 2026-11-02T08:00:00+00:00.
+Closed candles: **8949**; from 2025-10-26T12:00:00+00:00 to 2026-11-03T08:00:00+00:00.
 
 ## Method
 SMA(21) → Wilder RSI(12) → EMA(7), then mirrored logarithmic delta exactly as in Delta.
@@ -9,7 +9,7 @@ This is a retrospective structural study, not an executable entry strategy. Wave
 
 ## Results
 Completed positive waves: **233**.
-Bearish wave divergences: **44**.
+Bearish wave divergences: **45**.
 
 | Wave confirmed UTC | Price high previous → current | Delta peak previous → current | Return next 6h | Return next 12h |
 |---|---:|---:|---:|---:|
@@ -57,6 +57,7 @@ Bearish wave divergences: **44**.
 | 2026-10-22T03:00:00+00:00 | 2446.27 → 2526.62 | 64.18 → 45.63 | -1.50% | -1.87% |
 | 2026-10-28T12:00:00+00:00 | 2333.97 → 2387.50 | 72.73 → 54.21 | +0.64% | +0.62% |
 | 2026-10-29T15:00:00+00:00 | 2371.68 → 2373.00 | 4.15 → 1.66 | -4.03% | -5.54% |
+| 2026-11-02T16:00:00+00:00 | 2278.00 → 2317.84 | 100.27 → 37.69 | -0.54% | -0.52% |
 
 ## Limitations
 - No commissions, spread, funding or slippage included.
