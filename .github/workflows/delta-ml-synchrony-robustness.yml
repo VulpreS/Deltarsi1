@@ -1,0 +1,52 @@
+name: DeltaRSI wave alignment robustness by month and year
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/synchrony_robustness.py'
+      - '.github/workflows/delta-ml-synchrony-robustness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  robustness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore existing 4h candles from immutable GitHub releases only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/archive"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archive"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archive"
+          gh release download delta-ml-gram-4h-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-gram-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/archive"
+          for archive in "$RUNNER_TEMP"/archive/*.zip; do
+            unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+          for coin in BTC ETH BNB XRP LINK ICP ZEC TON GRAM; do
+            test -s "experiments/delta_ml_3y/data/${coin}USDT.json"
+          done
+      - name: Install dependencies
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Test within-month random timing shifts and annual same-wave BTC alt synchronization
+        run: python -u experiments/delta_ml_3y/synchrony_robustness.py
+      - name: Upload monthly null, event times and BTC vs alt lag report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-synchrony-monthly-robustness
+          path: |
+            experiments/delta_ml_3y/SYNCHRONY_ROBUSTNESS.json
+            experiments/delta_ml_3y/SYNCHRONY_ROBUSTNESS.md
+          retention-days: 90
