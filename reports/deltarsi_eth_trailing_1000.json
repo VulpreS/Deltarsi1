@@ -9,8 +9,8 @@
       {
         "activation_atr": null,
         "distance_atr": null,
-        "equity": 5003.55,
-        "return_pct": 0.071,
+        "equity": 4990.71,
+        "return_pct": -0.186,
         "max_dd_pct": 6.492,
         "trades": 15,
         "win_pct": 60.0,
@@ -19,8 +19,8 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 0.13,
-        "half2_pct": -0.05,
-        "funding_paid": 118.8
+        "half2_pct": -0.31,
+        "funding_paid": 120.6
       },
       {
         "activation_atr": 1.0,
@@ -171,8 +171,8 @@
       {
         "activation_atr": null,
         "distance_atr": null,
-        "equity": 5084.41,
-        "return_pct": 1.688,
+        "equity": 5072.48,
+        "return_pct": 1.45,
         "max_dd_pct": 5.396,
         "trades": 15,
         "win_pct": 60.0,
@@ -181,8 +181,8 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 1.07,
-        "half2_pct": 0.62,
-        "funding_paid": 59.4
+        "half2_pct": 0.38,
+        "funding_paid": 60.3
       },
       {
         "activation_atr": 1.0,
