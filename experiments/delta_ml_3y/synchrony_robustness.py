@@ -41,12 +41,15 @@ def next_month(ms):
 def monthly_rotate(evt):
     """Preserve event count in each month and clustering within month."""
     out=evt.copy()
-    for month in set(month_start(t) for t in evt[:,0]):
-        mask=np.array([month_start(t)==month for t in evt[:,0]])
-        start=int(month)
-        length=(next_month(start)-start)//STEP
-        # +/-8h trivial phase offset is excluded, though monthly wrap can
-        # still happen to align by chance; the null distribution includes it.
+    # Vectorize month grouping instead of recomputing datetime.fromtimestamp
+    # for each event for each of 900 permutations.
+    months=evt[:,0].astype("datetime64[ms]").astype("datetime64[M]")
+    unique,idx=np.unique(months,return_inverse=True)
+    for j,month in enumerate(unique):
+        mask=(idx==j)
+        start=int(month.astype("datetime64[ms]").astype(np.int64))
+        next_start=int((month+np.timedelta64(1,"M")).astype("datetime64[ms]").astype(np.int64))
+        length=(next_start-start)//STEP
         offset=int(RNG.integers(8,length-8))
         out[mask,0]=start+(((evt[mask,0]-start)//STEP+offset)%length)*STEP
     return out[np.argsort(out[:,0])]
