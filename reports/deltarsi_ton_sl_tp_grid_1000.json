@@ -1,7 +1,7 @@
 {
-  "source_sha256": "9b12dfcc89eaca9cb9243142ece9ad5dcbc89b0b2aaa068d804b2b815893830a",
+  "source_sha256": "c8a7657da0099077f24b1ae30a25abd52c48c1b0708e242b643ed9e71bfce1cb",
   "window": [
-    1762326000000,
+    1762329600000,
     1782788400000
   ],
   "symbol": "TONUSDT",
@@ -1148,7 +1148,7 @@
         "breach_daily_days": 0,
         "breach_total": true,
         "first_breach": {
-          "day": 222.33,
+          "day": 222.29,
           "type": "total"
         },
         "half1_pct": -1.26,
