@@ -1,0 +1,53 @@
+name: DeltaRSI cross-coin wave synchronicity and weekday calendar tests
+on:
+  push:
+    paths:
+      - 'experiments/delta_ml_3y/weekday_cross_coin_synchrony.py'
+      - '.github/workflows/delta-ml-synchrony-weekdays.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synchronicity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore all previously cached Binance 4h historical contracts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/delta_ml_3y "$RUNNER_TEMP/research-archive"
+          gh release download delta-ml-3y-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-3y-snapshot-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/research-archive"
+          gh release download delta-ml-icp-zec-cache-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-icp-zec-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/research-archive"
+          gh release download delta-ml-gram-4h-2026-10-27 \
+            --repo VulpreS/Deltarsi1 --pattern delta-ml-gram-2026-10-27.zip \
+            --dir "$RUNNER_TEMP/research-archive"
+          for archive in "$RUNNER_TEMP"/research-archive/*.zip; do
+            unzip -q "$archive" -d experiments/delta_ml_3y
+          done
+          for symbol in BTC ETH BNB XRP LINK ICP ZEC TON GRAM; do
+            test -s "experiments/delta_ml_3y/data/${symbol}USDT.json"
+          done
+          echo "Nine separate 4H market histories restored, no new market downloads"
+      - name: Install numerical libraries
+        run: python -m pip install --quiet numpy pandas xgboost scikit-learn
+      - name: Measure coordinated sign flips and nearby histogram-linked price peaks versus null calendar patterns
+        run: python -u experiments/delta_ml_3y/weekday_cross_coin_synchrony.py
+      - name: Save annual week-day patterns, per-coin lags and permutation significance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deltarsi-cross-coin-weekday-sign-synchrony
+          path: |
+            experiments/delta_ml_3y/WEEKDAY_CROSS_COIN_SYNCHRONY.json
+            experiments/delta_ml_3y/WEEKDAY_CROSS_COIN_SYNCHRONY.md
+          retention-days: 90
