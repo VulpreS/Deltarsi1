@@ -9,9 +9,9 @@
       {
         "activation_atr": null,
         "distance_atr": null,
-        "equity": 4990.71,
-        "return_pct": -0.186,
-        "max_dd_pct": 6.492,
+        "equity": 5021.74,
+        "return_pct": 0.435,
+        "max_dd_pct": 7.168,
         "trades": 15,
         "win_pct": 60.0,
         "pf": 1.007,
@@ -19,45 +19,45 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 0.13,
-        "half2_pct": -0.31,
-        "funding_paid": 120.6
+        "half2_pct": 0.31,
+        "funding_paid": 123.0
       },
       {
         "activation_atr": 1.0,
         "distance_atr": 0.5,
-        "equity": 5149.42,
-        "return_pct": 2.988,
+        "equity": 5154.15,
+        "return_pct": 3.083,
         "max_dd_pct": 2.405,
-        "trades": 26,
-        "win_pct": 92.31,
-        "pf": 1.868,
+        "trades": 27,
+        "win_pct": 92.59,
+        "pf": 1.895,
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 2.48,
-        "half2_pct": 0.49,
-        "funding_paid": 46.2
+        "half2_pct": 0.59,
+        "funding_paid": 46.5
       },
       {
         "activation_atr": 1.0,
         "distance_atr": 1.0,
-        "equity": 5262.2,
-        "return_pct": 5.244,
+        "equity": 5264.7,
+        "return_pct": 5.294,
         "max_dd_pct": 2.217,
-        "trades": 24,
-        "win_pct": 75.0,
-        "pf": 2.477,
+        "trades": 25,
+        "win_pct": 76.0,
+        "pf": 2.491,
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 4.24,
-        "half2_pct": 0.97,
-        "funding_paid": 52.2
+        "half2_pct": 1.01,
+        "funding_paid": 52.5
       },
       {
         "activation_atr": 1.0,
         "distance_atr": 1.5,
-        "equity": 5208.41,
+        "equity": 5208.39,
         "return_pct": 4.168,
         "max_dd_pct": 2.38,
         "trades": 22,
@@ -68,13 +68,13 @@
         "first_breach": null,
         "half1_pct": 3.92,
         "half2_pct": 0.24,
-        "funding_paid": 54.3
+        "funding_paid": 55.8
       },
       {
         "activation_atr": 2.0,
         "distance_atr": 0.5,
-        "equity": 5255.53,
-        "return_pct": 5.111,
+        "equity": 5255.51,
+        "return_pct": 5.11,
         "max_dd_pct": 2.891,
         "trades": 23,
         "win_pct": 86.96,
@@ -84,12 +84,12 @@
         "first_breach": null,
         "half1_pct": 5.24,
         "half2_pct": -0.13,
-        "funding_paid": 58.2
+        "funding_paid": 59.7
       },
       {
         "activation_atr": 2.0,
         "distance_atr": 1.0,
-        "equity": 5336.2,
+        "equity": 5336.18,
         "return_pct": 6.724,
         "max_dd_pct": 2.65,
         "trades": 22,
@@ -100,12 +100,12 @@
         "first_breach": null,
         "half1_pct": 6.51,
         "half2_pct": 0.2,
-        "funding_paid": 61.5
+        "funding_paid": 63.0
       },
       {
         "activation_atr": 2.0,
         "distance_atr": 1.5,
-        "equity": 5167.76,
+        "equity": 5167.74,
         "return_pct": 3.355,
         "max_dd_pct": 3.093,
         "trades": 21,
@@ -116,12 +116,12 @@
         "first_breach": null,
         "half1_pct": 3.92,
         "half2_pct": -0.54,
-        "funding_paid": 62.1
+        "funding_paid": 63.6
       },
       {
         "activation_atr": 3.0,
         "distance_atr": 0.5,
-        "equity": 5368.57,
+        "equity": 5368.55,
         "return_pct": 7.371,
         "max_dd_pct": 5.517,
         "trades": 22,
@@ -132,13 +132,13 @@
         "first_breach": null,
         "half1_pct": 9.9,
         "half2_pct": -2.3,
-        "funding_paid": 71.7
+        "funding_paid": 73.2
       },
       {
         "activation_atr": 3.0,
         "distance_atr": 1.0,
-        "equity": 5357.18,
-        "return_pct": 7.144,
+        "equity": 5357.16,
+        "return_pct": 7.143,
         "max_dd_pct": 5.614,
         "trades": 21,
         "win_pct": 76.19,
@@ -148,12 +148,12 @@
         "first_breach": null,
         "half1_pct": 9.83,
         "half2_pct": -2.45,
-        "funding_paid": 73.2
+        "funding_paid": 74.7
       },
       {
         "activation_atr": 3.0,
         "distance_atr": 1.5,
-        "equity": 5269.69,
+        "equity": 5269.68,
         "return_pct": 5.394,
         "max_dd_pct": 5.913,
         "trades": 21,
@@ -164,16 +164,16 @@
         "first_breach": null,
         "half1_pct": 8.72,
         "half2_pct": -3.06,
-        "funding_paid": 75.6
+        "funding_paid": 77.1
       }
     ],
     "upscale_basic": [
       {
         "activation_atr": null,
         "distance_atr": null,
-        "equity": 5072.48,
-        "return_pct": 1.45,
-        "max_dd_pct": 5.396,
+        "equity": 5104.69,
+        "return_pct": 2.094,
+        "max_dd_pct": 6.018,
         "trades": 15,
         "win_pct": 60.0,
         "pf": 1.149,
@@ -181,46 +181,46 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 1.07,
-        "half2_pct": 0.38,
-        "funding_paid": 60.3
+        "half2_pct": 1.02,
+        "funding_paid": 61.5
       },
       {
         "activation_atr": 1.0,
         "distance_atr": 0.5,
-        "equity": 5207.32,
-        "return_pct": 4.146,
+        "equity": 5213.53,
+        "return_pct": 4.271,
         "max_dd_pct": 2.167,
-        "trades": 26,
-        "win_pct": 92.31,
-        "pf": 2.274,
+        "trades": 27,
+        "win_pct": 92.59,
+        "pf": 2.312,
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 3.17,
-        "half2_pct": 0.95,
-        "funding_paid": 23.1
+        "half2_pct": 1.07,
+        "funding_paid": 23.25
       },
       {
         "activation_atr": 1.0,
         "distance_atr": 1.0,
-        "equity": 5320.36,
-        "return_pct": 6.407,
+        "equity": 5324.35,
+        "return_pct": 6.487,
         "max_dd_pct": 2.119,
-        "trades": 24,
-        "win_pct": 87.5,
-        "pf": 2.964,
+        "trades": 25,
+        "win_pct": 88.0,
+        "pf": 2.989,
         "breach_daily_days": 0,
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 4.93,
-        "half2_pct": 1.41,
-        "funding_paid": 26.1
+        "half2_pct": 1.49,
+        "funding_paid": 26.25
       },
       {
         "activation_atr": 1.0,
         "distance_atr": 1.5,
-        "equity": 5264.97,
-        "return_pct": 5.299,
+        "equity": 5267.03,
+        "return_pct": 5.341,
         "max_dd_pct": 2.271,
         "trades": 22,
         "win_pct": 90.91,
@@ -229,14 +229,14 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 4.59,
-        "half2_pct": 0.68,
-        "funding_paid": 27.15
+        "half2_pct": 0.72,
+        "funding_paid": 27.9
       },
       {
         "activation_atr": 2.0,
         "distance_atr": 0.5,
-        "equity": 5315.45,
-        "return_pct": 6.309,
+        "equity": 5317.52,
+        "return_pct": 6.35,
         "max_dd_pct": 2.295,
         "trades": 23,
         "win_pct": 86.96,
@@ -245,14 +245,14 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 5.95,
-        "half2_pct": 0.34,
-        "funding_paid": 29.1
+        "half2_pct": 0.38,
+        "funding_paid": 29.85
       },
       {
         "activation_atr": 2.0,
         "distance_atr": 1.0,
-        "equity": 5396.42,
-        "return_pct": 7.928,
+        "equity": 5398.48,
+        "return_pct": 7.97,
         "max_dd_pct": 2.345,
         "trades": 22,
         "win_pct": 86.36,
@@ -261,14 +261,14 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 7.21,
-        "half2_pct": 0.67,
-        "funding_paid": 30.75
+        "half2_pct": 0.71,
+        "funding_paid": 31.5
       },
       {
         "activation_atr": 2.0,
         "distance_atr": 1.5,
-        "equity": 5226.93,
-        "return_pct": 4.539,
+        "equity": 5228.99,
+        "return_pct": 4.58,
         "max_dd_pct": 2.673,
         "trades": 21,
         "win_pct": 85.71,
@@ -277,14 +277,14 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 4.59,
-        "half2_pct": -0.04,
-        "funding_paid": 31.05
+        "half2_pct": -0.01,
+        "funding_paid": 31.8
       },
       {
         "activation_atr": 3.0,
         "distance_atr": 0.5,
-        "equity": 5433.82,
-        "return_pct": 8.676,
+        "equity": 5435.89,
+        "return_pct": 8.718,
         "max_dd_pct": 5.137,
         "trades": 22,
         "win_pct": 77.27,
@@ -293,14 +293,14 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 10.63,
-        "half2_pct": -1.77,
-        "funding_paid": 35.85
+        "half2_pct": -1.73,
+        "funding_paid": 36.6
       },
       {
         "activation_atr": 3.0,
         "distance_atr": 1.0,
-        "equity": 5421.83,
-        "return_pct": 8.437,
+        "equity": 5423.9,
+        "return_pct": 8.478,
         "max_dd_pct": 5.232,
         "trades": 21,
         "win_pct": 76.19,
@@ -309,14 +309,14 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 10.55,
-        "half2_pct": -1.91,
-        "funding_paid": 36.6
+        "half2_pct": -1.87,
+        "funding_paid": 37.35
       },
       {
         "activation_atr": 3.0,
         "distance_atr": 1.5,
-        "equity": 5335.55,
-        "return_pct": 6.711,
+        "equity": 5337.62,
+        "return_pct": 6.752,
         "max_dd_pct": 5.435,
         "trades": 21,
         "win_pct": 76.19,
@@ -325,8 +325,8 @@
         "breach_total": false,
         "first_breach": null,
         "half1_pct": 9.46,
-        "half2_pct": -2.51,
-        "funding_paid": 37.8
+        "half2_pct": -2.47,
+        "funding_paid": 38.55
       }
     ]
   }
