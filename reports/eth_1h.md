@@ -1,6 +1,6 @@
 # ETHUSDT 1H — DeltaRSI exploratory report
 
-Closed candles: **9430**; from 2025-10-26T12:00:00+00:00 to 2026-11-23T09:00:00+00:00.
+Closed candles: **9456**; from 2025-10-26T12:00:00+00:00 to 2026-11-24T11:00:00+00:00.
 
 ## Method
 SMA(21) → Wilder RSI(12) → EMA(7), then mirrored logarithmic delta exactly as in Delta.
